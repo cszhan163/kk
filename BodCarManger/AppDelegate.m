@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-
+#import "AppMainUIViewManage.h"
 #import "ViewController.h"
 
 @implementation AppDelegate
@@ -22,9 +22,29 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
-    // Override point for customization after application launch.
-    self.viewController = [[[ViewController alloc] initWithNibName:@"ViewController" bundle:nil] autorelease];
-    self.window.rootViewController = self.viewController;
+#if 1
+    AppMainUIViewManage *appMg = [AppMainUIViewManage getSingleTone];
+    appMg.window = self.window;
+    [appMg addMainViewUI];
+    //
+    //[UIAlertViewMgr getSigleTone];
+    
+    //[ZCSDataArchiveMgr getSingleTone];
+    //[DressMemoNetInterfaceMgr getSingleTone];
+    //[ZCSNetClientErrorMgr getSingleTone];
+    //[NTESMBLocalImageStorage getInstance];
+    //ZCSNetClientDataMgr *clientMgr = [ZCSNetClientDataMgr getSingleTone];
+    //[clientMgr startMemoImageTagDataSource];
+    //[clientMgr startMemoDataUpload:nil];
+#ifdef UI_APPEARANCE_SELECTOR
+    if([UINavigationBar resolveClassMethod:@selector(appearanceWhenContainedIn:)])
+    {
+        [[UINavigationBar appearanceWhenContainedIn:[UIImagePickerController class], nil] setTintColor:[UIColor blackColor]];
+    }
+#endif
+    
+#endif
+
     [self.window makeKeyAndVisible];
     return YES;
 }

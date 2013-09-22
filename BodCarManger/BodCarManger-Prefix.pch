@@ -11,4 +11,28 @@
 #ifdef __OBJC__
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
+#import "UIFramework.h"
+#import "ZCSNotficationMgr.h"
+#import "NEDebugTool.h"
+#import "UIParamsCfg.h"
+#import "UIImage+Extend.h"
+#import "UIComUtil.h"
+#import "CardShopNetDataMgr.h"
+#import "AppConfig.h"
+#import "SVProgressHUD.h"
+
+typedef struct dateSturct{
+    int year;
+    int month;
+    int day;
+}DateStruct;
+//#import ""
+#ifdef ARC
+#else
+#define strong retain
+#define strong retain
+#endif
+#define Safe_Release(x) {[x release]; x = nil;}
+
+
 #endif

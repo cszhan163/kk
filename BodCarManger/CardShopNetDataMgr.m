@@ -11,7 +11,7 @@
 #import "ZCSNetClientConfig.h"
 #import "ZCSNetClient.h"
 #import "AppSetting.h"
-#import "AppConfig_bak.h"
+//#import "AppConfig_bak.h"
 @interface CardShopNetDataMgr()
 @property(nonatomic,retain)NSMutableDictionary *requestResourceDict;
 //@property(nonatomic,assign)BOOL isUserLogOut;

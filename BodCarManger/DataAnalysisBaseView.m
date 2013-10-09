@@ -43,6 +43,7 @@
     for(id item in data){
         if(type == 0)
         {
+            
             [mutipleView addMutiplePecentTrackWithPercent:[item intValue] withColor:[UIColor greenColor] withClocksize:NO];
         }
     }

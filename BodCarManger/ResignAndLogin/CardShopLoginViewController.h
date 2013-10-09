@@ -1,0 +1,23 @@
+//
+//  frmLogin.h
+//  kkshop
+//
+//  Created by apple  on 12-8-7.
+//
+//
+
+#import <UIKit/UIKit.h>
+#import "BaoCarNetBaseViewController.h"
+@interface CardShopLoginViewController :CardShopNetBaseViewController
+{
+    IBOutlet UITextField *txtusername;
+    IBOutlet UITextField *txtpassword;
+}
+@property(nonatomic,retain) IBOutlet UITextField *txtusername;
+@property(nonatomic,retain) IBOutlet UITextField *txtpassword;
+- (IBAction)textFieldDidEndEditing:(id)sender ;
+-(IBAction)login_click:(id)sender;
+-(IBAction)regist_click:(id)sender;
+-(IBAction)findpw_click:(id)sender;
+-(IBAction)cancelLogin:(id)sender;
+@end

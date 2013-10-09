@@ -24,8 +24,9 @@
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
 #if 1
     AppMainUIViewManage *appMg = [AppMainUIViewManage getSingleTone];
+   
     appMg.window = self.window;
-    [appMg addMainViewUI];
+     [appMg addMainViewUI];
     //
     //[UIAlertViewMgr getSigleTone];
     

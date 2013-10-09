@@ -36,7 +36,8 @@
     return self;
 }
 - (void)viewDidAppear:(BOOL)animated{
-    [self checkDataChange];
+    [super viewDidAppear:animated];
+    //[self checkDataChange];
 }
 //#define FIRST
 - (void)viewDidLoad
@@ -88,10 +89,6 @@
     
 #else
    
-    
-  
-    
-    
     CGPoint insertPoint = CGPointMake(167,50);
     int width = 300;
     int height = 250;
@@ -206,7 +203,13 @@
 }
 - (void)checkDataChange{
 
-   
+#if 0
+    NSArray * dataArray = [NSArray arrayWithObject:
+                           [NSDictionary dictionary]]
+    mDataDict = [NSDictionary dictionaryWithObjectsAndKeys:
+                 
+                 , nil];
+#endif
     NSMutableArray *data = [mDataDict objectForKey:mMothDateKey] ;
     if(data== nil){
         [self refulshNetData];
@@ -252,7 +255,7 @@
 #pragma mark net work
 - (void)refulshNetData{
     
-    CardShopNetDataMgr *cardShopMgr = [CardShopNetDataMgr getSingleTone];
+    CarServiceNetDataMgr *cardShopMgr = [CarServiceNetDataMgr getSingleTone];
     
     //[self startShowLoadingView];
     NSString *mothParm = [NSString stringWithFormat:@"%d%02d",mCurrDate.year,mCurrDate.month];
@@ -315,14 +318,14 @@
 }
 -(void)didNetDataFailed:(NSNotification*)ntf
 {
-    kNetEndWithErrorAutoDismiss(@"", 2.f);
+    //kNetEnd(@"", 2.f);
     id obj = [ntf object];
     id respRequest = [obj objectForKey:@"request"];
     id data = [obj objectForKey:@"data"];
     NSString *resKey = [respRequest resourceKey];
     if(self.request ==respRequest && [resKey isEqualToString:@"getInfoByMonth"])
     {
-        //kNetEnd(self.view);
+        kNetEnd(self.view);
     }
     if(self.request ==respRequest && [resKey isEqualToString:@"addreply"])
     {

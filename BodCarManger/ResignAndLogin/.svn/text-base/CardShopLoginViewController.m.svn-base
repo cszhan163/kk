@@ -1,0 +1,149 @@
+//
+//  CardShopLoginViewController.m
+//  kkshop
+//
+//  Created by apple  on 12-8-7.
+//
+//
+
+#import "CardShopLoginViewController.h"
+#import "ResetPasswordViewController.h"
+
+#import "CardShopNetDataMgr.h"
+
+@interface CardShopLoginViewController ()
+
+@end
+
+@implementation CardShopLoginViewController
+@synthesize txtusername;
+@synthesize txtpassword;
+@synthesize request;
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        // Custom initialization
+    }
+    return self;
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    NSString  *username=@"";
+    NSString  *password=@"";
+    //self.txtpassword
+    /*
+    NSString   *filename=[self GetTempPath:@"username.txt"];
+     NSError *err;
+    if([self is_file_exist:filename]){
+        
+        username=[NSString stringWithContentsOfFile:filename encoding:NSUTF8StringEncoding error:&err];
+    }
+    
+    filename=[self GetTempPath:@"password.txt"];
+    if([self is_file_exist:filename]){
+        
+        password=[NSString stringWithContentsOfFile:filename encoding:NSUTF8StringEncoding error:&err];
+    }
+    */
+    if (![username isEqualToString:@""])
+    {
+        self.txtpassword.text=password;
+        self.txtusername.text=username;
+        //[self login_click:nil];
+    }
+    
+    // Do any additional setup after loading the view from its nib.
+}
+
+- (void)viewDidUnload
+{
+    [super viewDidUnload];
+    // Release any retained subviews of the main view.
+    // e.g. self.myOutlet = nil;
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+- (IBAction)textFieldDidEndEditing:(id)sender
+{
+	[sender resignFirstResponder];
+
+}
+-(IBAction)login_click:(id)sender
+{
+    [self.txtusername resignFirstResponder];
+    [self.txtpassword resignFirstResponder];
+    if([self.txtusername.text length]<11)
+    {
+        kUIAlertView(@"提示", @"输入的手机号码不对");
+        [self.txtusername becomeFirstResponder];
+        return;
+    }
+    [self startLogin];
+}
+-(IBAction)regist_click:(id)sender
+{
+    
+    ResetPasswordViewController *frmobj=[[ResetPasswordViewController alloc] init];
+    frmobj.type = 0;
+    [self.navigationController pushViewController:frmobj animated:YES];
+    [frmobj release];
+}
+-(IBAction)findpw_click:(id)sender
+{
+    ResetPasswordViewController *resPsVc=[[ResetPasswordViewController alloc] init];
+    resPsVc.type = 1;//forget password
+    [self.navigationController pushViewController:resPsVc animated:YES];
+    [resPsVc release];
+
+}
+
+-(void)startLogin
+{
+    //if([self check])
+    kNetStartShow(@"登录中...",self.view);
+    CardShopNetDataMgr *cardShopMgr = [CardShopNetDataMgr getSingleTone];
+    
+    NSDictionary *param = [NSDictionary dictionaryWithObjectsAndKeys:
+                              self.txtusername.text,@"username",
+                              self.txtpassword.text,@"password",
+                              nil];
+   
+    self.request = [cardShopMgr  userLogin:param];
+
+}
+-(IBAction)cancelLogin:(id)sender
+{
+    [ZCSNotficationMgr postMSG:kDisMissModelViewController obj:nil];
+}
+#pragma mark net work respond failed
+
+-(void)didNetDataOK:(NSNotification*)ntf
+{
+    id obj = [ntf object];
+    id respRequest = [obj objectForKey:@"request"];
+    id _data = [obj objectForKey:@"data"];
+    NSString *resKey = [respRequest resourceKey];
+    if(self.request == respRequest && [resKey isEqualToString:kNetLoginRes])
+    {
+        kNetEnd(self.view);
+        self.request = nil;
+        NE_LOG(@"%@",[_data description]);
+        //[self stopShowLoadingView];
+        //[Ap]
+        [ZCSNotficationMgr postMSG:kDisMissModelViewController obj:nil];
+    }
+    
+}
+-(void)didNetDataFailed:(NSNotification*)ntf
+{
+    kNetEnd(self.view);
+    NE_LOG(@"warning not implemetation net respond");
+}
+@end

@@ -17,9 +17,15 @@
 #import "UIParamsCfg.h"
 #import "UIImage+Extend.h"
 #import "UIComUtil.h"
-#import "CardShopNetDataMgr.h"
+#import "CarServiceNetDataMgr.h"
 #import "AppConfig.h"
 #import "SVProgressHUD.h"
+#import "UIBaseFactory.h"
+#import "AppMSGDef.h"
+#import "PlanformTool.h"
+
+//for net
+#import "ZCSNetClientConfig.h"
 
 typedef struct dateSturct{
     int year;

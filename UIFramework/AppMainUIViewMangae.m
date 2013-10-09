@@ -21,7 +21,7 @@
 #endif
 
 #import "UserSettingViewController.h"
-#import "CarMonitorViewController.h"
+#import "CarDriveStatusViewController.h"
 #import "CarRouterViewController.h"
 #import "CarServiceViewController.h"
 #import "CarStatusViewController.h"
@@ -29,11 +29,13 @@
 //#define USER_LOGIN
 
 #ifdef  USER_LOGIN
-#import "LoginAndResignMainViewController.h"
+//#import "LoginAndResignMainViewController.h"
+#import "CardShopLoginViewController.h"
 #import "AppSetting.h"
 #endif
 
 @class GMusicPlayMgr;
+#define kLoginViewControllerClass @"CardShopLoginViewController"
 static NSString * TabMainClassArray[kTabCountMax] ={@"CarRouterDateViewController",@"CarMonitorViewController",@"CarStatusViewController",@"CarServiceViewController",@"UserSettingViewController"};
 
 static AppMainUIViewManage *sharedObj = nil;
@@ -84,23 +86,24 @@ static UIButton *popup = nil;
 	 */
 	//UIView *mainView = [[UIView alloc]initWithFrame:CGRectMake(0.f, 0.f, kDeviceScreenWidth, kDeviceScreenHeight)];
 
+    
+
 	mainVC = [[NTESMBMainMenuController alloc]init];
     mainVC.delegate = self;
-    
-    
-    
 #if 1
 	UINavigationController *navCtrl = [[UINavigationController alloc]initWithRootViewController:mainVC];
     navCtrl.navigationBar.tintColor = [UIColor redColor];//[UIColor colorWithPatternImage:];
 	navCtrl.navigationBarHidden = YES;
 	currentNavgationController = navCtrl;
-	//navCtrl.delegate = self;
+    
     [self.window addSubview:navCtrl.view];
+	//navCtrl.delegate = self;
 #else
 	[self.window addSubview:mainVC.view];
 #endif
-#ifdef  USER_LOGIN
 
+#ifdef  USER_LOGIN
+    
     NSString *loginUser = [AppSetting getCurrentLoginUser];
     NSString *loginUserId = [AppSetting getLoginUserId];
     NSDictionary *loginUserData = nil;
@@ -110,16 +113,17 @@ static UIButton *popup = nil;
     }
     if(loginUser == nil ||loginUserData == nil||loginUserId== nil)
     {
-        LoginAndResignMainViewController *loginMainVc = [[LoginAndResignMainViewController alloc]init];
+        id loginMainVc = [[NSClassFromString(kLoginViewControllerClass) alloc]init];
         UINavigationController *navCtrl = [[UINavigationController alloc]initWithRootViewController:loginMainVc];
         //navCtrl.navigationBar.tintColor = [UIColor redColor];//[UIColor colorWithPatternImage:];
         [loginMainVc release];
         navCtrl.navigationBarHidden = YES;
         //[ZCSNotficationMgr postMSG:kPresentModelViewController obj:navCtrl];
         [currentNavgationController presentModalViewController:navCtrl animated:NO];
-         
+        
     }
 #endif
+   
   
 	//[mainView addSubview:navCtrl.view];
 	

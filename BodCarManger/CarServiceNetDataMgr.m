@@ -6,19 +6,19 @@
 //  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
 //
 
-#import "CardShopNetDataMgr.h"
+#import "CarServiceNetDataMgr.h"
 #import "ZCSNetClientNetInterfaceMgr.h"
 #import "ZCSNetClientConfig.h"
 #import "ZCSNetClient.h"
 #import "AppSetting.h"
 #import "AppConfig_bak.h"
-@interface CardShopNetDataMgr()
+@interface CarServiceNetDataMgr()
 @property(nonatomic,retain)NSMutableDictionary *requestResourceDict;
 //@property(nonatomic,assign)BOOL isUserLogOut;
 @end
-static CardShopNetDataMgr *sharedInstance = nil;
+static CarServiceNetDataMgr *sharedInstance = nil;
 static ZCSNetClientNetInterfaceMgr *dressMemoInterfaceMgr = nil;
-@implementation CardShopNetDataMgr
+@implementation CarServiceNetDataMgr
 @synthesize requestResourceDict;
 +(id)getSingleTone{
     @synchronized(self)
@@ -623,6 +623,8 @@ static ZCSNetClientNetInterfaceMgr *dressMemoInterfaceMgr = nil;
                                                 withData:NO];
 
 }
+#pragma mark -
+#pragma mark rounter
 - (id)getDetailByMonth:(NSDictionary*)param{
     return [dressMemoInterfaceMgr startAnRequestByResKey:@"getInfoByMonth"
                                                needLogIn:NO
@@ -631,6 +633,16 @@ static ZCSNetClientNetInterfaceMgr *dressMemoInterfaceMgr = nil;
                                                 withData:NO];
 }
 - (id)getDetailByDay:(NSDictionary*)param{
+    return [dressMemoInterfaceMgr startAnRequestByResKey:@"getDetailByDay"
+                                               needLogIn:NO
+                                               withParam:param
+                                              withMethod:@"POST"
+                                                withData:NO];
+}
+#pragma mark -
+#pragma mark service
+- (id)getMessageList:(NSDictionary*)param{
+
     return [dressMemoInterfaceMgr startAnRequestByResKey:@"getDetailByDay"
                                                needLogIn:NO
                                                withParam:param

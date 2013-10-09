@@ -35,7 +35,7 @@
     mainView.mainFramView.backgroundColor = kAppUserBGWhiteColor;
 #endif
     //mainView.alpha = 0.;
-    [self setNavgationBarTitle:NSLocalizedString(@"Service", @""
+    [self setNavgationBarTitle:NSLocalizedString(@"服务", @""
                                                  )];
     [self setRightBtnHidden:YES];
     //[self setRightTextContent:NSLocalizedString(@"Done", @"")];

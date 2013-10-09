@@ -1,0 +1,51 @@
+//
+//  AppMSGDef.h
+//  DressMemo
+//
+//  Created by  on 12-6-20.
+//  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
+//
+
+#ifndef DressMemo_AppMSGDef_h
+#define DressMemo_AppMSGDef_h
+/**
+ * ZCS net work
+ */
+#define kZCSNetWorkStart  @"ZCSNetWorkStart"
+/**
+ * NSNotification object NSDictionary object 
+ */
+#define kZCSNetWorkOK               @"ZCSNetWorkOk"
+#define kZCSNetWorkReloadRequest    @"ZCSNetWorkReloadRequest"
+#define kZCSNetWorkNeedReLogin      @"ZCSNetWorkNeedReLogin"
+#define kZCSNetWorkServerFailed     @"ZCSNetWorkServerFailed"
+#define kZCSNetWorkConnectionFailed @"ZCSNetWorkConnetionFailed"
+#define kZCSNetWorkRespondFailed    @"ZCSNetWorkRespondFailed"
+#define kZCSNetWorkRequestFailed    @"ZCSNetWorkRequestFailed"
+/*
+ photo pick 
+ */
+#define kUploadPhotoPickChooseMSG     @"uploadPhotoPickChooseMSG"
+#define kUploadPhotoPickChooseEditMSG @"uploadPhotoPickChooseEditMSG"
+#define kUploadActionSheetViewAlertMSG @"uploadActionSheetViewAlertMSG"
+
+/**
+ netupload process msg 
+ */
+
+#define   kUploadProcessStart @"uploadProcessStart"
+#define   kUploadProcessUpdate @"uploadProcessUpdate"
+#define   kUploadProcessEnd   @"uploadProcessEnd"
+
+/**
+ login and register
+ */
+#define  kUserDidLoginOk           @"userLoginOk"
+#define  kUserDidResignOK           @"userDidResignOk"
+#define  kUserDidLogOut             @"userLogOut"
+
+#define KNewMessageFromMSG          @"newMessageMSG"
+
+
+
+#endif

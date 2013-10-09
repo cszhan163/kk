@@ -21,7 +21,7 @@
 
 @protocol ZCSNetClientNetInterfaceMgrDataSource;
 @protocol ZCSNetClientNetInterfaceMgrDelegate;
-@interface CardShopNetDataMgr : NSObject<ZCSNetClientNetInterfaceMgrDataSource,
+@interface CarServiceNetDataMgr : NSObject<ZCSNetClientNetInterfaceMgrDataSource,
 ZCSNetClientNetInterfaceMgrDelegate>
 /*user*/
 +(id)getSingleTone;
@@ -62,4 +62,7 @@ ZCSNetClientNetInterfaceMgrDelegate>
 /*router*/
 - (id)getDetailByDay:(NSDictionary*)param;
 - (id)getDetailByMonth:(NSDictionary*)param;
+
+/*Service*/
+- (id)getMessageList:(NSDictionary*)param;
 @end

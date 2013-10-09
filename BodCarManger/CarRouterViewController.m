@@ -276,7 +276,7 @@ NSString* gDataArr[] = {@"12.5km",@"11km/h",@"87L",@"3h"};
 #pragma mark net work
 - (void)shouldLoadNewerData:(UITableView*)tableView{
 
-    CardShopNetDataMgr *cardShopMgr = [CardShopNetDataMgr getSingleTone];
+    CarServiceNetDataMgr *cardShopMgr = [CarServiceNetDataMgr getSingleTone];
     
     //[self startShowLoadingView];
     kNetStartShow(@"数据加载...", self.view);

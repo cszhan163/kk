@@ -13,6 +13,7 @@
 #import "AppSetting.h"
 #import "AppConfig_bak.h"
 @interface CarServiceNetDataMgr()
+@interface CardShopNetDataMgr()
 @property(nonatomic,retain)NSMutableDictionary *requestResourceDict;
 //@property(nonatomic,assign)BOOL isUserLogOut;
 @end

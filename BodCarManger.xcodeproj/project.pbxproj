@@ -17,7 +17,6 @@
 		0436B04D17FC7AE100750473 /* CarDriveOilAnalaysisViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0436B04C17FC7AE000750473 /* CarDriveOilAnalaysisViewController.m */; };
 		043C650617FD76EF00CDBAC8 /* MesssageBoxViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 043C650517FD76EF00CDBAC8 /* MesssageBoxViewController.m */; };
 		043C650917FD77F200CDBAC8 /* MessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 043C650817FD77F200CDBAC8 /* MessageTableViewCell.m */; };
-		043D9B0617F9D1AC00BE0C31 /* libJsonLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 043D9B0417F9D18700BE0C31 /* libJsonLib.a */; };
 		043D9B4717FAC3E500BE0C31 /* CardShopLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 043D9B4017FAC3E500BE0C31 /* CardShopLoginViewController.m */; };
 		043D9B4817FAC3E500BE0C31 /* CardShopLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 043D9B4117FAC3E500BE0C31 /* CardShopLoginViewController.xib */; };
 		043D9B4917FAC3E500BE0C31 /* CardShopResignViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 043D9B4317FAC3E500BE0C31 /* CardShopResignViewController.m */; };
@@ -161,13 +160,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		043D9B0317F9D18700BE0C31 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 043D9AFF17F9D18700BE0C31 /* JsonLib.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 043D9AD117F9C73A00BE0C31;
-			remoteInfo = JsonLib;
-		};
 		046B684E17E77391006F34A1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 046B684A17E7738C006F34A1 /* ZCSUIFrameWork.xcodeproj */;
@@ -198,7 +190,6 @@
 		043C650517FD76EF00CDBAC8 /* MesssageBoxViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MesssageBoxViewController.m; sourceTree = "<group>"; };
 		043C650717FD77F200CDBAC8 /* MessageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageTableViewCell.h; sourceTree = "<group>"; };
 		043C650817FD77F200CDBAC8 /* MessageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageTableViewCell.m; sourceTree = "<group>"; };
-		043D9AFF17F9D18700BE0C31 /* JsonLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = JsonLib.xcodeproj; path = ../../BaseLib/JSON/JsonLib/JsonLib.xcodeproj; sourceTree = "<group>"; };
 		043D9B3C17FAC0EE00BE0C31 /* AppMSGDef.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppMSGDef.h; sourceTree = "<group>"; };
 		043D9B3F17FAC3E500BE0C31 /* CardShopLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardShopLoginViewController.h; sourceTree = "<group>"; };
 		043D9B4017FAC3E500BE0C31 /* CardShopLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardShopLoginViewController.m; sourceTree = "<group>"; };
@@ -396,7 +387,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				043D9B0617F9D1AC00BE0C31 /* libJsonLib.a in Frameworks */,
 				044BEE0317EAC011004BF443 /* MobileCoreServices.framework in Frameworks */,
 				044BEE0017EABF37004BF443 /* libz.dylib in Frameworks */,
 				044BEDFC17EABEBD004BF443 /* SystemConfiguration.framework in Frameworks */,
@@ -442,14 +432,6 @@
 			name = ViewController;
 			sourceTree = "<group>";
 		};
-		043D9B0017F9D18700BE0C31 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				043D9B0417F9D18700BE0C31 /* libJsonLib.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		043D9B3E17FAC3E400BE0C31 /* ResignAndLogin */ = {
 			isa = PBXGroup;
 			children = (
@@ -477,7 +459,6 @@
 		046B662517E74984006F34A1 = {
 			isa = PBXGroup;
 			children = (
-				043D9AFF17F9D18700BE0C31 /* JsonLib.xcodeproj */,
 				044BEE0217EAC011004BF443 /* MobileCoreServices.framework */,
 				044BEDFF17EABF37004BF443 /* libz.dylib */,
 				044BEDFB17EABEBD004BF443 /* SystemConfiguration.framework */,
@@ -920,10 +901,6 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 043D9B0017F9D18700BE0C31 /* Products */;
-					ProjectRef = 043D9AFF17F9D18700BE0C31 /* JsonLib.xcodeproj */;
-				},
-				{
 					ProductGroup = 046B684B17E7738C006F34A1 /* Products */;
 					ProjectRef = 046B684A17E7738C006F34A1 /* ZCSUIFrameWork.xcodeproj */;
 				},
@@ -936,13 +913,6 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		043D9B0417F9D18700BE0C31 /* libJsonLib.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libJsonLib.a;
-			remoteRef = 043D9B0317F9D18700BE0C31 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		046B684F17E77391006F34A1 /* libZCSUIFrameWork.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;

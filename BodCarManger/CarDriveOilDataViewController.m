@@ -86,6 +86,9 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.clipsToBounds = YES;
     }
+    if(indexPath.row == 10){
+        [cell setSeperateLineHidden:YES];
+    }
     /*
      "driveflg": "1",
      "starttime": "17:54",

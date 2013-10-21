@@ -69,7 +69,7 @@
 								</object>
 								<object class="NSCustomResource" key="IBUINormalImage">
 									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">return.png</string>
+									<string key="NSResourceName">btn-back.png</string>
 								</object>
 								<object class="IBUIFontDescription" key="IBUIFontDescription" id="69791869">
 									<int key="type">2</int>
@@ -99,6 +99,7 @@
 								</object>
 								<object class="IBUIBarButtonItem" key="IBUILeftBarButtonItem" id="1023000298">
 									<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+									<float key="IBUIWidth">40</float>
 									<reference key="IBUICustomView" ref="601903420"/>
 									<reference key="IBUINavigationItem" ref="973965078"/>
 								</object>
@@ -109,7 +110,7 @@
 					<object class="IBUIImageView" id="825803112">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">258</int>
-						<string key="NSFrame">{{9, 60}, {302, 89}}</string>
+						<string key="NSFrame">{{0, 44}, {320, 416}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSNextKeyView" ref="1063578105"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -117,13 +118,13 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<object class="NSCustomResource" key="IBUIImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">r_userinfo_backgroudn.png</string>
+							<string key="NSResourceName">login_bg.png</string>
 						</object>
 					</object>
 					<object class="IBUIButton" id="359181208">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">288</int>
-						<string key="NSFrame">{{58, 169}, {202, 42}}</string>
+						<string key="NSFrame">{{165, 190}, {135, 42}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSNextKeyView" ref="748900142"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -147,7 +148,7 @@
 					<object class="IBUIButton" id="748900142">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{58, 219}, {202, 42}}</string>
+						<string key="NSFrame">{{25, 188}, {78, 21}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSNextKeyView" ref="771031775"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -171,7 +172,7 @@
 					<object class="IBUIButton" id="771031775">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{58, 269}, {202, 22}}</string>
+						<string key="NSFrame">{{98, 269}, {202, 22}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
@@ -194,7 +195,7 @@
 					<object class="IBUITextField" id="1063578105">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{84, 69}, {216, 31}}</string>
+						<string key="NSFrame">{{70, 69}, {226, 38}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSNextKeyView" ref="502149425"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -231,7 +232,7 @@
 					<object class="IBUITextField" id="502149425">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{84, 111}, {216, 31}}</string>
+						<string key="NSFrame">{{76, 133}, {216, 31}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSNextKeyView" ref="359181208"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -492,7 +493,69 @@
 			<nil key="sourceID"/>
 			<int key="maxID">33</int>
 		</object>
-		<object class="IBClassDescriber" key="IBDocument.Classes"/>
+		<object class="IBClassDescriber" key="IBDocument.Classes">
+			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
+				<object class="IBPartialClassDescription">
+					<string key="className">CardShopLoginViewController</string>
+					<string key="superclassName">CardShopNetBaseViewController</string>
+					<dictionary class="NSMutableDictionary" key="actions">
+						<string key="cancelLogin:">id</string>
+						<string key="findpw_click:">id</string>
+						<string key="login_click:">id</string>
+						<string key="regist_click:">id</string>
+						<string key="textFieldDidEndEditing:">id</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="actionInfosByName">
+						<object class="IBActionInfo" key="cancelLogin:">
+							<string key="name">cancelLogin:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="findpw_click:">
+							<string key="name">findpw_click:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="login_click:">
+							<string key="name">login_click:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="regist_click:">
+							<string key="name">regist_click:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="textFieldDidEndEditing:">
+							<string key="name">textFieldDidEndEditing:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="txtpassword">UITextField</string>
+						<string key="txtusername">UITextField</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="txtpassword">
+							<string key="name">txtpassword</string>
+							<string key="candidateClassName">UITextField</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="txtusername">
+							<string key="name">txtusername</string>
+							<string key="candidateClassName">UITextField</string>
+						</object>
+					</dictionary>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/CardShopLoginViewController.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">CardShopNetBaseViewController</string>
+					<string key="superclassName">UIViewController</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/CardShopNetBaseViewController.h</string>
+					</object>
+				</object>
+			</array>
+		</object>
 		<int key="IBDocument.localizationMode">0</int>
 		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaTouchFramework</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginDeclaredDependencyDefaults">
@@ -502,11 +565,11 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
+			<string key="btn-back.png">{61, 57}</string>
+			<string key="login_bg.png">{640, 832}</string>
 			<string key="r_btn_forgetpw.png">{402, 43}</string>
 			<string key="r_btn_login.png">{404, 83}</string>
 			<string key="r_btn_regist.png">{404, 83}</string>
-			<string key="r_userinfo_backgroudn.png">{605, 178}</string>
-			<string key="return.png">{99, 48}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">2083</string>
 	</data>

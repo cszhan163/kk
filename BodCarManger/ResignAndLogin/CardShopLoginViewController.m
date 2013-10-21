@@ -8,7 +8,7 @@
 
 #import "CardShopLoginViewController.h"
 #import "ResetPasswordViewController.h"
-
+#import "CardShopResignViewController.h"
 #import "CarServiceNetDataMgr.h"
 
 @interface CardShopLoginViewController ()
@@ -77,6 +77,9 @@
 }
 -(IBAction)login_click:(id)sender
 {
+    
+    [ZCSNotficationMgr postMSG:kDisMissModelViewController obj:nil];
+    
     [self.txtusername resignFirstResponder];
     [self.txtpassword resignFirstResponder];
     if([self.txtusername.text length]<11)
@@ -89,11 +92,20 @@
 }
 -(IBAction)regist_click:(id)sender
 {
-    
+#if 0
     ResetPasswordViewController *frmobj=[[ResetPasswordViewController alloc] init];
     frmobj.type = 0;
     [self.navigationController pushViewController:frmobj animated:YES];
     [frmobj release];
+#else
+    CardShopResignViewController *frmobj=[[CardShopResignViewController alloc] init];
+    /*
+    frmobj.mobilePhoneNumStr = subClassInputTextField.text;
+    frmobj.type = self.type;
+     */
+    [self.navigationController pushViewController:frmobj animated:YES];
+    [frmobj release];
+#endif
 }
 -(IBAction)findpw_click:(id)sender
 {

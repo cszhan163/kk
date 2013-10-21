@@ -23,7 +23,7 @@
 #import "UIBaseFactory.h"
 #import "AppMSGDef.h"
 #import "PlanformTool.h"
-
+#import <QuartzCore/QuartzCore.h>
 //for net
 #import "ZCSNetClientConfig.h"
 

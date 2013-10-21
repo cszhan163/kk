@@ -7,20 +7,25 @@
 //
 
 #import "ExcellLikeCellBase.h"
+#define kCellSplitLineColor    HexRGB(96, 95, 95)  
 @interface ExcellLikeCellBase(){
+    BOOL isHiddenLine;
+    UIView  *seperateLine;
 }
 @property(nonatomic,strong)NSArray *mClounmWidthArray;
 
 @end
 
 @implementation ExcellLikeCellBase
+@synthesize mCellItemArray;
 @synthesize mClounmWidthArray;
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization code
-        self.mLineColor = [UIColor grayColor];
+        self.mCellItemArray = [NSMutableArray array];
+        self.mLineColor = kCellSplitLineColor;
     }
     return self;
 }
@@ -48,6 +53,16 @@
         [self addSubview:seperateLine];
         
     }
+    //if(isHiddenLine)
+    {
+        seperateLine = [[UIView alloc]initWithFrame:CGRectMake(0,self.frame.size.height-1,self.frame.size.width,1)];
+        seperateLine.backgroundColor = self.mLineColor;
+        [self addSubview:seperateLine];
+        SafeRelease(seperateLine);
+    }
+}
+- (void)setSeperateLineHidden:(BOOL)status{
+    seperateLine.hidden = status;
 }
 - (void)drawRect:(CGRect)rect{
 

@@ -32,7 +32,7 @@
             currX = currX+[kColounmItemWidthArray[i]floatValue]+1;
             [self addSubview:itemLabel];
             SafeRelease(itemLabel);
-            
+            [self.mCellItemArray addObject:itemLabel];
         }
         UIView  *seperateLine = [[UIView alloc]initWithFrame:CGRectMake(0,self.frame.size.height-1,self.frame.size.width,1)];
         seperateLine.backgroundColor = self.mLineColor;
@@ -44,13 +44,18 @@
     }
     return self;
 }
-
+- (void)setTableCellCloumn:(int)clum withData:(NSString*)text{
+    UILabel *label = [self.mCellItemArray objectAtIndex:clum];
+    label.text = text;
+}
 //- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
 //    
 //}
-- (void)layoutSubviews{
+-(void)layoutSubviews{
     [super layoutSubviews];
-   
+    for(UILabel *item in self.mCellItemArray){
+        
+    }
 }
 /*
 // Only override drawRect: if you perform custom drawing.

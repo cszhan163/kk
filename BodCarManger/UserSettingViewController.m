@@ -7,6 +7,7 @@
 //
 
 #import "UserSettingViewController.h"
+#import "SettingTableViewCell.h"
 //
 //////#import "FriendInvitationViewController.h"
 //////#import "UserInforEditViewController.h"
@@ -52,6 +53,9 @@ static NSString *kSectionOneArr[] =
 	logInfo.dataSource = self;
 	logInfo.scrollEnabled = NO;
 	logInfo.allowsSelection = YES;
+    logInfo.clipsToBounds = YES;
+    //logInfo.layer.cornerRadius = 5.f;
+    logInfo.backgroundColor = HexRGB(202, 202, 204);
     //logInfo.clipsToBounds = YES;
     logInfo.separatorStyle = UITableViewCellSeparatorStyleNone;
 	//logInfo.separatorColor = kLoginAndSignupCellLineColor;
@@ -73,6 +77,7 @@ static NSString *kSectionOneArr[] =
 #else
      mainView.mainFramView.backgroundColor = kAppUserBGWhiteColor;
 #endif
+
     //mainView.alpha = 0.;
     [self setNavgationBarTitle:NSLocalizedString(@"Setting", @""
                                                  )];
@@ -116,13 +121,13 @@ static NSString *kSectionOneArr[] =
 {
 	if(section == 2)
         return 2;
-    else if (section == 1)
+    else if (section == 0)
     {
         return 3;
     } 
     else 
     {
-        return 1;
+        return 2;
     }
     
 }
@@ -135,7 +140,7 @@ static NSString *kSectionOneArr[] =
 //        return [UIShareCell cellHeight];
 //    }
     
-    return  44.f;
+    return  42.f;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     return  0.f;
@@ -157,12 +162,34 @@ static NSString *kSectionOneArr[] =
     
     if (cell == nil) 
     {
+#if 1
 		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:LabelTextFieldCell];
+        cell.backgroundColor = [UIColor whiteColor];
+        
+        //cell.clipsToBounds = YES;
+        //cell.contentView.clipsToBounds = YES;
+       
+        //cell.contentView.backgroundColor = [UIColor clearColor];
+        cell.textLabel.font = [UIFont systemFontOfSize:15];
+       
+        cell.textLabel.textColor = HexRGB(64, 64, 64);
+        
+        
+        UIImageWithFileName(UIImage *bgImage, @"setting_cell_bg.png");
+        UIImageView *bgView = [[UIImageView alloc]initWithImage:bgImage];
+        bgView.frame = CGRectMake(0.f, 0.f,300.f,42.f);
+        
+        //[cell insertSubview:bgView belowSubview:cell.contentView];
+        //[cell.contentView  addSubview: bgView];
+        cell.backgroundView = bgView;
+        SafeRelease(bgView);
+
+#else
+        cell = [[SettingTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:LabelTextFieldCell];
+        SafeAutoRelease(cell);
+#endif
 	}
-    
-    cell.backgroundColor = [UIColor whiteColor];
-    cell.textLabel.font = [UIFont systemFontOfSize:15];
-    cell.textLabel.textColor = [UIColor colorWithRed:70/255.0 green:70.0/255.0 blue:70.0/255.0 alpha:1.0];
+   
     
     
     int index = [indexPath row];
@@ -221,6 +248,7 @@ static NSString *kSectionOneArr[] =
             break;
     }
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    cell.textLabel.backgroundColor = [UIColor clearColor];
 	return cell;
     
 }

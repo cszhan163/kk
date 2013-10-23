@@ -17,8 +17,12 @@
 
 #import "CarCheckTableViewCell.h"
 
-@interface CarStatusViewController ()
+@interface CarStatusViewController (){
 
+    UIProgressView *checkProcessView;
+    UILabel        *rotateSpeedLabel;
+    UILabel        *temperatureLabel;
+}
 @end
 
 @implementation CarStatusViewController
@@ -57,10 +61,39 @@
     
     headerView.frame = CGRectMake(kCheckViewPendingX,currY+kCheckViewPendingY ,bgImage.size.width/kScale, bgImage.size.height/kScale);
     [self.view addSubview:headerView];
-    
     SafeRelease(headerView);
     
+    CGFloat  headerY = 5.f;
+    rotateSpeedLabel = [[UILabel alloc]initWithFrame:CGRectMake(38,headerY, 120.f, 20)];
+    rotateSpeedLabel.font = [UIFont fontWithName:@"DIGIFACEWIDE" size:12];
+    rotateSpeedLabel.text = @"3200 转";
+    rotateSpeedLabel.textColor = [UIColor whiteColor];
+    rotateSpeedLabel.backgroundColor = [UIColor clearColor];
+    
+    
+    [headerView addSubview:rotateSpeedLabel];
+    SafeRelease(rotateSpeedLabel);
+    
+    temperatureLabel = [[UILabel alloc]initWithFrame:CGRectMake(38,headerY+20, 120.f, 20)];
+    temperatureLabel.textColor = [UIColor whiteColor];
+    temperatureLabel.font = [UIFont fontWithName:@"DIGIFACEWIDE" size:12];
+    temperatureLabel.text = @"90 C";
+    temperatureLabel.backgroundColor = [UIColor clearColor];
+    
+    [headerView addSubview:temperatureLabel];
+    SafeRelease(temperatureLabel);
+    
+    
     currY = currY+headerView.frame.size.height+kCheckViewPendingX;
+    
+    
+    checkProcessView = [[UIProgressView alloc]initWithProgressViewStyle:UIProgressViewStyleDefault];
+    checkProcessView.progress = 0.4;
+    //checkProcessView.progressTintColor = [UIColor blackColor];
+    //checkProcessView.trackImage = [UIImage imageWith]HexRGB(44, 45, 47);
+    checkProcessView.frame = CGRectMake(106,currY+57,186,5);
+    [self.view addSubview:checkProcessView];
+    KokSafeRelease(checkProcessView);
     
     
     UIImageWithFileName(bgImage, @"car_check_tag.png");
@@ -75,7 +108,10 @@
     
   
     
-    tweetieTableView.frame = CGRectMake(kCheckViewPendingX,currY,kDeviceScreenWidth-2*kCheckViewPendingX,202.f);
+   
+    
+    
+    tweetieTableView.frame = CGRectMake(kCheckViewPendingX,currY,kDeviceScreenWidth-2*kCheckViewPendingX+1,202.f);
     UIImageWithFileName(bgImage, @"car_check_gridtable_bg.png");
     UIImageView *tableViewBg = [[UIImageView alloc]initWithImage:bgImage];
     [self.view  addSubview:tableViewBg];
@@ -84,23 +120,24 @@
     [tableViewBg addSubview:tweetieTableView];
     tweetieTableView.frame = CGRectMake(0.f,0.f,tableViewBg.frame.size.width,tableViewBg.frame.size.height);
     tableViewBg.clipsToBounds = YES;
-    tableViewBg.userInteractionEnabled = YES;
+    tableViewBg.userInteractionEnabled = NO;
     tweetieTableView.delegate = self;
     tweetieTableView.backgroundColor = [UIColor clearColor];
     tweetieTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     tweetieTableView.clipsToBounds = YES;
     
     
-#if 0
+#if 1
     UIImageWithFileName(bgImage, @"car_check_gridtable_header.png");
     
     UIImageView *tbHeaderView = [[UIImageView alloc]initWithImage:bgImage];
     
-    tbHeaderView.frame = CGRectMake(kCheckViewPendingX-1,currY,bgImage.size.width/kScale, bgImage.size.height/kScale);
+    tbHeaderView.frame = CGRectMake(kCheckViewPendingX,currY,bgImage.size.width/kScale, bgImage.size.height/kScale);
     [self.view addSubview:tbHeaderView];
     SafeRelease(tbHeaderView);
+    //[tweetieTableView setTableHeaderView:tbHeaderView];
 #endif
-    CGFloat height = 22.f;//tbHeaderView.frame.size.height;
+    CGFloat height = tbHeaderView.frame.size.height;
     tweetieTableView.normalEdgeInset = UIEdgeInsetsMake(height,0.f,0.f,0.f);
     
     //[self setRightTextContent:NSLocalizedString(@"Done", @"")];
@@ -141,7 +178,14 @@
 #endif
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.clipsToBounds = YES;
+        
     }
+    if(indexPath.row == 9){
+        [cell setSeperateLineHidden:YES];
+    }
+    [cell setTableCellCloumn:0 withData:@"第一条"];
+    [cell setTableCellCloumn:1 withData:@"0~100"];
+    [cell setTableCellCloumn:2 withData:@"50"];
     /*
      "driveflg": "1",
      "starttime": "17:54",

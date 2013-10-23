@@ -44,10 +44,6 @@
     }
     return self;
 }
-- (void)setTableCellCloumn:(int)clum withData:(NSString*)text{
-    UILabel *label = [self.mCellItemArray objectAtIndex:clum];
-    label.text = text;
-}
 //- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
 //    
 //}

@@ -9,7 +9,7 @@
 #import "CarCheckTableViewCell.h"
 
 #define kMaxItemClounm 3
-#define kColounmItemWidthArray @[@164.f,@66.f,@70.f,@80.f]
+#define kColounmItemWidthArray @[@165.f,@66.f,@68.f]
 #define kCellHeight  18.f;
 @implementation CarCheckTableViewCell
 
@@ -22,7 +22,7 @@
         self.clipsToBounds = YES;
         //NSArray *widthArray = ;
         for(int i = 0;i<kMaxItemClounm;i++){
-            UILabel *itemLabel = [[UILabel alloc]initWithFrame:CGRectMake(currX,6.f,[kColounmItemWidthArray[i]floatValue],18)];
+            UILabel *itemLabel = [[UILabel alloc]initWithFrame:CGRectMake(currX,0.f,[kColounmItemWidthArray[i]floatValue],18)];
             itemLabel.font = [UIFont systemFontOfSize:10];
             itemLabel.textColor = [UIColor whiteColor];
             itemLabel.backgroundColor = [UIColor clearColor];
@@ -33,8 +33,6 @@
             SafeRelease(itemLabel);
             [self.mCellItemArray addObject:itemLabel];
         }
-       
-        
         [self setClounmWidthArrays:kColounmItemWidthArray];
         
     }

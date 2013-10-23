@@ -8,15 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		0435CB3717FF0BD30064FE14 /* CarDriveMannerAnalysisViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0435CB3617FF0BD30064FE14 /* CarDriveMannerAnalysisViewController.m */; };
-		0435CB3B17FF181D0064FE14 /* ExcellLikeCellBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 0435CB3A17FF181D0064FE14 /* ExcellLikeCellBase.m */; };
-		0435CB3E17FF1B9F0064FE14 /* CarDriveOilTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0435CB3D17FF1B9F0064FE14 /* CarDriveOilTableViewCell.m */; };
 		0435CB4317FFC7260064FE14 /* SubNavItemBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0435CB4217FFC7250064FE14 /* SubNavItemBaseViewController.m */; };
 		0435CB4A180011AB0064FE14 /* CarDriveOilDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0435CB49180011AB0064FE14 /* CarDriveOilDataViewController.m */; };
-		0436AFEB17FC264A00750473 /* DataAnalysisBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0436AFEA17FC264A00750473 /* DataAnalysisBaseView.m */; };
 		0436B04817FC74CD00750473 /* CarDataAnalysisBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0436B04717FC74CD00750473 /* CarDataAnalysisBaseViewController.m */; };
 		0436B04D17FC7AE100750473 /* CarDriveOilAnalaysisViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0436B04C17FC7AE000750473 /* CarDriveOilAnalaysisViewController.m */; };
 		043C650617FD76EF00CDBAC8 /* MesssageBoxViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 043C650517FD76EF00CDBAC8 /* MesssageBoxViewController.m */; };
-		043C650917FD77F200CDBAC8 /* MessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 043C650817FD77F200CDBAC8 /* MessageTableViewCell.m */; };
+		043D9B0617F9D1AC00BE0C31 /* libJsonLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 043D9B0417F9D18700BE0C31 /* libJsonLib.a */; };
 		043D9B4717FAC3E500BE0C31 /* CardShopLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 043D9B4017FAC3E500BE0C31 /* CardShopLoginViewController.m */; };
 		043D9B4817FAC3E500BE0C31 /* CardShopLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 043D9B4117FAC3E500BE0C31 /* CardShopLoginViewController.xib */; };
 		043D9B4917FAC3E500BE0C31 /* CardShopResignViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 043D9B4317FAC3E500BE0C31 /* CardShopResignViewController.m */; };
@@ -30,6 +27,9 @@
 		044BEDFC17EABEBD004BF443 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 044BEDFB17EABEBD004BF443 /* SystemConfiguration.framework */; };
 		044BEE0017EABF37004BF443 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 044BEDFF17EABF37004BF443 /* libz.dylib */; };
 		044BEE0317EAC011004BF443 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 044BEE0217EAC011004BF443 /* MobileCoreServices.framework */; };
+		0450363F181183EA00D89FDD /* setting_cell_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 0450363E181183EA00D89FDD /* setting_cell_bg.png */; };
+		045036481811ACCB00D89FDD /* panel_split_line.png in Resources */ = {isa = PBXBuildFile; fileRef = 045036471811ACCB00D89FDD /* panel_split_line.png */; };
+		0450364A1811B01500D89FDD /* panel_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 045036491811B01500D89FDD /* panel_bg.png */; };
 		046B663217E74984006F34A1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 046B663117E74984006F34A1 /* UIKit.framework */; };
 		046B663417E74984006F34A1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 046B663317E74984006F34A1 /* Foundation.framework */; };
 		046B663617E74984006F34A1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 046B663517E74984006F34A1 /* CoreGraphics.framework */; };
@@ -124,22 +124,36 @@
 		046B685017E773F6006F34A1 /* libZCSUIFrameWork.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 046B684F17E77391006F34A1 /* libZCSUIFrameWork.a */; };
 		046B685B17E884D5006F34A1 /* plantData.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 046B685A17E884CF006F34A1 /* plantData.geojson */; };
 		046B685D17E8870F006F34A1 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 046B685C17E88708006F34A1 /* QuartzCore.framework */; };
-		046B686417E8A1CE006F34A1 /* PlantTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 046B686317E8A1CE006F34A1 /* PlantTableViewCell.xib */; };
 		049B0B4917E9F78C008FE4D1 /* OCDaysModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 049B0B4817E9F78C008FE4D1 /* OCDaysModel.m */; };
-		04AFF68817E8A2C0007A1103 /* PlantTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 046B685617E87868006F34A1 /* PlantTableViewCell.m */; };
-		04AFF68C17E8ACE8007A1103 /* CarDetailPenalView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04AFF68B17E8ACE8007A1103 /* CarDetailPenalView.xib */; };
-		04E3C87B17FC0EE300EFB787 /* CarDriveStatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E3C87A17FC0EE300EFB787 /* CarDriveStatusView.m */; };
-		04E3C87D17FC0F4C00EFB787 /* CarDriveStatusView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04E3C87C17FC0F4C00EFB787 /* CarDriveStatusView.xib */; };
+		049DF9551812EAC000DFC9F1 /* login_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 049DF9541812EAC000DFC9F1 /* login_bg.png */; };
+		049DF9591812EE3800DFC9F1 /* register_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 049DF9581812EE3800DFC9F1 /* register_bg.png */; };
+		049DF96018156DEA00DFC9F1 /* car_check_gridtable_header.png in Resources */ = {isa = PBXBuildFile; fileRef = 049DF95D18156DEA00DFC9F1 /* car_check_gridtable_header.png */; };
+		049DF96118156DEA00DFC9F1 /* car_check_header.png in Resources */ = {isa = PBXBuildFile; fileRef = 049DF95E18156DEA00DFC9F1 /* car_check_header.png */; };
+		049DF96218156DEA00DFC9F1 /* car_check_tag.png in Resources */ = {isa = PBXBuildFile; fileRef = 049DF95F18156DEA00DFC9F1 /* car_check_tag.png */; };
+		049DF96A181579AD00DFC9F1 /* DataAnalysisBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 049DF967181579AD00DFC9F1 /* DataAnalysisBaseView.m */; };
+		049DF96B181579AD00DFC9F1 /* DriveActionAnalysisView.m in Sources */ = {isa = PBXBuildFile; fileRef = 049DF969181579AD00DFC9F1 /* DriveActionAnalysisView.m */; };
+		049DF97E18157AB900DFC9F1 /* CarDetailPenalView.m in Sources */ = {isa = PBXBuildFile; fileRef = 049DF96E18157AB800DFC9F1 /* CarDetailPenalView.m */; };
+		049DF97F18157AB900DFC9F1 /* CarDetailPenalView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 049DF96F18157AB800DFC9F1 /* CarDetailPenalView.xib */; };
+		049DF98018157AB900DFC9F1 /* CarDriveOilTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 049DF97118157AB800DFC9F1 /* CarDriveOilTableViewCell.m */; };
+		049DF98118157AB900DFC9F1 /* CarDriveStatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = 049DF97318157AB800DFC9F1 /* CarDriveStatusView.m */; };
+		049DF98218157AB900DFC9F1 /* CarDriveStatusView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 049DF97418157AB800DFC9F1 /* CarDriveStatusView.xib */; };
+		049DF98318157AB900DFC9F1 /* ExcellLikeCellBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 049DF97618157AB800DFC9F1 /* ExcellLikeCellBase.m */; };
+		049DF98418157AB900DFC9F1 /* MessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 049DF97818157AB800DFC9F1 /* MessageTableViewCell.m */; };
+		049DF98518157AB900DFC9F1 /* PlantTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 049DF97A18157AB900DFC9F1 /* PlantTableViewCell.m */; };
+		049DF98618157AB900DFC9F1 /* PlantTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 049DF97B18157AB900DFC9F1 /* PlantTableViewCell.xib */; };
+		049DF98718157AB900DFC9F1 /* SettingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 049DF97D18157AB900DFC9F1 /* SettingTableViewCell.m */; };
+		049DF98A18157C4200DFC9F1 /* CarCheckTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 049DF98918157C4200DFC9F1 /* CarCheckTableViewCell.m */; };
+		049DF98C181588AF00DFC9F1 /* car_check_gridtable_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 049DF98B181588AF00DFC9F1 /* car_check_gridtable_bg.png */; };
+		04C254BA1816D49200B4A678 /* DIGIFACEWIDE.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 04C254B91816D49200B4A678 /* DIGIFACEWIDE.ttf */; };
+		04C254C01816DD4400B4A678 /* car_check_label.png in Resources */ = {isa = PBXBuildFile; fileRef = 04C254BF1816DD4400B4A678 /* car_check_label.png */; };
 		04E3C88C17FC1A5000EFB787 /* DACircularProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E3C88917FC1A5000EFB787 /* DACircularProgressView.m */; };
 		04E3C88D17FC1A5000EFB787 /* DAMultipleProgressLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E3C88B17FC1A5000EFB787 /* DAMultipleProgressLayer.m */; };
-		04E3C89117FC1ACD00EFB787 /* DriveActionAnalysisView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E3C89017FC1ACD00EFB787 /* DriveActionAnalysisView.m */; };
 		BD05724A17E9836600208699 /* MapView.m in Sources */ = {isa = PBXBuildFile; fileRef = BD05724317E9836600208699 /* MapView.m */; };
 		BD05724B17E9836600208699 /* Place.m in Sources */ = {isa = PBXBuildFile; fileRef = BD05724517E9836600208699 /* Place.m */; };
 		BD05724C17E9836600208699 /* PlaceMark.m in Sources */ = {isa = PBXBuildFile; fileRef = BD05724717E9836600208699 /* PlaceMark.m */; };
 		BD05724D17E9836600208699 /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = BD05724917E9836600208699 /* RegexKitLite.m */; };
 		BD05725017E9837300208699 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD05724F17E9837300208699 /* MapKit.framework */; };
 		BD05725217E9871E00208699 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD05725117E9871E00208699 /* CoreLocation.framework */; };
-		BD05725517E98A7F00208699 /* CarDetailPenalView.m in Sources */ = {isa = PBXBuildFile; fileRef = BD05725417E98A7F00208699 /* CarDetailPenalView.m */; };
 		BD05725A17E99B1400208699 /* UIComUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = BD05725917E99B1400208699 /* UIComUtil.m */; };
 		BD05726717E9A2C100208699 /* dashboard11.png in Resources */ = {isa = PBXBuildFile; fileRef = BD05725C17E9A2BF00208699 /* dashboard11.png */; };
 		BD05726817E9A2C100208699 /* dashboard10.png in Resources */ = {isa = PBXBuildFile; fileRef = BD05725D17E9A2BF00208699 /* dashboard10.png */; };
@@ -172,24 +186,17 @@
 /* Begin PBXFileReference section */
 		0435CB3517FF0BD30064FE14 /* CarDriveMannerAnalysisViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarDriveMannerAnalysisViewController.h; sourceTree = "<group>"; };
 		0435CB3617FF0BD30064FE14 /* CarDriveMannerAnalysisViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarDriveMannerAnalysisViewController.m; sourceTree = "<group>"; };
-		0435CB3917FF181D0064FE14 /* ExcellLikeCellBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExcellLikeCellBase.h; sourceTree = "<group>"; };
-		0435CB3A17FF181D0064FE14 /* ExcellLikeCellBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExcellLikeCellBase.m; sourceTree = "<group>"; };
-		0435CB3C17FF1B9F0064FE14 /* CarDriveOilTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarDriveOilTableViewCell.h; sourceTree = "<group>"; };
-		0435CB3D17FF1B9F0064FE14 /* CarDriveOilTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarDriveOilTableViewCell.m; sourceTree = "<group>"; };
 		0435CB4117FFC7250064FE14 /* SubNavItemBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubNavItemBaseViewController.h; sourceTree = "<group>"; };
 		0435CB4217FFC7250064FE14 /* SubNavItemBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubNavItemBaseViewController.m; sourceTree = "<group>"; };
 		0435CB48180011AA0064FE14 /* CarDriveOilDataViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarDriveOilDataViewController.h; sourceTree = "<group>"; };
 		0435CB49180011AB0064FE14 /* CarDriveOilDataViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarDriveOilDataViewController.m; sourceTree = "<group>"; };
-		0436AFE917FC264A00750473 /* DataAnalysisBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataAnalysisBaseView.h; sourceTree = "<group>"; };
-		0436AFEA17FC264A00750473 /* DataAnalysisBaseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataAnalysisBaseView.m; sourceTree = "<group>"; };
 		0436B04617FC74CD00750473 /* CarDataAnalysisBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarDataAnalysisBaseViewController.h; sourceTree = "<group>"; };
 		0436B04717FC74CD00750473 /* CarDataAnalysisBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarDataAnalysisBaseViewController.m; sourceTree = "<group>"; };
 		0436B04B17FC7AE000750473 /* CarDriveOilAnalaysisViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarDriveOilAnalaysisViewController.h; sourceTree = "<group>"; };
 		0436B04C17FC7AE000750473 /* CarDriveOilAnalaysisViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarDriveOilAnalaysisViewController.m; sourceTree = "<group>"; };
 		043C650417FD76EF00CDBAC8 /* MesssageBoxViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MesssageBoxViewController.h; sourceTree = "<group>"; };
 		043C650517FD76EF00CDBAC8 /* MesssageBoxViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MesssageBoxViewController.m; sourceTree = "<group>"; };
-		043C650717FD77F200CDBAC8 /* MessageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageTableViewCell.h; sourceTree = "<group>"; };
-		043C650817FD77F200CDBAC8 /* MessageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageTableViewCell.m; sourceTree = "<group>"; };
+		043D9AFF17F9D18700BE0C31 /* JsonLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = JsonLib.xcodeproj; path = ../../BaseLib/JSON/JsonLib/JsonLib.xcodeproj; sourceTree = "<group>"; };
 		043D9B3C17FAC0EE00BE0C31 /* AppMSGDef.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppMSGDef.h; sourceTree = "<group>"; };
 		043D9B3F17FAC3E500BE0C31 /* CardShopLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardShopLoginViewController.h; sourceTree = "<group>"; };
 		043D9B4017FAC3E500BE0C31 /* CardShopLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardShopLoginViewController.m; sourceTree = "<group>"; };
@@ -214,6 +221,9 @@
 		044BEE0217EAC011004BF443 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		044BEE0617EAC447004BF443 /* UIFramework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIFramework.h; sourceTree = "<group>"; };
 		044BEE0A17EACB8F004BF443 /* AppConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppConfig.h; sourceTree = "<group>"; };
+		0450363E181183EA00D89FDD /* setting_cell_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = setting_cell_bg.png; sourceTree = "<group>"; };
+		045036471811ACCB00D89FDD /* panel_split_line.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = panel_split_line.png; path = ../../../../../../Downloads/Archive/panel/panel_split_line.png; sourceTree = "<group>"; };
+		045036491811B01500D89FDD /* panel_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = panel_bg.png; path = ../../../../../../Downloads/Archive/panel/panel_bg.png; sourceTree = "<group>"; };
 		046B662E17E74984006F34A1 /* BodCarManger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BodCarManger.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		046B663117E74984006F34A1 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		046B663317E74984006F34A1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -327,23 +337,45 @@
 		046B683B17E76C49006F34A1 /* UIImage+Tint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Tint.h"; sourceTree = "<group>"; };
 		046B683C17E76C49006F34A1 /* UIImage+Tint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Tint.m"; sourceTree = "<group>"; };
 		046B684A17E7738C006F34A1 /* ZCSUIFrameWork.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ZCSUIFrameWork.xcodeproj; path = ../../BaseLib/UIFramework/ZCSUIFrameWork/ZCSUIFrameWork.xcodeproj; sourceTree = "<group>"; };
-		046B685517E87868006F34A1 /* PlantTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlantTableViewCell.h; sourceTree = "<group>"; };
-		046B685617E87868006F34A1 /* PlantTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlantTableViewCell.m; sourceTree = "<group>"; };
 		046B685A17E884CF006F34A1 /* plantData.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = plantData.geojson; sourceTree = "<group>"; };
 		046B685C17E88708006F34A1 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		046B686317E8A1CE006F34A1 /* PlantTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlantTableViewCell.xib; sourceTree = "<group>"; };
 		049B0B4717E9F78C008FE4D1 /* OCDaysModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCDaysModel.h; sourceTree = "<group>"; };
 		049B0B4817E9F78C008FE4D1 /* OCDaysModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCDaysModel.m; sourceTree = "<group>"; };
-		04AFF68B17E8ACE8007A1103 /* CarDetailPenalView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CarDetailPenalView.xib; sourceTree = "<group>"; };
-		04E3C87917FC0EE300EFB787 /* CarDriveStatusView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CarDriveStatusView.h; path = CellView/CarDriveStatusView.h; sourceTree = "<group>"; };
-		04E3C87A17FC0EE300EFB787 /* CarDriveStatusView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CarDriveStatusView.m; path = CellView/CarDriveStatusView.m; sourceTree = "<group>"; };
-		04E3C87C17FC0F4C00EFB787 /* CarDriveStatusView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CarDriveStatusView.xib; path = CellView/CarDriveStatusView.xib; sourceTree = "<group>"; };
+		049DF9541812EAC000DFC9F1 /* login_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = login_bg.png; sourceTree = "<group>"; };
+		049DF9581812EE3800DFC9F1 /* register_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = register_bg.png; sourceTree = "<group>"; };
+		049DF95D18156DEA00DFC9F1 /* car_check_gridtable_header.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = car_check_gridtable_header.png; sourceTree = "<group>"; };
+		049DF95E18156DEA00DFC9F1 /* car_check_header.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = car_check_header.png; sourceTree = "<group>"; };
+		049DF95F18156DEA00DFC9F1 /* car_check_tag.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = car_check_tag.png; sourceTree = "<group>"; };
+		049DF966181579AD00DFC9F1 /* DataAnalysisBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataAnalysisBaseView.h; sourceTree = "<group>"; };
+		049DF967181579AD00DFC9F1 /* DataAnalysisBaseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataAnalysisBaseView.m; sourceTree = "<group>"; };
+		049DF968181579AD00DFC9F1 /* DriveActionAnalysisView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DriveActionAnalysisView.h; sourceTree = "<group>"; };
+		049DF969181579AD00DFC9F1 /* DriveActionAnalysisView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DriveActionAnalysisView.m; sourceTree = "<group>"; };
+		049DF96D18157AB800DFC9F1 /* CarDetailPenalView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarDetailPenalView.h; sourceTree = "<group>"; };
+		049DF96E18157AB800DFC9F1 /* CarDetailPenalView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarDetailPenalView.m; sourceTree = "<group>"; };
+		049DF96F18157AB800DFC9F1 /* CarDetailPenalView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CarDetailPenalView.xib; sourceTree = "<group>"; };
+		049DF97018157AB800DFC9F1 /* CarDriveOilTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarDriveOilTableViewCell.h; sourceTree = "<group>"; };
+		049DF97118157AB800DFC9F1 /* CarDriveOilTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarDriveOilTableViewCell.m; sourceTree = "<group>"; };
+		049DF97218157AB800DFC9F1 /* CarDriveStatusView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarDriveStatusView.h; sourceTree = "<group>"; };
+		049DF97318157AB800DFC9F1 /* CarDriveStatusView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarDriveStatusView.m; sourceTree = "<group>"; };
+		049DF97418157AB800DFC9F1 /* CarDriveStatusView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CarDriveStatusView.xib; sourceTree = "<group>"; };
+		049DF97518157AB800DFC9F1 /* ExcellLikeCellBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExcellLikeCellBase.h; sourceTree = "<group>"; };
+		049DF97618157AB800DFC9F1 /* ExcellLikeCellBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExcellLikeCellBase.m; sourceTree = "<group>"; };
+		049DF97718157AB800DFC9F1 /* MessageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageTableViewCell.h; sourceTree = "<group>"; };
+		049DF97818157AB800DFC9F1 /* MessageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageTableViewCell.m; sourceTree = "<group>"; };
+		049DF97918157AB900DFC9F1 /* PlantTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlantTableViewCell.h; sourceTree = "<group>"; };
+		049DF97A18157AB900DFC9F1 /* PlantTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlantTableViewCell.m; sourceTree = "<group>"; };
+		049DF97B18157AB900DFC9F1 /* PlantTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlantTableViewCell.xib; sourceTree = "<group>"; };
+		049DF97C18157AB900DFC9F1 /* SettingTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingTableViewCell.h; sourceTree = "<group>"; };
+		049DF97D18157AB900DFC9F1 /* SettingTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingTableViewCell.m; sourceTree = "<group>"; };
+		049DF98818157C4200DFC9F1 /* CarCheckTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarCheckTableViewCell.h; sourceTree = "<group>"; };
+		049DF98918157C4200DFC9F1 /* CarCheckTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarCheckTableViewCell.m; sourceTree = "<group>"; };
+		049DF98B181588AF00DFC9F1 /* car_check_gridtable_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = car_check_gridtable_bg.png; sourceTree = "<group>"; };
+		04C254B91816D49200B4A678 /* DIGIFACEWIDE.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = DIGIFACEWIDE.ttf; sourceTree = "<group>"; };
+		04C254BF1816DD4400B4A678 /* car_check_label.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = car_check_label.png; sourceTree = "<group>"; };
 		04E3C88817FC1A5000EFB787 /* DACircularProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DACircularProgressView.h; sourceTree = "<group>"; };
 		04E3C88917FC1A5000EFB787 /* DACircularProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DACircularProgressView.m; sourceTree = "<group>"; };
 		04E3C88A17FC1A5000EFB787 /* DAMultipleProgressLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DAMultipleProgressLayer.h; sourceTree = "<group>"; };
 		04E3C88B17FC1A5000EFB787 /* DAMultipleProgressLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DAMultipleProgressLayer.m; sourceTree = "<group>"; };
-		04E3C88F17FC1ACD00EFB787 /* DriveActionAnalysisView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DriveActionAnalysisView.h; sourceTree = "<group>"; };
-		04E3C89017FC1ACD00EFB787 /* DriveActionAnalysisView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DriveActionAnalysisView.m; sourceTree = "<group>"; };
 		BD05724217E9836600208699 /* MapView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapView.h; sourceTree = "<group>"; };
 		BD05724317E9836600208699 /* MapView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapView.m; sourceTree = "<group>"; };
 		BD05724417E9836600208699 /* Place.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Place.h; sourceTree = "<group>"; };
@@ -354,8 +386,6 @@
 		BD05724917E9836600208699 /* RegexKitLite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegexKitLite.m; sourceTree = "<group>"; };
 		BD05724F17E9837300208699 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		BD05725117E9871E00208699 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		BD05725317E98A7F00208699 /* CarDetailPenalView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarDetailPenalView.h; sourceTree = "<group>"; };
-		BD05725417E98A7F00208699 /* CarDetailPenalView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarDetailPenalView.m; sourceTree = "<group>"; };
 		BD05725817E99B1400208699 /* UIComUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIComUtil.h; sourceTree = "<group>"; };
 		BD05725917E99B1400208699 /* UIComUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIComUtil.m; sourceTree = "<group>"; };
 		BD05725C17E9A2BF00208699 /* dashboard11.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dashboard11.png; sourceTree = "<group>"; };
@@ -497,9 +527,10 @@
 		046B663717E74984006F34A1 /* BodCarManger */ = {
 			isa = PBXGroup;
 			children = (
+				049DF96C18157AB800DFC9F1 /* CellView */,
+				049DF965181579AC00DFC9F1 /* CommView */,
 				043C650B17FDC92600CDBAC8 /* ViewController */,
 				043C650317FD76D600CDBAC8 /* User */,
-				04E3C88E17FC1A8900EFB787 /* CommView */,
 				04E3C88717FC1A5000EFB787 /* DACircularProgress */,
 				043D9B3E17FAC3E400BE0C31 /* ResignAndLogin */,
 				043D9B3C17FAC0EE00BE0C31 /* AppMSGDef.h */,
@@ -509,7 +540,6 @@
 				044BEDEF17EABA03004BF443 /* NetWork */,
 				BD05727417E9B8DE00208699 /* OCCalendarView */,
 				BD05724117E9836600208699 /* Map */,
-				046B685417E87849006F34A1 /* CellView */,
 				046B682617E7684D006F34A1 /* UserConfig.h */,
 				046B683017E76C48006F34A1 /* Utility */,
 				046B664017E74984006F34A1 /* AppDelegate.h */,
@@ -537,6 +567,7 @@
 		046B663817E74984006F34A1 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				04C254B91816D49200B4A678 /* DIGIFACEWIDE.ttf */,
 				046B663917E74984006F34A1 /* BodCarManger-Info.plist */,
 				046B663A17E74984006F34A1 /* InfoPlist.strings */,
 				046B663D17E74984006F34A1 /* main.m */,
@@ -551,6 +582,11 @@
 		046B665A17E74C37006F34A1 /* image */ = {
 			isa = PBXGroup;
 			children = (
+				049DF95C18156DEA00DFC9F1 /* check */,
+				049DF9531812EAC000DFC9F1 /* login */,
+				045036491811B01500D89FDD /* panel_bg.png */,
+				045036471811ACCB00D89FDD /* panel_split_line.png */,
+				0450363E181183EA00D89FDD /* setting_cell_bg.png */,
 				BD05725B17E9A29B00208699 /* dashboard */,
 				046B667717E74C37006F34A1 /* btn-back.png */,
 				046B665B17E74C37006F34A1 /* BG.png */,
@@ -775,26 +811,62 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		046B685417E87849006F34A1 /* CellView */ = {
+		049DF9531812EAC000DFC9F1 /* login */ = {
 			isa = PBXGroup;
 			children = (
-				046B686317E8A1CE006F34A1 /* PlantTableViewCell.xib */,
-				046B685517E87868006F34A1 /* PlantTableViewCell.h */,
-				046B685617E87868006F34A1 /* PlantTableViewCell.m */,
-				04AFF68B17E8ACE8007A1103 /* CarDetailPenalView.xib */,
-				BD05725317E98A7F00208699 /* CarDetailPenalView.h */,
-				BD05725417E98A7F00208699 /* CarDetailPenalView.m */,
-				04E3C87917FC0EE300EFB787 /* CarDriveStatusView.h */,
-				04E3C87A17FC0EE300EFB787 /* CarDriveStatusView.m */,
-				04E3C87C17FC0F4C00EFB787 /* CarDriveStatusView.xib */,
-				043C650717FD77F200CDBAC8 /* MessageTableViewCell.h */,
-				043C650817FD77F200CDBAC8 /* MessageTableViewCell.m */,
-				0435CB3917FF181D0064FE14 /* ExcellLikeCellBase.h */,
-				0435CB3A17FF181D0064FE14 /* ExcellLikeCellBase.m */,
-				0435CB3C17FF1B9F0064FE14 /* CarDriveOilTableViewCell.h */,
-				0435CB3D17FF1B9F0064FE14 /* CarDriveOilTableViewCell.m */,
+				049DF9581812EE3800DFC9F1 /* register_bg.png */,
+				049DF9541812EAC000DFC9F1 /* login_bg.png */,
 			);
-			name = CellView;
+			path = login;
+			sourceTree = "<group>";
+		};
+		049DF95C18156DEA00DFC9F1 /* check */ = {
+			isa = PBXGroup;
+			children = (
+				04C254BF1816DD4400B4A678 /* car_check_label.png */,
+				049DF98B181588AF00DFC9F1 /* car_check_gridtable_bg.png */,
+				049DF95D18156DEA00DFC9F1 /* car_check_gridtable_header.png */,
+				049DF95E18156DEA00DFC9F1 /* car_check_header.png */,
+				049DF95F18156DEA00DFC9F1 /* car_check_tag.png */,
+			);
+			path = check;
+			sourceTree = "<group>";
+		};
+		049DF965181579AC00DFC9F1 /* CommView */ = {
+			isa = PBXGroup;
+			children = (
+				049DF966181579AD00DFC9F1 /* DataAnalysisBaseView.h */,
+				049DF967181579AD00DFC9F1 /* DataAnalysisBaseView.m */,
+				049DF968181579AD00DFC9F1 /* DriveActionAnalysisView.h */,
+				049DF969181579AD00DFC9F1 /* DriveActionAnalysisView.m */,
+			);
+			path = CommView;
+			sourceTree = "<group>";
+		};
+		049DF96C18157AB800DFC9F1 /* CellView */ = {
+			isa = PBXGroup;
+			children = (
+				049DF96D18157AB800DFC9F1 /* CarDetailPenalView.h */,
+				049DF96E18157AB800DFC9F1 /* CarDetailPenalView.m */,
+				049DF96F18157AB800DFC9F1 /* CarDetailPenalView.xib */,
+				049DF97018157AB800DFC9F1 /* CarDriveOilTableViewCell.h */,
+				049DF97118157AB800DFC9F1 /* CarDriveOilTableViewCell.m */,
+				049DF97218157AB800DFC9F1 /* CarDriveStatusView.h */,
+				049DF97318157AB800DFC9F1 /* CarDriveStatusView.m */,
+				049DF97418157AB800DFC9F1 /* CarDriveStatusView.xib */,
+				049DF97518157AB800DFC9F1 /* ExcellLikeCellBase.h */,
+				049DF97618157AB800DFC9F1 /* ExcellLikeCellBase.m */,
+				049DF97718157AB800DFC9F1 /* MessageTableViewCell.h */,
+				049DF97818157AB800DFC9F1 /* MessageTableViewCell.m */,
+				049DF97918157AB900DFC9F1 /* PlantTableViewCell.h */,
+				049DF97A18157AB900DFC9F1 /* PlantTableViewCell.m */,
+				049DF97B18157AB900DFC9F1 /* PlantTableViewCell.xib */,
+				049DF97C18157AB900DFC9F1 /* SettingTableViewCell.h */,
+				049DF97D18157AB900DFC9F1 /* SettingTableViewCell.m */,
+				049DF98818157C4200DFC9F1 /* CarCheckTableViewCell.h */,
+				049DF98918157C4200DFC9F1 /* CarCheckTableViewCell.m */,
+			);
+			path = CellView;
 			sourceTree = "<group>";
 		};
 		04E3C88717FC1A5000EFB787 /* DACircularProgress */ = {
@@ -806,17 +878,6 @@
 				04E3C88B17FC1A5000EFB787 /* DAMultipleProgressLayer.m */,
 			);
 			path = DACircularProgress;
-			sourceTree = "<group>";
-		};
-		04E3C88E17FC1A8900EFB787 /* CommView */ = {
-			isa = PBXGroup;
-			children = (
-				04E3C88F17FC1ACD00EFB787 /* DriveActionAnalysisView.h */,
-				04E3C89017FC1ACD00EFB787 /* DriveActionAnalysisView.m */,
-				0436AFE917FC264A00750473 /* DataAnalysisBaseView.h */,
-				0436AFEA17FC264A00750473 /* DataAnalysisBaseView.m */,
-			);
-			name = CommView;
 			sourceTree = "<group>";
 		};
 		BD05724117E9836600208699 /* Map */ = {
@@ -1000,8 +1061,6 @@
 				046B66F217E74C37006F34A1 /* ◊ÓΩ¸–– ª.png in Resources */,
 				046B67F917E7594F006F34A1 /* tableitemsel4.png in Resources */,
 				046B685B17E884D5006F34A1 /* plantData.geojson in Resources */,
-				046B686417E8A1CE006F34A1 /* PlantTableViewCell.xib in Resources */,
-				04AFF68C17E8ACE8007A1103 /* CarDetailPenalView.xib in Resources */,
 				BD05726717E9A2C100208699 /* dashboard11.png in Resources */,
 				BD05726817E9A2C100208699 /* dashboard10.png in Resources */,
 				BD05726917E9A2C100208699 /* dashboard9.png in Resources */,
@@ -1015,7 +1074,20 @@
 				BD05727117E9A2C100208699 /* dashboard1.png in Resources */,
 				043D9B4817FAC3E500BE0C31 /* CardShopLoginViewController.xib in Resources */,
 				043D9B4A17FAC3E500BE0C31 /* CardShopResignViewController.xib in Resources */,
-				04E3C87D17FC0F4C00EFB787 /* CarDriveStatusView.xib in Resources */,
+				0450363F181183EA00D89FDD /* setting_cell_bg.png in Resources */,
+				045036481811ACCB00D89FDD /* panel_split_line.png in Resources */,
+				0450364A1811B01500D89FDD /* panel_bg.png in Resources */,
+				049DF9551812EAC000DFC9F1 /* login_bg.png in Resources */,
+				049DF9591812EE3800DFC9F1 /* register_bg.png in Resources */,
+				049DF96018156DEA00DFC9F1 /* car_check_gridtable_header.png in Resources */,
+				049DF96118156DEA00DFC9F1 /* car_check_header.png in Resources */,
+				049DF96218156DEA00DFC9F1 /* car_check_tag.png in Resources */,
+				049DF97F18157AB900DFC9F1 /* CarDetailPenalView.xib in Resources */,
+				049DF98218157AB900DFC9F1 /* CarDriveStatusView.xib in Resources */,
+				049DF98618157AB900DFC9F1 /* PlantTableViewCell.xib in Resources */,
+				049DF98C181588AF00DFC9F1 /* car_check_gridtable_bg.png in Resources */,
+				04C254BA1816D49200B4A678 /* DIGIFACEWIDE.ttf in Resources */,
+				04C254C01816DD4400B4A678 /* car_check_label.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1027,7 +1099,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				043D9B5317FAD1DD00BE0C31 /* CardShopBaseViewController.m in Sources */,
-				04AFF68817E8A2C0007A1103 /* PlantTableViewCell.m in Sources */,
 				046B682917E768BB006F34A1 /* UserSettingViewController.m in Sources */,
 				046B663E17E74984006F34A1 /* main.m in Sources */,
 				046B664217E74984006F34A1 /* AppDelegate.m in Sources */,
@@ -1048,7 +1119,6 @@
 				BD05724B17E9836600208699 /* Place.m in Sources */,
 				BD05724C17E9836600208699 /* PlaceMark.m in Sources */,
 				BD05724D17E9836600208699 /* RegexKitLite.m in Sources */,
-				BD05725517E98A7F00208699 /* CarDetailPenalView.m in Sources */,
 				BD05725A17E99B1400208699 /* UIComUtil.m in Sources */,
 				BD05727E17E9B8DE00208699 /* OCCalendarView.m in Sources */,
 				BD05727F17E9B8DE00208699 /* OCCalendarViewController.m in Sources */,
@@ -1062,20 +1132,24 @@
 				043D9B4917FAC3E500BE0C31 /* CardShopResignViewController.m in Sources */,
 				043D9B4B17FAC3E500BE0C31 /* ResetPasswordViewController.m in Sources */,
 				043D9B4E17FAC4B800BE0C31 /* BaoCarNetBaseViewController.m in Sources */,
-				04E3C87B17FC0EE300EFB787 /* CarDriveStatusView.m in Sources */,
 				04E3C88C17FC1A5000EFB787 /* DACircularProgressView.m in Sources */,
 				04E3C88D17FC1A5000EFB787 /* DAMultipleProgressLayer.m in Sources */,
-				04E3C89117FC1ACD00EFB787 /* DriveActionAnalysisView.m in Sources */,
-				0436AFEB17FC264A00750473 /* DataAnalysisBaseView.m in Sources */,
 				0436B04817FC74CD00750473 /* CarDataAnalysisBaseViewController.m in Sources */,
 				0436B04D17FC7AE100750473 /* CarDriveOilAnalaysisViewController.m in Sources */,
 				043C650617FD76EF00CDBAC8 /* MesssageBoxViewController.m in Sources */,
-				043C650917FD77F200CDBAC8 /* MessageTableViewCell.m in Sources */,
 				0435CB3717FF0BD30064FE14 /* CarDriveMannerAnalysisViewController.m in Sources */,
-				0435CB3B17FF181D0064FE14 /* ExcellLikeCellBase.m in Sources */,
-				0435CB3E17FF1B9F0064FE14 /* CarDriveOilTableViewCell.m in Sources */,
 				0435CB4317FFC7260064FE14 /* SubNavItemBaseViewController.m in Sources */,
 				0435CB4A180011AB0064FE14 /* CarDriveOilDataViewController.m in Sources */,
+				049DF96A181579AD00DFC9F1 /* DataAnalysisBaseView.m in Sources */,
+				049DF96B181579AD00DFC9F1 /* DriveActionAnalysisView.m in Sources */,
+				049DF97E18157AB900DFC9F1 /* CarDetailPenalView.m in Sources */,
+				049DF98018157AB900DFC9F1 /* CarDriveOilTableViewCell.m in Sources */,
+				049DF98118157AB900DFC9F1 /* CarDriveStatusView.m in Sources */,
+				049DF98318157AB900DFC9F1 /* ExcellLikeCellBase.m in Sources */,
+				049DF98418157AB900DFC9F1 /* MessageTableViewCell.m in Sources */,
+				049DF98518157AB900DFC9F1 /* PlantTableViewCell.m in Sources */,
+				049DF98718157AB900DFC9F1 /* SettingTableViewCell.m in Sources */,
+				049DF98A18157C4200DFC9F1 /* CarCheckTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -37,7 +37,7 @@
 }
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-    //[self checkDataChange];
+    [self checkDataChange];
 }
 //#define FIRST
 - (void)viewDidLoad

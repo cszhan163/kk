@@ -7,7 +7,7 @@
 //
 
 #import "UIBaseViewController.h"
-
-@interface CarStatusViewController : UIBaseViewController
+#import "UIImageNetBaseViewController.h"
+@interface CarStatusViewController : UIImageNetBaseViewController
 
 @end

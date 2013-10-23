@@ -67,7 +67,7 @@
     CGSize size = viewRect.size;//CGSizeMake(viewRect.size, bgImage.size.height/kScale);
     BSPreviewScrollView *scrollerView = [[BSPreviewScrollView alloc]initWithFrameAndPageSize:CGRectMake(0.f, 0.f,size.width, size.height) pageSize:size];
     scrollerView.delegate = self;
-    scrollerView.backgroundColor = [UIColor grayColor];
+    scrollerView.backgroundColor = [UIColor clearColor];
     [self.view addSubview:scrollerView];
     scrollerView.layer.cornerRadius = 5.f;
     scrollerView.frame =  viewRect;

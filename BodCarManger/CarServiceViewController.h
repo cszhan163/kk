@@ -7,7 +7,7 @@
 //
 
 #import "UIBaseViewController.h"
-
-@interface CarServiceViewController : UIBaseViewController
+#import "UserSettingViewController.h"
+@interface CarServiceViewController : UserSettingViewController
 
 @end

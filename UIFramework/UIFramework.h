@@ -22,9 +22,11 @@
 //the image between the tab and content view
 #define kTabBarAndViewControllerSepratorImageFileName   @"none.png" //@"tabitemtopsplit.png"
 //the select mask image
-#define kTabBarItemMaskImageFileName                    @"tabitemselmask.png"
+#define kTabBarItemMaskImageFileName                    @"tableitemselmask.png"
 
 #define kMBAppRealViewYPending                          9.f
+
+#define kTabItemTextShow            0
 
 //if all the button is the same ,the offset should be all 0
 #define kTabAllItemTextCenterXOffset    @"0,0,0,0,0"

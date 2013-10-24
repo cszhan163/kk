@@ -23,4 +23,6 @@
 //#define kUserTextChoose             kUploadChooseTextColor
 #define kUserHeadBackGroundColor    HexRGBA(26,0,0,0.88)
 
+#define kUserDigiFontSize(x)    [UIFont fontWithName:@"DIGIFACEWIDE" size:x]
+
 #endif

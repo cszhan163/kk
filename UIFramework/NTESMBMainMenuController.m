@@ -276,7 +276,9 @@ BOOL isFromLowMemory = NO;
 		imgPath = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:kTabItemSelectImageFileNameFormart,i] ofType:kTabItemImageSubfix];
 		assert(imgPath);
 		selectStatusImg =  [UIImage imageWithContentsOfFile:imgPath];
+        
         selectStatusImg = [UIImage_Extend imageWithColor:[UIColor clearColor] withImage:selectStatusImg withSize:itemRect.size];
+         
 		//[btn setBackgroundImage:bgImag forState:UIControlStateNormal];
 		[btn setImage:defaultStatusImg forState:UIControlStateNormal];
 		[btn setImage:selectStatusImg forState:UIControlStateSelected];
@@ -288,16 +290,19 @@ BOOL isFromLowMemory = NO;
 		NE_LOG(@"btn frame");
 		NE_LOGRECT(btn.frame);
         //add text label
-        UILabel *btnTextLabel = [[UILabel alloc]initWithFrame:CGRectMake(0., btn.frame.size.height-kTabItemTextHeight-kTabItemTextPendingY, btn.frame.size.width, kTabItemTextHeight)];
-        btnTextLabel.backgroundColor = [UIColor clearColor];
-        //btnTextLabel.center = 
-        btnTextLabel.text = NSLocalizedString([textArr objectAtIndex:i],@"");
-        btnTextLabel.textColor = [UIColor whiteColor];
-        btnTextLabel.font = kTabItemTextFont;
-        btnTextLabel.textAlignment = UITextAlignmentCenter;
-        btnTextLabel.frame = CGRectOffset(btnTextLabel.frame,[[textOffsetXArr objectAtIndex:i]floatValue], [[textOffsetYArr objectAtIndex:i]floatValue]);
-        [btn addSubview:btnTextLabel];
-        [btnTextLabel release];
+        if(kTabItemTextShow){
+            UILabel *btnTextLabel = [[UILabel alloc]initWithFrame:CGRectMake(0., btn.frame.size.height-kTabItemTextHeight-kTabItemTextPendingY, btn.frame.size.width, kTabItemTextHeight)];
+            btnTextLabel.backgroundColor = [UIColor clearColor];
+            //btnTextLabel.center =
+            btnTextLabel.text = NSLocalizedString([textArr objectAtIndex:i],@"");
+            btnTextLabel.textColor = [UIColor whiteColor];
+            btnTextLabel.font = kTabItemTextFont;
+            btnTextLabel.textAlignment = UITextAlignmentCenter;
+            btnTextLabel.frame = CGRectOffset(btnTextLabel.frame,[[textOffsetXArr objectAtIndex:i]floatValue], [[textOffsetYArr objectAtIndex:i]floatValue]);
+            [btn addSubview:btnTextLabel];
+            [btnTextLabel release];
+        }
+        
 		[arr addObject:btn];
 		//[mainView.bottomBarView addSubview:testView];
 		//UIImage  *selectStatusImg = [UIImage imageWithContentsOfFile:imgPath];
@@ -329,6 +334,7 @@ BOOL isFromLowMemory = NO;
         splitView.frame = CGRectMake(0.f,-height,width,height);
         //UITabBar
         [splitView release];
+        
     }
     bgImage = nil;
 	UIImageWithFileName(bgImage,kTabBarItemMaskImageFileName);
@@ -344,6 +350,7 @@ BOOL isFromLowMemory = NO;
         tabItemMaskView.frame = CGRectMake(0.f,-offsetY/2.f,width,height);
         tabItemMaskView.hidden = YES;
         [tabItemMaskView release];
+        //[tabView sendSubviewToBack:tabItemMaskView];
     }
 #endif 
 	[mainTabBarVC setTabNavBar:tabView];
@@ -453,8 +460,10 @@ BOOL isFromLowMemory = NO;
     tabItemMaskView.hidden = NO;
     [mainTabBarVC didNavItemSelect:[NSNumber numberWithInt:index]];
     [tabBar didNavItemSelect:[NSNumber numberWithInt:index]];
-    [tabBar bringSubviewToFront:tabItemMaskView];
-    
+    if(self.maskFront)
+        [tabBar bringSubviewToFront:tabItemMaskView];
+    else
+        [tabBar sendSubviewToBack:tabItemMaskView];
 }
 - (void)dealloc 
 {

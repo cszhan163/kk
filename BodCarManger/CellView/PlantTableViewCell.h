@@ -27,4 +27,5 @@
 
 @property(nonatomic,strong)IBOutlet UILabel *mStartLabel;
 @property(nonatomic,strong)IBOutlet UILabel *mEndLabel;
+
 @end

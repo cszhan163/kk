@@ -11,6 +11,7 @@
 #import "NTESMBMainMenuController.h"
 #import "NETabNavBar.h"
 #import "UIParamsCfg.h"
+#import "ViewController.h"
 
 #if 0
 #import "DressWhatViewController.h"
@@ -26,7 +27,7 @@
 #import "CarServiceViewController.h"
 #import "CarStatusViewController.h"
 
-#define USER_LOGIN
+//#define USER_LOGIN
 
 #ifdef  USER_LOGIN
 //#import "LoginAndResignMainViewController.h"
@@ -83,9 +84,14 @@ static UIButton *popup = nil;
 	/*
 	NSNotificationCenter *ntfCenter = [NSNotificationCenter defaultCenter];
 	[ntfCenter addObserver:self selector:@selector(change name:@"" object:];
+     
+     ViewController *test = [[ViewController alloc]init];
+     [self.window addSubview:test.view];
+     return;
 	 */
 	//UIView *mainView = [[UIView alloc]initWithFrame:CGRectMake(0.f, 0.f, kDeviceScreenWidth, kDeviceScreenHeight)];
 
+    
     
 
 	mainVC = [[NTESMBMainMenuController alloc]init];

@@ -7,7 +7,7 @@
 //
 
 #import "ViewController.h"
-
+#import "CarServiceNetDataMgr.h"
 @interface ViewController ()
 
 @end
@@ -21,7 +21,23 @@
     NSString *imgPath = nil;
     UIImage *defaultStatusImg,*selectStatusImg;
     CGRect itemRect = CGRectMake(0.f,100.f,64.f,50.f);
-
+    NSDictionary *param = nil;
+    CarServiceNetDataMgr *cardNetMgr = [CarServiceNetDataMgr getSingleTone];
+    param = [NSDictionary dictionaryWithObjectsAndKeys:
+             @"2013",@"year",
+             @"10",@"month",
+             nil];
+    [cardNetMgr getDetailByMonth:param];
+    param = [NSDictionary dictionaryWithObjectsAndKeys:
+             @"2013",@"year",
+             @"10",@"month",
+             nil];
+    [cardNetMgr getDetailByDay:param];
+    [cardNetMgr getCarRealTimeStatus:@""];
+    [cardNetMgr getDriveDataByMoth:@"" withYear:@""];
+    [cardNetMgr getDriveDataByMoth:@"10" withYear:@"2013"];
+    
+    [cardNetMgr getMessageList:nil];
     for(int i = 0; i<1;i++)
 	{
 		UIButton * btn = [UIButton buttonWithType:UIButtonTypeCustom];

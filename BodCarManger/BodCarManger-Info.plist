@@ -38,5 +38,9 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>MbsHttpURLString</key>
+	<string>http://211.144.193.11:8080/iPlatMBS/AgentService</string>
+	<key>MbsHttpsURLString</key>
+	<string>http://211.144.193.11:8080/iPlatMBS/LoginService</string>
 </dict>
 </plist>

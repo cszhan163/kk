@@ -11,6 +11,7 @@
 #import "ZCSNetClientConfig.h"
 #import "ZCSNetClient.h"
 #import "AppSetting.h"
+#import <iPlat4M_framework/iPlat4M_framework.h>
 //#import "AppConfig_bak.h"
 @interface CarServiceNetDataMgr()
 @property(nonatomic,retain)NSMutableDictionary *requestResourceDict;
@@ -624,29 +625,154 @@ static ZCSNetClientNetInterfaceMgr *dressMemoInterfaceMgr = nil;
 
 }
 #pragma mark -
+#pragma mark user
+- (id)carUserLogin:(NSDictionary *)param{
+    EiInfo *inInfo = [self getCommIPlant4MParam];
+    [inInfo set:@"name" value:[param objectForKey:@"name"]];
+    [inInfo set:@"password" value:[param objectForKey:@"password"]];
+    //queryTripCalanderMonth
+    [inInfo set:METHOD_TOKEN value:@"queryTripCalanderMonth"]; // 接口名
+    [self startiPlant4MRequest:inInfo];
+}
+- (id)carUserRegister:(NSDictionary*)param{
+    EiInfo *inInfo = [self getCommIPlant4MParam];
+    [inInfo set:@"name" value:[param objectForKey:@"name"]];
+    [inInfo set:@"password" value:[param objectForKey:@"password"]];
+    //queryTripCalanderMonth
+    [inInfo set:METHOD_TOKEN value:@"queryTripCalanderMonth"]; // 接口名
+    [self startiPlant4MRequest:inInfo];
+}
+#pragma mark -
 #pragma mark rounter
 - (id)getDetailByMonth:(NSDictionary*)param{
+#if BAO_TEST
     return [dressMemoInterfaceMgr startAnRequestByResKey:@"getInfoByMonth"
                                                needLogIn:NO
                                                withParam:param
                                               withMethod:@"POST"
                                                 withData:NO];
+#else
+    EiInfo *inInfo = [self getCommIPlant4MParam];
+    [inInfo set:@"year" value:[param objectForKey:@"year"]];
+    [inInfo set:@"month" value:[param objectForKey:@"month"]];
+    //queryTripCalanderMonth
+    [inInfo set:METHOD_TOKEN value:@"queryTripCalanderMonth"]; // 接口名
+    [self startiPlant4MRequest:inInfo];
+#endif
+    
 }
 - (id)getDetailByDay:(NSDictionary*)param{
+#if BAO_TEST
     return [dressMemoInterfaceMgr startAnRequestByResKey:@"getDetailByDay"
                                                needLogIn:NO
                                                withParam:param
                                               withMethod:@"POST"
-                                                withData:NO];
+                                            withData:NO];
+#else
+    EiInfo *inInfo = [self getCommIPlant4MParam];
+    [inInfo set:METHOD_TOKEN value:@"queryTripDay"]; // 接口名
+    
+    [inInfo set:@"year" value:[[NSNumber alloc] initWithInt:2013]]; // 设置参数
+    [inInfo set:@"month" value:[[NSNumber alloc] initWithInt:10]];
+    [inInfo set:@"day" value:[[NSNumber alloc] initWithInt:16]];
+    [inInfo set:@"vin" value:@"SHD49232"];
+    [self startiPlant4MRequest:inInfo];
+#endif
+}
+- (id)getCarRealTimeStatus:(NSString*)cardId{
+    cardId = @"SHD05728";
+    EiInfo *inInfo = [self getCommIPlant4MParam];
+    //[inInfo set:@"year" value:[param objectForKey:@"year"]];
+    [inInfo set:METHOD_TOKEN value:@"queryTripNow"]; // 接口名
+    [inInfo set:@"vin" value:cardId];
+    [self startiPlant4MRequest:inInfo];
 }
 #pragma mark -
 #pragma mark service
-- (id)getMessageList:(NSDictionary*)param{
+- (id)checkCarStatus{
+    //queryConData
+    
+    EiInfo *inInfo = [self getCommIPlant4MParam];
+    //[inInfo set:@"year" value:[param objectForKey:@"year"]];
+    [inInfo set:METHOD_TOKEN value:@"queryConData"]; // 接口名
+    //[inInfo set:@"vin" value:cardId];
+    [self startiPlant4MRequest:inInfo];
+}
 
+- (id)getMessageList:(NSDictionary*)param{
+#if BAO_TEST
     return [dressMemoInterfaceMgr startAnRequestByResKey:@"getDetailByDay"
                                                needLogIn:NO
                                                withParam:param
                                               withMethod:@"POST"
-                                                withData:NO];
+                                            withData:NO];
+#else
+    EiInfo *inInfo = [self getCommIPlant4MParam];
+    //[inInfo set:@"year" value:[param objectForKey:@"year"]];
+    [inInfo set:METHOD_TOKEN value:@"queryMessage"]; // 接口名
+    //[inInfo set:@"vin" value:cardId];
+    
+    [self startiPlant4MRequest:inInfo];
+#endif
+}
+#pragma mark -
+#pragma mark drive model
+
+- (id)getDriveDataByMoth:(NSString*)month withYear:(NSString*)year{
+    //queryDriveMonthData
+    year = @"2013";
+    month = @"10";
+    EiInfo *inInfo = [self getCommIPlant4MParam];
+    //[inInfo set:@"year" value:[param objectForKey:@"year"]];
+    [inInfo set:METHOD_TOKEN value:@"queryMessage"]; // 接口名
+    //[inInfo set:@"vin" value:cardId];
+    [inInfo set:@"year" value:year]; // 设置参数
+    [inInfo set:@"month" value:month];
+    //[inInfo set:@"day" value:[[NSNumber alloc] initWithInt:16]];
+    [self startiPlant4MRequest:inInfo];
+}
+#pragma mark -
+#pragma mark iPlant4M common
+- (EiInfo*)getCommIPlant4MParam{
+    EiInfo *inInfo = [[EiInfo alloc] init];
+    [inInfo set:PROJECT_TOKEN value:kBaoTApp]; // 固定
+    [inInfo set:SERVICE_TOKEN value:@"VESA01"]; // 由IF所在位置决定，需要文档
+    return SafeAutoRelease(inInfo);
+}
+- (void)testiPlant4MInterface{
+    EiInfo *inInfo = [[EiInfo alloc] init];
+    [inInfo set:PROJECT_TOKEN value:kBaoTApp]; // 固定
+    [inInfo set:SERVICE_TOKEN value:@"VESA01"]; // 由IF所在位置决定，需要文档
+#if 0
+   
+#else
+    
+#endif
+    
+}
+- (void)startiPlant4MRequest:(EiInfo*)inInfo{
+    
+    [[Container instance].serviceAgent
+     callServiceWithObject:self
+     inInfo:inInfo
+     target:self
+     successCallBack:@selector(didQueryTripDaySuccess:)//回调函数
+     failCallBack:@selector(didQueryTripDayFailed:)
+     ]; // 失败时的回调
+}
+- (void)didQueryTripDaySuccess:(EiInfo*)info // 一般都必须有一个EiInfo参数
+{
+    NSNumber *dayMilage = [info get:@"dayMilage"]; // 取出返回值，非block的类型
+    NSNumber *dayFuel = [info get:@"dayFuel"];
+    NSNumber *dayDrivinglong = [info get:@"dayDrivinglong"];
+    EiBlock *tripInfo = [info getBlock:@"tripInfo"]; // block型返回值
+    int rowCount = [tripInfo getRowCount];
+    NSMutableDictionary *row = [tripInfo getRow:0]; // block有多个row，每个为一个NSMutableDictionary对象
+    NSNumber *tripId = [row objectForKey:@"tripId"]; // 通过objectForKey取出
+}
+
+- (void)didQueryTripDayFailed:(EiInfo*)info
+{  
+    NSLog(@"Failed");  
 }
 @end

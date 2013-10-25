@@ -13,7 +13,6 @@
 		0436B04817FC74CD00750473 /* CarDataAnalysisBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0436B04717FC74CD00750473 /* CarDataAnalysisBaseViewController.m */; };
 		0436B04D17FC7AE100750473 /* CarDriveOilAnalaysisViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0436B04C17FC7AE000750473 /* CarDriveOilAnalaysisViewController.m */; };
 		043C650617FD76EF00CDBAC8 /* MesssageBoxViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 043C650517FD76EF00CDBAC8 /* MesssageBoxViewController.m */; };
-		043D9B0617F9D1AC00BE0C31 /* libJsonLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 043D9B0417F9D18700BE0C31 /* libJsonLib.a */; };
 		043D9B4717FAC3E500BE0C31 /* CardShopLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 043D9B4017FAC3E500BE0C31 /* CardShopLoginViewController.m */; };
 		043D9B4817FAC3E500BE0C31 /* CardShopLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 043D9B4117FAC3E500BE0C31 /* CardShopLoginViewController.xib */; };
 		043D9B4917FAC3E500BE0C31 /* CardShopResignViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 043D9B4317FAC3E500BE0C31 /* CardShopResignViewController.m */; };
@@ -27,7 +26,6 @@
 		044BEDFC17EABEBD004BF443 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 044BEDFB17EABEBD004BF443 /* SystemConfiguration.framework */; };
 		044BEE0017EABF37004BF443 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 044BEDFF17EABF37004BF443 /* libz.dylib */; };
 		044BEE0317EAC011004BF443 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 044BEE0217EAC011004BF443 /* MobileCoreServices.framework */; };
-		045036481811ACCB00D89FDD /* panel_split_line.png in Resources */ = {isa = PBXBuildFile; fileRef = 045036471811ACCB00D89FDD /* panel_split_line.png */; };
 		046B663217E74984006F34A1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 046B663117E74984006F34A1 /* UIKit.framework */; };
 		046B663417E74984006F34A1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 046B663317E74984006F34A1 /* Foundation.framework */; };
 		046B663617E74984006F34A1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 046B663517E74984006F34A1 /* CoreGraphics.framework */; };
@@ -191,6 +189,9 @@
 		BD05728017E9B8DE00208699 /* OCDaysView.m in Sources */ = {isa = PBXBuildFile; fileRef = BD05727A17E9B8DE00208699 /* OCDaysView.m */; };
 		BD05728117E9B8DE00208699 /* OCSelectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = BD05727C17E9B8DE00208699 /* OCSelectionView.m */; };
 		BD05728417E9B99600208699 /* CarRouterDateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BD05728317E9B99600208699 /* CarRouterDateViewController.m */; };
+		BD355D6B181A119E0010D16E /* iPlat4M_framework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD355D6A181A119E0010D16E /* iPlat4M_framework.framework */; };
+		BD355D6E181A11CC0010D16E /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BD355D6D181A11CC0010D16E /* libxml2.dylib */; };
+		BD355D70181A11DD0010D16E /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BD355D6F181A11DD0010D16E /* libsqlite3.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -216,7 +217,6 @@
 		0436B04C17FC7AE000750473 /* CarDriveOilAnalaysisViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarDriveOilAnalaysisViewController.m; sourceTree = "<group>"; };
 		043C650417FD76EF00CDBAC8 /* MesssageBoxViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MesssageBoxViewController.h; sourceTree = "<group>"; };
 		043C650517FD76EF00CDBAC8 /* MesssageBoxViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MesssageBoxViewController.m; sourceTree = "<group>"; };
-		043D9AFF17F9D18700BE0C31 /* JsonLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = JsonLib.xcodeproj; path = ../../BaseLib/JSON/JsonLib/JsonLib.xcodeproj; sourceTree = "<group>"; };
 		043D9B3C17FAC0EE00BE0C31 /* AppMSGDef.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppMSGDef.h; sourceTree = "<group>"; };
 		043D9B3F17FAC3E500BE0C31 /* CardShopLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardShopLoginViewController.h; sourceTree = "<group>"; };
 		043D9B4017FAC3E500BE0C31 /* CardShopLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardShopLoginViewController.m; sourceTree = "<group>"; };
@@ -241,7 +241,6 @@
 		044BEE0217EAC011004BF443 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		044BEE0617EAC447004BF443 /* UIFramework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIFramework.h; sourceTree = "<group>"; };
 		044BEE0A17EACB8F004BF443 /* AppConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppConfig.h; sourceTree = "<group>"; };
-		045036471811ACCB00D89FDD /* panel_split_line.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = panel_split_line.png; path = ../../../../../../../Downloads/Archive/panel/panel_split_line.png; sourceTree = "<group>"; };
 		046B662E17E74984006F34A1 /* BodCarManger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BodCarManger.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		046B663117E74984006F34A1 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		046B663317E74984006F34A1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -452,6 +451,9 @@
 		BD05727D17E9B8DE00208699 /* OCTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCTypes.h; sourceTree = "<group>"; };
 		BD05728217E9B99600208699 /* CarRouterDateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarRouterDateViewController.h; sourceTree = "<group>"; };
 		BD05728317E9B99600208699 /* CarRouterDateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarRouterDateViewController.m; sourceTree = "<group>"; };
+		BD355D6A181A119E0010D16E /* iPlat4M_framework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = iPlat4M_framework.framework; sourceTree = "<group>"; };
+		BD355D6D181A11CC0010D16E /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
+		BD355D6F181A11DD0010D16E /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -459,8 +461,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				044BEE0317EAC011004BF443 /* MobileCoreServices.framework in Frameworks */,
+				BD355D70181A11DD0010D16E /* libsqlite3.dylib in Frameworks */,
+				BD355D6E181A11CC0010D16E /* libxml2.dylib in Frameworks */,
 				044BEE0017EABF37004BF443 /* libz.dylib in Frameworks */,
+				044BEE0317EAC011004BF443 /* MobileCoreServices.framework in Frameworks */,
 				044BEDFC17EABEBD004BF443 /* SystemConfiguration.framework in Frameworks */,
 				044BEDFA17EABEB6004BF443 /* CFNetwork.framework in Frameworks */,
 				BD05725217E9871E00208699 /* CoreLocation.framework in Frameworks */,
@@ -470,6 +474,7 @@
 				046B663217E74984006F34A1 /* UIKit.framework in Frameworks */,
 				046B663417E74984006F34A1 /* Foundation.framework in Frameworks */,
 				046B663617E74984006F34A1 /* CoreGraphics.framework in Frameworks */,
+				BD355D6B181A119E0010D16E /* iPlat4M_framework.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -531,6 +536,9 @@
 		046B662517E74984006F34A1 = {
 			isa = PBXGroup;
 			children = (
+				BD355D6F181A11DD0010D16E /* libsqlite3.dylib */,
+				BD355D6D181A11CC0010D16E /* libxml2.dylib */,
+				BD355D6A181A119E0010D16E /* iPlat4M_framework.framework */,
 				044BEE0217EAC011004BF443 /* MobileCoreServices.framework */,
 				044BEDFF17EABF37004BF443 /* libz.dylib */,
 				044BEDFB17EABEBD004BF443 /* SystemConfiguration.framework */,
@@ -940,7 +948,6 @@
 				04FE07071818188F00EEC76A /* drive_panel_header.png */,
 				04FE07081818188F00EEC76A /* page_normal.png */,
 				04FE07091818188F00EEC76A /* page_selected.png */,
-				045036471811ACCB00D89FDD /* panel_split_line.png */,
 			);
 			path = drive;
 			sourceTree = "<group>";
@@ -1161,7 +1168,6 @@
 				BD05727117E9A2C100208699 /* dashboard1.png in Resources */,
 				043D9B4817FAC3E500BE0C31 /* CardShopLoginViewController.xib in Resources */,
 				043D9B4A17FAC3E500BE0C31 /* CardShopResignViewController.xib in Resources */,
-				045036481811ACCB00D89FDD /* panel_split_line.png in Resources */,
 				049DF9551812EAC000DFC9F1 /* login_bg.png in Resources */,
 				049DF9591812EE3800DFC9F1 /* register_bg.png in Resources */,
 				049DF96018156DEA00DFC9F1 /* car_check_gridtable_header.png in Resources */,
@@ -1341,6 +1347,10 @@
 		046B665217E74984006F34A1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BodCarManger/BodCarManger-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
@@ -1365,6 +1375,10 @@
 		046B665317E74984006F34A1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BodCarManger/BodCarManger-Prefix.pch";
 				HEADER_SEARCH_PATHS = (

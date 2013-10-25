@@ -263,7 +263,9 @@
     //[super shouldLoadNewerData:tweetieTableView];
     NSDictionary *param = [NSDictionary dictionaryWithObjectsAndKeys:
                            //catStr,@"cat",
-                           mothParm, @"month",
+                           //mothParm, @"month",
+                           [NSString stringWithFormat:@"%d",mCurrDate.year],@"year",
+                           [NSString stringWithFormat:@"%d",mCurrDate.month],@"month",
                            // @"page",@"1",
                            // @"records",@""
                            nil];

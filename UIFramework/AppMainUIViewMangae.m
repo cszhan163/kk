@@ -85,13 +85,14 @@ static UIButton *popup = nil;
 	NSNotificationCenter *ntfCenter = [NSNotificationCenter defaultCenter];
 	[ntfCenter addObserver:self selector:@selector(change name:@"" object:];
      
-     ViewController *test = [[ViewController alloc]init];
-     [self.window addSubview:test.view];
-     return;
+   
+     
 	 */
 	//UIView *mainView = [[UIView alloc]initWithFrame:CGRectMake(0.f, 0.f, kDeviceScreenWidth, kDeviceScreenHeight)];
 
-    
+    ViewController *test = [[ViewController alloc]init];
+    [self.window addSubview:test.view];
+    return;
     
 
 	mainVC = [[NTESMBMainMenuController alloc]init];

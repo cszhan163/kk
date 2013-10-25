@@ -62,7 +62,7 @@
 
 #define kAppUserBGWhiteColor        HexRGB(236,236,236)
 
-
+#define kBaoTApp                @"baoTapp"
 
 #define kNetNewThread
 //#define kParserDataThread

@@ -9,7 +9,7 @@
 #import "AppDelegate.h"
 #import "AppMainUIViewManage.h"
 #import "ViewController.h"
-
+#import <iPlat4M_framework/iPlat4M_framework.h>
 @implementation AppDelegate
 
 - (void)dealloc
@@ -22,6 +22,9 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
+    
+    [[Container instance] launchAppWithDictionary:launchOptions isDebugMode:YES toViewController:nil AutoSetView:nil];
+    
 #if 1
     AppMainUIViewManage *appMg = [AppMainUIViewManage getSingleTone];
    
@@ -45,7 +48,10 @@
 #endif
     
 #endif
-
+    
+    
+    
+    
     [self.window makeKeyAndVisible];
     return YES;
 }

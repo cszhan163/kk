@@ -9,6 +9,7 @@
 #define kCheckViewPendingX  10.f
 #define kCheckViewPendingY  10.f
 
+#import "DDProgressView.h"
 #import "CarDriveOilTableViewCell.h"
 
 
@@ -60,8 +61,15 @@
     UIImageView *headerView = [[UIImageView alloc]initWithImage:bgImage];
     
     headerView.frame = CGRectMake(kCheckViewPendingX,currY+kCheckViewPendingY ,bgImage.size.width/kScale, bgImage.size.height/kScale);
+    headerView.userInteractionEnabled = YES;
     [self.view addSubview:headerView];
     SafeRelease(headerView);
+    
+    
+    UIButton *checkButton = [UIComUtil createButtonWithNormalBGImageName:@"car_check_btn.png" withHightBGImageName:@"car_check_btn.png" withTitle:@"" withTag:0];
+    [checkButton addTarget:self action:@selector(startCarHealthCheck:) forControlEvents:UIControlEventTouchUpInside];
+    [headerView addSubview:checkButton];
+    checkButton.frame = CGRectMake(headerView.frame.size.width-8-120,7,120,34);
     
     CGFloat  headerY = 5.f;
     rotateSpeedLabel = [[UILabel alloc]initWithFrame:CGRectMake(38,headerY, 120.f, 20)];
@@ -76,7 +84,7 @@
     
     temperatureLabel = [[UILabel alloc]initWithFrame:CGRectMake(38,headerY+20, 120.f, 20)];
     temperatureLabel.textColor = [UIColor whiteColor];
-    temperatureLabel.font = [UIFont fontWithName:@"DIGIFACEWIDE" size:12];
+    temperatureLabel.font = kUserDigiFontSize(12);
     temperatureLabel.text = @"90 C";
     temperatureLabel.backgroundColor = [UIColor clearColor];
     
@@ -86,7 +94,7 @@
     
     currY = currY+headerView.frame.size.height+kCheckViewPendingX;
     
-    
+#if 0
     checkProcessView = [[UIProgressView alloc]initWithProgressViewStyle:UIProgressViewStyleDefault];
     checkProcessView.progress = 0.4;
     //checkProcessView.progressTintColor = [UIColor blackColor];
@@ -94,7 +102,15 @@
     checkProcessView.frame = CGRectMake(106,currY+57,186,5);
     [self.view addSubview:checkProcessView];
     KokSafeRelease(checkProcessView);
+#else
+    DDProgressView *processView = [[DDProgressView alloc]initWithFrame:CGRectMake(106,currY+57,186,10)];
+    processView.innerColor = [UIColor greenColor];
+    processView.outerColor = [UIColor whiteColor];
+    processView.emptyColor = [UIColor blackColor];
+    processView.progress = 0.4;
+    [self.view addSubview:processView];
     
+#endif
     
     UIImageWithFileName(bgImage, @"car_check_tag.png");
     
@@ -149,6 +165,13 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+#pragma mark -
+#pragma mark
+- (void)startCarHealthCheck:(id)sender{
+    
+    
+}
+
 #pragma mark -
 #pragma mark tableview
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section

@@ -8,6 +8,9 @@
 
 #import "CarDriveStatusView.h"
 
+#define kNumberLargeSize 16
+#define kNumberMidSize   12
+
 @implementation CarDriveStatusView
 @synthesize mDriveAnalaysisImageView;
 @synthesize mOilCostAnalaysisImageView;
@@ -21,9 +24,25 @@
     }
     return self;
 }
+- (void)setTextFontSize{
 
+    self.mRunDaysLabel.font = kUserDigiFontSize(kNumberLargeSize);
+    self.mRunDistanceLabel.font = kUserDigiFontSize(kNumberLargeSize);
+    
+    self.mRunOilCostLabel.font = kUserDigiFontSize(kNumberMidSize);
+    self.mRunStepLabel.font = kUserDigiFontSize(kNumberMidSize);
+    self.mRunMoneyCostLabel.font = kUserDigiFontSize(kNumberMidSize);
+
+}
 - (void)awakeFromNib{
 
+    for(id item in self.subviews){
+        if([item isKindOfClass:[UILabel class]]){
+            UILabel *labelItem = (UILabel*)item;
+            labelItem.textColor = [UIColor whiteColor];
+        }
+    }
+    [self setTextFontSize];
 
 }
 - (void)setTargetAndActionFun{

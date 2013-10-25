@@ -21,7 +21,10 @@
 
 static NSString *kSectionOneArr[] =
 {
-    @"个人信息",@"新浪微博",@"腾讯微博的绑定",
+    @"用户名:",@"修改密码",@"积分",
+};
+static NSString *kSectionTwoArr[] = {
+    @"添加车辆和终端",@"记住车辆位置",
 };
 @interface UserSettingViewController ()
 
@@ -51,7 +54,7 @@ static NSString *kSectionOneArr[] =
 	logInfo.backgroundColor = [UIColor clearColor];
 	logInfo.delegate = self;
 	logInfo.dataSource = self;
-	logInfo.scrollEnabled = NO;
+	logInfo.scrollEnabled = YES;
 	logInfo.allowsSelection = YES;
     logInfo.clipsToBounds = YES;
     //logInfo.layer.cornerRadius = 5.f;
@@ -75,17 +78,41 @@ static NSString *kSectionOneArr[] =
     UIImageWithFileName(bgImage, @"BG.png");
     mainView.bgImage = bgImage;
 #else
-     mainView.mainFramView.backgroundColor = kAppUserBGWhiteColor;
+     mainView.mainFramView.backgroundColor = HexRGB(202, 202, 204);
 #endif
 
     //mainView.alpha = 0.;
-    [self setNavgationBarTitle:NSLocalizedString(@"Setting", @""
+    [self setNavgationBarTitle:NSLocalizedString(@"设置", @""
                                                  )];
     [self setRightBtnHidden:YES];
+    
+       
+    [self addFonterView];
+  
+    /*
+    logInfo.contentSize = CGSizeMake(logInfo.contentSize.width, logInfo.contentSize.height+ btnsize.height+10);
+     */
        //[self setRightTextContent:NSLocalizedString(@"Done", @"")];
 	// Do any additional setup after loading the view.
 }
+- (void)addFonterView{
+    
+//    logInfo.frame = CGRectMake(0,kMBAppTopToolBarHeight-self.mainContentViewPendingY,kDeviceScreenWidth,kDeviceScreenHeight-kMBAppTopToolBarHeight-kMBAppStatusBar-kMBAppBottomToolBarHeght- 60 );
+    UIView *bgView = [[UIView alloc]initWithFrame:CGRectMake(0.f,0.f,300.f,80)];
+    bgView.backgroundColor = HexRGB(202, 202, 204);
+    
+    CGFloat currY = kDeviceScreenHeight-kMBAppTopToolBarHeight-kMBAppStatusBar-kMBAppBottomToolBarHeght- 60+10.f;
+    UIButton *oilAnalaysisBtn = [UIComUtil createButtonWithNormalBGImageName:@"setting_logout_btn.png" withHightBGImageName:@"setting_logout_btn.png" withTitle:@"" withTag:0];
 
+     CGSize btnsize= oilAnalaysisBtn.frame.size;
+                      currY = 10.f;
+     oilAnalaysisBtn.frame = CGRectMake(10.f,currY,btnsize.width,btnsize.height);
+     [oilAnalaysisBtn addTarget:self action:@selector(logOutConfirm:) forControlEvents:UIControlEventTouchUpInside];
+     //[logInfo addSubview:oilAnalaysisBtn];
+     //
+     [bgView addSubview:oilAnalaysisBtn];
+     [logInfo setTableFooterView:bgView];                 
+}
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
@@ -115,12 +142,12 @@ static NSString *kSectionOneArr[] =
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     
-    return 3;
+    return 4;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-	if(section == 2)
-        return 2;
+	if(section == 3)
+        return 1;
     else if (section == 0)
     {
         return 3;
@@ -197,39 +224,43 @@ static NSString *kSectionOneArr[] =
     {
         case 0:
             
-            cell.textLabel.text = @"邀请好友";
+            cell.textLabel.text = kSectionOneArr[indexPath.row];
             break;
         case 1:
         {
         
-            cell.textLabel.text = kSectionOneArr[index];
+            cell.textLabel.text = kSectionTwoArr[index];
             
-            if (indexPath.row == 1 || indexPath.row == 2)
-            {
-//                static NSString *shareCellIdentifier = @"shareCell";
-//                
-//                UIShareCell *shareCell = [tableView dequeueReusableCellWithIdentifier:shareCellIdentifier];
-//                
-//                if (![shareCell isKindOfClass:[UIShareCell class]])
-//                {
-//                    shareCell = [[UIShareCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:shareCellIdentifier];
-//                }
-//                
-//
-//                if (indexPath.row == 1)
-//                {
-//                    [shareCell reloadData:K_PLATFORM_Sina];
-//                }else{
-//                    [shareCell reloadData:K_PLATFORM_Tencent];
-//                }
-//                
-//                return shareCell;
-            }
-            
+                       
             
         }
+        case 2:{
+        
+            if (indexPath.row == 1 || indexPath.row == 2)
+            {
+                //                static NSString *shareCellIdentifier = @"shareCell";
+                //
+                //                UIShareCell *shareCell = [tableView dequeueReusableCellWithIdentifier:shareCellIdentifier];
+                //
+                //                if (![shareCell isKindOfClass:[UIShareCell class]])
+                //                {
+                //                    shareCell = [[UIShareCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:shareCellIdentifier];
+                //                }
+                //
+                //
+                //                if (indexPath.row == 1)
+                //                {
+                //                    [shareCell reloadData:K_PLATFORM_Sina];
+                //                }else{
+                //                    [shareCell reloadData:K_PLATFORM_Tencent];
+                //                }
+                //                
+                //                return shareCell;
+            }
+
+        }
             break;
-        case 2:
+        case 3:
         {
         
             //int index = [indexPath row];
@@ -330,8 +361,7 @@ static NSString *kSectionOneArr[] =
                     /*
                     kUIAlertConfirmView(NSLocalizedString(@"提示", @""),NSLocalizedString(@"是否真的要退出",@""),NSLocalizedString(@"Cancel",@""),NSLocalizedString(@"Ok",@""))
                     */
-                    UIAlertView *alertErr = [[[UIAlertView alloc]initWithTitle:NSLocalizedString(@"提示", @"")message:NSLocalizedString(@"是否真的要退出",@"") delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel",@"") otherButtonTitles:NSLocalizedString(@"Ok",@""),nil]autorelease];
-                                                                                                                                      [alertErr show];
+                   
                 }
                     break;
             }
@@ -371,5 +401,13 @@ static NSString *kSectionOneArr[] =
 //        [loginVc release];
 
     }
+}
+#pragma mark -
+#pragma mark
+- (void)logOutConfirm:(id)sender{
+    
+    UIAlertView *alertErr = [[[UIAlertView alloc]initWithTitle:NSLocalizedString(@"提示", @"")message:NSLocalizedString(@"是否真的要退出",@"") delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel",@"") otherButtonTitles:NSLocalizedString(@"Ok",@""),nil]autorelease];
+    [alertErr show];
+
 }
 @end

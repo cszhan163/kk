@@ -15,15 +15,17 @@
 
 #import "CarDriveMannerAnalysisViewController.h"
 
-#define kLeftPendingX  11
+#define kLeftPendingX  10
 #define kTopPendingY  8
 #define kHeaderItemPendingY 8
 
 #define kDriveStatusViewWidth  300
 #define kDriveStatusViewHeight 350
 
-@interface CarMonitorViewController()<BSPreviewScrollViewDelegate>
+@interface CarMonitorViewController()<BSPreviewScrollViewDelegate>{
 
+    UILabel *panelHeaderLabel;
+}
 @end
 
 @implementation CarMonitorViewController
@@ -54,19 +56,36 @@
     [self setRightBtnHidden:YES];
     [self setHiddenLeftBtn:YES];
     
+    CGFloat currY = kMBAppTopToolBarHeight+kTopPendingY;
     
-    CGRect viewRect = CGRectMake(kLeftPendingX,kMBAppTopToolBarHeight+kTopPendingY,kDeviceScreenWidth-2*kLeftPendingX,kMBAppRealViewHeight-kTopPendingY-60.f);
-    /*
-    UIImageWithFileName(bgImage, @"car_plant_bg.png");
+    UIImageWithFileName(bgImage, @"drive_panel_header.png");
     
-    UIImageView *bgView = [[UIImageView alloc]initWithImage:bgImage];
-    [self.view  addSubview:bgView];
+#if 0
+    panelHeaderLabel= [[UILabel alloc]initWithFrame:CGRectZero];
+    panelHeaderLabel.text = @"七月驾驶情况";
+    panelHeaderLabel.textAlignment = NSTextAlignmentCenter;
+    panelHeaderLabel.layer.contents = (id)bgImage.CGImage;
+    panelHeaderLabel.backgroundColor = [UIColor clearColor];
+    panelHeaderLabel.frame = CGRectMake(kLeftPendingX,currY,bgImage.size.width/kScale, bgImage.size.height/kScale);
+    [self.view  addSubview:panelHeaderLabel];
+    SafeRelease(panelHeaderLabel);
+    currY = currY+bgImage.size.height/kScale;
+#else
     
-    bgView.frame = viewRect;
-      */
+#endif
+    
+    
+    //bgView.frame = viewRect;
+    
+    
+    
+    CGRect viewRect = CGRectMake(kLeftPendingX,currY,kDeviceScreenWidth-2*kLeftPendingX,kMBAppRealViewHeight-kTopPendingY-60.f);
+    
+  
     CGSize size = viewRect.size;//CGSizeMake(viewRect.size, bgImage.size.height/kScale);
     BSPreviewScrollView *scrollerView = [[BSPreviewScrollView alloc]initWithFrameAndPageSize:CGRectMake(0.f, 0.f,size.width, size.height) pageSize:size];
     scrollerView.delegate = self;
+    [scrollerView setBoundces:NO];
     scrollerView.backgroundColor = [UIColor clearColor];
     [self.view addSubview:scrollerView];
     scrollerView.layer.cornerRadius = 5.f;
@@ -77,28 +96,37 @@
     
     
     StyledPageControl *pageControl = [scrollerView getPageControl];
-    /*
+#if 0
     UIImage *image  = nil;
-    UIImageWithFileName(image ,@"point-gray.png");
+    UIImageWithFileName(image ,@"page_normal.png");
     pageControl.thumbImage = image;
-    UIImageWithFileName(image ,@"point-red.png");
+    UIImageWithFileName(image ,@"page_selected.png");
     pageControl.selectedThumbImage = image;
     pageControl.pageControlStyle = PageControlStyleThumb;
-    */
+#else
+    pageControl.coreNormalColor=  [UIColor whiteColor];
+    pageControl.strokeNormalColor = [UIColor whiteColor];
+    pageControl.coreSelectedColor = [UIColor grayColor];
+    
+#endif
+    pageControl.diameter = 5.0;
+    pageControl.strokeWidth = 2.f;
     
     CGRect rect = pageControl.frame;
     //[self.scrollViewPreview setPageControlFrame:CGRectMake(0.f,rect.size.height-80.f,kDeviceScreenWidth, 40.f)];
-    pageControl.frame = CGRectOffset(rect, 0.f, -10.f);
+    pageControl.frame = CGRectOffset(rect, 0.f, -40.f);
 
     [scrollerView bringSubviewToFront:pageControl];
     
-    UIButton *oilAnalaysisBtn = [UIComUtil createButtonWithNormalBGImageName:nil withHightBGImageName:nil withTitle:@"油耗分析" withTag:0];
+    UIButton *oilAnalaysisBtn = [UIComUtil createButtonWithNormalBGImageName:@"drive_oil_btn.png" withHightBGImageName:@"drive_oil_btn.png" withTitle:@"" withTag:0];
     [scrollerView addSubview:oilAnalaysisBtn];
-    oilAnalaysisBtn.frame = CGRectMake(20.f,size.height-60.f, 80.f, 40);
+    CGSize btnsize= oilAnalaysisBtn.frame.size;
+    oilAnalaysisBtn.frame = CGRectMake(25.f,size.height-50.f,btnsize.width ,btnsize.height);
     [oilAnalaysisBtn addTarget:self action:@selector(didTouchButton:) forControlEvents:UIControlEventTouchUpInside];
-    UIButton *driveAnalysisBtn = [UIComUtil createButtonWithNormalBGImageName:nil withHightBGImageName:nil withTitle:@"驾驶情况分析" withTag:1];
+    UIButton *driveAnalysisBtn = [UIComUtil createButtonWithNormalBGImageName:@"drive_habit_btn.png" withHightBGImageName:@"drive_habit_btn.png" withTitle:@"" withTag:1];
     [scrollerView addSubview:driveAnalysisBtn];
-    driveAnalysisBtn.frame =  CGRectMake(180.f,size.height-60.f,120.f, 40);
+    btnsize = driveAnalysisBtn.frame.size;
+    driveAnalysisBtn.frame =  CGRectMake(180.f+12,size.height-50.f,btnsize.width ,btnsize.height);
     [driveAnalysisBtn addTarget:self action:@selector(didTouchButton:) forControlEvents:UIControlEventTouchUpInside];
     //[self setRightTextContent:NSLocalizedString(@"Done", @"")];
 	// Do any additional setup after loading the view.

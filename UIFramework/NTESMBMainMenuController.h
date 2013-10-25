@@ -27,6 +27,7 @@
     UIImageView                     *tabItemMaskView;
 }
 @property(nonatomic,retain) UIView *topBarView;
+@property(nonatomic,assign)BOOL maskFront;
 @property(nonatomic,readonly)NEMainTabBarController *mainTabBarVC;
 @property(nonatomic,assign) id delegate;
 @property(nonatomic,readonly) NETopNavBar	*curSelTopNavBar;

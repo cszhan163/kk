@@ -27,6 +27,7 @@
 //for net
 #import "ZCSNetClientConfig.h"
 
+#import "UserConfig.h"
 typedef struct dateSturct{
     int year;
     int month;

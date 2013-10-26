@@ -283,10 +283,12 @@ BOOL isFromLowMemory = NO;
 		[btn setImage:defaultStatusImg forState:UIControlStateNormal];
 		[btn setImage:selectStatusImg forState:UIControlStateSelected];
 		//[btn setBackgroundImage:statusImg forState:UIControlStateNormal];
-		//btn.frame = CGRectMake(0.f,0.f,defaultStatusImg.size.width/kScale, defaultStatusImg.size.height/kScale);
+#if 0
+		btn.frame = CGRectMake(0.f,0.f,defaultStatusImg.size.width/kScale, defaultStatusImg.size.height/kScale);
 		//[mainView.mainFramView addSubview:btn];
-         
+#else
         btn.frame = itemRect;
+#endif
 		NE_LOG(@"btn frame");
 		NE_LOGRECT(btn.frame);
         //add text label

@@ -182,17 +182,23 @@ UIImage* MTDContextCreateRoundedMask(UIImage *srcImage, CGRect rect, CGFloat rad
 +(UIImage *)imageWithColor:(UIColor *)color  withImage:(UIImage*)contentImage withSize:(CGSize)size
 {
     CGRect rect = CGRectMake(0.0f, 0.0f, size.width,size.height);
-    UIGraphicsBeginImageContext(rect.size);
+    UIGraphicsBeginImageContextWithOptions(size, NO, 0.0);
+    //UIGraphicsBeginImageContext(rect.size);
     CGContextRef context = UIGraphicsGetCurrentContext();
-
+    UIGraphicsPushContext(context);
+    
     CGContextSetFillColorWithColor(context, [color CGColor]);
     CGContextFillRect(context, rect);
-    
+    NSLog(@"%lf.%lf",contentImage.size.width,contentImage.size.height);
     //CGContextDrawImage(context,CGRectMake(22.5,15.f,contentImage.size.width/2.f,contentImage.size.height/2.f),contentImage.CGImage);
-    [contentImage drawInRect:CGRectMake(22.5,10.f,contentImage.size.width/2.f,contentImage.size.height/2.f)];
+    CGFloat startX = (size.width-contentImage.size.width/kScale)/2.f;
+    CGFloat startY = (size.height-contentImage.size.height/kScale)/2.f;
+    //CGFloat startX = 22.5;
+    //CGFloat startY = 10.f;
+    [contentImage drawInRect:CGRectMake(startX,startY,contentImage.size.width/kScale,contentImage.size.height/kScale)];
+    UIGraphicsPopContext();
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
-    
     return image;
 }
 @end

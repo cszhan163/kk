@@ -38,7 +38,8 @@
     [cardNetMgr getDriveDataByMoth:@"10" withYear:@"2013"];
     
     [cardNetMgr getMessageList:nil];
-    for(int i = 0; i<1;i++)
+    CGFloat currX = 0.f;
+    for(int i = 0; i<5;i++)
 	{
 		UIButton * btn = [UIButton buttonWithType:UIButtonTypeCustom];
 		/*
@@ -48,22 +49,26 @@
 		imgPath = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:kTabItemNarmalImageFileNameFormart,i] ofType:kTabItemImageSubfix];
 		assert(imgPath);
 		defaultStatusImg =  [UIImage imageWithContentsOfFile:imgPath];
-        defaultStatusImg =  [UIImage_Extend imageWithColor:[UIColor clearColor] withImage:defaultStatusImg withSize:itemRect.size];
+       // defaultStatusImg =  [UIImage_Extend imageWithColor:[UIColor whiteColor] withImage:defaultStatusImg withSize:itemRect.size];
 		imgPath = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:kTabItemSelectImageFileNameFormart,i] ofType:kTabItemImageSubfix];
 		assert(imgPath);
 		selectStatusImg =  [UIImage imageWithContentsOfFile:imgPath];
         
-        selectStatusImg = [UIImage_Extend imageWithColor:[UIColor clearColor] withImage:selectStatusImg withSize:itemRect.size];
+        selectStatusImg = [UIImage_Extend imageWithColor:[UIColor whiteColor] withImage:selectStatusImg withSize:itemRect.size];
+        
+        
         
 		//[btn setBackgroundImage:bgImag forState:UIControlStateNormal];
 		[btn setImage:defaultStatusImg forState:UIControlStateNormal];
 		[btn setImage:selectStatusImg forState:UIControlStateSelected];
 		//[btn setBackgroundImage:statusImg forState:UIControlStateNormal];
-		//btn.frame = CGRectMake(0.f,0.f,defaultStatusImg.size.width/kScale, defaultStatusImg.size.height/kScale);
+		btn.frame = CGRectMake(currX,40.f,defaultStatusImg.size.width/kScale, defaultStatusImg.size.height/kScale);
 		//[mainView.mainFramView addSubview:btn];
         
-        btn.frame = itemRect;
+        //btn.frame = itemRect;
+        if(i == 0)
         btn.selected = YES;
+        currX = currX+40;
         [self.view addSubview:btn];
         
     }

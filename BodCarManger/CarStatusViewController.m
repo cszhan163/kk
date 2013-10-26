@@ -204,7 +204,7 @@
         
     }
     if(indexPath.row == 9){
-        [cell setSeperateLineHidden:YES];
+        [cell setRowLineHidden:YES];
     }
     [cell setTableCellCloumn:0 withData:@"第一条"];
     [cell setTableCellCloumn:1 withData:@"0~100"];

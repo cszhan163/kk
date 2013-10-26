@@ -29,10 +29,8 @@
 
 - (void)setDisplayViewData:(NSArray*)data withType:(int)type{
     
-    CGRect rect = CGRectMake(10.f,0.f,50, 50);
+    CGRect rect = CGRectMake(18.f,0.f,50, 50);
     mutipleView = [[DAMultipleProgressLayer alloc]initWithFrame:rect];
-    
-    
     [mutipleView setTrackTintColor:[[UIColor blackColor] colorWithAlphaComponent:1.0f]];
     //[appearance setTrackTintColor:<#(UIColor *)#>]
     //[appearance setProgressTintColor:[UIColor whiteColor]];
@@ -40,14 +38,14 @@
     [mutipleView setThicknessRatio:0.3f];
     
     [self addSubview:mutipleView];
-    for(id item in data){
+    for(int i = 0;i<3;i++){
+        id item = [data objectAtIndex:i];
         if(type == 0)
         {
-            
-            [mutipleView addMutiplePecentTrackWithPercent:[item intValue] withColor:[UIColor greenColor] withClocksize:NO];
+            [mutipleView addMutiplePecentTrackWithPercent:[[item objectForKey:@"percent"] intValue] withColor:[item objectForKey:@"color"] withClocksize:NO];
         }
     }
-    [self createLineChart];
+    //[self createLineChart];
     /*
     [mutipleView addMutiplePecentTrackWithPercent:32 withColor:[UIColor yellowColor] withClocksize:YES];
     

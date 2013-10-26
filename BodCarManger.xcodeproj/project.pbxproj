@@ -72,15 +72,6 @@
 		046B66CF17E74C37006F34A1 /* plant_header_tag3.png in Resources */ = {isa = PBXBuildFile; fileRef = 046B668317E74C37006F34A1 /* plant_header_tag3.png */; };
 		046B66D017E74C37006F34A1 /* tag-green.png in Resources */ = {isa = PBXBuildFile; fileRef = 046B668417E74C37006F34A1 /* tag-green.png */; };
 		046B66D117E74C37006F34A1 /* tag-red.png in Resources */ = {isa = PBXBuildFile; fileRef = 046B668517E74C37006F34A1 /* tag-red.png */; };
-		046B66D317E74C37006F34A1 /* tableitemsel2.png in Resources */ = {isa = PBXBuildFile; fileRef = 046B668817E74C37006F34A1 /* tableitemsel2.png */; };
-		046B66D417E74C37006F34A1 /* tableitem2.png in Resources */ = {isa = PBXBuildFile; fileRef = 046B668917E74C37006F34A1 /* tableitem2.png */; };
-		046B66D517E74C37006F34A1 /* tableitemsel1.png in Resources */ = {isa = PBXBuildFile; fileRef = 046B668A17E74C37006F34A1 /* tableitemsel1.png */; };
-		046B66D617E74C37006F34A1 /* tableitem1.png in Resources */ = {isa = PBXBuildFile; fileRef = 046B668B17E74C37006F34A1 /* tableitem1.png */; };
-		046B66D717E74C37006F34A1 /* tableitemsel3.png in Resources */ = {isa = PBXBuildFile; fileRef = 046B668C17E74C37006F34A1 /* tableitemsel3.png */; };
-		046B66D817E74C37006F34A1 /* tableitem3.png in Resources */ = {isa = PBXBuildFile; fileRef = 046B668D17E74C37006F34A1 /* tableitem3.png */; };
-		046B66D917E74C37006F34A1 /* tableitemsel0.png in Resources */ = {isa = PBXBuildFile; fileRef = 046B668E17E74C37006F34A1 /* tableitemsel0.png */; };
-		046B66DA17E74C37006F34A1 /* tableitem0.png in Resources */ = {isa = PBXBuildFile; fileRef = 046B668F17E74C37006F34A1 /* tableitem0.png */; };
-		046B66DB17E74C37006F34A1 /* tableitem4.png in Resources */ = {isa = PBXBuildFile; fileRef = 046B669017E74C37006F34A1 /* tableitem4.png */; };
 		046B66DD17E74C37006F34A1 /* ––≥Ã¡–±Ì.png in Resources */ = {isa = PBXBuildFile; fileRef = 046B669217E74C37006F34A1 /* ––≥Ã¡–±Ì.png */; };
 		046B66DE17E74C37006F34A1 /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 046B669517E74C37006F34A1 /* 1.png */; };
 		046B66DF17E74C37006F34A1 /* router_panel_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 046B669617E74C37006F34A1 /* router_panel_bg.png */; };
@@ -118,6 +109,17 @@
 		046B685017E773F6006F34A1 /* libZCSUIFrameWork.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 046B684F17E77391006F34A1 /* libZCSUIFrameWork.a */; };
 		046B685B17E884D5006F34A1 /* plantData.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 046B685A17E884CF006F34A1 /* plantData.geojson */; };
 		046B685D17E8870F006F34A1 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 046B685C17E88708006F34A1 /* QuartzCore.framework */; };
+		04809B58181C00B9000DBB2F /* oil_graph_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 04809B57181C00B9000DBB2F /* oil_graph_bg.png */; };
+		04809B5C181C013C000DBB2F /* CarDriveOilDataAnalaysisViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04809B5B181C013C000DBB2F /* CarDriveOilDataAnalaysisViewController.m */; };
+		04809B66181C2224000DBB2F /* tableitem0.png in Resources */ = {isa = PBXBuildFile; fileRef = 04809B5D181C2223000DBB2F /* tableitem0.png */; };
+		04809B67181C2224000DBB2F /* tableitem1.png in Resources */ = {isa = PBXBuildFile; fileRef = 04809B5E181C2223000DBB2F /* tableitem1.png */; };
+		04809B68181C2224000DBB2F /* tableitem2.png in Resources */ = {isa = PBXBuildFile; fileRef = 04809B5F181C2223000DBB2F /* tableitem2.png */; };
+		04809B69181C2224000DBB2F /* tableitem3.png in Resources */ = {isa = PBXBuildFile; fileRef = 04809B60181C2223000DBB2F /* tableitem3.png */; };
+		04809B6A181C2224000DBB2F /* tableitem4.png in Resources */ = {isa = PBXBuildFile; fileRef = 04809B61181C2223000DBB2F /* tableitem4.png */; };
+		04809B6B181C2224000DBB2F /* tableitemsel0.png in Resources */ = {isa = PBXBuildFile; fileRef = 04809B62181C2223000DBB2F /* tableitemsel0.png */; };
+		04809B6C181C2224000DBB2F /* tableitemsel1.png in Resources */ = {isa = PBXBuildFile; fileRef = 04809B63181C2224000DBB2F /* tableitemsel1.png */; };
+		04809B6D181C2224000DBB2F /* tableitemsel2.png in Resources */ = {isa = PBXBuildFile; fileRef = 04809B64181C2224000DBB2F /* tableitemsel2.png */; };
+		04809B6E181C2224000DBB2F /* tableitemsel3.png in Resources */ = {isa = PBXBuildFile; fileRef = 04809B65181C2224000DBB2F /* tableitemsel3.png */; };
 		049B0B4917E9F78C008FE4D1 /* OCDaysModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 049B0B4817E9F78C008FE4D1 /* OCDaysModel.m */; };
 		049DF9551812EAC000DFC9F1 /* login_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 049DF9541812EAC000DFC9F1 /* login_bg.png */; };
 		049DF9591812EE3800DFC9F1 /* register_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 049DF9581812EE3800DFC9F1 /* register_bg.png */; };
@@ -137,6 +139,11 @@
 		049DF98718157AB900DFC9F1 /* SettingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 049DF97D18157AB900DFC9F1 /* SettingTableViewCell.m */; };
 		049DF98A18157C4200DFC9F1 /* CarCheckTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 049DF98918157C4200DFC9F1 /* CarCheckTableViewCell.m */; };
 		049DF98C181588AF00DFC9F1 /* car_check_gridtable_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 049DF98B181588AF00DFC9F1 /* car_check_gridtable_bg.png */; };
+		04A3F453181AC06D00E52DC1 /* drive_habit_Indict.png in Resources */ = {isa = PBXBuildFile; fileRef = 04A3F451181AC06D00E52DC1 /* drive_habit_Indict.png */; };
+		04A3F454181AC06D00E52DC1 /* drive_habit_Text.png in Resources */ = {isa = PBXBuildFile; fileRef = 04A3F452181AC06D00E52DC1 /* drive_habit_Text.png */; };
+		04A3F459181AC07800E52DC1 /* drive_habit_table_cell.png in Resources */ = {isa = PBXBuildFile; fileRef = 04A3F456181AC07800E52DC1 /* drive_habit_table_cell.png */; };
+		04A3F45A181AC07800E52DC1 /* drive_habit_table_footer.png in Resources */ = {isa = PBXBuildFile; fileRef = 04A3F457181AC07800E52DC1 /* drive_habit_table_footer.png */; };
+		04A3F45B181AC07800E52DC1 /* drive_habit_table_header.png in Resources */ = {isa = PBXBuildFile; fileRef = 04A3F458181AC07800E52DC1 /* drive_habit_table_header.png */; };
 		04C254BA1816D49200B4A678 /* DIGIFACEWIDE.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 04C254B91816D49200B4A678 /* DIGIFACEWIDE.ttf */; };
 		04C254C01816DD4400B4A678 /* car_check_label.png in Resources */ = {isa = PBXBuildFile; fileRef = 04C254BF1816DD4400B4A678 /* car_check_label.png */; };
 		04C254C61818012700B4A678 /* DDProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C254C51818012700B4A678 /* DDProgressView.m */; };
@@ -144,6 +151,29 @@
 		04C254CD18180EC500B4A678 /* car_check_status_mid.png in Resources */ = {isa = PBXBuildFile; fileRef = 04C254CA18180EC500B4A678 /* car_check_status_mid.png */; };
 		04C254CE18180EC500B4A678 /* car_check_status_top.png in Resources */ = {isa = PBXBuildFile; fileRef = 04C254CB18180EC500B4A678 /* car_check_status_top.png */; };
 		04C254D018180ED300B4A678 /* car_check_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 04C254CF18180ED300B4A678 /* car_check_btn.png */; };
+		04E2A0AD181B6FFF006D8C0C /* oil_analysis_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E2A0A9181B6FFF006D8C0C /* oil_analysis_selected.png */; };
+		04E2A0AE181B6FFF006D8C0C /* oil_analysis_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E2A0AA181B6FFF006D8C0C /* oil_analysis_normal.png */; };
+		04E2A0AF181B6FFF006D8C0C /* oil_data_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E2A0AB181B6FFF006D8C0C /* oil_data_normal.png */; };
+		04E2A0B0181B6FFF006D8C0C /* oil_data_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E2A0AC181B6FFF006D8C0C /* oil_data_selected.png */; };
+		04E2A0B5181B73EE006D8C0C /* oil_table_cell.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E2A0B2181B73ED006D8C0C /* oil_table_cell.png */; };
+		04E2A0B6181B73EE006D8C0C /* oil_table_footer.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E2A0B3181B73ED006D8C0C /* oil_table_footer.png */; };
+		04E2A0B7181B73EE006D8C0C /* oil_table_header.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E2A0B4181B73EE006D8C0C /* oil_table_header.png */; };
+		04E2A0C8181B743B006D8C0C /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E2A0B9181B743B006D8C0C /* 1.png */; };
+		04E2A0C9181B743B006D8C0C /* blue.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E2A0BA181B743B006D8C0C /* blue.png */; };
+		04E2A0CA181B743B006D8C0C /* green.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E2A0BB181B743B006D8C0C /* green.png */; };
+		04E2A0CB181B743B006D8C0C /* oil_table_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E2A0BD181B743B006D8C0C /* oil_table_1.png */; };
+		04E2A0CC181B743B006D8C0C /* oil_table_10.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E2A0BE181B743B006D8C0C /* oil_table_10.png */; };
+		04E2A0CD181B743B006D8C0C /* oil_table_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E2A0BF181B743B006D8C0C /* oil_table_2.png */; };
+		04E2A0CE181B743B006D8C0C /* oil_table_3.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E2A0C0181B743B006D8C0C /* oil_table_3.png */; };
+		04E2A0CF181B743B006D8C0C /* oil_table_4.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E2A0C1181B743B006D8C0C /* oil_table_4.png */; };
+		04E2A0D0181B743B006D8C0C /* oil_table_5.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E2A0C2181B743B006D8C0C /* oil_table_5.png */; };
+		04E2A0D1181B743B006D8C0C /* oil_table_6.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E2A0C3181B743B006D8C0C /* oil_table_6.png */; };
+		04E2A0D2181B743B006D8C0C /* oil_table_7.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E2A0C4181B743B006D8C0C /* oil_table_7.png */; };
+		04E2A0D3181B743B006D8C0C /* oil_table_8.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E2A0C5181B743B006D8C0C /* oil_table_8.png */; };
+		04E2A0D4181B743B006D8C0C /* oil_table_9.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E2A0C6181B743B006D8C0C /* oil_table_9.png */; };
+		04E2A0D5181B743B006D8C0C /* yellow.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E2A0C7181B743B006D8C0C /* yellow.png */; };
+		04E2A0D7181B74D5006D8C0C /* oil_data_graph.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E2A0D6181B74D4006D8C0C /* oil_data_graph.png */; };
+		04E2A0D9181B75F4006D8C0C /* oil_analysis_graph.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E2A0D8181B75F3006D8C0C /* oil_analysis_graph.png */; };
 		04E3C88C17FC1A5000EFB787 /* DACircularProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E3C88917FC1A5000EFB787 /* DACircularProgressView.m */; };
 		04E3C88D17FC1A5000EFB787 /* DAMultipleProgressLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E3C88B17FC1A5000EFB787 /* DAMultipleProgressLayer.m */; };
 		04FE070A1818188F00EEC76A /* drive_oil_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 04FE07041818188F00EEC76A /* drive_oil_btn.png */; };
@@ -292,15 +322,6 @@
 		046B668317E74C37006F34A1 /* plant_header_tag3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = plant_header_tag3.png; sourceTree = "<group>"; };
 		046B668417E74C37006F34A1 /* tag-green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tag-green.png"; sourceTree = "<group>"; };
 		046B668517E74C37006F34A1 /* tag-red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tag-red.png"; sourceTree = "<group>"; };
-		046B668817E74C37006F34A1 /* tableitemsel2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tableitemsel2.png; sourceTree = "<group>"; };
-		046B668917E74C37006F34A1 /* tableitem2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tableitem2.png; sourceTree = "<group>"; };
-		046B668A17E74C37006F34A1 /* tableitemsel1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tableitemsel1.png; sourceTree = "<group>"; };
-		046B668B17E74C37006F34A1 /* tableitem1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tableitem1.png; sourceTree = "<group>"; };
-		046B668C17E74C37006F34A1 /* tableitemsel3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tableitemsel3.png; sourceTree = "<group>"; };
-		046B668D17E74C37006F34A1 /* tableitem3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tableitem3.png; sourceTree = "<group>"; };
-		046B668E17E74C37006F34A1 /* tableitemsel0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tableitemsel0.png; sourceTree = "<group>"; };
-		046B668F17E74C37006F34A1 /* tableitem0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tableitem0.png; sourceTree = "<group>"; };
-		046B669017E74C37006F34A1 /* tableitem4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tableitem4.png; sourceTree = "<group>"; };
 		046B669217E74C37006F34A1 /* ––≥Ã¡–±Ì.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "––≥Ã¡–±Ì.png"; sourceTree = "<group>"; };
 		046B669517E74C37006F34A1 /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
 		046B669617E74C37006F34A1 /* router_panel_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = router_panel_bg.png; sourceTree = "<group>"; };
@@ -354,6 +375,18 @@
 		046B684A17E7738C006F34A1 /* ZCSUIFrameWork.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ZCSUIFrameWork.xcodeproj; path = ../../BaseLib/UIFramework/ZCSUIFrameWork/ZCSUIFrameWork.xcodeproj; sourceTree = "<group>"; };
 		046B685A17E884CF006F34A1 /* plantData.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = plantData.geojson; sourceTree = "<group>"; };
 		046B685C17E88708006F34A1 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		04809B57181C00B9000DBB2F /* oil_graph_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = oil_graph_bg.png; sourceTree = "<group>"; };
+		04809B5A181C013C000DBB2F /* CarDriveOilDataAnalaysisViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CarDriveOilDataAnalaysisViewController.h; path = ViewController/CarDriveOilDataAnalaysisViewController.h; sourceTree = "<group>"; };
+		04809B5B181C013C000DBB2F /* CarDriveOilDataAnalaysisViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CarDriveOilDataAnalaysisViewController.m; path = ViewController/CarDriveOilDataAnalaysisViewController.m; sourceTree = "<group>"; };
+		04809B5D181C2223000DBB2F /* tableitem0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tableitem0.png; sourceTree = "<group>"; };
+		04809B5E181C2223000DBB2F /* tableitem1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tableitem1.png; sourceTree = "<group>"; };
+		04809B5F181C2223000DBB2F /* tableitem2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tableitem2.png; sourceTree = "<group>"; };
+		04809B60181C2223000DBB2F /* tableitem3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tableitem3.png; sourceTree = "<group>"; };
+		04809B61181C2223000DBB2F /* tableitem4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tableitem4.png; sourceTree = "<group>"; };
+		04809B62181C2223000DBB2F /* tableitemsel0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tableitemsel0.png; sourceTree = "<group>"; };
+		04809B63181C2224000DBB2F /* tableitemsel1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tableitemsel1.png; sourceTree = "<group>"; };
+		04809B64181C2224000DBB2F /* tableitemsel2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tableitemsel2.png; sourceTree = "<group>"; };
+		04809B65181C2224000DBB2F /* tableitemsel3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tableitemsel3.png; sourceTree = "<group>"; };
 		049B0B4717E9F78C008FE4D1 /* OCDaysModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCDaysModel.h; sourceTree = "<group>"; };
 		049B0B4817E9F78C008FE4D1 /* OCDaysModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCDaysModel.m; sourceTree = "<group>"; };
 		049DF9541812EAC000DFC9F1 /* login_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = login_bg.png; sourceTree = "<group>"; };
@@ -384,6 +417,11 @@
 		049DF98818157C4200DFC9F1 /* CarCheckTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarCheckTableViewCell.h; sourceTree = "<group>"; };
 		049DF98918157C4200DFC9F1 /* CarCheckTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarCheckTableViewCell.m; sourceTree = "<group>"; };
 		049DF98B181588AF00DFC9F1 /* car_check_gridtable_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = car_check_gridtable_bg.png; sourceTree = "<group>"; };
+		04A3F451181AC06D00E52DC1 /* drive_habit_Indict.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = drive_habit_Indict.png; sourceTree = "<group>"; };
+		04A3F452181AC06D00E52DC1 /* drive_habit_Text.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = drive_habit_Text.png; sourceTree = "<group>"; };
+		04A3F456181AC07800E52DC1 /* drive_habit_table_cell.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = drive_habit_table_cell.png; sourceTree = "<group>"; };
+		04A3F457181AC07800E52DC1 /* drive_habit_table_footer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = drive_habit_table_footer.png; sourceTree = "<group>"; };
+		04A3F458181AC07800E52DC1 /* drive_habit_table_header.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = drive_habit_table_header.png; sourceTree = "<group>"; };
 		04C254B91816D49200B4A678 /* DIGIFACEWIDE.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = DIGIFACEWIDE.ttf; sourceTree = "<group>"; };
 		04C254BF1816DD4400B4A678 /* car_check_label.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = car_check_label.png; sourceTree = "<group>"; };
 		04C254C41818012700B4A678 /* DDProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDProgressView.h; sourceTree = "<group>"; };
@@ -392,6 +430,29 @@
 		04C254CA18180EC500B4A678 /* car_check_status_mid.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = car_check_status_mid.png; sourceTree = "<group>"; };
 		04C254CB18180EC500B4A678 /* car_check_status_top.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = car_check_status_top.png; sourceTree = "<group>"; };
 		04C254CF18180ED300B4A678 /* car_check_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = car_check_btn.png; sourceTree = "<group>"; };
+		04E2A0A9181B6FFF006D8C0C /* oil_analysis_selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = oil_analysis_selected.png; sourceTree = "<group>"; };
+		04E2A0AA181B6FFF006D8C0C /* oil_analysis_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = oil_analysis_normal.png; sourceTree = "<group>"; };
+		04E2A0AB181B6FFF006D8C0C /* oil_data_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = oil_data_normal.png; sourceTree = "<group>"; };
+		04E2A0AC181B6FFF006D8C0C /* oil_data_selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = oil_data_selected.png; sourceTree = "<group>"; };
+		04E2A0B2181B73ED006D8C0C /* oil_table_cell.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = oil_table_cell.png; sourceTree = "<group>"; };
+		04E2A0B3181B73ED006D8C0C /* oil_table_footer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = oil_table_footer.png; sourceTree = "<group>"; };
+		04E2A0B4181B73EE006D8C0C /* oil_table_header.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = oil_table_header.png; sourceTree = "<group>"; };
+		04E2A0B9181B743B006D8C0C /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
+		04E2A0BA181B743B006D8C0C /* blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blue.png; sourceTree = "<group>"; };
+		04E2A0BB181B743B006D8C0C /* green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = green.png; sourceTree = "<group>"; };
+		04E2A0BD181B743B006D8C0C /* oil_table_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = oil_table_1.png; sourceTree = "<group>"; };
+		04E2A0BE181B743B006D8C0C /* oil_table_10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = oil_table_10.png; sourceTree = "<group>"; };
+		04E2A0BF181B743B006D8C0C /* oil_table_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = oil_table_2.png; sourceTree = "<group>"; };
+		04E2A0C0181B743B006D8C0C /* oil_table_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = oil_table_3.png; sourceTree = "<group>"; };
+		04E2A0C1181B743B006D8C0C /* oil_table_4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = oil_table_4.png; sourceTree = "<group>"; };
+		04E2A0C2181B743B006D8C0C /* oil_table_5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = oil_table_5.png; sourceTree = "<group>"; };
+		04E2A0C3181B743B006D8C0C /* oil_table_6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = oil_table_6.png; sourceTree = "<group>"; };
+		04E2A0C4181B743B006D8C0C /* oil_table_7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = oil_table_7.png; sourceTree = "<group>"; };
+		04E2A0C5181B743B006D8C0C /* oil_table_8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = oil_table_8.png; sourceTree = "<group>"; };
+		04E2A0C6181B743B006D8C0C /* oil_table_9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = oil_table_9.png; sourceTree = "<group>"; };
+		04E2A0C7181B743B006D8C0C /* yellow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yellow.png; sourceTree = "<group>"; };
+		04E2A0D6181B74D4006D8C0C /* oil_data_graph.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = oil_data_graph.png; sourceTree = "<group>"; };
+		04E2A0D8181B75F3006D8C0C /* oil_analysis_graph.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = oil_analysis_graph.png; sourceTree = "<group>"; };
 		04E3C88817FC1A5000EFB787 /* DACircularProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DACircularProgressView.h; sourceTree = "<group>"; };
 		04E3C88917FC1A5000EFB787 /* DACircularProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DACircularProgressView.m; sourceTree = "<group>"; };
 		04E3C88A17FC1A5000EFB787 /* DAMultipleProgressLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DAMultipleProgressLayer.h; sourceTree = "<group>"; };
@@ -501,10 +562,12 @@
 				0436B04C17FC7AE000750473 /* CarDriveOilAnalaysisViewController.m */,
 				0435CB3517FF0BD30064FE14 /* CarDriveMannerAnalysisViewController.h */,
 				0435CB3617FF0BD30064FE14 /* CarDriveMannerAnalysisViewController.m */,
-				0435CB4117FFC7250064FE14 /* SubNavItemBaseViewController.h */,
-				0435CB4217FFC7250064FE14 /* SubNavItemBaseViewController.m */,
+				04809B5A181C013C000DBB2F /* CarDriveOilDataAnalaysisViewController.h */,
+				04809B5B181C013C000DBB2F /* CarDriveOilDataAnalaysisViewController.m */,
 				0435CB48180011AA0064FE14 /* CarDriveOilDataViewController.h */,
 				0435CB49180011AB0064FE14 /* CarDriveOilDataViewController.m */,
+				0435CB4117FFC7250064FE14 /* SubNavItemBaseViewController.h */,
+				0435CB4217FFC7250064FE14 /* SubNavItemBaseViewController.m */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -731,17 +794,17 @@
 		046B668617E74C37006F34A1 /* TAB */ = {
 			isa = PBXGroup;
 			children = (
-				04FE0728181963DE00EEC76A /* tableitemselmask.png */,
+				04809B5D181C2223000DBB2F /* tableitem0.png */,
+				04809B5E181C2223000DBB2F /* tableitem1.png */,
+				04809B5F181C2223000DBB2F /* tableitem2.png */,
+				04809B60181C2223000DBB2F /* tableitem3.png */,
+				04809B61181C2223000DBB2F /* tableitem4.png */,
+				04809B62181C2223000DBB2F /* tableitemsel0.png */,
+				04809B63181C2224000DBB2F /* tableitemsel1.png */,
+				04809B64181C2224000DBB2F /* tableitemsel2.png */,
+				04809B65181C2224000DBB2F /* tableitemsel3.png */,
 				046B67F817E7594E006F34A1 /* tableitemsel4.png */,
-				046B668817E74C37006F34A1 /* tableitemsel2.png */,
-				046B668917E74C37006F34A1 /* tableitem2.png */,
-				046B668A17E74C37006F34A1 /* tableitemsel1.png */,
-				046B668B17E74C37006F34A1 /* tableitem1.png */,
-				046B668C17E74C37006F34A1 /* tableitemsel3.png */,
-				046B668D17E74C37006F34A1 /* tableitem3.png */,
-				046B668E17E74C37006F34A1 /* tableitemsel0.png */,
-				046B668F17E74C37006F34A1 /* tableitem0.png */,
-				046B669017E74C37006F34A1 /* tableitem4.png */,
+				04FE0728181963DE00EEC76A /* tableitemselmask.png */,
 			);
 			name = TAB;
 			path = plant/icon/TAB;
@@ -927,6 +990,35 @@
 			path = CellView;
 			sourceTree = "<group>";
 		};
+		04E2A0B8181B743B006D8C0C /* oil_icon */ = {
+			isa = PBXGroup;
+			children = (
+				04E2A0B9181B743B006D8C0C /* 1.png */,
+				04E2A0C7181B743B006D8C0C /* yellow.png */,
+				04E2A0BA181B743B006D8C0C /* blue.png */,
+				04E2A0BB181B743B006D8C0C /* green.png */,
+				04E2A0BC181B743B006D8C0C /* oil_table_icon */,
+			);
+			path = oil_icon;
+			sourceTree = "<group>";
+		};
+		04E2A0BC181B743B006D8C0C /* oil_table_icon */ = {
+			isa = PBXGroup;
+			children = (
+				04E2A0BD181B743B006D8C0C /* oil_table_1.png */,
+				04E2A0BE181B743B006D8C0C /* oil_table_10.png */,
+				04E2A0BF181B743B006D8C0C /* oil_table_2.png */,
+				04E2A0C0181B743B006D8C0C /* oil_table_3.png */,
+				04E2A0C1181B743B006D8C0C /* oil_table_4.png */,
+				04E2A0C2181B743B006D8C0C /* oil_table_5.png */,
+				04E2A0C3181B743B006D8C0C /* oil_table_6.png */,
+				04E2A0C4181B743B006D8C0C /* oil_table_7.png */,
+				04E2A0C5181B743B006D8C0C /* oil_table_8.png */,
+				04E2A0C6181B743B006D8C0C /* oil_table_9.png */,
+			);
+			path = oil_table_icon;
+			sourceTree = "<group>";
+		};
 		04E3C88717FC1A5000EFB787 /* DACircularProgress */ = {
 			isa = PBXGroup;
 			children = (
@@ -941,6 +1033,22 @@
 		04FE07031818188F00EEC76A /* drive */ = {
 			isa = PBXGroup;
 			children = (
+				04809B57181C00B9000DBB2F /* oil_graph_bg.png */,
+				04E2A0D8181B75F3006D8C0C /* oil_analysis_graph.png */,
+				04E2A0D6181B74D4006D8C0C /* oil_data_graph.png */,
+				04E2A0B8181B743B006D8C0C /* oil_icon */,
+				04E2A0B2181B73ED006D8C0C /* oil_table_cell.png */,
+				04E2A0B3181B73ED006D8C0C /* oil_table_footer.png */,
+				04E2A0B4181B73EE006D8C0C /* oil_table_header.png */,
+				04E2A0A9181B6FFF006D8C0C /* oil_analysis_selected.png */,
+				04E2A0AA181B6FFF006D8C0C /* oil_analysis_normal.png */,
+				04E2A0AB181B6FFF006D8C0C /* oil_data_normal.png */,
+				04E2A0AC181B6FFF006D8C0C /* oil_data_selected.png */,
+				04A3F456181AC07800E52DC1 /* drive_habit_table_cell.png */,
+				04A3F457181AC07800E52DC1 /* drive_habit_table_footer.png */,
+				04A3F458181AC07800E52DC1 /* drive_habit_table_header.png */,
+				04A3F451181AC06D00E52DC1 /* drive_habit_Indict.png */,
+				04A3F452181AC06D00E52DC1 /* drive_habit_Text.png */,
 				04FE07101818282F00EEC76A /* panel_bg.png */,
 				04FE07041818188F00EEC76A /* drive_oil_btn.png */,
 				04FE07051818188F00EEC76A /* drive_habit_btn.png */,
@@ -1124,15 +1232,6 @@
 				046B66CF17E74C37006F34A1 /* plant_header_tag3.png in Resources */,
 				046B66D017E74C37006F34A1 /* tag-green.png in Resources */,
 				046B66D117E74C37006F34A1 /* tag-red.png in Resources */,
-				046B66D317E74C37006F34A1 /* tableitemsel2.png in Resources */,
-				046B66D417E74C37006F34A1 /* tableitem2.png in Resources */,
-				046B66D517E74C37006F34A1 /* tableitemsel1.png in Resources */,
-				046B66D617E74C37006F34A1 /* tableitem1.png in Resources */,
-				046B66D717E74C37006F34A1 /* tableitemsel3.png in Resources */,
-				046B66D817E74C37006F34A1 /* tableitem3.png in Resources */,
-				046B66D917E74C37006F34A1 /* tableitemsel0.png in Resources */,
-				046B66DA17E74C37006F34A1 /* tableitem0.png in Resources */,
-				046B66DB17E74C37006F34A1 /* tableitem4.png in Resources */,
 				046B66DD17E74C37006F34A1 /* ––≥Ã¡–±Ì.png in Resources */,
 				046B66DE17E74C37006F34A1 /* 1.png in Resources */,
 				046B66DF17E74C37006F34A1 /* router_panel_bg.png in Resources */,
@@ -1201,6 +1300,44 @@
 				04FE072C181973C300EEC76A /* setting_cell_bg.png in Resources */,
 				04FE07311819743A00EEC76A /* FriendItemCell.xib in Resources */,
 				04FE073418197C8800EEC76A /* setting_logout_btn.png in Resources */,
+				04A3F453181AC06D00E52DC1 /* drive_habit_Indict.png in Resources */,
+				04A3F454181AC06D00E52DC1 /* drive_habit_Text.png in Resources */,
+				04A3F459181AC07800E52DC1 /* drive_habit_table_cell.png in Resources */,
+				04A3F45A181AC07800E52DC1 /* drive_habit_table_footer.png in Resources */,
+				04A3F45B181AC07800E52DC1 /* drive_habit_table_header.png in Resources */,
+				04E2A0AD181B6FFF006D8C0C /* oil_analysis_selected.png in Resources */,
+				04E2A0AE181B6FFF006D8C0C /* oil_analysis_normal.png in Resources */,
+				04E2A0AF181B6FFF006D8C0C /* oil_data_normal.png in Resources */,
+				04E2A0B0181B6FFF006D8C0C /* oil_data_selected.png in Resources */,
+				04E2A0B5181B73EE006D8C0C /* oil_table_cell.png in Resources */,
+				04E2A0B6181B73EE006D8C0C /* oil_table_footer.png in Resources */,
+				04E2A0B7181B73EE006D8C0C /* oil_table_header.png in Resources */,
+				04E2A0C8181B743B006D8C0C /* 1.png in Resources */,
+				04E2A0C9181B743B006D8C0C /* blue.png in Resources */,
+				04E2A0CA181B743B006D8C0C /* green.png in Resources */,
+				04E2A0CB181B743B006D8C0C /* oil_table_1.png in Resources */,
+				04E2A0CC181B743B006D8C0C /* oil_table_10.png in Resources */,
+				04E2A0CD181B743B006D8C0C /* oil_table_2.png in Resources */,
+				04E2A0CE181B743B006D8C0C /* oil_table_3.png in Resources */,
+				04E2A0CF181B743B006D8C0C /* oil_table_4.png in Resources */,
+				04E2A0D0181B743B006D8C0C /* oil_table_5.png in Resources */,
+				04E2A0D1181B743B006D8C0C /* oil_table_6.png in Resources */,
+				04E2A0D2181B743B006D8C0C /* oil_table_7.png in Resources */,
+				04E2A0D3181B743B006D8C0C /* oil_table_8.png in Resources */,
+				04E2A0D4181B743B006D8C0C /* oil_table_9.png in Resources */,
+				04E2A0D5181B743B006D8C0C /* yellow.png in Resources */,
+				04E2A0D7181B74D5006D8C0C /* oil_data_graph.png in Resources */,
+				04E2A0D9181B75F4006D8C0C /* oil_analysis_graph.png in Resources */,
+				04809B58181C00B9000DBB2F /* oil_graph_bg.png in Resources */,
+				04809B66181C2224000DBB2F /* tableitem0.png in Resources */,
+				04809B67181C2224000DBB2F /* tableitem1.png in Resources */,
+				04809B68181C2224000DBB2F /* tableitem2.png in Resources */,
+				04809B69181C2224000DBB2F /* tableitem3.png in Resources */,
+				04809B6A181C2224000DBB2F /* tableitem4.png in Resources */,
+				04809B6B181C2224000DBB2F /* tableitemsel0.png in Resources */,
+				04809B6C181C2224000DBB2F /* tableitemsel1.png in Resources */,
+				04809B6D181C2224000DBB2F /* tableitemsel2.png in Resources */,
+				04809B6E181C2224000DBB2F /* tableitemsel3.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1265,6 +1402,7 @@
 				049DF98A18157C4200DFC9F1 /* CarCheckTableViewCell.m in Sources */,
 				04C254C61818012700B4A678 /* DDProgressView.m in Sources */,
 				04FE07321819743A00EEC76A /* FriendItemCell.m in Sources */,
+				04809B5C181C013C000DBB2F /* CarDriveOilDataAnalaysisViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

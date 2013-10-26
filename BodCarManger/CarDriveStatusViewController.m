@@ -51,7 +51,7 @@
     mainView.mainFramView.backgroundColor = kAppUserBGWhiteColor;
 #endif
     //mainView.alpha = 0.;
-    [self setNavgationBarTitle:NSLocalizedString(@"Drive Monitor", @""
+    [self setNavgationBarTitle:NSLocalizedString(@"驾驶行为", @""
                                                  )];
     [self setRightBtnHidden:YES];
     [self setHiddenLeftBtn:YES];

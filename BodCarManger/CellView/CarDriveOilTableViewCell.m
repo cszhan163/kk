@@ -19,6 +19,8 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
+    
+#if 1
         // Initialization code
         CGFloat currX = 0.f;
         //NSArray *widthArray = ;
@@ -34,11 +36,13 @@
             SafeRelease(itemLabel);
             [self.mCellItemArray addObject:itemLabel];
         }
-        UIView  *seperateLine = [[UIView alloc]initWithFrame:CGRectMake(0,self.frame.size.height-1,self.frame.size.width,1)];
-        seperateLine.backgroundColor = self.mLineColor;
-        [self addSubview:seperateLine];
-        SafeRelease(seperateLine);
-        
+//        UIView  *seperateLine = [[UIView alloc]initWithFrame:CGRectMake(0,self.frame.size.height-1,self.frame.size.width,1)];
+//        seperateLine.backgroundColor = self.mLineColor;
+//        [self addSubview:seperateLine];
+//        SafeRelease(seperateLine);
+#endif
+        [self setRowLineHidden:YES];
+        [self setClounmLineHidden:YES];
         [self setClounmWidthArrays:kColounmItemWidthArray];
         
     }

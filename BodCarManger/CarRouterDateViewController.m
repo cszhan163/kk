@@ -43,6 +43,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self setHiddenLeftBtn:YES];
     
     mCurrDate.month = 9;
     mCurrDate.year  = 2013;

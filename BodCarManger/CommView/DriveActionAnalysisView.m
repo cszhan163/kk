@@ -16,8 +16,19 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
-        NSArray *data = @[@18,@28,@40];
-        [self setDisplayViewData:data withType:0];
+        NSArray *percentArray = @[@18,@28,@40];
+        NSArray *colorArray = @[HexRGB(79, 120, 205),
+                                HexRGB(92, 200, 92),
+                                HexRGB(237, 209, 69),
+                                ];
+        NSMutableArray *testData = [NSMutableArray array];
+        for(int i = 0 ;i<3;i++){
+            NSMutableDictionary *item = [NSMutableDictionary dictionary];
+            [item setValue:percentArray[i] forKey:@"percent"];
+            [item setValue:colorArray[i] forKey:@"color"];
+            [testData addObject:item];
+        }
+        [self setDisplayViewData:testData withType:0];
     }
     return self;
 }

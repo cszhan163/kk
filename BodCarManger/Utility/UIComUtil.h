@@ -16,7 +16,7 @@
 
 @interface UIComUtil : NSObject
 +(UIButton*)createButtonWithNormalBGImageName:(NSString*)normaliconImage withHightBGImageName:(NSString*)hightIconImage withTitle:(NSString*)text withTag:(NSInteger)tag;
-
++(UIButton*)createButtonWithNormalBGImageName:(NSString*)normaliconImage withSelectedBGImageName:(NSString*)selectedIconImage withTitle:(NSString*)text withTag:(NSInteger)tag;
 +(UIButton*)createButtonWithNormalBGImage:(UIImage*)normaliconImage withHightBGImage:(UIImage*)hightIconImage withTitle:(NSString*)text withTag:(NSInteger)tag;
 
 +(NSString*)getDataToHexString:(unsigned char*)charStr withLength:(int)len;

@@ -10,6 +10,7 @@
 #define kCellSplitLineColor    HexRGB(96, 95, 95)  
 @interface ExcellLikeCellBase(){
     BOOL isHiddenLine;
+    BOOL isHiddenGrid;
     UIView  *seperateLine;
 }
 @property(nonatomic,strong)NSArray *mClounmWidthArray;
@@ -46,15 +47,17 @@
 - (void)layoutSubviews{
     [super layoutSubviews];
     CGFloat currX = 0.f;
-    for(int i = 0;i<[mClounmWidthArray count]-1;i++)
-    {
-        id item = [mClounmWidthArray objectAtIndex:i];
-        CGFloat lineOffsetX = [item floatValue];
-        currX = currX+lineOffsetX;
-        UIView  *seperateLine = [[UIView alloc]initWithFrame:CGRectMake(currX,0,1.f,self.frame.size.height)];
-        seperateLine.backgroundColor = self.mLineColor;
-        [self addSubview:seperateLine];
-        
+    if(!isHiddenGrid){
+        for(int i = 0;i<[mClounmWidthArray count]-1;i++)
+        {
+            id item = [mClounmWidthArray objectAtIndex:i];
+            CGFloat lineOffsetX = [item floatValue];
+            currX = currX+lineOffsetX;
+            UIView  *seperateLine = [[UIView alloc]initWithFrame:CGRectMake(currX,0,1.f,self.frame.size.height)];
+            seperateLine.backgroundColor = self.mLineColor;
+            [self addSubview:seperateLine];
+            
+        }
     }
     if(!isHiddenLine)
     {
@@ -64,9 +67,12 @@
         SafeRelease(seperateLine);
     }
 }
-- (void)setSeperateLineHidden:(BOOL)status{
+- (void)setRowLineHidden:(BOOL)status{
     //seperateLine.hidden = status;
     isHiddenLine = status;
+}
+- (void)setClounmLineHidden:(BOOL)status{
+    isHiddenGrid = status;
 }
 - (void)drawRect:(CGRect)rect{
 

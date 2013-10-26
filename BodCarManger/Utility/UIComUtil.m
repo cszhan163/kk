@@ -97,6 +97,33 @@ static const NSString *KEY_HIT_TEST_EDGE_INSETS = @"HitTestEdgeInsets";
     return btn;
 
 }
++(UIButton*)createButtonWithNormalBGImageName:(NSString*)normaliconImage withSelectedBGImageName:(NSString*)selectedIconImage withTitle:(NSString*)text withTag:(NSInteger)tag{
+    UIImage *image = nil;
+    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    UIImageWithFileName(image,normaliconImage);
+    if(normaliconImage)
+        assert(image);
+    else{
+        image = [UIImage imageFromColor:[UIColor blackColor]];
+    }
+    //[btn setImage:image forState:UIControlStateNormal];
+    [btn setBackgroundImage:image forState:UIControlStateNormal];
+    UIImageWithFileName(image,selectedIconImage);
+    if(normaliconImage)
+        assert(image);
+    else{
+        image = [UIImage imageFromColor:[UIColor redColor]];
+    }
+    //btn.titleLabel.text = text;
+//    [btn setTitle:text forState:UIControlStateNormal];
+//    [btn setTitle:text forState:UIControlStateHighlighted];
+    [btn setBackgroundImage:image forState:UIControlStateSelected];
+    //[btn setImage:image forState:UIControlStateSelected];
+    if(normaliconImage)
+        btn.frame = CGRectMake(0.f, 0.f,image.size.width/kScale, image.size.height/kScale);
+    btn.tag = tag;
+    return btn;
+}
 +(NSString*)getDataToHexString:(unsigned char*)charStr withLength:(int)len{
     NSMutableString *result = [NSMutableString string];
     for(int i = 0;i<len;i++){

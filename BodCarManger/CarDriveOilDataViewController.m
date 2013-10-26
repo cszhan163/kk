@@ -7,10 +7,18 @@
 //
 
 #import "CarDriveOilDataViewController.h"
-
 #import "CarDriveOilTableViewCell.h"
-@interface CarDriveOilDataViewController ()
 
+typedef enum  viewType{
+    View_List,
+    View_Graph,
+}ViewType;
+
+
+@interface CarDriveOilDataViewController (){
+
+     ViewType viewType;
+}
 @end
 
 @implementation CarDriveOilDataViewController
@@ -43,9 +51,6 @@
 #else
     
     dataTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0.f, 300.f,300)];
-    
-    
-    
     dataTableView.dataSource = self;
     dataTableView.delegate = self;
     dataTableView.backgroundColor = [UIColor clearColor];
@@ -56,6 +61,12 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     //[dataAnaylsisView setNeedsDisplay];
+}
+
+- (void)swithDataViewType{
+
+
+
 }
 #pragma mark -
 #pragma mark tableview

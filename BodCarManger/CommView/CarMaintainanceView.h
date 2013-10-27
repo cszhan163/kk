@@ -10,4 +10,5 @@
 
 @interface CarMaintainanceView : UIView
 
+- (void)setLeftProcessLen:(CGFloat)llen rightLen:(CGFloat)right;
 @end

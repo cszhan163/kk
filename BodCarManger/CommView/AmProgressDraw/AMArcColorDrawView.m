@@ -41,13 +41,21 @@
 	CGFloat colors[] =
 	{
 		aRed, aGreen, aBlue, 1,
-		1, 1, 1, 1.0,
+        aRed, aGreen, aBlue, 1,
+		//1, 1, 1, 1.0,
 	};
 	gradient = CGGradientCreateWithColorComponents(rgb, colors, NULL, sizeof(colors)/(sizeof(colors[0])*3));
 	CGColorSpaceRelease(rgb);
 	self.backgroundColor = [UIColor clearColor];
 }
+- (void)setGradientColor:(CGFloat*)gradientColors{
 
+    CGColorSpaceRef rgb = CGColorSpaceCreateDeviceRGB();
+    gradient = CGGradientCreateWithColorComponents(rgb, gradientColors, NULL, sizeof(gradientColors)/(sizeof(gradientColors[0])*3));
+	CGColorSpaceRelease(rgb);
+	self.backgroundColor = [UIColor clearColor];
+    
+}
 
 - (void)drawRect:(CGRect)rect {
 	CGContextRef context = UIGraphicsGetCurrentContext(); //1

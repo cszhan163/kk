@@ -22,9 +22,9 @@
 #define kHeaderItemPendingY 8
 
 #define kDriveStatusViewWidth  300
-#define kDriveStatusViewHeight 350
+#define kDriveStatusViewHeight 259
 
-#define kDriveMaintainanceLeftPendingX 33.f
+#define kDriveMaintainanceLeftPendingX 36.f
 
 @interface CarMonitorViewController()<BSPreviewScrollViewDelegate>{
 
@@ -85,14 +85,14 @@
     
     
     
-    CGRect viewRect = CGRectMake(kLeftPendingX,currY,kDeviceScreenWidth-2*kLeftPendingX,kMBAppRealViewHeight-kTopPendingY-60.f);
+    CGRect viewRect = CGRectMake(kLeftPendingX,currY,kDeviceScreenWidth-2*kLeftPendingX,kMBAppRealViewHeight-kTopPendingY-60.f-34.f);
     
   
     CGSize size = viewRect.size;//CGSizeMake(viewRect.size, bgImage.size.height/kScale);
     BSPreviewScrollView *scrollerView = [[BSPreviewScrollView alloc]initWithFrameAndPageSize:CGRectMake(0.f, 0.f,size.width, size.height) pageSize:size];
     scrollerView.delegate = self;
     [scrollerView setBoundces:NO];
-    scrollerView.backgroundColor = [UIColor whiteColor];
+    scrollerView.backgroundColor = [UIColor clearColor];
     [self.view addSubview:scrollerView];
     scrollerView.layer.cornerRadius = 5.f;
     scrollerView.frame =  viewRect;
@@ -120,25 +120,28 @@
     
     CGRect rect = pageControl.frame;
     //[self.scrollViewPreview setPageControlFrame:CGRectMake(0.f,rect.size.height-80.f,kDeviceScreenWidth, 40.f)];
-    pageControl.frame = CGRectOffset(rect, 0.f, -40.f);
+    pageControl.frame = CGRectOffset(rect, 0.f, -40.f+38-5);
 
     [scrollerView bringSubviewToFront:pageControl];
     
     UIButton *oilAnalaysisBtn = [UIComUtil createButtonWithNormalBGImageName:@"drive_oil_btn.png" withHightBGImageName:@"drive_oil_btn.png" withTitle:@"" withTag:0];
     [scrollerView addSubview:oilAnalaysisBtn];
     CGSize btnsize= oilAnalaysisBtn.frame.size;
-    oilAnalaysisBtn.frame = CGRectMake(25.f,size.height-50.f,btnsize.width ,btnsize.height);
+    oilAnalaysisBtn.frame = CGRectMake(25.f,size.height-10.f-btnsize.height,btnsize.width ,btnsize.height);
     [oilAnalaysisBtn addTarget:self action:@selector(didTouchButton:) forControlEvents:UIControlEventTouchUpInside];
     UIButton *driveAnalysisBtn = [UIComUtil createButtonWithNormalBGImageName:@"drive_habit_btn.png" withHightBGImageName:@"drive_habit_btn.png" withTitle:@"" withTag:1];
     [scrollerView addSubview:driveAnalysisBtn];
     btnsize = driveAnalysisBtn.frame.size;
-    driveAnalysisBtn.frame =  CGRectMake(180.f+12,size.height-50.f,btnsize.width ,btnsize.height);
+    driveAnalysisBtn.frame =  CGRectMake(180.f+12,size.height-10.f-btnsize.height,btnsize.width ,btnsize.height);
     [driveAnalysisBtn addTarget:self action:@selector(didTouchButton:) forControlEvents:UIControlEventTouchUpInside];
     
     //for 
     //[self addMaintainaceUI];
   
-    carMaintainanceView = [[CarMaintainanceView alloc]initWithFrame:CGRectMake(kDriveMaintainanceLeftPendingX,currY, kDeviceScreenWidth-2*kDriveMaintainanceLeftPendingX,80)];
+    carMaintainanceView = [[CarMaintainanceView alloc]initWithFrame:CGRectMake(kDriveMaintainanceLeftPendingX,currY+8.f, kDeviceScreenWidth-2*kDriveMaintainanceLeftPendingX,80)];
+    
+    
+    [carMaintainanceView setLeftProcessLen:84 rightLen:84];
     
     [self.view addSubview:carMaintainanceView];
     SafeRelease(carMaintainanceView);

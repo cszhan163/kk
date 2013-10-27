@@ -113,6 +113,7 @@
         self.gradientView = pvg;
         [self addSubview:self.gradientView];
         [self addSubview:self.whiteView];
+        self.whiteView.hidden = YES;
         [self changeWhiteView];
     }
     return self;
@@ -137,7 +138,11 @@
     _outsideBorderColor = outsideBorderColor;
     self.borderView.backgroundColor = self.outsideBorderColor;
 }
-
+- (void)setNeedsDisplay{
+    [super setNeedsDisplay];
+    _gradientView.frame = CGRectMake(0.f, 0.f, self.frame.size.width, self.frame.size.height);
+     //[_gradientView setNeedsDisplay];
+}
 #pragma mark - Private methods
 
 - (void)changeWhiteView

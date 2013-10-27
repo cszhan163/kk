@@ -29,7 +29,7 @@
 
 - (void)setDisplayViewData:(NSArray*)data withType:(int)type{
     
-    CGRect rect = CGRectMake(18.f,0.f,50, 50);
+    CGRect rect = CGRectMake(0.f,0.f,50, 50);
     mutipleView = [[DAMultipleProgressLayer alloc]initWithFrame:rect];
     [mutipleView setTrackTintColor:[[UIColor blackColor] colorWithAlphaComponent:1.0f]];
     //[appearance setTrackTintColor:<#(UIColor *)#>]

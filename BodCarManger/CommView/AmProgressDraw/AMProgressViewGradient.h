@@ -37,5 +37,5 @@
 @interface AMProgressViewGradient : UIView
 
 - (id)initWithFrame:(CGRect)frame andGradientColors:(NSArray *)gradientColors andVertical:(BOOL)vertical;
-
+- (void)setGredientColor:(NSArray*)colors;
 @end

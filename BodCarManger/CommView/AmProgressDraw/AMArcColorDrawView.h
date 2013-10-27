@@ -10,5 +10,6 @@
 
 @interface AMArcColorDrawView : UIView
 @property(nonatomic,assign)CGFloat radius;
+- (void)setGradientColor:(CGFloat*)gradientColors;
 -(void) gradientColorWithRed:(CGFloat)aRed green:(CGFloat)aGreen blue:(CGFloat)aBlue;
 @end

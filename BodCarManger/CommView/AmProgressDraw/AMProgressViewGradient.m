@@ -46,6 +46,10 @@
     return [self initWithFrame:frame andGradientColors:[NSArray arrayWithObject:[UIColor redColor]] andVertical:NO];
 }
 
+- (void)setGredientColor:(NSArray*)colors{
+    self.gradientColors = colors;
+}
+
 - (id)initWithFrame:(CGRect)frame andGradientColors:(NSArray *)gradientColors andVertical:(BOOL)vertical
 {
     self = [super initWithFrame:frame];

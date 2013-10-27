@@ -29,7 +29,7 @@
 - (void)viewDidLoad{
     
     [super viewDidLoad];
-    dataAnaylsisView = [[DriveActionAnalysisView alloc]initWithFrame:CGRectMake(10.f, 35+20.f, 320.f,300)];
+    dataAnaylsisView = [[DriveActionAnalysisView alloc]initWithFrame:CGRectMake(0.f, 35+.f, 320.f,300)];
     [self.view addSubview:dataAnaylsisView];
     SafeRelease(dataAnaylsisView);
 }

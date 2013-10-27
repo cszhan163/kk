@@ -10,13 +10,15 @@
 #import "DAMultipleProgressLayer.h"
 
 #import "WSLineChartView.h"
+
+#import "ZCSDrawLineView.h"
 @interface DataAnalysisBaseView(){
     DAMultipleProgressLayer * mutipleView;
     WSLineChartView *lineChart ;
 }
 @end
 @implementation DataAnalysisBaseView
-
+@synthesize bgImage;
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -29,7 +31,7 @@
 
 - (void)setDisplayViewData:(NSArray*)data withType:(int)type{
     
-    CGRect rect = CGRectMake(0.f,0.f,50, 50);
+    CGRect rect = CGRectMake(18.f,20.f,50, 50);
     mutipleView = [[DAMultipleProgressLayer alloc]initWithFrame:rect];
     [mutipleView setTrackTintColor:[[UIColor blackColor] colorWithAlphaComponent:1.0f]];
     //[appearance setTrackTintColor:<#(UIColor *)#>]
@@ -45,7 +47,7 @@
             [mutipleView addMutiplePecentTrackWithPercent:[[item objectForKey:@"percent"] intValue] withColor:[item objectForKey:@"color"] withClocksize:NO];
         }
     }
-    //[self createLineChart];
+    
     /*
     [mutipleView addMutiplePecentTrackWithPercent:32 withColor:[UIColor yellowColor] withClocksize:YES];
     
@@ -55,7 +57,17 @@
     [self addSubview:mutipleView];
     */
 }
-- (void)createLineChart
+
+- (void)setDisplayLineChart:(NSArray*)lineData withFrame:(CGRect)rect withBGImage:(UIImage*)bgImage{
+    
+    //UIImage *bgImage = [UIIm]
+    ZCSDrawLineView *drawLineView = [[ZCSDrawLineView alloc]initWithFrame:rect];
+    [drawLineView setBackgroundColor:[UIColor clearColor]];
+    [drawLineView setBackgroundImage:bgImage];
+    [drawLineView updateDrawLineData:lineData];
+    [self addSubview:drawLineView];
+}
+- (void)createLineChart:(NSArray*)lineData
 {
     lineChart = [[WSLineChartView alloc] initWithFrame:CGRectMake(0.0,80.f,300.0, 150.0)];
     NSMutableArray *arr = [self createDemoDatas:10];

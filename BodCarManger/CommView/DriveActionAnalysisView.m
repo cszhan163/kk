@@ -29,6 +29,12 @@
             [testData addObject:item];
         }
         [self setDisplayViewData:testData withType:0];
+        UIImage *bgImage = [UIImage imageNamed:@"oil_analysis_graph.png"];
+        CGRect rect = CGRectMake(15.f, 140.f, bgImage.size.width/kScale, bgImage.size.height/kScale);
+        
+//        UIImageView *bgView = [[UIImageView alloc]initWithFrame:CGRectMake(0.f, 0.f,image.size.width/2.f, image.size.height/2.f)];
+        
+        [self  setDisplayLineChart:[NSArray array] withFrame:rect withBGImage:bgImage];
     }
     return self;
 }
@@ -37,6 +43,7 @@
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect
 {
+    [super drawRect:rect];
     // Drawing code
 }
 

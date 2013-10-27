@@ -9,6 +9,8 @@
 #import "ZCSDrawLineView.h"
 @interface ZCSDrawLineView(){
 }
+//@property(nonatomic,strong)UIColor *backgroundColor;
+@property(nonatomic,strong)UIImage *bgImage;
 @property(nonatomic,assign)CGFloat  xStep;
 @property(nonatomic,assign)CGFloat  yStep;
 @property(nonatomic,strong)NSArray *pointsData;
@@ -20,13 +22,19 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
+         self.backgroundColor = [UIColor clearColor];
         _xStep = 1.0;
         _yStep = 1.0;
-        _backgroundColor = [UIColor whiteColor];
+        //_backgroundColor = [UIColor clearColor];
         _drawLineColor = [UIColor blackColor];
+        
         // Initialization code
     }
     return self;
+}
+- (void)setBackgroundImage:(UIImage *)image{
+    self.bgImage = image;
+    [self setNeedsDisplay];
 }
 - (void)updateDrawLineData:(NSArray*)data{
     self.pointsData = data;
@@ -37,6 +45,7 @@
 - (void)drawRect:(CGRect)rect
 {
     [super drawRect:rect];
+    
     [self drawLines:rect];
     //CGContextSetStrokeColor
 	//CGContextAddLines(context,linePointsArr,5);
@@ -46,10 +55,13 @@
 
     CGContextRef context = UIGraphicsGetCurrentContext();
     // Drawing code
-    CGContextSetFillColorWithColor(context, _backgroundColor.CGColor);
+    CGContextSaveGState (context);
+    CGContextSetFillColorWithColor(context, self.backgroundColor.CGColor);
     //CGContextSetRGBFillColor (context, 1, 1, 1, 1);
     CGContextFillRect (context,self.bounds);
+     
     CGContextSetBlendMode(context,kCGBlendModeCopy);
+    [_bgImage drawInRect:rect];
     CGContextBeginPath (context);
     CGContextSetLineWidth(context,4.f);
     CGContextSetStrokeColorWithColor(context,_drawLineColor.CGColor);
@@ -73,6 +85,7 @@
         
     }
     CGContextStrokePath(context);
+    CGContextRestoreGState(context);
     //CGContext
 }
 @end

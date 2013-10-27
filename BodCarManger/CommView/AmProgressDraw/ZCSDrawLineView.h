@@ -11,8 +11,9 @@
 @interface ZCSDrawLineView : UIView{
 
 }
-@property(nonatomic,strong)UIColor *backgroundColor;
+
 @property(nonatomic,strong)UIColor *drawLineColor;
+- (void)setBackgroundImage:(UIImage*)image;
 - (void)setXStep:(CGFloat)step;
 - (void)setYStep:(CGFloat)step;
 - (void)updateDrawLineData:(NSArray*)data;

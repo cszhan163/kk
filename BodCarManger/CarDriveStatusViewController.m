@@ -137,7 +137,7 @@
     
     //for 
     //[self addMaintainaceUI];
-  
+#if 1
     carMaintainanceView = [[CarMaintainanceView alloc]initWithFrame:CGRectMake(kDriveMaintainanceLeftPendingX,currY+8.f, kDeviceScreenWidth-2*kDriveMaintainanceLeftPendingX,80)];
     
     
@@ -145,6 +145,7 @@
     
     [self.view addSubview:carMaintainanceView];
     SafeRelease(carMaintainanceView);
+#endif
     //[self setRightTextContent:NSLocalizedString(@"Done", @"")];
 	// Do any additional setup after loading the view.
 }

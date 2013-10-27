@@ -29,7 +29,9 @@
 - (void)viewDidLoad{
     
     [super viewDidLoad];
-    dataAnaylsisView = [[DriveActionAnalysisView alloc]initWithFrame:CGRectMake(0.f, 35+.f, 320.f,300)];
+    dataAnaylsisView = [[DriveActionAnalysisView alloc]initWithFrame:CGRectMake(0.f,35-10.f, 320.f,300)];
+    //self.view.backgroundColor = [UIColor whiteColor];
+    dataAnaylsisView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:dataAnaylsisView];
     SafeRelease(dataAnaylsisView);
 }

@@ -22,7 +22,9 @@
 
     UIProgressView *checkProcessView;
     UILabel        *rotateSpeedLabel;
-    UILabel        *temperatureLabel;
+    UILabel           *temperatureLabel;
+    UIImageView         *checkTagImageView ;
+    UILabel         *checkProcessLabel;
 }
 @end
 
@@ -49,7 +51,7 @@
     mainView.mainFramView.backgroundColor = kAppUserBGWhiteColor;
 #endif
     //mainView.alpha = 0.;
-    [self setNavgationBarTitle:NSLocalizedString(@"", @""
+    [self setNavgationBarTitle:NSLocalizedString(@"车辆健康监测", @""
                                                  )];
     [self setRightBtnHidden:YES];
     
@@ -67,9 +69,10 @@
     
     
     UIButton *checkButton = [UIComUtil createButtonWithNormalBGImageName:@"car_check_btn.png" withHightBGImageName:@"car_check_btn.png" withTitle:@"" withTag:0];
+    
     [checkButton addTarget:self action:@selector(startCarHealthCheck:) forControlEvents:UIControlEventTouchUpInside];
     [headerView addSubview:checkButton];
-    checkButton.frame = CGRectMake(headerView.frame.size.width-8-120,7,120,34);
+    checkButton.frame = CGRectMake(headerView.frame.size.width-100-16,7,checkButton.frame.size.width,checkButton.frame.size.height);
     
     CGFloat  headerY = 5.f;
     rotateSpeedLabel = [[UILabel alloc]initWithFrame:CGRectMake(38,headerY, 120.f, 20)];
@@ -110,23 +113,38 @@
     processView.progress = 0.4;
     [self.view addSubview:processView];
     
+    UIImageWithFileName(bgImage, @"car_check_header.png");
+    
+
+    
 #endif
+    //for headerLabel
+    UIImageWithFileName(bgImage, @"car_check_label.png");
+    UIImageView *checkProcessImageView = [[UIImageView alloc]initWithImage:bgImage];
     
-    UIImageWithFileName(bgImage, @"car_check_tag.png");
+    checkProcessImageView.frame = CGRectMake(106,currY+30 ,bgImage.size.width/kScale, bgImage.size.height/kScale);
+    checkProcessImageView.userInteractionEnabled = YES;
+    [self.view addSubview:checkProcessImageView];
+    SafeRelease(checkProcessImageView);
+    CGRect textRect = CGRectMake(checkProcessImageView.frame.size.width+106+5,currY+30, 150, 15);
+    checkProcessLabel  = [UIComUtil createLabelWithFont:[UIFont systemFontOfSize:8] withTextColor:HexRGB(36, 220, 0) withText:@"监测燃油导轨轨压力" withFrame:textRect];
+    checkProcessLabel.textAlignment = NSTextAlignmentLeft;
+    [self.view addSubview:checkProcessLabel];
+    SafeRelease(checkProcessLabel);
     
-    UIImageView *tagView = [[UIImageView alloc]initWithImage:bgImage];
     
-    tagView.frame = CGRectMake(23,currY+12,bgImage.size.width/kScale, bgImage.size.height/kScale);
-    [self.view addSubview:tagView];
-    SafeRelease(tagView);
     
+    
+    UIImageWithFileName(bgImage, @"car_check_status_low.png");
+    
+    checkTagImageView = [[UIImageView alloc]initWithImage:bgImage];
+    
+    checkTagImageView.frame = CGRectMake(23,currY+12,bgImage.size.width/kScale, bgImage.size.height/kScale);
+    [self.view addSubview:checkTagImageView];
+    SafeRelease(checkTagImageView);
     currY = currY+184/2.f;
     
   
-    
-   
-    
-    
     tweetieTableView.frame = CGRectMake(kCheckViewPendingX,currY,kDeviceScreenWidth-2*kCheckViewPendingX+1,202.f);
     UIImageWithFileName(bgImage, @"car_check_gridtable_bg.png");
     UIImageView *tableViewBg = [[UIImageView alloc]initWithImage:bgImage];

@@ -97,6 +97,35 @@ static const NSString *KEY_HIT_TEST_EDGE_INSETS = @"HitTestEdgeInsets";
     return btn;
 
 }
++(UIButton*)createButtonWithNormalBGImageName:(NSString*)normaliconImage withHightBGImageName:(NSString*)hightIconImage withTitle:(NSString*)text withTag:(NSInteger)tag withTarget:(id)target withTouchEvent:(SEL)event{
+    
+    UIButton *btn = [UIComUtil createButtonWithNormalBGImageName:normaliconImage withHightBGImageName :hightIconImage withTitle:text withTag:tag];
+    [btn addTarget:target action:event forControlEvents:UIControlEventTouchUpInside];
+    return btn;
+}
++(UIButton*)createButtonWithNormalBGImage:(UIImage*)normaliconImage withHightBGImage:(UIImage*)hightIconImage withTitle:(NSString*)text withTag:(NSInteger)tag withTarget:(id)target withTouchEvent:(SEL)event{
+    
+    UIButton *btn = [UIComUtil createButtonWithNormalBGImage:normaliconImage withHightBGImage:hightIconImage withTitle:text withTag:tag];
+    [btn addTarget:target action:event forControlEvents:UIControlEventTouchUpInside];
+    return btn;
+    
+}
++(UIView *)createSplitViewWithFrame:(CGRect)frame withColor:(UIColor*)color{
+    UIView *splitLine = [[UIView alloc]initWithFrame:frame];
+    splitLine.backgroundColor = [UIColor whiteColor];
+    splitLine.alpha = 0.1;
+    splitLine.backgroundColor = color;
+    return splitLine;
+}
++(UILabel*)createLabelWithFont:(UIFont*)font withTextColor:(UIColor*)color withText:(NSString*)text withFrame:(CGRect)rect{
+    UILabel *label = [[UILabel alloc]initWithFrame:rect];
+    label.font = font;
+    label.textColor = color;
+    label.text = text;
+    label.textAlignment = NSTextAlignmentCenter;
+    label.backgroundColor = [UIColor clearColor];
+    return label;
+}
 +(UIButton*)createButtonWithNormalBGImageName:(NSString*)normaliconImage withSelectedBGImageName:(NSString*)selectedIconImage withTitle:(NSString*)text withTag:(NSInteger)tag{
     UIImage *image = nil;
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];

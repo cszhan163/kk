@@ -19,6 +19,17 @@
 +(UIButton*)createButtonWithNormalBGImageName:(NSString*)normaliconImage withSelectedBGImageName:(NSString*)selectedIconImage withTitle:(NSString*)text withTag:(NSInteger)tag;
 +(UIButton*)createButtonWithNormalBGImage:(UIImage*)normaliconImage withHightBGImage:(UIImage*)hightIconImage withTitle:(NSString*)text withTag:(NSInteger)tag;
 
+
++(UIButton*)createButtonWithNormalBGImage:(UIImage*)normaliconImage withHightBGImage:(UIImage*)hightIconImage withTitle:(NSString*)text withTag:(NSInteger)tag withTarget:(id)target withTouchEvent:(SEL)event;
+
+
++(UIButton*)createButtonWithNormalBGImage:(UIImage*)normaliconImage withHightBGImage:(UIImage*)hightIconImage withTitle:(NSString*)text withTag:(NSInteger)tag withTarget:(id)target withTouchEvent:(SEL)event;
+
++(UILabel*)createLabelWithFont:(UIFont*)font withTextColor:(UIColor*)color withText:(NSString*)text withFrame:(CGRect)rect;
+
++(UIView*)createSplitViewWithFrame:(CGRect)frame withColor:(UIColor*)color;
+
+
 +(NSString*)getDataToHexString:(unsigned char*)charStr withLength:(int)len;
 + (NSString*)getDocumentFilePath:(NSString*)fileName;
 

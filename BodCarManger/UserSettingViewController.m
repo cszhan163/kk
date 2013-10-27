@@ -46,20 +46,34 @@ static NSString *kSectionTwoArr[] = {
      CGFloat bgWidth = kDeviceScreenWidth-2*KLoginAndResignPendingX;
      CGFloat bgHeight = 2*kLoginCellItemHeight+KLoginAndResignPendingX*2;
      */
+    
+ 
     logInfo = [[UITableView alloc] initWithFrame:CGRectMake(0,kMBAppTopToolBarHeight-self.mainContentViewPendingY,kDeviceScreenWidth,kDeviceScreenHeight-kMBAppTopToolBarHeight-kMBAppStatusBar-kMBAppBottomToolBarHeght)
                                                          style:UITableViewStyleGrouped];
 	//logInfo.contentInset
-    
+#if 0
+    UIImage *bgImage = nil;
+    UIImageWithFileName(bgImage, @"server_bg.png");
+    UIImageView *bgView = [[UIImageView alloc]initWithFrame:logInfo.frame];
+    bgView.image = bgImage;
+    bgView.userInteractionEnabled = YES;
+    [self.view addSubview:bgView];
+    SafeRelease(bgView);
+    logInfo.backgroundColor = [UIColor clearColor];
+#else
+    logInfo.backgroundColor = HexRGB(202, 202, 204);
+#endif
 	logInfo.allowsSelectionDuringEditing = NO;
-	logInfo.backgroundColor = [UIColor clearColor];
 	logInfo.delegate = self;
 	logInfo.dataSource = self;
 	logInfo.scrollEnabled = YES;
 	logInfo.allowsSelection = YES;
     logInfo.clipsToBounds = YES;
     //logInfo.layer.cornerRadius = 5.f;
-    logInfo.backgroundColor = HexRGB(202, 202, 204);
-    //logInfo.clipsToBounds = YES;
+    //logInfo.backgroundColor = HexRGB(202, 202, 204);
+    logInfo.backgroundView = nil;
+    //logInfo.backgroundView.backgroundColor = [UIColor clearColor];
+    //logInfo.backgroundView.layer.contents = (id)bgImage.CGImage;
     logInfo.separatorStyle = UITableViewCellSeparatorStyleNone;
 	//logInfo.separatorColor = kLoginAndSignupCellLineColor;
     //logInfo.layer.cornerRadius = kLoginViewRadius;

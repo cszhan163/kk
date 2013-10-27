@@ -222,6 +222,8 @@
 		BD355D6B181A119E0010D16E /* iPlat4M_framework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD355D6A181A119E0010D16E /* iPlat4M_framework.framework */; };
 		BD355D6E181A11CC0010D16E /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BD355D6D181A11CC0010D16E /* libxml2.dylib */; };
 		BD355D70181A11DD0010D16E /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BD355D6F181A11DD0010D16E /* libsqlite3.dylib */; };
+		BDC37E8E181CEF0E00A4CB18 /* UIImage+Ex.mm in Sources */ = {isa = PBXBuildFile; fileRef = BDC37E8D181CEF0E00A4CB18 /* UIImage+Ex.mm */; };
+		BDC37E91181CEF8100A4CB18 /* libstdc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BDC37E90181CEF8100A4CB18 /* libstdc++.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -515,6 +517,9 @@
 		BD355D6A181A119E0010D16E /* iPlat4M_framework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = iPlat4M_framework.framework; sourceTree = "<group>"; };
 		BD355D6D181A11CC0010D16E /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		BD355D6F181A11DD0010D16E /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		BDC37E8C181CEF0E00A4CB18 /* UIImage+Ex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Ex.h"; sourceTree = "<group>"; };
+		BDC37E8D181CEF0E00A4CB18 /* UIImage+Ex.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "UIImage+Ex.mm"; sourceTree = "<group>"; };
+		BDC37E90181CEF8100A4CB18 /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.dylib"; path = "usr/lib/libstdc++.dylib"; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -522,6 +527,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BDC37E91181CEF8100A4CB18 /* libstdc++.dylib in Frameworks */,
 				BD355D70181A11DD0010D16E /* libsqlite3.dylib in Frameworks */,
 				BD355D6E181A11CC0010D16E /* libxml2.dylib in Frameworks */,
 				044BEE0017EABF37004BF443 /* libz.dylib in Frameworks */,
@@ -599,6 +605,7 @@
 		046B662517E74984006F34A1 = {
 			isa = PBXGroup;
 			children = (
+				BDC37E90181CEF8100A4CB18 /* libstdc++.dylib */,
 				BD355D6F181A11DD0010D16E /* libsqlite3.dylib */,
 				BD355D6D181A11CC0010D16E /* libxml2.dylib */,
 				BD355D6A181A119E0010D16E /* iPlat4M_framework.framework */,
@@ -902,6 +909,8 @@
 		046B683017E76C48006F34A1 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				BDC37E8C181CEF0E00A4CB18 /* UIImage+Ex.h */,
+				BDC37E8D181CEF0E00A4CB18 /* UIImage+Ex.mm */,
 				BD05725817E99B1400208699 /* UIComUtil.h */,
 				BD05725917E99B1400208699 /* UIComUtil.m */,
 				046B683517E76C49006F34A1 /* NSString+Ex.h */,
@@ -1403,6 +1412,7 @@
 				04C254C61818012700B4A678 /* DDProgressView.m in Sources */,
 				04FE07321819743A00EEC76A /* FriendItemCell.m in Sources */,
 				04809B5C181C013C000DBB2F /* CarDriveOilDataAnalaysisViewController.m in Sources */,
+				BDC37E8E181CEF0E00A4CB18 /* UIImage+Ex.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1496,7 +1506,7 @@
 					"./**",
 				);
 				INFOPLIST_FILE = "BodCarManger/BodCarManger-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../../BaseLib/UIFramework/ZCSUIFrameWork/build/Debug-iphoneos\"",
@@ -1524,7 +1534,7 @@
 					"./**",
 				);
 				INFOPLIST_FILE = "BodCarManger/BodCarManger-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../../BaseLib/UIFramework/ZCSUIFrameWork/build/Debug-iphoneos\"",

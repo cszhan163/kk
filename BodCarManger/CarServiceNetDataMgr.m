@@ -679,12 +679,22 @@ static ZCSNetClientNetInterfaceMgr *dressMemoInterfaceMgr = nil;
     [self startiPlant4MRequest:inInfo];
 #endif
 }
-- (id)getCarRealTimeStatus:(NSString*)cardId{
+- (id)getCarRouterRealTimeData:(NSString*)cardId{
     cardId = @"SHD05728";
+    cardId = @"SHD49232";
+    //SHD05728
     EiInfo *inInfo = [self getCommIPlant4MParam];
     //[inInfo set:@"year" value:[param objectForKey:@"year"]];
     [inInfo set:METHOD_TOKEN value:@"queryTripNow"]; // 接口名
     [inInfo set:@"vin" value:cardId];
+    [self startiPlant4MRequest:inInfo];
+}
+- (id)getCarRouterLatestData{
+    //queryLastTripID
+    EiInfo *inInfo = [self getCommIPlant4MParam];
+    //[inInfo set:@"year" value:[param objectForKey:@"year"]];
+    [inInfo set:METHOD_TOKEN value:@"queryLastTripID"]; // 接口名
+    //[inInfo set:@"vin" value:cardId];
     [self startiPlant4MRequest:inInfo];
 }
 #pragma mark -
@@ -762,6 +772,7 @@ static ZCSNetClientNetInterfaceMgr *dressMemoInterfaceMgr = nil;
 }
 - (void)didQueryTripDaySuccess:(EiInfo*)info // 一般都必须有一个EiInfo参数
 {
+    if(info.status == 1){
     NSNumber *dayMilage = [info get:@"dayMilage"]; // 取出返回值，非block的类型
     NSNumber *dayFuel = [info get:@"dayFuel"];
     NSNumber *dayDrivinglong = [info get:@"dayDrivinglong"];
@@ -769,6 +780,7 @@ static ZCSNetClientNetInterfaceMgr *dressMemoInterfaceMgr = nil;
     int rowCount = [tripInfo getRowCount];
     NSMutableDictionary *row = [tripInfo getRow:0]; // block有多个row，每个为一个NSMutableDictionary对象
     NSNumber *tripId = [row objectForKey:@"tripId"]; // 通过objectForKey取出
+    }
 }
 
 - (void)didQueryTripDayFailed:(EiInfo*)info

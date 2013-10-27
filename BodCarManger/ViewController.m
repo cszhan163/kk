@@ -27,17 +27,20 @@
              @"2013",@"year",
              @"10",@"month",
              nil];
-    [cardNetMgr getDetailByMonth:param];
+    //[cardNetMgr getDetailByMonth:param];
     param = [NSDictionary dictionaryWithObjectsAndKeys:
              @"2013",@"year",
              @"10",@"month",
              nil];
     [cardNetMgr getDetailByDay:param];
-    [cardNetMgr getCarRealTimeStatus:@""];
-    [cardNetMgr getDriveDataByMoth:@"" withYear:@""];
-    [cardNetMgr getDriveDataByMoth:@"10" withYear:@"2013"];
+    [cardNetMgr getCarRouterRealTimeData:@""];
     
+    [cardNetMgr getDriveDataByMoth:@"" withYear:@""];
+    [cardNetMgr getCarRouterLatestData];
+    
+    [cardNetMgr getDriveDataByMoth:@"10" withYear:@"2013"];
     [cardNetMgr getMessageList:nil];
+    
     CGFloat currX = 0.f;
     for(int i = 0; i<5;i++)
 	{

@@ -15,6 +15,8 @@
 
 #import "CarDriveMannerAnalysisViewController.h"
 
+#import "CarMaintainanceView.h"
+
 #define kLeftPendingX  10
 #define kTopPendingY  8
 #define kHeaderItemPendingY 8
@@ -22,9 +24,13 @@
 #define kDriveStatusViewWidth  300
 #define kDriveStatusViewHeight 350
 
+#define kDriveMaintainanceLeftPendingX 33.f
+
 @interface CarMonitorViewController()<BSPreviewScrollViewDelegate>{
 
     UILabel *panelHeaderLabel;
+    
+    CarMaintainanceView *carMaintainanceView;
 }
 @end
 
@@ -86,7 +92,7 @@
     BSPreviewScrollView *scrollerView = [[BSPreviewScrollView alloc]initWithFrameAndPageSize:CGRectMake(0.f, 0.f,size.width, size.height) pageSize:size];
     scrollerView.delegate = self;
     [scrollerView setBoundces:NO];
-    scrollerView.backgroundColor = [UIColor clearColor];
+    scrollerView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:scrollerView];
     scrollerView.layer.cornerRadius = 5.f;
     scrollerView.frame =  viewRect;
@@ -94,7 +100,7 @@
     
     [scrollerView setPageControlHidden:NO];
     
-    
+    currY = currY+scrollerView.frame.size.height;
     StyledPageControl *pageControl = [scrollerView getPageControl];
 #if 0
     UIImage *image  = nil;
@@ -128,10 +134,22 @@
     btnsize = driveAnalysisBtn.frame.size;
     driveAnalysisBtn.frame =  CGRectMake(180.f+12,size.height-50.f,btnsize.width ,btnsize.height);
     [driveAnalysisBtn addTarget:self action:@selector(didTouchButton:) forControlEvents:UIControlEventTouchUpInside];
+    
+    //for 
+    //[self addMaintainaceUI];
+  
+    carMaintainanceView = [[CarMaintainanceView alloc]initWithFrame:CGRectMake(kDriveMaintainanceLeftPendingX,currY, kDeviceScreenWidth-2*kDriveMaintainanceLeftPendingX,80)];
+    
+    [self.view addSubview:carMaintainanceView];
+    SafeRelease(carMaintainanceView);
     //[self setRightTextContent:NSLocalizedString(@"Done", @"")];
 	// Do any additional setup after loading the view.
 }
-
+- (void)addMaintainaceUI{
+    
+    
+    
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

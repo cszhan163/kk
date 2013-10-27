@@ -224,6 +224,12 @@
 		BD355D70181A11DD0010D16E /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BD355D6F181A11DD0010D16E /* libsqlite3.dylib */; };
 		BDC37E8E181CEF0E00A4CB18 /* UIImage+Ex.mm in Sources */ = {isa = PBXBuildFile; fileRef = BDC37E8D181CEF0E00A4CB18 /* UIImage+Ex.mm */; };
 		BDC37E91181CEF8100A4CB18 /* libstdc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BDC37E90181CEF8100A4CB18 /* libstdc++.dylib */; };
+		BDC37E94181CF8F800A4CB18 /* CarMaintainanceView.m in Sources */ = {isa = PBXBuildFile; fileRef = BDC37E93181CF8F800A4CB18 /* CarMaintainanceView.m */; };
+		BDC37E96181CFA6D00A4CB18 /* drive_matainance_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = BDC37E95181CFA6D00A4CB18 /* drive_matainance_bg.png */; };
+		BDC37EB3181D063000A4CB18 /* AMArcColorDrawView.m in Sources */ = {isa = PBXBuildFile; fileRef = BDC37EAC181D063000A4CB18 /* AMArcColorDrawView.m */; };
+		BDC37EB4181D063000A4CB18 /* AMProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = BDC37EAE181D063000A4CB18 /* AMProgressView.m */; };
+		BDC37EB5181D063000A4CB18 /* AMProgressViewGradient.m in Sources */ = {isa = PBXBuildFile; fileRef = BDC37EB0181D063000A4CB18 /* AMProgressViewGradient.m */; };
+		BDC37EB6181D063000A4CB18 /* ZCSDrawLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = BDC37EB2181D063000A4CB18 /* ZCSDrawLineView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -520,6 +526,17 @@
 		BDC37E8C181CEF0E00A4CB18 /* UIImage+Ex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Ex.h"; sourceTree = "<group>"; };
 		BDC37E8D181CEF0E00A4CB18 /* UIImage+Ex.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "UIImage+Ex.mm"; sourceTree = "<group>"; };
 		BDC37E90181CEF8100A4CB18 /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.dylib"; path = "usr/lib/libstdc++.dylib"; sourceTree = SDKROOT; };
+		BDC37E92181CF8F800A4CB18 /* CarMaintainanceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarMaintainanceView.h; sourceTree = "<group>"; };
+		BDC37E93181CF8F800A4CB18 /* CarMaintainanceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarMaintainanceView.m; sourceTree = "<group>"; };
+		BDC37E95181CFA6D00A4CB18 /* drive_matainance_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = drive_matainance_bg.png; sourceTree = "<group>"; };
+		BDC37EAB181D063000A4CB18 /* AMArcColorDrawView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMArcColorDrawView.h; sourceTree = "<group>"; };
+		BDC37EAC181D063000A4CB18 /* AMArcColorDrawView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMArcColorDrawView.m; sourceTree = "<group>"; };
+		BDC37EAD181D063000A4CB18 /* AMProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMProgressView.h; sourceTree = "<group>"; };
+		BDC37EAE181D063000A4CB18 /* AMProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMProgressView.m; sourceTree = "<group>"; };
+		BDC37EAF181D063000A4CB18 /* AMProgressViewGradient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMProgressViewGradient.h; sourceTree = "<group>"; };
+		BDC37EB0181D063000A4CB18 /* AMProgressViewGradient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMProgressViewGradient.m; sourceTree = "<group>"; };
+		BDC37EB1181D063000A4CB18 /* ZCSDrawLineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCSDrawLineView.h; sourceTree = "<group>"; };
+		BDC37EB2181D063000A4CB18 /* ZCSDrawLineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCSDrawLineView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -960,12 +977,15 @@
 		049DF965181579AC00DFC9F1 /* CommView */ = {
 			isa = PBXGroup;
 			children = (
+				BDC37EAA181D063000A4CB18 /* AmProgressDraw */,
 				04C254C41818012700B4A678 /* DDProgressView.h */,
 				04C254C51818012700B4A678 /* DDProgressView.m */,
 				049DF966181579AD00DFC9F1 /* DataAnalysisBaseView.h */,
 				049DF967181579AD00DFC9F1 /* DataAnalysisBaseView.m */,
 				049DF968181579AD00DFC9F1 /* DriveActionAnalysisView.h */,
 				049DF969181579AD00DFC9F1 /* DriveActionAnalysisView.m */,
+				BDC37E92181CF8F800A4CB18 /* CarMaintainanceView.h */,
+				BDC37E93181CF8F800A4CB18 /* CarMaintainanceView.m */,
 			);
 			path = CommView;
 			sourceTree = "<group>";
@@ -1042,6 +1062,7 @@
 		04FE07031818188F00EEC76A /* drive */ = {
 			isa = PBXGroup;
 			children = (
+				BDC37E95181CFA6D00A4CB18 /* drive_matainance_bg.png */,
 				04809B57181C00B9000DBB2F /* oil_graph_bg.png */,
 				04E2A0D8181B75F3006D8C0C /* oil_analysis_graph.png */,
 				04E2A0D6181B74D4006D8C0C /* oil_data_graph.png */,
@@ -1132,6 +1153,21 @@
 				044BEDE317EA15E8004BF443 /* OCCalendarDelegate.h */,
 			);
 			path = OCCalendarView;
+			sourceTree = "<group>";
+		};
+		BDC37EAA181D063000A4CB18 /* AmProgressDraw */ = {
+			isa = PBXGroup;
+			children = (
+				BDC37EAB181D063000A4CB18 /* AMArcColorDrawView.h */,
+				BDC37EAC181D063000A4CB18 /* AMArcColorDrawView.m */,
+				BDC37EAD181D063000A4CB18 /* AMProgressView.h */,
+				BDC37EAE181D063000A4CB18 /* AMProgressView.m */,
+				BDC37EAF181D063000A4CB18 /* AMProgressViewGradient.h */,
+				BDC37EB0181D063000A4CB18 /* AMProgressViewGradient.m */,
+				BDC37EB1181D063000A4CB18 /* ZCSDrawLineView.h */,
+				BDC37EB2181D063000A4CB18 /* ZCSDrawLineView.m */,
+			);
+			path = AmProgressDraw;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1347,6 +1383,7 @@
 				04809B6C181C2224000DBB2F /* tableitemsel1.png in Resources */,
 				04809B6D181C2224000DBB2F /* tableitemsel2.png in Resources */,
 				04809B6E181C2224000DBB2F /* tableitemsel3.png in Resources */,
+				BDC37E96181CFA6D00A4CB18 /* drive_matainance_bg.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1413,6 +1450,11 @@
 				04FE07321819743A00EEC76A /* FriendItemCell.m in Sources */,
 				04809B5C181C013C000DBB2F /* CarDriveOilDataAnalaysisViewController.m in Sources */,
 				BDC37E8E181CEF0E00A4CB18 /* UIImage+Ex.mm in Sources */,
+				BDC37E94181CF8F800A4CB18 /* CarMaintainanceView.m in Sources */,
+				BDC37EB3181D063000A4CB18 /* AMArcColorDrawView.m in Sources */,
+				BDC37EB4181D063000A4CB18 /* AMProgressView.m in Sources */,
+				BDC37EB5181D063000A4CB18 /* AMProgressViewGradient.m in Sources */,
+				BDC37EB6181D063000A4CB18 /* ZCSDrawLineView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

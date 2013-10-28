@@ -56,7 +56,7 @@ typedef enum  viewType{
 #else
     tweetieTableView.hidden = YES;
     DriveOilAnalysisView *oilAnalysisView = [[DriveOilAnalysisView alloc]initWithFrame:
-                                             CGRectMake(0.f,0.f,bgImage.size.width,bgImage.size.height)];
+                                             CGRectMake(10.f,0.f,bgImage.size.width,bgImage.size.height)];
     [self.view addSubview:oilAnalysisView];
     oilAnalysisView.backgroundColor = [UIColor redColor];
     [oilAnalysisView updateUIByData:nil];

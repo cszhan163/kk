@@ -30,7 +30,7 @@
     [drawLineView setBackgroundColor:[UIColor clearColor]];
     [drawLineView setBackgroundImage:image];
     
-    [drawLineView setOffsetX:30.f];
+    [drawLineView setOffsetX:30.f-10];
     [drawLineView setOffsetY:24.f];
     
     [drawLineView setMaxLenY:212.f];//y

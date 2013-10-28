@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		042C8AAD181ECABF00D6CBAD /* DriveDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 042C8AAC181ECABF00D6CBAD /* DriveDataModel.m */; };
 		0435CB3717FF0BD30064FE14 /* CarDriveMannerAnalysisViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0435CB3617FF0BD30064FE14 /* CarDriveMannerAnalysisViewController.m */; };
 		0435CB4317FFC7260064FE14 /* SubNavItemBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0435CB4217FFC7250064FE14 /* SubNavItemBaseViewController.m */; };
 		0435CB4A180011AB0064FE14 /* CarDriveOilDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0435CB49180011AB0064FE14 /* CarDriveOilDataViewController.m */; };
@@ -158,7 +159,7 @@
 		04E2A0B5181B73EE006D8C0C /* oil_table_cell.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E2A0B2181B73ED006D8C0C /* oil_table_cell.png */; };
 		04E2A0B6181B73EE006D8C0C /* oil_table_footer.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E2A0B3181B73ED006D8C0C /* oil_table_footer.png */; };
 		04E2A0B7181B73EE006D8C0C /* oil_table_header.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E2A0B4181B73EE006D8C0C /* oil_table_header.png */; };
-		04E2A0C8181B743B006D8C0C /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E2A0B9181B743B006D8C0C /* 1.png */; };
+		04E2A0C8181B743B006D8C0C /* oil_conclusion_tag.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E2A0B9181B743B006D8C0C /* oil_conclusion_tag.png */; };
 		04E2A0C9181B743B006D8C0C /* blue.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E2A0BA181B743B006D8C0C /* blue.png */; };
 		04E2A0CA181B743B006D8C0C /* green.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E2A0BB181B743B006D8C0C /* green.png */; };
 		04E2A0CB181B743B006D8C0C /* oil_table_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E2A0BD181B743B006D8C0C /* oil_table_1.png */; };
@@ -244,6 +245,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		042C8AAB181ECABF00D6CBAD /* DriveDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DriveDataModel.h; path = DataModel/DriveDataModel.h; sourceTree = "<group>"; };
+		042C8AAC181ECABF00D6CBAD /* DriveDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DriveDataModel.m; path = DataModel/DriveDataModel.m; sourceTree = "<group>"; };
 		0435CB3517FF0BD30064FE14 /* CarDriveMannerAnalysisViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarDriveMannerAnalysisViewController.h; sourceTree = "<group>"; };
 		0435CB3617FF0BD30064FE14 /* CarDriveMannerAnalysisViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarDriveMannerAnalysisViewController.m; sourceTree = "<group>"; };
 		0435CB4117FFC7250064FE14 /* SubNavItemBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubNavItemBaseViewController.h; sourceTree = "<group>"; };
@@ -446,7 +449,7 @@
 		04E2A0B2181B73ED006D8C0C /* oil_table_cell.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = oil_table_cell.png; sourceTree = "<group>"; };
 		04E2A0B3181B73ED006D8C0C /* oil_table_footer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = oil_table_footer.png; sourceTree = "<group>"; };
 		04E2A0B4181B73EE006D8C0C /* oil_table_header.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = oil_table_header.png; sourceTree = "<group>"; };
-		04E2A0B9181B743B006D8C0C /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
+		04E2A0B9181B743B006D8C0C /* oil_conclusion_tag.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = oil_conclusion_tag.png; sourceTree = "<group>"; };
 		04E2A0BA181B743B006D8C0C /* blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blue.png; sourceTree = "<group>"; };
 		04E2A0BB181B743B006D8C0C /* green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = green.png; sourceTree = "<group>"; };
 		04E2A0BD181B743B006D8C0C /* oil_table_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = oil_table_1.png; sourceTree = "<group>"; };
@@ -567,6 +570,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		042C8AA9181ECA7600D6CBAD /* Datamodel */ = {
+			isa = PBXGroup;
+			children = (
+				042C8AAB181ECABF00D6CBAD /* DriveDataModel.h */,
+				042C8AAC181ECABF00D6CBAD /* DriveDataModel.m */,
+			);
+			name = Datamodel;
+			sourceTree = "<group>";
+		};
 		043C650317FD76D600CDBAC8 /* User */ = {
 			isa = PBXGroup;
 			children = (
@@ -666,6 +678,7 @@
 		046B663717E74984006F34A1 /* BodCarManger */ = {
 			isa = PBXGroup;
 			children = (
+				042C8AA9181ECA7600D6CBAD /* Datamodel */,
 				049DF96C18157AB800DFC9F1 /* CellView */,
 				049DF965181579AC00DFC9F1 /* CommView */,
 				043C650B17FDC92600CDBAC8 /* ViewController */,
@@ -1025,7 +1038,7 @@
 		04E2A0B8181B743B006D8C0C /* oil_icon */ = {
 			isa = PBXGroup;
 			children = (
-				04E2A0B9181B743B006D8C0C /* 1.png */,
+				04E2A0B9181B743B006D8C0C /* oil_conclusion_tag.png */,
 				04E2A0C7181B743B006D8C0C /* yellow.png */,
 				04E2A0BA181B743B006D8C0C /* blue.png */,
 				04E2A0BB181B743B006D8C0C /* green.png */,
@@ -1038,7 +1051,6 @@
 			isa = PBXGroup;
 			children = (
 				04E2A0BD181B743B006D8C0C /* oil_table_1.png */,
-				04E2A0BE181B743B006D8C0C /* oil_table_10.png */,
 				04E2A0BF181B743B006D8C0C /* oil_table_2.png */,
 				04E2A0C0181B743B006D8C0C /* oil_table_3.png */,
 				04E2A0C1181B743B006D8C0C /* oil_table_4.png */,
@@ -1047,6 +1059,7 @@
 				04E2A0C4181B743B006D8C0C /* oil_table_7.png */,
 				04E2A0C5181B743B006D8C0C /* oil_table_8.png */,
 				04E2A0C6181B743B006D8C0C /* oil_table_9.png */,
+				04E2A0BE181B743B006D8C0C /* oil_table_10.png */,
 			);
 			path = oil_table_icon;
 			sourceTree = "<group>";
@@ -1360,7 +1373,7 @@
 				04E2A0B5181B73EE006D8C0C /* oil_table_cell.png in Resources */,
 				04E2A0B6181B73EE006D8C0C /* oil_table_footer.png in Resources */,
 				04E2A0B7181B73EE006D8C0C /* oil_table_header.png in Resources */,
-				04E2A0C8181B743B006D8C0C /* 1.png in Resources */,
+				04E2A0C8181B743B006D8C0C /* oil_conclusion_tag.png in Resources */,
 				04E2A0C9181B743B006D8C0C /* blue.png in Resources */,
 				04E2A0CA181B743B006D8C0C /* green.png in Resources */,
 				04E2A0CB181B743B006D8C0C /* oil_table_1.png in Resources */,
@@ -1459,6 +1472,7 @@
 				BDC37EB4181D063000A4CB18 /* AMProgressView.m in Sources */,
 				BDC37EB5181D063000A4CB18 /* AMProgressViewGradient.m in Sources */,
 				BDC37EB6181D063000A4CB18 /* ZCSDrawLineView.m in Sources */,
+				042C8AAD181ECABF00D6CBAD /* DriveDataModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

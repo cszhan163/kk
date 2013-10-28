@@ -38,6 +38,7 @@ typedef enum  viewType{
     //tableViewBg.frame = tweetieTableView.frame;
     //[tweetieTableView removeFromSuperview];
     //[tableViewBg addSubview:tweetieTableView];
+    tweetieTableView.normalEdgeInset = UIEdgeInsetsMake(50.f,0.f,0.f,0.f);
     tweetieTableView.frame = CGRectMake(0.f,0.f,bgImage.size.width/kScale,bgImage.size.height/kScale);
     //    tableViewBg.clipsToBounds = YES;
     //    tableViewBg.userInteractionEnabled = YES;
@@ -46,7 +47,9 @@ typedef enum  viewType{
     tweetieTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     tweetieTableView.clipsToBounds = YES;
     tweetieTableView.bounces = NO;
-    tweetieTableView.normalEdgeInset = UIEdgeInsetsMake(50.f,0.f,0.f,0.f);
+    tweetieTableView.showsVerticalScrollIndicator = NO;
+    [tweetieTableView scrollsToTop];
+    
 #else
     
     dataTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0.f, 300.f,300)];

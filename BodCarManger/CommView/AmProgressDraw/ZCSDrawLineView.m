@@ -7,17 +7,23 @@
 //
 
 #import "ZCSDrawLineView.h"
+
 @interface ZCSDrawLineView(){
 }
 //@property(nonatomic,strong)UIColor *backgroundColor;
 @property(nonatomic,strong)UIImage *bgImage;
 @property(nonatomic,assign)CGFloat  xStep;
 @property(nonatomic,assign)CGFloat  yStep;
+@property(nonatomic,assign)CGFloat  offsetY;
+@property(nonatomic,assign)CGFloat  offsetX;
+@property(nonatomic,assign)CGFloat  maxLenY;
 @property(nonatomic,strong)NSArray *pointsData;
 @end
 @implementation ZCSDrawLineView
 @synthesize xStep   =_xStep;
 @synthesize yStep   = _yStep;
+@synthesize offsetY = _offsetY;
+@synthesize offsetX = _offsetX;
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -26,7 +32,7 @@
         _xStep = 1.0;
         _yStep = 1.0;
         //_backgroundColor = [UIColor clearColor];
-        _drawLineColor = [UIColor blackColor];
+        _drawLineColor = [UIColor whiteColor];
         
         // Initialization code
     }
@@ -67,21 +73,22 @@
     CGContextSetStrokeColorWithColor(context,_drawLineColor.CGColor);
     //[[UIColor brownColor] set];
     CGPoint linePointsArr[5];
-    CGFloat startX = rect.origin.x;
-    CGFloat  y = rect.size.height;
+    CGFloat startX =  _offsetX;
+    CGFloat  y = _offsetY;
     //CGPoint startPoint = CGPointMake(startX, y);
-    CGContextMoveToPoint(context, startX, y);
+    //CGContextMoveToPoint(context, startX, y);
     for(int i =0;i<[_pointsData count];i++){
         id item = [_pointsData objectAtIndex:i];
         CGFloat xPointItem = [[item objectForKey:@"x"]floatValue];
         CGFloat yPointItem = [[item objectForKey:@"y"]floatValue];
-        CGFloat xPoint = xPointItem *_xStep;
-        CGFloat yPoint = yPointItem *_yStep;
-        startX = startX+xPoint;
+        CGFloat xPoint = xPointItem *_xStep+_offsetX;
+        CGFloat yPoint = _maxLenY-(yPointItem *_yStep)+_offsetY;
+        //startX = startX+xPoint;
         y = yPoint;
-        linePointsArr[i] = CGPointMake(startX,y);
-        CGContextAddLineToPoint(context, startX, y);
-        CGContextMoveToPoint(context, startX, y);
+        linePointsArr[i] = CGPointMake(xPoint,y);
+        if(i!=0)
+            CGContextAddLineToPoint(context, xPoint, y);
+        CGContextMoveToPoint(context, xPoint, y);
         
     }
     CGContextStrokePath(context);

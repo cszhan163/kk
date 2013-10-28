@@ -28,12 +28,10 @@ typedef enum  viewType{
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor clearColor];
     UIImage *bgImage = nil;
+    //tweetieTableView.hidden = YES;
 #if 1
-    mainView.backgroundColor = [UIColor redColor];
-    
-    
+    mainView.backgroundColor = [UIColor clearColor];
     //tweetieTableView.frame = CGRectMake(0.f,0.f,300.f,380.f);
-    
     UIImageWithFileName(bgImage, @"car_plant_bg.png");
     //UIImageView *tableViewBg = [[UIImageView alloc]initWithImage:bgImage];
     //[self.view  addSubview:tableViewBg];
@@ -47,7 +45,8 @@ typedef enum  viewType{
     tweetieTableView.backgroundColor = [UIColor clearColor];
     tweetieTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     tweetieTableView.clipsToBounds = YES;
-    tweetieTableView.normalEdgeInset = UIEdgeInsetsMake(40.f,0.f,0.f,0.f);
+    tweetieTableView.bounces = NO;
+    tweetieTableView.normalEdgeInset = UIEdgeInsetsMake(50.f,0.f,0.f,0.f);
 #else
     
     dataTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0.f, 300.f,300)];
@@ -57,6 +56,9 @@ typedef enum  viewType{
     [self.view addSubview:dataTableView];
     SafeRelease(dataTableView);
 #endif
+    
+    
+    
 }
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -70,6 +72,21 @@ typedef enum  viewType{
 }
 #pragma mark -
 #pragma mark tableview
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return 30.f;
+}
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    UIImage *bgImage = nil;
+    mainView.backgroundColor = [UIColor clearColor];
+    //tweetieTableView.frame = CGRectMake(0.f,0.f,300.f,380.f);
+    UIImageWithFileName(bgImage, @"oil_table_header.png");
+    /*UIView *tableSectionView = [UIView alloc]initWithFrame:CGRectMake(0.f, 0.f, <#CGFloat width#>, <#CGFloat height#>)
+        */
+    UIImageView *tableHeaderView = [[UIImageView alloc]initWithFrame:CGRectMake(0.f, 0.f, bgImage.size.width/kScale, bgImage.size.height/kScale)];
+    tableHeaderView.image = bgImage;
+    
+    return SafeAutoRelease(tableHeaderView);;
+}
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
 	return  10;

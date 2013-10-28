@@ -10,7 +10,7 @@
 
 
 
-#define kLeftPendingX  11
+#define kLeftPendingX  10
 #define kTopPendingY  8
 #define kHeaderItemPendingY 8
 
@@ -42,15 +42,15 @@
     UIImageWithFileName(bgImage, @"car_plant_bg.png");
     UIImageView *tableViewBg = [[UIImageView alloc]initWithImage:bgImage];
     [self.view  addSubview:tableViewBg];
+      
     
     
-    
-    tableViewBg.frame = CGRectMake(kLeftPendingX,kMBAppTopToolBarHeight+kTopPendingY,kDeviceScreenWidth-2*kLeftPendingX,kMBAppRealViewHeight-kTopPendingY);
+     tableViewBg.frame = CGRectMake(kLeftPendingX,kMBAppTopToolBarHeight+kTopPendingY,kDeviceScreenWidth-2*kLeftPendingX,kMBAppRealViewHeight-kTopPendingY);
     tableViewBg.clipsToBounds = YES;
     
     tableViewBg.clipsToBounds = YES;
     tableViewBg.userInteractionEnabled = YES;
-    
+     
     navItemCtrl = [[NENavItemController alloc]init];
     //self.dataSouce = self;
     //navItemCtrl.toolbarItems =

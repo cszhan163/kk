@@ -76,8 +76,6 @@ NSString* gDataArr[] = {@"12.5km",@"11km/h",@"87L",@"3h"};
     tweetieTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     tweetieTableView.clipsToBounds = YES;
     
-    
-    
 #if 0
     UIView *headerView = [self addHeaderView:tableViewBg   withArrayData:nil];
     tweetieTableView.normalEdgeInset = UIEdgeInsetsMake(headerView.frame.size.height,0.f,0.f,0.f);
@@ -244,11 +242,6 @@ NSString* gDataArr[] = {@"12.5km",@"11km/h",@"87L",@"3h"};
     cell.mOilImageView.frame = CGRectMake(origin.x, origin.y,bgImage.size.width/kScale, bgImage.size.height/kScale);
     
     cell.mOilLabel.text = [NSString stringWithFormat:@"%.1lfL",oilvolume];
-    
-    
-    
-    
-    
     
 	//cell.textLabel.text = [NSString stringWithFormat:@"%d", indexPath.row];
     

@@ -32,14 +32,16 @@
              @"2013",@"year",
              @"10",@"month",
              nil];
-    [cardNetMgr getDetailByDay:param];
-    [cardNetMgr getCarRouterRealTimeData:@""];
+    //[cardNetMgr getDetailByDay:param];
+//    [cardNetMgr getCarRouterRealTimeData:@""];
+//    [cardNetMgr getRouterDataByMonth:@"" withYear:@""];
+//    [cardNetMgr getRouterDataByDay:@"" withMoth:@"" withYear:@""];
+//    [cardNetMgr getCarRouterLatestData];
     
-    [cardNetMgr getDriveDataByMoth:@"" withYear:@""];
-    [cardNetMgr getCarRouterLatestData];
-    
-    [cardNetMgr getDriveDataByMoth:@"10" withYear:@"2013"];
-    [cardNetMgr getMessageList:nil];
+    [cardNetMgr getDriveDataByCarId:@"" withMonth:@"" withYear:@""];
+//    [cardNetMgr getDriveActionAnalysisDataByCarId:@"" withMoth:@"" withYear:@""];
+//    [cardNetMgr getDriveOilAnalysisDataByCarId:@"" withMoth:@"" withYear:@""];
+    //[cardNetMgr getMessageList:nil];
     
     CGFloat currX = 0.f;
     for(int i = 0; i<5;i++)

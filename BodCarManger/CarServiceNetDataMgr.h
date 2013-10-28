@@ -63,6 +63,16 @@ ZCSNetClientNetInterfaceMgrDelegate>
 - (id)getDetailByDay:(NSDictionary*)param;
 - (id)getDetailByMonth:(NSDictionary*)param;
 
+- (id)getRouterLatestData:(NSString*)cardId;
+- (id)getRouterRealTimeData:(NSString*)cardId;
+- (id)getRouterLatestData:(NSString*)cardId;
+
+- (id)getRouterDataByMonth:(NSString*)month withYear:(NSString*)year;
+- (id)getRouterDataByDay:(NSString*)day withMoth:(NSString*)month withYear:(NSString*)year;
+/*drive*/
+- (id)getDriveDataByCarId:(NSString*)cardId withMonth:(NSString*)month withYear:(NSString*)year;
+- (id)getDriveActionAnalysisDataByCarId:(NSString*)cardId withMoth:(NSString*)month withYear:(NSString*)year;
+- (id)getDriveOilAnalysisDataByCarId:(NSString*)cardId withMoth:(NSString*)month withYear:(NSString*)year;
 /*Service*/
 - (id)getMessageList:(NSDictionary*)param;
 @end

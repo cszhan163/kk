@@ -8,14 +8,11 @@
 
 #import "DataAnalysisBaseView.h"
 #import "DAMultipleProgressLayer.h"
-
 #import "WSLineChartView.h"
-
 #import "ZCSDrawLineView.h"
 @interface DataAnalysisBaseView(){
-    DAMultipleProgressLayer * mutipleView;
-    WSLineChartView *lineChart ;
-    ZCSDrawLineView *drawLineView;
+   
+   
 }
 @end
 @implementation DataAnalysisBaseView

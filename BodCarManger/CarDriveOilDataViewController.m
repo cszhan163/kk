@@ -8,7 +8,7 @@
 
 #import "CarDriveOilDataViewController.h"
 #import "CarDriveOilTableViewCell.h"
-
+#import "DriveOilAnalysisView.h"
 typedef enum  viewType{
     View_List,
     View_Graph,
@@ -29,15 +29,17 @@ typedef enum  viewType{
     self.view.backgroundColor = [UIColor clearColor];
     UIImage *bgImage = nil;
     //tweetieTableView.hidden = YES;
-#if 1
     mainView.backgroundColor = [UIColor clearColor];
     //tweetieTableView.frame = CGRectMake(0.f,0.f,300.f,380.f);
     UIImageWithFileName(bgImage, @"car_plant_bg.png");
+#if 0
+  
     //UIImageView *tableViewBg = [[UIImageView alloc]initWithImage:bgImage];
     //[self.view  addSubview:tableViewBg];
     //tableViewBg.frame = tweetieTableView.frame;
     //[tweetieTableView removeFromSuperview];
     //[tableViewBg addSubview:tweetieTableView];
+    
     tweetieTableView.normalEdgeInset = UIEdgeInsetsMake(50.f,0.f,0.f,0.f);
     tweetieTableView.frame = CGRectMake(0.f,0.f,bgImage.size.width/kScale,bgImage.size.height/kScale);
     //    tableViewBg.clipsToBounds = YES;
@@ -49,8 +51,16 @@ typedef enum  viewType{
     tweetieTableView.bounces = NO;
     tweetieTableView.showsVerticalScrollIndicator = NO;
     [tweetieTableView scrollsToTop];
+  
     
 #else
+    tweetieTableView.hidden = YES;
+    DriveOilAnalysisView *oilAnalysisView = [[DriveOilAnalysisView alloc]initWithFrame:
+                                             CGRectMake(0.f,0.f,bgImage.size.width,bgImage.size.height)];
+    [self.view addSubview:oilAnalysisView];
+    oilAnalysisView.backgroundColor = [UIColor redColor];
+    [oilAnalysisView updateUIByData:nil];
+    return ;
     
     dataTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0.f, 300.f,300)];
     dataTableView.dataSource = self;
@@ -69,8 +79,7 @@ typedef enum  viewType{
 }
 
 - (void)swithDataViewType{
-
-
+   
 
 }
 #pragma mark -

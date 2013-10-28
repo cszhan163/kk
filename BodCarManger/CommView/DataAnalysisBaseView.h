@@ -7,8 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+@class DAMultipleProgressLayer;
+@class WSLineChartView;
+@class ZCSDrawLineView;
+@interface DataAnalysisBaseView : UIView{
 
-@interface DataAnalysisBaseView : UIView
+    DAMultipleProgressLayer * mutipleView;
+    WSLineChartView *lineChart ;
+    ZCSDrawLineView *drawLineView;
+}
 @property(nonatomic,strong)UIImage *bgImage;
 - (void)addPercentView:(CGRect)rect;
 - (void)addLineChartView:(CGRect)rect withBGImage:(UIImage*)image;

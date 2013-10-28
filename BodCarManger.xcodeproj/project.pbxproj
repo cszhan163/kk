@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		042C8AAD181ECABF00D6CBAD /* DriveDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 042C8AAC181ECABF00D6CBAD /* DriveDataModel.m */; };
+		042C8AB3181EDBE600D6CBAD /* setting_cell_footer.png in Resources */ = {isa = PBXBuildFile; fileRef = 042C8AAF181EDBE500D6CBAD /* setting_cell_footer.png */; };
+		042C8AB4181EDBE600D6CBAD /* setting_cell_header.png in Resources */ = {isa = PBXBuildFile; fileRef = 042C8AB0181EDBE600D6CBAD /* setting_cell_header.png */; };
+		042C8AB5181EDBE600D6CBAD /* setting_cell_middle.png in Resources */ = {isa = PBXBuildFile; fileRef = 042C8AB1181EDBE600D6CBAD /* setting_cell_middle.png */; };
+		042C8AB6181EDBE600D6CBAD /* setting_cell_one.png in Resources */ = {isa = PBXBuildFile; fileRef = 042C8AB2181EDBE600D6CBAD /* setting_cell_one.png */; };
+		042C8ABA181EE25700D6CBAD /* DriveOilAnalysisView.m in Sources */ = {isa = PBXBuildFile; fileRef = 042C8AB9181EE25700D6CBAD /* DriveOilAnalysisView.m */; };
 		0435CB3717FF0BD30064FE14 /* CarDriveMannerAnalysisViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0435CB3617FF0BD30064FE14 /* CarDriveMannerAnalysisViewController.m */; };
 		0435CB4317FFC7260064FE14 /* SubNavItemBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0435CB4217FFC7250064FE14 /* SubNavItemBaseViewController.m */; };
 		0435CB4A180011AB0064FE14 /* CarDriveOilDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0435CB49180011AB0064FE14 /* CarDriveOilDataViewController.m */; };
@@ -247,6 +252,12 @@
 /* Begin PBXFileReference section */
 		042C8AAB181ECABF00D6CBAD /* DriveDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DriveDataModel.h; path = DataModel/DriveDataModel.h; sourceTree = "<group>"; };
 		042C8AAC181ECABF00D6CBAD /* DriveDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DriveDataModel.m; path = DataModel/DriveDataModel.m; sourceTree = "<group>"; };
+		042C8AAF181EDBE500D6CBAD /* setting_cell_footer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = setting_cell_footer.png; sourceTree = "<group>"; };
+		042C8AB0181EDBE600D6CBAD /* setting_cell_header.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = setting_cell_header.png; sourceTree = "<group>"; };
+		042C8AB1181EDBE600D6CBAD /* setting_cell_middle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = setting_cell_middle.png; sourceTree = "<group>"; };
+		042C8AB2181EDBE600D6CBAD /* setting_cell_one.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = setting_cell_one.png; sourceTree = "<group>"; };
+		042C8AB8181EE25700D6CBAD /* DriveOilAnalysisView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DriveOilAnalysisView.h; sourceTree = "<group>"; };
+		042C8AB9181EE25700D6CBAD /* DriveOilAnalysisView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DriveOilAnalysisView.m; sourceTree = "<group>"; };
 		0435CB3517FF0BD30064FE14 /* CarDriveMannerAnalysisViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarDriveMannerAnalysisViewController.h; sourceTree = "<group>"; };
 		0435CB3617FF0BD30064FE14 /* CarDriveMannerAnalysisViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarDriveMannerAnalysisViewController.m; sourceTree = "<group>"; };
 		0435CB4117FFC7250064FE14 /* SubNavItemBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubNavItemBaseViewController.h; sourceTree = "<group>"; };
@@ -1002,6 +1013,8 @@
 				049DF969181579AD00DFC9F1 /* DriveActionAnalysisView.m */,
 				BDC37E92181CF8F800A4CB18 /* CarMaintainanceView.h */,
 				BDC37E93181CF8F800A4CB18 /* CarMaintainanceView.m */,
+				042C8AB8181EE25700D6CBAD /* DriveOilAnalysisView.h */,
+				042C8AB9181EE25700D6CBAD /* DriveOilAnalysisView.m */,
 			);
 			path = CommView;
 			sourceTree = "<group>";
@@ -1124,6 +1137,10 @@
 		04FE072A181973C300EEC76A /* setting */ = {
 			isa = PBXGroup;
 			children = (
+				042C8AAF181EDBE500D6CBAD /* setting_cell_footer.png */,
+				042C8AB0181EDBE600D6CBAD /* setting_cell_header.png */,
+				042C8AB1181EDBE600D6CBAD /* setting_cell_middle.png */,
+				042C8AB2181EDBE600D6CBAD /* setting_cell_one.png */,
 				04FE073318197C8800EEC76A /* setting_logout_btn.png */,
 				04FE072B181973C300EEC76A /* setting_cell_bg.png */,
 			);
@@ -1401,6 +1418,10 @@
 				04809B6E181C2224000DBB2F /* tableitemsel3.png in Resources */,
 				BDC37E96181CFA6D00A4CB18 /* drive_matainance_bg.png in Resources */,
 				BDC37EBB181E6A2400A4CB18 /* car_plant_bg.png in Resources */,
+				042C8AB3181EDBE600D6CBAD /* setting_cell_footer.png in Resources */,
+				042C8AB4181EDBE600D6CBAD /* setting_cell_header.png in Resources */,
+				042C8AB5181EDBE600D6CBAD /* setting_cell_middle.png in Resources */,
+				042C8AB6181EDBE600D6CBAD /* setting_cell_one.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1473,6 +1494,7 @@
 				BDC37EB5181D063000A4CB18 /* AMProgressViewGradient.m in Sources */,
 				BDC37EB6181D063000A4CB18 /* ZCSDrawLineView.m in Sources */,
 				042C8AAD181ECABF00D6CBAD /* DriveDataModel.m in Sources */,
+				042C8ABA181EE25700D6CBAD /* DriveOilAnalysisView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

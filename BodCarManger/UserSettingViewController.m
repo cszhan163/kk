@@ -146,7 +146,7 @@ static NSString *kSectionTwoArr[] = {
 }
 
 - (void)dealloc{
-    Safe_Release(logInfo);
+    SafeRelease(logInfo);
     
     [super dealloc];
 }

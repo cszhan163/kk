@@ -9,5 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "UIImageNetBaseViewController.h"
 @interface CarRouterViewController : UIImageNetBaseViewController<UIBaseViewControllerDelegate>
+@property(nonatomic,assign)DateStruct currDateStruct;
 @property(nonatomic,strong)NSString *currDate;
 @end

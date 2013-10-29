@@ -106,6 +106,13 @@
 #define kUploadPhotoPickChooseEditMSG @"uploadPhotoPickChooseEditMSG"
 #define kUploadActionSheetViewAlertMSG @"uploadActionSheetViewAlertMSG"
 
+//router
+#define kResRouterDataMoth              @"queryTripCalanderMonth"
+#define kResRouterDataDay               @"queryTripDay"
+#define kResRouterLatest                @"queryLastTripID"
+//drive
+
+#define kResDriveDataMoth               @"queryDriveMonthData"
 
 #endif
 

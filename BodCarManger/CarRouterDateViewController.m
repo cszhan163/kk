@@ -37,7 +37,7 @@
 }
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-    //[self checkDataChange];
+    [self checkDataChange];
 }
 //#define FIRST
 - (void)viewDidLoad
@@ -45,7 +45,7 @@
     [super viewDidLoad];
     [self setHiddenLeftBtn:YES];
     
-    mCurrDate.month = 9;
+    mCurrDate.month = 10;
     mCurrDate.year  = 2013;
     
     self.mMothDateKey = [NSString stringWithFormat:@"%d%02d",mCurrDate.year,mCurrDate.month];
@@ -59,6 +59,7 @@
     
     NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
     
+ #ifdef  FIRST   
     //Now we're going to optionally set the start and end date of a pre-selected range.
     //This is totally optional.
 	NSDateComponents *dateParts = [[NSDateComponents alloc] init];
@@ -77,8 +78,34 @@
     
 	NSDate *eDate = [calendar dateFromComponents:dateParts];
 	[dateParts release];
+    
+    dateParts = [[NSDateComponents alloc] init];
+	[dateParts setMonth:mCurrDate.month];
+	[dateParts setYear:mCurrDate.year];
+	[dateParts setDay:3];
+    
+	sDate = [calendar dateFromComponents:dateParts];
+	[dateParts release];
+    
+    
+    dateParts = [[NSDateComponents alloc] init];
+	[dateParts setMonth:mCurrDate.month];
+	[dateParts setYear:mCurrDate.year];
+	[dateParts setDay:6];
+    
+	eDate = [calendar dateFromComponents:dateParts];
+	[dateParts release];
+    
+    //[calView addStartDate:sDate endDate:eDate withTag:0];
+    
+    dateParts = [[NSDateComponents alloc] init];
+	[dateParts setMonth:mCurrDate.month];
+	[dateParts setYear:mCurrDate.year];
+	[dateParts setDay:30];
+    sDate = [calendar dateFromComponents:dateParts];
+	[dateParts release];
     //Here's where the magic happens
-#ifdef  FIRST
+
     OCCalendarViewController *calVC = [[OCCalendarViewController alloc] initAtPoint:CGPointMake(167, 90) inView:self.view arrowPosition:OCArrowPositionNone];
     calVC.delegate = self;
 	//Test ONLY
@@ -108,32 +135,6 @@
 #else
     //[calView addStartDate:sDate endDate:eDate];
 #endif
-    dateParts = [[NSDateComponents alloc] init];
-	[dateParts setMonth:mCurrDate.month];
-	[dateParts setYear:mCurrDate.year];
-	[dateParts setDay:3];
-    
-	sDate = [calendar dateFromComponents:dateParts];
-	[dateParts release];
-
-    
-    dateParts = [[NSDateComponents alloc] init];
-	[dateParts setMonth:mCurrDate.month];
-	[dateParts setYear:mCurrDate.year];
-	[dateParts setDay:6];
-    
-	eDate = [calendar dateFromComponents:dateParts];
-	[dateParts release];
-    
-    //[calView addStartDate:sDate endDate:eDate withTag:0];
-    
-    dateParts = [[NSDateComponents alloc] init];
-	[dateParts setMonth:mCurrDate.month];
-	[dateParts setYear:mCurrDate.year];
-	[dateParts setDay:30];
-    sDate = [calendar dateFromComponents:dateParts];
-	[dateParts release];
-    
     //[calView addStartDate:sDate endDate:sDate];
     
     [calView setDelegate:self];
@@ -177,6 +178,7 @@
 }
 - (void)didChooseCalendarDay:(NSDictionary*)day{
     
+    return;
     if(![self.mHasDataDict objectForKey:[day objectForKey:@"day"]]){
         
         return;
@@ -188,8 +190,14 @@
     CarRouterViewController *dayRounterVc = [[CarRouterViewController alloc]init];
     [dayRounterVc setNavgationBarTitle:title];
     dayRounterVc.currDate = [NSString stringWithFormat:@"%@%02d%02d",[day objectForKey:@"year"],[[day objectForKey:@"month"]intValue],[[day objectForKey:@"day"]intValue]];
+    DateStruct date ;
+    date.day = [[day objectForKey:@"day"]intValue];
+    date.month = [[day objectForKey:@"month"]intValue];
+    date.year = [[day objectForKey:@"year"]intValue];
+    dayRounterVc.currDateStruct = date;
+    
     [self.navigationController pushViewController:dayRounterVc animated:YES];
-    Safe_Release(dayRounterVc);
+    SafeRelease(dayRounterVc);
 
     
     /*
@@ -284,9 +292,9 @@
     id obj = [ntf object];
     id respRequest = [obj objectForKey:@"request"];
     id data = [obj objectForKey:@"data"];
-    NSString *resKey = [respRequest resourceKey];
+    NSString *resKey = [obj objectForKey:@"key"];
     //NSString *resKey = [respRequest resourceKey];
-    if(self.request ==respRequest && [resKey isEqualToString:@"getInfoByMonth"])
+    if(self.request ==respRequest && [resKey isEqualToString:kResRouterDataMoth])
     {
         //        if ([self.externDelegate respondsToSelector:@selector(commentDidSendOK:)]) {
         //            [self.externDelegate commentDidSendOK:self];
@@ -299,7 +307,7 @@
         
         [tweetieTableView reloadData];
          */
-        NSArray *netData = [data objectForKey:@"data"];
+        NSArray *netData = data;//[data objectForKey:@"data"];
         
       
         [self  performSelectorOnMainThread:@selector(updateUIData:) withObject:netData waitUntilDone:NO ];
@@ -308,25 +316,17 @@
         kNetEnd(self.view);
         
     }
-    if(self.request ==respRequest && [resKey isEqualToString:@"addreply"])
-    {
-        //        if ([self.externDelegate respondsToSelector:@selector(commentDidSendOK:)]) {
-        //            [self.externDelegate commentDidSendOK:self];
-        //        }
-        //        kNetEndSuccStr(@"回复成功",self.view);
-        //        [self dismissModalViewControllerAnimated:YES];
-    }
-    
-    //self.view.userInteractionEnabled = YES;
+  
 }
 -(void)didNetDataFailed:(NSNotification*)ntf
 {
     //kNetEnd(@"", 2.f);
+    
     id obj = [ntf object];
     id respRequest = [obj objectForKey:@"request"];
     id data = [obj objectForKey:@"data"];
-    NSString *resKey = [respRequest resourceKey];
-    if(self.request ==respRequest && [resKey isEqualToString:@"getInfoByMonth"])
+    NSString *resKey = [obj objectForKey:@"key"];
+    if(self.request ==respRequest && [resKey isEqualToString:kResRouterDataMoth])
     {
         kNetEnd(self.view);
     }
@@ -334,8 +334,6 @@
     {
         //kNetEnd(self.view);
     }
-    
-    //NE_LOG(@"warning not implemetation net respond");
 }
 -(void)didRequestFailed:(NSNotification*)ntf
 {
@@ -350,15 +348,23 @@
     NSMutableString *driveFailed = [NSMutableString stringWithString:@""];
     for(NSDictionary *item in netData){
         
-        NSDictionary *data = [item objectForKey:@"DayInfo"];
-        NSString *date = [data objectForKey:@"day"];
-        NSString *flag = [data objectForKey:@"driveflg"];
-      
-        NSArray *dateArray = [date componentsSeparatedByString:@"-"];
+       
+        NSString *flag = @"";
         DateStruct dateStruct;
-        dateStruct.month = [dateArray[1] intValue];
-        dateStruct.year =  [dateArray[0]intValue];
+#if  0
+        NSString *date = @"";
+        NSDictionary *data = [item objectForKey:@"DayInfo"];
+        date = [data objectForKey:@"day"];
+        flag= [data objectForKey:@"driveflg"];
+        NSArray *dateArray = [date componentsSeparatedByString:@"-"];
+       
         dateStruct.day = [dateArray[2]intValue];
+#else
+        dateStruct.day = [[item objectForKey:@"day"]intValue];
+        flag = [item objectForKey:@"driveflg"];
+#endif
+        dateStruct.month = self.mCurrDate.year;
+        dateStruct.year =  self.mCurrDate.year;
         
         if([flag isEqualToString:@"1"]){
             /*

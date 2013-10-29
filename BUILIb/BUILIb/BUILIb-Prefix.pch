@@ -1,0 +1,26 @@
+//
+// Prefix header for all source files of the 'BUILIb' target in the 'BUILIb' project
+//
+
+#ifdef __OBJC__
+    #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+#import "NEDebugTool.h"
+#import "DeviceVersion.h"
+#import "ZCSNetClientConfig.h"
+#import "UIParamsCfg.h"
+#import "PlanformTool.h"
+#import "SVProgressHUD.h"
+#import "UIBaseFactory.h"
+#import "UIComUtil.h"
+#import "ZCSNotficationMgr.h"
+#import "AppConfig.h"
+//#import "AppSetting.h"
+#define  kUserDidResignOK           @"userDidResignOk"
+typedef struct dateSturct{
+    int year;
+    int month;
+    int day;
+}DateStruct;
+#define APP_SET
+#endif

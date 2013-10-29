@@ -43,7 +43,7 @@
     [cardNetMgr getDriveDataByCarId:@"" withMonth:@"" withYear:@""];
 //    [cardNetMgr getDriveActionAnalysisDataByCarId:@"" withMoth:@"" withYear:@""];
 //    [cardNetMgr getDriveOilAnalysisDataByCarId:@"" withMoth:@"" withYear:@""];
-    //[cardNetMgr getMessageList:nil];
+    [cardNetMgr getMessageList:nil];
     
     CGFloat currX = 0.f;
     for(int i = 0; i<5;i++)

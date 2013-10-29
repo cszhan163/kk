@@ -19,6 +19,7 @@
 NSString* gDataArr[] = {@"12.5km",@"11km/h",@"87L",@"3h"};
 @implementation CarRouterViewController
 @synthesize currDate;
+@synthesize currDateStruct;
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     if([self.dataArray count]==0){
@@ -280,8 +281,11 @@ NSString* gDataArr[] = {@"12.5km",@"11km/h",@"87L",@"3h"};
              // @"page",@"1",
              // @"records",@""
              nil];
-    self.request = [cardShopMgr  getDetailByDay:param];
-    
+    //self.request = [cardShopMgr  getDetailByDay:param];
+    NSString *day = [NSString stringWithFormat:@"%d",currDateStruct.day];
+    NSString *month = [NSString stringWithFormat:@"%d",currDateStruct.month];
+    NSString *year = [NSString stringWithFormat:@"%d",currDateStruct.year];
+    [cardShopMgr getRouterDataByDay:day withMoth:month withYear:year];
 //    if(isNeedHeaderView)
 //    {
 //        self.adRequest = [cardShopMgr getHomePageAd:nil];

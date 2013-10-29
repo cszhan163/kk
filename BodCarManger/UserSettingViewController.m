@@ -205,7 +205,7 @@ static NSString *kSectionTwoArr[] = {
     {
 #if 1
 		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:LabelTextFieldCell];
-        cell.backgroundColor = [UIColor whiteColor];
+        cell.backgroundColor = [UIColor clearColor];
         
         //cell.clipsToBounds = YES;
         //cell.contentView.clipsToBounds = YES;
@@ -215,15 +215,6 @@ static NSString *kSectionTwoArr[] = {
        
         cell.textLabel.textColor = HexRGB(64, 64, 64);
         
-        
-        UIImageWithFileName(UIImage *bgImage, @"setting_cell_bg.png");
-        UIImageView *bgView = [[UIImageView alloc]initWithImage:bgImage];
-        bgView.frame = CGRectMake(0.f, 0.f,300.f,42.f);
-        
-        //[cell insertSubview:bgView belowSubview:cell.contentView];
-        //[cell.contentView  addSubview: bgView];
-        cell.backgroundView = bgView;
-        SafeRelease(bgView);
 
 #else
         cell = [[SettingTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:LabelTextFieldCell];
@@ -292,6 +283,50 @@ static NSString *kSectionTwoArr[] = {
         default:
             break;
     }
+    NSString *bgImageName = @"";
+    if(indexPath.section == 3){
+        bgImageName = @"setting_cell_one.png";
+    }
+    else{
+        if(indexPath.section == 0){
+        
+            switch (indexPath.row) {
+                case 0:
+                    bgImageName = @"setting_cell_header.png";
+                    break;
+                case 2:
+                    bgImageName = @"setting_cell_footer.png";
+                    break;
+                    
+                default:
+                    bgImageName = @"setting_cell_middle.png";
+                    break;
+            }
+        }
+        else{
+            switch (indexPath.row) {
+                case 0:
+                    bgImageName = @"setting_cell_header.png";
+                    break;
+                case 1:
+                    bgImageName = @"setting_cell_footer.png";
+                    break;
+                default:
+                    break;
+            }
+        
+        }
+    }
+    
+    UIImageWithFileName(UIImage *bgImage,bgImageName);
+    UIImageView *bgView = [[UIImageView alloc]initWithImage:bgImage];
+    bgView.frame = CGRectMake(0.f, 0.f,300.f,42.f);
+    
+    //[cell insertSubview:bgView belowSubview:cell.contentView];
+    //[cell.contentView  addSubview: bgView];
+    cell.backgroundView = bgView;
+    SafeRelease(bgView);
+    
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     cell.textLabel.backgroundColor = [UIColor clearColor];
 	return cell;

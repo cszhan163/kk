@@ -8,13 +8,11 @@
 
 #import "DataAnalysisBaseView.h"
 #import "DAMultipleProgressLayer.h"
-
 #import "WSLineChartView.h"
-
 #import "ZCSDrawLineView.h"
 @interface DataAnalysisBaseView(){
-    DAMultipleProgressLayer * mutipleView;
-    WSLineChartView *lineChart ;
+   
+   
 }
 @end
 @implementation DataAnalysisBaseView
@@ -28,18 +26,37 @@
     }
     return self;
 }
+- (void)addPercentView:(CGRect)rect{
 
-- (void)setDisplayViewData:(NSArray*)data withType:(int)type{
     
-    CGRect rect = CGRectMake(18.f,20.f,50, 50);
     mutipleView = [[DAMultipleProgressLayer alloc]initWithFrame:rect];
     [mutipleView setTrackTintColor:[[UIColor blackColor] colorWithAlphaComponent:1.0f]];
     //[appearance setTrackTintColor:<#(UIColor *)#>]
     //[appearance setProgressTintColor:[UIColor whiteColor]];
     [mutipleView setBackgroundColor:[UIColor clearColor]];
     [mutipleView setThicknessRatio:0.3f];
-    
     [self addSubview:mutipleView];
+}
+- (void)addLineChartView:(CGRect)rect withBGImage:(UIImage*)image{
+
+    drawLineView = [[ZCSDrawLineView alloc]initWithFrame:rect];
+    [drawLineView setBackgroundColor:[UIColor clearColor]];
+    [drawLineView setBackgroundImage:image];
+    
+    [drawLineView setOffsetX:19.f];
+    [drawLineView setOffsetY:41.f];
+    
+    [drawLineView setMaxLenY:88.f];//y
+    
+    [drawLineView setXStep:215/30.f];//208 x len
+    [drawLineView setYStep:88/250.f];
+    
+    [self addSubview:drawLineView];
+    
+}
+- (void)setDisplayViewData:(NSArray*)data withType:(int)type{
+    
+   
     for(int i = 0;i<3;i++){
         id item = [data objectAtIndex:i];
         if(type == 0)
@@ -58,18 +75,15 @@
     */
 }
 
-- (void)setDisplayLineChart:(NSArray*)lineData withFrame:(CGRect)rect withBGImage:(UIImage*)bgImage{
+- (void)setDisplayLineChart:(NSArray*)lineData {
     
     //UIImage *bgImage = [UIIm]
-    ZCSDrawLineView *drawLineView = [[ZCSDrawLineView alloc]initWithFrame:rect];
-    [drawLineView setBackgroundColor:[UIColor clearColor]];
-    [drawLineView setBackgroundImage:bgImage];
     [drawLineView updateDrawLineData:lineData];
-    [self addSubview:drawLineView];
+    
 }
 - (void)createLineChart:(NSArray*)lineData
 {
-    lineChart = [[WSLineChartView alloc] initWithFrame:CGRectMake(0.0,80.f,300.0, 150.0)];
+    lineChart = [[WSLineChartView alloc] initWithFrame:CGRectMake(0.0,104.f,300.0, 150.0)];
     NSMutableArray *arr = [self createDemoDatas:10];
     NSDictionary *colorDict = [self createColorDict];
     

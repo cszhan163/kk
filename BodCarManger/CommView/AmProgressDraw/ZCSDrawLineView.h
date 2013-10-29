@@ -16,5 +16,8 @@
 - (void)setBackgroundImage:(UIImage*)image;
 - (void)setXStep:(CGFloat)step;
 - (void)setYStep:(CGFloat)step;
+- (void)setOffsetY:(CGFloat)offsetY;
+- (void)setOffsetX:(CGFloat)offsetX;
+- (void)setMaxLenY:(CGFloat)len;
 - (void)updateDrawLineData:(NSArray*)data;
 @end

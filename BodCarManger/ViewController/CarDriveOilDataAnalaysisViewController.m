@@ -30,9 +30,19 @@
     
     [super viewDidLoad];
     dataAnaylsisView = [[DriveActionAnalysisView alloc]initWithFrame:CGRectMake(0.f,35-10.f, 320.f,300)];
+    dataAnaylsisView.backgroundColor = [UIColor blueColor];
+    OilAnalysisData *data =  [[OilAnalysisData alloc]init];
+    data.percentDataArray = @[@32,@28,@40];
+    DateStruct date;
+    date.month = 11;
+    data.date = date;
+    data.conclusionText = @"起挺次数较多会影响油耗";
+    
+    [dataAnaylsisView  updateUIByData:data];
     //self.view.backgroundColor = [UIColor whiteColor];
-    dataAnaylsisView.backgroundColor = [UIColor whiteColor];
+    //dataAnaylsisView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:dataAnaylsisView];
+     dataAnaylsisView.backgroundColor = [UIColor blueColor];
     SafeRelease(dataAnaylsisView);
 }
 - (void)viewWillAppear:(BOOL)animated{

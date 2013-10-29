@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "DataAnalysisBaseView.h"
+#import "DriveDataModel.h"
 @interface DriveActionAnalysisView : DataAnalysisBaseView
 
+@property(nonatomic,strong)OilAnalysisData *oilData;
 @end

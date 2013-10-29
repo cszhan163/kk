@@ -33,10 +33,12 @@
              @"10",@"month",
              nil];
     //[cardNetMgr getDetailByDay:param];
-//    [cardNetMgr getCarRouterRealTimeData:@""];
+    [cardNetMgr getRouterRealTimeData:@""];
+    
+//    [cardNetMgr getRouterLatestData];
 //    [cardNetMgr getRouterDataByMonth:@"" withYear:@""];
 //    [cardNetMgr getRouterDataByDay:@"" withMoth:@"" withYear:@""];
-//    [cardNetMgr getCarRouterLatestData];
+    
     
     [cardNetMgr getDriveDataByCarId:@"" withMonth:@"" withYear:@""];
 //    [cardNetMgr getDriveActionAnalysisDataByCarId:@"" withMoth:@"" withYear:@""];

@@ -1,0 +1,16 @@
+
+#define DB_NAME @"iPlat4M"
+#define T_SYS_SQL_USER @" create table sys_user (_id INTEGER PRIMARY KEY AUTOINCREMENT, user_name TEXT ,pass_word TEXT) "
+#define T_SYS_USER @"sys_user"
+#define T_SYS_USER_COLUMN_USERNAME @"user_name"
+
+#define T_SYS_SQL_LOG @" create table sys_log (_id INTEGER PRIMARY KEY AUTOINCREMENT,log_uuid TEXT,app_code TEXT , control_type TEXT , user_account TEXT,user_name TEXT,operation_date TEXT,operation_desc TEXT) "
+#define T_SYS_LOG @"sys_log"
+#define T_SYS_LOG_COLUMN_LOG_UUID @"log_uuid"
+#define T_SYS_LOG_COLUMN_APP_CODE @"app_code"
+#define T_SYS_LOG_COLUMN_CONTROL_TYPE @"control_type"
+#define T_SYS_LOG_COLUMN_USER_ACCOUNT @"user_account"
+#define T_SYS_LOG_COLUMN_USER_NAME @"user_name"
+#define T_SYS_LOG_COLUMN_OPT_DATE @"operation_date"
+#define T_SYS_LOG_COLUMN_CONTROL_TYPE @"control_type"
+#define T_SYS_LOG_COLUMN_OPT_DESC @"operation_desc"

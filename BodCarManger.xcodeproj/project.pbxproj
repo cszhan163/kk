@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		042778B218202737008C6432 /* setting_cell_footer.png in Resources */ = {isa = PBXBuildFile; fileRef = 042778AE18202737008C6432 /* setting_cell_footer.png */; };
+		042778B318202737008C6432 /* setting_cell_header.png in Resources */ = {isa = PBXBuildFile; fileRef = 042778AF18202737008C6432 /* setting_cell_header.png */; };
+		042778B418202737008C6432 /* setting_cell_middle.png in Resources */ = {isa = PBXBuildFile; fileRef = 042778B018202737008C6432 /* setting_cell_middle.png */; };
+		042778B518202737008C6432 /* setting_cell_one.png in Resources */ = {isa = PBXBuildFile; fileRef = 042778B118202737008C6432 /* setting_cell_one.png */; };
 		043C650617FD76EF00CDBAC8 /* MesssageBoxViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 043C650517FD76EF00CDBAC8 /* MesssageBoxViewController.m */; };
 		043D9B4E17FAC4B800BE0C31 /* BaoCarNetBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 043D9B4D17FAC4B700BE0C31 /* BaoCarNetBaseViewController.m */; };
 		043D9B5317FAD1DD00BE0C31 /* CardShopBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 043D9B5017FAC56B00BE0C31 /* CardShopBaseViewController.m */; };
@@ -215,6 +219,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		042778AE18202737008C6432 /* setting_cell_footer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = setting_cell_footer.png; sourceTree = "<group>"; };
+		042778AF18202737008C6432 /* setting_cell_header.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = setting_cell_header.png; sourceTree = "<group>"; };
+		042778B018202737008C6432 /* setting_cell_middle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = setting_cell_middle.png; sourceTree = "<group>"; };
+		042778B118202737008C6432 /* setting_cell_one.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = setting_cell_one.png; sourceTree = "<group>"; };
 		043C650417FD76EF00CDBAC8 /* MesssageBoxViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MesssageBoxViewController.h; sourceTree = "<group>"; };
 		043C650517FD76EF00CDBAC8 /* MesssageBoxViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MesssageBoxViewController.m; sourceTree = "<group>"; };
 		043D9B3C17FAC0EE00BE0C31 /* AppMSGDef.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppMSGDef.h; sourceTree = "<group>"; };
@@ -903,6 +911,10 @@
 		04FE072A181973C300EEC76A /* setting */ = {
 			isa = PBXGroup;
 			children = (
+				042778AE18202737008C6432 /* setting_cell_footer.png */,
+				042778AF18202737008C6432 /* setting_cell_header.png */,
+				042778B018202737008C6432 /* setting_cell_middle.png */,
+				042778B118202737008C6432 /* setting_cell_one.png */,
 				04FE073318197C8800EEC76A /* setting_logout_btn.png */,
 				04FE072B181973C300EEC76A /* setting_cell_bg.png */,
 			);
@@ -1165,6 +1177,10 @@
 				BDC37EBB181E6A2400A4CB18 /* car_plant_bg.png in Resources */,
 				BDC37FAD181FB65E00A4CB18 /* CardShopLoginViewController.xib in Resources */,
 				BDC37FAF181FB65E00A4CB18 /* CardShopResignViewController.xib in Resources */,
+				042778B218202737008C6432 /* setting_cell_footer.png in Resources */,
+				042778B318202737008C6432 /* setting_cell_header.png in Resources */,
+				042778B418202737008C6432 /* setting_cell_middle.png in Resources */,
+				042778B518202737008C6432 /* setting_cell_one.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

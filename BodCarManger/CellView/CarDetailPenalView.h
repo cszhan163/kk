@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface CarDetailPenalView : UIView
+
 @property(nonatomic,strong)IBOutlet UILabel *mRunSpeedLabel;
 @property(nonatomic,strong)IBOutlet UILabel *mRunDistanceLabel;
 @property(nonatomic,strong)IBOutlet UILabel *mRotateSpeedLabel;

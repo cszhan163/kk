@@ -7,7 +7,8 @@
 //
 
 #import "UIBaseViewController.h"
-
-@interface CarMonitorViewController : UIBaseViewController
+#import "UISimpleNetBaseViewController.h"
+#import "BaoMonthBaseViewController.h"
+@interface CarMonitorViewController : BaoMonthBaseViewController
 
 @end

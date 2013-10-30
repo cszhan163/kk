@@ -12,18 +12,14 @@
 #import "CarRouterViewController.h"
 @interface CarRouterDateViewController ()<OCCalendarDelegate>{
     OCCalendarView *calView;
-    
+   
     
 }
-@property(nonatomic,strong)NSString *mMothDateKey;
-@property(nonatomic,strong)NSMutableDictionary *mDataDict;
+
 @property(nonatomic,strong)NSMutableDictionary   *mHasDataDict;
 @end
 
 @implementation CarRouterDateViewController
-@synthesize mCurrDate;
-@synthesize mDataDict;
-@synthesize mMothDateKey;
 @synthesize mHasDataDict;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -32,6 +28,7 @@
         // Custom initialization
         self.mDataDict = [NSMutableDictionary dictionary];
         self.mHasDataDict = [NSMutableDictionary dictionary];
+       
     }
     return self;
 }
@@ -45,10 +42,7 @@
     [super viewDidLoad];
     [self setHiddenLeftBtn:YES];
     
-    mCurrDate.month = 10;
-    mCurrDate.year  = 2013;
-    
-    self.mMothDateKey = [NSString stringWithFormat:@"%d%02d",mCurrDate.year,mCurrDate.month];
+    self.mMothDateKey = [NSString stringWithFormat:@"%d%02d",self.mCurrDate.year,self.mCurrDate.month];
     UIImage *bgImage = nil;
     UIImageWithFileName(bgImage, @"BG.png");
     mainView.bgImage = bgImage;
@@ -212,39 +206,45 @@
     //[self.navigationController pushViewController:vc animated:YES];
     //[tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
-- (void)checkDataChange{
-
-#if 0
-    NSArray * dataArray = [NSArray arrayWithObject:
-                           [NSDictionary dictionary]]
-    mDataDict = [NSDictionary dictionaryWithObjectsAndKeys:
-                 
-                 , nil];
-#endif
-    NSMutableArray *data = [mDataDict objectForKey:mMothDateKey] ;
-    if(data== nil){
-        [self refulshNetData];
-    }
-    else{
-        [self updateUIData:data];
-    }
-
-}
+//- (void)checkDataChange{
+//
+//#if 0
+//    NSArray * dataArray = [NSArray arrayWithObject:
+//                           [NSDictionary dictionary]]
+//    mDataDict = [NSDictionary dictionaryWithObjectsAndKeys:
+//                 
+//                 , nil];
+//#endif
+////    NSMutableArray *data = [mDataDict objectForKey:mMothDateKey] ;
+////    if(data== nil){
+////        [self refulshNetData];
+////    }
+////    else{
+////        if(!isNeedReflush)
+////            return;
+////        [self updateUIData:data];
+////    }
+//    [super]
+//}
 
 - (void)didTouchPreMoth:(NSDictionary*)day{
-    mCurrDate.year = [[day objectForKey:@"year"]intValue];
-    mCurrDate.month = [[day objectForKey:@"month"]intValue];
-     self.mMothDateKey = [NSString stringWithFormat:@"%d%02d",mCurrDate.year,mCurrDate.month];
-    [self checkDataChange];
+//    isNeedReflush = YES;
+//    mCurrDate.year = [[day objectForKey:@"year"]intValue];
+//    mCurrDate.month = [[day objectForKey:@"month"]intValue];
+//     self.mMothDateKey = [NSString stringWithFormat:@"%d%02d",mCurrDate.year,mCurrDate.month];
+//    
+//    [self checkDataChange];
+    [super didTouchAfterMoth:day];
 }
 - (void)didTouchAfterMoth:(NSDictionary *)day{
 
-    mCurrDate.year = [[day objectForKey:@"year"]intValue];
-    mCurrDate.month = [[day objectForKey:@"month"]intValue];
-     self.mMothDateKey = [NSString stringWithFormat:@"%d%02d",mCurrDate.year,mCurrDate.month];
-    [self checkDataChange];
+//    isNeedReflush = YES;
+//    mCurrDate.year = [[day objectForKey:@"year"]intValue];
+//    mCurrDate.month = [[day objectForKey:@"month"]intValue];
+//     self.mMothDateKey = [NSString stringWithFormat:@"%d%02d",mCurrDate.year,mCurrDate.month];
+//    [self checkDataChange];
 
-
+    [super didTouchAfterMoth:day];
 }
 
 - (void)didReceiveMemoryWarning
@@ -269,14 +269,14 @@
     CarServiceNetDataMgr *cardShopMgr = [CarServiceNetDataMgr getSingleTone];
     
     //[self startShowLoadingView];
-    NSString *mothParm = [NSString stringWithFormat:@"%d%02d",mCurrDate.year,mCurrDate.month];
+    NSString *mothParm = [NSString stringWithFormat:@"%d%02d",self.mCurrDate.year,self.mCurrDate.month];
     kNetStartShow(@"数据加载...", self.view);
     //[super shouldLoadNewerData:tweetieTableView];
     NSDictionary *param = [NSDictionary dictionaryWithObjectsAndKeys:
                            //catStr,@"cat",
                            //mothParm, @"month",
-                           [NSString stringWithFormat:@"%d",mCurrDate.year],@"year",
-                           [NSString stringWithFormat:@"%d",mCurrDate.month],@"month",
+                           [NSString stringWithFormat:@"%d",self.mCurrDate.year],@"year",
+                           [NSString stringWithFormat:@"%d",self.mCurrDate.month],@"month",
                            // @"page",@"1",
                            // @"records",@""
                            nil];
@@ -290,7 +290,6 @@
 }
 -(void)didNetDataOK:(NSNotification*)ntf
 {
-    
     id obj = [ntf object];
     id respRequest = [obj objectForKey:@"request"];
     id data = [obj objectForKey:@"data"];
@@ -309,11 +308,12 @@
         
         [tweetieTableView reloadData];
          */
+        isNeedReflush = YES;
         NSArray *netData = data;//[data objectForKey:@"data"];
         
       
         [self  performSelectorOnMainThread:@selector(updateUIData:) withObject:netData waitUntilDone:NO ];
-        [mDataDict setObject:netData forKey:mMothDateKey];
+        [self.mDataDict setObject:netData forKey:self.mMothDateKey];
         //}
         kNetEnd(self.view);
         
@@ -410,13 +410,27 @@
     //Now we're going to optionally set the start and end date of a pre-selected range.
     //This is totally optional.
     [calView  setReLayoutView];
+    isNeedReflush = NO;
 
 }
+//NSComparisonResult comparseData}
 - (void)processData:(NSString*)data withStatus:(int)tag{
 
     if([data isEqualToString:@""])
         return;
     NSArray *okDateArray = [data componentsSeparatedByString:@","];
+    okDateArray = [okDateArray sortedArrayUsingComparator:^(id arg1,id arg2){
+        if([arg1 intValue]>[arg2 intValue]){
+            return NSOrderedDescending;
+        }
+        else if([arg1 intValue]<[arg1 intValue]){
+            return -1;
+        }
+        else{
+            return 0;
+        }
+    }
+        ];
     int startDay = -1;
     int currDay = 0;
     int nextDay = 0;
@@ -454,8 +468,8 @@
 
      NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
     NSDateComponents *dateParts = [[NSDateComponents alloc] init];
-    [dateParts setMonth:mCurrDate.month];
-    [dateParts setYear:mCurrDate.year];
+    [dateParts setMonth:self.mCurrDate.month];
+    [dateParts setYear:self.mCurrDate.year];
     [dateParts setDay:sday];
     
     NSDate *sDate = [calendar dateFromComponents:dateParts];
@@ -463,8 +477,8 @@
     
     
     dateParts = [[NSDateComponents alloc] init];
-    [dateParts setMonth:mCurrDate.month];
-    [dateParts setYear:mCurrDate.year];
+    [dateParts setMonth:self.mCurrDate.month];
+    [dateParts setYear:self.mCurrDate.year];
     [dateParts setDay:eday];
     
     NSDate *eDate = [calendar dateFromComponents:dateParts];

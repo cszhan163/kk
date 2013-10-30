@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		042631C418216A2D0062CC15 /* BaoMonthBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 042631C318216A2D0062CC15 /* BaoMonthBaseViewController.m */; };
 		BDC37ECD181FAF0E00A4CB18 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDC37ECC181FAF0E00A4CB18 /* Foundation.framework */; };
 		BDC37ED2181FAF0E00A4CB18 /* BUILIb.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = BDC37ED1181FAF0E00A4CB18 /* BUILIb.h */; };
 		BDC37ED4181FAF0E00A4CB18 /* BUILIb.m in Sources */ = {isa = PBXBuildFile; fileRef = BDC37ED3181FAF0E00A4CB18 /* BUILIb.m */; };
@@ -67,6 +68,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		042631C218216A2D0062CC15 /* BaoMonthBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaoMonthBaseViewController.h; sourceTree = "<group>"; };
+		042631C318216A2D0062CC15 /* BaoMonthBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaoMonthBaseViewController.m; sourceTree = "<group>"; };
 		BDC37EC9181FAF0E00A4CB18 /* libBUILIb.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libBUILIb.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		BDC37ECC181FAF0E00A4CB18 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		BDC37ED0181FAF0E00A4CB18 /* BUILIb-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BUILIb-Prefix.pch"; sourceTree = "<group>"; };
@@ -364,6 +367,8 @@
 				BDC37F62181FB16800A4CB18 /* CarDriveOilDataViewController.m */,
 				BDC37F63181FB16800A4CB18 /* SubNavItemBaseViewController.h */,
 				BDC37F64181FB16800A4CB18 /* SubNavItemBaseViewController.m */,
+				042631C218216A2D0062CC15 /* BaoMonthBaseViewController.h */,
+				042631C318216A2D0062CC15 /* BaoMonthBaseViewController.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -470,6 +475,7 @@
 				BDC37FA0181FB16800A4CB18 /* SubNavItemBaseViewController.m in Sources */,
 				BDC37FA1181FB16800A4CB18 /* CarServiceNetDataMgr.m in Sources */,
 				BDC981B01820F432005DD720 /* NSDate+Ex.m in Sources */,
+				042631C418216A2D0062CC15 /* BaoMonthBaseViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

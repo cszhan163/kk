@@ -27,7 +27,7 @@
 #import "CarServiceViewController.h"
 #import "CarStatusViewController.h"
 
-//#define USER_LOGIN
+#define USER_LOGIN
 
 #ifdef  USER_LOGIN
 //#import "LoginAndResignMainViewController.h"
@@ -84,8 +84,6 @@ static UIButton *popup = nil;
 	/*
 	NSNotificationCenter *ntfCenter = [NSNotificationCenter defaultCenter];
 	[ntfCenter addObserver:self selector:@selector(change name:@"" object:];
-     
-   
      
 	 */
 	//UIView *mainView = [[UIView alloc]initWithFrame:CGRectMake(0.f, 0.f, kDeviceScreenWidth, kDeviceScreenHeight)];
@@ -157,7 +155,6 @@ static UIButton *popup = nil;
         
         [vcontroller1 release];
         [navCtrl1 release];
-    
     }
 //#if 1
 //    UIViewController *vcontroller1 = [[NSClassFromString(<#Class aClass#>)] alloc]init];

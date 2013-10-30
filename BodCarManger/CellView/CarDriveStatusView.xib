@@ -292,6 +292,14 @@
 					</object>
 					<int key="connectionID">54</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">mHeadMonthLabel</string>
+						<reference key="source" ref="191373211"/>
+						<reference key="destination" ref="804516175"/>
+					</object>
+					<int key="connectionID">55</int>
+				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<array key="orderedObjects">
@@ -395,7 +403,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">54</int>
+			<int key="maxID">55</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -404,6 +412,7 @@
 					<string key="superclassName">UIView</string>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="mDriveAnalaysisImageView">UIImageView</string>
+						<string key="mHeadMonthLabel">UILabel</string>
 						<string key="mOilCostAnalaysisImageView">UIImageView</string>
 						<string key="mRunDaysLabel">UILabel</string>
 						<string key="mRunDistanceLabel">UILabel</string>
@@ -415,6 +424,10 @@
 						<object class="IBToOneOutletInfo" key="mDriveAnalaysisImageView">
 							<string key="name">mDriveAnalaysisImageView</string>
 							<string key="candidateClassName">UIImageView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="mHeadMonthLabel">
+							<string key="name">mHeadMonthLabel</string>
+							<string key="candidateClassName">UILabel</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="mOilCostAnalaysisImageView">
 							<string key="name">mOilCostAnalaysisImageView</string>

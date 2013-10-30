@@ -167,6 +167,11 @@ static ZCSNetClientNetInterfaceMgr *dressMemoInterfaceMgr = nil;
 #ifdef Router_Test
     cardId = @"SHD05728";
 #endif
+   
+    routerId = @"1382912362";
+    startTime = @"20131028072900";
+    //		eiInfo.set("startTime", "20131028072900");
+    
     EiInfo *inInfo = [self getCommIPlant4MParamByServiceToken:@"VEMT02"];
     //[inInfo set:@"year" value:[param objectForKey:@"year"]];
     //[inInfo set:SERVICE_TOKEN  value:@"VEMT02"]
@@ -233,6 +238,7 @@ static ZCSNetClientNetInterfaceMgr *dressMemoInterfaceMgr = nil;
     [inInfo set:@"month" value:month];
     //[inInfo set:@"day" value:[[NSNumber alloc] initWithInt:16]];
     [self startiPlant4MRequest:inInfo withSuccess:@selector(getDriveDataOk:) withFailed:@selector(getDriveDataFailed:)];
+    return nil;
 }
 - (id)getDriveActionAnalysisDataByCarId:(NSString*)cardId withMoth:(NSString*)month withYear:(NSString*)year{
 #ifdef Drive_TEST
@@ -426,7 +432,7 @@ static ZCSNetClientNetInterfaceMgr *dressMemoInterfaceMgr = nil;
         for(int i = 0;i<rowCount;i++){
             
         }
-        [self sendFinalOkData:data withKey:kResRouterHistory];
+        [self sendFinalOkData:resultDict withKey:kResRouterHistory];
     }
     else{
         
@@ -555,7 +561,30 @@ static ZCSNetClientNetInterfaceMgr *dressMemoInterfaceMgr = nil;
 #pragma mark -
 #pragma mark drive delegate
 - (void)getDriveDataOk:(EiInfo*)info{
-
+    /*
+     totalMilage":247.6959991455078,"safeScore":6,"segments":34,"days":11,"economicScore":6,"toatalFuel":99.19999694824219}
+     */
+    
+    if(info.status == 1){
+       
+        NSLog(@"%@",info.blocks);
+       
+        NSMutableDictionary *resultDict = [NSMutableDictionary dictionary];
+        NSMutableArray *data = [NSMutableArray array];
+        
+        
+        [resultDict setValue:[info get:@"totalMilage"] forKey:@"totalMilage"];
+        [resultDict setValue:[info get:@"safeScore"] forKey:@"safeScore"];
+        [resultDict setValue:[info get:@"days"] forKey:@"days"];
+        [resultDict setValue:[info get:@"economicScore"] forKey:@"economicScore"];
+        [resultDict setValue:[info get:@"toatalFuel"] forKey:@"toatalFuel"];
+        [resultDict setValue:[info get:@"segments"] forKey:@"segments"];
+        [self sendFinalOkData:resultDict withKey:kResDriveDataMoth];
+    }
+    else{
+    
+    }
+    
 }
 - (void)getDriveDataFailed:(EiInfo*)info{
 

@@ -166,6 +166,8 @@
     if(oiltest>=11) oiltest = 11;
     int drivetest = [[data objectForKey:@"safeScore"]intValue];
     if(drivetest>=11) drivetest = 11;
+    if(oiltest <= 0)
+        oiltest = 1;
     NSString *fileName = [NSString stringWithFormat:@"dashboard%d.png",oiltest];
     UIImageWithFileName(UIImage *bgImage, fileName);
     carDetailPenalView.mOilCostAnalaysisImageView.image = bgImage;

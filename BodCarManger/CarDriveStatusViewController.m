@@ -29,8 +29,9 @@
 @interface CarMonitorViewController()<BSPreviewScrollViewDelegate>{
 
     UILabel *panelHeaderLabel;
-    
+    BSPreviewScrollView *scrollerView;
     CarMaintainanceView *carMaintainanceView;
+    DateStruct currDate;
 }
 @end
 
@@ -84,12 +85,11 @@
     //bgView.frame = viewRect;
     
     
-    
     CGRect viewRect = CGRectMake(kLeftPendingX,currY,kDeviceScreenWidth-2*kLeftPendingX,kMBAppRealViewHeight-kTopPendingY-60.f-34.f);
     
   
     CGSize size = viewRect.size;//CGSizeMake(viewRect.size, bgImage.size.height/kScale);
-    BSPreviewScrollView *scrollerView = [[BSPreviewScrollView alloc]initWithFrameAndPageSize:CGRectMake(0.f, 0.f,size.width, size.height) pageSize:size];
+    scrollerView = [[BSPreviewScrollView alloc]initWithFrameAndPageSize:CGRectMake(0.f, 0.f,size.width, size.height) pageSize:size];
     scrollerView.delegate = self;
     [scrollerView setBoundces:NO];
     scrollerView.backgroundColor = [UIColor clearColor];
@@ -146,6 +146,8 @@
     [self.view addSubview:carMaintainanceView];
     SafeRelease(carMaintainanceView);
 #endif
+    
+    [scrollerView scrollerRightTonextPageNum:1];
     //[self setRightTextContent:NSLocalizedString(@"Done", @"")];
 	// Do any additional setup after loading the view.
 }
@@ -172,11 +174,37 @@
     return maskView;
 }
 -(int)itemCount:(BSPreviewScrollView*)scrollView{
-    return  2;
+    return  3;
 }
 -(void)didScrollerView:(BSPreviewScrollView*)scrollView{
-
-
+    int curIndex = scrollView.getPageControl.currentPage;
+    if(curIndex>pageIndex){
+        NSString *year = [NSString stringWithFormat:@"%d",self.mCurrDate.year];
+        NSString *month = [NSString stringWithFormat:@"%d",self.mCurrDate.month];
+        if(self.mCurrDate.month>12){
+            year = [NSString stringWithFormat:@"%d",self.mCurrDate.year+1];
+            month = @"1";
+        }
+        NSDictionary *day = [NSDictionary dictionaryWithObjectsAndKeys:
+                              year,@"year",
+                             month,@"month",nil];
+        [super didTouchAfterMoth:day];
+    }
+    else if(curIndex<pageIndex){
+        
+        NSString *year = [NSString stringWithFormat:@"%d",self.mCurrDate.year];
+        NSString *month = [NSString stringWithFormat:@"%d",self.mCurrDate.month];
+        if(self.mCurrDate.month>12){
+            year = [NSString stringWithFormat:@"%d",self.mCurrDate.year-1];
+            month = @"12";
+        }
+        NSDictionary *day = [NSDictionary dictionaryWithObjectsAndKeys:
+                             year,@"year",
+                             month,@"month",nil];
+        [super didTouchAfterMoth:day];
+        
+    }
+    pageIndex = curIndex;
 }
 
 #pragma mark -
@@ -214,5 +242,94 @@
             break;
     }
 
+}
+#pragma mark -
+#pragma mark net work
+- (void)refulshNetData{
+    
+    CarServiceNetDataMgr *cardShopMgr = [CarServiceNetDataMgr getSingleTone];
+    
+    kNetStartShow(@"数据加载...", self.view);
+    NSString *month = [NSString stringWithFormat:@"%d",self.mCurrDate.month];
+    NSString *year = [NSString stringWithFormat:@"%d",self.mCurrDate.year];
+    self.request = [cardShopMgr  getDriveDataByCarId:@"SHD05728" withMonth:month withYear:year];
+    
+
+}
+-(void)didNetDataOK:(NSNotification*)ntf
+{
+    id obj = [ntf object];
+    id respRequest = [obj objectForKey:@"request"];
+    id data = [obj objectForKey:@"data"];
+    NSString *resKey = [obj objectForKey:@"key"];
+    //NSString *resKey = [respRequest resourceKey];
+    if(self.request ==respRequest && [resKey isEqualToString:kResDriveDataMoth])
+    {
+        NSDictionary *netData = data;//[data objectForKey:@"data"];
+        
+        
+        [self  performSelectorOnMainThread:@selector(updateUIData:) withObject:netData waitUntilDone:NO ];
+        [self.mDataDict setObject:netData forKey:self.mMothDateKey];
+        //}
+        kNetEnd(self.view);
+        
+    }
+    
+}
+-(void)didNetDataFailed:(NSNotification*)ntf
+{
+    //kNetEnd(@"", 2.f);
+    
+    id obj = [ntf object];
+    id respRequest = [obj objectForKey:@"request"];
+    id data = [obj objectForKey:@"data"];
+    NSString *resKey = [obj objectForKey:@"key"];
+    if(self.request ==respRequest && [resKey isEqualToString:kResDriveDataMoth])
+    {
+        kNetEnd(self.view);
+    }
+    if(self.request ==respRequest && [resKey isEqualToString:@"addreply"])
+    {
+        //kNetEnd(self.view);
+    }
+}
+-(void)didRequestFailed:(NSNotification*)ntf
+{
+    //[self stopShowLoadingView];
+    kNetEnd(self.view);
+}
+- (void)updateUIData:(NSDictionary*)netData{
+    NSArray *pageArray= scrollerView.getScrollerPageViews;
+    CarDriveStatusView *carDriveStatusView = [[[pageArray objectAtIndex:pageIndex]subviews]objectAtIndex:0];
+    
+    
+    int oiltest = [[netData objectForKey:@"economicScore"]intValue];
+    if(oiltest>=10) oiltest = 10;
+    int drivetest = [[netData objectForKey:@"safeScore"]intValue];
+    if(drivetest>=10) drivetest = 10;
+    if(oiltest <= 0)
+        oiltest = 1;
+    NSString *fileName = [NSString stringWithFormat:@"dashboard%d.png",oiltest];
+    UIImageWithFileName(UIImage *bgImage, fileName);
+    carDriveStatusView.mOilCostAnalaysisImageView.image = bgImage;
+    fileName = [NSString stringWithFormat:@"dashboard%d.png",drivetest];
+    UIImageWithFileName(bgImage, fileName);
+    carDriveStatusView.mDriveAnalaysisImageView.image = bgImage;
+    
+    
+    
+ 
+    float totalOil = [[netData objectForKey:@"toatalFuel"]floatValue];
+    int day = [[netData objectForKey:@"days" ]intValue];
+    float segment = [[netData objectForKey:@"segments"]floatValue];
+    float totalMile = [[netData objectForKey:@"totalMilage"]floatValue];
+    float avgOil = totalOil/totalMile;
+
+    carDriveStatusView.mRunOilCostLabel.text = [NSString stringWithFormat:@"%0.2lf",avgOil];
+    carDriveStatusView.mRunMoneyCostLabel.text = [NSString stringWithFormat:@"%0.2lf",totalOil];
+    carDriveStatusView.mRunDaysLabel.text =[NSString stringWithFormat:@"%d",day];
+    carDriveStatusView.mRunStepLabel.text = [NSString stringWithFormat:@"%0.2lf",segment];
+    carDriveStatusView.mRunDistanceLabel.text = [NSString stringWithFormat:@"%0.2lf",totalMile];
+    
 }
 @end

@@ -11,6 +11,7 @@
 @interface CarDriveStatusView : UIView
 @property(weak)id target;
 @property(weak)SEL action;
+@property(nonatomic,strong)IBOutlet UILabel *mHeadMonthLabel;
 @property(nonatomic,strong)IBOutlet UILabel *mRunDaysLabel;
 @property(nonatomic,strong)IBOutlet UILabel *mRunDistanceLabel;
 @property(nonatomic,strong)IBOutlet UILabel *mRunStepLabel;

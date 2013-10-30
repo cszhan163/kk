@@ -7,7 +7,7 @@
 //
 
 #import "UISimpleNetBaseViewController.h"
+#import "BaoMonthBaseViewController.h"
+@interface CarRouterDateViewController : BaoMonthBaseViewController
 
-@interface CarRouterDateViewController : UISimpleNetBaseViewController
-@property(nonatomic,assign)DateStruct mCurrDate;
 @end

@@ -17,6 +17,10 @@
 #define kHeaderItemPendingY 8
 
 NSString* gDataArr[] = {@"12.5km",@"11km/h",@"87L",@"3h"};
+@interface CarRouterViewController(){
+    
+}
+@end
 @implementation CarRouterViewController
 @synthesize currDate;
 @synthesize currDateStruct;
@@ -58,8 +62,6 @@ NSString* gDataArr[] = {@"12.5km",@"11km/h",@"87L",@"3h"};
     [self setHiddenRightBtn:NO];
     [self setHiddenLeftBtn:NO];
     
-    
-  
     //[self setRightTextContent:NSLocalizedString(@"Done", @"")];
 	// Do any additional setup after loading the view.
     tweetieTableView.frame = CGRectMake(kLeftPendingX,kMBAppTopToolBarHeight+kTopPendingY,kDeviceScreenWidth-2*kLeftPendingX,kMBAppRealViewHeight-kTopPendingY);
@@ -166,10 +168,11 @@ NSString* gDataArr[] = {@"12.5km",@"11km/h",@"87L",@"3h"};
     
     
     NSDictionary *item = [self.dataArray objectAtIndex:indexPath.row];
-    NSDictionary *data = [item objectForKey:@"DayDetailInfo"];
+    NSDictionary *data = item;//[item objectForKey:@"DayDetailInfo"];
     //cell = (PlantTableViewCell*)cell;
     NSString *flag = [data objectForKey:@"driveflg"];
-    int time = [[data objectForKey:@"time"]intValue];
+    int time = [[data objectForKey:@"drivingLong"]intValue];
+    //baoNormalFormat
     float distance = [[data objectForKey:@"distance"]floatValue];
     float oilvolume = [[data objectForKey:@"oil"]floatValue];
     
@@ -186,10 +189,21 @@ NSString* gDataArr[] = {@"12.5km",@"11km/h",@"87L",@"3h"};
     }
     cell.mTagImageView.frame = CGRectMake(origin.x, origin.y,bgImage.size.width/kScale, bgImage.size.height/kScale);
     
-    NSString *timeStr = [data objectForKey:@"starttime"];
+    NSString *timeStr = [data objectForKey:@"startTime"];
     
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    //[dateFormat setDateStyle:NSDateFormatterMediumStyle];
+    //[dateFormat setTimeStyle:NSDateFormatterFullStyle];
+    [dateFormat setDateFormat:@"yyyyMMddHHmmss"];
+    NSString *temp = [dateFormat stringFromDate:[NSDate date]];
+    NSDate *startDate = [dateFormat dateFromString:timeStr];
+    [dateFormat setDateFormat:@"HH:mm"];
+    NSString *dateStr = [dateFormat stringFromDate:startDate];
+    /*
     NSArray *timeArr  = [timeStr componentsSeparatedByString:@" "];
-    cell.mTagLabel.text = timeArr[1];
+    timeArr[1];
+       */
+    cell.mTagLabel.text = dateStr;//
     
     //time
     origin = cell.mTimeImageView.frame.origin;
@@ -206,9 +220,7 @@ NSString* gDataArr[] = {@"12.5km",@"11km/h",@"87L",@"3h"};
     cell.mTimeImageView.frame = CGRectMake(origin.x, origin.y,bgImage.size.width/kScale, bgImage.size.height/kScale);
     
     
-    cell.mTimeLabel.text = [NSString stringWithFormat:@"%dmin",time];
-    
-    
+    cell.mTimeLabel.text = [NSString stringWithFormat:@"%@",[self baoNormalFormat:[data objectForKey:@"drivingLong"]]];
     cell.mStartLabel.text = [NSString stringWithFormat:@"始: %@",[data objectForKey:@"startadr"]];
     cell.mEndLabel.text = [NSString stringWithFormat:@"终:%@",[data objectForKey:@"endadr"]];
     //[data objectForKey:@"endadr"];
@@ -258,8 +270,8 @@ NSString* gDataArr[] = {@"12.5km",@"11km/h",@"87L",@"3h"};
     CarRouterDetailViewController *vc = [[CarRouterDetailViewController alloc]initWithNibName:nil bundle:nil];
     vc.delegate = self;
     NSDictionary *item = [self.dataArray objectAtIndex:indexPath.row];
-    NSDictionary *data = [item objectForKey:@"DayDetailInfo"];
-    vc.mData = data;
+    //NSDictionary *data = [item objectForKey:@"DayDetailInfo"];
+    vc.mData = item;
     [ZCSNotficationMgr postMSG:kPushNewViewController obj:vc];
     //[self.navigationController pushViewController:vc animated:YES];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -300,9 +312,9 @@ NSString* gDataArr[] = {@"12.5km",@"11km/h",@"87L",@"3h"};
     id obj = [ntf object];
     id respRequest = [obj objectForKey:@"request"];
     id data = [obj objectForKey:@"data"];
-    NSString *resKey = [respRequest resourceKey];
+    NSString *resKey = [obj objectForKey:@"key"];//[respRequest resourceKey];
     //NSString *resKey = [respRequest resourceKey];
-    if(self.request ==respRequest && [resKey isEqualToString:@"getDetailByDay"])
+    if(self.request ==respRequest && [resKey isEqualToString:kResRouterDataDay])
     {
 //        if ([self.externDelegate respondsToSelector:@selector(commentDidSendOK:)]) {
 //            [self.externDelegate commentDidSendOK:self];
@@ -311,7 +323,6 @@ NSString* gDataArr[] = {@"12.5km",@"11km/h",@"87L",@"3h"};
 //        [self dismissModalViewControllerAnimated:YES];
         
         self.dataArray = [data objectForKey:@"data"];
-        
         [tweetieTableView reloadData];
         kNetEnd(self.view);
 
@@ -358,10 +369,26 @@ NSString* gDataArr[] = {@"12.5km",@"11km/h",@"87L",@"3h"};
 			break;
         case 2:
         case 1:{
+            /*
             [ZCSNotficationMgr postMSG:kPopAllViewController obj:nil];
-             [self.navigationController popToRootViewControllerAnimated:YES];
+                    [self.navigationController popToRootViewControllerAnimated:YES];
+                    */
+            
         }
     }
 
+}
+-(NSString*) baoNormalFormat:(NSString*)srcStr{
+    int time = [srcStr intValue];
+    if(time<60){
+        return [NSString stringWithFormat:@"%dmin",time];
+    }
+    else if(time>60 && time<60*24)
+    {
+        return [NSString stringWithFormat:@"%0.1lfhour",time/60.f];
+    }
+    else{
+        return [NSString stringWithFormat:@"%0.1lfday",time/(60.*24)];
+    }
 }
 @end

@@ -110,9 +110,13 @@
 #define kResRouterDataMoth              @"queryTripCalanderMonth"
 #define kResRouterDataDay               @"queryTripDay"
 #define kResRouterLatest                @"queryLastTripID"
+#define kResRouterHistory               @"queryTripHistory"
 //drive
 
 #define kResDriveDataMoth               @"queryDriveMonthData"
+
+//check
+#define kResCarCheckData                @"queryConData"
 
 #endif
 

@@ -15,8 +15,10 @@
 #import "UIComUtil.h"
 #import "ZCSNotficationMgr.h"
 #import "AppConfig.h"
-//#import "AppSetting.h"
-#define  kUserDidResignOK           @"userDidResignOk"
+#import "UIFrameworkMSG.h"
+#import "UserConfig.h"
+#import "AppSetting.h"
+//#define  kUserDidResignOK           @"userDidResignOk"
 typedef struct dateSturct{
     int year;
     int month;

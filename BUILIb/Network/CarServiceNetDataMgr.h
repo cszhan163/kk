@@ -31,7 +31,7 @@ ZCSNetClientNetInterfaceMgrDelegate>
 
 - (id)getRouterLatestData:(NSString*)cardId;
 - (id)getRouterRealTimeData:(NSString*)cardId;
-- (id)getRouterLatestData:(NSString*)cardId;
+- (id)getRouterHistoryData:(NSString*)cardId withRouterId:(NSString*)routerId withStartTime:(NSString*)startTime;
 
 - (id)getRouterDataByMonth:(NSString*)month withYear:(NSString*)year;
 - (id)getRouterDataByDay:(NSString*)day withMoth:(NSString*)month withYear:(NSString*)year;

@@ -72,19 +72,6 @@
          shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "BodCarManger/CarRouterDateViewController.m"
-         timestampString = "404734679.996205"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "325"
-         endingLineNumber = "325"
-         landmarkName = "-didNetDataFailed:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
          filePath = "../BUILIb/Network/CarServiceNetDataMgr.m"
          timestampString = "404734835.253894"
          startingColumnNumber = "9223372036854775807"
@@ -92,6 +79,19 @@
          startingLineNumber = "322"
          endingLineNumber = "322"
          landmarkName = "-sendFinalFailedData:withKey:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "BodCarManger/CarRouterDetailViewController.m"
+         timestampString = "404824066.447859"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "209"
+         endingLineNumber = "209"
+         landmarkName = "-didNetDataOK:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

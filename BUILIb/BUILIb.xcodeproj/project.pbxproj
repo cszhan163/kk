@@ -13,7 +13,6 @@
 		BDC37F68181FB16800A4CB18 /* MapView.m in Sources */ = {isa = PBXBuildFile; fileRef = BDC37EDC181FB16700A4CB18 /* MapView.m */; };
 		BDC37F69181FB16800A4CB18 /* Place.m in Sources */ = {isa = PBXBuildFile; fileRef = BDC37EDE181FB16700A4CB18 /* Place.m */; };
 		BDC37F6A181FB16800A4CB18 /* PlaceMark.m in Sources */ = {isa = PBXBuildFile; fileRef = BDC37EE0181FB16700A4CB18 /* PlaceMark.m */; };
-		BDC37F6B181FB16800A4CB18 /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = BDC37EE2181FB16700A4CB18 /* RegexKitLite.m */; };
 		BDC37F6C181FB16800A4CB18 /* OCCalendarView.m in Sources */ = {isa = PBXBuildFile; fileRef = BDC37EE6181FB16700A4CB18 /* OCCalendarView.m */; };
 		BDC37F6D181FB16800A4CB18 /* OCCalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BDC37EE8181FB16700A4CB18 /* OCCalendarViewController.m */; };
 		BDC37F6E181FB16800A4CB18 /* OCDaysModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BDC37EEA181FB16700A4CB18 /* OCDaysModel.m */; };
@@ -30,13 +29,9 @@
 		BDC37F83181FB16800A4CB18 /* UIImage+ProportionalFill.m in Sources */ = {isa = PBXBuildFile; fileRef = BDC37F1E181FB16700A4CB18 /* UIImage+ProportionalFill.m */; };
 		BDC37F84181FB16800A4CB18 /* UIImage+Tint.m in Sources */ = {isa = PBXBuildFile; fileRef = BDC37F20181FB16700A4CB18 /* UIImage+Tint.m */; };
 		BDC37F88181FB16800A4CB18 /* CarCheckTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BDC37F2C181FB16700A4CB18 /* CarCheckTableViewCell.m */; };
-		BDC37F89181FB16800A4CB18 /* CarDetailPenalView.m in Sources */ = {isa = PBXBuildFile; fileRef = BDC37F2E181FB16700A4CB18 /* CarDetailPenalView.m */; };
 		BDC37F8A181FB16800A4CB18 /* CarDriveOilTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BDC37F31181FB16700A4CB18 /* CarDriveOilTableViewCell.m */; };
-		BDC37F8B181FB16800A4CB18 /* CarDriveStatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = BDC37F33181FB16700A4CB18 /* CarDriveStatusView.m */; };
 		BDC37F8C181FB16800A4CB18 /* ExcellLikeCellBase.m in Sources */ = {isa = PBXBuildFile; fileRef = BDC37F36181FB16700A4CB18 /* ExcellLikeCellBase.m */; };
-		BDC37F8D181FB16800A4CB18 /* FriendItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BDC37F38181FB16700A4CB18 /* FriendItemCell.m */; };
 		BDC37F8E181FB16800A4CB18 /* MessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BDC37F3B181FB16700A4CB18 /* MessageTableViewCell.m */; };
-		BDC37F8F181FB16800A4CB18 /* PlantTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BDC37F3D181FB16700A4CB18 /* PlantTableViewCell.m */; };
 		BDC37F90181FB16800A4CB18 /* SettingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BDC37F40181FB16700A4CB18 /* SettingTableViewCell.m */; };
 		BDC37F91181FB16800A4CB18 /* DriveDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BDC37F43181FB16700A4CB18 /* DriveDataModel.m */; };
 		BDC37F92181FB16800A4CB18 /* AMArcColorDrawView.m in Sources */ = {isa = PBXBuildFile; fileRef = BDC37F47181FB16700A4CB18 /* AMArcColorDrawView.m */; };
@@ -55,7 +50,7 @@
 		BDC37F9F181FB16800A4CB18 /* CarDriveOilDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BDC37F62181FB16800A4CB18 /* CarDriveOilDataViewController.m */; };
 		BDC37FA0181FB16800A4CB18 /* SubNavItemBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BDC37F64181FB16800A4CB18 /* SubNavItemBaseViewController.m */; };
 		BDC37FA1181FB16800A4CB18 /* CarServiceNetDataMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = BDC37F67181FB16800A4CB18 /* CarServiceNetDataMgr.m */; };
-		BDC981A3181FC7B0005DD720 /* iPlat4M_framework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDC981A2181FC7B0005DD720 /* iPlat4M_framework.framework */; };
+		BDC981B01820F432005DD720 /* NSDate+Ex.m in Sources */ = {isa = PBXBuildFile; fileRef = BDC981AF1820F432005DD720 /* NSDate+Ex.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -83,8 +78,6 @@
 		BDC37EDE181FB16700A4CB18 /* Place.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Place.m; sourceTree = "<group>"; };
 		BDC37EDF181FB16700A4CB18 /* PlaceMark.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceMark.h; sourceTree = "<group>"; };
 		BDC37EE0181FB16700A4CB18 /* PlaceMark.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceMark.m; sourceTree = "<group>"; };
-		BDC37EE1181FB16700A4CB18 /* RegexKitLite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegexKitLite.h; sourceTree = "<group>"; };
-		BDC37EE2181FB16700A4CB18 /* RegexKitLite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegexKitLite.m; sourceTree = "<group>"; };
 		BDC37EE4181FB16700A4CB18 /* OCCalendarDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCCalendarDelegate.h; sourceTree = "<group>"; };
 		BDC37EE5181FB16700A4CB18 /* OCCalendarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCCalendarView.h; sourceTree = "<group>"; };
 		BDC37EE6181FB16700A4CB18 /* OCCalendarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCCalendarView.m; sourceTree = "<group>"; };
@@ -119,24 +112,12 @@
 		BDC37F20181FB16700A4CB18 /* UIImage+Tint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Tint.m"; sourceTree = "<group>"; };
 		BDC37F2B181FB16700A4CB18 /* CarCheckTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarCheckTableViewCell.h; sourceTree = "<group>"; };
 		BDC37F2C181FB16700A4CB18 /* CarCheckTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarCheckTableViewCell.m; sourceTree = "<group>"; };
-		BDC37F2D181FB16700A4CB18 /* CarDetailPenalView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarDetailPenalView.h; sourceTree = "<group>"; };
-		BDC37F2E181FB16700A4CB18 /* CarDetailPenalView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarDetailPenalView.m; sourceTree = "<group>"; };
-		BDC37F2F181FB16700A4CB18 /* CarDetailPenalView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CarDetailPenalView.xib; sourceTree = "<group>"; };
 		BDC37F30181FB16700A4CB18 /* CarDriveOilTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarDriveOilTableViewCell.h; sourceTree = "<group>"; };
 		BDC37F31181FB16700A4CB18 /* CarDriveOilTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarDriveOilTableViewCell.m; sourceTree = "<group>"; };
-		BDC37F32181FB16700A4CB18 /* CarDriveStatusView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarDriveStatusView.h; sourceTree = "<group>"; };
-		BDC37F33181FB16700A4CB18 /* CarDriveStatusView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarDriveStatusView.m; sourceTree = "<group>"; };
-		BDC37F34181FB16700A4CB18 /* CarDriveStatusView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CarDriveStatusView.xib; sourceTree = "<group>"; };
 		BDC37F35181FB16700A4CB18 /* ExcellLikeCellBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExcellLikeCellBase.h; sourceTree = "<group>"; };
 		BDC37F36181FB16700A4CB18 /* ExcellLikeCellBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExcellLikeCellBase.m; sourceTree = "<group>"; };
-		BDC37F37181FB16700A4CB18 /* FriendItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendItemCell.h; sourceTree = "<group>"; };
-		BDC37F38181FB16700A4CB18 /* FriendItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendItemCell.m; sourceTree = "<group>"; };
-		BDC37F39181FB16700A4CB18 /* FriendItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FriendItemCell.xib; sourceTree = "<group>"; };
 		BDC37F3A181FB16700A4CB18 /* MessageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageTableViewCell.h; sourceTree = "<group>"; };
 		BDC37F3B181FB16700A4CB18 /* MessageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageTableViewCell.m; sourceTree = "<group>"; };
-		BDC37F3C181FB16700A4CB18 /* PlantTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlantTableViewCell.h; sourceTree = "<group>"; };
-		BDC37F3D181FB16700A4CB18 /* PlantTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlantTableViewCell.m; sourceTree = "<group>"; };
-		BDC37F3E181FB16700A4CB18 /* PlantTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlantTableViewCell.xib; sourceTree = "<group>"; };
 		BDC37F3F181FB16700A4CB18 /* SettingTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingTableViewCell.h; sourceTree = "<group>"; };
 		BDC37F40181FB16700A4CB18 /* SettingTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingTableViewCell.m; sourceTree = "<group>"; };
 		BDC37F42181FB16700A4CB18 /* DriveDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DriveDataModel.h; sourceTree = "<group>"; };
@@ -173,7 +154,8 @@
 		BDC37F64181FB16800A4CB18 /* SubNavItemBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubNavItemBaseViewController.m; sourceTree = "<group>"; };
 		BDC37F66181FB16800A4CB18 /* CarServiceNetDataMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarServiceNetDataMgr.h; sourceTree = "<group>"; };
 		BDC37F67181FB16800A4CB18 /* CarServiceNetDataMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarServiceNetDataMgr.m; sourceTree = "<group>"; };
-		BDC981A2181FC7B0005DD720 /* iPlat4M_framework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iPlat4M_framework.framework; path = ../iPlat4M_framework.framework; sourceTree = "<group>"; };
+		BDC981AE1820F432005DD720 /* NSDate+Ex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Ex.h"; sourceTree = "<group>"; };
+		BDC981AF1820F432005DD720 /* NSDate+Ex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Ex.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -181,7 +163,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BDC981A3181FC7B0005DD720 /* iPlat4M_framework.framework in Frameworks */,
 				BDC37ECD181FAF0E00A4CB18 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -192,7 +173,6 @@
 		BDC37EC0181FAF0E00A4CB18 = {
 			isa = PBXGroup;
 			children = (
-				BDC981A2181FC7B0005DD720 /* iPlat4M_framework.framework */,
 				BDC37EDA181FB16700A4CB18 /* Map */,
 				BDC37EE3181FB16700A4CB18 /* OCCalendarView */,
 				BDC37EF2181FB16700A4CB18 /* DACircularProgress */,
@@ -251,8 +231,6 @@
 				BDC37EDE181FB16700A4CB18 /* Place.m */,
 				BDC37EDF181FB16700A4CB18 /* PlaceMark.h */,
 				BDC37EE0181FB16700A4CB18 /* PlaceMark.m */,
-				BDC37EE1181FB16700A4CB18 /* RegexKitLite.h */,
-				BDC37EE2181FB16700A4CB18 /* RegexKitLite.m */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -292,6 +270,8 @@
 		BDC37F0D181FB16700A4CB18 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				BDC981AE1820F432005DD720 /* NSDate+Ex.h */,
+				BDC981AF1820F432005DD720 /* NSDate+Ex.m */,
 				BDC37F0E181FB16700A4CB18 /* KokTool.h */,
 				BDC37F0F181FB16700A4CB18 /* KokTool.mm */,
 				BDC37F14181FB16700A4CB18 /* NSString+Ex.h */,
@@ -315,24 +295,12 @@
 			children = (
 				BDC37F2B181FB16700A4CB18 /* CarCheckTableViewCell.h */,
 				BDC37F2C181FB16700A4CB18 /* CarCheckTableViewCell.m */,
-				BDC37F2D181FB16700A4CB18 /* CarDetailPenalView.h */,
-				BDC37F2E181FB16700A4CB18 /* CarDetailPenalView.m */,
-				BDC37F2F181FB16700A4CB18 /* CarDetailPenalView.xib */,
 				BDC37F30181FB16700A4CB18 /* CarDriveOilTableViewCell.h */,
 				BDC37F31181FB16700A4CB18 /* CarDriveOilTableViewCell.m */,
-				BDC37F32181FB16700A4CB18 /* CarDriveStatusView.h */,
-				BDC37F33181FB16700A4CB18 /* CarDriveStatusView.m */,
-				BDC37F34181FB16700A4CB18 /* CarDriveStatusView.xib */,
 				BDC37F35181FB16700A4CB18 /* ExcellLikeCellBase.h */,
 				BDC37F36181FB16700A4CB18 /* ExcellLikeCellBase.m */,
-				BDC37F37181FB16700A4CB18 /* FriendItemCell.h */,
-				BDC37F38181FB16700A4CB18 /* FriendItemCell.m */,
-				BDC37F39181FB16700A4CB18 /* FriendItemCell.xib */,
 				BDC37F3A181FB16700A4CB18 /* MessageTableViewCell.h */,
 				BDC37F3B181FB16700A4CB18 /* MessageTableViewCell.m */,
-				BDC37F3C181FB16700A4CB18 /* PlantTableViewCell.h */,
-				BDC37F3D181FB16700A4CB18 /* PlantTableViewCell.m */,
-				BDC37F3E181FB16700A4CB18 /* PlantTableViewCell.xib */,
 				BDC37F3F181FB16700A4CB18 /* SettingTableViewCell.h */,
 				BDC37F40181FB16700A4CB18 /* SettingTableViewCell.m */,
 			);
@@ -464,7 +432,6 @@
 				BDC37F68181FB16800A4CB18 /* MapView.m in Sources */,
 				BDC37F69181FB16800A4CB18 /* Place.m in Sources */,
 				BDC37F6A181FB16800A4CB18 /* PlaceMark.m in Sources */,
-				BDC37F6B181FB16800A4CB18 /* RegexKitLite.m in Sources */,
 				BDC37F6C181FB16800A4CB18 /* OCCalendarView.m in Sources */,
 				BDC37F6D181FB16800A4CB18 /* OCCalendarViewController.m in Sources */,
 				BDC37F6E181FB16800A4CB18 /* OCDaysModel.m in Sources */,
@@ -481,13 +448,9 @@
 				BDC37F83181FB16800A4CB18 /* UIImage+ProportionalFill.m in Sources */,
 				BDC37F84181FB16800A4CB18 /* UIImage+Tint.m in Sources */,
 				BDC37F88181FB16800A4CB18 /* CarCheckTableViewCell.m in Sources */,
-				BDC37F89181FB16800A4CB18 /* CarDetailPenalView.m in Sources */,
 				BDC37F8A181FB16800A4CB18 /* CarDriveOilTableViewCell.m in Sources */,
-				BDC37F8B181FB16800A4CB18 /* CarDriveStatusView.m in Sources */,
 				BDC37F8C181FB16800A4CB18 /* ExcellLikeCellBase.m in Sources */,
-				BDC37F8D181FB16800A4CB18 /* FriendItemCell.m in Sources */,
 				BDC37F8E181FB16800A4CB18 /* MessageTableViewCell.m in Sources */,
-				BDC37F8F181FB16800A4CB18 /* PlantTableViewCell.m in Sources */,
 				BDC37F90181FB16800A4CB18 /* SettingTableViewCell.m in Sources */,
 				BDC37F91181FB16800A4CB18 /* DriveDataModel.m in Sources */,
 				BDC37F92181FB16800A4CB18 /* AMArcColorDrawView.m in Sources */,
@@ -506,6 +469,7 @@
 				BDC37F9F181FB16800A4CB18 /* CarDriveOilDataViewController.m in Sources */,
 				BDC37FA0181FB16800A4CB18 /* SubNavItemBaseViewController.m in Sources */,
 				BDC37FA1181FB16800A4CB18 /* CarServiceNetDataMgr.m in Sources */,
+				BDC981B01820F432005DD720 /* NSDate+Ex.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

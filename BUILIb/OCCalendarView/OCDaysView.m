@@ -274,7 +274,7 @@
 -(NSDictionary*)getTouchDayViewByPoint:(CGPoint)point withParentView:(UIView*)parentView{
     
     NSDictionary *day = [mDaysModel getPointDayValueByPoint:point fromView:parentView toView:self];
-    NE_LOG("%@",[day description]);
+    NE_LOG(@"%@",[day description]);
     if(delegate &&[delegate respondsToSelector:@selector(didChooseViewDay:)]){
         [delegate didChooseViewDay:day];
     }

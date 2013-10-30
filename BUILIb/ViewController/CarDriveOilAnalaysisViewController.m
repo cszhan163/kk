@@ -31,9 +31,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-   
-   
-    
+    self.delegate = self;
 	// Do any additional setup after loading the view.
 }
 
@@ -82,7 +80,24 @@
 - (void)setNeedDisplaySubView{
     
 }
-//-(void)didSelectorTopNavItem:(id)navObj{
-//    [self selectTopNavItem:navObj];
-//}
+#pragma mark -
+-(void)didSelectorTopNavigationBarItem:(id)sender{
+    switch ([sender tag]) {
+        case  0:
+            //[self.navigationController popViewControllerAnimated:YES];// animated:<#(BOOL)animated#>
+			break;
+        case 2:
+        case 1:{
+            NSLog(@"%d",navItemCtrl.getTabNavBar.getTabNavSelectIndex);
+            if(navItemCtrl.getTabNavBar.getTabNavSelectIndex == 0){
+                if([navItemCtrl.currentViewController respondsToSelector:@selector(didSelectorTopNavItem:)]){
+                    
+                    //[navItemCtrl.currentViewController didSelectorTopNavItem:sender withButton:self.right];
+                    
+                }
+            }
+        }
+    }
+}
+
 @end

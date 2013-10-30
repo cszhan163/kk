@@ -28,5 +28,6 @@
 
 -(void) showRouteFrom: (Place*) f to:(Place*) t;
 
+- (void)showRouteWithPointsData:(NSArray*)points;
 
 @end

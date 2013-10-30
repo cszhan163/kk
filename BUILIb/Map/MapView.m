@@ -138,7 +138,10 @@
 	[self updateRouteView];
 	[self centerMap];
 }
-
+- (void)showRouteWithPointsData:(NSArray*)points{
+    [self updateRouteView];
+    [self centerMap];
+}
 -(void) updateRouteView {
     [mapView removeOverlays:mapView.overlays];
 

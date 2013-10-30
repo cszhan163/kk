@@ -162,14 +162,20 @@ static ZCSNetClientNetInterfaceMgr *dressMemoInterfaceMgr = nil;
     //[inInfo set:@"vin" value:cardId];
     [self startiPlant4MRequest:inInfo withSuccess:@selector(getRouterLatestDataOk:) withFailed:@selector(getRouterLatestDataFaild:)];
 }
-- (id)getRouterHistoryData:(NSString*)cardId{
+- (id)getRouterHistoryData:(NSString*)cardId withRouterId:(NSString*)routerId withStartTime:(NSString*)startTime {
     //queryTripHistory
+#ifdef Router_Test
+    cardId = @"SHD05728";
+#endif
     EiInfo *inInfo = [self getCommIPlant4MParamByServiceToken:@"VEMT02"];
     //[inInfo set:@"year" value:[param objectForKey:@"year"]];
     //[inInfo set:SERVICE_TOKEN  value:@"VEMT02"]
-    [inInfo set:METHOD_TOKEN value:@"queryTripHistory"]; // 接口名
+    [inInfo set:METHOD_TOKEN value:kResRouterHistory]; // 接口名
     [inInfo set:@"vin" value:cardId];
+    [inInfo set:@"startTime" value:startTime];
+    [inInfo set:@"tripID"  value:routerId];
     [self startiPlant4MRequest:inInfo withSuccess:@selector(getRouterHistoryDataOk:) withFailed:@selector(getRouterHistoryDataFailed:)];
+    return nil;
 }
 - (id)getRouterDataByMonth:(NSString*)month withYear:(NSString*)year{
     //queryDriveMonthData
@@ -269,7 +275,7 @@ static ZCSNetClientNetInterfaceMgr *dressMemoInterfaceMgr = nil;
     //queryConData
     EiInfo *inInfo = [self getCommIPlant4MParam];
     //[inInfo set:@"year" value:[param objectForKey:@"year"]];
-    [inInfo set:METHOD_TOKEN value:@"queryConData"]; // 接口名
+    [inInfo set:METHOD_TOKEN value:kResCarCheckData]; // 接口名
     //[inInfo set:@"vin" value:cardId];
     [self startiPlant4MRequest:inInfo withSuccess:@selector(getCarCheckDataOk:) withFailed:@selector(getCarCheckDataFailed:)];
 }
@@ -400,7 +406,32 @@ static ZCSNetClientNetInterfaceMgr *dressMemoInterfaceMgr = nil;
     
 }
 - (void)getRouterHistoryDataOk:(EiInfo*)info{
-    
+    if(info.status == 1){
+        //        tripCalanderDay
+        //        {
+        //            int          day;              //1~31
+        //            int          status;           //1：行程无故障或报警
+        //            //2：行程有故障或报警
+        //        }
+        NSLog(@"%@",info.blocks);
+        //infor.blocks =
+        /*
+         [[item objectForKey:@"day"]intValue];
+         flag = [item objectForKey:@"driveflg"];
+         */
+        NSMutableDictionary *resultDict = [NSMutableDictionary dictionary];
+        NSMutableArray *data = [NSMutableArray array];
+        EiBlock *tripInfo = [info getBlock:@"tripCalanderDay"]; // block型返回值
+        int rowCount = [tripInfo getRowCount];
+        for(int i = 0;i<rowCount;i++){
+            
+        }
+        [self sendFinalOkData:data withKey:kResRouterHistory];
+    }
+    else{
+        
+        [self sendFinalFailedData:@"" withKey:kResRouterHistory];
+    }
     
 }
 - (void)getRouterHistoryDataFailed:(EiInfo*)info{
@@ -471,26 +502,50 @@ static ZCSNetClientNetInterfaceMgr *dressMemoInterfaceMgr = nil;
          [[item objectForKey:@"day"]intValue];
          flag = [item objectForKey:@"driveflg"];
          */
+        NSMutableDictionary *resultDict = [NSMutableDictionary dictionary];
         NSMutableArray *data = [NSMutableArray array];
         
         NSNumber *dayMilage = [info get:@"dayMilage"]; // 取出返回值，非block的类型
         NSNumber *dayFuel = [info get:@"dayFuel"];
         NSNumber *dayDrivinglong = [info get:@"dayDrivinglong"];
         
+        [resultDict setValue:dayMilage forKey:@"dayMil"];
+        [resultDict setValue:dayFuel forKey:@"dayFuel"];
+        [resultDict setValue:dayDrivinglong forKey:@"dayDrive"];
+        [resultDict setValue:[info get:@"dayAverageSpeed"] forKey:@"daySpeed"];
+        
         EiBlock *tripInfo = [info getBlock:@"tripInfo"]; // block型返回值
         int rowCount = [tripInfo getRowCount];
         for(int i = 0;i<rowCount;i++){
             NSMutableDictionary *row = [tripInfo getRow:i]; // block有多个row，每个为一个NSMutableDictionary对象
             //NSNumber *tripId = [row objectForKey:@"tripId"]; // 通过objectForKey取出
+            /*
+             cell.mStartLabel.text = [NSString stringWithFormat:@"始: %@",[data objectForKey:@"startadr"]];
+             cell.mEndLabel.text = [NSString stringWithFormat:@"终:%@",[data objectForKey:@"endadr"]];
+             
+             int oiltest = [[data objectForKey:@"oiltest"]intValue];
+             if(oiltest>=11) oiltest = 11;
+             int drivetest = [[data objectForKey:@"drivetest"]intValue];
+                    */
+            NSString *startadr2 = [NSString stringWithFormat:@"%@,%@",[row objectForKey:@"startLon"],[row objectForKey:@"startLat"]];
+            NSString *endadr2 = [NSString stringWithFormat:@"%@,%@",[row objectForKey:@"endLon"],[row objectForKey:@"endLat"]];
             NSDictionary *item = [NSDictionary dictionaryWithObjectsAndKeys:
-                                  [row objectForKey:@"day"],@"day",
+                                  [row objectForKey:@"tripMileage"],@"distance",
                                   [row objectForKey:@"status"],@"driveflg",
-                                  
-                                  
+                                  [row objectForKey:@"drivingLong"],@"drivingLong",
+                                  [row objectForKey:@"startTime"],@"startTime",
+                                  [row objectForKey:@"endTime"],@"endTime",
+                                   startadr2,@"startadr2",
+                                   endadr2,@"endadr2",
+                                  [row objectForKey:@"fuelWear"],@"oil",
+                                  [row objectForKey:@"tripId"],@"tripId",
+                                  [row objectForKey:@"economicScore"],@"economicScore",
+                                  [row objectForKey:@"safeScore"],@"safeScore",
                                   nil];
             [data addObject:item];
         }
-        [self sendFinalOkData:data  withKey:kResRouterDataDay];
+        [resultDict setValue:data forKey:@"data"];
+        [self sendFinalOkData:resultDict  withKey:kResRouterDataDay];
     }
 }
 - (void)getRouterDataByDayFailed:(EiInfo*)info{

@@ -7,7 +7,7 @@
 //
 
 #import "UIBaseViewController.h"
-
-@interface CarRouterDetailViewController : UIBaseViewController
+#import "UISimpleNetBaseViewController.h"
+@interface CarRouterDetailViewController : UISimpleNetBaseViewController
 @property(nonatomic,strong) NSDictionary*mData;
 @end

@@ -176,14 +176,16 @@
     
 	// Do any additional setup after loading the view.
 }
+#pragma mark -
+#pragma mark - choose day
 - (void)didChooseCalendarDay:(NSDictionary*)day{
     
-    return;
-    if(![self.mHasDataDict objectForKey:[day objectForKey:@"day"]]){
-        
-        return;
-        
-    }
+    
+//    if(![self.mHasDataDict objectForKey:[day objectForKey:@"day"]]){
+//        
+//        return;
+//        
+//    }
     
     NSString *title = [NSString stringWithFormat:@"%@/%@/%@",[day objectForKey:@"year"],[day objectForKey:@"month"],[day objectForKey:@"day"]];
     

@@ -48,7 +48,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
 #if 1
     UIImage *bgImage = nil;
     UIImageWithFileName(bgImage, @"BG.png");
@@ -61,6 +60,7 @@
                                                  )];
     [self setRightBtnHidden:YES];
     [self setHiddenLeftBtn:YES];
+    
     
     CGFloat currY = kMBAppTopToolBarHeight+kTopPendingY;
     
@@ -172,7 +172,7 @@
     return maskView;
 }
 -(int)itemCount:(BSPreviewScrollView*)scrollView{
-    return  3;
+    return  2;
 }
 -(void)didScrollerView:(BSPreviewScrollView*)scrollView{
 
@@ -188,7 +188,12 @@
             {
                 CarDriveOilAnalaysisViewController *carDriveOilAnalaysisVc = [[CarDriveOilAnalaysisViewController
                                                                                alloc]init];
+#if 0
                 [self.navigationController pushViewController:carDriveOilAnalaysisVc animated:YES];
+                
+#else
+                [ZCSNotficationMgr postMSG:kPushNewViewController obj:carDriveOilAnalaysisVc];
+#endif
                 SafeRelease(carDriveOilAnalaysisVc);
             }
             break;
@@ -197,7 +202,11 @@
             CarDriveMannerAnalysisViewController *carDriveMannerAnalysisVc =
             [[CarDriveMannerAnalysisViewController
               alloc]init];
+#if 0
             [self.navigationController pushViewController:carDriveMannerAnalysisVc animated:YES];
+#else
+            [ZCSNotficationMgr postMSG:kPushNewViewController obj:carDriveMannerAnalysisVc]; 
+#endif
             SafeRelease(carDriveMannerAnalysisVc);
         
         }

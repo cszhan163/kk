@@ -183,7 +183,6 @@
 		BD05727017E9A2C100208699 /* dashboard2.png in Resources */ = {isa = PBXBuildFile; fileRef = BD05726517E9A2C100208699 /* dashboard2.png */; };
 		BD05727117E9A2C100208699 /* dashboard1.png in Resources */ = {isa = PBXBuildFile; fileRef = BD05726617E9A2C100208699 /* dashboard1.png */; };
 		BD05728417E9B99600208699 /* CarRouterDateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BD05728317E9B99600208699 /* CarRouterDateViewController.m */; };
-		BD355D6B181A119E0010D16E /* iPlat4M_framework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD355D6A181A119E0010D16E /* iPlat4M_framework.framework */; };
 		BD355D6E181A11CC0010D16E /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BD355D6D181A11CC0010D16E /* libxml2.dylib */; };
 		BD355D70181A11DD0010D16E /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BD355D6F181A11DD0010D16E /* libsqlite3.dylib */; };
 		BDC37E91181CEF8100A4CB18 /* libstdc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BDC37E90181CEF8100A4CB18 /* libstdc++.dylib */; };
@@ -199,6 +198,12 @@
 		BDC9818E181FBC88005DD720 /* CarDriveStatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = BDC9818D181FBC88005DD720 /* CarDriveStatusView.m */; };
 		BDC98191181FBC97005DD720 /* PlantTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BDC98190181FBC97005DD720 /* PlantTableViewCell.m */; };
 		BDC981A1181FC768005DD720 /* libBUILIb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BDC981A0181FC734005DD720 /* libBUILIb.a */; };
+		BDC981AA1820AB08005DD720 /* graph_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = BDC981A81820AB08005DD720 /* graph_btn.png */; };
+		BDC981AB1820AB08005DD720 /* list_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = BDC981A91820AB08005DD720 /* list_btn.png */; };
+		BDC981BC18210ED5005DD720 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDC981BB18210ED4005DD720 /* CoreTelephony.framework */; };
+		BDC981BE18210EDA005DD720 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDC981BD18210EDA005DD720 /* AudioToolbox.framework */; };
+		BDC981C018210FC2005DD720 /* iPlat4M_framework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDC981BF18210FC1005DD720 /* iPlat4M_framework.framework */; };
+		BDC981C318211125005DD720 /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = BDC981C218211124005DD720 /* RegexKitLite.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -420,7 +425,6 @@
 		BD05726617E9A2C100208699 /* dashboard1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dashboard1.png; sourceTree = "<group>"; };
 		BD05728217E9B99600208699 /* CarRouterDateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarRouterDateViewController.h; sourceTree = "<group>"; };
 		BD05728317E9B99600208699 /* CarRouterDateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarRouterDateViewController.m; sourceTree = "<group>"; };
-		BD355D6A181A119E0010D16E /* iPlat4M_framework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = iPlat4M_framework.framework; sourceTree = "<group>"; };
 		BD355D6D181A11CC0010D16E /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		BD355D6F181A11DD0010D16E /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		BDC37E90181CEF8100A4CB18 /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.dylib"; path = "usr/lib/libstdc++.dylib"; sourceTree = SDKROOT; };
@@ -443,6 +447,13 @@
 		BDC9818F181FBC97005DD720 /* PlantTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlantTableViewCell.h; sourceTree = "<group>"; };
 		BDC98190181FBC97005DD720 /* PlantTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlantTableViewCell.m; sourceTree = "<group>"; };
 		BDC9819B181FC733005DD720 /* BUILIb.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BUILIb.xcodeproj; path = BUILIb/BUILIb.xcodeproj; sourceTree = "<group>"; };
+		BDC981A81820AB08005DD720 /* graph_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = graph_btn.png; sourceTree = "<group>"; };
+		BDC981A91820AB08005DD720 /* list_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = list_btn.png; sourceTree = "<group>"; };
+		BDC981BB18210ED4005DD720 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		BDC981BD18210EDA005DD720 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		BDC981BF18210FC1005DD720 /* iPlat4M_framework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = iPlat4M_framework.framework; sourceTree = "<group>"; };
+		BDC981C118211124005DD720 /* RegexKitLite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RegexKitLite.h; path = BUILIb/Map/RegexKitLite.h; sourceTree = SOURCE_ROOT; };
+		BDC981C218211124005DD720 /* RegexKitLite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RegexKitLite.m; path = BUILIb/Map/RegexKitLite.m; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -450,6 +461,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BDC981C018210FC2005DD720 /* iPlat4M_framework.framework in Frameworks */,
+				BDC981BE18210EDA005DD720 /* AudioToolbox.framework in Frameworks */,
+				BDC981BC18210ED5005DD720 /* CoreTelephony.framework in Frameworks */,
 				BDC981A1181FC768005DD720 /* libBUILIb.a in Frameworks */,
 				BDC37E91181CEF8100A4CB18 /* libstdc++.dylib in Frameworks */,
 				BD355D70181A11DD0010D16E /* libsqlite3.dylib in Frameworks */,
@@ -465,7 +479,6 @@
 				046B663217E74984006F34A1 /* UIKit.framework in Frameworks */,
 				046B663417E74984006F34A1 /* Foundation.framework in Frameworks */,
 				046B663617E74984006F34A1 /* CoreGraphics.framework in Frameworks */,
-				BD355D6B181A119E0010D16E /* iPlat4M_framework.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -486,11 +499,13 @@
 		046B662517E74984006F34A1 = {
 			isa = PBXGroup;
 			children = (
+				BDC981BF18210FC1005DD720 /* iPlat4M_framework.framework */,
+				BDC981BD18210EDA005DD720 /* AudioToolbox.framework */,
+				BDC981BB18210ED4005DD720 /* CoreTelephony.framework */,
 				BDC9819B181FC733005DD720 /* BUILIb.xcodeproj */,
 				BDC37E90181CEF8100A4CB18 /* libstdc++.dylib */,
 				BD355D6F181A11DD0010D16E /* libsqlite3.dylib */,
 				BD355D6D181A11CC0010D16E /* libxml2.dylib */,
-				BD355D6A181A119E0010D16E /* iPlat4M_framework.framework */,
 				044BEE0217EAC011004BF443 /* MobileCoreServices.framework */,
 				044BEDFF17EABF37004BF443 /* libz.dylib */,
 				044BEDFB17EABEBD004BF443 /* SystemConfiguration.framework */,
@@ -529,6 +544,8 @@
 		046B663717E74984006F34A1 /* BodCarManger */ = {
 			isa = PBXGroup;
 			children = (
+				BDC981C118211124005DD720 /* RegexKitLite.h */,
+				BDC981C218211124005DD720 /* RegexKitLite.m */,
 				BDC37FA3181FB65D00A4CB18 /* ResignAndLogin */,
 				049DF96C18157AB800DFC9F1 /* CellView */,
 				043C650317FD76D600CDBAC8 /* User */,
@@ -583,9 +600,7 @@
 				04FE07031818188F00EEC76A /* drive */,
 				049DF95C18156DEA00DFC9F1 /* check */,
 				049DF9531812EAC000DFC9F1 /* login */,
-				BD05725B17E9A29B00208699 /* dashboard */,
-				046B667717E74C37006F34A1 /* btn-back.png */,
-				046B665B17E74C37006F34A1 /* BG.png */,
+				BD05725B17E9A29B00208699 /* common */,
 				046B665C17E74C37006F34A1 /* date */,
 				046B666F17E74C37006F34A1 /* plant */,
 				046B669317E74C37006F34A1 /* router */,
@@ -921,11 +936,15 @@
 			path = setting;
 			sourceTree = "<group>";
 		};
-		BD05725B17E9A29B00208699 /* dashboard */ = {
+		BD05725B17E9A29B00208699 /* common */ = {
 			isa = PBXGroup;
 			children = (
+				046B665B17E74C37006F34A1 /* BG.png */,
+				BDC981A81820AB08005DD720 /* graph_btn.png */,
+				BDC981A91820AB08005DD720 /* list_btn.png */,
+				046B667717E74C37006F34A1 /* btn-back.png */,
 			);
-			name = dashboard;
+			name = common;
 			sourceTree = "<group>";
 		};
 		BDC37FA3181FB65D00A4CB18 /* ResignAndLogin */ = {
@@ -1181,6 +1200,8 @@
 				042778B318202737008C6432 /* setting_cell_header.png in Resources */,
 				042778B418202737008C6432 /* setting_cell_middle.png in Resources */,
 				042778B518202737008C6432 /* setting_cell_one.png in Resources */,
+				BDC981AA1820AB08005DD720 /* graph_btn.png in Resources */,
+				BDC981AB1820AB08005DD720 /* list_btn.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1215,6 +1236,7 @@
 				BDC9818B181FBC65005DD720 /* FriendItemCell.m in Sources */,
 				BDC9818E181FBC88005DD720 /* CarDriveStatusView.m in Sources */,
 				BDC98191181FBC97005DD720 /* PlantTableViewCell.m in Sources */,
+				BDC981C318211125005DD720 /* RegexKitLite.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1264,7 +1286,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
@@ -1287,7 +1309,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;

@@ -17,6 +17,9 @@
 
 #import "CarMaintainanceView.h"
 
+
+#import "CarDriveMannerDataViewController.h"
+
 #define kLeftPendingX  10
 #define kTopPendingY  8
 #define kHeaderItemPendingY 8
@@ -29,7 +32,6 @@
 @interface CarMonitorViewController()<BSPreviewScrollViewDelegate>{
 
     UILabel *panelHeaderLabel;
-    BSPreviewScrollView *scrollerView;
     CarMaintainanceView *carMaintainanceView;
     DateStruct currDate;
 }
@@ -217,6 +219,7 @@
             {
                 CarDriveOilAnalaysisViewController *carDriveOilAnalaysisVc = [[CarDriveOilAnalaysisViewController
                                                                                alloc]init];
+                carDriveOilAnalaysisVc.mCurrDate = self.mCurrDate;
 #if 0
                 [self.navigationController pushViewController:carDriveOilAnalaysisVc animated:YES];
                 
@@ -228,9 +231,10 @@
             break;
         case 1:
         {
-            CarDriveMannerAnalysisViewController *carDriveMannerAnalysisVc =
-            [[CarDriveMannerAnalysisViewController
-              alloc]init];
+//            CarDriveMannerAnalysisViewController *carDriveMannerAnalysisVc =
+//            [[CarDriveMannerAnalysisViewController
+//              alloc]init];
+            CarDriveMannerDataViewController *carDriveMannerAnalysisVc = [[CarDriveMannerDataViewController alloc]init];
 #if 0
             [self.navigationController pushViewController:carDriveMannerAnalysisVc animated:YES];
 #else

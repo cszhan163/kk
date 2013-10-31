@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		042631C418216A2D0062CC15 /* BaoMonthBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 042631C318216A2D0062CC15 /* BaoMonthBaseViewController.m */; };
+		BD3BA8FF18225BC600293405 /* CarDriveMannerDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BD3BA8FE18225BC600293405 /* CarDriveMannerDataViewController.m */; };
 		BDC37ECD181FAF0E00A4CB18 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDC37ECC181FAF0E00A4CB18 /* Foundation.framework */; };
 		BDC37ED2181FAF0E00A4CB18 /* BUILIb.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = BDC37ED1181FAF0E00A4CB18 /* BUILIb.h */; };
 		BDC37ED4181FAF0E00A4CB18 /* BUILIb.m in Sources */ = {isa = PBXBuildFile; fileRef = BDC37ED3181FAF0E00A4CB18 /* BUILIb.m */; };
@@ -70,6 +71,8 @@
 /* Begin PBXFileReference section */
 		042631C218216A2D0062CC15 /* BaoMonthBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaoMonthBaseViewController.h; sourceTree = "<group>"; };
 		042631C318216A2D0062CC15 /* BaoMonthBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaoMonthBaseViewController.m; sourceTree = "<group>"; };
+		BD3BA8FD18225BC600293405 /* CarDriveMannerDataViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarDriveMannerDataViewController.h; sourceTree = "<group>"; };
+		BD3BA8FE18225BC600293405 /* CarDriveMannerDataViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarDriveMannerDataViewController.m; sourceTree = "<group>"; };
 		BDC37EC9181FAF0E00A4CB18 /* libBUILIb.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libBUILIb.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		BDC37ECC181FAF0E00A4CB18 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		BDC37ED0181FAF0E00A4CB18 /* BUILIb-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BUILIb-Prefix.pch"; sourceTree = "<group>"; };
@@ -359,6 +362,8 @@
 				BDC37F5A181FB16800A4CB18 /* CarDataAnalysisBaseViewController.m */,
 				BDC37F5B181FB16800A4CB18 /* CarDriveMannerAnalysisViewController.h */,
 				BDC37F5C181FB16800A4CB18 /* CarDriveMannerAnalysisViewController.m */,
+				BD3BA8FD18225BC600293405 /* CarDriveMannerDataViewController.h */,
+				BD3BA8FE18225BC600293405 /* CarDriveMannerDataViewController.m */,
 				BDC37F5D181FB16800A4CB18 /* CarDriveOilAnalaysisViewController.h */,
 				BDC37F5E181FB16800A4CB18 /* CarDriveOilAnalaysisViewController.m */,
 				BDC37F5F181FB16800A4CB18 /* CarDriveOilDataAnalaysisViewController.h */,
@@ -476,6 +481,7 @@
 				BDC37FA1181FB16800A4CB18 /* CarServiceNetDataMgr.m in Sources */,
 				BDC981B01820F432005DD720 /* NSDate+Ex.m in Sources */,
 				042631C418216A2D0062CC15 /* BaoMonthBaseViewController.m in Sources */,
+				BD3BA8FF18225BC600293405 /* CarDriveMannerDataViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

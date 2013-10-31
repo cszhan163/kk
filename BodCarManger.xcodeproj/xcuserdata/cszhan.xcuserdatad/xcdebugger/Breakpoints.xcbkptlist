@@ -72,13 +72,26 @@
          shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "BUILIb/ViewController/CarDriveOilDataViewController.m"
-         timestampString = "404894279.364846"
+         filePath = "BodCarManger/ViewController.m"
+         timestampString = "404908341.598679"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "338"
-         endingLineNumber = "338"
-         landmarkName = "-didNetDataOK:"
+         startingLineNumber = "43"
+         endingLineNumber = "43"
+         landmarkName = "-viewDidLoad"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "BUILIb/Network/CarServiceNetDataMgr.m"
+         timestampString = "404908453.687197"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "235"
+         endingLineNumber = "235"
+         landmarkName = "-getDriveDataByCarId:withMonth:withYear:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

@@ -208,13 +208,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		042631B8182153500062CC15 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BDC9819B181FC733005DD720 /* BUILIb.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = BDC37EC9181FAF0E00A4CB18;
-			remoteInfo = BUILIb;
-		};
 		042778BF18202B41008C6432 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 042778BB18202B40008C6432 /* BUILIb.xcodeproj */;
@@ -455,7 +448,6 @@
 		BDC9818D181FBC88005DD720 /* CarDriveStatusView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarDriveStatusView.m; sourceTree = "<group>"; };
 		BDC9818F181FBC97005DD720 /* PlantTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlantTableViewCell.h; sourceTree = "<group>"; };
 		BDC98190181FBC97005DD720 /* PlantTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlantTableViewCell.m; sourceTree = "<group>"; };
-		BDC9819B181FC733005DD720 /* BUILIb.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BUILIb.xcodeproj; path = BUILIb/BUILIb.xcodeproj; sourceTree = "<group>"; };
 		BDC981A81820AB08005DD720 /* graph_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = graph_btn.png; sourceTree = "<group>"; };
 		BDC981A91820AB08005DD720 /* list_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = list_btn.png; sourceTree = "<group>"; };
 		BDC981BB18210ED4005DD720 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
@@ -495,14 +487,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		042631B5182153500062CC15 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				042631B9182153500062CC15 /* libBUILIb.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		042778BC18202B40008C6432 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -529,7 +513,6 @@
 				BDC981BF18210FC1005DD720 /* iPlat4M_framework.framework */,
 				BDC981BD18210EDA005DD720 /* AudioToolbox.framework */,
 				BDC981BB18210ED4005DD720 /* CoreTelephony.framework */,
-				BDC9819B181FC733005DD720 /* BUILIb.xcodeproj */,
 				BDC37E90181CEF8100A4CB18 /* libstdc++.dylib */,
 				BD355D6F181A11DD0010D16E /* libsqlite3.dylib */,
 				BD355D6D181A11CC0010D16E /* libxml2.dylib */,
@@ -1030,10 +1013,6 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 042631B5182153500062CC15 /* Products */;
-					ProjectRef = BDC9819B181FC733005DD720 /* BUILIb.xcodeproj */;
-				},
-				{
 					ProductGroup = 042778BC18202B40008C6432 /* Products */;
 					ProjectRef = 042778BB18202B40008C6432 /* BUILIb.xcodeproj */;
 				},
@@ -1050,13 +1029,6 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		042631B9182153500062CC15 /* libBUILIb.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libBUILIb.a;
-			remoteRef = 042631B8182153500062CC15 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		042778C018202B41008C6432 /* libBUILIb.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;

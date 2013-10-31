@@ -19,5 +19,6 @@
 - (void)setOffsetY:(CGFloat)offsetY;
 - (void)setOffsetX:(CGFloat)offsetX;
 - (void)setMaxLenY:(CGFloat)len;
+- (void)addDrawLineData:(NSArray*)data;
 - (void)updateDrawLineData:(NSArray*)data;
 @end

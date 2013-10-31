@@ -43,6 +43,7 @@
 //    return;
     dataAnaylsisView = [[DriveActionAnalysisView alloc]initWithFrame:CGRectMake(0.f,35-10.f, 320.f,300)];
     dataAnaylsisView.backgroundColor = [UIColor clearColor];
+    
     OilAnalysisData *data =  [[OilAnalysisData alloc]init];
     data.percentDataArray = @[@32,@28,@40];
     DateStruct date;

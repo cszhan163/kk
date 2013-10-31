@@ -12,6 +12,8 @@
 #import "BSPreviewScrollView.h"
 #import "CarServiceNetDataMgr.h"
 
+#import "DriveDataModel.h"
+
 #define kOilDataViewWidth   300
 
 #define kOilDataViewHeight  400
@@ -22,10 +24,11 @@ typedef enum  viewType{
 }ViewType;
 
 
-@interface CarDriveOilDataViewController ()<UIBaseViewControllerDelegate>{
+@interface CarDriveOilDataViewController ()<UIBaseViewControllerDelegate,BSPreviewScrollViewDelegate>{
     DriveOilAnalysisView *oilAnalysisGraphView;
      ViewType viewType;
 }
+@property(nonatomic,strong)NSArray *dataArray;
 @end
 
 @implementation CarDriveOilDataViewController
@@ -75,7 +78,7 @@ typedef enum  viewType{
     
     
     CGSize size = viewRect.size;//CGSizeMake(viewRect.size, bgImage.size.height/kScale);
-    BSPreviewScrollView *scrollerView = [[BSPreviewScrollView alloc]initWithFrameAndPageSize:CGRectMake(0.f, 0.f,size.width, size.height) pageSize:size];
+    scrollerView = [[BSPreviewScrollView alloc]initWithFrameAndPageSize:CGRectMake(0.f, 0.f,size.width, size.height) pageSize:size];
     scrollerView.delegate = self;
     [scrollerView setBoundces:NO];
     scrollerView.backgroundColor = [UIColor clearColor];
@@ -104,12 +107,12 @@ typedef enum  viewType{
     SafeRelease(dataTableView);
      */
 #endif
-    [self loadOilAnalaysisData];
+    [self loadAnalaysisData];
+    
 }
 - (void)flipViewFromLeftToRight:(BOOL)status{
-    UIViewAnimationOptions viewAnimationOpt = UIViewAnimationOptionShowHideTransitionViews;
-    
 #if ScrollerView
+     UIViewAnimationOptions viewAnimationOpt = UIViewAnimationOptionShowHideTransitionViews;
     if(status){
         viewAnimationOpt|=UIViewAnimationOptionTransitionFlipFromLeft;
         [UIView transitionFromView:tweetieTableView   toView:oilAnalysisGraphView duration:0.5 options:viewAnimationOpt completion:^(BOOL isFinished){
@@ -161,13 +164,14 @@ typedef enum  viewType{
 }
 
 #pragma mark -
+#pragma mark scrollerView
 -(UIView*)viewForItemAtIndex:(BSPreviewScrollView*)scrollView index:(int)index{
     UIImageWithFileName(UIImage *bgImage, @"car_plant_bg.png");
     UIView *maskView =[[UIView alloc]initWithFrame:CGRectMake(0.,0.f,kOilDataViewWidth, kOilDataViewHeight)];
     maskView.backgroundColor = [UIColor clearColor];
     // maskView.frame =
     //[maskView addSubview:maskView];
-    if(index == 1){
+    if(index == 0){
         dataTableView= [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];
         dataTableView.dataSource = self;
         dataTableView.delegate = self;
@@ -184,15 +188,24 @@ typedef enum  viewType{
                                 CGRectMake(10.f,35.f,bgImage.size.width,bgImage.size.height)];
         oilAnalysisGraphView.backgroundColor = [UIColor clearColor];
         [maskView addSubview:oilAnalysisGraphView];
-        [oilAnalysisGraphView updateUIByData:nil];
+        
     }
     //SafeRelease(carDriveStatusView);
     return maskView;
 }
 -(int)itemCount:(BSPreviewScrollView*)scrollView{
-    return  2;
+    return  1;
 }
-
+-(void)didScrollerView:(BSPreviewScrollView*)scrollView{
+    int curIndex = scrollView.getPageControl.currentPage;
+    if(curIndex == 0){
+        
+    }
+    else if(curIndex<pageIndex){
+    
+    
+    }
+}
 #pragma mark -
 #pragma mark tableview
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
@@ -212,8 +225,8 @@ typedef enum  viewType{
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-	return  10;
-    //return [self.dataArray count];
+	//return  10;
+    return [self.dataArray count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -261,30 +274,14 @@ typedef enum  viewType{
     //[cell.contentView  addSubview: bgView];
     cell.backgroundView = bgView;
     SafeRelease(bgView);
-    /*
-     "driveflg": "1",
-     "starttime": "17:54",
-     "distance": "12",
-     "time": "43",
-     "oil": "25",
-     "startadr": "张江地铁",
-     "endadr": "人民广场",
-     "startadr2": "121.607931, 31.211412",
-     "endadr2": "121.48117, 31.236416",
-     "rotate": "86",
-     "speed": "34",
-     "water temp": "64",
-     "oiltest": "8",
-     "drivetest": "7"
-     */
-    //
-    //    NSDictionary *item = [self.dataArray objectAtIndex:indexPath.row];
-    //    NSDictionary *data = [item objectForKey:@"DayDetailInfo"];
-    //cell = (PlantTableViewCell*)cell;
+    NSDictionary *item = [self.dataArray objectAtIndex:indexPath.row];
     
-    
-	//cell.textLabel.text = [NSString stringWithFormat:@"%d", indexPath.row];
-    
+    NSString *date = [NSString stringWithFormat:@"%2d-%2d",[[item objectForKey:@"day"]intValue]];
+    NSString *speedUp = [NSString stringWithFormat:@"%@",[item objectForKey:@"accCount"]];
+    NSString *speedDown = [NSString stringWithFormat:@"%@",[item objectForKey:@"breakCount"]];
+    [cell setTableCellCloumn:0 withData:date];
+    [cell setTableCellCloumn:1 withData:speedUp];
+    [cell setTableCellCloumn:2 withData:speedDown];
     return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -314,7 +311,7 @@ typedef enum  viewType{
 #pragma mark -
 #pragma mark network
 
-- (void)loadOilAnalaysisData{
+- (void)loadAnalaysisData{
     
     CarServiceNetDataMgr *cardShopMgr = [CarServiceNetDataMgr getSingleTone];
     
@@ -333,10 +330,11 @@ typedef enum  viewType{
     id data = [obj objectForKey:@"data"];
     NSString *resKey = [obj objectForKey:@"key"];
     //NSString *resKey = [respRequest resourceKey];
-    if(self.request ==respRequest && [resKey isEqualToString:kResDriveActionAnalysis])
+    if(self.request ==respRequest && [resKey isEqualToString:kResDriveOilAnalysis])
     {
-        NSDictionary *netData = [data objectForKey:@"data"];
-        [self  performSelectorOnMainThread:@selector(updateUIData:) withObject:netData waitUntilDone:NO ];
+        self.data = data;
+        self.dataArray = [data objectForKey:@"economicData"];
+        [self  performSelectorOnMainThread:@selector(updateUIData:) withObject:data waitUntilDone:NO ];
         //[mDataDict setObject:netData forKey:mMothDateKey];
         //}
         kNetEnd(self.view);
@@ -346,6 +344,28 @@ typedef enum  viewType{
 }
 - (void)updateUIData:(NSDictionary*)data{
     
+    NSArray *pageArray= scrollerView.getScrollerPageViews;
+    if(pageIndex == 0){
     
+        [self updateTableDataView];
+        
+    }
+    else{
+        [self updateGraphView];
+    
+    }
+}
+- (void)updateTableDataView{
+    [dataTableView reloadData];
+}
+- (void)updateGraphView{
+    OilAnalysisData *oilData = [[OilAnalysisData alloc]init];
+    oilData.percentDataArray = [NSArray arrayWithObjects:
+                                [NSString stringWithFormat:@"breakRate"],
+                                [NSString stringWithFormat:@"highRPMRate"],
+                                [NSString stringWithFormat:@"accRate"],
+                                nil];
+    [oilAnalysisGraphView updateUIByData:oilData];
+    SafeRelease(oilData);
 }
 @end

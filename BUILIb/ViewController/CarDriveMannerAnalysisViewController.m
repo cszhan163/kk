@@ -10,7 +10,7 @@
 #import "DriveActionAnalysisView.h"
 #import "UIImageNetBaseViewController.h"
 #import "SubNavItemBaseViewController.h"
-
+#import "CarDriveMannerDataViewController.h"
 #import "CarDriveOilDataViewController.h"
 
 @interface CarDriveMannerDataGraphViewController:SubNavItemBaseViewController{
@@ -38,30 +38,6 @@
     
     [dataAnaylsisView setNeedsDisplay];
 }
-@end
-
-@interface CarDriveMannerDataViewController:CarDriveOilDataViewController{
-    
-    //UITableView *dataTableView;
-}
-- (void)setNeedDisplaySubView;
-@end
-@implementation CarDriveMannerDataViewController
-
-- (void)viewDidLoad{
-    
-    [super viewDidLoad];
-//    
-//    dataTableView = [[UITableView alloc]initWithFrame:CGRectMake(10.f, kMBAppTopToolBarHeight+10.f, 320.f,300)];
-//    [self.view addSubview:dataTableView];
-//    SafeRelease(dataTableView);
-//
-}
-- (void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    //[dataAnaylsisView setNeedsDisplay];
-}
-
 @end
 
 #define kOilNavControllerItemWidth 150.f

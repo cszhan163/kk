@@ -96,7 +96,7 @@
     NSString *showText = [NSString stringWithFormat:kOilMothFormart,oilData.date.month];
     conclusionLabel.text = oilData.conclusionText;
     dateShowLabel.text = showText;
-    [self updateLinesUIByData:nil];
+    [self updateLinesUIByData:data.linesDataArray];
     NSArray *formartArray = @[@"低速行驶时间: %d%@",@"经济行驶时间: %d\%@",@"高速行驶时间: %d\%@"];
     
     NSString *precentText = @"";
@@ -121,7 +121,6 @@
     int lasty = 10;
     for(int i = 1;i<=5;i++){
         NSMutableDictionary *item = [NSMutableDictionary dictionary];
-        
         int x = rand()%3+lastx+1;
         int y = rand()%50+lasty+10;
         [item setValue:[NSString stringWithFormat:@"%d",x] forKey:@"x"];

@@ -281,10 +281,10 @@ static ZCSNetClientNetInterfaceMgr *dressMemoInterfaceMgr = nil;
 }
 - (id)getCarCheckData:(NSString*)cardId{
     //queryConData
-    EiInfo *inInfo = [self getCommIPlant4MParam];
+    EiInfo *inInfo = [self getCommIPlant4MParamByServiceToken:@"VEMT02"];
     //[inInfo set:@"year" value:[param objectForKey:@"year"]];
     [inInfo set:METHOD_TOKEN value:kResCarCheckData]; // 接口名
-    //[inInfo set:@"vin" value:cardId];
+    [inInfo set:@"vin" value:cardId];
     [self startiPlant4MRequest:inInfo withSuccess:@selector(getCarCheckDataOk:) withFailed:@selector(getCarCheckDataFailed:)];
 }
 
@@ -605,7 +605,7 @@ static ZCSNetClientNetInterfaceMgr *dressMemoInterfaceMgr = nil;
         [resultDict setValue:[info get:@"breakRate"] forKey:@"breakRate"];
         [resultDict setValue:[info get:@"accRate"] forKey:@"accRate"];
         
-        EiBlock *tripInfo = [info getBlock:@"tripInfo"]; // block型返回值
+        EiBlock *tripInfo = [info getBlock:@"safeData"]; // block型返回值
         int rowCount = [tripInfo getRowCount];
         for(int i = 0;i<rowCount;i++){
             NSMutableDictionary *row = [tripInfo getRow:i];
@@ -640,7 +640,7 @@ static ZCSNetClientNetInterfaceMgr *dressMemoInterfaceMgr = nil;
         [resultDict setValue:[info get:@"highRPMRate"] forKey:@"highRPMRate"];
         [resultDict setValue:[info get:@"accRate"] forKey:@"accRate"];
         //[resultDict setValue:[info get:@"conclusion"] forKey:@"conclusion"];
-        EiBlock *tripInfo = [info getBlock:@"tripInfo"]; // block型返回值
+        EiBlock *tripInfo = [info getBlock:@"economicData"]; // block型返回值
         int rowCount = [tripInfo getRowCount];
         for(int i = 0;i<rowCount;i++){
             NSMutableDictionary *row = [tripInfo getRow:i];

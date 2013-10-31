@@ -28,6 +28,8 @@
 
 - (void)setDisplayLineChart:(NSArray*)lineData;
 
+- (void)addDisplayLineChart:(NSArray*)lineData;
+
 - (void)setDisplayLineChart:(NSArray*)lineData withFrame:(CGRect)rect withBGImage:(UIImage*)bgImage;
 - (void)setNeedsDisplay;
 @end

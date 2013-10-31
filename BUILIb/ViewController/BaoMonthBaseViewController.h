@@ -7,12 +7,13 @@
 //
 
 #import "UISimpleNetBaseViewController.h"
-
+#import "BSPreviewScrollView.h"
 @interface BaoMonthBaseViewController : UISimpleNetBaseViewController{
 
      BOOL isNeedReflush;
     NSInteger pageIndex;
     DateStruct mCurrDate;
+    BSPreviewScrollView *scrollerView;
 }
 @property(nonatomic,strong)NSString *mMothDateKey;
 @property(nonatomic,strong)NSMutableDictionary *mDataDict;

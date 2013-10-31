@@ -81,6 +81,9 @@
     [drawLineView updateDrawLineData:lineData];
     
 }
+- (void)addDisplayLineChart:(NSArray*)lineData{
+    [drawLineView addDrawLineData:lineData];
+}
 - (void)createLineChart:(NSArray*)lineData
 {
     lineChart = [[WSLineChartView alloc] initWithFrame:CGRectMake(0.0,104.f,300.0, 150.0)];

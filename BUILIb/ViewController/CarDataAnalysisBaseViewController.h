@@ -9,11 +9,14 @@
 #import "UIBaseViewController.h"
 #import "NENavItemController.h"
 #import "BaoCarNetBaseViewController.h"
+#import "UISimpleNetBaseViewController.h"
 @protocol CarDataAnalysisBaseViewControllerDataSouceDelegate;
-@interface CarDataAnalysisBaseViewController : UIBaseViewController{
+@interface CarDataAnalysisBaseViewController : UISimpleNetBaseViewController{
     @public
     NENavItemController *navItemCtrl;
+    //DateStruct   *mCurrDate;
 }
+@property(nonatomic,assign)DateStruct   mCurrDate;
 @property(weak)id<CarDataAnalysisBaseViewControllerDataSouceDelegate> dataSouce;
 - (void)setNeedDisplaySubView;
 - (void)selectTopNavItem:(id)navObj;

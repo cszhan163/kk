@@ -33,17 +33,17 @@
              @"10",@"month",
              nil];
     //[cardNetMgr getDetailByDay:param];
-    [cardNetMgr getRouterRealTimeData:@""];
+    [cardNetMgr getRouterRealTimeData:@"SHD05728"];
     
 //    [cardNetMgr getRouterLatestData];
 //    [cardNetMgr getRouterDataByMonth:@"" withYear:@""];
 //    [cardNetMgr getRouterDataByDay:@"" withMoth:@"" withYear:@""];
-    
-    
-    [cardNetMgr getDriveDataByCarId:@"" withMonth:@"" withYear:@""];
+    [cardNetMgr getCarMaintainanceData:@"SHD05728"];
+    [cardNetMgr getCarCheckData:@"SHD05728"];
+    //[cardNetMgr getDriveDataByCarId:@"" withMonth:@"" withYear:@""];
 //    [cardNetMgr getDriveActionAnalysisDataByCarId:@"" withMoth:@"" withYear:@""];
 //    [cardNetMgr getDriveOilAnalysisDataByCarId:@"" withMoth:@"" withYear:@""];
-    [cardNetMgr getMessageList:nil];
+    //[cardNetMgr getMessageList:nil];
     
     CGFloat currX = 0.f;
     for(int i = 0; i<5;i++)

@@ -44,17 +44,18 @@
 #pragma mark viewController datasource
 -(NSArray*)viewControllersForNavItemController:(CarDataAnalysisBaseViewController*)controller{
     NSMutableArray *vcArray = [NSMutableArray array];
-    SubNavItemBaseViewController *vcCtl = [[CarDriveOilDataViewController alloc]init];
-    vcCtl.view.backgroundColor = [UIColor clearColor];
+    CarDriveOilDataViewController *dataVc = [[CarDriveOilDataViewController alloc]init];
+    dataVc.mCurrDate = self.mCurrDate;
+    dataVc.view.backgroundColor = [UIColor clearColor];
     //[vcCtl setRootViewController:controller];
     //vcCtl.view.backgroundColor = [UIColor redColor];
-    [vcArray addObject:vcCtl];
-    SafeRelease(vcCtl);
-    vcCtl = [[CarDriveOilDataAnalaysisViewController  alloc]init];
-    vcCtl.view.backgroundColor = [UIColor clearColor];
+    [vcArray addObject:dataVc];
+    SafeRelease(dataVc);
+    CarDriveOilDataAnalaysisViewController *analysisVc = [[CarDriveOilDataAnalaysisViewController  alloc]init];
+    analysisVc.view.backgroundColor = [UIColor clearColor];
     //[vcCtl setRootViewController:controller];
-    [vcArray addObject:vcCtl];
-    SafeRelease(vcCtl);
+    [vcArray addObject:analysisVc];
+    SafeRelease(analysisVc);
     return  vcArray;
 }
 #define kOilNavControllerItemWidth 150.f

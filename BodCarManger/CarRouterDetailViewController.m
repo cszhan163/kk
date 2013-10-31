@@ -147,10 +147,12 @@
      */
     NSString *distance = [data objectForKey:@"distance"];
     NSString *speed = [data objectForKey:@"speed"];
+    NSString *rotate = [data objectForKey:@"rotate"];
+    NSString *tempreture = [data objectForKey:@"tempreture"];
     carDetailPenalView.mRunDistanceLabel.text = [NSString stringWithFormat:@"行驶距离:-  %@km",distance];
     carDetailPenalView.mRunSpeedLabel.text = [NSString stringWithFormat:@"行驶速度:-  %@km/h",speed];
-    carDetailPenalView.mRotateSpeedLabel.text= [NSString stringWithFormat:@"转度:-  %@次",[data objectForKey:@"distance"]];
-    carDetailPenalView.mRunTemperatureLabel.text = [NSString stringWithFormat:@"水温:-  %@度",[data objectForKey:@"water temp"]];
+    carDetailPenalView.mRotateSpeedLabel.text= [NSString stringWithFormat:@"转度:-  %@次",rotate];
+    carDetailPenalView.mRunTemperatureLabel.text = [NSString stringWithFormat:@"水温:-  %@度",tempreture];
     
     NSString *timeStr = [data objectForKey:@"starttime"];
     
@@ -163,17 +165,16 @@
     mDateStruct.day =  [dateArr[2]intValue];
     
     int oiltest = [[data objectForKey:@"economicScore"]intValue];
-    if(oiltest>=11) oiltest = 11;
+    if(oiltest>=10) oiltest = 10;
     int drivetest = [[data objectForKey:@"safeScore"]intValue];
-    if(drivetest>=11) drivetest = 11;
-    if(oiltest <= 0)
-        oiltest = 1;
+    if(drivetest>=10) drivetest = 10;
+    
     NSString *fileName = [NSString stringWithFormat:@"dashboard%d.png",oiltest];
     UIImageWithFileName(UIImage *bgImage, fileName);
     carDetailPenalView.mOilCostAnalaysisImageView.image = bgImage;
     fileName = [NSString stringWithFormat:@"dashboard%d.png",drivetest];
     UIImageWithFileName(bgImage, fileName);
-    carDetailPenalView.mOilCostAnalaysisImageView.image = bgImage;
+    carDetailPenalView.mDriveAnalaysisImageView.image = bgImage;
 }
 #pragma mark -
 #pragma mark navigation bar action

@@ -205,6 +205,7 @@
         
     }
     pageIndex = curIndex;
+    
 }
 
 #pragma mark -
@@ -330,6 +331,6 @@
     carDriveStatusView.mRunDaysLabel.text =[NSString stringWithFormat:@"%d",day];
     carDriveStatusView.mRunStepLabel.text = [NSString stringWithFormat:@"%0.2lf",segment];
     carDriveStatusView.mRunDistanceLabel.text = [NSString stringWithFormat:@"%0.2lf",totalMile];
-    
+    carDriveStatusView.mHeadMonthLabel.text = [NSString stringWithFormat:@"%2d月驾驶情况",self.mCurrDate.month];
 }
 @end

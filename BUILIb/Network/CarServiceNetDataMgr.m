@@ -247,12 +247,13 @@ static ZCSNetClientNetInterfaceMgr *dressMemoInterfaceMgr = nil;
     cardId = @"SHD05728";
 #endif
     EiInfo *inInfo = [self getCommIPlant4MParamByServiceToken:@"VESA01"];
-    [inInfo set:METHOD_TOKEN value:@"querySafeAnalyse"]; // 接口名
+    [inInfo set:METHOD_TOKEN value:kResDriveActionAnalysis]; // 接口名
     
     [inInfo set:@"vin" value:cardId];
     [inInfo set:@"year" value:year]; // 设置参数
     [inInfo set:@"month" value:month];
     [self startiPlant4MRequest:inInfo withSuccess:@selector(getDriveActionAnalysisDataOk:) withFailed:@selector(getDriveActionAnalysisDataFaild:)];
+    return nil;
 }
 - (id)getDriveOilAnalysisDataByCarId:(NSString*)cardId withMoth:(NSString*)month withYear:(NSString*)year{
 #ifdef Drive_TEST
@@ -261,11 +262,12 @@ static ZCSNetClientNetInterfaceMgr *dressMemoInterfaceMgr = nil;
     cardId = @"SHD05728";
 #endif
     EiInfo *inInfo = [self getCommIPlant4MParamByServiceToken:@"VESA01"];
-    [inInfo set:METHOD_TOKEN value:@"queryEconomicAnalyse"]; // 接口名
+    [inInfo set:METHOD_TOKEN value:kResDriveOilAnalysis]; // 接口名
     [inInfo set:@"vin" value:cardId];
     [inInfo set:@"year" value:year]; // 设置参数
     [inInfo set:@"month" value:month];
     [self startiPlant4MRequest:inInfo withSuccess:@selector(getDriveOilAnalysisDataOk:) withFailed:@selector(getDriveOilAnalysisDataFailed:)];
+    return nil;
 
 }
 #pragma mark -
@@ -588,16 +590,74 @@ static ZCSNetClientNetInterfaceMgr *dressMemoInterfaceMgr = nil;
 }
 - (void)getDriveDataFailed:(EiInfo*)info{
 
-
+  
 }
 - (void)getDriveActionAnalysisDataOk:(EiInfo*)info{
-    
+    if(info.status == 1){
+        /*
+         {"overSpeedRate":0,"breakRate":0,"accRate":0},"blocks":{"safeData":{"meta":{"columns":[{"pos":0,"name":"day","descName":" "},{"pos":1,"name":"accCount","descName":" ","type":"N"},{"pos":2,"name":"breakCount","descName":" ","type":"N"},{"pos":3,"name":"overSpeedCount","descName":" ","type":"N"}]},"rows":
+             */
+        NSLog(@"%@",info.blocks);
+        NSMutableDictionary *resultDict = [NSMutableDictionary dictionary];
+        NSMutableArray *data = [NSMutableArray array];
+        
+        [resultDict setValue:[info get:@"overSpeedRate"] forKey:@"overSpeedRate"];
+        [resultDict setValue:[info get:@"breakRate"] forKey:@"breakRate"];
+        [resultDict setValue:[info get:@"accRate"] forKey:@"accRate"];
+        
+        EiBlock *tripInfo = [info getBlock:@"tripInfo"]; // block型返回值
+        int rowCount = [tripInfo getRowCount];
+        for(int i = 0;i<rowCount;i++){
+            NSMutableDictionary *row = [tripInfo getRow:i];
+            NSDictionary *item = [NSDictionary dictionaryWithObjectsAndKeys:
+                                  [row objectForKey:@"accCount"],@"accCount",
+                                  [row objectForKey:@"day"],@"day",
+                                  [row objectForKey:@"drivingLong"],@"drivingLong",
+                                  [row objectForKey:@"breakCount"],@"breakCount",
+                                  [row objectForKey:@"overSpeedCount"],@"overSpeedCount",
+                                  nil];
+            [data addObject:item];
+        }
+        [resultDict setValue:data forKey:@"safeData"];
+        [self sendFinalOkData:resultDict withKey:kResDriveActionAnalysis];
+    }
+    else{
+        
+    }
 }
 - (void)getDriveActionAnalysisDataFaild:(EiInfo*)info{
 
 }
 - (void)getDriveOilAnalysisDataOk:(EiInfo*)info{
-    
+    if(info.status == 1){
+        /*
+         {"msg":"","msgKey":"","detailMsg":"","status":1,"attr":{"breakRate":0,"highRPMRate":0,"accRate":0},"blocks":{"economicData":{"meta":{"columns":[{"pos":0,"name":"day","descName":" "},{"pos":1,"name":"accCount","descName":" ","type":"N"},{"pos":2,"name":"breakCount","descName":" ","type":"N"},{"pos":3,"name":"overSpeedCount","descName":" ","type":"N"}]},"rows":[["9","0","0",null],["8","0","0",null],["13","0","0",null],["7","0","0",null],["28","0","0",null],["12","0","0",null],["11","0","0",null],["16","0","0",null],["10","0","0",null],["15","0","0",null],["14","0","0",null]]}}}
+                */
+        NSMutableDictionary *resultDict = [NSMutableDictionary dictionary];
+        NSMutableArray *data = [NSMutableArray array];
+        
+        [resultDict setValue:[info get:@"breakRate"] forKey:@"breakRate"];
+        [resultDict setValue:[info get:@"highRPMRate"] forKey:@"highRPMRate"];
+        [resultDict setValue:[info get:@"accRate"] forKey:@"accRate"];
+        //[resultDict setValue:[info get:@"conclusion"] forKey:@"conclusion"];
+        EiBlock *tripInfo = [info getBlock:@"tripInfo"]; // block型返回值
+        int rowCount = [tripInfo getRowCount];
+        for(int i = 0;i<rowCount;i++){
+            NSMutableDictionary *row = [tripInfo getRow:i];
+            NSDictionary *item = [NSDictionary dictionaryWithObjectsAndKeys:
+                                  [row objectForKey:@"accCount"],@"accCount",
+                                  [row objectForKey:@"day"],@"day",
+                                  [row objectForKey:@"breakCount"],@"breakCount",
+                                  [row objectForKey:@"overSpeedCount"],@"overSpeedCount",
+                                  nil];
+            [data addObject:item];
+        }
+        [resultDict setValue:data forKey:@"economicData"];
+        [self sendFinalOkData:resultDict withKey:kResDriveOilAnalysis];
+    }
+    else{
+        
+    }
 }
 - (void)getDriveOilAnalysisDataFailed:(EiInfo*)info{
     

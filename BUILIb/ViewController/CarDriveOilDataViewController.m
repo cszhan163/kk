@@ -10,7 +10,7 @@
 #import "CarDriveOilTableViewCell.h"
 #import "DriveOilAnalysisView.h"
 #import "BSPreviewScrollView.h"
-
+#import "CarServiceNetDataMgr.h"
 
 #define kOilDataViewWidth   300
 
@@ -104,7 +104,7 @@ typedef enum  viewType{
     SafeRelease(dataTableView);
      */
 #endif
-    
+    [self loadOilAnalaysisData];
 }
 - (void)flipViewFromLeftToRight:(BOOL)status{
     UIViewAnimationOptions viewAnimationOpt = UIViewAnimationOptionShowHideTransitionViews;
@@ -308,5 +308,44 @@ typedef enum  viewType{
         
         
     }
+}
+
+
+#pragma mark -
+#pragma mark network
+
+- (void)loadOilAnalaysisData{
+    
+    CarServiceNetDataMgr *cardShopMgr = [CarServiceNetDataMgr getSingleTone];
+    
+    kNetStartShow(@"数据加载...", self.view);
+    NSString *month = [NSString stringWithFormat:@"%d",mCurrDate.month];
+    NSString *year = [NSString stringWithFormat:@"%d",mCurrDate.year];
+    self.request = [cardShopMgr  getDriveOilAnalysisDataByCarId:@"SHD05728" withMoth:month withYear:year];
+    
+}
+
+-(void)didNetDataOK:(NSNotification*)ntf
+{
+    
+    id obj = [ntf object];
+    id respRequest = [obj objectForKey:@"request"];
+    id data = [obj objectForKey:@"data"];
+    NSString *resKey = [obj objectForKey:@"key"];
+    //NSString *resKey = [respRequest resourceKey];
+    if(self.request ==respRequest && [resKey isEqualToString:kResDriveActionAnalysis])
+    {
+        NSDictionary *netData = [data objectForKey:@"data"];
+        [self  performSelectorOnMainThread:@selector(updateUIData:) withObject:netData waitUntilDone:NO ];
+        //[mDataDict setObject:netData forKey:mMothDateKey];
+        //}
+        kNetEnd(self.view);
+        
+    }
+    
+}
+- (void)updateUIData:(NSDictionary*)data{
+    
+    
 }
 @end

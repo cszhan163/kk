@@ -12,6 +12,7 @@
 
      BOOL isNeedReflush;
     NSInteger pageIndex;
+    DateStruct mCurrDate;
 }
 @property(nonatomic,strong)NSString *mMothDateKey;
 @property(nonatomic,strong)NSMutableDictionary *mDataDict;

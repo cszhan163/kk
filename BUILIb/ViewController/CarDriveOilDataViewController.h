@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "UIImageNetBaseViewController.h"
+#import "UISimpleNetBaseViewcontroller.h"
+#import "BaoMonthBaseViewController.h"
 //@interface CarDriveOilDataViewController:UIImageNetBaseViewController
-@interface CarDriveOilDataViewController:UIBaseViewController
+@interface CarDriveOilDataViewController:BaoMonthBaseViewController
 {
     
     UITableView *dataTableView;

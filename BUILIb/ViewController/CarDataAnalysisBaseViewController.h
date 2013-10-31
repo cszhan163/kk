@@ -8,6 +8,7 @@
 
 #import "UIBaseViewController.h"
 #import "NENavItemController.h"
+#import "BaoCarNetBaseViewController.h"
 @protocol CarDataAnalysisBaseViewControllerDataSouceDelegate;
 @interface CarDataAnalysisBaseViewController : UIBaseViewController{
     @public

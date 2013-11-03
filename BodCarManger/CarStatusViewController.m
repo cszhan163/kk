@@ -45,7 +45,7 @@
     
 #if 1
     UIImage *bgImage = nil;
-    UIImageWithFileName(bgImage, @"BG.png");
+    UIImageWithFileName(bgImage, @"car_bg.png");
     mainView.bgImage = bgImage;
 #else
     mainView.mainFramView.backgroundColor = kAppUserBGWhiteColor;
@@ -54,7 +54,7 @@
     [self setNavgationBarTitle:NSLocalizedString(@"车辆健康监测", @""
                                                  )];
     [self setRightBtnHidden:YES];
-    
+    [self setHiddenLeftBtn:YES];
     
     CGFloat currY =  kMBAppTopToolBarHeight;
     
@@ -250,14 +250,12 @@
     //    NSDictionary *data = [item objectForKey:@"DayDetailInfo"];
     //cell = (PlantTableViewCell*)cell;
     
-    
 	//cell.textLabel.text = [NSString stringWithFormat:@"%d", indexPath.row];
     
     return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
     return 18.f;
 }
 

@@ -157,4 +157,26 @@
      [usrDefaults setValue:[NSNumber numberWithBool:status] forKey:@"needLoadImage"];
      [usrDefaults synchronize];
 }
++(BOOL)getCarLocationSetting{
+    NSUserDefaults *usrDefaults = [NSUserDefaults standardUserDefaults];
+	/*
+     [usrDefaults setValue:[NSNumber numberWithBool:status] forKey:@];
+     [usrDefaults synchronize];
+     */
+    NSNumber *value = [usrDefaults objectForKey:@"locationSetting"];
+    if(value==nil)
+    {
+        //[AppSetting setNeedLoadImage:YES];
+        return YES;
+    }
+	return [value boolValue];
+
+}
++(void)setCarLocationSetting:(BOOL)status{
+    NSUserDefaults *usrDefaults = [NSUserDefaults standardUserDefaults];
+	
+    [usrDefaults setValue:[NSNumber numberWithBool:status] forKey:@"locationSetting"];
+    [usrDefaults synchronize];
+    
+}
 @end

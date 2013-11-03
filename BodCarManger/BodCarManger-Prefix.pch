@@ -24,10 +24,14 @@
 #import "AppMSGDef.h"
 #import "PlanformTool.h"
 #import <QuartzCore/QuartzCore.h>
+#import "AppSetting.h"
 //for net
 #import "ZCSNetClientConfig.h"
 
 #import "UserConfig.h"
+
+#define kGPSMaxScale 1000000.f
+
 typedef struct dateSturct{
     int year;
     int month;

@@ -50,7 +50,7 @@ NSString* gDataArr[] = {@"12.5km",@"11km/h",@"87L",@"3h"};
     
 #if 1
     UIImage *bgImage = nil;
-    UIImageWithFileName(bgImage, @"BG.png");
+    UIImageWithFileName(bgImage, @"car_bg.png");
     mainView.bgImage = bgImage;
 #else
     mainView.mainFramView.backgroundColor = kAppUserBGWhiteColor;

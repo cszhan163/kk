@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		042631C418216A2D0062CC15 /* BaoMonthBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 042631C318216A2D0062CC15 /* BaoMonthBaseViewController.m */; };
+		042631C91822C6AD0062CC15 /* WGS2Mars.m in Sources */ = {isa = PBXBuildFile; fileRef = 042631C81822C6AD0062CC15 /* WGS2Mars.m */; };
 		BD3BA8FF18225BC600293405 /* CarDriveMannerDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BD3BA8FE18225BC600293405 /* CarDriveMannerDataViewController.m */; };
 		BDC37ECD181FAF0E00A4CB18 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDC37ECC181FAF0E00A4CB18 /* Foundation.framework */; };
 		BDC37ED2181FAF0E00A4CB18 /* BUILIb.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = BDC37ED1181FAF0E00A4CB18 /* BUILIb.h */; };
@@ -71,6 +72,9 @@
 /* Begin PBXFileReference section */
 		042631C218216A2D0062CC15 /* BaoMonthBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaoMonthBaseViewController.h; sourceTree = "<group>"; };
 		042631C318216A2D0062CC15 /* BaoMonthBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaoMonthBaseViewController.m; sourceTree = "<group>"; };
+		042631C71822C6AD0062CC15 /* WGS2Mars.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WGS2Mars.h; sourceTree = "<group>"; };
+		042631C81822C6AD0062CC15 /* WGS2Mars.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WGS2Mars.m; sourceTree = "<group>"; };
+		042631CE1822CB7B0062CC15 /* convert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = convert.h; sourceTree = "<group>"; };
 		BD3BA8FD18225BC600293405 /* CarDriveMannerDataViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarDriveMannerDataViewController.h; sourceTree = "<group>"; };
 		BD3BA8FE18225BC600293405 /* CarDriveMannerDataViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarDriveMannerDataViewController.m; sourceTree = "<group>"; };
 		BDC37EC9181FAF0E00A4CB18 /* libBUILIb.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libBUILIb.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -231,6 +235,9 @@
 		BDC37EDA181FB16700A4CB18 /* Map */ = {
 			isa = PBXGroup;
 			children = (
+				042631CE1822CB7B0062CC15 /* convert.h */,
+				042631C71822C6AD0062CC15 /* WGS2Mars.h */,
+				042631C81822C6AD0062CC15 /* WGS2Mars.m */,
 				BDC37EDB181FB16700A4CB18 /* MapView.h */,
 				BDC37EDC181FB16700A4CB18 /* MapView.m */,
 				BDC37EDD181FB16700A4CB18 /* Place.h */,
@@ -482,6 +489,7 @@
 				BDC981B01820F432005DD720 /* NSDate+Ex.m in Sources */,
 				042631C418216A2D0062CC15 /* BaoMonthBaseViewController.m in Sources */,
 				BD3BA8FF18225BC600293405 /* CarDriveMannerDataViewController.m in Sources */,
+				042631C91822C6AD0062CC15 /* WGS2Mars.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

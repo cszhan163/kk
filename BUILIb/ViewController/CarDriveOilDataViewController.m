@@ -18,6 +18,8 @@
 
 #define kOilDataViewHeight  400
 
+NSString*  kOilTableHeaderTextArray[] = {@"日期",@"高转速",@"急加速",@"急减速"};
+
 typedef enum  viewType{
     View_List,
     View_Graph,
@@ -209,7 +211,12 @@ typedef enum  viewType{
 #pragma mark -
 #pragma mark tableview
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+#ifdef Header
     return 30.f;
+#else
+    return 0;
+#endif
+    //return 30.f;
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     UIImage *bgImage = nil;
@@ -226,7 +233,11 @@ typedef enum  viewType{
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
 	//return  10;
+#ifdef Header
     return [self.dataArray count];
+#else
+    return [self.dataArray count]+1;
+#endif
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -252,11 +263,9 @@ typedef enum  viewType{
     }
    
     NSString *bgImageName = @"";
-    if(indexPath.row == 0){
-        
-    }
+   
     if(indexPath.row == 10){
-        [cell setSeperateLineHidden:YES];
+        //[cell setSeperateLineHidden:YES];
         bgImageName = @"oil_table_footer.png";
     }
     else{
@@ -274,19 +283,33 @@ typedef enum  viewType{
     //[cell.contentView  addSubview: bgView];
     cell.backgroundView = bgView;
     SafeRelease(bgView);
-    NSDictionary *item = [self.dataArray objectAtIndex:indexPath.row];
     
-    NSString *date = [NSString stringWithFormat:@"%2d-%2d",[[item objectForKey:@"day"]intValue]];
+    if(indexPath.row == 0){
+        [cell setTableCellCloumn:0 withData:kOilTableHeaderTextArray[0]];
+        [cell setTableCellCloumn:1 withData:kOilTableHeaderTextArray[1]];
+        [cell setTableCellCloumn:2 withData:kOilTableHeaderTextArray[2]];
+        [cell setTableCellCloumn:3 withData:kOilTableHeaderTextArray[3]];
+        return cell;
+    }
+    
+    
+    
+    NSDictionary *item = [self.dataArray objectAtIndex:indexPath.row-1];
+    
+    NSString *date = [NSString stringWithFormat:@"%2d-%2d",mCurrDate.month,[[item objectForKey:@"day"]intValue]];
     NSString *speedUp = [NSString stringWithFormat:@"%@",[item objectForKey:@"accCount"]];
     NSString *speedDown = [NSString stringWithFormat:@"%@",[item objectForKey:@"breakCount"]];
+    NSString *overSpeadCoutn = [NSString stringWithFormat:@"%@",[item objectForKey:@"overSpeedCount"]];
     [cell setTableCellCloumn:0 withData:date];
     [cell setTableCellCloumn:1 withData:speedUp];
     [cell setTableCellCloumn:2 withData:speedDown];
+    [cell setTableCellCloumn:3 withData:overSpeadCoutn];
+    
     return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 44.f;
+    return 30.f;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     /*

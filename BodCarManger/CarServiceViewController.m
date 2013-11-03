@@ -47,6 +47,7 @@ static NSString *kImageTextArr[] ={
     [self setNavgationBarTitle:NSLocalizedString(@"服务", @""
                                                  )];
     [self setRightBtnHidden:YES];
+     [self setHiddenLeftBtn:YES];
     //[self setRightTextContent:NSLocalizedString(@"Done", @"")];
 	// Do any additional setup after loading the view.
    

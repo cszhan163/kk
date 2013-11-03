@@ -8,6 +8,11 @@
 
 #import "UserSettingViewController.h"
 #import "SettingTableViewCell.h"
+#import "CarInfoManageViewController.h"
+#import "UIShareCell.h"
+#import "constant.h"
+#import "SharePlatformCenter.h"
+#import "CancelBindViewController.h"
 //
 //////#import "FriendInvitationViewController.h"
 //////#import "UserInforEditViewController.h"
@@ -26,8 +31,12 @@ static NSString *kSectionOneArr[] =
 static NSString *kSectionTwoArr[] = {
     @"添加车辆和终端",@"记住车辆位置",
 };
-@interface UserSettingViewController ()
+@interface UserSettingViewController (){
 
+    UISwitch *locationSwitch ;
+    UILabel  *usrNameLabel ;
+    UILabel  *creditLabel;
+}
 @end
 
 @implementation UserSettingViewController
@@ -40,8 +49,18 @@ static NSString *kSectionTwoArr[] = {
     }
     return self;
 }
+- (void)locationSetting:(UISwitch*)sender
+{
+    [AppSetting setCarLocationSetting:[NSNumber numberWithBool:sender.on]];
+    
+}
 - (void)loadView{
     [super loadView];
+    locationSwitch = [[UISwitch alloc]init];
+    [locationSwitch addTarget:self action:@selector(locationSetting:) forControlEvents:UIControlEventValueChanged];
+    //if([AppSetting getCarLocationSetting]){
+    BOOL status = [AppSetting getCarLocationSetting];
+    locationSwitch.on = status;
     /*
      CGFloat bgWidth = kDeviceScreenWidth-2*KLoginAndResignPendingX;
      CGFloat bgHeight = 2*kLoginCellItemHeight+KLoginAndResignPendingX*2;
@@ -89,7 +108,7 @@ static NSString *kSectionTwoArr[] = {
     
 #if 1
     UIImage *bgImage = nil;
-    UIImageWithFileName(bgImage, @"BG.png");
+    UIImageWithFileName(bgImage, @"car_bg.png");
     mainView.bgImage = bgImage;
 #else
      mainView.mainFramView.backgroundColor = HexRGB(202, 202, 204);
@@ -204,7 +223,7 @@ static NSString *kSectionTwoArr[] = {
     if (cell == nil) 
     {
 #if 1
-		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:LabelTextFieldCell];
+		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:LabelTextFieldCell];
         cell.backgroundColor = [UIColor clearColor];
         
         //cell.clipsToBounds = YES;
@@ -236,31 +255,32 @@ static NSString *kSectionTwoArr[] = {
         
             cell.textLabel.text = kSectionTwoArr[index];
             
-                       
+        
             
         }
+            break;
         case 2:{
         
-            if (indexPath.row == 1 || indexPath.row == 2)
+            if (indexPath.row == 0 || indexPath.row == 1)
             {
-                //                static NSString *shareCellIdentifier = @"shareCell";
-                //
-                //                UIShareCell *shareCell = [tableView dequeueReusableCellWithIdentifier:shareCellIdentifier];
-                //
-                //                if (![shareCell isKindOfClass:[UIShareCell class]])
-                //                {
-                //                    shareCell = [[UIShareCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:shareCellIdentifier];
-                //                }
-                //
-                //
-                //                if (indexPath.row == 1)
-                //                {
-                //                    [shareCell reloadData:K_PLATFORM_Sina];
-                //                }else{
-                //                    [shareCell reloadData:K_PLATFORM_Tencent];
-                //                }
-                //                
-                //                return shareCell;
+                               static NSString *shareCellIdentifier = @"shareCell";
+                
+                              UIShareCell *shareCell = [tableView dequeueReusableCellWithIdentifier:shareCellIdentifier];
+                
+                                if (![shareCell isKindOfClass:[UIShareCell class]])
+                               {
+                                    shareCell = [[UIShareCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:shareCellIdentifier];
+                                }
+                
+                
+                               if (indexPath.row == 0)
+                               {
+                                    [shareCell reloadData:K_PLATFORM_Sina];
+                                }else{
+                                    [shareCell reloadData:K_PLATFORM_Tencent];
+                                }
+                cell = shareCell;
+                               //return shareCell;
             }
 
         }
@@ -272,7 +292,7 @@ static NSString *kSectionTwoArr[] = {
             switch (index)
             {
                 case 0:
-                    cell.textLabel.text = @"关于DressMemo";
+                    cell.textLabel.text = @"关于";
                     break;
                 case 1:
                       cell.textLabel.text = @"退出登陆";
@@ -326,8 +346,34 @@ static NSString *kSectionTwoArr[] = {
     //[cell.contentView  addSubview: bgView];
     cell.backgroundView = bgView;
     SafeRelease(bgView);
-    
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    
+    if(indexPath.section == 0){
+        if(indexPath.row == 0||indexPath.row == 2){
+            if(indexPath.row == 0){
+                /*
+                usrNameLabel = [UIComUtil createLabelWithFont:[UIFont systemFontOfSize:12] withTextColor:[UIColor grayColor] withText:@"1245678" withFrame:CGRectMake(40.f, 0.f, 320.f, 20)];
+                usrNameLabel.backgroundColor = [UIColor clearColor];
+                 
+                [cell addSubview:usrNameLabel];
+                 */
+                cell.detailTextLabel.text = @"123456789";
+                cell.detailTextLabel.textColor = [UIColor grayColor];
+            
+            }
+            cell.accessoryType = UITableViewCellAccessoryNone;
+            
+        }
+    }
+    else if(indexPath.section == 1){
+    
+        if(indexPath.row == 1){
+            cell.accessoryView = locationSwitch;
+        }
+    }
+    
+    
+    
     cell.textLabel.backgroundColor = [UIColor clearColor];
 	return cell;
     
@@ -340,7 +386,7 @@ static NSString *kSectionTwoArr[] = {
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     switch (indexPath.section) 
     {
-       case 0:{
+//       case 0:{
 //            FriendInvitationViewController *frInviteVc = [[FriendInvitationViewController alloc]init];
 //            [frInviteVc setNavgationBarTitle:cell.textLabel.text];
 //            [self.navigationController pushViewController:frInviteVc animated:YES];
@@ -348,11 +394,12 @@ static NSString *kSectionTwoArr[] = {
 //            //cell.textLabel.text = @"邀请好友";
 //        }
 //            break;
-//        case 1:
-//        {
-//            switch (index)
-//            {
-//                case 0:{
+        case 2:
+        {
+            switch (index)
+            {
+                case 0:
+//                {
 //                
 //                    UserInforEditViewController *userEditVc = [[UserInforEditViewController alloc]init];
 //                    NSDictionary *userData = [AppSetting getLoginUserDetailInfo:[AppSetting getLoginUserId]];
@@ -363,62 +410,73 @@ static NSString *kSectionTwoArr[] = {
 //                
 //                }
 //                    break;
-//                case 1: //新浪微博
-//                case 2: //腾讯微博
-//                {
-//                    NSString *type = nil;
-//                
-//                    if (index == 1) {
-//                        type = K_PLATFORM_Sina;
-//                    }else{
-//                        type = K_PLATFORM_Tencent;
-//                    }
-//                    
-//                    if ([[SharePlatformCenter defaultCenter] modelDataWithType:type]) {
-//                        CancelBindViewController *tc = [[CancelBindViewController alloc] init];
-//                        tc.platformType = type;
-//                        [self.navigationController pushViewController:tc animated:YES];
-//                        
-//                    }else
-//                        [[SharePlatformCenter defaultCenter] bindPlatformWithKey:type WithController:self];
-//                    
-//                    break;
-////                }
-//            }
+                case 1: //新浪微博
+                case 2: //腾讯微博
+                {
+                    NSString *type = nil;
+                
+                    if (index == 0) {
+                        type = K_PLATFORM_Sina;
+                    }else{
+                        type = K_PLATFORM_Tencent;
+                    }
+                    
+                    if ([[SharePlatformCenter defaultCenter] modelDataWithType:type]) {
+                        CancelBindViewController *tc = [[CancelBindViewController alloc] init];
+                        tc.platformType = type;
+                        [self.navigationController pushViewController:tc animated:YES];
+                        
+                    }else
+                        [[SharePlatformCenter defaultCenter] bindPlatformWithKey:type WithController:self];
+                    
+                    break;
+//                }
+            }
             //cell.textLabel.text = kSectionOneArr[index];
         }
-            break;
-        case 2:
+        case 1:
         {
-            
-            //int index = [indexPath row];
-            switch (index)
-            {
-                case 0:
-                {
-                    //cell.textLabel.text = @"关于DressMemo";
-//                    AboutViewController *abVc = [[AboutViewController alloc]init];
+            CarInfoManageViewController *carInfoVc = [[CarInfoManageViewController alloc]init];
+            [self.navigationController pushViewController:carInfoVc animated:YES];
+            SafeRelease(carInfoVc);
+        }
+            break;
+//        case 2:
+//        {
+//            
+//            //int index = [indexPath row];
+//            switch (index)
+//            {
+//                case 0:
+//                {
+//                    //cell.textLabel.text = @"关于DressMemo";
+////                    AboutViewController *abVc = [[AboutViewController alloc]init];
+////                    
+////                    [self.navigationController pushViewController:abVc animated:YES];
+////                    [abVc release];
+//                }
+//                    break;
+//                case 1:
+//                {
 //                    
-//                    [self.navigationController pushViewController:abVc animated:YES];
-//                    [abVc release];
-                }
-                    break;
-                case 1:
-                {
-                    
-                    //cell.textLabel.text = @"退出登陆";//a)	ALERT提示“是否真的要退出” 按钮两个“确定”“取消”，点击确定退出到登陆页面。
-                    /*
-                    kUIAlertConfirmView(NSLocalizedString(@"提示", @""),NSLocalizedString(@"是否真的要退出",@""),NSLocalizedString(@"Cancel",@""),NSLocalizedString(@"Ok",@""))
-                    */
-                   
-                }
-                    break;
-            }
+//                    //cell.textLabel.text = @"退出登陆";//a)	ALERT提示“是否真的要退出” 按钮两个“确定”“取消”，点击确定退出到登陆页面。
+//                    /*
+//                    kUIAlertConfirmView(NSLocalizedString(@"提示", @""),NSLocalizedString(@"是否真的要退出",@""),NSLocalizedString(@"Cancel",@""),NSLocalizedString(@"Ok",@""))
+//                    */
+//                   
+//                }
+//                    break;
+//            }
             
         }
         default:
             break;
     }
+}
+- (void)setUserData:(NSDictionary*)data{
+
+    
+
 }
 #pragma mark  -
 #pragma mark logout confir delegate

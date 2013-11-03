@@ -7,7 +7,7 @@
 //
 
 #import "MapView.h"
-
+#import "convert.h"
 @interface MapView()
 
 -(NSMutableArray *)decodePolyLine: (NSMutableString *)encoded :(CLLocationCoordinate2D) f to: (CLLocationCoordinate2D) t ;
@@ -139,6 +139,7 @@
 	[self centerMap];
 }
 - (void)showRouteWithPointsData:(NSArray*)points{
+    routes = points;
     [self updateRouteView];
     [self centerMap];
 }
@@ -151,6 +152,7 @@
         CLLocation *loc = [routes objectAtIndex:i];
         coords.latitude = loc.coordinate.latitude;
         coords.longitude = loc.coordinate.longitude;
+        coords = transform(coords);
         pointsToUse[i] = coords;
     }
     MKPolyline *lineOne = [MKPolyline polylineWithCoordinates:pointsToUse count:[routes count]];

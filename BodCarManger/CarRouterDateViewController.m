@@ -44,7 +44,7 @@
     
     self.mMothDateKey = [NSString stringWithFormat:@"%d%02d",self.mCurrDate.year,self.mCurrDate.month];
     UIImage *bgImage = nil;
-    UIImageWithFileName(bgImage, @"BG.png");
+    UIImageWithFileName(bgImage, @"car_bg.png");
     mainView.bgImage = bgImage;
 
     

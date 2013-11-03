@@ -53,7 +53,7 @@
     [super viewDidLoad];
 #if 1
     UIImage *bgImage = nil;
-    UIImageWithFileName(bgImage, @"BG.png");
+    UIImageWithFileName(bgImage, @"car_bg.png");
     mainView.bgImage = bgImage;
 #else
     mainView.mainFramView.backgroundColor = kAppUserBGWhiteColor;
@@ -231,10 +231,13 @@
             break;
         case 1:
         {
-//            CarDriveMannerAnalysisViewController *carDriveMannerAnalysisVc =
-//            [[CarDriveMannerAnalysisViewController
-//              alloc]init];
+#if 1
+           CarDriveMannerAnalysisViewController *carDriveMannerAnalysisVc =
+           [[CarDriveMannerAnalysisViewController
+              alloc]init];
+#else
             CarDriveMannerDataViewController *carDriveMannerAnalysisVc = [[CarDriveMannerDataViewController alloc]init];
+#endif
 #if 0
             [self.navigationController pushViewController:carDriveMannerAnalysisVc animated:YES];
 #else

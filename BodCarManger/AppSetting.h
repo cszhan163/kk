@@ -30,4 +30,7 @@
 +(BOOL)getNeedLoadImage;
 +(void)setNeedLoadImage:(BOOL)status;
 
++(BOOL)getCarLocationSetting;
++(void)setCarLocationSetting:(BOOL)status;
+
 @end

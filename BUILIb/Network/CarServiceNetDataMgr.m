@@ -110,6 +110,11 @@ static ZCSNetClientNetInterfaceMgr *dressMemoInterfaceMgr = nil;
     [self startiPlant4MRequest:inInfo withSuccess:@selector(userRegisterOk:) withFailed:@selector(userRegisterFailed:)];
 }
 #pragma mark -
+- (id)carInforQuery:(NSString*)username{
+
+
+}
+#pragma mark -
 #pragma mark rounter
 - (id)getDetailByMonth:(NSDictionary*)param{
 #if BAO_TEST
@@ -428,12 +433,36 @@ static ZCSNetClientNetInterfaceMgr *dressMemoInterfaceMgr = nil;
          flag = [item objectForKey:@"driveflg"];
          */
         NSMutableDictionary *resultDict = [NSMutableDictionary dictionary];
-        NSMutableArray *data = [NSMutableArray array];
-        EiBlock *tripInfo = [info getBlock:@"tripCalanderDay"]; // block型返回值
+        NSMutableArray *gpsArray = [NSMutableArray array];
+        
+        [resultDict setValue:[info get:@"tripMileage"] forKey:@"tripMileage"];
+        [resultDict setValue:[info get:@"fuelWear"] forKey:@"fuelWear"];
+        [resultDict setValue:[info get:@"safeScore"]  forKey:@"safeScore"];
+        [resultDict setValue:[info get:@"economicScore"] forKey:@"economicScore"];
+        
+        EiBlock *tripInfo = [info getBlock:@"gps"]; // block型返回值
         int rowCount = [tripInfo getRowCount];
         for(int i = 0;i<rowCount;i++){
-            
+            NSMutableDictionary *row = [tripInfo getRow:i]; // block有多个row，每个为一个NSMutableDictionary对象
+            //NSNumber *tripId = [row objectForKey:@"tripId"]; // 通过objectForKey取出
+            /*
+             cell.mStartLabel.text = [NSString stringWithFormat:@"始: %@",[data objectForKey:@"startadr"]];
+             cell.mEndLabel.text = [NSString stringWithFormat:@"终:%@",[data objectForKey:@"endadr"]];
+             
+             int oiltest = [[data objectForKey:@"oiltest"]intValue];
+             if(oiltest>=11) oiltest = 11;
+             int drivetest = [[data objectForKey:@"drivetest"]intValue];
+             */
+            //NSString *gprsInfo = [NSString stringWithFormat:@"%@,%@",[row objectForKey:@"lng"],[row objectForKey:@"lat"]];
+            //NSString *endadr2 = [NSString stringWithFormat:@"%@,%@",[row objectForKey:@"endLon"],[row objectForKey:@"endLat"]];
+            NSDictionary *item = [NSDictionary dictionaryWithObjectsAndKeys:
+                                  [row objectForKey:@"lng"],@"lng",
+                                  [row objectForKey:@"lat"],@"lat",
+                                  nil];
+            [gpsArray addObject:item];
+
         }
+        [resultDict setValue:gpsArray forKey:@"gps"];
         [self sendFinalOkData:resultDict withKey:kResRouterHistory];
     }
     else{

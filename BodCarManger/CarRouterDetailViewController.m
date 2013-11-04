@@ -19,6 +19,7 @@
     CarDetailPenalView * carDetailPenalView;
     DateStruct  mDateStruct;
 }
+@property(nonatomic,strong)NSMutableArray *gprsDataArray;
 @end
 
 @implementation CarRouterDetailViewController
@@ -28,6 +29,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        self.gprsDataArray = [NSMutableArray array];
     }
     return self;
 }
@@ -36,7 +38,7 @@
     [super viewDidLoad];
     
     UIImage *bgImage = nil;
-    UIImageWithFileName(bgImage, @"BG.png");
+    UIImageWithFileName(bgImage, @"car_bg.png");
     
     mainView.bgImage = bgImage;
     
@@ -75,7 +77,7 @@
     
     [self initMapPointData:mData];
    
-    //[mMapView showRouteFrom:mStartPoint to:mEndPoint];
+   // [mMapView showRouteFrom:mStartPoint to:mEndPoint];
     
     [self loadRouterHistoryData];
     
@@ -99,7 +101,7 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-#define kMaxScale 1000000.f
+
 - (void)initMapPointData:(NSDictionary*)data{
     
     /*
@@ -128,16 +130,16 @@
 	mStartPoint.description = @"";
     NSString *latLogStr = [data objectForKey:@"startadr2"];
     NSArray *latLogArr  = [latLogStr componentsSeparatedByString:@","];
-    mStartPoint.latitude = [latLogArr[1]floatValue]/kMaxScale;
-	mStartPoint.longitude = [latLogArr[0]floatValue]/kMaxScale;
+    mStartPoint.latitude = [latLogArr[1]floatValue]/kGPSMaxScale;
+	mStartPoint.longitude = [latLogArr[0]floatValue]/kGPSMaxScale;
 	
 	mEndPoint = [[Place alloc] init] ;
 	mEndPoint.name = [data objectForKey:@"endadr"];
 	mEndPoint.description = @"";
     latLogStr = [data objectForKey:@"endadr2"];
     latLogArr  = [latLogStr componentsSeparatedByString:@","];
-    mEndPoint.latitude = [latLogArr[1]floatValue]/kMaxScale;
-	mEndPoint.longitude = [latLogArr[0]floatValue]/kMaxScale;
+    mEndPoint.latitude = [latLogArr[1]floatValue]/kGPSMaxScale;
+	mEndPoint.longitude = [latLogArr[0]floatValue]/kGPSMaxScale;
     /*
      "rotate": "86",
      "speed": "34",
@@ -149,6 +151,7 @@
     NSString *speed = [data objectForKey:@"speed"];
     NSString *rotate = [data objectForKey:@"rotate"];
     NSString *tempreture = [data objectForKey:@"tempreture"];
+    
     carDetailPenalView.mRunDistanceLabel.text = [NSString stringWithFormat:@"行驶距离:-  %@km",distance];
     carDetailPenalView.mRunSpeedLabel.text = [NSString stringWithFormat:@"行驶速度:-  %@km/h",speed];
     carDetailPenalView.mRotateSpeedLabel.text= [NSString stringWithFormat:@"转度:-  %@次",rotate];
@@ -211,7 +214,8 @@
     //NSString *resKey = [respRequest resourceKey];
     if(self.request ==respRequest && [resKey isEqualToString:kResRouterHistory])
     {
-        NSDictionary *netData = [data objectForKey:@"data"];
+        NSDictionary *netData = data;//[data objectForKey:@"data"];
+        self.gprsDataArray = [netData objectForKey:@"gps"];
         [self  performSelectorOnMainThread:@selector(updateUIData:) withObject:netData waitUntilDone:NO ];
         //[mDataDict setObject:netData forKey:mMothDateKey];
         //}
@@ -220,8 +224,19 @@
     }
     
 }
+#import "WGS2Mars.h"
 - (void)updateUIData:(NSDictionary*)data{
 
-
+    NSMutableArray *gpsScaleArray = [NSMutableArray array];
+    for(NSDictionary *item in self.gprsDataArray){
+        double lng = [[item objectForKey:@"lng"] doubleValue]/kGPSMaxScale;
+        double lat = [[item objectForKey:@"lat"] doubleValue]/kGPSMaxScale;
+        printf("[%lf,%lf]",lng,lat);
+        //WGS2Mars(&lat, &lng);
+        CLLocation *localpoint = [[[CLLocation alloc] initWithLatitude:lat longitude:lng]autorelease];
+        //CLLocation *end = [[[CLLocation alloc] initWithLatitude:lat ] autorelease];
+        [gpsScaleArray addObject:localpoint];
+    }
+    [mMapView  showRouteWithPointsData:gpsScaleArray];
 }
 @end

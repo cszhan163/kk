@@ -36,7 +36,7 @@
     [super viewDidLoad];
     //self.view.backgroundColor = [UIColor clearColor];
     UIImage *bgImage = nil;
-    UIImageWithFileName(bgImage, @"BG.png");
+    UIImageWithFileName(bgImage, @"car_bg.png");
     mainView.bgImage = bgImage;
     
     UIImageWithFileName(bgImage, @"car_plant_bg.png");

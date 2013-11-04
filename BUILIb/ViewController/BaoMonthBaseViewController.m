@@ -28,9 +28,17 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    DateStruct date ;
-    date.month = 10;
-    date.year = 2013;
+    NSDate *currDate  = [NSDate date];
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    [dateFormat setDateFormat:@"yyyy-MM"];
+    //dateFormat.dateStyle = NSDateFormatterShortStyle;
+    NSString *currDateStr = [dateFormat stringFromDate:currDate];
+    NSArray *dateArray = [currDateStr componentsSeparatedByString:@"-"];
+    DateStruct date;
+    
+    date.month = [dateArray[1]intValue];
+    date.year = [dateArray[0]intValue];
+
     self.mCurrDate = date;
     
 	// Do any additional setup after loading the view.

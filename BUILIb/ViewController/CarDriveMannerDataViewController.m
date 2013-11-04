@@ -63,7 +63,7 @@
         
     }
     if(indexPath.row == 10){
-        [cell setSeperateLineHidden:YES];
+        //[cell setSeperateLineHidden:YES];
         bgImageName = @"oil_table_footer.png";
     }
     else{

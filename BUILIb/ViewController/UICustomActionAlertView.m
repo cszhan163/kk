@@ -22,6 +22,8 @@
 
 #define kAlertViewSubHeight       120.f
 
+#define kBlackHalfColor         HexRGBA(0,0,0,0.5)
+#define kWhiteHalfColor         HexRGBA(255,255,255,0.5)
 static NSString* iconItemTextArray[] = {@"微信",@"朋友圈",@"更多"};
 //static NSString* funItemTextArray[] = {@"自动发送",@""};
 static NSString* sharredArray[] = {@"wechatsime",@"Friends",@"add"};
@@ -29,6 +31,7 @@ static NSString* commonArray[] = {@"bar1_100stretch",@"bar2_100stretch"};
 @interface UICustomActionAlertView(){
     UIImageView *alerActionView;
     UIButton *autoSendButton;
+    //HexRGBA(<#x#>, <#y#>, <#z#>, <#a#>)
 }
 @end
 @implementation UICustomActionAlertView

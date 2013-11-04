@@ -13,6 +13,7 @@
 }
 
 @property(nonatomic,strong)UIColor *drawLineColor;
+@property(nonatomic,strong)NSArray *drawLineColors;
 - (void)setBackgroundImage:(UIImage*)image;
 - (void)setXStep:(CGFloat)step;
 - (void)setYStep:(CGFloat)step;

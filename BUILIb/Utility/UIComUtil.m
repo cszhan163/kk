@@ -145,8 +145,8 @@ static const NSString *KEY_HIT_TEST_EDGE_INSETS = @"HitTestEdgeInsets";
         image = [UIImage imageFromColor:[UIColor redColor]];
     }
     //btn.titleLabel.text = text;
-//    [btn setTitle:text forState:UIControlStateNormal];
-    [btn setTitle:text forState:UIControlStateHighlighted];
+    [btn setTitle:text forState:UIControlStateNormal];
+    [btn setTitle:text forState:UIControlStateSelected];
     [btn setBackgroundImage:image forState:UIControlStateSelected];
     //[btn setImage:image forState:UIControlStateSelected];
     if(normaliconImage)

@@ -9,9 +9,9 @@
 #import "UIBaseViewController.h"
 #import "NENavItemController.h"
 #import "BaoCarNetBaseViewController.h"
-#import "UISimpleNetBaseViewController.h"
+#import "BaoMonthBaseViewController.h"
 @protocol CarDataAnalysisBaseViewControllerDataSouceDelegate;
-@interface CarDataAnalysisBaseViewController : UISimpleNetBaseViewController{
+@interface CarDataAnalysisBaseViewController : BaoMonthBaseViewController{
     @public
     NENavItemController *navItemCtrl;
     //DateStruct   *mCurrDate;

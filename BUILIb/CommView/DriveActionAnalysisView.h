@@ -9,7 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "DataAnalysisBaseView.h"
 #import "DriveDataModel.h"
-@interface DriveActionAnalysisView : DataAnalysisBaseView
-
+@interface DriveActionAnalysisView : DataAnalysisBaseView{
+    
+    NSArray *colorArray;
+}
+@property(nonatomic,strong)NSArray *colorArray;
 @property(nonatomic,strong)OilAnalysisData *oilData;
 @end

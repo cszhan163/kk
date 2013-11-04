@@ -18,12 +18,19 @@
 @property(nonatomic,strong)NSMutableArray *percentShowLabelArray;
 @end
 @implementation DriveActionAnalysisView
+@synthesize colorArray;
 @synthesize oilData;
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
+        
+       self.colorArray =       @[HexRGB(79, 120, 205),
+                                HexRGB(92, 200, 92),
+                                HexRGB(237, 209, 69),
+                                ];
+        
         self.percentShowLabelArray = [NSMutableArray array];
       
 
@@ -87,16 +94,13 @@
     self.oilData = data;
     //@[@32,@28,@40];
     NSArray *percentArray = self.oilData.percentDataArray;
-    NSArray *colorArray = @[HexRGB(79, 120, 205),
-                            HexRGB(92, 200, 92),
-                            HexRGB(237, 209, 69),
-                            ];
+  
     
     
     NSString *showText = [NSString stringWithFormat:kOilMothFormart,oilData.date.month];
     conclusionLabel.text = oilData.conclusionText;
     dateShowLabel.text = showText;
-    [self updateLinesUIByData:data.linesDataArray];
+    
     NSArray *formartArray = @[@"低速行驶时间: %d%@",@"经济行驶时间: %d\%@",@"高速行驶时间: %d\%@"];
     
     NSString *precentText = @"";
@@ -113,9 +117,11 @@
         [testData addObject:item];
     }
     [self setDisplayViewData:testData withType:0];
+    
+    [self updateLinesUIByData:data.linesDataArray];
 }
 - (void)updateLinesUIByData:(NSMutableArray*)data{
-
+    /*
     NSMutableArray *linesArray = [NSMutableArray array];
     int lastx = 0;
     int lasty = 10;
@@ -130,7 +136,14 @@
         lasty = y;
     }
     NE_LOG(@"%@",linesArray);
-    [self  setDisplayLineChart:linesArray];
+     */
+    [drawLineView setDrawLineColors:self.colorArray];
+    for(NSArray *item in data){
+        [self addDisplayLineChart:item];
+        //[self  setDisplayLineChart:linesArray];
+    }
+    [drawLineView setNeedsDisplay];
+    //drawLineView.
 }
 
 // Only override drawRect: if you perform custom drawing.

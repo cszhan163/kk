@@ -7,7 +7,7 @@
 //
 
 #import "SubNavItemBaseViewController.h"
-
-@interface CarDriveOilDataAnalaysisViewController : SubNavItemBaseViewController
-
+#import "BaoMonthBaseViewController.h"
+@interface CarDriveOilDataAnalaysisViewController : BaoMonthBaseViewController
+- (void)updateUIData:(NSDictionary*)data;
 @end

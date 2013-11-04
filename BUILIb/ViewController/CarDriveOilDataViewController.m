@@ -14,6 +14,7 @@
 
 #import "DriveDataModel.h"
 
+//#define ScrollerView 0
 #define kOilDataViewWidth   300
 
 #define kOilDataViewHeight  400
@@ -38,6 +39,8 @@ typedef enum  viewType{
 - (void)viewDidLoad{
     
     [super viewDidLoad];
+    
+    mainView.topBarView.hidden = YES;
     self.delegate = self;
     self.view.backgroundColor = [UIColor clearColor];
     UIImage *bgImage = nil;
@@ -109,7 +112,7 @@ typedef enum  viewType{
     SafeRelease(dataTableView);
      */
 #endif
-    [self loadAnalaysisData];
+   
     
 }
 - (void)flipViewFromLeftToRight:(BOOL)status{
@@ -264,7 +267,7 @@ typedef enum  viewType{
    
     NSString *bgImageName = @"";
    
-    if(indexPath.row == 10){
+    if(indexPath.row == [self.dataArray count]){
         //[cell setSeperateLineHidden:YES];
         bgImageName = @"oil_table_footer.png";
     }
@@ -331,43 +334,10 @@ typedef enum  viewType{
 }
 
 
-#pragma mark -
-#pragma mark network
-
-- (void)loadAnalaysisData{
-    
-    CarServiceNetDataMgr *cardShopMgr = [CarServiceNetDataMgr getSingleTone];
-    
-    kNetStartShow(@"数据加载...", self.view);
-    NSString *month = [NSString stringWithFormat:@"%d",mCurrDate.month];
-    NSString *year = [NSString stringWithFormat:@"%d",mCurrDate.year];
-    self.request = [cardShopMgr  getDriveOilAnalysisDataByCarId:@"SHD05728" withMoth:month withYear:year];
-    
-}
-
--(void)didNetDataOK:(NSNotification*)ntf
-{
-    
-    id obj = [ntf object];
-    id respRequest = [obj objectForKey:@"request"];
-    id data = [obj objectForKey:@"data"];
-    NSString *resKey = [obj objectForKey:@"key"];
-    //NSString *resKey = [respRequest resourceKey];
-    if(self.request ==respRequest && [resKey isEqualToString:kResDriveOilAnalysis])
-    {
-        self.data = data;
-        self.dataArray = [data objectForKey:@"economicData"];
-        [self  performSelectorOnMainThread:@selector(updateUIData:) withObject:data waitUntilDone:NO ];
-        //[mDataDict setObject:netData forKey:mMothDateKey];
-        //}
-        kNetEnd(self.view);
-        
-    }
-    
-}
 - (void)updateUIData:(NSDictionary*)data{
     
     NSArray *pageArray= scrollerView.getScrollerPageViews;
+    self.dataArray = [data objectForKey:@"economicData"];
     if(pageIndex == 0){
     
         [self updateTableDataView];

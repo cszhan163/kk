@@ -30,6 +30,8 @@
 - (void)viewDidLoad{
     
     [super viewDidLoad];
+    
+      mainView.topBarView.hidden = YES;
 //    UIImage *bgImage = nil;
 //    //tweetieTableView.hidden = YES;
 //    //mainView.backgroundColor = [UIColor clearColor];
@@ -41,17 +43,10 @@
 //    oilAnalysisView.backgroundColor = [UIColor redColor];
 //    [oilAnalysisView updateUIByData:nil];
 //    return;
-    dataAnaylsisView = [[DriveActionAnalysisView alloc]initWithFrame:CGRectMake(0.f,35-10.f, 320.f,300)];
+    dataAnaylsisView = [[DriveActionAnalysisView alloc]initWithFrame:CGRectMake(0.f,35+20+5, 320.f,300)];
     dataAnaylsisView.backgroundColor = [UIColor clearColor];
     
-    OilAnalysisData *data =  [[OilAnalysisData alloc]init];
-    data.percentDataArray = @[@32,@28,@40];
-    DateStruct date;
-    date.month = 11;
-    data.date = date;
-    data.conclusionText = @"起挺次数较多会影响油耗";
     
-    [dataAnaylsisView  updateUIByData:data];
     //self.view.backgroundColor = [UIColor whiteColor];
     //dataAnaylsisView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:dataAnaylsisView];
@@ -71,5 +66,66 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+- (void)updateUIData:(NSDictionary*)data{
 
+    OilAnalysisData *oilData =  [[OilAnalysisData alloc]init];
+    
+    oilData.percentDataArray = [NSArray arrayWithObjects:
+                                [data objectForKey:@"breakRate"],
+                                [data objectForKey:@"highRPMRate"],
+                                [data objectForKey:@"accRate"],
+                                nil];
+    NSMutableArray *linesArray = [NSMutableArray array];
+    for(int i = 0;i<3;i++){
+        NSMutableArray * lineArray = [NSMutableArray array];
+        [linesArray addObject:lineArray];
+    }
+    NSArray *economicData = [data objectForKey:@"economicData"];
+    economicData = [economicData sortedArrayUsingComparator:^(id param1,id param2){
+        
+        id arg1 = [param1 objectForKey:@"day"];
+        id arg2 = [param2 objectForKey:@"day"];
+        if([arg1 intValue]>[arg2 intValue]){
+            return NSOrderedDescending;
+        }
+        else if([arg1 intValue]<[arg1 intValue]){
+            return -1;
+        }
+        else{
+            return 0;
+        }
+    
+    }];
+    for(NSDictionary *item in economicData){
+        
+        NSString *speedUp = [NSString stringWithFormat:@"%@",[item objectForKey:@"accCount"]];
+        NSString *speedDown = [NSString stringWithFormat:@"%@",[item objectForKey:@"breakCount"]];
+        NSString *overSpeadCoutn = [NSString stringWithFormat:@"%@",[item objectForKey:@"overSpeedCount"]];
+        //[cell setTableCellCloumn:0 withData:date];
+        [[linesArray objectAtIndex:0] addObject:[NSDictionary dictionaryWithObjectsAndKeys:
+                                                [item objectForKey:@"day"],@"x",
+                                                 speedUp,@"y",nil]];
+        
+        [[linesArray objectAtIndex:1] addObject:[NSDictionary dictionaryWithObjectsAndKeys:
+                                                 [item objectForKey:@"day"],@"x",
+                                                 speedDown,@"y",nil]];
+        /*
+        [[linesArray objectAtIndex:2] addObject:[NSDictionary dictionaryWithObjectsAndKeys:
+                                                 [item objectForKey:@"day"],@"x",
+                                                 overSpeadCoutn,@"y",nil]];
+        */
+        
+    }
+    oilData.linesDataArray = linesArray;
+    //oilData.percentDataArray = @[@32,@28,@40];
+    
+    DateStruct date;
+    date.month = 11;
+    
+    oilData.date = date;
+    oilData.conclusionText = @"起挺次数较多会影响油耗";
+    
+    [dataAnaylsisView  updateUIByData:oilData];
+
+}
 @end

@@ -45,7 +45,7 @@
     //self.oilData = data;
     //@[@32,@28,@40];
     //NSArray *percentArray = self.oilData.percentDataArray;
-    [self updateLinesUIByData:nil];
+    [self updateLinesUIByData:data];
 }
 - (void)updateLinesUIByData:(NSMutableArray*)data{
     

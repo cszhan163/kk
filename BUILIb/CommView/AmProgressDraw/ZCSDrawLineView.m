@@ -25,6 +25,7 @@
 @synthesize yStep   = _yStep;
 @synthesize offsetY = _offsetY;
 @synthesize offsetX = _offsetX;
+@synthesize drawLineColors = _drawLineColors;
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -34,7 +35,7 @@
         _yStep = 1.0;
         //_backgroundColor = [UIColor clearColor];
         _drawLineColor = [UIColor whiteColor];
-        
+        //self.linesArray =
         // Initialization code
     }
     return self;
@@ -45,9 +46,12 @@
 }
 - (void)updateDrawLineData:(NSArray*)data{
     self.pointsData = data;
-    [self setNeedsDisplay];
+    //[self setNeedsDisplay];
 }
 - (void)addDrawLineData:(NSArray*)data{
+    if(self.linesArray == nil){
+        self.linesArray = [NSMutableArray array];
+    }
     [self.linesArray addObject:data];
     [self setNeedsDisplay];
 }
@@ -73,33 +77,40 @@
      
     CGContextSetBlendMode(context,kCGBlendModeCopy);
     [_bgImage drawInRect:rect];
-    CGContextBeginPath (context);
-    CGContextSetLineWidth(context,4.f);
-    CGContextSetStrokeColorWithColor(context,_drawLineColor.CGColor);
+    
     //[[UIColor brownColor] set];
-    CGPoint linePointsArr[5];
+    //CGPoint linePointsArr[5];
     CGFloat startX =  _offsetX;
     CGFloat  y = _offsetY;
+    
     //CGPoint startPoint = CGPointMake(startX, y);
     //CGContextMoveToPoint(context, startX, y);
     for(int j = 0;j<[_linesArray count];j++){
+        CGContextBeginPath (context);
+        CGContextSetLineWidth(context,4.f);
+        UIColor *lineColor = _drawLineColors[j];
+        if(lineColor)
+            CGContextSetStrokeColorWithColor(context,lineColor.CGColor);
+        else
+            CGContextSetStrokeColorWithColor(context,_drawLineColor.CGColor);
         _pointsData = [_linesArray objectAtIndex:j];
         for(int i =0;i<[_pointsData count];i++){
             id item = [_pointsData objectAtIndex:i];
             CGFloat xPointItem = [[item objectForKey:@"x"]floatValue];
-            CGFloat yPointItem = [[item objectForKey:@"y"]floatValue];
+            CGFloat yPointItem = [[item objectForKey:@"y"]floatValue]+rand()%100;
             CGFloat xPoint = xPointItem *_xStep+_offsetX;
             CGFloat yPoint = _maxLenY-(yPointItem *_yStep)+_offsetY;
             //startX = startX+xPoint;
             y = yPoint;
-            linePointsArr[i] = CGPointMake(xPoint,y);
+            //linePointsArr[i] = CGPointMake(xPoint,y);
             if(i!=0)
                 CGContextAddLineToPoint(context, xPoint, y);
             CGContextMoveToPoint(context, xPoint, y);
             
         }
+        CGContextStrokePath(context);
     }
-    CGContextStrokePath(context);
+   
     CGContextRestoreGState(context);
     //CGContext
 }

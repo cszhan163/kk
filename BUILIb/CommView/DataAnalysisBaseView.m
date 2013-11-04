@@ -64,7 +64,7 @@
             [mutipleView addMutiplePecentTrackWithPercent:[[item objectForKey:@"percent"] intValue] withColor:[item objectForKey:@"color"] withClocksize:NO];
         }
     }
-    
+    [mutipleView setNeedsDisplay];
     /*
     [mutipleView addMutiplePecentTrackWithPercent:32 withColor:[UIColor yellowColor] withClocksize:YES];
     

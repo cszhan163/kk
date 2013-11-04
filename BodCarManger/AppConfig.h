@@ -109,6 +109,7 @@
 //router
 #define kResRouterDataMoth              @"queryTripCalanderMonth"
 #define kResRouterDataDay               @"queryTripDay"
+#define kResRouterNow                   @"queryTripNow"
 #define kResRouterLatest                @"queryLastTripID"
 #define kResRouterHistory               @"queryTripHistory"
 
@@ -117,7 +118,7 @@
 #define kResDriveActionAnalysis                 @"querySafeAnalyse"
 #define kResDriveOilAnalysis                    @"queryEconomicAnalyse"
 //check
-#define kResCarCheckData                @"queryConData"
+#define kResCarCheckData                        @"queryConData"
 
 #endif
 

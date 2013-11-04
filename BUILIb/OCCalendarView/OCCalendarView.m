@@ -176,7 +176,6 @@
         }
     }
 }
-
 - (void)resetViews {
     [selectionView resetSelection];
     [daysView setMonth:currentMonth];

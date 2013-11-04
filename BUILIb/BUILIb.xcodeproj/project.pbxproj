@@ -53,6 +53,7 @@
 		BDC37F9F181FB16800A4CB18 /* CarDriveOilDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BDC37F62181FB16800A4CB18 /* CarDriveOilDataViewController.m */; };
 		BDC37FA0181FB16800A4CB18 /* SubNavItemBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BDC37F64181FB16800A4CB18 /* SubNavItemBaseViewController.m */; };
 		BDC37FA1181FB16800A4CB18 /* CarServiceNetDataMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = BDC37F67181FB16800A4CB18 /* CarServiceNetDataMgr.m */; };
+		BDC8CB401827B062000A2C16 /* UICustomActionAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = BDC8CB3F1827B062000A2C16 /* UICustomActionAlertView.m */; };
 		BDC981B01820F432005DD720 /* NSDate+Ex.m in Sources */ = {isa = PBXBuildFile; fileRef = BDC981AF1820F432005DD720 /* NSDate+Ex.m */; };
 /* End PBXBuildFile section */
 
@@ -164,6 +165,8 @@
 		BDC37F64181FB16800A4CB18 /* SubNavItemBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubNavItemBaseViewController.m; sourceTree = "<group>"; };
 		BDC37F66181FB16800A4CB18 /* CarServiceNetDataMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarServiceNetDataMgr.h; sourceTree = "<group>"; };
 		BDC37F67181FB16800A4CB18 /* CarServiceNetDataMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarServiceNetDataMgr.m; sourceTree = "<group>"; };
+		BDC8CB3E1827B062000A2C16 /* UICustomActionAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICustomActionAlertView.h; sourceTree = "<group>"; };
+		BDC8CB3F1827B062000A2C16 /* UICustomActionAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICustomActionAlertView.m; sourceTree = "<group>"; };
 		BDC981AE1820F432005DD720 /* NSDate+Ex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Ex.h"; sourceTree = "<group>"; };
 		BDC981AF1820F432005DD720 /* NSDate+Ex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Ex.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -365,6 +368,8 @@
 		BDC37F58181FB16700A4CB18 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				BDC8CB3E1827B062000A2C16 /* UICustomActionAlertView.h */,
+				BDC8CB3F1827B062000A2C16 /* UICustomActionAlertView.m */,
 				BDC37F59181FB16700A4CB18 /* CarDataAnalysisBaseViewController.h */,
 				BDC37F5A181FB16800A4CB18 /* CarDataAnalysisBaseViewController.m */,
 				BDC37F5B181FB16800A4CB18 /* CarDriveMannerAnalysisViewController.h */,
@@ -490,6 +495,7 @@
 				042631C418216A2D0062CC15 /* BaoMonthBaseViewController.m in Sources */,
 				BD3BA8FF18225BC600293405 /* CarDriveMannerDataViewController.m in Sources */,
 				042631C91822C6AD0062CC15 /* WGS2Mars.m in Sources */,
+				BDC8CB401827B062000A2C16 /* UICustomActionAlertView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

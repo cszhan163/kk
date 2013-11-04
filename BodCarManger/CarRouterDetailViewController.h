@@ -9,5 +9,7 @@
 #import "UIBaseViewController.h"
 #import "UISimpleNetBaseViewController.h"
 @interface CarRouterDetailViewController : UISimpleNetBaseViewController
+@property(nonatomic,assign)BOOL isLatest;
+@property(nonatomic,assign)BOOL isRunning;
 @property(nonatomic,strong) NSDictionary*mData;
 @end

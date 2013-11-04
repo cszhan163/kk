@@ -127,7 +127,6 @@
 		[mapView removeAnnotations:[mapView annotations]];
 		[routes release];
 	}
-	
 	PlaceMark* from = [[[PlaceMark alloc] initWithPlace:f] autorelease];
 	PlaceMark* to = [[[PlaceMark alloc] initWithPlace:t] autorelease];
 	
@@ -153,6 +152,7 @@
         coords.latitude = loc.coordinate.latitude;
         coords.longitude = loc.coordinate.longitude;
         coords = transform(coords);
+        printf("[%lf,%lf]",coords.latitude,coords.longitude);
         pointsToUse[i] = coords;
     }
     MKPolyline *lineOne = [MKPolyline polylineWithCoordinates:pointsToUse count:[routes count]];

@@ -23,6 +23,7 @@
 @end
 
 @implementation CarRouterDetailViewController
+@synthesize isLatest;
 @synthesize mData;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -47,14 +48,32 @@
     
     //map
     
-     UIImageWithFileName(bgImage, @"calendar.png");
+    UIImageWithFileName(bgImage, @"calendar.png");
     
+
     UIButton *btn = [UIComUtil createButtonWithNormalBGImage:bgImage withHightBGImage:bgImage withTitle:@"" withTag:2];
     [btn addTarget:self action:@selector(didSelectorTopNavItem:) forControlEvents:UIControlEventTouchUpInside];
-    [mainView.topBarView addSubview:btn];
-    
     btn.frame = CGRectMake(0,0.f,bgImage.size.width/kScale,bgImage.size.height/kScale);
     btn.center = CGPointMake(mainView.topBarView.center.x+65,mainView.topBarView.center.y);
+#if 0
+    [mainView.topBarView addSubview:btn];
+#else
+    if(isLatest){
+        /*
+        [super setNavgationBarRightBtnImage:bgImage forStatus:UIControlStateNormal];
+              [super setNavgationBarRightBtnImage:bgImage forStatus:UIControlStateSelected];
+            */
+        [self setNavgationBarTitle:@"最近驾驶"];
+        if(self.isRunning){
+           [self setNavgationBarTitle:@"正在驾驶"]; 
+        }
+    //self.leftBtn = btn;
+    }
+    else{
+    
+    }
+#endif
+   
     
     
     mMapView = [[MapView alloc] initWithFrame:
@@ -181,29 +200,29 @@
 }
 #pragma mark -
 #pragma mark navigation bar action
-//-(void)didSelectorTopNavItem:(id)navObj{
-//    switch ([navObj tag]) {
-//        case  0:
-//            [self.navigationController popViewControllerAnimated:YES];// animated:<#(BOOL)animated#>
-//			break;
-//        case 2:
-//        case 1:{
-//                //[ZCSNotficationMgr postMSG:kPopAllViewController obj:nil];
-//            
-//            /*
-//            CarRouterDateViewController *carRouterDateChooseVc = [[CarRouterDateViewController alloc]init];
-//            carRouterDateChooseVc.mCurrDate = mDateStruct;
-//            [self.navigationController pushViewController:carRouterDateChooseVc animated:YES];
-//            Safe_Release(carRouterDateChooseVc);
-//             */
-//           
-//            }
-//            break;
-//            
-//        default:
-//            break;
-//    }
-//}
+-(void)didSelectorTopNavItem:(id)navObj{
+    switch ([navObj tag]) {
+        case  0:
+            [self.navigationController popViewControllerAnimated:YES];// animated:<#(BOOL)animated#>
+			break;
+        case 2:
+        case 1:{
+                [ZCSNotficationMgr postMSG:kPopAllViewController obj:nil];
+            
+            /*
+            CarRouterDateViewController *carRouterDateChooseVc = [[CarRouterDateViewController alloc]init];
+            carRouterDateChooseVc.mCurrDate = mDateStruct;
+            [self.navigationController pushViewController:carRouterDateChooseVc animated:YES];
+            Safe_Release(carRouterDateChooseVc);
+             */
+           
+            }
+            break;
+            
+        default:
+            break;
+    }
+}
 -(void)didNetDataOK:(NSNotification*)ntf
 {
     
@@ -216,6 +235,8 @@
     {
         NSDictionary *netData = data;//[data objectForKey:@"data"];
         self.gprsDataArray = [netData objectForKey:@"gps"];
+        //[self getPlaceNameByPosition:self.gprsDataArray];
+        
         [self  performSelectorOnMainThread:@selector(updateUIData:) withObject:netData waitUntilDone:NO ];
         //[mDataDict setObject:netData forKey:mMothDateKey];
         //}
@@ -224,6 +245,7 @@
     }
     
 }
+
 #import "WGS2Mars.h"
 - (void)updateUIData:(NSDictionary*)data{
 
@@ -231,12 +253,14 @@
     for(NSDictionary *item in self.gprsDataArray){
         double lng = [[item objectForKey:@"lng"] doubleValue]/kGPSMaxScale;
         double lat = [[item objectForKey:@"lat"] doubleValue]/kGPSMaxScale;
-        printf("[%lf,%lf]",lng,lat);
+        printf("[%lf,%lf]",lat,lng);
         //WGS2Mars(&lat, &lng);
         CLLocation *localpoint = [[[CLLocation alloc] initWithLatitude:lat longitude:lng]autorelease];
         //CLLocation *end = [[[CLLocation alloc] initWithLatitude:lat ] autorelease];
         [gpsScaleArray addObject:localpoint];
     }
-    [mMapView  showRouteWithPointsData:gpsScaleArray];
+    printf("\n\n");
+    if([gpsScaleArray count])
+     [mMapView  showRouteWithPointsData:gpsScaleArray];
 }
 @end

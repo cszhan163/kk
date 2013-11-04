@@ -78,7 +78,8 @@ static const NSString *KEY_HIT_TEST_EDGE_INSETS = @"HitTestEdgeInsets";
     //btn.titleLabel.text = text;
     [btn setTitle:text forState:UIControlStateNormal];
     [btn setTitle:text forState:UIControlStateHighlighted];
-    [btn setBackgroundImage:image forState:UIControlStateHighlighted];
+    [btn setBackgroundImage:image forState:UIControlStateSelected];
+    //[btn setBackgroundImage:image forState:UIControlStateHighlighted];
     if(normaliconImage)
         btn.frame = CGRectMake(0.f, 0.f,image.size.width/kScale, image.size.height/kScale);
     btn.tag = tag;
@@ -145,7 +146,7 @@ static const NSString *KEY_HIT_TEST_EDGE_INSETS = @"HitTestEdgeInsets";
     }
     //btn.titleLabel.text = text;
 //    [btn setTitle:text forState:UIControlStateNormal];
-//    [btn setTitle:text forState:UIControlStateHighlighted];
+    [btn setTitle:text forState:UIControlStateHighlighted];
     [btn setBackgroundImage:image forState:UIControlStateSelected];
     //[btn setImage:image forState:UIControlStateSelected];
     if(normaliconImage)

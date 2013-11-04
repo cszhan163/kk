@@ -49,6 +49,8 @@
 +(NSString *)getIPAddress;
 +(BOOL)isIPAdrressAvailable:(NSString*)ipString withPort:(NSString*)port;
 #else
++(void)getPlaceNameByPosition:(NSArray*)locationArray;
+
 +(void)deleteNewArrayObject:(char*)ptr;
 +(void)saveByteArray2File:(unsigned char*)pByteArray size:(unsigned int)nSize  directoryName:(NSString*)pDirectoryName fileName:(NSString*)pStrFileName;
 +(void)revertRGBLineRowDataArr:(unsigned char*)ptr withHeight:(int)height withWidth:(int)width;

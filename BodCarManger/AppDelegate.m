@@ -29,7 +29,9 @@
     AppMainUIViewManage *appMg = [AppMainUIViewManage getSingleTone];
    
     appMg.window = self.window;
-     [appMg addMainViewUI];
+    [appMg addMainViewUI];
+    //[NSTimer timerWithTimeInterval:5 invocation:@selector(checkCarIsRunning) repeats:YES];
+    
     //
     //[UIAlertViewMgr getSigleTone];
     
@@ -48,9 +50,6 @@
 #endif
     
 #endif
-    
-    
-    
     
     [self.window makeKeyAndVisible];
     return YES;
@@ -76,6 +75,7 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    [self checkCarIsRunning:nil];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
@@ -83,4 +83,8 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
+- (void)checkCarIsRunning:(id)sender{
+    CarServiceNetDataMgr *cardNetMgr = [CarServiceNetDataMgr getSingleTone];
+    [cardNetMgr getRouterLatestData:@"SHD05728"];
+}
 @end

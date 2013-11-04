@@ -10,6 +10,8 @@
 #import "OCCalendarViewController.h"
 #import "OCCalendarView.h"
 #import "CarRouterViewController.h"
+
+#import "CarRouterDetailViewController.h"
 @interface CarRouterDateViewController ()<OCCalendarDelegate>{
     OCCalendarView *calView;
    
@@ -318,7 +320,21 @@
         kNetEnd(self.view);
         
     }
-  
+    if(self.request ==respRequest && [resKey isEqualToString:kResRouterLatest])
+    {
+        if([data objectForKey:@"endTime"] == 0){//the card is Running
+            
+        }
+        else{
+            CarRouterDetailViewController *vc = [[CarRouterDetailViewController alloc]initWithNibName:nil bundle:nil];
+            vc.delegate = self;
+            vc.mData = data;
+            vc.isLatest = YES;
+            [ZCSNotficationMgr postMSG:kPushNewViewController obj:vc];
+            SafeRelease(vc);
+            
+        }
+    }
 }
 -(void)didNetDataFailed:(NSNotification*)ntf
 {
@@ -485,4 +501,8 @@
     [dateParts release];
     [calView addStartDate:sDate endDate:eDate withTag:tag];
 }
+#pragma mark -
+
+
+
 @end

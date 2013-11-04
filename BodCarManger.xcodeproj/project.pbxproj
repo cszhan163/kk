@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		042631CB1822C7460062CC15 /* offset.dat in Resources */ = {isa = PBXBuildFile; fileRef = 042631CA1822C7460062CC15 /* offset.dat */; };
 		042778B218202737008C6432 /* setting_cell_footer.png in Resources */ = {isa = PBXBuildFile; fileRef = 042778AE18202737008C6432 /* setting_cell_footer.png */; };
 		042778B318202737008C6432 /* setting_cell_header.png in Resources */ = {isa = PBXBuildFile; fileRef = 042778AF18202737008C6432 /* setting_cell_header.png */; };
 		042778B418202737008C6432 /* setting_cell_middle.png in Resources */ = {isa = PBXBuildFile; fileRef = 042778B018202737008C6432 /* setting_cell_middle.png */; };
@@ -316,7 +315,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		042631CA1822C7460062CC15 /* offset.dat */ = {isa = PBXFileReference; lastKnownFileType = file; path = offset.dat; sourceTree = "<group>"; };
 		042778AE18202737008C6432 /* setting_cell_footer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = setting_cell_footer.png; sourceTree = "<group>"; };
 		042778AF18202737008C6432 /* setting_cell_header.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = setting_cell_header.png; sourceTree = "<group>"; };
 		042778B018202737008C6432 /* setting_cell_middle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = setting_cell_middle.png; sourceTree = "<group>"; };
@@ -837,7 +835,6 @@
 		046B663817E74984006F34A1 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				042631CA1822C7460062CC15 /* offset.dat */,
 				04C254B91816D49200B4A678 /* DIGIFACEWIDE.ttf */,
 				046B663917E74984006F34A1 /* BodCarManger-Info.plist */,
 				046B663A17E74984006F34A1 /* InfoPlist.strings */,
@@ -1833,7 +1830,6 @@
 				042778B518202737008C6432 /* setting_cell_one.png in Resources */,
 				BDC981AA1820AB08005DD720 /* graph_btn.png in Resources */,
 				BDC981AB1820AB08005DD720 /* list_btn.png in Resources */,
-				042631CB1822C7460062CC15 /* offset.dat in Resources */,
 				04E45AAB18255F150028BDAD /* clip.png in Resources */,
 				04E45AAC18255F150028BDAD /* ren.png in Resources */,
 				04E45AAD18255F150028BDAD /* sinaweiboicon.png in Resources */,

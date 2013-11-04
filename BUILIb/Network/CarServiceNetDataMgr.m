@@ -155,7 +155,7 @@ static ZCSNetClientNetInterfaceMgr *dressMemoInterfaceMgr = nil;
     EiInfo *inInfo = [self getCommIPlant4MParamByServiceToken:@"VEMT02"];
     //[inInfo set:@"year" value:[param objectForKey:@"year"]];
     //[inInfo set:SERVICE_TOKEN  value:@"VEMT02"]
-    [inInfo set:METHOD_TOKEN value:@"queryTripNow"]; // 接口名
+    [inInfo set:METHOD_TOKEN value:kResRouterNow]; // 接口名
     [inInfo set:@"vin" value:cardId];
     [self startiPlant4MRequest:inInfo withSuccess:@selector(getRouterRealTimeDataOk:) withFailed:@selector(getRouterRealTimeDataFaild:)];
 }
@@ -164,17 +164,17 @@ static ZCSNetClientNetInterfaceMgr *dressMemoInterfaceMgr = nil;
     EiInfo *inInfo = [self getCommIPlant4MParam];
     //[inInfo set:@"year" value:[param objectForKey:@"year"]];
     [inInfo set:METHOD_TOKEN value:kResRouterLatest]; // 接口名
-    //[inInfo set:@"vin" value:cardId];
+    [inInfo set:@"vin" value:cardId];
     [self startiPlant4MRequest:inInfo withSuccess:@selector(getRouterLatestDataOk:) withFailed:@selector(getRouterLatestDataFaild:)];
 }
 - (id)getRouterHistoryData:(NSString*)cardId withRouterId:(NSString*)routerId withStartTime:(NSString*)startTime {
     //queryTripHistory
 #ifdef Router_Test
     cardId = @"SHD05728";
-#endif
-   
     routerId = @"1382912362";
     startTime = @"20131028072900";
+#endif
+   
     //		eiInfo.set("startTime", "20131028072900");
     
     EiInfo *inInfo = [self getCommIPlant4MParamByServiceToken:@"VEMT02"];
@@ -218,7 +218,7 @@ static ZCSNetClientNetInterfaceMgr *dressMemoInterfaceMgr = nil;
     [inInfo set:@"year" value:year]; // 设置参数
     [inInfo set:@"month" value:month];
     [inInfo set:@"day" value:day];
-    [inInfo set:@"vin" value:@"SHD49232"];
+    [inInfo set:@"vin" value:@"SHD05728"];
     [self startiPlant4MRequest:inInfo withSuccess:@selector(getRouterDataByDayOk:) withFailed:@selector(getRouterDataByDayFailed:)];
     return nil;
 }
@@ -405,13 +405,15 @@ static ZCSNetClientNetInterfaceMgr *dressMemoInterfaceMgr = nil;
          [[item objectForKey:@"day"]intValue];
          flag = [item objectForKey:@"driveflg"];
          */
-        NSMutableArray *data = [NSMutableArray array];
-        EiBlock *tripInfo = [info getBlock:@"tripCalanderDay"]; // block型返回值
-        int rowCount = [tripInfo getRowCount];
-        for(int i = 0;i<rowCount;i++){
-            
-        }
-        [self sendFinalOkData:data withKey:kResRouterLatest];
+        NSMutableDictionary *resultDict = [NSMutableDictionary dictionary];
+        [resultDict setValue:[info get:@"tripID"] forKey:@"tripId"];
+        [resultDict setValue:[info get:@"startTime"] forKey:@"startTime"];
+        [resultDict setValue:[info get:@"endTime"] forKey:@"endTime"];
+        [self sendFinalOkData:resultDict withKey:kResRouterLatest];
+    }
+    else{
+        
+        [self sendFinalFailedData:@"" withKey:kResRouterLatest];
     }
 }
 - (void)getRouterLatestDataFailed:(EiInfo*)info{
@@ -584,10 +586,14 @@ static ZCSNetClientNetInterfaceMgr *dressMemoInterfaceMgr = nil;
         [resultDict setValue:data forKey:@"data"];
         [self sendFinalOkData:resultDict  withKey:kResRouterDataDay];
     }
+    else{
+        
+        [self sendFinalFailedData:@"" withKey:kResRouterDataDay];
+    }
+
 }
 - (void)getRouterDataByDayFailed:(EiInfo*)info{
-    
-    
+    [self sendFinalFailedData:@"" withKey:kResRouterDataDay];
 }
 #pragma mark -
 #pragma mark drive delegate
@@ -613,13 +619,14 @@ static ZCSNetClientNetInterfaceMgr *dressMemoInterfaceMgr = nil;
         [self sendFinalOkData:resultDict withKey:kResDriveDataMoth];
     }
     else{
-    
+        
+        [self sendFinalFailedData:@"" withKey:kResDriveDataMoth];
     }
     
 }
 - (void)getDriveDataFailed:(EiInfo*)info{
 
-  
+  [self sendFinalFailedData:@"" withKey:kResDriveDataMoth];
 }
 - (void)getDriveActionAnalysisDataOk:(EiInfo*)info{
     if(info.status == 1){
@@ -651,11 +658,13 @@ static ZCSNetClientNetInterfaceMgr *dressMemoInterfaceMgr = nil;
         [self sendFinalOkData:resultDict withKey:kResDriveActionAnalysis];
     }
     else{
-        
+        [self sendFinalFailedData:@"" withKey:kResDriveActionAnalysis];
     }
 }
 - (void)getDriveActionAnalysisDataFaild:(EiInfo*)info{
 
+    [self sendFinalFailedData:@"" withKey:kResDriveActionAnalysis];
+    
 }
 - (void)getDriveOilAnalysisDataOk:(EiInfo*)info{
     if(info.status == 1){
@@ -685,11 +694,11 @@ static ZCSNetClientNetInterfaceMgr *dressMemoInterfaceMgr = nil;
         [self sendFinalOkData:resultDict withKey:kResDriveOilAnalysis];
     }
     else{
-        
+        [self sendFinalFailed:@"" withKey:kResDriveOilAnalysis];
     }
 }
 - (void)getDriveOilAnalysisDataFailed:(EiInfo*)info{
-    
+    [self sendFinalFailed:@"" withKey:kResDriveOilAnalysis];
 }
 #pragma mark -
 #pragma mark service delegate
@@ -730,6 +739,9 @@ static ZCSNetClientNetInterfaceMgr *dressMemoInterfaceMgr = nil;
         int rowCount = [tripInfo getRowCount];
         NSMutableDictionary *row = [tripInfo getRow:0]; // block有多个row，每个为一个NSMutableDictionary对象
         NSNumber *tripId = [row objectForKey:@"tripId"]; // 通过objectForKey取出
+    }
+    else{
+    
     }
 }
 

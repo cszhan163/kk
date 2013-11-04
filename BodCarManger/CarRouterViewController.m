@@ -11,6 +11,7 @@
 #import "CarRouterDetailViewController.h"
 #import "PlantTableViewCell.h"
 #import "OCCalendarView.h"
+#import <MapKit/MapKit.h>
 
 #define kLeftPendingX  11
 #define kTopPendingY  8
@@ -323,6 +324,11 @@ NSString* gDataArr[] = {@"12.5km",@"11km/h",@"87L",@"3h"};
 //        [self dismissModalViewControllerAnimated:YES];
         
         self.dataArray = [data objectForKey:@"data"];
+        for(id item in self.dataArray){
+            CLLocationDegrees lat = [[item objectForKey:@"lat"]floatValue]/kGPSMaxScale;
+            CLLocationDegrees lng = [[item objectForKey:@"lng"]floatValue]/kGPSMaxScale;
+            [self getPlaceNameByPositionwithLatitue:lat withLongitude:lng];
+        }
         [tweetieTableView reloadData];
         kNetEnd(self.view);
 
@@ -390,5 +396,32 @@ NSString* gDataArr[] = {@"12.5km",@"11km/h",@"87L",@"3h"};
     else{
         return [NSString stringWithFormat:@"%0.1lfday",time/(60.*24)];
     }
+}
+
+-(void)getPlaceNameByPositionwithLatitue:(CLLocationDegrees)lat withLongitude:(CLLocationDegrees)lng{
+    
+    CLGeocodeCompletionHandler handler = ^(NSArray *place, NSError *error) {
+        
+        for (CLPlacemark *placemark in place) {
+            NSString *cityStr,*cityName;
+            cityStr = placemark.thoroughfare;
+            
+            cityName=placemark.name;
+            
+            NSLog(@"city %@",cityStr);//获取街道地址
+            
+            NSLog(@"cityName %@",cityName);//获取城市名
+            
+            break;
+            
+        }
+        
+    };
+    CLGeocoder *Geocoder=[[CLGeocoder alloc]init];//CLGeocoder用法参加之前博客
+    //    CLLocationDegrees lat = [[item objectForKey:@"lat"]floatValue]/kGPSMaxScale;
+    //    CLLocationDegrees lng = [[item objectForKey:@"lng"]floatValue]/kGPSMaxScale;
+    CLLocation *loc = [[CLLocation alloc] initWithLatitude:lat longitude:lng];
+    [Geocoder reverseGeocodeLocation:loc completionHandler:handler];
+    
 }
 @end

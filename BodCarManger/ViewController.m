@@ -33,13 +33,13 @@
              @"10",@"month",
              nil];
     //[cardNetMgr getDetailByDay:param];
+    
     [cardNetMgr getRouterRealTimeData:@"SHD05728"];
     
-//    [cardNetMgr getRouterLatestData];
 //    [cardNetMgr getRouterDataByMonth:@"" withYear:@""];
 //    [cardNetMgr getRouterDataByDay:@"" withMoth:@"" withYear:@""];
-    [cardNetMgr getCarMaintainanceData:@"SHD05728"];
-    [cardNetMgr getCarCheckData:@"SHD05728"];
+    //[cardNetMgr getCarMaintainanceData:@"SHD05728"];
+    //[cardNetMgr getCarCheckData:@"SHD05728"];
     //[cardNetMgr getDriveDataByCarId:@"" withMonth:@"" withYear:@""];
 //    [cardNetMgr getDriveActionAnalysisDataByCarId:@"" withMoth:@"" withYear:@""];
 //    [cardNetMgr getDriveOilAnalysisDataByCarId:@"" withMoth:@"" withYear:@""];

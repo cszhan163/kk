@@ -24,6 +24,7 @@
 #include <netdb.h> 
 #include <arpa/inet.h>
 
+#import <MapKit/MapKit.h>
 
 
 #define KMobileNetWork      @"中国移动"
@@ -466,5 +467,63 @@ typedef enum {
 #endif
   
     return bRet;
+}
+#define kGPSMaxScale 1000000
+- (void)getPlaceNameByPositionArray:(NSArray*)locationArray{
+    
+    
+    
+    
+    CLGeocodeCompletionHandler handler = ^(NSArray *place, NSError *error) {
+        
+        for (CLPlacemark *placemark in place) {
+            NSString *cityStr,*cityName;
+            cityStr = placemark.thoroughfare;
+            
+            cityName=placemark.name;
+            
+            NSLog(@"city %@",cityStr);//获取街道地址
+            
+            NSLog(@"cityName %@",cityName);//获取城市名
+            
+            break;
+            
+        }
+        
+    };
+    for(id item in locationArray){
+        CLGeocoder *Geocoder=[[CLGeocoder alloc]init];//CLGeocoder用法参加之前博客
+        CLLocationDegrees lat = [[item objectForKey:@"lat"]floatValue]/kGPSMaxScale;
+        CLLocationDegrees lng = [[item objectForKey:@"lng"]floatValue]/kGPSMaxScale;
+        CLLocation *loc = [[CLLocation alloc] initWithLatitude:lat longitude:lng];
+        [Geocoder reverseGeocodeLocation:loc completionHandler:handler];
+    }
+    
+}
+- (void)getPlaceNameByPositionwithLatitue:(CLLocationDegrees)lat withLongitude:(CLLocationDegrees)lng{
+
+    CLGeocodeCompletionHandler handler = ^(NSArray *place, NSError *error) {
+        
+        for (CLPlacemark *placemark in place) {
+            NSString *cityStr,*cityName;
+            cityStr = placemark.thoroughfare;
+            
+            cityName=placemark.name;
+            
+            NSLog(@"city %@",cityStr);//获取街道地址
+            
+            NSLog(@"cityName %@",cityName);//获取城市名
+            
+            break;
+            
+        }
+        
+    };
+    CLGeocoder *Geocoder=[[CLGeocoder alloc]init];//CLGeocoder用法参加之前博客
+//    CLLocationDegrees lat = [[item objectForKey:@"lat"]floatValue]/kGPSMaxScale;
+//    CLLocationDegrees lng = [[item objectForKey:@"lng"]floatValue]/kGPSMaxScale;
+    CLLocation *loc = [[CLLocation alloc] initWithLatitude:lat longitude:lng];
+    [Geocoder reverseGeocodeLocation:loc completionHandler:handler];
+
 }
 @end

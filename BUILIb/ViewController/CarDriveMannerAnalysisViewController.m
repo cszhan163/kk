@@ -9,36 +9,10 @@
 #import "CarDriveMannerAnalysisViewController.h"
 #import "DriveActionAnalysisView.h"
 #import "UIImageNetBaseViewController.h"
-#import "SubNavItemBaseViewController.h"
+//#import "SubNavItemBaseViewController.h"
 #import "CarDriveMannerDataViewController.h"
 #import "CarDriveOilDataViewController.h"
-
-@interface CarDriveMannerDataGraphViewController:SubNavItemBaseViewController{
-    
-    DriveActionAnalysisView *dataAnaylsisView;
-}
-- (void)setNeedDisplaySubView;
-@end
-
-@implementation CarDriveMannerDataGraphViewController
-
-- (void)viewDidLoad{
-    
-    [super viewDidLoad];
-    
-    dataAnaylsisView = [[DriveActionAnalysisView alloc]initWithFrame:CGRectMake(0.f, kMBAppTopToolBarHeight+10.f, 320.f,300)];
-    [self.view addSubview:dataAnaylsisView];
-    SafeRelease(dataAnaylsisView);
-}
-- (void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    //[dataAnaylsisView setNeedsDisplay];
-}
-- (void)setNeedDisplaySubView{
-    
-    [dataAnaylsisView setNeedsDisplay];
-}
-@end
+#import "CarDriveMannerDataGraphViewController.h"
 
 #define kOilNavControllerItemWidth 150.f
 
@@ -84,17 +58,24 @@
 -(NETopNavBar*)topNavBarForNavItemController:(CarDataAnalysisBaseViewController*)controller{
     
     NSMutableArray *btnArray = [NSMutableArray array];
-    
     CGFloat currX = 0.f;
-    
-    UIButton *btn = [UIComUtil createButtonWithNormalBGImageName:nil withHightBGImageName:nil  withTitle:@"驾驶数据" withTag:0];
-    btn.frame = CGRectMake(currX, 10.f,kOilNavControllerItemWidth, 30.f);
+    UIButton *btn = [UIComUtil createButtonWithNormalBGImageName:@"nav_data_normal.png" withSelectedBGImageName:@"nav_data_selected.png"  withTitle:@"安全驾驶数据" withTag:0];
+    btn.titleLabel.font = [UIFont systemFontOfSize:18];
+    [btn setTitleColor:HexRGB(231, 234, 236) forState:UIControlStateNormal];
+    [btn setTitleColor:HexRGB(153, 153, 153) forState:UIControlStateSelected];
+    btn.frame = CGRectMake(currX, 10.f,kOilNavControllerItemWidth, btn.frame.size.height);
     [btnArray addObject:btn];
     currX = currX+kOilNavControllerItemWidth;
-    btn = [UIComUtil createButtonWithNormalBGImageName:nil withHightBGImageName:nil withTitle:@"驾驶分析" withTag:0];
-    btn.frame = CGRectMake(currX, 10.f,kOilNavControllerItemWidth, 30.f);
-    [btnArray addObject:btn];
+    btn = [UIComUtil createButtonWithNormalBGImageName:@"nav_analysis_normal.png" withSelectedBGImageName:@"nav_analysis_selected.png" withTitle:@"安全驾驶分析" withTag:1];
+    btn.frame = CGRectMake(currX, 10.f,kOilNavControllerItemWidth, btn.frame.size.height);
+    btn.titleLabel.font = [UIFont systemFontOfSize:18];
+    [btn setTitleColor:HexRGB(231, 234, 236) forState:UIControlStateNormal];
+    [btn setTitleColor:HexRGB(153, 153, 153) forState:UIControlStateSelected];
     
+    [btnArray addObject:btn];
+
+    
+        
     
     /*
     CGFloat currX = 0.f;
@@ -105,9 +86,68 @@
     btn.frame = CGRectMake(160.f, 10.f,150, 30.f);
     [btnArray addObject:btn];
     */
-    NETopNavBar *topNavBar = [[NETopNavBar alloc]initWithFrame:CGRectMake(0.f, 0.f, 300, 30)withBgImage:nil withBtnArray:btnArray selIndex:0];
+    NETopNavBar *topNavBar = [[NETopNavBar alloc]initWithFrame:CGRectMake(0.f, 0.f, 300, btn.frame.size.height)withBgImage:nil withBtnArray:btnArray selIndex:0];
     //topNavBar.delegate = self;
     return topNavBar;
 }
+#pragma mark -
+#pragma mark network
 
+- (void)loadAnalaysisData{
+    
+    CarServiceNetDataMgr *cardShopMgr = [CarServiceNetDataMgr getSingleTone];
+    
+    kNetStartShow(@"数据加载...", self.view);
+    NSString *month = [NSString stringWithFormat:@"%d",mCurrDate.month];
+    NSString *year = [NSString stringWithFormat:@"%d",mCurrDate.year];
+    self.request = [cardShopMgr  getDriveActionAnalysisDataByCarId:@"SHD05728" withMoth:month withYear:year];
+    
+}
+
+-(void)didNetDataOK:(NSNotification*)ntf
+{
+    
+    id obj = [ntf object];
+    id respRequest = [obj objectForKey:@"request"];
+    id data = [obj objectForKey:@"data"];
+    NSString *resKey = [obj objectForKey:@"key"];
+    //NSString *resKey = [respRequest resourceKey];
+    if(self.request ==respRequest && [resKey isEqualToString:kResDriveActionAnalysis])
+    {
+        self.data = data;
+        //self.dataArray = [data objectForKey:@"economicData"];
+        [self  performSelectorOnMainThread:@selector(updateUIData:) withObject:data waitUntilDone:NO ];
+        //[mDataDict setObject:netData forKey:mMothDateKey];
+        //}
+        kNetEnd(self.view);
+        
+    }
+    
+}
+- (void)updateUIData:(NSDictionary*)data{
+    
+    NSArray *economicData = [data objectForKey:@"safeData"];
+    economicData = [economicData sortedArrayUsingComparator:^(id param1,id param2){
+        
+        id arg1 = [param1 objectForKey:@"day"];
+        id arg2 = [param2 objectForKey:@"day"];
+        if([arg1 intValue]>[arg2 intValue]){
+            return NSOrderedDescending;
+        }
+        else if([arg1 intValue]<[arg1 intValue]){
+            return -1;
+        }
+        else{
+            return 0;
+        }
+        
+    }];
+    //[data ]
+    NSMutableDictionary *newData = [NSMutableDictionary dictionaryWithDictionary:data];
+    [newData setValue:economicData forKey:@"safeData"];
+    CarDriveMannerDataViewController *oilDataVc = [navItemCtrl.navControllersArr objectAtIndex:0];
+    [oilDataVc updateUIData:newData];
+    CarDriveMannerDataGraphViewController *analysisVc = [navItemCtrl.navControllersArr objectAtIndex:1];
+    [analysisVc updateUIData:newData];
+}
 @end

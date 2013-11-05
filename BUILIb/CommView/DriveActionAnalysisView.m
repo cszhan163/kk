@@ -20,75 +20,88 @@
 @implementation DriveActionAnalysisView
 @synthesize colorArray;
 @synthesize oilData;
-- (id)initWithFrame:(CGRect)frame
+- (id)initWithFrame:(CGRect)frame  
 {
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
-        
-       self.colorArray =       @[HexRGB(79, 120, 205),
-                                HexRGB(92, 200, 92),
-                                HexRGB(237, 209, 69),
-                                ];
-        
-        self.percentShowLabelArray = [NSMutableArray array];
-      
+        [self initData];
 
-        CGRect rect = CGRectMake(18.f,20.f,50, 50);
-        [self addPercentView:rect];
-
-        
-        UIImage *bgImage = [UIImage imageNamed:@"oil_analysis_graph.png"];
-        rect = CGRectMake(15.f, 104.f, bgImage.size.width/kScale, bgImage.size.height/kScale);
-        CGFloat currY = rect.origin.y+rect.size.height;
-        [self addLineChartView:rect withBGImage:bgImage];
-        
-        rect = CGRectMake(25, 102,200, 20);
-        dateShowLabel = [UIComUtil createLabelWithFont:[UIFont systemFontOfSize:12] withTextColor:[UIColor whiteColor] withText:@"" withFrame:rect];
-        dateShowLabel.textAlignment = NSTextAlignmentLeft;
-        [self addSubview:dateShowLabel];
-        SafeRelease(dateShowLabel);
-        
-        
-        //
-        CGFloat startY = 27.f;
-        NSArray *tagArray = @[@"blue.png",@"green.png",@"yellow.png"];
-        
-        for(int i = 0;i<3;i++){
-            bgImage = [UIImage imageNamed:tagArray[i]];
-            rect = CGRectMake(141,startY+6, bgImage.size.width/kScale, bgImage.size.height/kScale);
-            UIImageView *imageView = [[UIImageView alloc]initWithImage:bgImage];
-            imageView.frame = rect;
-            [self addSubview:imageView];
-            SafeRelease(imageView);
-          
-            rect = CGRectMake(141+rect.size.width+10,startY,250, 20);
-            UILabel *textLabel  = [UIComUtil createLabelWithFont:[UIFont systemFontOfSize:14] withTextColor:[UIColor whiteColor] withText:@"" withFrame:rect];
-            textLabel.textAlignment = NSTextAlignmentLeft;
-            [self addSubview:textLabel];
-            SafeRelease(textLabel);
-            [self.percentShowLabelArray addObject:textLabel];
-            startY = startY+ 24;
-        }
-        
-        bgImage = [UIImage imageNamed:@"oil_conclusion_tag.png"];
-        rect = CGRectMake(21.f,currY+18.f, bgImage.size.width/kScale, bgImage.size.height/kScale);
-        
-        UIImageView *imageView = [[UIImageView alloc]initWithImage:bgImage];
-        imageView.frame = rect;
-        [self addSubview:imageView];
-        
-        SafeRelease(imageView);
-        
-        rect = CGRectMake(50,currY+14.f,250, 20);
-        conclusionLabel = [UIComUtil createLabelWithFont:[UIFont systemFontOfSize:12] withTextColor:[UIColor whiteColor] withText:@"" withFrame:rect];
-        conclusionLabel.textAlignment = NSTextAlignmentLeft;
-        [self addSubview:conclusionLabel];
-        SafeRelease(conclusionLabel);
+        [self addUIView];
         
 //        UIImageView *bgView = [[UIImageView alloc]initWithFrame:CGRectMake(0.f, 0.f,image.size.width/2.f, image.size.height/2.f)];
     }
     return self;
+}
+- (void)initData{
+    self.colorArray =       @[HexRGB(79, 120, 205),
+                              HexRGB(92, 200, 92),
+                              HexRGB(237, 209, 69),
+                              ];
+    self.percentShowLabelArray = [NSMutableArray array];
+    
+    self.tagImageArray = @[@"blue.png",@"green.png",@"yellow.png"];
+}
+- (void)addUIView{
+    
+    CGFloat startY = 27.f;
+    CGRect rect = CGRectMake(18.f,20.f,50, 50);
+    [self addPercentView:rect];
+    UIImage *bgImage = [UIImage imageNamed:@"oil_analysis_graph.png"];
+    rect = CGRectMake(15.f, 104.f, bgImage.size.width/kScale, bgImage.size.height/kScale);
+    CGFloat currY = rect.origin.y+rect.size.height;
+    [self addLineChartView:rect withBGImage:bgImage];
+    
+    rect = CGRectMake(25, 102,200, 20);
+    dateShowLabel = [UIComUtil createLabelWithFont:[UIFont systemFontOfSize:12] withTextColor:[UIColor whiteColor] withText:@"" withFrame:rect];
+    dateShowLabel.textAlignment = NSTextAlignmentLeft;
+    [self addSubview:dateShowLabel];
+    SafeRelease(dateShowLabel);
+    
+    //
+    for(int i = 0;i<3;i++){
+        bgImage = [UIImage imageNamed:self.tagImageArray[i]];
+        rect = CGRectMake(141,startY+6, bgImage.size.width/kScale, bgImage.size.height/kScale);
+        UIImageView *imageView = [[UIImageView alloc]initWithImage:bgImage];
+        imageView.frame = rect;
+        [self addSubview:imageView];
+        SafeRelease(imageView);
+        
+        rect = CGRectMake(141+rect.size.width+10,startY,250, 20);
+        UILabel *textLabel  = [UIComUtil createLabelWithFont:[UIFont systemFontOfSize:14] withTextColor:[UIColor whiteColor] withText:@"" withFrame:rect];
+        textLabel.textAlignment = NSTextAlignmentLeft;
+        [self addSubview:textLabel];
+        SafeRelease(textLabel);
+        [self.percentShowLabelArray addObject:textLabel];
+        startY = startY+ 24;
+    }
+    
+    bgImage = [UIImage imageNamed:@"oil_conclusion_tag.png"];
+    rect = CGRectMake(21.f,currY+18.f, bgImage.size.width/kScale, bgImage.size.height/kScale);
+    
+    UIImageView *imageView = [[UIImageView alloc]initWithImage:bgImage];
+    imageView.frame = rect;
+    [self addSubview:imageView];
+    
+    SafeRelease(imageView);
+    
+    rect = CGRectMake(50,currY+14.f,250, 20);
+    conclusionLabel = [UIComUtil createLabelWithFont:[UIFont systemFontOfSize:12] withTextColor:[UIColor whiteColor] withText:@"" withFrame:rect];
+    conclusionLabel.textAlignment = NSTextAlignmentLeft;
+    [self addSubview:conclusionLabel];
+    SafeRelease(conclusionLabel);
+
+}
+- (id)initWithFrame:(CGRect)frame  withLineColorArray:(NSArray*)colorArr withTagImageArray:(NSArray*)tagImageArray{
+    self = [super initWithFrame:frame];
+    if (self) {
+        // Initialization code
+        [self initData];
+        self.colorArray = colorArr;
+        self.tagImageArray = tagImageArray;
+        [self addUIView];
+    }
+    return  self;
 }
 - (void)updateUIByData:(OilAnalysisData*)data{
     self.oilData = data;
@@ -101,7 +114,7 @@
     conclusionLabel.text = oilData.conclusionText;
     dateShowLabel.text = showText;
     
-    NSArray *formartArray = @[@"低速行驶时间: %d%@",@"经济行驶时间: %d\%@",@"高速行驶时间: %d\%@"];
+    NSArray *formartArray = data.textFormatArray;
     
     NSString *precentText = @"";
     for(int i = 0;i<[formartArray count];i++){

@@ -98,11 +98,11 @@
         CGFloat textWidth = 80.f;
         CGFloat textHeight = 80.f;
         currY = currY+leftCircleView.frame.size.height-20; //10.f;
-        CGRect rect = CGRectMake(leftCircleView.frame.origin.x-30.f,currY ,textWidth,textHeight);
+        CGRect rect = CGRectMake(rightCircleView.frame.origin.x-30.f,currY ,textWidth,textHeight);
         runDistanceLabel = [UIComUtil createLabelWithFont:kUserDigiFontSize(12) withTextColor:[UIColor whiteColor] withText:@"000\nkm" withFrame:rect];
         [self addSubview:runDistanceLabel];
         SafeRelease(runDistanceLabel);
-        rect = CGRectMake(rightCircleView.frame.origin.x-30.f,currY,textWidth,textHeight);
+        rect = CGRectMake(leftCircleView.frame.origin.x-30.f,currY,textWidth,textHeight);
         runDaysLabel = [UIComUtil createLabelWithFont:kUserDigiFontSize(12) withTextColor:[UIColor whiteColor] withText:@"000\n天" withFrame:rect];
         [self addSubview:runDaysLabel];
         SafeRelease(runDaysLabel);
@@ -110,12 +110,17 @@
     }
     return self;
 }
+- (void)setLeftProcessDay:(CGFloat)lLen rightDistance:(CGFloat)rLen{
+    [runDaysLabel setText:[NSString stringWithFormat:@"%d\n天",(int)lLen]];
+    [runDistanceLabel setText:[NSString stringWithFormat:@"%0.3lf\nkm",rLen]];
+}
 - (void)setLeftProcessLen:(CGFloat)lLen rightLen:(CGFloat)rLen{
     leftLen = lLen/kMaxProcessLen *kMaxProcessLen;
     if(leftLen>=kMaxProcessLen) leftLen = kMaxProcessLen;
     rightLen = rLen/kMaxProcessLen *kMaxProcessLen;
     if(rightLen>=kMaxProcessLen) rightLen = kMaxProcessLen;
     //[self setNeedsDisplay];
+     
     CGRect leftRect = leftProcessView.frame;
     leftProcessView.frame = CGRectMake(leftRect.origin.x, leftRect.origin.y, leftLen, leftRect.size.height);
     CGRect rightRect = rightProcessView.frame;

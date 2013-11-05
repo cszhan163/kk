@@ -38,6 +38,7 @@ ZCSNetClientNetInterfaceMgrDelegate>
 - (id)getRouterDataByMonth:(NSString*)month withYear:(NSString*)year;
 - (id)getRouterDataByDay:(NSString*)day withMoth:(NSString*)month withYear:(NSString*)year;
 /*drive*/
+- (void)getCarMaintainanceData:(NSString*)cardId;
 - (id)getDriveDataByCarId:(NSString*)cardId withMonth:(NSString*)month withYear:(NSString*)year;
 - (id)getDriveActionAnalysisDataByCarId:(NSString*)cardId withMoth:(NSString*)month withYear:(NSString*)year;
 - (id)getDriveOilAnalysisDataByCarId:(NSString*)cardId withMoth:(NSString*)month withYear:(NSString*)year;

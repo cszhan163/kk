@@ -94,7 +94,7 @@
                            @"value",@"key1",
                            nil];
     
-    [cardNetMgr backDoorRequest:param];
+    //[cardNetMgr backDoorRequest:param];
     
     
 }

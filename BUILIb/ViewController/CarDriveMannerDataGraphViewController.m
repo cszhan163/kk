@@ -1,23 +1,21 @@
 //
-//  CarDriveOilDataGraphViewController.m
-//  BodCarManger
+//  CarDriveMannerDataGraphViewController.m
+//  BUILIb
 //
-//  Created by cszhan on 13-10-26.
-//  Copyright (c) 2013年 cszhan. All rights reserved.
+//  Created by cszhan on 13-11-5.
+//  Copyright (c) 2013年 yunzhisheng. All rights reserved.
 //
 
-#import "CarDriveOilDataAnalaysisViewController.h"
+#import "CarDriveMannerDataGraphViewController.h"
 #import "DriveActionAnalysisView.h"
-
-#import "DriveOilAnalysisView.h"
-
-@interface CarDriveOilDataAnalaysisViewController(){
+@interface CarDriveMannerDataGraphViewController(){
+    
     DriveActionAnalysisView *dataAnaylsisView;
-   
 }
 @end
 
-@implementation CarDriveOilDataAnalaysisViewController
+
+@implementation CarDriveMannerDataGraphViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -27,38 +25,26 @@
     }
     return self;
 }
-- (void)viewDidLoad{
-    
-    [super viewDidLoad];
-    
-      mainView.topBarView.hidden = YES;
-//    UIImage *bgImage = nil;
-//    //tweetieTableView.hidden = YES;
-//    //mainView.backgroundColor = [UIColor clearColor];
-//    //tweetieTableView.frame = CGRectMake(0.f,0.f,300.f,380.f);
-//    UIImageWithFileName(bgImage, @"car_plant_bg.png");
-//    DriveOilAnalysisView *oilAnalysisView = [[DriveOilAnalysisView alloc]initWithFrame:
-//                                             CGRectMake(10.f,0.f,bgImage.size.width,bgImage.size.height)];
-//    [self.view addSubview:oilAnalysisView];
-//    oilAnalysisView.backgroundColor = [UIColor redColor];
-//    [oilAnalysisView updateUIByData:nil];
-//    return;
-    dataAnaylsisView = [[DriveActionAnalysisView alloc]initWithFrame:CGRectMake(0.f,35+20+5, 320.f,300)];
-    dataAnaylsisView.backgroundColor = [UIColor clearColor];
-    
-    
-    //self.view.backgroundColor = [UIColor whiteColor];
-    //dataAnaylsisView.backgroundColor = [UIColor whiteColor];
-    [self.view addSubview:dataAnaylsisView];
-    //dataAnaylsisView.backgroundColor = [UIColor blueColor];
-    SafeRelease(dataAnaylsisView);
-}
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     //[dataAnaylsisView setNeedsDisplay];
 }
 - (void)setNeedDisplaySubView{
+    
     [dataAnaylsisView setNeedsDisplay];
+}
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+	// Do any additional setup after loading the view.
+    NSArray *colorArray = @[HexRGB(79, 120, 205),
+      HexRGB(92, 200, 92),
+      HexRGB(237, 209, 69),
+      ];
+    NSArray *tagImageArray = @[@"safe_green.png",@"safe_yellow.png",@"safe_red.png",];
+    dataAnaylsisView = [[DriveActionAnalysisView alloc]initWithFrame:CGRectMake(0.f, kMBAppTopToolBarHeight+10.f, 320.f,300) withLineColorArray:colorArray withTagImageArray:tagImageArray];
+    [self.view addSubview:dataAnaylsisView];
+    SafeRelease(dataAnaylsisView);
 }
 
 - (void)didReceiveMemoryWarning
@@ -67,12 +53,12 @@
     // Dispose of any resources that can be recreated.
 }
 - (void)updateUIData:(NSDictionary*)data{
-
+    
     OilAnalysisData *oilData =  [[OilAnalysisData alloc]init];
     
     oilData.percentDataArray = [NSArray arrayWithObjects:
                                 [data objectForKey:@"breakRate"],
-                                [data objectForKey:@"highRPMRate"],
+                                [data objectForKey:@"overSpeedRate"],
                                 [data objectForKey:@"accRate"],
                                 nil];
     NSMutableArray *linesArray = [NSMutableArray array];
@@ -80,7 +66,7 @@
         NSMutableArray * lineArray = [NSMutableArray array];
         [linesArray addObject:lineArray];
     }
-    NSArray *economicData = [data objectForKey:@"economicData"];
+    NSArray *economicData = [data objectForKey:@"safeData"];
     economicData = [economicData sortedArrayUsingComparator:^(id param1,id param2){
         
         id arg1 = [param1 objectForKey:@"day"];
@@ -94,26 +80,25 @@
         else{
             return 0;
         }
-    
+        
     }];
     for(NSDictionary *item in economicData){
         
         NSString *speedUp = [NSString stringWithFormat:@"%@",[item objectForKey:@"accCount"]];
         NSString *speedDown = [NSString stringWithFormat:@"%@",[item objectForKey:@"breakCount"]];
-        NSString *overSpeadCoutn = [NSString stringWithFormat:@"%@",[item objectForKey:@"overSpeedCount"]];
+        NSString *overSpead = [NSString stringWithFormat:@"%@",[item objectForKey:@"overSpeedCount"]];
         //[cell setTableCellCloumn:0 withData:date];
         [[linesArray objectAtIndex:0] addObject:[NSDictionary dictionaryWithObjectsAndKeys:
-                                                [item objectForKey:@"day"],@"x",
+                                                 [item objectForKey:@"day"],@"x",
                                                  speedUp,@"y",nil]];
         
         [[linesArray objectAtIndex:1] addObject:[NSDictionary dictionaryWithObjectsAndKeys:
                                                  [item objectForKey:@"day"],@"x",
                                                  speedDown,@"y",nil]];
-        /*
-        [[linesArray objectAtIndex:2] addObject:[NSDictionary dictionaryWithObjectsAndKeys:
-                                                 [item objectForKey:@"day"],@"x",
-                                                 overSpeadCoutn,@"y",nil]];
-        */
+        
+         [[linesArray objectAtIndex:2] addObject:[NSDictionary dictionaryWithObjectsAndKeys:
+         [item objectForKey:@"day"],@"x",
+         overSpead,@"y",nil]];
         
     }
     oilData.linesDataArray = linesArray;
@@ -123,10 +108,10 @@
     date.month = 11;
     
     oilData.date = date;
-    oilData.textFormatArray = @[@"低速行驶时间: %d%@",@"经济行驶时间: %d\%@",@"高速行驶时间: %d\%@"];
+    oilData.textFormatArray = @[@"急加速: %d%@",@"急减速: %d\%@",@"  超速: %d\%@"];
     oilData.conclusionText = @"起挺次数较多会影响油耗";
     
     [dataAnaylsisView  updateUIByData:oilData];
-
+    
 }
 @end

@@ -36,6 +36,7 @@
     DateStruct currDate;
     
 }
+@property(nonatomic,strong)NSMutableDictionary *mMaitiananceDict;
 @end
 
 @implementation CarMonitorViewController
@@ -45,6 +46,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        self.mMaitiananceDict = [NSMutableDictionary dictionary];
     }
     return self;
 }
@@ -263,7 +265,7 @@
     NSString *year = [NSString stringWithFormat:@"%d",self.mCurrDate.year];
     self.request = [cardShopMgr  getDriveDataByCarId:@"SHD05728" withMonth:month withYear:year];
     
-
+    [cardShopMgr getCarMaintainanceData:@"SHD05728"];
 }
 -(void)didNetDataOK:(NSNotification*)ntf
 {
@@ -283,7 +285,10 @@
         kNetEnd(self.view);
         
     }
-    
+    if([resKey isEqualToString:kResDriveMaintainData])
+    {
+        [self performSelectorOnMainThread:@selector(updateUIMainUIData:) withObject:data waitUntilDone:NO];
+    }
 }
 -(void)didNetDataFailed:(NSNotification*)ntf
 {
@@ -340,5 +345,18 @@
     carDriveStatusView.mRunStepLabel.text = [NSString stringWithFormat:@"%0.2lf",segment];
     carDriveStatusView.mRunDistanceLabel.text = [NSString stringWithFormat:@"%0.2lf",totalMile];
     carDriveStatusView.mHeadMonthLabel.text = [NSString stringWithFormat:@"%2d月驾驶情况",self.mCurrDate.month];
+}
+- (void)updateUIMainUIData:(NSDictionary*)data{
+    
+    //for 84*len;
+    //milageSpan
+    int realDay = [[data objectForKey:@"days"]intValue];
+    int maxDay = [[data objectForKey:@"timeSpan"]intValue];
+    CGFloat realDistance = [[data objectForKey:@"milage"]floatValue];
+    CGFloat maxDistance = [[data objectForKey:@"milageSpan"]floatValue];
+    CGFloat day =  realDay/(maxDay*30) *84.f;
+    CGFloat distance = realDistance/maxDistance*84.f;
+    [carMaintainanceView setLeftProcessLen:day rightLen:distance];
+    [carMaintainanceView setLeftProcessDay:realDay rightDistance:realDistance];
 }
 @end

@@ -245,7 +245,7 @@ typedef enum  viewType{
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	static NSString *CellIdentifier = @"Cell";
+	static NSString *CellIdentifier = @"CarDriveOilTableViewCell";
     
     CarDriveOilTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
@@ -302,11 +302,11 @@ typedef enum  viewType{
     NSString *date = [NSString stringWithFormat:@"%2d-%2d",mCurrDate.month,[[item objectForKey:@"day"]intValue]];
     NSString *speedUp = [NSString stringWithFormat:@"%@",[item objectForKey:@"accCount"]];
     NSString *speedDown = [NSString stringWithFormat:@"%@",[item objectForKey:@"breakCount"]];
-    NSString *overSpeadCoutn = [NSString stringWithFormat:@"%@",[item objectForKey:@"overSpeedCount"]];
+    NSString *overSpeadCoutn = [NSString stringWithFormat:@"%@",[item objectForKey:@"highRPMCount"]];
     [cell setTableCellCloumn:0 withData:date];
-    [cell setTableCellCloumn:1 withData:speedUp];
+    [cell setTableCellCloumn:3 withData:speedUp];
     [cell setTableCellCloumn:2 withData:speedDown];
-    [cell setTableCellCloumn:3 withData:overSpeadCoutn];
+    [cell setTableCellCloumn:1 withData:overSpeadCoutn];
     
     return cell;
 }

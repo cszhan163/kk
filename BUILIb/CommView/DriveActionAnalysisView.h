@@ -13,6 +13,8 @@
     
     NSArray *colorArray;
 }
+- (id)initWithFrame:(CGRect)frame  withLineColorArray:(NSArray*)colorArray withTagImageArray:(NSArray*)tagImageArray;
+@property(nonatomic,strong)NSArray *tagImageArray;
 @property(nonatomic,strong)NSArray *colorArray;
 @property(nonatomic,strong)OilAnalysisData *oilData;
 @end

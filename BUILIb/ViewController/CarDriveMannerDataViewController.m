@@ -8,8 +8,12 @@
 
 #import "CarDriveMannerDataViewController.h"
 #import "CarServiceNetDataMgr.h"
-
+#import "CarDriveActionTableViewCell.h"
 #import "CarDriveOilTableViewCell.h"
+
+static NSString *kActionTableHeaderTextArray[] = {@"日期",@"急加速",@"急减速"};
+
+
 @interface CarDriveMannerDataViewController ()
 @property(nonatomic,strong)NSMutableArray *dataArray;
 @end
@@ -38,9 +42,9 @@
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	static NSString *CellIdentifier = @"Cell";
+	static NSString *CellIdentifier = @"CarDriveActionTableViewCell";
     
-    CarDriveOilTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    CarDriveActionTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     if (cell == nil) {
 #if 0
@@ -51,7 +55,7 @@
                 cell = (CarDriveOilTableViewCell*)oneObject;
         [cell setClounmLineColor:[UIColor greenColor]];
 #else
-        cell = [[CarDriveOilTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell = [[CarDriveActionTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         SafeAutoRelease(cell);
 #endif
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -59,18 +63,14 @@
     }
     
     NSString *bgImageName = @"";
-    if(indexPath.row == 0){
-        
-    }
-    if(indexPath.row == 10){
+   
+    if(indexPath.row == [self.dataArray count]){
         //[cell setSeperateLineHidden:YES];
-        bgImageName = @"oil_table_footer.png";
+        bgImageName = @"drive_habit_table_footer.png";
     }
     else{
-        bgImageName = @"oil_table_cell.png";
-        if(indexPath.row == 10){
-            
-        }
+        bgImageName = @"drive_habit_table_cell.png";
+       
     }
     
     UIImageWithFileName(UIImage *bgImage,bgImageName);
@@ -81,9 +81,18 @@
     //[cell.contentView  addSubview: bgView];
     cell.backgroundView = bgView;
     SafeRelease(bgView);
-    NSDictionary *item = [self.dataArray objectAtIndex:indexPath.row];
     
-    NSString *date = [NSString stringWithFormat:@"%2d-%2d",[[item objectForKey:@"day"]intValue]];
+    if(indexPath.row == 0){
+        
+        [cell setTableCellCloumn:0 withData:kActionTableHeaderTextArray[0]];
+        [cell setTableCellCloumn:1 withData:kActionTableHeaderTextArray[1]];
+        [cell setTableCellCloumn:2 withData:kActionTableHeaderTextArray[2]];
+        //[cell setTableCellCloumn:3 withData:kOilTableHeaderTextArray[3]];
+        return cell;
+        
+    }
+    NSDictionary *item = [self.dataArray objectAtIndex:indexPath.row-1];
+    NSString *date = [NSString stringWithFormat:@"%02d-%02d",self.mCurrDate.month,[[item objectForKey:@"day"]intValue]];
     NSString *speedUp = [NSString stringWithFormat:@"%@",[item objectForKey:@"accCount"]];
     NSString *speedDown = [NSString stringWithFormat:@"%@",[item objectForKey:@"breakCount"]];
     [cell setTableCellCloumn:0 withData:date];
@@ -91,41 +100,9 @@
     [cell setTableCellCloumn:2 withData:speedDown];
     return cell;
 }
-
-#pragma mark -
-#pragma mark
-- (void)loadAnalaysisData{
-    
-    CarServiceNetDataMgr *cardShopMgr = [CarServiceNetDataMgr getSingleTone];
-    
-    kNetStartShow(@"数据加载...", self.view);
-    NSString *month = [NSString stringWithFormat:@"%d",mCurrDate.month];
-    NSString *year = [NSString stringWithFormat:@"%d",mCurrDate.year];
-    self.request = [cardShopMgr  getDriveActionAnalysisDataByCarId:@"SHD05728" withMoth:month withYear:year];
-    
-}
--(void)didNetDataOK:(NSNotification*)ntf
-{
-    
-    id obj = [ntf object];
-    id respRequest = [obj objectForKey:@"request"];
-    id data = [obj objectForKey:@"data"];
-    NSString *resKey = [obj objectForKey:@"key"];
-    //NSString *resKey = [respRequest resourceKey];
-    if(self.request ==respRequest && [resKey isEqualToString:kResDriveActionAnalysis])
-    {
-        self.data = data;
-        self.dataArray = [data objectForKey:@"safeData"];
-        [self  performSelectorOnMainThread:@selector(updateUIData:) withObject:data waitUntilDone:NO ];
-        //[mDataDict setObject:netData forKey:mMothDateKey];
-        //}
-        kNetEnd(self.view);
-        
-    }
-    
-}
 - (void)updateUIData:(NSDictionary*)data{
     
+    self.dataArray   = [data objectForKey:@"safeData"];
     [dataTableView reloadData];
 }
 @end

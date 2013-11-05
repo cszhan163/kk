@@ -15,6 +15,7 @@
 @interface OilAnalysisData:NSObject
 @property(nonatomic,strong)NSMutableArray *percentDataArray;
 @property(nonatomic,strong)NSMutableArray *linesDataArray;
+@property(nonatomic,strong)NSArray *textFormatArray;
 @property(nonatomic,strong)NSString *conclusionText;
 @property(nonatomic,assign)DateStruct date;
 @end

@@ -132,6 +132,9 @@
 		04C254CD18180EC500B4A678 /* car_check_status_mid.png in Resources */ = {isa = PBXBuildFile; fileRef = 04C254CA18180EC500B4A678 /* car_check_status_mid.png */; };
 		04C254CE18180EC500B4A678 /* car_check_status_top.png in Resources */ = {isa = PBXBuildFile; fileRef = 04C254CB18180EC500B4A678 /* car_check_status_top.png */; };
 		04C254D018180ED300B4A678 /* car_check_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 04C254CF18180ED300B4A678 /* car_check_btn.png */; };
+		04CA4118182950EB008DAE94 /* safe_green.png in Resources */ = {isa = PBXBuildFile; fileRef = 04CA4115182950EB008DAE94 /* safe_green.png */; };
+		04CA4119182950EB008DAE94 /* safe_red.png in Resources */ = {isa = PBXBuildFile; fileRef = 04CA4116182950EB008DAE94 /* safe_red.png */; };
+		04CA411A182950EB008DAE94 /* safe_yellow.png in Resources */ = {isa = PBXBuildFile; fileRef = 04CA4117182950EB008DAE94 /* safe_yellow.png */; };
 		04E2A0AD181B6FFF006D8C0C /* oil_analysis_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E2A0A9181B6FFF006D8C0C /* oil_analysis_selected.png */; };
 		04E2A0AE181B6FFF006D8C0C /* oil_analysis_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E2A0AA181B6FFF006D8C0C /* oil_analysis_normal.png */; };
 		04E2A0AF181B6FFF006D8C0C /* oil_data_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E2A0AB181B6FFF006D8C0C /* oil_data_normal.png */; };
@@ -468,6 +471,9 @@
 		04C254CA18180EC500B4A678 /* car_check_status_mid.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = car_check_status_mid.png; sourceTree = "<group>"; };
 		04C254CB18180EC500B4A678 /* car_check_status_top.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = car_check_status_top.png; sourceTree = "<group>"; };
 		04C254CF18180ED300B4A678 /* car_check_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = car_check_btn.png; sourceTree = "<group>"; };
+		04CA4115182950EB008DAE94 /* safe_green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = safe_green.png; sourceTree = "<group>"; };
+		04CA4116182950EB008DAE94 /* safe_red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = safe_red.png; sourceTree = "<group>"; };
+		04CA4117182950EB008DAE94 /* safe_yellow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = safe_yellow.png; sourceTree = "<group>"; };
 		04E2A0A9181B6FFF006D8C0C /* oil_analysis_selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = oil_analysis_selected.png; sourceTree = "<group>"; };
 		04E2A0AA181B6FFF006D8C0C /* oil_analysis_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = oil_analysis_normal.png; sourceTree = "<group>"; };
 		04E2A0AB181B6FFF006D8C0C /* oil_data_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = oil_data_normal.png; sourceTree = "<group>"; };
@@ -1524,6 +1530,9 @@
 		04FE07031818188F00EEC76A /* drive */ = {
 			isa = PBXGroup;
 			children = (
+				04CA4115182950EB008DAE94 /* safe_green.png */,
+				04CA4116182950EB008DAE94 /* safe_red.png */,
+				04CA4117182950EB008DAE94 /* safe_yellow.png */,
 				BDC37E95181CFA6D00A4CB18 /* drive_matainance_bg.png */,
 				04B2F3D6182800E600049C9B /* nav_analysis_normal.png */,
 				04B2F3D7182800E600049C9B /* nav_analysis_selected.png */,
@@ -1880,6 +1889,9 @@
 				04B2F3DB182800E600049C9B /* nav_analysis_selected.png in Resources */,
 				04B2F3DC182800E600049C9B /* nav_data_normal.png in Resources */,
 				04B2F3DD182800E600049C9B /* nav_data_selected.png in Resources */,
+				04CA4118182950EB008DAE94 /* safe_green.png in Resources */,
+				04CA4119182950EB008DAE94 /* safe_red.png in Resources */,
+				04CA411A182950EB008DAE94 /* safe_yellow.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

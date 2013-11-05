@@ -73,12 +73,12 @@
     //topNavBar.hidden = YES;
     [navItemCtrl setTopNavBar:topNavBar];
     //topNavBar.frame = CGRectOffset(topNavBar.frame, 0.f,kMBAppTopToolBarHeight);
-    [topNavBar didNavItemSelect:[topNavBar.navBtnArray objectAtIndex:1]];
+    [topNavBar didNavItemSelect:[topNavBar.navBtnArray objectAtIndex:0]];
 #endif
     [self.view bringSubviewToFront:mainView.topBarView ];
     [self setNeedDisplaySubView];
     
-    
+     [self loadAnalaysisData];
 	// Do any additional setup after loading the view.
 }
 - (void)selectTopNavItem:(id)navObj{

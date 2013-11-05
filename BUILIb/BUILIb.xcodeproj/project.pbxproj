@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		042631C418216A2D0062CC15 /* BaoMonthBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 042631C318216A2D0062CC15 /* BaoMonthBaseViewController.m */; };
 		042631C91822C6AD0062CC15 /* WGS2Mars.m in Sources */ = {isa = PBXBuildFile; fileRef = 042631C81822C6AD0062CC15 /* WGS2Mars.m */; };
+		04CA411118292998008DAE94 /* CarDriveMannerDataGraphViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CA411018292998008DAE94 /* CarDriveMannerDataGraphViewController.m */; };
+		04CA411418292EC2008DAE94 /* CarDriveActionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CA411318292EC2008DAE94 /* CarDriveActionTableViewCell.m */; };
 		BD3BA8FF18225BC600293405 /* CarDriveMannerDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BD3BA8FE18225BC600293405 /* CarDriveMannerDataViewController.m */; };
 		BDC37ECD181FAF0E00A4CB18 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDC37ECC181FAF0E00A4CB18 /* Foundation.framework */; };
 		BDC37ED2181FAF0E00A4CB18 /* BUILIb.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = BDC37ED1181FAF0E00A4CB18 /* BUILIb.h */; };
@@ -78,6 +80,10 @@
 		042631C71822C6AD0062CC15 /* WGS2Mars.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WGS2Mars.h; sourceTree = "<group>"; };
 		042631C81822C6AD0062CC15 /* WGS2Mars.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WGS2Mars.m; sourceTree = "<group>"; };
 		042631CE1822CB7B0062CC15 /* convert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = convert.m; sourceTree = "<group>"; };
+		04CA410F18292998008DAE94 /* CarDriveMannerDataGraphViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarDriveMannerDataGraphViewController.h; sourceTree = "<group>"; };
+		04CA411018292998008DAE94 /* CarDriveMannerDataGraphViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarDriveMannerDataGraphViewController.m; sourceTree = "<group>"; };
+		04CA411218292EC2008DAE94 /* CarDriveActionTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarDriveActionTableViewCell.h; sourceTree = "<group>"; };
+		04CA411318292EC2008DAE94 /* CarDriveActionTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarDriveActionTableViewCell.m; sourceTree = "<group>"; };
 		BD3BA8FD18225BC600293405 /* CarDriveMannerDataViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarDriveMannerDataViewController.h; sourceTree = "<group>"; };
 		BD3BA8FE18225BC600293405 /* CarDriveMannerDataViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarDriveMannerDataViewController.m; sourceTree = "<group>"; };
 		BDC37EC9181FAF0E00A4CB18 /* libBUILIb.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libBUILIb.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -325,6 +331,8 @@
 				BDC37F3B181FB16700A4CB18 /* MessageTableViewCell.m */,
 				BDC37F3F181FB16700A4CB18 /* SettingTableViewCell.h */,
 				BDC37F40181FB16700A4CB18 /* SettingTableViewCell.m */,
+				04CA411218292EC2008DAE94 /* CarDriveActionTableViewCell.h */,
+				04CA411318292EC2008DAE94 /* CarDriveActionTableViewCell.m */,
 			);
 			path = CellView;
 			sourceTree = "<group>";
@@ -382,6 +390,8 @@
 				BDC37F5A181FB16800A4CB18 /* CarDataAnalysisBaseViewController.m */,
 				BDC37F5B181FB16800A4CB18 /* CarDriveMannerAnalysisViewController.h */,
 				BDC37F5C181FB16800A4CB18 /* CarDriveMannerAnalysisViewController.m */,
+				04CA410F18292998008DAE94 /* CarDriveMannerDataGraphViewController.h */,
+				04CA411018292998008DAE94 /* CarDriveMannerDataGraphViewController.m */,
 				BD3BA8FD18225BC600293405 /* CarDriveMannerDataViewController.h */,
 				BD3BA8FE18225BC600293405 /* CarDriveMannerDataViewController.m */,
 				BDC37F5D181FB16800A4CB18 /* CarDriveOilAnalaysisViewController.h */,
@@ -506,6 +516,8 @@
 				042631C91822C6AD0062CC15 /* WGS2Mars.m in Sources */,
 				BDC8CB401827B062000A2C16 /* UICustomActionAlertView.m in Sources */,
 				BDC8CB471828CC3C000A2C16 /* DBManage.m in Sources */,
+				04CA411118292998008DAE94 /* CarDriveMannerDataGraphViewController.m in Sources */,
+				04CA411418292EC2008DAE94 /* CarDriveActionTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

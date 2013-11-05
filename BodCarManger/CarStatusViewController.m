@@ -187,7 +187,14 @@
 #pragma mark
 - (void)startCarHealthCheck:(id)sender{
     
+    //getCarCheckDataOk
+    CarServiceNetDataMgr *cardShopMgr = [CarServiceNetDataMgr getSingleTone];
     
+    //[self startShowLoadingView];
+    //kNetStartShow(@"数据加载...", self.view);
+   
+    [cardShopMgr getCarCheckData:@"SHD05728"];
+
 }
 
 #pragma mark -

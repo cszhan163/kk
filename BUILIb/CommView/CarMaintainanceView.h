@@ -11,4 +11,5 @@
 @interface CarMaintainanceView : UIView
 
 - (void)setLeftProcessLen:(CGFloat)llen rightLen:(CGFloat)right;
+- (void)setLeftProcessDay:(CGFloat)lLen rightDistance:(CGFloat)rLen;
 @end

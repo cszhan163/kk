@@ -33,7 +33,7 @@
     [super viewDidLoad];
     self.delegate = self;
 	// Do any additional setup after loading the view.
-     [self loadAnalaysisData];
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -47,7 +47,7 @@
     NSMutableArray *vcArray = [NSMutableArray array];
     CarDriveOilDataViewController *dataVc = [[CarDriveOilDataViewController alloc]init];
     dataVc.mCurrDate = self.mCurrDate;
-    dataVc.view.backgroundColor = [UIColor redColor];
+    dataVc.view.backgroundColor = [UIColor clearColor];
     //[vcCtl setRootViewController:controller];
     //vcCtl.view.backgroundColor = [UIColor redColor];
     [vcArray addObject:dataVc];
@@ -66,10 +66,23 @@
     CGFloat currX = 0.f;
     UIButton *btn = [UIComUtil createButtonWithNormalBGImageName:@"nav_data_normal.png" withSelectedBGImageName:@"nav_data_selected.png"  withTitle:@"经济驾驶数据" withTag:0];
     btn.frame = CGRectMake(currX, 10.f,kOilNavControllerItemWidth, btn.frame.size.height);
+    
+    btn.titleLabel.font = [UIFont systemFontOfSize:18];
+    [btn setTitleColor:HexRGB(231, 234, 236) forState:UIControlStateNormal];
+    [btn setTitleColor:HexRGB(153, 153, 153) forState:UIControlStateSelected];
+    
     [btnArray addObject:btn];
+    
+    
     currX = currX+kOilNavControllerItemWidth;
     btn = [UIComUtil createButtonWithNormalBGImageName:@"nav_analysis_normal.png" withSelectedBGImageName:@"nav_analysis_selected.png" withTitle:@"经济驾驶分析" withTag:1];
     btn.frame = CGRectMake(currX, 10.f,kOilNavControllerItemWidth, btn.frame.size.height);
+    
+    btn.titleLabel.font = [UIFont systemFontOfSize:18];
+    [btn setTitleColor:HexRGB(231, 234, 236) forState:UIControlStateNormal];
+    [btn setTitleColor:HexRGB(153, 153, 153) forState:UIControlStateSelected];
+    
+    
     [btnArray addObject:btn];
     
     NETopNavBar *topNavBar = [[NETopNavBar alloc]initWithFrame:CGRectMake(0.f,0.f, 300, btn.frame.size.height)withBgImage:nil withBtnArray:btnArray selIndex:0];
@@ -137,9 +150,28 @@
 }
 - (void)updateUIData:(NSDictionary*)data{
     
+    NSArray *economicData = [data objectForKey:@"economicData"];
+    economicData = [economicData sortedArrayUsingComparator:^(id param1,id param2){
+        
+        id arg1 = [param1 objectForKey:@"day"];
+        id arg2 = [param2 objectForKey:@"day"];
+        if([arg1 intValue]>[arg2 intValue]){
+            return NSOrderedDescending;
+        }
+        else if([arg1 intValue]<[arg1 intValue]){
+            return -1;
+        }
+        else{
+            return 0;
+        }
+        
+    }];
+    //[data ]
+    NSMutableDictionary *newData = [NSMutableDictionary dictionaryWithDictionary:data];
+    [newData setValue:economicData forKey:@"economicData"];
     CarDriveOilDataViewController *oilDataVc = [navItemCtrl.navControllersArr objectAtIndex:0];
-    [oilDataVc updateUIData:data];
+    [oilDataVc updateUIData:newData];
     CarDriveOilDataAnalaysisViewController *analysisVc = [navItemCtrl.navControllersArr objectAtIndex:1];
-    [analysisVc updateUIData:data];
+    [analysisVc updateUIData:newData];
 }
 @end

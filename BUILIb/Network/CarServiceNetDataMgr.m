@@ -319,7 +319,8 @@ static BOOL isExit = NO;
 }
 - (id)getCarCheckData:(NSString*)cardId{
     //queryConData
-    EiInfo *inInfo = [self getCommIPlant4MParamByServiceToken:@"VEMT02"];
+    //EiInfo *inInfo = [self getCommIPlant4MParamByServiceToken:@"VEMT02"];
+    EiInfo *inInfo = [self getCommIPlant4MParam];
     //[inInfo set:@"year" value:[param objectForKey:@"year"]];
     [inInfo set:METHOD_TOKEN value:kResCarCheckData]; // 接口名
     [inInfo set:@"vin" value:cardId];
@@ -695,7 +696,7 @@ static BOOL isExit = NO;
             NSDictionary *item = [NSDictionary dictionaryWithObjectsAndKeys:
                                   [row objectForKey:@"accCount"],@"accCount",
                                   [row objectForKey:@"day"],@"day",
-                                  [row objectForKey:@"drivingLong"],@"drivingLong",
+                                  //[row objectForKey:@"drivingLong"],@"drivingLong",
                                   [row objectForKey:@"breakCount"],@"breakCount",
                                   [row objectForKey:@"overSpeedCount"],@"overSpeedCount",
                                   nil];
@@ -733,7 +734,7 @@ static BOOL isExit = NO;
                                   [row objectForKey:@"accCount"],@"accCount",
                                   [row objectForKey:@"day"],@"day",
                                   [row objectForKey:@"breakCount"],@"breakCount",
-                                  [row objectForKey:@"overSpeedCount"],@"overSpeedCount",
+                                  [row objectForKey:@"highRPMCount"],@"highRPMCount",
                                   nil];
             [data addObject:item];
         }
@@ -749,12 +750,16 @@ static BOOL isExit = NO;
 }
 - (void)getCarMaintainanceDataOk:(EiInfo*)info{
     if(info.status == 1){
-        
+        /*
+         "milage":248.5290069580078,"days":37,"timeSpan":12,"milageSpan":10000}
+         */
         NSLog(@"%@",info.blocks);
         NSMutableDictionary *resultDict = [NSMutableDictionary dictionary];
         NSMutableArray *data = [NSMutableArray array];
         [resultDict setValue:[info get:@"milage"] forKey:@"milage"];
-        [resultDict setValue:[info get:@"dates"] forKey:@"dates"];
+        [resultDict setValue:[info get:@"days"] forKey:@"days"];
+        [resultDict setValue:[info get:@"milageSpan"] forKey:@"milageSpan"];
+        [resultDict setValue:[info get:@"timeSpan"] forKey:@"timeSpan"];
         [self sendFinalOkData:resultDict withKey:kResDriveMaintainData];
     }
     else{
@@ -771,6 +776,22 @@ static BOOL isExit = NO;
 #pragma mark service delegate
 - (void)getCarCheckDataOk:(EiInfo*)info{
     
+    if(info.status == 1){
+        /*
+         "milage":248.5290069580078,"days":37,"timeSpan":12,"milageSpan":10000}
+         */
+        NSLog(@"%@",info.blocks);
+        NSMutableDictionary *resultDict = [NSMutableDictionary dictionary];
+        NSMutableArray *data = [NSMutableArray array];
+        [resultDict setValue:[info get:@"milage"] forKey:@"milage"];
+        [resultDict setValue:[info get:@"days"] forKey:@"days"];
+        [resultDict setValue:[info get:@"milageSpan"] forKey:@"milageSpan"];
+        [resultDict setValue:[info get:@"timeSpan"] forKey:@"timeSpan"];
+        [self sendFinalOkData:resultDict withKey:kResCarCheckData];
+    }
+    else{
+        [self sendFinalFailedData:@"" withKey:kResCarCheckData];
+    }
 }
 - (void)getCarCheckDataFailed:(EiInfo*)info{
     

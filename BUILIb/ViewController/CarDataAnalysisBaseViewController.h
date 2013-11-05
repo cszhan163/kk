@@ -18,6 +18,7 @@
 }
 @property(nonatomic,assign)DateStruct   mCurrDate;
 @property(weak)id<CarDataAnalysisBaseViewControllerDataSouceDelegate> dataSouce;
+- (void)loadAnalaysisData;
 - (void)setNeedDisplaySubView;
 - (void)selectTopNavItem:(id)navObj;
 @end

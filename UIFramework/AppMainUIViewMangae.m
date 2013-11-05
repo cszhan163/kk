@@ -87,7 +87,7 @@ static UIButton *popup = nil;
      
 	 */
 	//UIView *mainView = [[UIView alloc]initWithFrame:CGRectMake(0.f, 0.f, kDeviceScreenWidth, kDeviceScreenHeight)];
-#if 1
+#if 0
     ViewController *test = [[ViewController alloc]init];
     [self.window addSubview:test.view];
     return;

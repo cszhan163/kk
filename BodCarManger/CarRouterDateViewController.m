@@ -322,18 +322,19 @@
     }
     if(self.request ==respRequest && [resKey isEqualToString:kResRouterLatest])
     {
+        BOOL isRunning = NO;
         if([data objectForKey:@"endTime"] == 0){//the card is Running
-            
+            isRunning = YES;
         }
         else{
-            CarRouterDetailViewController *vc = [[CarRouterDetailViewController alloc]initWithNibName:nil bundle:nil];
-            vc.delegate = self;
-            vc.mData = data;
-            vc.isLatest = YES;
-            [ZCSNotficationMgr postMSG:kPushNewViewController obj:vc];
-            SafeRelease(vc);
-            
         }
+        CarRouterDetailViewController *vc = [[CarRouterDetailViewController alloc]initWithNibName:nil bundle:nil];
+        vc.delegate = self;
+        vc.mData = data;
+        vc.isLatest = YES;
+        vc.isRunning = isRunning;
+        [ZCSNotficationMgr postMSG:kPushNewViewController obj:vc];
+        SafeRelease(vc);
     }
 }
 -(void)didNetDataFailed:(NSNotification*)ntf

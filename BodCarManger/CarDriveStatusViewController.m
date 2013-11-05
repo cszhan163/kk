@@ -34,6 +34,7 @@
     UILabel *panelHeaderLabel;
     CarMaintainanceView *carMaintainanceView;
     DateStruct currDate;
+    
 }
 @end
 

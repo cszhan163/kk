@@ -18,7 +18,9 @@
     Place       *mEndPoint;
     CarDetailPenalView * carDetailPenalView;
     DateStruct  mDateStruct;
+    
 }
+@property(nonatomic,strong)NSTimer *realDataTimer;
 @property(nonatomic,strong)NSMutableArray *gprsDataArray;
 @end
 
@@ -51,10 +53,10 @@
     UIImageWithFileName(bgImage, @"calendar.png");
     
 
-    UIButton *btn = [UIComUtil createButtonWithNormalBGImage:bgImage withHightBGImage:bgImage withTitle:@"" withTag:2];
-    [btn addTarget:self action:@selector(didSelectorTopNavItem:) forControlEvents:UIControlEventTouchUpInside];
-    btn.frame = CGRectMake(0,0.f,bgImage.size.width/kScale,bgImage.size.height/kScale);
-    btn.center = CGPointMake(mainView.topBarView.center.x+65,mainView.topBarView.center.y);
+//    UIButton *btn = [UIComUtil createButtonWithNormalBGImage:bgImage withHightBGImage:bgImage withTitle:@"" withTag:2];
+//    [btn addTarget:self action:@selector(didSelectorTopNavItem:) forControlEvents:UIControlEventTouchUpInside];
+//    btn.frame = CGRectMake(0,0.f,bgImage.size.width/kScale,bgImage.size.height/kScale);
+//    btn.center = CGPointMake(mainView.topBarView.center.x+65,mainView.topBarView.center.y);
 #if 0
     [mainView.topBarView addSubview:btn];
 #else
@@ -65,7 +67,8 @@
             */
         [self setNavgationBarTitle:@"最近驾驶"];
         if(self.isRunning){
-           [self setNavgationBarTitle:@"正在驾驶"]; 
+           [self setNavgationBarTitle:@"正在驾驶"];
+            self.realDataTimer = [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(checkRunningData) userInfo:nil repeats:YES];
         }
     //self.leftBtn = btn;
     }
@@ -107,7 +110,6 @@
 - (void)loadRouterHistoryData{
 
     CarServiceNetDataMgr *cardShopMgr = [CarServiceNetDataMgr getSingleTone];
-
     //kNetStartShow(@"数据加载...", self.view);
     NSString *tipId = [self.mData objectForKey:@"tripId"];
     NSString *startTime = [self.mData objectForKey:@"startTime"];
@@ -179,8 +181,8 @@
     NSString *timeStr = [data objectForKey:@"starttime"];
     
     NSArray *timeArr  = [timeStr componentsSeparatedByString:@" "];
-    
-    [self setNavgationBarTitle:timeArr[0]];
+    if(!isLatest)
+        [self setNavgationBarTitle:timeArr[0]];
 	NSArray *dateArr = [timeArr[0] componentsSeparatedByString:@"/"];
     mDateStruct.year = [dateArr[0]intValue];
     mDateStruct.month = [dateArr[1]intValue];
@@ -243,6 +245,18 @@
         kNetEnd(self.view);
         
     }
+    if(self.request ==respRequest && [resKey isEqualToString:kResRouterNow])
+    {
+        NSDictionary *netData = data;//[data objectForKey:@"data"];
+        self.gprsDataArray = [netData objectForKey:@"gps"];
+        //[self getPlaceNameByPosition:self.gprsDataArray];
+        
+        [self  performSelectorOnMainThread:@selector(updateUIRealTimeData:) withObject:netData waitUntilDone:NO ];
+        //[mDataDict setObject:netData forKey:mMothDateKey];
+        //}
+        //kNetEnd(self.view);
+        
+    }
     
 }
 
@@ -262,5 +276,16 @@
     printf("\n\n");
     if([gpsScaleArray count])
      [mMapView  showRouteWithPointsData:gpsScaleArray];
+}
+- (void)updateUIRealTimeData:(NSDictionary*)data{
+
+
+}
+#pragma mark -
+#pragma mark get realtime data
+- (void)checkRunningData{
+    CarServiceNetDataMgr *cardShopMgr = [CarServiceNetDataMgr getSingleTone];
+    //kNetStartShow(@"数据加载...", self.view);
+    self.request = [cardShopMgr  getRouterRealTimeData:@"SHD05728" ];
 }
 @end

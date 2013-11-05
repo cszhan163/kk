@@ -11,6 +11,10 @@
 #import "AMArcColorDrawView.h"
 
 #define kMaxProcessLen  84.f
+
+#define kMaxDayLen      120
+#define kMaxDistance    1000
+
 #define kPendingX   3.f
 #define kProcessHeight  5.f
 #define kRadius         8.f
@@ -21,6 +25,8 @@
     AMArcColorDrawView    *circleProcessView;
     CGFloat             rightLen;
     CGFloat             leftLen;
+    UILabel         *runDistanceLabel;
+    UILabel         *runDaysLabel;
 }
 @end
 @implementation CarMaintainanceView
@@ -88,6 +94,19 @@
         [self bringSubviewToFront:leftCircleView];
         [self bringSubviewToFront:rightCircleView];
         [self bringSubviewToFront:circleProcessView];
+        
+        CGFloat textWidth = 80.f;
+        CGFloat textHeight = 80.f;
+        currY = currY+leftCircleView.frame.size.height-20; //10.f;
+        CGRect rect = CGRectMake(leftCircleView.frame.origin.x-30.f,currY ,textWidth,textHeight);
+        runDistanceLabel = [UIComUtil createLabelWithFont:kUserDigiFontSize(12) withTextColor:[UIColor whiteColor] withText:@"000\nkm" withFrame:rect];
+        [self addSubview:runDistanceLabel];
+        SafeRelease(runDistanceLabel);
+        rect = CGRectMake(rightCircleView.frame.origin.x-30.f,currY,textWidth,textHeight);
+        runDaysLabel = [UIComUtil createLabelWithFont:kUserDigiFontSize(12) withTextColor:[UIColor whiteColor] withText:@"000\n天" withFrame:rect];
+        [self addSubview:runDaysLabel];
+        SafeRelease(runDaysLabel);
+        
     }
     return self;
 }

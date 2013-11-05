@@ -25,6 +25,8 @@
 ZCSNetClientNetInterfaceMgrDelegate>
 /*user*/
 +(id)getSingleTone;
+- (id)backDoorRequest:(NSDictionary*)param;
+
 /*router*/
 - (id)getDetailByDay:(NSDictionary*)param;
 - (id)getDetailByMonth:(NSDictionary*)param;

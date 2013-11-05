@@ -123,6 +123,7 @@ static const NSString *KEY_HIT_TEST_EDGE_INSETS = @"HitTestEdgeInsets";
     label.font = font;
     label.textColor = color;
     label.text = text;
+    label.numberOfLines = 0;
     label.textAlignment = NSTextAlignmentCenter;
     label.backgroundColor = [UIColor clearColor];
     return label;

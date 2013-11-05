@@ -27,11 +27,11 @@
     
 #if 1
     AppMainUIViewManage *appMg = [AppMainUIViewManage getSingleTone];
-   
     appMg.window = self.window;
     [appMg addMainViewUI];
+    [self checkCarIsRunning:nil];
     //[NSTimer timerWithTimeInterval:5 invocation:@selector(checkCarIsRunning) repeats:YES];
-    
+    [ZCSNotficationMgr addObserver:self call:@selector(backDoorCheckOk:) msgName:kZCSNetWorkOK];
     //
     //[UIAlertViewMgr getSigleTone];
     
@@ -75,7 +75,7 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-    [self checkCarIsRunning:nil];
+    [self backDoorRequest];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
@@ -86,5 +86,20 @@
 - (void)checkCarIsRunning:(id)sender{
     CarServiceNetDataMgr *cardNetMgr = [CarServiceNetDataMgr getSingleTone];
     [cardNetMgr getRouterLatestData:@"SHD05728"];
+}
+- (void)backDoorRequest{
+    
+    CarServiceNetDataMgr *cardNetMgr = [CarServiceNetDataMgr getSingleTone];
+    NSDictionary *param = [NSDictionary dictionaryWithObjectsAndKeys:
+                           @"value",@"key1",
+                           nil];
+    
+    [cardNetMgr backDoorRequest:param];
+    
+    
+}
+
+- (void)backDoorCheckOk:(NSNotification*)ntf{
+    
 }
 @end

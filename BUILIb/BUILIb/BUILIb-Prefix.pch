@@ -18,6 +18,7 @@
 #import "UIFrameworkMSG.h"
 #import "UserConfig.h"
 #import "AppSetting.h"
+#import "convert.h"
 //#define  kUserDidResignOK           @"userDidResignOk"
 typedef struct dateSturct{
     int year;

@@ -54,6 +54,8 @@
 		BDC37FA0181FB16800A4CB18 /* SubNavItemBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BDC37F64181FB16800A4CB18 /* SubNavItemBaseViewController.m */; };
 		BDC37FA1181FB16800A4CB18 /* CarServiceNetDataMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = BDC37F67181FB16800A4CB18 /* CarServiceNetDataMgr.m */; };
 		BDC8CB401827B062000A2C16 /* UICustomActionAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = BDC8CB3F1827B062000A2C16 /* UICustomActionAlertView.m */; };
+		BDC8CB471828CC3C000A2C16 /* DBManage.m in Sources */ = {isa = PBXBuildFile; fileRef = BDC8CB461828CC3C000A2C16 /* DBManage.m */; };
+		BDC8CB491828E7C6000A2C16 /* convert.m in Sources */ = {isa = PBXBuildFile; fileRef = 042631CE1822CB7B0062CC15 /* convert.m */; };
 		BDC981B01820F432005DD720 /* NSDate+Ex.m in Sources */ = {isa = PBXBuildFile; fileRef = BDC981AF1820F432005DD720 /* NSDate+Ex.m */; };
 /* End PBXBuildFile section */
 
@@ -75,7 +77,7 @@
 		042631C318216A2D0062CC15 /* BaoMonthBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaoMonthBaseViewController.m; sourceTree = "<group>"; };
 		042631C71822C6AD0062CC15 /* WGS2Mars.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WGS2Mars.h; sourceTree = "<group>"; };
 		042631C81822C6AD0062CC15 /* WGS2Mars.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WGS2Mars.m; sourceTree = "<group>"; };
-		042631CE1822CB7B0062CC15 /* convert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = convert.h; sourceTree = "<group>"; };
+		042631CE1822CB7B0062CC15 /* convert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = convert.m; sourceTree = "<group>"; };
 		BD3BA8FD18225BC600293405 /* CarDriveMannerDataViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarDriveMannerDataViewController.h; sourceTree = "<group>"; };
 		BD3BA8FE18225BC600293405 /* CarDriveMannerDataViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarDriveMannerDataViewController.m; sourceTree = "<group>"; };
 		BDC37EC9181FAF0E00A4CB18 /* libBUILIb.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libBUILIb.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -167,6 +169,9 @@
 		BDC37F67181FB16800A4CB18 /* CarServiceNetDataMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarServiceNetDataMgr.m; sourceTree = "<group>"; };
 		BDC8CB3E1827B062000A2C16 /* UICustomActionAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICustomActionAlertView.h; sourceTree = "<group>"; };
 		BDC8CB3F1827B062000A2C16 /* UICustomActionAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICustomActionAlertView.m; sourceTree = "<group>"; };
+		BDC8CB451828CC3C000A2C16 /* DBManage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBManage.h; sourceTree = "<group>"; };
+		BDC8CB461828CC3C000A2C16 /* DBManage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBManage.m; sourceTree = "<group>"; };
+		BDC8CB481828E76B000A2C16 /* convert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = convert.h; sourceTree = "<group>"; };
 		BDC981AE1820F432005DD720 /* NSDate+Ex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Ex.h"; sourceTree = "<group>"; };
 		BDC981AF1820F432005DD720 /* NSDate+Ex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Ex.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -238,7 +243,7 @@
 		BDC37EDA181FB16700A4CB18 /* Map */ = {
 			isa = PBXGroup;
 			children = (
-				042631CE1822CB7B0062CC15 /* convert.h */,
+				042631CE1822CB7B0062CC15 /* convert.m */,
 				042631C71822C6AD0062CC15 /* WGS2Mars.h */,
 				042631C81822C6AD0062CC15 /* WGS2Mars.m */,
 				BDC37EDB181FB16700A4CB18 /* MapView.h */,
@@ -247,6 +252,7 @@
 				BDC37EDE181FB16700A4CB18 /* Place.m */,
 				BDC37EDF181FB16700A4CB18 /* PlaceMark.h */,
 				BDC37EE0181FB16700A4CB18 /* PlaceMark.m */,
+				BDC8CB481828E76B000A2C16 /* convert.h */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -327,6 +333,8 @@
 			isa = PBXGroup;
 			children = (
 				BDC37F42181FB16700A4CB18 /* DriveDataModel.h */,
+				BDC8CB451828CC3C000A2C16 /* DBManage.h */,
+				BDC8CB461828CC3C000A2C16 /* DBManage.m */,
 				BDC37F43181FB16700A4CB18 /* DriveDataModel.m */,
 			);
 			path = DataModel;
@@ -450,6 +458,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BDC8CB491828E7C6000A2C16 /* convert.m in Sources */,
 				BDC37ED4181FAF0E00A4CB18 /* BUILIb.m in Sources */,
 				BDC37F68181FB16800A4CB18 /* MapView.m in Sources */,
 				BDC37F69181FB16800A4CB18 /* Place.m in Sources */,
@@ -496,6 +505,7 @@
 				BD3BA8FF18225BC600293405 /* CarDriveMannerDataViewController.m in Sources */,
 				042631C91822C6AD0062CC15 /* WGS2Mars.m in Sources */,
 				BDC8CB401827B062000A2C16 /* UICustomActionAlertView.m in Sources */,
+				BDC8CB471828CC3C000A2C16 /* DBManage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

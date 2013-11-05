@@ -117,6 +117,7 @@
 #define kResDriveDataMoth                       @"queryDriveMonthData"
 #define kResDriveActionAnalysis                 @"querySafeAnalyse"
 #define kResDriveOilAnalysis                    @"queryEconomicAnalyse"
+#define kResDriveMaintainData                   @"queryMaintain"
 //check
 #define kResCarCheckData                        @"queryConData"
 

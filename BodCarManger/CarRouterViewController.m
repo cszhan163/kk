@@ -11,16 +11,17 @@
 #import "CarRouterDetailViewController.h"
 #import "PlantTableViewCell.h"
 #import "OCCalendarView.h"
-#import <MapKit/MapKit.h>
+#import "DBManage.h"
 
 #define kLeftPendingX  11
 #define kTopPendingY  8
 #define kHeaderItemPendingY 8
 
 NSString* gDataArr[] = {@"12.5km",@"11km/h",@"87L",@"3h"};
-@interface CarRouterViewController(){
+@interface CarRouterViewController()<DBManageDelegate>{
     
 }
+@property(nonatomic,strong)NSDictionary *locationDict;
 @end
 @implementation CarRouterViewController
 @synthesize currDate;
@@ -29,14 +30,15 @@ NSString* gDataArr[] = {@"12.5km",@"11km/h",@"87L",@"3h"};
     [super viewWillAppear:animated];
     if([self.dataArray count]==0){
     
-          [self shouldLoadNewerData:tweetieTableView];
+        [self shouldLoadNewerData:tweetieTableView];
+        //self.locationDict = [DBManage getLocationPointsData];
     }
 
 }
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    [[DBManage getSingletone]setDelegate:self];
 //    CGPoint insertPoint = CGPointMake(167,50);
 //    int width = 300;
 //    int height = 250;
@@ -47,7 +49,6 @@ NSString* gDataArr[] = {@"12.5km",@"11km/h",@"87L",@"3h"};
 //    //[calView setArrowPosition:];
 //    [self.view addSubview:[calView autorelease]];
 //    return;
-    
     
 #if 1
     UIImage *bgImage = nil;
@@ -220,10 +221,31 @@ NSString* gDataArr[] = {@"12.5km",@"11km/h",@"87L",@"3h"};
     }
     cell.mTimeImageView.frame = CGRectMake(origin.x, origin.y,bgImage.size.width/kScale, bgImage.size.height/kScale);
     
-    
+    NSString *latLogStr = [data objectForKey:@"startadr2"];
+    NSArray *latLogArr  = [latLogStr componentsSeparatedByString:@","];
+    /*
+    mStartPoint.latitude = 
+	mStartPoint.longitude = [latLogArr[0]floatValue]/kGPSMaxScale;
+     */
+    //NSString *startLocationKey = @"";
+    NSString *startLocation = [[DBManage getSingletone] getLocationPointNameByLatitude:[latLogArr[1]floatValue]/kGPSMaxScale withLogtitude:[latLogArr[0]floatValue]/kGPSMaxScale withIndex:indexPath.row  withTag:YES];
+    if(startLocation == nil){
+        startLocation = @"未知";
+    }
+    latLogStr = [data objectForKey:@"endadr2"];
+    latLogArr  = [latLogStr componentsSeparatedByString:@","];
+    /*
+     mStartPoint.latitude =
+     mStartPoint.longitude = [latLogArr[0]floatValue]/kGPSMaxScale;
+     */
+    //NSString *startLocationKey = @"";
+    NSString *endLocation = [[DBManage getSingletone] getLocationPointNameByLatitude:[latLogArr[1]floatValue]/kGPSMaxScale withLogtitude:[latLogArr[0]floatValue]/kGPSMaxScale withIndex:indexPath.row withTag:NO];
+    if(endLocation == nil){
+        endLocation = @"未知";
+    }
     cell.mTimeLabel.text = [NSString stringWithFormat:@"%@",[self baoNormalFormat:[data objectForKey:@"drivingLong"]]];
-    cell.mStartLabel.text = [NSString stringWithFormat:@"始: %@",[data objectForKey:@"startadr"]];
-    cell.mEndLabel.text = [NSString stringWithFormat:@"终:%@",[data objectForKey:@"endadr"]];
+    cell.mStartLabel.text = [NSString stringWithFormat:@"始: %@",startLocation];
+    cell.mEndLabel.text = [NSString stringWithFormat:@"终:%@",endLocation];
     //[data objectForKey:@"endadr"];
     
     //distance
@@ -277,8 +299,18 @@ NSString* gDataArr[] = {@"12.5km",@"11km/h",@"87L",@"3h"};
     //[self.navigationController pushViewController:vc animated:YES];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
+#pragma mark -
+#pragma mark delegate
 
-
+- (void)didGetLocationData:(NSString*)name withIndex:(NSInteger)index withTag:(BOOL)tag{
+    PlantTableViewCell *cell = (PlantTableViewCell*)[tweetieTableView  cellForRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
+    if(tag){
+        cell.mStartLabel.text = name;
+    }
+    else{
+        cell.mEndLabel.text = name;
+    }
+}
 #pragma mark -
 #pragma mark net work
 - (void)shouldLoadNewerData:(UITableView*)tableView{
@@ -325,9 +357,23 @@ NSString* gDataArr[] = {@"12.5km",@"11km/h",@"87L",@"3h"};
         
         self.dataArray = [data objectForKey:@"data"];
         for(id item in self.dataArray){
-            CLLocationDegrees lat = [[item objectForKey:@"lat"]floatValue]/kGPSMaxScale;
-            CLLocationDegrees lng = [[item objectForKey:@"lng"]floatValue]/kGPSMaxScale;
-            [self getPlaceNameByPositionwithLatitue:lat withLongitude:lng];
+            /*
+            NSString *latLogStr = [item objectForKey:@"startadr2"];
+            NSArray *latLogArr  = [latLogStr componentsSeparatedByString:@","];
+            
+            double lat = [latLogArr[1]floatValue]/kGPSMaxScale;
+            double  lng = [latLogArr[0]floatValue]/kGPSMaxScale;
+            
+            [[DBManage getSingletone] getLocationDataFromVendorWithLatitude:lat withLotitude:lng];
+            
+            latLogStr = [item objectForKey:@"endadr2"];
+            latLogArr  = [latLogStr componentsSeparatedByString:@","];
+            
+            lat = [latLogArr[1]floatValue]/kGPSMaxScale;
+            lng = [latLogArr[0]floatValue]/kGPSMaxScale;
+            [[DBManage getSingletone] getLocationDataFromVendorWithLatitude:lat withLotitude:lng];
+                    */
+            //[self getPlaceNameByPositionwithLatitue:lat withLongitude:lng];
         }
         [tweetieTableView reloadData];
         kNetEnd(self.view);
@@ -398,30 +444,8 @@ NSString* gDataArr[] = {@"12.5km",@"11km/h",@"87L",@"3h"};
     }
 }
 
--(void)getPlaceNameByPositionwithLatitue:(CLLocationDegrees)lat withLongitude:(CLLocationDegrees)lng{
-    
-    CLGeocodeCompletionHandler handler = ^(NSArray *place, NSError *error) {
-        
-        for (CLPlacemark *placemark in place) {
-            NSString *cityStr,*cityName;
-            cityStr = placemark.thoroughfare;
-            
-            cityName=placemark.name;
-            
-            NSLog(@"city %@",cityStr);//获取街道地址
-            
-            NSLog(@"cityName %@",cityName);//获取城市名
-            
-            break;
-            
-        }
-        
-    };
-    CLGeocoder *Geocoder=[[CLGeocoder alloc]init];//CLGeocoder用法参加之前博客
-    //    CLLocationDegrees lat = [[item objectForKey:@"lat"]floatValue]/kGPSMaxScale;
-    //    CLLocationDegrees lng = [[item objectForKey:@"lng"]floatValue]/kGPSMaxScale;
-    CLLocation *loc = [[CLLocation alloc] initWithLatitude:lat longitude:lng];
-    [Geocoder reverseGeocodeLocation:loc completionHandler:handler];
-    
-}
+//-(void)getPlaceNameByPositionwithLatitue:(double)lat withLongitude:(double)lng{
+//    
+//    
+//}
 @end

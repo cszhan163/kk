@@ -855,6 +855,7 @@
     CGSize backgroundShadowOffset = CGSizeMake(2, 3);
     CGFloat backgroundShadowBlurRadius = 5;
     
+    SafeRelease(dateFormatter);
     
     //////// Draw background of popover
     UIBezierPath* roundedRectanglePath = [UIBezierPath bezierPath];

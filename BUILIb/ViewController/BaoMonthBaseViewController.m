@@ -40,6 +40,7 @@
     date.year = [dateArray[0]intValue];
 
     self.mCurrDate = date;
+    SafeRelease(dateFormat);
     
 	// Do any additional setup after loading the view.
 }

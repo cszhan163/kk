@@ -43,12 +43,14 @@
         [self.subClassInputTextField resignFirstResponder];
         NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
         [dateFormat setDateFormat:@"yyyyMMdd"];
+        
         NSDate *date = [dateFormat dateFromString:self.subClassInputTextField.text];
         datePickView.hidden = NO;
         [datePickView setDate:date animated:YES];
         
         [datePickView addTarget:self action:@selector(dateChange:) forControlEvents:UIControlEventValueChanged];
         SafeRelease(datePickView);
+        SafeRelease(dateFormat);
         //[self setNavgationBarTitle:NSLocalizedString(@"找回密码", @"")];
     }
 	// Do any additional setup after loading the view.
@@ -58,9 +60,11 @@
     //[dateComonets ]
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
     [dateFormat setDateFormat:@"yyyyMMdd"];
+    
     NSString *dateString = [dateFormat stringFromDate:sender.date];
     //NSDate *date = [dateFormat dateFromString:self.subClassInputTextField.text];
     self.subClassInputTextField.text = dateString;
+    SafeRelease(dateFormat);
     
 }
 - (void)didReceiveMemoryWarning

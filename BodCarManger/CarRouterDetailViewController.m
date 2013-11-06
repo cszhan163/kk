@@ -27,6 +27,16 @@
 @implementation CarRouterDetailViewController
 @synthesize isLatest;
 @synthesize mData;
+
+#if __has_feature(objc_arc)
+#else
+- (void)dealloc{
+    self.realDataTimer = nil;
+    self.gprsDataArray = nil;
+    [super dealloc];
+}
+#endif
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -83,8 +93,7 @@
                CGRectMake(0, 44, self.view.frame.size.width,460-44)];
     
 	[self.view addSubview:mMapView];
-    
-    
+    SafeRelease(mMapView);
     
     
     carDetailPenalView = [UIComUtil instanceFromNibWithName:@"CarDetailPenalView"];

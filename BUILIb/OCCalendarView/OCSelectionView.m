@@ -72,8 +72,8 @@
     
     
     
-    CGGradientRef gradient4 = CGGradientCreateWithColors(colorSpace, (CFArrayRef)gradient4Colors, gradient4Locations);
-    [colorArray addObject:gradient4];
+    CGGradientRef gradient4 = CGGradientCreateWithColors(colorSpace, (__bridge CFArrayRef)gradient4Colors, gradient4Locations);
+    [colorArray addObject:(__bridge id)(gradient4)];
     CGGradientRelease(gradient4);
     
     
@@ -88,7 +88,7 @@
     
     
     gradient4 = CGGradientCreateWithColors(colorSpace, (CFArrayRef)gradient4Colors, gradient4Locations);
-    [colorArray addObject:gradient4];
+    [colorArray addObject:(__bridge id)(gradient4)];
     CGGradientRelease(gradient4);
      CGColorSpaceRelease(colorSpace);
 }
@@ -132,7 +132,7 @@
             endCellY = item.mEndY;
             startCellX = item.mStartX;
             endCellX = item.mEndX;
-            CGGradientRef gradientColor = [self.colorArray objectAtIndex:item.mTag];
+            CGGradientRef gradientColor = (__bridge CGGradientRef)([self.colorArray objectAtIndex:item.mTag]);
             //gradientColor = item.color;
 #else
             {

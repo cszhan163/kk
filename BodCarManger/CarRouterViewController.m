@@ -23,9 +23,20 @@ NSString* gDataArr[] = {@"12.5km",@"11km/h",@"87L",@"3h"};
 }
 @property(nonatomic,strong)NSDictionary *locationDict;
 @end
+
 @implementation CarRouterViewController
 @synthesize currDate;
 @synthesize currDateStruct;
+
+#if __has_feature(objc_arc)
+#else
+- (void)dealloc{
+    self.locationDict = nil;
+    [super dealloc];
+}
+#endif
+
+
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     if([self.dataArray count]==0){
@@ -70,6 +81,7 @@ NSString* gDataArr[] = {@"12.5km",@"11km/h",@"87L",@"3h"};
     UIImageWithFileName(bgImage, @"car_plant_bg.png");
     UIImageView *tableViewBg = [[UIImageView alloc]initWithImage:bgImage];
     [self.view  addSubview:tableViewBg];
+    SafeRelease(tableViewBg);
     tableViewBg.frame = tweetieTableView.frame;
     [tweetieTableView removeFromSuperview];
     [tableViewBg addSubview:tweetieTableView];
@@ -122,7 +134,9 @@ NSString* gDataArr[] = {@"12.5km",@"11km/h",@"87L",@"3h"};
         valueLabel.textColor = [UIColor whiteColor];
         valueLabel.backgroundColor = [UIColor clearColor];
         [parentView addSubview:valueLabel];
+        SafeRelease(valueLabel);
         [parentView addSubview:item];
+        SafeRelease(item);
         startX += 40.f+25.f;
     }
     return headerView;
@@ -206,6 +220,7 @@ NSString* gDataArr[] = {@"12.5km",@"11km/h",@"87L",@"3h"};
     timeArr[1];
        */
     cell.mTagLabel.text = dateStr;//
+    SafeRelease(dateFormat);
     
     //time
     origin = cell.mTimeImageView.frame.origin;
@@ -299,6 +314,7 @@ NSString* gDataArr[] = {@"12.5km",@"11km/h",@"87L",@"3h"};
     [ZCSNotficationMgr postMSG:kPushNewViewController obj:vc];
     //[self.navigationController pushViewController:vc animated:YES];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    SafeRelease(vc);
 }
 #pragma mark -
 #pragma mark delegate

@@ -192,7 +192,7 @@ static NSString *kImageTextArr[] ={
     NSString *resKey = [obj objectForKey:@"key"];//[respRequest resourceKey];
     //NSString *resKey = [respRequest resourceKey];
     if([resKey isEqualToString:kResRouterDataDay]){
-        [AppSetting setLoginUserInfo:data withUserKey:[AppSetting getLoginUserId]];
+        //[AppSetting setLoginUserInfo:data withUserKey:[AppSetting getLoginUserId]];
         [logInfo reloadData];
     }
     

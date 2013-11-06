@@ -59,8 +59,7 @@ static NSString *kSectionTwoArr[] = {
     locationSwitch = [[UISwitch alloc]init];
     [locationSwitch addTarget:self action:@selector(locationSetting:) forControlEvents:UIControlEventValueChanged];
     //if([AppSetting getCarLocationSetting]){
-    BOOL status = [AppSetting getCarLocationSetting];
-    locationSwitch.on = status;
+    
     /*
      CGFloat bgWidth = kDeviceScreenWidth-2*KLoginAndResignPendingX;
      CGFloat bgHeight = 2*kLoginCellItemHeight+KLoginAndResignPendingX*2;
@@ -120,7 +119,8 @@ static NSString *kSectionTwoArr[] = {
     [self setRightBtnHidden:YES];
     
     [self addFonterView];
-    [self shouldLoadUserInfoData];
+    [self shouldLoadDataFromNet];
+    self.data = [AppSetting getLoginUserInfo];
     /*
     logInfo.contentSize = CGSizeMake(logInfo.contentSize.width, logInfo.contentSize.height+ btnsize.height+10);
      */
@@ -250,29 +250,28 @@ static NSString *kSectionTwoArr[] = {
             cell.textLabel.text = kSectionOneArr[indexPath.row];
             NSString *detailText = @"";
             NSString *tempText = nil;
-            if(indexPath.row){
-                switch (0) {
+            switch (indexPath.row) {
                     case 0:
-                        tempText = [self.userData objectForKey:@"name"];
+                        tempText = [AppSetting getLoginUserId];//[self.userData objectForKey:@"name"];
                         if(tempText){
                             detailText = tempText;
                         }
                         break;
-                   case 1:
+                   case 2:
                         tempText = [self.userData objectForKey:@"phoneNumber"];
                         if(tempText){
                             detailText = tempText;
                         }
+                        break;
                     case 3:
-                        tempText = [self.userData objectForKey:@"points"];
+                        tempText = [NSString stringWithFormat:@"%d",[[self.userData objectForKey:@"points"]intValue]];
                         if(tempText){
                             detailText = tempText;
                         }
+                        break;
                     default:
                         break;
                 }
-                
-            }
             cell.detailTextLabel.text = detailText;
             break;
         case 1:
@@ -337,7 +336,7 @@ static NSString *kSectionTwoArr[] = {
                 case 0:
                     bgImageName = @"setting_cell_header.png";
                     break;
-                case 2:
+                case 3:
                     bgImageName = @"setting_cell_footer.png";
                     break;
                     
@@ -372,7 +371,7 @@ static NSString *kSectionTwoArr[] = {
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
     if(indexPath.section == 0){
-        if(indexPath.row == 0||indexPath.row == 2){
+        if(indexPath.row == 0||indexPath.row == 3){
             if(indexPath.row == 0){
                 /*
                 usrNameLabel = [UIComUtil createLabelWithFont:[UIFont systemFontOfSize:12] withTextColor:[UIColor grayColor] withText:@"1245678" withFrame:CGRectMake(40.f, 0.f, 320.f, 20)];
@@ -380,8 +379,8 @@ static NSString *kSectionTwoArr[] = {
                  
                 [cell addSubview:usrNameLabel];
                  */
-                cell.detailTextLabel.text = @"123456789";
-                cell.detailTextLabel.textColor = [UIColor grayColor];
+                //cell.detailTextLabel.text = @"123456789";
+                //cell.detailTextLabel.textColor = [UIColor grayColor];
             
             }
             cell.accessoryType = UITableViewCellAccessoryNone;
@@ -392,6 +391,8 @@ static NSString *kSectionTwoArr[] = {
     
         if(indexPath.row == 1){
             cell.accessoryView = locationSwitch;
+            BOOL status = [AppSetting getCarLocationSetting];
+            locationSwitch.on = status;
         }
     }
     
@@ -496,9 +497,11 @@ static NSString *kSectionTwoArr[] = {
             break;
     }
 }
+/*
 - (void)setUserData:(NSDictionary*)data{
     self.userData = data;
 }
+*/
 #pragma mark  -
 #pragma mark logout confir delegate
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
@@ -540,7 +543,7 @@ static NSString *kSectionTwoArr[] = {
 }
 #pragma mark -
 #pragma mark net work
-- (void)shouldLoadUserInfoData{
+- (void)shouldLoadDataFromNet{
     CarServiceNetDataMgr *cardShopMgr = [CarServiceNetDataMgr getSingleTone];
     NSString *userName = @"";
     NSString *userPassword = @"";
@@ -559,15 +562,20 @@ static NSString *kSectionTwoArr[] = {
 }
 -(void)didNetDataOK:(NSNotification*)ntf{
     id obj = [ntf object];
-    id respRequest = [obj objectForKey:@"request"];
+    //id respRequest = [obj objectForKey:@"request"];
     id data = [obj objectForKey:@"data"];
     NSString *resKey = [obj objectForKey:@"key"];//[respRequest resourceKey];
     //NSString *resKey = [respRequest resourceKey];
-    if([resKey isEqualToString:kResRouterDataDay]){
+    if([resKey isEqualToString:kCarUserLogin]){
         self.userData = data;
-        [AppSetting setLoginUserInfo:data withUserKey:[AppSetting getLoginUserId]];
+        [AppSetting setLoginUserInfo:data];
         [logInfo reloadData];
     }
-
+    BOOL status = YES;
+    if([[self.data objectForKey:@"locateType"]intValue]==0){
+        status = NO;
+    }
+    [AppSetting setCarLocationSetting:status];
+  
 }
 @end

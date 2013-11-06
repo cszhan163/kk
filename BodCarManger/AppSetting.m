@@ -88,6 +88,16 @@
     return [usrDefaults objectForKey:@"currentLoginUser"];
     
 }
++(NSDictionary*)getLoginUserCarData{
+    NSUserDefaults *usrDefaults = [NSUserDefaults standardUserDefaults];
+    return [usrDefaults objectForKey:@"currentLoginUserCarData"];
+}
++(void)setLoginUserCarData:(NSDictionary*)data{
+    NSUserDefaults *usrDefaults = [NSUserDefaults standardUserDefaults];
+    [usrDefaults setValue:data forKey:@"currentLoginUserCarData"];
+    [usrDefaults synchronize];
+
+}
 +(void)setLoginUserDetailInfo:(NSDictionary*)data userId:(NSString*)userId
 {
     NSUserDefaults *usrDefaults = [NSUserDefaults standardUserDefaults];

@@ -6,9 +6,9 @@
 //  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
 //
 
-#import "UIBaseViewController.h"
+#import "UISimpleNetBaseViewController.h"
 
-@interface UserSettingViewController : UIBaseViewController{
+@interface UserSettingViewController : UISimpleNetBaseViewController{
     UITableView  *logInfo;
 }
 @end

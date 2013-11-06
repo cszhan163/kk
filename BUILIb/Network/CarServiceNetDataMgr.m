@@ -443,8 +443,15 @@ static BOOL isExit = NO;
 - (void)userLoginOk:(EiInfo*)info{
     if(info.status == 1){
         //NSLog(@"%@",info.blocks);
+        NSString *locationType = [info get:@"locateType"];
         NSMutableDictionary *resultDict = [NSMutableDictionary dictionary];
         [resultDict setValue:[info get:@"retType"] forKey:@"retType"];
+        [resultDict setValue:[info get:@"phoneNumber"] forKey:@"phoneNumber"];
+        [resultDict setValue:[info get:@"points"] forKey:@"points"];
+        if(![locationType isKindOfClass:[NSNull class]])
+            [resultDict setValue:locationType forKey:@"locateType"];
+        else
+            [resultDict setValue:@"1" forKey:@"locateType"];
         [self sendFinalOkData:resultDict withKey:kCarUserLogin];
     }
     else{
@@ -497,6 +504,7 @@ static BOOL isExit = NO;
         [resultDict setValue:[info get:@"NO"] forKey:@"NO"];
         [resultDict setValue:[info get:@"lastmaintainDate"] forKey:@"lastmaintainDate"];
          [resultDict setValue:[info get:@"OBD"] forKey:@"OBD"];
+        [resultDict setValue:[info get:@"lastMilage"] forKey:@"lastMilage"];
         [self sendFinalOkData:resultDict withKey:kCarInfoQuery];
     }
     else{
@@ -603,7 +611,7 @@ static BOOL isExit = NO;
         NSMutableDictionary *resultDict = [NSMutableDictionary dictionary];
         NSMutableArray *gpsArray = [NSMutableArray array];
         
-        [resultDict setValue:[info get:@"tripMileage"] forKey:@"tripMileage"];
+        [resultDict setValue:[info get:@"tripMileage"] forKey:@"distance"];
         [resultDict setValue:[info get:@"fuelWear"] forKey:@"fuelWear"];
         [resultDict setValue:[info get:@"safeScore"]  forKey:@"safeScore"];
         [resultDict setValue:[info get:@"economicScore"] forKey:@"economicScore"];

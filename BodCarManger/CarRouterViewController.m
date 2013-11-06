@@ -245,7 +245,7 @@ NSString* gDataArr[] = {@"12.5km",@"11km/h",@"87L",@"3h"};
     }
     cell.mTimeLabel.text = [NSString stringWithFormat:@"%@",[self baoNormalFormat:[data objectForKey:@"drivingLong"]]];
     cell.mStartLabel.text = [NSString stringWithFormat:@"始: %@",startLocation];
-    cell.mEndLabel.text = [NSString stringWithFormat:@"终:%@",endLocation];
+    cell.mEndLabel.text = [NSString stringWithFormat:@"终: %@",endLocation];
     //[data objectForKey:@"endadr"];
     
     //distance
@@ -291,6 +291,7 @@ NSString* gDataArr[] = {@"12.5km",@"11km/h",@"87L",@"3h"};
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     CarRouterDetailViewController *vc = [[CarRouterDetailViewController alloc]initWithNibName:nil bundle:nil];
+    [vc  setNavgationBarTitle:navBarTitle];
     vc.delegate = self;
     NSDictionary *item = [self.dataArray objectAtIndex:indexPath.row];
     //NSDictionary *data = [item objectForKey:@"DayDetailInfo"];
@@ -305,10 +306,10 @@ NSString* gDataArr[] = {@"12.5km",@"11km/h",@"87L",@"3h"};
 - (void)didGetLocationData:(NSString*)name withIndex:(NSInteger)index withTag:(BOOL)tag{
     PlantTableViewCell *cell = (PlantTableViewCell*)[tweetieTableView  cellForRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
     if(tag){
-        cell.mStartLabel.text = name;
+        cell.mStartLabel.text = [NSString stringWithFormat:@"始: %@",name];;
     }
     else{
-        cell.mEndLabel.text = name;
+        cell.mEndLabel.text =  [NSString stringWithFormat:@"终: %@",name];;
     }
 }
 #pragma mark -
@@ -392,19 +393,16 @@ NSString* gDataArr[] = {@"12.5km",@"11km/h",@"87L",@"3h"};
 }
 -(void)didNetDataFailed:(NSNotification*)ntf
 {
-    kNetEndWithErrorAutoDismiss(@"", 2.f);
+    //kNetEndWithErrorAutoDismiss(@"", 2.f);
     id obj = [ntf object];
     id respRequest = [obj objectForKey:@"request"];
     id data = [obj objectForKey:@"data"];
-    NSString *resKey = [respRequest resourceKey];
-    if(self.request ==respRequest && [resKey isEqualToString:@"getDetailByDay"])
+    NSString *resKey = [obj objectForKey:@"key"];
+    if(self.request ==respRequest && [resKey isEqualToString:kResRouterDataDay])
     {
-        //kNetEnd(self.view);
+        kNetEnd(self.view);
     }
-    if(self.request ==respRequest && [resKey isEqualToString:@"addreply"])
-    {
-        //kNetEnd(self.view);
-    }
+  
     
     //NE_LOG(@"warning not implemetation net respond");
 }

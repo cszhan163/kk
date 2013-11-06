@@ -18,6 +18,9 @@
 +(void)setLoginUserInfo:(NSDictionary*)data withUserKey:(NSString*)userId;
 +(NSDictionary*)getLoginUserInfo:(NSString*)usrId;
 
++(NSDictionary*)getLoginUserCarData;
++(void)setLoginUserCarData:(NSDictionary*)data;
+
 +(NSString*)getCurrentLoginUser;
 +(void)setCurrentLoginUser:(NSString*)currUserId;
 +(void)clearCurrentLoginUser;

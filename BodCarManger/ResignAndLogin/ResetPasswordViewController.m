@@ -19,7 +19,7 @@
 #define kLoginAndSignupInputTextColor [UIColor grayColor]
 
 @interface ResetPasswordViewController ()
-@property(nonatomic,retain)UITextField *subClassInputTextField;
+
 @end
 
 @implementation ResetPasswordViewController
@@ -44,14 +44,7 @@
 {
     //[super viewDidLoad];
     //[self addObservers];
-    if(type == 0)
-    {
-        [self setNavgationBarTitle:NSLocalizedString(@"获取验证码", @"")];
-    }
-    else
-    {
-        [self setNavgationBarTitle:NSLocalizedString(@"找回密码", @"")];
-    }
+   
     [self setHiddenRightBtn:NO];
     //mainView.topBarView.frame = CGRectMake(0.f,0.f,320.f,44.f);
     //[self setRightTextContent:NSLocalizedString(@"Send", @"")];
@@ -64,12 +57,13 @@
     subClassInputTextField.textColor = kLoginAndSignupInputTextColor;
     subClassInputTextField.adjustsFontSizeToFitWidth = NO;
     subClassInputTextField.text = @"";
-    subClassInputTextField.keyboardType = UIKeyboardTypeNumberPad;
+    subClassInputTextField.delegate = self;
+    //subClassInputTextField.keyboardType = UIKeyboardTypeNumberPad;
     if(userEmail)
     {
         subClassInputTextField.text = userEmail;
     }
-    subClassInputTextField.placeholder = NSLocalizedString(@"请输入手机号", @"");
+    subClassInputTextField.placeholder = NSLocalizedString(@"请输入内容", @"");
     subClassInputTextField.returnKeyType = UIReturnKeyDone;
     UIImage *bgImage = nil;
     //UIImageWithFileName(bgImage, @"inputboxL.png");

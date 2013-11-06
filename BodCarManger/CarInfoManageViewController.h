@@ -8,6 +8,9 @@
 
 #import "UserSettingViewController.h"
 #import "UserSettingViewController.h"
-@interface CarInfoManageViewController : UserSettingViewController
+@interface CarInfoManageViewController : UserSettingViewController{
+
+     UIDatePicker *datePickView;
+}
 @property(nonatomic,strong)NSDictionary *data;
 @end

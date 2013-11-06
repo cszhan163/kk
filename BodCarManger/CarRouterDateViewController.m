@@ -183,7 +183,7 @@
 //        
 //    }
     
-    NSString *title = [NSString stringWithFormat:@"%@/%@/%@",[day objectForKey:@"year"],[day objectForKey:@"month"],[day objectForKey:@"day"]];
+    NSString *title = [NSString stringWithFormat:@"%@年%@月%@日",[day objectForKey:@"year"],[day objectForKey:@"month"],[day objectForKey:@"day"]];
     
     CarRouterViewController *dayRounterVc = [[CarRouterViewController alloc]init];
     [dayRounterVc setNavgationBarTitle:title];

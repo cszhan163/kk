@@ -73,7 +73,7 @@
     //self.leftBtn = btn;
     }
     else{
-    
+        
     }
 #endif
    
@@ -110,7 +110,7 @@
 - (void)loadRouterHistoryData{
 
     CarServiceNetDataMgr *cardShopMgr = [CarServiceNetDataMgr getSingleTone];
-    //kNetStartShow(@"数据加载...", self.view);
+    kNetStartShow(@"数据加载...", self.view);
     NSString *tipId = [self.mData objectForKey:@"tripId"];
     NSString *startTime = [self.mData objectForKey:@"startTime"];
     self.request = [cardShopMgr  getRouterHistoryData:@"SHD05728" withRouterId:tipId withStartTime:startTime];
@@ -169,24 +169,30 @@
      "drivetest": "7"
      */
     NSString *distance = [data objectForKey:@"distance"];
+    if(distance == nil){
+        distance = @"00";
+    }
     NSString *speed = [data objectForKey:@"speed"];
-    NSString *rotate = [data objectForKey:@"rotate"];
+    NSString *rotate = [data objectForKey:@"fuelWear"];
+    if(rotate == nil){
+        rotate = @"00";
+    }
     NSString *tempreture = [data objectForKey:@"tempreture"];
     
-    carDetailPenalView.mRunDistanceLabel.text = [NSString stringWithFormat:@"行驶距离:-  %@km",distance];
+    carDetailPenalView.mRunDistanceLabel.text = [NSString stringWithFormat:@"行驶距离:-  %0.2lfkm",[distance floatValue]];
     carDetailPenalView.mRunSpeedLabel.text = [NSString stringWithFormat:@"行驶速度:-  %@km/h",speed];
-    carDetailPenalView.mRotateSpeedLabel.text= [NSString stringWithFormat:@"转度:-  %@次",rotate];
+    carDetailPenalView.mRotateSpeedLabel.text= [NSString stringWithFormat:@"油耗:-  %0.2lfL/km",[rotate floatValue]];
     carDetailPenalView.mRunTemperatureLabel.text = [NSString stringWithFormat:@"水温:-  %@度",tempreture];
     
-    NSString *timeStr = [data objectForKey:@"starttime"];
-    
-    NSArray *timeArr  = [timeStr componentsSeparatedByString:@" "];
-    if(!isLatest)
-        [self setNavgationBarTitle:timeArr[0]];
-	NSArray *dateArr = [timeArr[0] componentsSeparatedByString:@"/"];
-    mDateStruct.year = [dateArr[0]intValue];
-    mDateStruct.month = [dateArr[1]intValue];
-    mDateStruct.day =  [dateArr[2]intValue];
+//    NSString *timeStr = [data objectForKey:@"starttime"];
+//    
+//    NSArray *timeArr  = [timeStr componentsSeparatedByString:@" "];
+//    if(!isLatest && timeArr[0])
+//        [self setNavgationBarTitle:timeArr[0]];
+//	NSArray *dateArr = [timeArr[0] componentsSeparatedByString:@"/"];
+//    mDateStruct.year = [dateArr[0]intValue];
+//    mDateStruct.month = [dateArr[1]intValue];
+//    mDateStruct.day =  [dateArr[2]intValue];
     
     int oiltest = [[data objectForKey:@"economicScore"]intValue];
     if(oiltest>=10) oiltest = 10;
@@ -259,7 +265,23 @@
     }
     
 }
-
+-(void)didNetDataFailed:(NSNotification*)ntf
+{
+    
+    id obj = [ntf object];
+    id respRequest = [obj objectForKey:@"request"];
+    id data = [obj objectForKey:@"data"];
+    NSString *resKey = [obj objectForKey:@"key"];
+    if(self.request ==respRequest && [resKey isEqualToString:kResRouterHistory])
+    {
+        kNetEnd(self.view);
+        kNetEndWithErrorAutoDismiss(@"加载数据失败", 2.f);
+        //[self.navigationController popToRootViewControllerAnimated:YES];
+    }
+    
+    
+    //NE_LOG(@"warning not implemetation net respond");
+}
 #import "WGS2Mars.h"
 - (void)updateUIData:(NSDictionary*)data{
 
@@ -276,6 +298,7 @@
     printf("\n\n");
     if([gpsScaleArray count])
      [mMapView  showRouteWithPointsData:gpsScaleArray];
+    [self initMapPointData:data];
 }
 - (void)updateUIRealTimeData:(NSDictionary*)data{
 

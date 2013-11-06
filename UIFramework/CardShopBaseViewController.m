@@ -36,11 +36,11 @@
 	 assert(imgPath);
 	 bgImage =  [UIImage imageWithContentsOfFile:imgPath];
 	 */
-	UIImageWithFileName(bgImage,@"return.png");
+	UIImageWithFileName(bgImage,@"btn-back.png");
 	//UIImage *bgImageS = nil;
 	//UIImageWithFileName(bg
 	[btn setBackgroundImage:bgImage forState:UIControlStateNormal];
-	UIImageWithFileName(bgImage,@"return.png");
+	UIImageWithFileName(bgImage,@"btn-back.png");
 	[btn setBackgroundImage:bgImage forState:UIControlStateSelected];
 	//|UIControlStateHighlighted|UIControlStateSelected
 	btn.frame = CGRectMake(kMBAppTopToolXPending,kMBAppTopToolYPending,bgImage.size.width/kScale, bgImage.size.height/kScale);
@@ -115,7 +115,7 @@
 #endif
     
     
-	UIImageWithFileName(bgImage,@"top_background.png");
+	UIImageWithFileName(bgImage,@"titlebar.png");
 	NETopNavBar  *tempNavBar= [[NETopNavBar alloc]
 							   initWithFrame:rect withBgImage:bgImage withBtnArray:arr selIndex:-1];
 	

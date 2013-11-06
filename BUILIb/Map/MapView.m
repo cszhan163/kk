@@ -138,7 +138,8 @@
 	[self centerMap];
 }
 - (void)showRouteWithPointsData:(NSArray*)points{
-    routes = points;
+    [routes release];
+    routes = [points retain];
     [self updateRouteView];
     [self centerMap];
 }

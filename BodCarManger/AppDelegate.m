@@ -26,6 +26,7 @@
     [[Container instance] launchAppWithDictionary:launchOptions isDebugMode:YES toViewController:nil AutoSetView:nil];
     
 #if 1
+    [AppSetting setLoginUserId:@"kkzhan"];
     AppMainUIViewManage *appMg = [AppMainUIViewManage getSingleTone];
     appMg.window = self.window;
     [appMg addMainViewUI];

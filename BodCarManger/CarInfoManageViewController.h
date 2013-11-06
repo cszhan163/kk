@@ -9,5 +9,5 @@
 #import "UserSettingViewController.h"
 #import "UserSettingViewController.h"
 @interface CarInfoManageViewController : UserSettingViewController
-
+@property(nonatomic,strong)NSDictionary *data;
 @end

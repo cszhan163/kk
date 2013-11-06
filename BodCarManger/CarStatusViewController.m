@@ -14,10 +14,9 @@
 
 
 #import "CarStatusViewController.h"
-
-
 #import "CarCheckTableViewCell.h"
 
+#define kCheckResultLevelArray  @[@"car_check_status_top.png",@"car_check_status_mid.png",@"car_check_status_low.png"]
 @interface CarStatusViewController (){
 
     UIProgressView       *checkProcessView;
@@ -26,8 +25,9 @@
     UILabel           *temperatureLabel;
     UIImageView         *checkTagImageView ;
     UILabel           *checkProcessLabel;
-    NSTimer             *timer;
+    
 }
+@property(nonatomic,strong)NSTimer             *timer;
 @end
 
 @implementation CarStatusViewController
@@ -144,6 +144,7 @@
     
     checkTagImageView.frame = CGRectMake(23,currY+12,bgImage.size.width/kScale, bgImage.size.height/kScale);
     [self.view addSubview:checkTagImageView];
+    checkTagImageView.hidden = YES;
     SafeRelease(checkTagImageView);
     currY = currY+184/2.f;
     
@@ -177,6 +178,7 @@
     CGFloat height = tbHeaderView.frame.size.height;
     tweetieTableView.normalEdgeInset = UIEdgeInsetsMake(height,0.f,0.f,0.f);
     
+    [self startCarHealthCheck:nil];
     //[self setRightTextContent:NSLocalizedString(@"Done", @"")];
 	// Do any additional setup after loading the view.
 }
@@ -195,7 +197,7 @@
     //[self startShowLoadingView];
     //kNetStartShow(@"数据加载...", self.view);
     [cardShopMgr getCarCheckData:@"SHD05728"];
-    timer = [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(timerUpdateProcess) userInfo:nil repeats:YES];
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(timerUpdateProcess) userInfo:nil repeats:YES];
     processView.hidden = NO;
 }
 - (void)timerUpdateProcess{
@@ -211,7 +213,8 @@
     
     processView.progress = 1.0;
     processView.hidden = YES;
-    [timer invalidate];
+    [_timer invalidate];
+    self.timer = nil;
     //NSString *resKey = [respRequest resourceKey];
     if(self.request ==respRequest && [resKey isEqualToString:kResCarCheckData])
     {
@@ -231,8 +234,12 @@
     
     rotateSpeedLabel.text = [NSString stringWithFormat:@"%@ 转",[data objectForKey:@"RPM"]];
     temperatureLabel.text = [NSString stringWithFormat:@"%@ 度",[data objectForKey:@"temper"]];
-    
-    //checkTagImageView ;
+    int level = [[data objectForKey:@"level"] intValue];
+    if(level>=1 && level<=3){
+        UIImageWithFileName(UIImage *bgImage, kCheckResultLevelArray[level-1]);
+        checkTagImageView.hidden = NO;
+        checkTagImageView.image = bgImage;
+    }
     checkProcessLabel.text = [data objectForKey:@"conclusion"];
 }
 

@@ -35,6 +35,8 @@ static NSString *kCarOtherInfoArray[] = {
 {
     [super viewDidLoad];
     [self setNavgationBarTitle:@"车量和设备信息"];
+    
+    [self shouldLoadCarInfoData];
 	// Do any additional setup after loading the view.
 }
 
@@ -75,7 +77,7 @@ static NSString *kCarOtherInfoArray[] = {
     if (cell == nil)
     {
 #if 1
-		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:LabelTextFieldCell];
+		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:LabelTextFieldCell];
         cell.backgroundColor = [UIColor clearColor];
         
         //cell.clipsToBounds = YES;
@@ -151,5 +153,27 @@ static NSString *kCarOtherInfoArray[] = {
     cell.textLabel.backgroundColor = [UIColor clearColor];
 	return cell;
 
+}
+#pragma mark -
+#pragma mark net work
+- (void)shouldLoadCarInfoData{
+    CarServiceNetDataMgr *cardShopMgr = [CarServiceNetDataMgr getSingleTone];
+    NSString *useName = [AppSetting getLoginUserId];
+    [cardShopMgr carInforQuery:useName];
+}
+-(void)didNetDataOK:(NSNotification*)ntf
+{
+    id obj = [ntf object];
+    id data = [obj objectForKey:@"data"];
+    NSString *resKey = [obj objectForKey:@"key"];//[respRequest resourceKey];
+    //NSString *resKey = [respRequest resourceKey];
+    if([resKey isEqualToString:kResRouterDataDay])
+    {
+        self.data = [data objectForKey:@"data"];
+        
+        [logInfo reloadData];
+        kNetEnd(self.view);
+        
+    }
 }
 @end

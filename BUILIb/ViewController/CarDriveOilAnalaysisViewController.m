@@ -13,7 +13,7 @@
 #import "CarDriveOilDataViewController.h"
 
 
-@interface CarDriveOilAnalaysisViewController ()
+@interface CarDriveOilAnalaysisViewController ()<UIBaseViewControllerDelegate>
 
 @end
 
@@ -31,7 +31,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.delegate = self;
+    //self.delegate = self;
 	// Do any additional setup after loading the view.
     
 }
@@ -44,7 +44,9 @@
 #pragma mark -
 #pragma mark viewController datasource
 -(NSArray*)viewControllersForNavItemController:(CarDataAnalysisBaseViewController*)controller{
+
     NSMutableArray *vcArray = [NSMutableArray array];
+#if 1
     CarDriveOilDataViewController *dataVc = [[CarDriveOilDataViewController alloc]init];
     dataVc.mCurrDate = self.mCurrDate;
     dataVc.view.backgroundColor = [UIColor clearColor];
@@ -52,11 +54,13 @@
     //vcCtl.view.backgroundColor = [UIColor redColor];
     [vcArray addObject:dataVc];
     SafeRelease(dataVc);
+#endif
     CarDriveOilDataAnalaysisViewController *analysisVc = [[CarDriveOilDataAnalaysisViewController  alloc]init];
     analysisVc.view.backgroundColor = [UIColor clearColor];
     //[vcCtl setRootViewController:controller];
     [vcArray addObject:analysisVc];
     SafeRelease(analysisVc);
+    //return nil;
     return  vcArray;
 }
 #define kOilNavControllerItemWidth 150.f
@@ -167,6 +171,7 @@
         
     }];
     //[data ]
+    
     NSMutableDictionary *newData = [NSMutableDictionary dictionaryWithDictionary:data];
     [newData setValue:economicData forKey:@"economicData"];
     CarDriveOilDataViewController *oilDataVc = [navItemCtrl.navControllersArr objectAtIndex:0];

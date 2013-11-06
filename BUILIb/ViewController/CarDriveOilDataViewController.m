@@ -27,7 +27,7 @@ typedef enum  viewType{
 }ViewType;
 
 
-@interface CarDriveOilDataViewController ()<UIBaseViewControllerDelegate,BSPreviewScrollViewDelegate>{
+@interface CarDriveOilDataViewController ()<BSPreviewScrollViewDelegate>{
     DriveOilAnalysisView *oilAnalysisGraphView;
      ViewType viewType;
 }
@@ -91,6 +91,8 @@ typedef enum  viewType{
     scrollerView.frame =  viewRect;
     scrollerView.clipsToBounds = YES;
     [self.view addSubview:scrollerView];
+    SafeRelease(scrollerView);
+    
     [scrollerView setPageControlHidden:NO];
     
     currY = currY+scrollerView.frame.size.height;
@@ -185,6 +187,7 @@ typedef enum  viewType{
         dataTableView.contentInset = UIEdgeInsetsMake(50.f,0.f,0.f,0.f);
         dataTableView.frame = CGRectMake(0.f,0.f,bgImage.size.width/kScale,bgImage.size.height/kScale);
         [maskView addSubview:dataTableView];
+        SafeRelease(dataTableView);
         [dataTableView reloadData];
         //[carDriveStatusView setTarget:self withAction:@selector(didTouchButton:)];
     }

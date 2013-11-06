@@ -26,7 +26,7 @@
 
 static NSString *kSectionOneArr[] =
 {
-    @"用户名:",@"修改密码",@"积分",
+    @"用户名",@"修改密码",@"手机号码",@"积分",
 };
 static NSString *kSectionTwoArr[] = {
     @"添加车辆和终端",@"记住车辆位置",
@@ -37,8 +37,8 @@ static NSString *kSectionTwoArr[] = {
     UILabel  *usrNameLabel ;
     UILabel  *creditLabel;
 }
+@property(nonatomic,strong)NSDictionary *userData;
 @end
-
 @implementation UserSettingViewController
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -119,9 +119,8 @@ static NSString *kSectionTwoArr[] = {
                                                  )];
     [self setRightBtnHidden:YES];
     
-       
     [self addFonterView];
-  
+    [self shouldLoadUserInfoData];
     /*
     logInfo.contentSize = CGSizeMake(logInfo.contentSize.width, logInfo.contentSize.height+ btnsize.height+10);
      */
@@ -148,8 +147,8 @@ static NSString *kSectionTwoArr[] = {
 }
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    
-    [logInfo reloadData];
+   
+    //[logInfo reloadData];
 }
 
 
@@ -183,7 +182,7 @@ static NSString *kSectionTwoArr[] = {
         return 1;
     else if (section == 0)
     {
-        return 3;
+        return 4;
     } 
     else 
     {
@@ -249,13 +248,37 @@ static NSString *kSectionTwoArr[] = {
         case 0:
             
             cell.textLabel.text = kSectionOneArr[indexPath.row];
+            NSString *detailText = @"";
+            NSString *tempText = nil;
+            if(indexPath.row){
+                switch (0) {
+                    case 0:
+                        tempText = [self.userData objectForKey:@"name"];
+                        if(tempText){
+                            detailText = tempText;
+                        }
+                        break;
+                   case 1:
+                        tempText = [self.userData objectForKey:@"phoneNumber"];
+                        if(tempText){
+                            detailText = tempText;
+                        }
+                    case 3:
+                        tempText = [self.userData objectForKey:@"points"];
+                        if(tempText){
+                            detailText = tempText;
+                        }
+                    default:
+                        break;
+                }
+                
+            }
+            cell.detailTextLabel.text = detailText;
             break;
         case 1:
         {
         
             cell.textLabel.text = kSectionTwoArr[index];
-            
-        
             
         }
             break;
@@ -474,9 +497,7 @@ static NSString *kSectionTwoArr[] = {
     }
 }
 - (void)setUserData:(NSDictionary*)data{
-
-    
-
+    self.userData = data;
 }
 #pragma mark  -
 #pragma mark logout confir delegate
@@ -515,6 +536,38 @@ static NSString *kSectionTwoArr[] = {
     
     UIAlertView *alertErr = [[[UIAlertView alloc]initWithTitle:NSLocalizedString(@"提示", @"")message:NSLocalizedString(@"是否真的要退出",@"") delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel",@"") otherButtonTitles:NSLocalizedString(@"Ok",@""),nil]autorelease];
     [alertErr show];
+
+}
+#pragma mark -
+#pragma mark net work
+- (void)shouldLoadUserInfoData{
+    CarServiceNetDataMgr *cardShopMgr = [CarServiceNetDataMgr getSingleTone];
+    NSString *userName = @"";
+    NSString *userPassword = @"";
+#if 0
+    userName = [AppSetting getLoginUserId];
+    userPassword = [AppSetting setLoginUserPassword];
+#else
+    userName = @"kkzhan";
+    userPassword= @"123456";
+#endif
+    NSDictionary *param = [NSDictionary dictionaryWithObjectsAndKeys:
+                           userName,@"name",
+                           userPassword,@"password",
+                           nil];
+    [cardShopMgr carUserLogin:param];
+}
+-(void)didNetDataOK:(NSNotification*)ntf{
+    id obj = [ntf object];
+    id respRequest = [obj objectForKey:@"request"];
+    id data = [obj objectForKey:@"data"];
+    NSString *resKey = [obj objectForKey:@"key"];//[respRequest resourceKey];
+    //NSString *resKey = [respRequest resourceKey];
+    if([resKey isEqualToString:kResRouterDataDay]){
+        self.userData = data;
+        [AppSetting setLoginUserInfo:data withUserKey:[AppSetting getLoginUserId]];
+        [logInfo reloadData];
+    }
 
 }
 @end

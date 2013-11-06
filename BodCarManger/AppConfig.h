@@ -109,6 +109,8 @@
 //user
 #define kCarUserRegister                @"userRegister"
 #define kCarUserLogin                   @"userLogin"
+#define kCarUserUpdatePass              @"updateUserPassword"
+#define kCarUserUpdatePhone             @"updateUserPhoneNumber"
 
 #define kCarInfoQuery                   @"queryVehInfo"
 #define kCarInfoUpdate                  @"updateVehicleInfo"

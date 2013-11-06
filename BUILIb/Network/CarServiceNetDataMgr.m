@@ -115,6 +115,21 @@ static ZCSNetClientNetInterfaceMgr *dressMemoInterfaceMgr = nil;
     [self startiPlant4MRequest:inInfo withSuccess:@selector(userRegisterOk:) withFailed:@selector(userRegisterFailed:)];
     return nil;
 }
+- (id)carUserPasswordUpdate:(NSDictionary*)param{
+    //updateUserPhoneNumber
+    EiInfo *inInfo = [self getCommIPlant4MParam];
+    [inInfo set:@"userName" value:[param objectForKey:@"name"]];
+    [inInfo set:@"password" value:[param objectForKey:@"password"]];
+//    if([param objectForKey:@"phoneNumber"]){
+//        [inInfo set:@"phoneNumber" value:[param objectForKey:@"phoneNumber"]];
+//    }
+    //queryTripCalanderMonth @"userRegister"
+    [inInfo set:METHOD_TOKEN value:kCarUserRegister]; // 接口名
+    [self startiPlant4MRequest:inInfo withSuccess:@selector(userRegisterOk:) withFailed:@selector(userRegisterFailed:)];
+    return nil;
+
+
+}
 
 - (id)backDoorRequest:(NSDictionary*)param{
     [dressMemoInterfaceMgr setRequestUrl:@"http://checkapp.sinaapp.com/api/index.php?command="];
@@ -152,9 +167,16 @@ static BOOL isExit = NO;
     return nil;
 
 }
-- (id)carInforUpdate:(NSString*)username{
+- (id)carInforUpdate:(NSDictionary*)param withType:(int)type{
     EiInfo *inInfo = [self getCommIPlant4MParam];
-    [inInfo set:@"name" value:username];
+    [inInfo set:@"name" value:[param objectForKey:@"name"]];
+    [inInfo set:@"brandy" value:[param objectForKey:@"brandy"]];
+    [inInfo set:@"model" value:[param objectForKey:@"model"]];
+    [inInfo set:@"NO" value:[param objectForKey:@"NO"]];
+    [inInfo set:@"milage" value:[param objectForKey:@"milage"]];
+    [inInfo set:@"lastMilage" value:[param objectForKey:@"lastMilage"]];
+    [inInfo set:@"lastmaintainDate" value:[param objectForKey:@"lastmaintainDate"]];
+    [inInfo set:@"insureExpDate" value:[param objectForKey:@"insureExpDate"]];
     //queryTripCalanderMonth @"userRegister"
     [inInfo set:METHOD_TOKEN value:kCarInfoUpdate]; // 接口名
     [self startiPlant4MRequest:inInfo withSuccess:@selector(carInforUpdateOk:) withFailed:@selector(carInforUpdateFailed:)];
@@ -466,6 +488,7 @@ static BOOL isExit = NO;
         //NSLog(@"%@",info.blocks);
         //phoneNumber;
         NSMutableDictionary *resultDict = [NSMutableDictionary dictionary];
+        [resultDict setValue:[info get:@"retType"] forKey:@"retType"];
         [resultDict setValue:[info get:@"milage"] forKey:@"milage"];
         [resultDict setValue:[info get:@"insureExpDate"] forKey:@"insureExpDate"];
         [resultDict setValue:[info get:@"model"] forKey:@"model"];
@@ -473,7 +496,7 @@ static BOOL isExit = NO;
         [resultDict setValue:[info get:@"brandy"] forKey:@"brandy"];
         [resultDict setValue:[info get:@"NO"] forKey:@"NO"];
         [resultDict setValue:[info get:@"lastmaintainDate"] forKey:@"lastmaintainDate"];
-        [resultDict setValue:[info get:@"OBD"] forKey:@"OBD"];
+         [resultDict setValue:[info get:@"OBD"] forKey:@"OBD"];
         [self sendFinalOkData:resultDict withKey:kCarInfoQuery];
     }
     else{
@@ -882,6 +905,7 @@ static BOOL isExit = NO;
         [resultDict setValue:[info get:@"temper"] forKey:@"temper"];
         [resultDict setValue:[info get:@"conclusion"] forKey:@"conclusion"];
         [resultDict setValue:[info get:@"time"] forKey:@"time"];
+        [resultDict setValue:[info get:@"level"] forKey:@"level"];
         EiBlock *tripInfo = [info getBlock:@"conData"]; // block型返回值
         int rowCount = [tripInfo getRowCount];
         for(int i = 0;i<rowCount;i++){

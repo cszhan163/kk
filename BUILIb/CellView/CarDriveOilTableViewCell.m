@@ -9,7 +9,7 @@
 #import "CarDriveOilTableViewCell.h"
 
 #define kDriveOilMaxItemClounm 4
-static NSString* kColounmItemWidthArray[] = {@"50.f",@"80.f",@"80.f",@"80.f"};
+#define kColounmItemWidthArray @[@"50.f",@"80.f",@"80.f",@"80.f"]
 
 @implementation CarDriveOilTableViewCell
 @synthesize mDate;

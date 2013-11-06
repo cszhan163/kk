@@ -53,9 +53,10 @@
             id item = [mClounmWidthArray objectAtIndex:i];
             CGFloat lineOffsetX = [item floatValue];
             currX = currX+lineOffsetX;
-            UIView  *seperateLine = [[UIView alloc]initWithFrame:CGRectMake(currX,0,1.f,self.frame.size.height)];
-            seperateLine.backgroundColor = self.mLineColor;
-            [self addSubview:seperateLine];
+            UIView  *cloumLine = [[UIView alloc]initWithFrame:CGRectMake(currX,0,1.f,self.frame.size.height)];
+            cloumLine.backgroundColor = self.mLineColor;
+            [self addSubview:cloumLine];
+            SafeRelease(cloumLine);
             
         }
     }

@@ -30,7 +30,7 @@ ZCSNetClientNetInterfaceMgrDelegate>
 - (id)carUserLogin:(NSDictionary *)param;
 - (id)carUserRegister:(NSDictionary*)param;
 - (id)carInforQuery:(NSString*)username;
-- (id)carInforUpdate:(NSString*)username;
+- (id)carInforUpdate:(NSDictionary*)param withType:(int)type;
 /*router*/
 - (id)getDetailByDay:(NSDictionary*)param;
 - (id)getDetailByMonth:(NSDictionary*)param;

@@ -84,8 +84,6 @@
 		046B66EE17E74C37006F34A1 /* router_speed.png in Resources */ = {isa = PBXBuildFile; fileRef = 046B66A817E74C37006F34A1 /* router_speed.png */; };
 		046B66EF17E74C37006F34A1 /* rotate.png in Resources */ = {isa = PBXBuildFile; fileRef = 046B66A917E74C37006F34A1 /* rotate.png */; };
 		046B66F017E74C37006F34A1 /* tempr.png in Resources */ = {isa = PBXBuildFile; fileRef = 046B66AA17E74C37006F34A1 /* tempr.png */; };
-		046B66F117E74C37006F34A1 /* ◊ÓΩ¸–– ª--mark.png in Resources */ = {isa = PBXBuildFile; fileRef = 046B66AB17E74C37006F34A1 /* ◊ÓΩ¸–– ª--mark.png */; };
-		046B66F217E74C37006F34A1 /* ◊ÓΩ¸–– ª.png in Resources */ = {isa = PBXBuildFile; fileRef = 046B66AC17E74C37006F34A1 /* ◊ÓΩ¸–– ª.png */; };
 		046B67F417E75179006F34A1 /* AppMainUIViewMangae.m in Sources */ = {isa = PBXBuildFile; fileRef = 046B67ED17E75179006F34A1 /* AppMainUIViewMangae.m */; };
 		046B67F517E75179006F34A1 /* NEMainTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 046B67EF17E75179006F34A1 /* NEMainTabBarController.m */; };
 		046B67F617E75179006F34A1 /* NTESMBMainMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = 046B67F117E75179006F34A1 /* NTESMBMainMenuController.m */; };
@@ -411,8 +409,6 @@
 		046B66A817E74C37006F34A1 /* router_speed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = router_speed.png; sourceTree = "<group>"; };
 		046B66A917E74C37006F34A1 /* rotate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rotate.png; sourceTree = "<group>"; };
 		046B66AA17E74C37006F34A1 /* tempr.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tempr.png; sourceTree = "<group>"; };
-		046B66AB17E74C37006F34A1 /* ◊ÓΩ¸–– ª--mark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "◊ÓΩ¸–– ª--mark.png"; sourceTree = "<group>"; };
-		046B66AC17E74C37006F34A1 /* ◊ÓΩ¸–– ª.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "◊ÓΩ¸–– ª.png"; sourceTree = "<group>"; };
 		046B67EC17E75179006F34A1 /* AppMainUIViewManage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppMainUIViewManage.h; sourceTree = "<group>"; };
 		046B67ED17E75179006F34A1 /* AppMainUIViewMangae.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppMainUIViewMangae.m; sourceTree = "<group>"; };
 		046B67EE17E75179006F34A1 /* NEMainTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NEMainTabBarController.h; sourceTree = "<group>"; };
@@ -984,8 +980,6 @@
 				046B669417E74C37006F34A1 /* BG */,
 				046B669717E74C37006F34A1 /* button */,
 				046B669C17E74C37006F34A1 /* icon */,
-				046B66AB17E74C37006F34A1 /* ◊ÓΩ¸–– ª--mark.png */,
-				046B66AC17E74C37006F34A1 /* ◊ÓΩ¸–– ª.png */,
 			);
 			path = router;
 			sourceTree = "<group>";
@@ -1755,8 +1749,6 @@
 				046B66EE17E74C37006F34A1 /* router_speed.png in Resources */,
 				046B66EF17E74C37006F34A1 /* rotate.png in Resources */,
 				046B66F017E74C37006F34A1 /* tempr.png in Resources */,
-				046B66F117E74C37006F34A1 /* ◊ÓΩ¸–– ª--mark.png in Resources */,
-				046B66F217E74C37006F34A1 /* ◊ÓΩ¸–– ª.png in Resources */,
 				046B67F917E7594F006F34A1 /* tableitemsel4.png in Resources */,
 				046B685B17E884D5006F34A1 /* plantData.geojson in Resources */,
 				BD05726717E9A2C100208699 /* dashboard10.png in Resources */,

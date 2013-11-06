@@ -23,7 +23,7 @@
 +(void)clearCurrentLoginUser;
 +(void)setLoginUserId:(NSString*)userId;
 +(NSString*)getLoginUserId;
-
++(NSString*)getLoginUserPassword;
 +(BOOL)getUserLoginStatus;
 +(void)setUserLoginStatus:(BOOL)status;
 +(void)setLoginUserDetailInfo:(NSDictionary*)data userId:(NSString*)userId;

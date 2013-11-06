@@ -165,4 +165,36 @@ static NSString *kImageTextArr[] ={
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
 }
+
+#pragma mark -
+#pragma mark net work
+- (void)shouldLoadUserInfoData{
+    CarServiceNetDataMgr *cardShopMgr = [CarServiceNetDataMgr getSingleTone];
+    NSString *userName = @"";
+    NSString *userPassword = @"";
+#if 0
+    userName = [AppSetting getLoginUserId];
+    userPassword = [AppSetting setLoginUserPassword];
+#else
+    userName = @"kkzhan";
+    userPassword= @"123456";
+#endif
+    NSDictionary *param = [NSDictionary dictionaryWithObjectsAndKeys:
+                           userName,@"name",
+                           userPassword,@"password",
+                           nil];
+    [cardShopMgr carUserLogin:param];
+}
+-(void)didNetDataOK:(NSNotification*)ntf{
+    id obj = [ntf object];
+    id respRequest = [obj objectForKey:@"request"];
+    id data = [obj objectForKey:@"data"];
+    NSString *resKey = [obj objectForKey:@"key"];//[respRequest resourceKey];
+    //NSString *resKey = [respRequest resourceKey];
+    if([resKey isEqualToString:kResRouterDataDay]){
+        [AppSetting setLoginUserInfo:data withUserKey:[AppSetting getLoginUserId]];
+        [logInfo reloadData];
+    }
+    
+}
 @end

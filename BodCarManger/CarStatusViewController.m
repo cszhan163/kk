@@ -20,11 +20,13 @@
 
 @interface CarStatusViewController (){
 
-    UIProgressView *checkProcessView;
-    UILabel        *rotateSpeedLabel;
+    UIProgressView       *checkProcessView;
+    DDProgressView      *processView ;
+    UILabel           *rotateSpeedLabel;
     UILabel           *temperatureLabel;
     UIImageView         *checkTagImageView ;
-    UILabel         *checkProcessLabel;
+    UILabel           *checkProcessLabel;
+    NSTimer             *timer;
 }
 @end
 
@@ -106,11 +108,12 @@
     [self.view addSubview:checkProcessView];
     KokSafeRelease(checkProcessView);
 #else
-    DDProgressView *processView = [[DDProgressView alloc]initWithFrame:CGRectMake(106,currY+57,186,10)];
+    processView = [[DDProgressView alloc]initWithFrame:CGRectMake(106,currY+57,186,10)];
     processView.innerColor = [UIColor greenColor];
     processView.outerColor = [UIColor whiteColor];
     processView.emptyColor = [UIColor blackColor];
-    processView.progress = 0.4;
+    processView.progress = 0.0;
+    processView.hidden = YES;
     [self.view addSubview:processView];
     
     UIImageWithFileName(bgImage, @"car_check_header.png");
@@ -189,20 +192,57 @@
     
     //getCarCheckDataOk
     CarServiceNetDataMgr *cardShopMgr = [CarServiceNetDataMgr getSingleTone];
-    
     //[self startShowLoadingView];
     //kNetStartShow(@"数据加载...", self.view);
-   
     [cardShopMgr getCarCheckData:@"SHD05728"];
-
+    timer = [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(timerUpdateProcess) userInfo:nil repeats:YES];
+    processView.hidden = NO;
 }
+- (void)timerUpdateProcess{
+    processView.progress += 0.3;
+}
+-(void)didNetDataOK:(NSNotification*)ntf
+{
+    
+    id obj = [ntf object];
+    id respRequest = [obj objectForKey:@"request"];
+    id data = [obj objectForKey:@"data"];
+    NSString *resKey = [obj objectForKey:@"key"];
+    
+    processView.progress = 1.0;
+    processView.hidden = YES;
+    [timer invalidate];
+    //NSString *resKey = [respRequest resourceKey];
+    if(self.request ==respRequest && [resKey isEqualToString:kResCarCheckData])
+    {
+        self.data = data;
+        self.dataArray = [data objectForKey:@"conData"];
+        [self  performSelectorOnMainThread:@selector(updateUIData:) withObject:data waitUntilDone:NO ];
+        //[mDataDict setObject:netData forKey:mMothDateKey];
+        //}
+        kNetEnd(self.view);
+        
+    }
+    
+}
+- (void)updateUIData:(NSDictionary*)data{
+    [tweetieTableView reloadData];
+    //NSArray *economicData = [data objectForKey:@"conData"];
+    
+    rotateSpeedLabel.text = [NSString stringWithFormat:@"%@ 转",[data objectForKey:@"RPM"]];
+    temperatureLabel.text = [NSString stringWithFormat:@"%@ 度",[data objectForKey:@"temper"]];
+    
+    //checkTagImageView ;
+    checkProcessLabel.text = [data objectForKey:@"conclusion"];
+}
+
 
 #pragma mark -
 #pragma mark tableview
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-	return  10;
-    //return [self.dataArray count];
+	//return  10;
+    return [self.dataArray count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -228,12 +268,20 @@
         cell.clipsToBounds = YES;
         
     }
-    if(indexPath.row == 9){
+    if(indexPath.row == [self.dataArray count]){
         [cell setRowLineHidden:YES];
     }
-    [cell setTableCellCloumn:0 withData:@"第一条"];
-    [cell setTableCellCloumn:1 withData:@"0~100"];
-    [cell setTableCellCloumn:2 withData:@"50"];
+    
+    NSDictionary *item = [self.dataArray objectAtIndex:indexPath.row];
+    
+    NSString *name = [item objectForKey:@"name"];
+    NSString *range = [item objectForKey:@"range"];
+    NSString *value = [item objectForKey:@"value"];
+ 
+    
+    [cell setTableCellCloumn:0 withData:name];
+    [cell setTableCellCloumn:1 withData:range];
+    [cell setTableCellCloumn:2 withData:value];
     /*
      "driveflg": "1",
      "starttime": "17:54",

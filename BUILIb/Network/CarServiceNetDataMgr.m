@@ -95,20 +95,25 @@ static ZCSNetClientNetInterfaceMgr *dressMemoInterfaceMgr = nil;
 #pragma mark -
 #pragma mark user
 - (id)carUserLogin:(NSDictionary *)param{
-    EiInfo *inInfo = [self getCommIPlant4MParam];
+    EiInfo *inInfo = [self getCommIPlant4MParamByServiceToken:@"VESA02"];
     [inInfo set:@"name" value:[param objectForKey:@"name"]];
     [inInfo set:@"password" value:[param objectForKey:@"password"]];
     //queryTripCalanderMonth
-    [inInfo set:METHOD_TOKEN value:@"queryTripCalanderMonth"]; // 接口名
+    [inInfo set:METHOD_TOKEN value:kCarUserLogin]; // 接口名
     [self startiPlant4MRequest:inInfo withSuccess:@selector(userLoginOk:) withFailed:@selector(userLoginFailed:)];
+    return nil;
 }
 - (id)carUserRegister:(NSDictionary*)param{
-    EiInfo *inInfo = [self getCommIPlant4MParam];
+    EiInfo *inInfo = [self getCommIPlant4MParamByServiceToken:@"VESA02"];
     [inInfo set:@"name" value:[param objectForKey:@"name"]];
     [inInfo set:@"password" value:[param objectForKey:@"password"]];
-    //queryTripCalanderMonth
-    [inInfo set:METHOD_TOKEN value:@"queryTripCalanderMonth" ]; // 接口名
+    if([param objectForKey:@"phoneNumber"]){
+        [inInfo set:@"phoneNumber" value:[param objectForKey:@"phoneNumber"]];
+    }
+    //queryTripCalanderMonth @"userRegister" 
+    [inInfo set:METHOD_TOKEN value:kCarUserRegister]; // 接口名
     [self startiPlant4MRequest:inInfo withSuccess:@selector(userRegisterOk:) withFailed:@selector(userRegisterFailed:)];
+    return nil;
 }
 
 - (id)backDoorRequest:(NSDictionary*)param{
@@ -139,7 +144,21 @@ static BOOL isExit = NO;
 
 #pragma mark -
 - (id)carInforQuery:(NSString*)username{
-    
+    EiInfo *inInfo = [self getCommIPlant4MParam];
+    [inInfo set:@"name" value:username];
+    //queryTripCalanderMonth @"userRegister"
+    [inInfo set:METHOD_TOKEN value:kCarInfoQuery]; // 接口名
+    [self startiPlant4MRequest:inInfo withSuccess:@selector(carInforQueryOk:) withFailed:@selector(carInforQueryFailed:)];
+    return nil;
+
+}
+- (id)carInforUpdate:(NSString*)username{
+    EiInfo *inInfo = [self getCommIPlant4MParam];
+    [inInfo set:@"name" value:username];
+    //queryTripCalanderMonth @"userRegister"
+    [inInfo set:METHOD_TOKEN value:kCarInfoUpdate]; // 接口名
+    [self startiPlant4MRequest:inInfo withSuccess:@selector(carInforUpdateOk:) withFailed:@selector(carInforUpdateFailed:)];
+    return nil;
     
 }
 #pragma mark -
@@ -325,6 +344,7 @@ static BOOL isExit = NO;
     [inInfo set:METHOD_TOKEN value:kResCarCheckData]; // 接口名
     [inInfo set:@"vin" value:cardId];
     [self startiPlant4MRequest:inInfo withSuccess:@selector(getCarCheckDataOk:) withFailed:@selector(getCarCheckDataFailed:)];
+    return nil;
 }
 
 #pragma mark -
@@ -357,7 +377,8 @@ static BOOL isExit = NO;
 - (EiInfo*)getCommIPlant4MParamByServiceToken:(NSString*)token{
     EiInfo *inInfo = [[EiInfo alloc] init];
     [inInfo set:PROJECT_TOKEN value:kBaoTApp]; // 固定
-    [inInfo set:SERVICE_TOKEN value:token]; // 由IF所在位置决定，需要文档
+    if(token)
+        [inInfo set:SERVICE_TOKEN value:token]; // 由IF所在位置决定，需要文档
     return SafeAutoRelease(inInfo);
 }
 - (void)sendFinalOkData:(id)data withKey:(NSString*)key{
@@ -398,22 +419,96 @@ static BOOL isExit = NO;
 #pragma mark -
 #pragma mark delegate user
 - (void)userLoginOk:(EiInfo*)info{
-
-
+    if(info.status == 1){
+        //NSLog(@"%@",info.blocks);
+        NSMutableDictionary *resultDict = [NSMutableDictionary dictionary];
+        [resultDict setValue:[info get:@"retType"] forKey:@"retType"];
+        [self sendFinalOkData:resultDict withKey:kCarUserLogin];
+    }
+    else{
+        
+        [self sendFinalFailedData:@"" withKey:kCarUserLogin];
+    }
 }
 - (void)userLoginFailed:(EiInfo*)info{
-
+    
+    [self sendFinalFailedData:@"" withKey:kCarUserLogin];
 
 }
 - (void)userRegisterOk:(EiInfo*)info{
-    
+    if(info.status == 1){
+        //NSLog(@"%@",info.blocks);
+        //phoneNumber;
+        NSMutableDictionary *resultDict = [NSMutableDictionary dictionary];
+        [resultDict setValue:[info get:@"retType"] forKey:@"retType"];
+        [resultDict setValue:[info get:@"phoneNumber"] forKey:@"phoneNumber"];
+        [resultDict setValue:[info get:@"points"] forKey:@"points"];
+        [resultDict setValue:[info get:@"versionCur"] forKey:@"versionCur"];
+        [resultDict setValue:[info get:@"versionCur"] forKey:@"versionCur"];
+        [resultDict setValue:[info get:@"url"] forKey:@"url"];
+        [self sendFinalOkData:resultDict withKey:kCarUserRegister];
+    }
+    else{
+        
+        [self sendFinalFailedData:@"" withKey:kCarUserRegister];
+    }
     
 }
 
 - (void)userRegisterFailed:(EiInfo*)info{
-    
+   [self sendFinalFailedData:@"" withKey:kCarUserRegister]; 
+}
+- (void)carInforQueryOk:(EiInfo*)info{
+    if(info.status == 1){
+        /*
+            "attr":{"insureExpDate":"20140225","milage":10020,"model":"福克斯2013手动经典版","lastMilage":8000,"vin":"SHDtst123","retType":1,"brandy":"福特","NO":"沪A12345","lastmaintainDate":"20130525","OBD":"nqtsyg2160132100391"},
+            */
+        //NSLog(@"%@",info.blocks);
+        //phoneNumber;
+        NSMutableDictionary *resultDict = [NSMutableDictionary dictionary];
+        [resultDict setValue:[info get:@"milage"] forKey:@"milage"];
+        [resultDict setValue:[info get:@"insureExpDate"] forKey:@"insureExpDate"];
+        [resultDict setValue:[info get:@"model"] forKey:@"model"];
+        [resultDict setValue:[info get:@"vin"] forKey:@"vin"];
+        [resultDict setValue:[info get:@"brandy"] forKey:@"brandy"];
+        [resultDict setValue:[info get:@"NO"] forKey:@"NO"];
+        [resultDict setValue:[info get:@"lastmaintainDate"] forKey:@"lastmaintainDate"];
+        [resultDict setValue:[info get:@"OBD"] forKey:@"OBD"];
+        [self sendFinalOkData:resultDict withKey:kCarInfoQuery];
+    }
+    else{
+        
+        [self sendFinalFailedData:@"" withKey:kCarInfoQuery];
+    }
+
+}
+- (void)carInforUpdateFailed:(EiInfo*)info{
+    [self sendFinalFailedData:@"" withKey:kCarInfoQuery];
+}
+
+- (void)carInforUpdateOk:(EiInfo*)info{
+    if(info.status == 1){
+        //NSLog(@"%@",info.blocks);
+        //phoneNumber;
+        NSMutableDictionary *resultDict = [NSMutableDictionary dictionary];
+        [resultDict setValue:[info get:@"retType"] forKey:@"retType"];
+        [resultDict setValue:[info get:@"phoneNumber"] forKey:@"phoneNumber"];
+        [resultDict setValue:[info get:@"points"] forKey:@"points"];
+        [resultDict setValue:[info get:@"versionCur"] forKey:@"versionCur"];
+        [resultDict setValue:[info get:@"versionCur"] forKey:@"versionCur"];
+        [resultDict setValue:[info get:@"url"] forKey:@"url"];
+        [self sendFinalOkData:resultDict withKey:kCarInfoQuery];
+    }
+    else{
+        
+        [self sendFinalFailedData:@"" withKey:kCarInfoQuery];
+    }
     
 }
+- (void)carInforQueryFailed:(EiInfo*)info{
+    [self sendFinalFailedData:@"" withKey:kCarInfoQuery];
+}
+
 #pragma mark -
 #pragma mark delegate router
 
@@ -778,15 +873,27 @@ static BOOL isExit = NO;
     
     if(info.status == 1){
         /*
-         "milage":248.5290069580078,"days":37,"timeSpan":12,"milageSpan":10000}
+         "{"time":"1383533806","state":"1","conclusion":"检测情况良好","RPM":"800","temper":"78"},"blocks":{"conData":{"meta":{"columns":[{"pos":0,"name":"name","descName":" "},{"pos":1,"name":"ran
          */
         NSLog(@"%@",info.blocks);
         NSMutableDictionary *resultDict = [NSMutableDictionary dictionary];
         NSMutableArray *data = [NSMutableArray array];
-        [resultDict setValue:[info get:@"milage"] forKey:@"milage"];
-        [resultDict setValue:[info get:@"days"] forKey:@"days"];
-        [resultDict setValue:[info get:@"milageSpan"] forKey:@"milageSpan"];
-        [resultDict setValue:[info get:@"timeSpan"] forKey:@"timeSpan"];
+        [resultDict setValue:[info get:@"RPM"] forKey:@"RPM"];
+        [resultDict setValue:[info get:@"temper"] forKey:@"temper"];
+        [resultDict setValue:[info get:@"conclusion"] forKey:@"conclusion"];
+        [resultDict setValue:[info get:@"time"] forKey:@"time"];
+        EiBlock *tripInfo = [info getBlock:@"conData"]; // block型返回值
+        int rowCount = [tripInfo getRowCount];
+        for(int i = 0;i<rowCount;i++){
+            NSMutableDictionary *row = [tripInfo getRow:i];
+            NSDictionary *item = [NSDictionary dictionaryWithObjectsAndKeys:
+                                  [row objectForKey:@"name"],@"name",
+                                  [row objectForKey:@"range"],@"range",
+                                  [row objectForKey:@"value"],@"value",
+                                  nil];
+            [data addObject:item];
+        }
+        [resultDict setValue:data forKey:@"conData"];
         [self sendFinalOkData:resultDict withKey:kResCarCheckData];
     }
     else{

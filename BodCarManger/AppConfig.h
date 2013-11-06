@@ -106,6 +106,13 @@
 #define kUploadPhotoPickChooseEditMSG @"uploadPhotoPickChooseEditMSG"
 #define kUploadActionSheetViewAlertMSG @"uploadActionSheetViewAlertMSG"
 
+//user
+#define kCarUserRegister                @"userRegister"
+#define kCarUserLogin                   @"userLogin"
+
+#define kCarInfoQuery                   @"queryVehInfo"
+#define kCarInfoUpdate                  @"updateVehicleInfo"
+
 //router
 #define kResRouterDataMoth              @"queryTripCalanderMonth"
 #define kResRouterDataDay               @"queryTripDay"

@@ -33,12 +33,24 @@
              @"10",@"month",
              nil];
     //[cardNetMgr getDetailByDay:param];
+//    [cardNetMgr carUserRegister:[NSDictionary dictionaryWithObjectsAndKeys:
+//                              @"kkzhan",@"name",
+//                              @"123456",@"password",
+//                              @"18964598378",@"phoneNumber",
+//                              nil]];
     
+//    [cardNetMgr carUserLogin:[NSDictionary dictionaryWithObjectsAndKeys:
+//                              @"kkzhan",@"name",
+//                              @"123456",@"password",
+//                              nil]];
+    
+    [cardNetMgr carInforQuery:@"kkzhan"];
+    [cardNetMgr carInforUpdate:@"kkzhan"];
     //[cardNetMgr getRouterRealTimeData:@"SHD05728"];
     
 //    [cardNetMgr getRouterDataByMonth:@"" withYear:@""];
 //    [cardNetMgr getRouterDataByDay:@"" withMoth:@"" withYear:@""];
-    [cardNetMgr getCarMaintainanceData:@"SHD05728"];
+    //[cardNetMgr getCarMaintainanceData:@"SHD05728"];
     //[cardNetMgr getCarCheckData:@"SHD05728"];
     //[cardNetMgr getDriveDataByCarId:@"" withMonth:@"" withYear:@""];
 //    [cardNetMgr getDriveActionAnalysisDataByCarId:@"" withMoth:@"" withYear:@""];

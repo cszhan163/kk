@@ -85,7 +85,6 @@
 }
 
 - (void)checkCarIsRunning:(id)sender{
-    return;
     CarServiceNetDataMgr *cardNetMgr = [CarServiceNetDataMgr getSingleTone];
     [cardNetMgr getRouterLatestData:@"SHD05728"];
 }

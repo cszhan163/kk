@@ -19,11 +19,12 @@
 
 - (void)viewDidLoad{
     [super viewDidLoad];
-    
     [self setRightBtnHidden:YES];
     [self setNavgationBarTitle:@"解除绑定"];
 }
-
+- (void)shouldLoadDataFromNet{
+    
+}
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     
@@ -76,7 +77,6 @@
     if ([self.platformType isKindOfClass:[NSString class]]) {
         [[SharePlatformCenter defaultCenter] cancelBindPlatformWithKey:self.platformType];
     }
-    
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -99,9 +99,7 @@
             if ([self.platformType isKindOfClass:[NSString class]]) {
                 [[SharePlatformCenter defaultCenter] cancelBindPlatformWithKey:self.platformType];
             }
-            
             [self.navigationController popViewControllerAnimated:YES];
-            
 			break;
 		}
 	}

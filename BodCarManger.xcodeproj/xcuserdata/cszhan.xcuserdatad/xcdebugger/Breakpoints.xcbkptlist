@@ -85,19 +85,6 @@
          shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "BodCarManger/CarInfoManageViewController.m"
-         timestampString = "405413611.129835"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "172"
-         endingLineNumber = "172"
-         landmarkName = "-didNetDataOK:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
          filePath = "BUILIb/ViewController/CarDriveOilDataViewController.m"
          timestampString = "405420270.059475"
          startingColumnNumber = "9223372036854775807"
@@ -118,6 +105,32 @@
          startingLineNumber = "279"
          endingLineNumber = "279"
          landmarkName = "-tableView:cellForRowAtIndexPath:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "BUILIb/Network/CarServiceNetDataMgr.m"
+         timestampString = "405485445.713255"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "162"
+         endingLineNumber = "162"
+         landmarkName = "-carInforQuery:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "BodCarManger/DressMemoRetweet/WeiBoSharePlantForm/ShareViewController/SharePlatformCenter.m"
+         timestampString = "405485785.546079"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "338"
+         endingLineNumber = "338"
+         landmarkName = "-bindPlatformWithKey:WithController:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

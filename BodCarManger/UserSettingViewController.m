@@ -449,15 +449,18 @@ static NSString *kSectionTwoArr[] = {
                         CancelBindViewController *tc = [[CancelBindViewController alloc] init];
                         tc.platformType = type;
                         [self.navigationController pushViewController:tc animated:YES];
+                        SafeRelease(tc);
                         
                     }else
                         [[SharePlatformCenter defaultCenter] bindPlatformWithKey:type WithController:self];
                     
-                    break;
+                    
 //                }
             }
             //cell.textLabel.text = kSectionOneArr[index];
         }
+        }
+            break;
         case 1:
         {
             CarInfoManageViewController *carInfoVc = [[CarInfoManageViewController alloc]init];
@@ -492,7 +495,6 @@ static NSString *kSectionTwoArr[] = {
 //                    break;
 //            }
             
-        }
         default:
             break;
     }

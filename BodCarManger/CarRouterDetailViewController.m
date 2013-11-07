@@ -9,7 +9,8 @@
 #import "CarRouterDetailViewController.h"
 #import "MapView.h"
 #import "CarDetailPenalView.h"
-
+#import "WGS2Mars.h"
+#import "DBManage.h"
 #import "CarRouterDateViewController.h"
 
 @interface CarRouterDetailViewController (){
@@ -18,6 +19,11 @@
     Place       *mEndPoint;
     CarDetailPenalView * carDetailPenalView;
     DateStruct  mDateStruct;
+    
+    CLLocationCoordinate2D mStartCoordinate2d;
+    CLLocationCoordinate2D mEndCoordinate2d;
+    NSString            *mStartName;
+    NSString            *mEndName;
     
 }
 @property(nonatomic,strong)NSTimer *realDataTimer;
@@ -250,6 +256,7 @@
     //NSString *resKey = [respRequest resourceKey];
     if(self.request ==respRequest && [resKey isEqualToString:kResRouterHistory])
     {
+        kNetEnd(self.view);
         NSDictionary *netData = data;//[data objectForKey:@"data"];
         self.gprsDataArray = [netData objectForKey:@"gps"];
         //[self getPlaceNameByPosition:self.gprsDataArray];
@@ -257,7 +264,7 @@
         [self  performSelectorOnMainThread:@selector(updateUIData:) withObject:netData waitUntilDone:NO ];
         //[mDataDict setObject:netData forKey:mMothDateKey];
         //}
-        kNetEnd(self.view);
+        
         
     }
     if(self.request ==respRequest && [resKey isEqualToString:kResRouterNow])
@@ -291,20 +298,50 @@
     
     //NE_LOG(@"warning not implemetation net respond");
 }
-#import "WGS2Mars.h"
+
 - (void)updateUIData:(NSDictionary*)data{
 
     NSMutableArray *gpsScaleArray = [NSMutableArray array];
+    int index = 0;
     for(NSDictionary *item in self.gprsDataArray){
         double lng = [[item objectForKey:@"lng"] doubleValue]/kGPSMaxScale;
         double lat = [[item objectForKey:@"lat"] doubleValue]/kGPSMaxScale;
         printf("[%lf,%lf]",lat,lng);
         //WGS2Mars(&lat, &lng);
-        CLLocation *localpoint = [[[CLLocation alloc] initWithLatitude:lat longitude:lng]autorelease];
+        if(index == 0){
+            CLLocationCoordinate2D coordinate2d;
+            coordinate2d.latitude = lat;
+            coordinate2d.longitude = lng;
+            mStartCoordinate2d = transform(coordinate2d);
+            mStartName = [[DBManage  getSingletone] getLocationPointNameByLatitude:lat withLogtitude:lng withIndex:-1 withTag:YES];
+            [[DBManage getSingletone]setDelegate:self];
+        }
+        if(index == [self.gprsDataArray count]-1){
+            CLLocationCoordinate2D coordinate2d;
+            coordinate2d.latitude = lat;
+            coordinate2d.longitude = lng;
+            mEndCoordinate2d = transform(coordinate2d);
+            mEndName = [[DBManage  getSingletone] getLocationPointNameByLatitude:lat withLogtitude:lng withIndex:-1 withTag:NO];
+            
+        }
+        
+        CLLocation *localpoint = [[CLLocation alloc] initWithLatitude:lat longitude:lng];
+        
         //CLLocation *end = [[[CLLocation alloc] initWithLatitude:lat ] autorelease];
         [gpsScaleArray addObject:localpoint];
+        SafeRelease(localpoint);
+        index++;
     }
     printf("\n\n");
+    if(mEndName){
+        [mMapView addPinToMap:mEndCoordinate2d withName:mEndName];
+        //[self didGetLocationData:mEndName withIndex:-1 withTag:NO];
+    }
+    if(mStartName){
+        //[self didGetLocationData:mStartName withIndex:-1 withTag:YES];
+        [mMapView addPinToMap:mStartCoordinate2d withName:mStartName];
+    }
+    
     if([gpsScaleArray count])
      [mMapView  showRouteWithPointsData:gpsScaleArray];
     [self initMapPointData:data];
@@ -319,5 +356,22 @@
     CarServiceNetDataMgr *cardShopMgr = [CarServiceNetDataMgr getSingleTone];
     //kNetStartShow(@"数据加载...", self.view);
     self.request = [cardShopMgr  getRouterRealTimeData:@"SHD05728" ];
+}
+- (void)didGetLocationData:(id)sender withIndex:(NSInteger)index withTag:(BOOL)tag{
+    if(index == -1){
+        Place *place = [[Place alloc]init];
+        place.name = sender;
+        if(tag){
+            place.latitude = mStartCoordinate2d.latitude;
+            place.longitude = mStartCoordinate2d.longitude;
+            
+        }
+        else{
+            place.latitude = mStartCoordinate2d.latitude;
+            place.longitude = mStartCoordinate2d.longitude;
+        }
+        [mMapView addPointToMap:place];
+        SafeRelease(place);
+    }
 }
 @end

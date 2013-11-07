@@ -29,10 +29,11 @@
 		mapView.showsUserLocation = YES;
 		[mapView setDelegate:self];
 		[self addSubview:mapView];
+        /*
 		routeView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, mapView.frame.size.width, mapView.frame.size.height)];
 		routeView.userInteractionEnabled = NO;
 		[mapView addSubview:routeView];
-		
+		*/
 //		self.lineColor = [UIColor colorWithWhite:0.2 alpha:0.5];
 	}
 	return self;
@@ -137,11 +138,35 @@
 	[self updateRouteView];
 	[self centerMap];
 }
+- (void)addPointToMap:(Place*)f {
+
+    
+    PlaceMark* from = [[[PlaceMark alloc] initWithPlace:f] autorelease];
+	//PlaceMark* to = [[[PlaceMark alloc] initWithPlace:t] autorelease];
+	[mapView addAnnotation:from];
+	//[mapView addAnnotation:to];
+
+
+}
+- (void)addPinToMap:(CLLocationCoordinate2D)annotationCoord withName:(NSString*)name{
+
+    //[mapView removeAnnotations:[mapView annotations]];
+    MKPointAnnotation *annotationPoint = [[MKPointAnnotation alloc] init];
+    annotationPoint.coordinate = annotationCoord;
+    annotationPoint.title = name;
+    [mapView addAnnotation:annotationPoint];
+    [annotationPoint release];
+}
 - (void)showRouteWithPointsData:(NSArray*)points{
     [routes release];
     routes = [points retain];
     [self updateRouteView];
     [self centerMap];
+}
+-(void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view
+{
+    [view setCanShowCallout:YES];
+    NSLog(@"Title:%@",view.annotation.title);
 }
 -(void) updateRouteView {
     [mapView removeOverlays:mapView.overlays];
@@ -223,6 +248,20 @@
     return nil;
 }
 
+- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation {
+    if ([annotation isKindOfClass:[MKUserLocation class]]) {
+        return nil;
+    }
+    
+    static NSString* ShopAnnotationIdentifier = @"shopAnnotationIdentifier";
+    MKPinAnnotationView *pinView = (MKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:ShopAnnotationIdentifier];
+    if (!pinView) {
+        pinView = [[[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:ShopAnnotationIdentifier] autorelease];
+        pinView.pinColor = MKPinAnnotationColorRed;
+        pinView.animatesDrop = YES;
+    }
+    return pinView;
+}
 - (void)dealloc {
 	if(routes) {
 		[routes release];

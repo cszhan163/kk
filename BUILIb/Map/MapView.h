@@ -30,4 +30,6 @@
 
 - (void)showRouteWithPointsData:(NSArray*)points;
 
+- (void)addFromPoint:(Place*)f toPoint:(Place*)t;
+- (void)addPointToMap:(Place*)f;
 @end

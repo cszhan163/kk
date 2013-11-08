@@ -8,6 +8,8 @@
 
 #import "CarServiceViewController.h"
 #import "FriendItemCell.h"
+
+#import "MesssageBoxViewController.h"
 static NSString *kSectionOneArr[] =
 {
     @"消息中心",@"汽车服务",@"常用电话",
@@ -164,8 +166,13 @@ static NSString *kImageTextArr[] ={
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if(indexPath.row == 0){
+    
+        MesssageBoxViewController *msgVc = [[MesssageBoxViewController alloc]init];
+        [self.navigationController pushViewController:msgVc  animated:YES];
+        SafeRelease(msgVc);
+    }
 }
-
 #pragma mark -
 #pragma mark net work
 - (void)shouldLoadUserInfoData{

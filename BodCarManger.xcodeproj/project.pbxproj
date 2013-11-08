@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		041EF934182D4C4D00F487A6 /* MessageBoxCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 041EF933182D4C4D00F487A6 /* MessageBoxCell.xib */; };
+		041EF93A182D4DDC00F487A6 /* mes_unread.png in Resources */ = {isa = PBXBuildFile; fileRef = 041EF938182D4DDC00F487A6 /* mes_unread.png */; };
+		041EF93B182D4DDC00F487A6 /* read.png in Resources */ = {isa = PBXBuildFile; fileRef = 041EF939182D4DDC00F487A6 /* read.png */; };
+		041EF93E182D502500F487A6 /* MessageBoxCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 041EF93D182D502500F487A6 /* MessageBoxCell.m */; };
+		041EF942182D522D00F487A6 /* msg_table_footer.png in Resources */ = {isa = PBXBuildFile; fileRef = 041EF93F182D522D00F487A6 /* msg_table_footer.png */; };
+		041EF943182D522D00F487A6 /* msg_table_header.png in Resources */ = {isa = PBXBuildFile; fileRef = 041EF940182D522D00F487A6 /* msg_table_header.png */; };
+		041EF944182D522D00F487A6 /* msg_table_middle.png in Resources */ = {isa = PBXBuildFile; fileRef = 041EF941182D522D00F487A6 /* msg_table_middle.png */; };
 		042778B218202737008C6432 /* setting_cell_footer.png in Resources */ = {isa = PBXBuildFile; fileRef = 042778AE18202737008C6432 /* setting_cell_footer.png */; };
 		042778B318202737008C6432 /* setting_cell_header.png in Resources */ = {isa = PBXBuildFile; fileRef = 042778AF18202737008C6432 /* setting_cell_header.png */; };
 		042778B418202737008C6432 /* setting_cell_middle.png in Resources */ = {isa = PBXBuildFile; fileRef = 042778B018202737008C6432 /* setting_cell_middle.png */; };
@@ -324,6 +331,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		041EF933182D4C4D00F487A6 /* MessageBoxCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MessageBoxCell.xib; sourceTree = "<group>"; };
+		041EF938182D4DDC00F487A6 /* mes_unread.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mes_unread.png; sourceTree = "<group>"; };
+		041EF939182D4DDC00F487A6 /* read.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = read.png; sourceTree = "<group>"; };
+		041EF93C182D502500F487A6 /* MessageBoxCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageBoxCell.h; sourceTree = "<group>"; };
+		041EF93D182D502500F487A6 /* MessageBoxCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageBoxCell.m; sourceTree = "<group>"; };
+		041EF93F182D522D00F487A6 /* msg_table_footer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = msg_table_footer.png; sourceTree = "<group>"; };
+		041EF940182D522D00F487A6 /* msg_table_header.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = msg_table_header.png; sourceTree = "<group>"; };
+		041EF941182D522D00F487A6 /* msg_table_middle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = msg_table_middle.png; sourceTree = "<group>"; };
 		042778AE18202737008C6432 /* setting_cell_footer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = setting_cell_footer.png; sourceTree = "<group>"; };
 		042778AF18202737008C6432 /* setting_cell_header.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = setting_cell_header.png; sourceTree = "<group>"; };
 		042778B018202737008C6432 /* setting_cell_middle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = setting_cell_middle.png; sourceTree = "<group>"; };
@@ -748,6 +763,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		041EF937182D4DD000F487A6 /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+				041EF93F182D522D00F487A6 /* msg_table_footer.png */,
+				041EF940182D522D00F487A6 /* msg_table_header.png */,
+				041EF941182D522D00F487A6 /* msg_table_middle.png */,
+				041EF938182D4DDC00F487A6 /* mes_unread.png */,
+				041EF939182D4DDC00F487A6 /* read.png */,
+			);
+			name = "New Group";
+			sourceTree = "<group>";
+		};
 		042778BC18202B40008C6432 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -872,6 +899,7 @@
 		046B665A17E74C37006F34A1 /* image */ = {
 			isa = PBXGroup;
 			children = (
+				041EF937182D4DD000F487A6 /* New Group */,
 				04FE072A181973C300EEC76A /* setting */,
 				046B668617E74C37006F34A1 /* TAB */,
 				04FE07121818306600EEC76A /* server */,
@@ -1110,6 +1138,8 @@
 		049DF96C18157AB800DFC9F1 /* CellView */ = {
 			isa = PBXGroup;
 			children = (
+				041EF93C182D502500F487A6 /* MessageBoxCell.h */,
+				041EF93D182D502500F487A6 /* MessageBoxCell.m */,
 				BDC9818F181FBC97005DD720 /* PlantTableViewCell.h */,
 				BDC98190181FBC97005DD720 /* PlantTableViewCell.m */,
 				BDC9818C181FBC88005DD720 /* CarDriveStatusView.h */,
@@ -1122,6 +1152,7 @@
 				049DF96F18157AB800DFC9F1 /* CarDetailPenalView.xib */,
 				049DF97418157AB800DFC9F1 /* CarDriveStatusView.xib */,
 				049DF97B18157AB900DFC9F1 /* PlantTableViewCell.xib */,
+				041EF933182D4C4D00F487A6 /* MessageBoxCell.xib */,
 			);
 			path = CellView;
 			sourceTree = "<group>";
@@ -1901,6 +1932,12 @@
 				044D8907182A934000AD2368 /* router_location.png in Resources */,
 				044D8908182A934000AD2368 /* router_oil.png in Resources */,
 				044D890C182A9DCD00AD2368 /* SVProgressHUD.bundle in Resources */,
+				041EF934182D4C4D00F487A6 /* MessageBoxCell.xib in Resources */,
+				041EF93A182D4DDC00F487A6 /* mes_unread.png in Resources */,
+				041EF93B182D4DDC00F487A6 /* read.png in Resources */,
+				041EF942182D522D00F487A6 /* msg_table_footer.png in Resources */,
+				041EF943182D522D00F487A6 /* msg_table_header.png in Resources */,
+				041EF944182D522D00F487A6 /* msg_table_middle.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1993,6 +2030,7 @@
 				04E45AFB18255F150028BDAD /* QWeiboRequest.m in Sources */,
 				04E45AFC18255F150028BDAD /* QWeiboSyncApi.m in Sources */,
 				044D8902182A72CA00AD2368 /* CarInfoInputViewController.m in Sources */,
+				041EF93E182D502500F487A6 /* MessageBoxCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

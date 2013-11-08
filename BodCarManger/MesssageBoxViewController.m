@@ -8,6 +8,7 @@
 
 #import "MesssageBoxViewController.h"
 #import "CarServiceNetDataMgr.h"
+#import "MessageBoxCell.h"
 //#import "DBManage.h"
 //#import "MyProfileViewController.h"
 //#import "DressMemoCommentController.h"
@@ -18,6 +19,8 @@
 
 @implementation MesssageBoxViewController
 @synthesize clearRequest;
+
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -68,7 +71,7 @@
     mainView.mainFramView.backgroundColor = kAppUserBGWhiteColor;
 #endif
     
-    
+    tweetieTableView.frame = CGRectMake(9.f,kMBAppBottomToolBarHeght+18.f,302,400);
     [self setNavgationBarTitle:NSLocalizedString(@"Message", @""
                                                 )];
     [self setHiddenRightBtn:NO];
@@ -104,7 +107,7 @@
 #endif  
     [super shouldLoadOlderData:tweetieTableView];
     NSLog(@"loader old data");
-    [self startShowLoadingView];
+    //[self startShowLoadingView];
     [self getUserMessageList];
     //[self getPostMemos];
     //[memoTimelineDataSource getOldData];
@@ -113,7 +116,8 @@
 #pragma mark UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-	return [self.dataArray count];
+	return 10;
+    //return [self.dataArray count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -121,30 +125,48 @@
 	
     static NSString *cellId = @"FriendCell";
 
-    MessageTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
+    MessageBoxCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
     if (cell == nil) 
     {
-        cell = [[MessageTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
+        //cell = [[MessageBoxCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
+        NSArray *nibArr = [[NSBundle mainBundle] loadNibNamed:@"MessageBoxCell"
+                                                        owner:self options:nil];
+        for (id oneObject in nibArr)
+            if ([oneObject isKindOfClass:[MessageBoxCell class]])
+                cell = (MessageBoxCell*)oneObject;
     }
 	//cell.textLabel.text = [NSString stringWithFormat:@"%d", indexPath.row];
     
     [self setItemCell:cell withIndex:indexPath];
+    UIImage *bgImageName = nil;
     
+    int max = [self.dataArray count]-1;
+    
+    if(indexPath.row == 0)
+        bgImageName = @"msg_table_header.png";
+    else if(indexPath.row == max)
+        bgImageName = @"msg_table_footer.png";
+    else
+        bgImageName = @"msg_table_middle.png";
+    
+    UIImageWithFileName(UIImage *bgImage,bgImageName);
+    UIImageView *bgView = [[UIImageView alloc]initWithImage:bgImage];
+    bgView.frame = CGRectMake(0.f, 0.f,300.f,42.f);
+    cell.backgroundView = bgView;
+    SafeRelease(bgView);
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    cell.mMsgTextLabel.text = @"这个市消息这个市消息这个市消息这个市消息这个市消息这个市消息这个市消息这个市消息这个市消息这个市消息这个市消息这个市消息这个市消息这个市消息这个市消息这个市消息这个市消息";
     return cell;
     
-//    UIMessageCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
-//    if (![cell isKindOfClass:[UIMessageCell class]]) {
-//        cell = [[[UIMessageCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId] autorelease];
-//    }
-//    
-//    [cell reloadData:nil];
-//    return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    /*
     NSDictionary *itemData = [self.dataArray objectAtIndex:indexPath.row];
     return [MessageTableViewCell cellHeight:itemData];
+     */
+    return 94;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

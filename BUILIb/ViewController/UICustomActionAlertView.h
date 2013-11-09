@@ -13,7 +13,10 @@
 - (void)didTouchItem:(id)sender;
 - (void)didTouchFunItem:(id)sender withItem:(id)sender;
 @end
-@interface UICustomActionAlertView : UIView
+@interface UICustomActionAlertView : UIView{
+    UIImageView *alerActionView;
+
+}
 @property(nonatomic,assign)BOOL subStatus;
 @property(nonatomic,assign)id<UICustomActionAlertViewDelegate> delegate;
 //- (id)initMoreAlertActionView:(CGRect)frame;

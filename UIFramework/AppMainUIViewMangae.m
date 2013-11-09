@@ -27,6 +27,7 @@
 #import "CarServiceViewController.h"
 #import "CarStatusViewController.h"
 
+#define HAVE_WINDOWLAST
 //#define USER_LOGIN
 
 #ifdef  USER_LOGIN
@@ -34,6 +35,8 @@
 #import "CardShopLoginViewController.h"
 #import "AppSetting.h"
 #endif
+
+
 
 @class GMusicPlayMgr;
 #define kLoginViewControllerClass @"CardShopLoginViewController"
@@ -47,6 +50,7 @@ static UIButton *popup = nil;
 @implementation AppMainUIViewManage
 @synthesize isShouldHiddenTabBarWhenPush;
 @synthesize window;
+
 
 #if 1
 -(void)addObserveMsg
@@ -102,6 +106,8 @@ static UIButton *popup = nil;
 	currentNavgationController = navCtrl;
     
     [self.window addSubview:navCtrl.view];
+   
+    
 	//navCtrl.delegate = self;
 #else
 	[self.window addSubview:mainVC.view];

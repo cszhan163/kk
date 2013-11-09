@@ -19,6 +19,12 @@
 		042778B418202737008C6432 /* setting_cell_middle.png in Resources */ = {isa = PBXBuildFile; fileRef = 042778B018202737008C6432 /* setting_cell_middle.png */; };
 		042778B518202737008C6432 /* setting_cell_one.png in Resources */ = {isa = PBXBuildFile; fileRef = 042778B118202737008C6432 /* setting_cell_one.png */; };
 		042778C118202B4A008C6432 /* libBUILIb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 042778C018202B41008C6432 /* libBUILIb.a */; };
+		043385F8182E860400CEE699 /* share_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 043385F4182E860400CEE699 /* share_bg.png */; };
+		043385F9182E860400CEE699 /* share_cancel_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 043385F5182E860400CEE699 /* share_cancel_btn.png */; };
+		043385FA182E860400CEE699 /* sina_weibo.png in Resources */ = {isa = PBXBuildFile; fileRef = 043385F6182E860400CEE699 /* sina_weibo.png */; };
+		043385FB182E860400CEE699 /* wechat.png in Resources */ = {isa = PBXBuildFile; fileRef = 043385F7182E860400CEE699 /* wechat.png */; };
+		043385FE182E86BF00CEE699 /* UIShareActionAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 043385FD182E86BF00CEE699 /* UIShareActionAlertView.m */; };
+		04338600182E92E100CEE699 /* tencent_weibo.png in Resources */ = {isa = PBXBuildFile; fileRef = 043385FF182E92E100CEE699 /* tencent_weibo.png */; };
 		043C650617FD76EF00CDBAC8 /* MesssageBoxViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 043C650517FD76EF00CDBAC8 /* MesssageBoxViewController.m */; };
 		043D9B4E17FAC4B800BE0C31 /* BaoCarNetBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 043D9B4D17FAC4B700BE0C31 /* BaoCarNetBaseViewController.m */; };
 		043D9B5317FAD1DD00BE0C31 /* CardShopBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 043D9B5017FAC56B00BE0C31 /* CardShopBaseViewController.m */; };
@@ -344,6 +350,13 @@
 		042778B018202737008C6432 /* setting_cell_middle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = setting_cell_middle.png; sourceTree = "<group>"; };
 		042778B118202737008C6432 /* setting_cell_one.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = setting_cell_one.png; sourceTree = "<group>"; };
 		042778BB18202B40008C6432 /* BUILIb.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BUILIb.xcodeproj; path = BUILIb/BUILIb.xcodeproj; sourceTree = "<group>"; };
+		043385F4182E860400CEE699 /* share_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = share_bg.png; sourceTree = "<group>"; };
+		043385F5182E860400CEE699 /* share_cancel_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = share_cancel_btn.png; sourceTree = "<group>"; };
+		043385F6182E860400CEE699 /* sina_weibo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sina_weibo.png; sourceTree = "<group>"; };
+		043385F7182E860400CEE699 /* wechat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wechat.png; sourceTree = "<group>"; };
+		043385FC182E86BF00CEE699 /* UIShareActionAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIShareActionAlertView.h; sourceTree = "<group>"; };
+		043385FD182E86BF00CEE699 /* UIShareActionAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIShareActionAlertView.m; sourceTree = "<group>"; };
+		043385FF182E92E100CEE699 /* tencent_weibo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tencent_weibo.png; sourceTree = "<group>"; };
 		043C650417FD76EF00CDBAC8 /* MesssageBoxViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MesssageBoxViewController.h; sourceTree = "<group>"; };
 		043C650517FD76EF00CDBAC8 /* MesssageBoxViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MesssageBoxViewController.m; sourceTree = "<group>"; };
 		043D9B3C17FAC0EE00BE0C31 /* AppMSGDef.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppMSGDef.h; sourceTree = "<group>"; };
@@ -783,6 +796,18 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		043385F2182E860400CEE699 /* share */ = {
+			isa = PBXGroup;
+			children = (
+				043385FF182E92E100CEE699 /* tencent_weibo.png */,
+				043385F4182E860400CEE699 /* share_bg.png */,
+				043385F5182E860400CEE699 /* share_cancel_btn.png */,
+				043385F6182E860400CEE699 /* sina_weibo.png */,
+				043385F7182E860400CEE699 /* wechat.png */,
+			);
+			path = share;
+			sourceTree = "<group>";
+		};
 		043C650317FD76D600CDBAC8 /* User */ = {
 			isa = PBXGroup;
 			children = (
@@ -877,6 +902,8 @@
 				046B682B17E76930006F34A1 /* CarDriveStatusViewController.m */,
 				046B682D17E769C8006F34A1 /* CarServiceViewController.h */,
 				046B682E17E769C9006F34A1 /* CarServiceViewController.m */,
+				043385FC182E86BF00CEE699 /* UIShareActionAlertView.h */,
+				043385FD182E86BF00CEE699 /* UIShareActionAlertView.m */,
 			);
 			path = BodCarManger;
 			sourceTree = "<group>";
@@ -899,6 +926,7 @@
 		046B665A17E74C37006F34A1 /* image */ = {
 			isa = PBXGroup;
 			children = (
+				043385F2182E860400CEE699 /* share */,
 				041EF937182D4DD000F487A6 /* New Group */,
 				04FE072A181973C300EEC76A /* setting */,
 				046B668617E74C37006F34A1 /* TAB */,
@@ -1938,6 +1966,11 @@
 				041EF942182D522D00F487A6 /* msg_table_footer.png in Resources */,
 				041EF943182D522D00F487A6 /* msg_table_header.png in Resources */,
 				041EF944182D522D00F487A6 /* msg_table_middle.png in Resources */,
+				043385F8182E860400CEE699 /* share_bg.png in Resources */,
+				043385F9182E860400CEE699 /* share_cancel_btn.png in Resources */,
+				043385FA182E860400CEE699 /* sina_weibo.png in Resources */,
+				043385FB182E860400CEE699 /* wechat.png in Resources */,
+				04338600182E92E100CEE699 /* tencent_weibo.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2031,6 +2064,7 @@
 				04E45AFC18255F150028BDAD /* QWeiboSyncApi.m in Sources */,
 				044D8902182A72CA00AD2368 /* CarInfoInputViewController.m in Sources */,
 				041EF93E182D502500F487A6 /* MessageBoxCell.m in Sources */,
+				043385FE182E86BF00CEE699 /* UIShareActionAlertView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

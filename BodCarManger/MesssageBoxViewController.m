@@ -72,6 +72,7 @@
 #endif
     
     tweetieTableView.frame = CGRectMake(9.f,kMBAppBottomToolBarHeght+18.f,302,400);
+    tweetieTableView.layer.cornerRadius = 8.f;
     [self setNavgationBarTitle:NSLocalizedString(@"Message", @""
                                                 )];
     [self setHiddenRightBtn:NO];

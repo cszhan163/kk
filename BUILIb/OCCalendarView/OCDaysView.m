@@ -33,7 +33,9 @@
     }
     return self;
 }
-
+- (void)setDayItemRowHeight:(CGFloat)h rowWidth:(CGFloat)w{
+    vDiff = h;
+}
 
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
@@ -275,7 +277,7 @@
     
     NSDictionary *day = [mDaysModel getPointDayValueByPoint:point fromView:parentView toView:self];
     NE_LOG(@"%@",[day description]);
-    if(delegate &&[delegate respondsToSelector:@selector(didChooseViewDay:)]){
+    if(day && delegate &&[delegate respondsToSelector:@selector(didChooseViewDay:)]){
         [delegate didChooseViewDay:day];
     }
 

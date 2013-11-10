@@ -37,6 +37,6 @@
 
 - (BOOL)addExtraRow;
 @property(nonatomic,unsafe_unretained)id<OCDaysViewDelegate> delegate;
-
+- (void)setDayItemRowHeight:(CGFloat)h rowWidth:(CGFloat)w;
 - (NSDictionary*)getTouchDayViewByPoint:(CGPoint)point withParentView:(UIView*)parentView;
 @end

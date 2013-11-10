@@ -15,11 +15,11 @@
 #define kPendingX  15.f
 #define kPendingY  5.f
 
-#define kDayTitilesStartY 35
+#define kDayTitilesStartY 14
 
 #define kLeftBackPendingX  66
 
-#define kDayViewStartY  65
+#define kDayViewStartY  38
 
 #define kButtonPendingY 15
 
@@ -27,6 +27,7 @@
 
 @interface OCCalendarView ()<OCDaysViewDelegate> {
     OCSelectionMode _selectionMode;
+    BOOL isMoveTouch;
 }
 @end
 
@@ -52,7 +53,6 @@
   self = [super initWithFrame:frame];
   if(self) {
     self.backgroundColor = [UIColor clearColor];
-    
     calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
 		
     NSUInteger unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit;
@@ -65,15 +65,16 @@
     startCellY = -1;
     endCellX = -1;
     endCellY = -1;
-      self.layer.cornerRadius = 5.0;
+    self.layer.cornerRadius = 5.0;
 //      UITapGestureRecognizer *tapG = [[UITapGestureRecognizer alloc] init];
 //      tapG.delegate = self;
 //      [self addGestureRecognizer:[tapG autorelease]];
 //      [self setUserInteractionEnabled:YES];
 	hDiff = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone ? 41 : 43;
-    vDiff = 30;
+      vDiff = 35;//30;
     
     selectionView = [[OCSelectionView alloc] initWithFrame:CGRectMake(kPendingX,kDayViewStartY, hDiff*7, vDiff*6)];
+    [selectionView setDayItemRowHeight:vDiff rowWidth:hDiff];
     [self addSubview:selectionView];
     
       /*
@@ -83,6 +84,7 @@
       */
 	float xpos = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone ? 68 : 65;
     daysView = [[OCDaysView alloc] initWithFrame:CGRectMake(xpos-42-10,kDayViewStartY+3.f, hDiff*7, vDiff*6)];
+    [daysView setDayItemRowHeight:vDiff rowWidth:hDiff];
     [daysView setYear:currentYear];
     [daysView setMonth:currentMonth];
     [daysView resetRows];
@@ -95,11 +97,12 @@
     //selectionView.hidden = YES;
     
     //Make the view really small and invisible
+    /*
     CGAffineTransform tranny = CGAffineTransformMakeScale(0.1, 0.1);
     self.transform = tranny;
     self.alpha = 0.0f;
-      
     [self performSelector:@selector(animateIn)];
+     */
   }
   return self;
 }
@@ -116,8 +119,19 @@
     self.alpha = 1.0f;
     [UIView commitAnimations];
 }
-
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+//:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    isMoveTouch = NO;
+}
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event{
+    isMoveTouch = YES;
+}
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+	//NSLog(@"Touches began");
+    if(isMoveTouch)
+        return;
     UITouch *touch = [touches anyObject];
     CGPoint point = [touch locationInView:self];
     if(CGRectContainsPoint(CGRectMake(kLeftBackPendingX-15,kPendingY, 30, 35), point)) {
@@ -171,11 +185,13 @@
     }
     else{
         if(CGRectContainsPoint(daysView.frame ,point)){
-            
+           [daysView getTouchDayViewByPoint:point withParentView:self]; 
             
         }
+        return;
     }
 }
+
 - (void)resetViews {
     [selectionView resetSelection];
     [daysView setMonth:currentMonth];
@@ -774,7 +790,7 @@
     
     int month = currentMonth;
     int year = currentYear;
-    
+#if 0
 	NSString *monthTitle = [NSString stringWithFormat:@"%@ %d", [monthTitles objectAtIndex:(month - 1)], year];
     
     //// Month Header Drawing
@@ -806,7 +822,7 @@
     [forwardArrowPath closePath];
     [[UIColor whiteColor] setFill];
     [forwardArrowPath fill];
-    
+#endif
     
     
     //// Cleanup

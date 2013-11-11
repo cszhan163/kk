@@ -13,6 +13,7 @@
      BOOL isNeedReflush;
     NSInteger pageIndex;
     DateStruct mCurrDate;
+    DateStruct   mTodayDate;
     BSPreviewScrollView *scrollerView;
 }
 @property(nonatomic,strong)NSString *mMothDateKey;

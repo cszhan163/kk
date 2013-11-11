@@ -155,7 +155,7 @@
     [self.gridView jumpToIndex:0];
        [self.view addSubview:self.gridView];
        */
-    csView = [[XLCycleScrollView alloc] initWithFrame:self.view.bounds];
+    csView = [[XLCycleScrollView alloc] initWithFrame:CGRectMake(9.f,kMBAppTopToolBarHeight+9.f,kCalendarWidth,kCalendarHeight)];
     csView.delegate = self;
     csView.datasource = self;
     [self.view addSubview:csView];
@@ -221,25 +221,33 @@
 }
 - (UIView *)pageAtIndex:(NSInteger)index withView:(XLCycleScrollView*)senderView{
     
-    int month = mCurrDate.month+currIndex;
-    int year = mCurrDate.year;
-    if(month>12){
-        year = mCurrDate.year+1;
-        month = 1;
+    if(currIndex == senderView.nolimitIndex){
+    
     }
-    if(month<0){
-        year = mCurrDate.year-1;
-        month = 12;
-    }
-    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:
-                          [NSString stringWithFormat:@"%d",month],@"month",
-                          [NSString stringWithFormat:@"%d",year],@"year",nil];
-    if(currIndex >senderView.nolimitIndex){
-        [self didTouchPreMoth:dict];
-
-    }
-    else if (currIndex <senderView.nolimitIndex){
-        [self didTouchPreMoth:dict];
+    else{
+        int month = mTodayDate.month +senderView.nolimitIndex;
+        int year = mTodayDate.year;
+        if(month>12){
+            int num = month/12;
+            year = mTodayDate.year+num;
+            month = 1;
+        }
+        if(month<0){
+            int num = month/12;
+            year = mTodayDate.year+num;
+            month = 12;
+        }
+        NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:
+                              [NSString stringWithFormat:@"%d",month],@"month",
+                              [NSString stringWithFormat:@"%d",year],@"year",nil];
+        if(currIndex >senderView.nolimitIndex){
+            [self didTouchPreMoth:dict];
+            
+        }
+        else if (currIndex <senderView.nolimitIndex){
+            [self didTouchAfterMoth:dict];
+        }
+        NSLog(@"%@",[dict description]);
     }
     currIndex = senderView.nolimitIndex;
     CGPoint insertPoint = CGPointMake(167,50);
@@ -258,8 +266,8 @@
      */
     [tempCalView setTag:kNumberCalViewTag];
     //[grid addSubview:calView];
-    SafeRelease(tempCalView);
-    return tempCalView;
+    //SafeRelease(tempCalView);
+    return SafeAutoRelease(tempCalView);
 }
 #pragma mark-
 #pragma mark --scrollerview

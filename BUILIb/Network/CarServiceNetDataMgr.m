@@ -443,16 +443,22 @@ static BOOL isExit = NO;
 - (void)userLoginOk:(EiInfo*)info{
     if(info.status == 1){
         //NSLog(@"%@",info.blocks);
-        NSString *locationType = [info get:@"locateType"];
-        NSMutableDictionary *resultDict = [NSMutableDictionary dictionary];
-        [resultDict setValue:[info get:@"retType"] forKey:@"retType"];
-        [resultDict setValue:[info get:@"phoneNumber"] forKey:@"phoneNumber"];
-        [resultDict setValue:[info get:@"points"] forKey:@"points"];
-        if(![locationType isKindOfClass:[NSNull class]])
-            [resultDict setValue:locationType forKey:@"locateType"];
-        else
-            [resultDict setValue:@"1" forKey:@"locateType"];
-        [self sendFinalOkData:resultDict withKey:kCarUserLogin];
+        if([[info get:@"retType"]intValue] == 0){
+            NSString *locationType = [info get:@"locateType"];
+            NSMutableDictionary *resultDict = [NSMutableDictionary dictionary];
+            [resultDict setValue: forKey:@"retType"];
+            [resultDict setValue:[info get:@"phoneNumber"] forKey:@"phoneNumber"];
+            [resultDict setValue:[info get:@"points"] forKey:@"points"];
+            if(![locationType isKindOfClass:[NSNull class]])
+                [resultDict setValue:locationType forKey:@"locateType"];
+            else
+                [resultDict setValue:@"1" forKey:@"locateType"];
+            [self sendFinalOkData:resultDict withKey:kCarUserLogin];
+        }
+        else{
+            //kUIAlertView(<#y#>, <#x#>);
+            [self sendFinalFailedData:@"" withKey:kCarUserLogin];
+        }
     }
     else{
         

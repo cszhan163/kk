@@ -10,6 +10,10 @@
 #import "AppMainUIViewManage.h"
 #import "ViewController.h"
 #import <iPlat4M_framework/iPlat4M_framework.h>
+#define HAVE_WINDOWLAST
+#ifdef  HAVE_WINDOWLAST
+#import "UIShareActionAlertView.h"
+#endif
 @implementation AppDelegate
 
 - (void)dealloc
@@ -18,6 +22,45 @@
     [_viewController release];
     [super dealloc];
 }
+
+#ifdef  HAVE_WINDOWLAST
+UIShareActionAlertView *sharedAlterView = nil;
+- (void)setLastWidnows{
+    sharedAlterView = [[UIShareActionAlertView alloc]initMoreAlertActionView:CGRectMake(0.f, 20.f, kDeviceScreenWidth, kDeviceScreenHeight) subViewStatus:NO];
+    [self.window addSubview:sharedAlterView];
+    sharedAlterView.delegate = self;
+    sharedAlterView.hidden = YES;
+    [sharedAlterView showAlertActionViewStatus:NO animated:NO];
+    [ZCSNotficationMgr addObserver:self call:@selector(startShowSharedView) msgName:kStartShowSharedViewMSG];
+    [ZCSNotficationMgr addObserver:self call:@selector(endShowSharedView) msgName:kEndShowSharedViewMSG];
+}
+
+- (void)startShowSharedView{
+    sharedAlterView.hidden = NO;
+    [sharedAlterView showAlertActionViewStatus:YES animated:YES];
+}
+- (void)endShowSharedView{
+    [sharedAlterView disMissAlertView:YES];
+}
+- (void)didTouchItem:(UIButton*)sender{
+    switch ([sender tag]) {
+        case 0://威信
+            
+            break;
+        case 1:
+            
+            break;
+        case 2:
+            
+            break;
+        default:
+            break;
+    }
+}
+- (void)didTouchFunItem:(id)sender withItem:(id)sender{
+
+}
+#endif
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -31,6 +74,7 @@
     appMg.window = self.window;
     [appMg addMainViewUI];
     [self checkCarIsRunning:nil];
+    [self setLastWidnows];
     //[NSTimer timerWithTimeInterval:5 invocation:@selector(checkCarIsRunning) repeats:YES];
     [ZCSNotficationMgr addObserver:self call:@selector(backDoorCheckOk:) msgName:kZCSNetWorkOK];
     //
@@ -85,6 +129,7 @@
 }
 
 - (void)checkCarIsRunning:(id)sender{
+    return;
     CarServiceNetDataMgr *cardNetMgr = [CarServiceNetDataMgr getSingleTone];
     [cardNetMgr getRouterLatestData:@"SHD05728"];
 }

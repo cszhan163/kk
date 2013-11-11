@@ -10,19 +10,31 @@
 #import "OCCalendarViewController.h"
 #import "OCCalendarView.h"
 #import "CarRouterViewController.h"
-
 #import "CarRouterDetailViewController.h"
-@interface CarRouterDateViewController ()<OCCalendarDelegate>{
+
+#define Infinite
+#ifdef Infinite
+#import "IAInfiniteGridView.h"
+#endif
+
+
+#define kCalendarWidth  (kDeviceScreenWidth-18.f)
+#define kCalendarHeight 250
+#define kNumberCalViewTag 999
+@interface CarRouterDateViewController ()<OCCalendarDelegate,
+    IAInfiniteGridDataSource>{
     OCCalendarView *calView;
-   
+    //IAInfiniteGridView *gridView;
     
 }
 
 @property(nonatomic,strong)NSMutableDictionary   *mHasDataDict;
+@property(nonatomic,strong)IAInfiniteGridView *gridView;
 @end
 
 @implementation CarRouterDateViewController
 @synthesize mHasDataDict;
+@synthesize gridView;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -113,6 +125,8 @@
     
 #else
    
+#if 0
+    
     CGPoint insertPoint = CGPointMake(167,50);
     int width = 300;
     int height = 250;
@@ -120,11 +134,26 @@
     [calView setSelectionMode:OCSelectionDateRange];
     //[calView setArrowPosition:];
     [self.view addSubview:[calView autorelease]];
-         UITapGestureRecognizer *tapG = [[UITapGestureRecognizer alloc] init];
-         tapG.delegate = self;
-         [calView addGestureRecognizer:[tapG autorelease]];
-         [calView setUserInteractionEnabled:YES];
-
+    UITapGestureRecognizer *tapG = [[UITapGestureRecognizer alloc] init];
+    tapG.delegate = self;
+    [calView addGestureRecognizer:[tapG autorelease]];
+    [calView setUserInteractionEnabled:YES];
+    
+    [calView setDelegate:self];
+    [self.view addSubview:calView];
+#else
+    self.gridView = [[IAInfiniteGridView alloc]initWithFrame:CGRectMake(9.f,kMBAppTopToolBarHeight+9.f,kCalendarWidth,kCalendarHeight)];
+    self.gridView.dataSource = self;
+    [self.gridView startGetPagesView];
+    gridView.backgroundColor = [UIColor redColor];
+    [self.gridView setPaging:YES];
+    [self.gridView jumpToIndex:0];
+    
+    [self.view addSubview:self.gridView];
+#endif
+    
+    
+    
 #if 0
     [calView setStartDate:sDate];
     [calView setEndDate:eDate];
@@ -133,11 +162,7 @@
 #endif
     //[calView addStartDate:sDate endDate:sDate];
     
-    [calView setDelegate:self];
-    
-//    [calVC setStartDate:sDate];
-//    [calVC setEndDate:eDate];
-    [self.view addSubview:calView];
+   
 #endif
     
     CGFloat currY = 250.f+40.f+50.f;
@@ -171,6 +196,103 @@
     
     
 	// Do any additional setup after loading the view.
+}
+#pragma mark- 
+#pragma mark --scrollerview 
+#pragma mark - Data Source Methods
+#define TEST_SColler 0
+- (UIView *)infiniteGridView:(IAInfiniteGridView *)gridView forIndex:(NSInteger)gridIndex {
+    UIView *grid = [gridView dequeueReusableGrid];
+    if (grid == nil) {
+        CGRect frame = CGRectMake(0.0, 0.0, [self infiniteGridSize].width, [self infiniteGridSize].height);
+        
+        grid = [[UIView alloc] initWithFrame:frame];
+#if TEST_SColler
+        UILabel *numberLabel = [[UILabel alloc] initWithFrame:frame];
+        [numberLabel setBackgroundColor:[UIColor clearColor]];
+        [numberLabel setFont:[UIFont boldSystemFontOfSize:([self infiniteGridSize].height * .4)]];
+        [numberLabel setTextColor:[UIColor whiteColor]];
+        [numberLabel setTextAlignment:NSTextAlignmentCenter];
+        [numberLabel setTag:kNumberCalViewTag];
+        [grid addSubview:numberLabel];
+        SafeRelease(numberLabel);
+        
+#else
+        
+        
+        
+        CGPoint insertPoint = CGPointMake(167,50);
+        int width = kCalendarWidth;
+        int height = kCalendarHeight;
+        /*
+        UIView *testView = [[UIView alloc] initWithFrame:CGRectMake((kDeviceScreenWidth-width)/2.f, insertPoint.y, width, height)];
+        [grid addSubview:testView];
+        */
+        calView = [[OCCalendarView alloc] initAtPoint:insertPoint withFrame:CGRectMake(0.f,0.f, width, height) arrowPosition:OCArrowPositionNone];
+        [calView setSelectionMode:OCSelectionDateRange];
+        //[calView setArrowPosition:];
+        //[self.view addSubview:calView];
+        [calView setDelegate:self];
+        [calView setUserInteractionEnabled:YES];
+        /*
+        UITapGestureRecognizer *tapG = [[UITapGestureRecognizer alloc] init];
+        tapG.delegate = self;
+        [calView addGestureRecognizer:[tapG autorelease]];
+        */
+        [calView setTag:kNumberCalViewTag];
+        [grid addSubview:calView];
+        SafeRelease(calView);
+#endif
+    }
+    
+    // set properties
+#if TEST_SColler
+    NSInteger mods = gridIndex % [self numberOfInfiniteGrids];
+    if (mods < 0) mods += [self numberOfInfiniteGrids];
+    CGFloat red = mods * (1 / (CGFloat)[self numberOfInfiniteGrids]);
+    UILabel *numberLabel = (UILabel *)[grid viewWithTag:kNumberCalViewTag];
+    grid.backgroundColor = [UIColor colorWithRed:red green:0.0 blue:0.0 alpha:1.0];
+    [numberLabel setText:[NSString stringWithFormat:@"[%d]", gridIndex]];
+     
+#else
+    OCCalendarView *carlendarView = (OCCalendarView *)[grid viewWithTag:kNumberCalViewTag];
+    if(gridIndex>0){
+        
+        //[self didTouchAfterMoth:day];
+    }
+    else{
+    
+    }
+    NSLog(@"scroller update:%d",gridIndex);
+#endif
+    return grid;
+}
+
+- (NSUInteger)numberOfInfiniteGrids {
+    return 1;
+}
+
+- (CGSize)infiniteGridSize {
+    
+//    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+//        return CGSizeMake(300.0, 300.0);
+//    }
+    return CGSizeMake(kCalendarWidth, kCalendarHeight);
+}
+int lastIndex = -1;
+int lastDirect = -1;
+- (void)didScrollerView:(IAInfiniteGridView*)gridView withDirection:(int)direction withIndex:(int)index{
+    if(lastIndex == index){
+        if(lastDirect != direction){
+            NSLog(@"not update %d",lastIndex -1);
+        }
+    }
+    else{
+        NSLog(@"%d",index);
+        
+    }
+    lastIndex = index;
+    lastDirect = direction;
 }
 #pragma mark -
 #pragma mark - choose day

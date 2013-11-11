@@ -10,4 +10,5 @@
 #import "MessageTableViewCell.h"
 
 @interface MesssageBoxViewController : UIImageNetBaseViewController
+
 @end

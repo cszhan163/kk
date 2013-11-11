@@ -47,5 +47,8 @@
 #define KNewMessageFromMSG          @"newMessageMSG"
 
 
+#define kStartShowSharedViewMSG        @"startShowSharedViewMSG"
+
+#define kEndShowSharedViewMSG        @"endShowSharedViewMSG"
 
 #endif

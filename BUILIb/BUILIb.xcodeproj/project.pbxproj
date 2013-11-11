@@ -11,6 +11,7 @@
 		042631C91822C6AD0062CC15 /* WGS2Mars.m in Sources */ = {isa = PBXBuildFile; fileRef = 042631C81822C6AD0062CC15 /* WGS2Mars.m */; };
 		04CA411118292998008DAE94 /* CarDriveMannerDataGraphViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CA411018292998008DAE94 /* CarDriveMannerDataGraphViewController.m */; };
 		04CA411418292EC2008DAE94 /* CarDriveActionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CA411318292EC2008DAE94 /* CarDriveActionTableViewCell.m */; };
+		04E5D6F8182F631F006832B9 /* IAInfiniteGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E5D6F7182F631F006832B9 /* IAInfiniteGridView.m */; };
 		BD3BA8FF18225BC600293405 /* CarDriveMannerDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BD3BA8FE18225BC600293405 /* CarDriveMannerDataViewController.m */; };
 		BDC37ECD181FAF0E00A4CB18 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDC37ECC181FAF0E00A4CB18 /* Foundation.framework */; };
 		BDC37ED2181FAF0E00A4CB18 /* BUILIb.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = BDC37ED1181FAF0E00A4CB18 /* BUILIb.h */; };
@@ -84,6 +85,8 @@
 		04CA411018292998008DAE94 /* CarDriveMannerDataGraphViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarDriveMannerDataGraphViewController.m; sourceTree = "<group>"; };
 		04CA411218292EC2008DAE94 /* CarDriveActionTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarDriveActionTableViewCell.h; sourceTree = "<group>"; };
 		04CA411318292EC2008DAE94 /* CarDriveActionTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarDriveActionTableViewCell.m; sourceTree = "<group>"; };
+		04E5D6F6182F631F006832B9 /* IAInfiniteGridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAInfiniteGridView.h; sourceTree = "<group>"; };
+		04E5D6F7182F631F006832B9 /* IAInfiniteGridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAInfiniteGridView.m; sourceTree = "<group>"; };
 		BD3BA8FD18225BC600293405 /* CarDriveMannerDataViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarDriveMannerDataViewController.h; sourceTree = "<group>"; };
 		BD3BA8FE18225BC600293405 /* CarDriveMannerDataViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarDriveMannerDataViewController.m; sourceTree = "<group>"; };
 		BDC37EC9181FAF0E00A4CB18 /* libBUILIb.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libBUILIb.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -194,6 +197,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		04E5D6F5182F631F006832B9 /* IAInfiniteGridView */ = {
+			isa = PBXGroup;
+			children = (
+				04E5D6F6182F631F006832B9 /* IAInfiniteGridView.h */,
+				04E5D6F7182F631F006832B9 /* IAInfiniteGridView.m */,
+			);
+			path = IAInfiniteGridView;
+			sourceTree = "<group>";
+		};
 		BDC37EC0181FAF0E00A4CB18 = {
 			isa = PBXGroup;
 			children = (
@@ -351,6 +363,7 @@
 		BDC37F44181FB16700A4CB18 /* CommView */ = {
 			isa = PBXGroup;
 			children = (
+				04E5D6F5182F631F006832B9 /* IAInfiniteGridView */,
 				BDC37F45181FB16700A4CB18 /* AmProgressDraw */,
 				BDC37F4E181FB16700A4CB18 /* CarMaintainanceView.h */,
 				BDC37F4F181FB16700A4CB18 /* CarMaintainanceView.m */,
@@ -518,6 +531,7 @@
 				BDC8CB471828CC3C000A2C16 /* DBManage.m in Sources */,
 				04CA411118292998008DAE94 /* CarDriveMannerDataGraphViewController.m in Sources */,
 				04CA411418292EC2008DAE94 /* CarDriveActionTableViewCell.m in Sources */,
+				04E5D6F8182F631F006832B9 /* IAInfiniteGridView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

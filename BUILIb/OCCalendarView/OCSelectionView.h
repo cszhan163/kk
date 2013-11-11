@@ -26,7 +26,7 @@
 
 -(CGPoint)startPoint;
 -(CGPoint)endPoint;
-
+- (void)setDayItemRowHeight:(CGFloat)h rowWidth:(CGFloat)w;
 -(void)setStartPoint:(CGPoint)sPoint;
 -(void)setEndPoint:(CGPoint)ePoint;
 @property(nonatomic,strong)NSMutableArray *selectorPoints;

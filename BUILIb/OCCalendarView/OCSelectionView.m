@@ -49,6 +49,9 @@
     }
     return self;
 }
+- (void)setDayItemRowHeight:(CGFloat)h rowWidth:(CGFloat)w{
+    vDiff = h;
+}
 - (void)initColorData{
 
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();

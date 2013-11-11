@@ -18,7 +18,7 @@
 
 
 #define kAlertViewWidth           320.f
-#define kAlertViewHeight          (556/2.f)
+#define kAlertViewHeight          (510/2.f)
 
 #define kAlertViewSubHeight       120.f
 
@@ -29,7 +29,7 @@ static NSString* iconItemTextArray[] = {@"微信",@"朋友圈",@"更多"};
 static NSString* sharredArray[] = {@"wechatsime",@"Friends",@"add"};
 static NSString* commonArray[] = {@"bar1_100stretch",@"bar2_100stretch"};
 @interface UICustomActionAlertView(){
-    UIImageView *alerActionView;
+  
     UIButton *autoSendButton;
     //HexRGBA(<#x#>, <#y#>, <#z#>, <#a#>)
 }

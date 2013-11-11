@@ -20,19 +20,6 @@
          shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "UIFramework/AppMainUIViewMangae.m"
-         timestampString = "404840726.68817"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "231"
-         endingLineNumber = "231"
-         landmarkName = "-didUserloginOutFromMsg:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
          filePath = "BodCarManger/AppSetting.m"
          timestampString = "405433848.502888"
          startingColumnNumber = "9223372036854775807"
@@ -46,26 +33,39 @@
          shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "BodCarManger/CarServiceViewController.m"
-         timestampString = "405532257.460496"
+         filePath = "BUILIb/OCCalendarView/OCCalendarView.m"
+         timestampString = "405785733.2287"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "172"
-         endingLineNumber = "172"
-         landmarkName = "-shouldLoadUserInfoData"
+         startingLineNumber = "1078"
+         endingLineNumber = "1078"
+         landmarkName = "-startConvertPoint:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "BodCarManger/CarRouterDetailViewController.m"
-         timestampString = "405536620.992295"
+         filePath = "BodCarManger/CarDriveStatusViewController.m"
+         timestampString = "405791543.008608"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "107"
-         endingLineNumber = "107"
-         landmarkName = "-viewDidLoad"
+         startingLineNumber = "187"
+         endingLineNumber = "187"
+         landmarkName = "-didScrollerView:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "BodCarManger/CarDriveStatusViewController.m"
+         timestampString = "405791560.416842"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "209"
+         endingLineNumber = "209"
+         landmarkName = "-didScrollerView:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

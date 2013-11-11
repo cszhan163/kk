@@ -16,6 +16,8 @@
 #import "CarStatusViewController.h"
 #import "CarCheckTableViewCell.h"
 
+
+
 #define kCheckResultLevelArray  @[@"car_check_status_top.png",@"car_check_status_mid.png",@"car_check_status_low.png"]
 @interface CarStatusViewController (){
 
@@ -44,6 +46,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.delegate = self;
     
 #if 1
     UIImage *bgImage = nil;
@@ -55,7 +58,7 @@
     //mainView.alpha = 0.;
     [self setNavgationBarTitle:NSLocalizedString(@"车辆健康监测", @""
                                                  )];
-    [self setRightBtnHidden:YES];
+    [self setRightBtnHidden:NO];
     [self setHiddenLeftBtn:YES];
     
     CGFloat currY =  kMBAppTopToolBarHeight;
@@ -318,7 +321,18 @@
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 18.f;
+    return 18.f+5.f;
 }
+-(void)didSelectorTopNavigationBarItem:(id)sender{
+    switch ([sender tag]) {
+        case  0:
+            //[self.navigationController popViewControllerAnimated:YES];// animated:<#(BOOL)animated#>
+			break;
+        case 2:
+        case 1:{
+            [ZCSNotficationMgr postMSG:kStartShowSharedViewMSG obj:nil];
+        }
+    }
 
+}
 @end

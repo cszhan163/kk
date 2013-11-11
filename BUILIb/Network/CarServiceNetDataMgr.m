@@ -446,7 +446,7 @@ static BOOL isExit = NO;
         if([[info get:@"retType"]intValue] == 0){
             NSString *locationType = [info get:@"locateType"];
             NSMutableDictionary *resultDict = [NSMutableDictionary dictionary];
-            [resultDict setValue: forKey:@"retType"];
+            [resultDict setValue:[info get:@"retType"] forKey:@"retType"];
             [resultDict setValue:[info get:@"phoneNumber"] forKey:@"phoneNumber"];
             [resultDict setValue:[info get:@"points"] forKey:@"points"];
             if(![locationType isKindOfClass:[NSNull class]])

@@ -13,6 +13,7 @@
 @interface IAInfiniteGridView(){
 
     CGFloat lastContentOffset;
+    BOOL isCenter;
 }
 @property (nonatomic) NSInteger currentIndex;
 @property (strong, nonatomic) NSMutableArray *visibleGrids;
@@ -63,7 +64,7 @@
     
     CGSize gridSize = [self.dataSource infiniteGridSize];
     NSUInteger totalGrids = [self.dataSource numberOfInfiniteGrids];
-    self.contentSize = CGSizeMake(5* totalGrids * gridSize.width, gridSize.height);
+    self.contentSize = CGSizeMake(2* totalGrids * gridSize.width, gridSize.height);
     self.containerView.frame = CGRectMake(0, 0, self.contentSize.width, self.contentSize.height);
 }
 
@@ -98,7 +99,7 @@
     
     if (distanceFromCenter > (contentWidth / 4.0)) {
         self.contentOffset = CGPointMake(centerOffsetX, currentOffset.y);
-        
+        isCenter = YES;
         for (UIView *grid in self.visibleGrids) {
             CGPoint center = [self.containerView convertPoint:grid.center toView:self];
             center.x += (centerOffsetX - currentOffset.x);
@@ -110,18 +111,22 @@
 - (void)layoutSubviews {
     [super layoutSubviews];
     
-    //[self recenterIfNecessary];
     
     // tile content in visible bounds
     CGRect visibleBounds = [self convertRect:self.bounds toView:self.containerView];
     CGFloat minimumVisibleX = CGRectGetMinX(visibleBounds);
     CGFloat maximumVisibleX = CGRectGetMaxX(visibleBounds);
     
-    [self tileGridsFromMinX:minimumVisibleX toMaxX:maximumVisibleX];
-//    if([self isDecelerating]||[self isDragging]){
-//        return;
-//    }
     
+    //NSLog(@"%lf,%lf",minimumVisibleX,maximumVisibleX);
+    if([self isDecelerating]||[self isDragging]||[self isTracking]){
+        return;
+    }
+    [self tileGridsFromMinX:minimumVisibleX toMaxX:maximumVisibleX];
+
+    NSLog(@"layout page offset:%d",[self currentPage]);
+    
+    [self recenterIfNecessary];
 }
 
 #pragma mark - Grid Tiling
@@ -198,7 +203,6 @@
         [lastGrid removeFromSuperview];
         [self.visibleGrids removeLastObject];
         [self.gridReusableQueue addObject:lastGrid];
-        
         lastGrid = [self.visibleGrids lastObject];
     }
     
@@ -211,7 +215,14 @@
         firstGrid = [self.visibleGrids objectAtIndex:0];
     }
 }
-
+-(int)currentPage
+{
+	// Calculate which page is visible
+	CGFloat pageWidth = self.containerView.frame.size.width;
+	int page = floor((self.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
+	
+	return page;
+}
 - (UIView *)gridViewAtPoint:(CGPoint)point {
     __block UIView *gridView = nil;
     [self.visibleGrids enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
@@ -269,18 +280,28 @@
 int scrollDirection;
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     
+   
     if (lastContentOffset > scrollView.contentOffset.x)
         scrollDirection = RIGHT;
     else if (lastContentOffset < scrollView.contentOffset.x)
         scrollDirection = LEFT;
     lastContentOffset = scrollView.contentOffset.x;
-    
+    if(scrollView.isDecelerating ||scrollView.isDragging||scrollView.isTracking){
+        return;
+    }
     if(self.dataSource&&[self.dataSource respondsToSelector:@selector(didScrollerView:withDirection:withIndex:)]){
         
-        [self.dataSource didScrollerView:self withDirection:scrollDirection withIndex:self.currentIndex];
+//        if(isCenter){
+//            isCenter = NO;
+//            return;
+//            
+//        }
+       // [self.dataSource didScrollerView:self withDirection:scrollDirection withIndex:self.currentIndex];
     }
     lastContentOffset = scrollView.contentOffset.x;
     //if(scrollView.contentOffset.x/302
     //NSLog(@"%lf",scrollView.contentOffset.x);
+    
+    //NSLog(@"scroller page offset:%d",[self currentPage]);
 }
 @end

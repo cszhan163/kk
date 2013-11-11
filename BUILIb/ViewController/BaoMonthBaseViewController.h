@@ -18,6 +18,7 @@
 @property(nonatomic,strong)NSString *mMothDateKey;
 @property(nonatomic,strong)NSMutableDictionary *mDataDict;
 @property(nonatomic,assign)DateStruct mCurrDate;
+@property(nonatomic,assign)DateStruct   mTodayDate;
 - (void)didTouchPreMoth:(NSDictionary*)day;
 - (void)didTouchAfterMoth:(NSDictionary *)day;
 - (void)refulshNetData;

@@ -13,6 +13,7 @@
 		04CA411418292EC2008DAE94 /* CarDriveActionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CA411318292EC2008DAE94 /* CarDriveActionTableViewCell.m */; };
 		04E5D6F8182F631F006832B9 /* IAInfiniteGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E5D6F7182F631F006832B9 /* IAInfiniteGridView.m */; };
 		BD3BA8FF18225BC600293405 /* CarDriveMannerDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BD3BA8FE18225BC600293405 /* CarDriveMannerDataViewController.m */; };
+		BD960EFB1830BAB100B9A3E6 /* XLCycleScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = BD960EFA1830BAB100B9A3E6 /* XLCycleScrollView.m */; };
 		BDC37ECD181FAF0E00A4CB18 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDC37ECC181FAF0E00A4CB18 /* Foundation.framework */; };
 		BDC37ED2181FAF0E00A4CB18 /* BUILIb.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = BDC37ED1181FAF0E00A4CB18 /* BUILIb.h */; };
 		BDC37ED4181FAF0E00A4CB18 /* BUILIb.m in Sources */ = {isa = PBXBuildFile; fileRef = BDC37ED3181FAF0E00A4CB18 /* BUILIb.m */; };
@@ -89,6 +90,8 @@
 		04E5D6F7182F631F006832B9 /* IAInfiniteGridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAInfiniteGridView.m; sourceTree = "<group>"; };
 		BD3BA8FD18225BC600293405 /* CarDriveMannerDataViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarDriveMannerDataViewController.h; sourceTree = "<group>"; };
 		BD3BA8FE18225BC600293405 /* CarDriveMannerDataViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarDriveMannerDataViewController.m; sourceTree = "<group>"; };
+		BD960EF91830BAB100B9A3E6 /* XLCycleScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XLCycleScrollView.h; sourceTree = "<group>"; };
+		BD960EFA1830BAB100B9A3E6 /* XLCycleScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XLCycleScrollView.m; sourceTree = "<group>"; };
 		BDC37EC9181FAF0E00A4CB18 /* libBUILIb.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libBUILIb.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		BDC37ECC181FAF0E00A4CB18 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		BDC37ED0181FAF0E00A4CB18 /* BUILIb-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BUILIb-Prefix.pch"; sourceTree = "<group>"; };
@@ -363,6 +366,8 @@
 		BDC37F44181FB16700A4CB18 /* CommView */ = {
 			isa = PBXGroup;
 			children = (
+				BD960EF91830BAB100B9A3E6 /* XLCycleScrollView.h */,
+				BD960EFA1830BAB100B9A3E6 /* XLCycleScrollView.m */,
 				04E5D6F5182F631F006832B9 /* IAInfiniteGridView */,
 				BDC37F45181FB16700A4CB18 /* AmProgressDraw */,
 				BDC37F4E181FB16700A4CB18 /* CarMaintainanceView.h */,
@@ -532,6 +537,7 @@
 				04CA411118292998008DAE94 /* CarDriveMannerDataGraphViewController.m in Sources */,
 				04CA411418292EC2008DAE94 /* CarDriveActionTableViewCell.m in Sources */,
 				04E5D6F8182F631F006832B9 /* IAInfiniteGridView.m in Sources */,
+				BD960EFB1830BAB100B9A3E6 /* XLCycleScrollView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

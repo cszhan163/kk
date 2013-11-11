@@ -15,6 +15,7 @@
 #define Infinite
 #ifdef Infinite
 #import "IAInfiniteGridView.h"
+#import "XLCycleScrollView.h"
 #endif
 
 
@@ -22,14 +23,20 @@
 #define kCalendarHeight 250
 #define kNumberCalViewTag 999
 @interface CarRouterDateViewController ()<OCCalendarDelegate,
-    IAInfiniteGridDataSource>{
+    IAInfiniteGridDataSource,
+    XLCycleScrollViewDatasource,
+    XLCycleScrollViewDelegate,
+    OCDaysViewDelegate>{
     OCCalendarView *calView;
-    //IAInfiniteGridView *gridView;
-    
+    IAInfiniteGridView  *gridView;
+    XLCycleScrollView   *csView;
+        int        currIndex;
+        
 }
 
 @property(nonatomic,strong)NSMutableDictionary   *mHasDataDict;
 @property(nonatomic,strong)IAInfiniteGridView *gridView;
+
 @end
 
 @implementation CarRouterDateViewController
@@ -60,11 +67,8 @@
     UIImage *bgImage = nil;
     UIImageWithFileName(bgImage, @"car_bg.png");
     mainView.bgImage = bgImage;
-
-    
     UIImageWithFileName(bgImage, @"button-message.png");
     [super setNavgationBarRightBtnImage:bgImage forStatus:UIControlStateNormal];
-    
     NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
     
  #ifdef  FIRST   
@@ -142,14 +146,20 @@
     [calView setDelegate:self];
     [self.view addSubview:calView];
 #else
+    /*
     self.gridView = [[IAInfiniteGridView alloc]initWithFrame:CGRectMake(9.f,kMBAppTopToolBarHeight+9.f,kCalendarWidth,kCalendarHeight)];
     self.gridView.dataSource = self;
     [self.gridView startGetPagesView];
     gridView.backgroundColor = [UIColor redColor];
     [self.gridView setPaging:YES];
     [self.gridView jumpToIndex:0];
-    
-    [self.view addSubview:self.gridView];
+       [self.view addSubview:self.gridView];
+       */
+    csView = [[XLCycleScrollView alloc] initWithFrame:self.view.bounds];
+    csView.delegate = self;
+    csView.datasource = self;
+    [self.view addSubview:csView];
+    SafeRelease(csView);
 #endif
     
     
@@ -197,8 +207,62 @@
     
 	// Do any additional setup after loading the view.
 }
-#pragma mark- 
-#pragma mark --scrollerview 
+#pragma mark -
+#pragma mark -- Data Source Methods
+- (NSInteger)numberOfPages{
+    return 3;
+}
+//- (UIView *)pageAtIndex:(NSInteger)index{
+//
+//}
+- (void)checkNetData{
+   
+
+}
+- (UIView *)pageAtIndex:(NSInteger)index withView:(XLCycleScrollView*)senderView{
+    
+    int month = mCurrDate.month+currIndex;
+    int year = mCurrDate.year;
+    if(month>12){
+        year = mCurrDate.year+1;
+        month = 1;
+    }
+    if(month<0){
+        year = mCurrDate.year-1;
+        month = 12;
+    }
+    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:
+                          [NSString stringWithFormat:@"%d",month],@"month",
+                          [NSString stringWithFormat:@"%d",year],@"year",nil];
+    if(currIndex >senderView.nolimitIndex){
+        [self didTouchPreMoth:dict];
+
+    }
+    else if (currIndex <senderView.nolimitIndex){
+        [self didTouchPreMoth:dict];
+    }
+    currIndex = senderView.nolimitIndex;
+    CGPoint insertPoint = CGPointMake(167,50);
+    int width = kCalendarWidth;
+    int height = kCalendarHeight;
+    OCCalendarView *tempCalView = [[OCCalendarView alloc] initAtPoint:insertPoint withFrame:CGRectMake(0.f,0.f, width, height) arrowPosition:OCArrowPositionNone];
+    [tempCalView setSelectionMode:OCSelectionDateRange];
+    //[calView setArrowPosition:];
+    //[self.view addSubview:calView];
+    [tempCalView setDelegate:self];
+    [tempCalView setUserInteractionEnabled:YES];
+    /*
+     UITapGestureRecognizer *tapG = [[UITapGestureRecognizer alloc] init];
+     tapG.delegate = self;
+     [calView addGestureRecognizer:[tapG autorelease]];
+     */
+    [tempCalView setTag:kNumberCalViewTag];
+    //[grid addSubview:calView];
+    SafeRelease(tempCalView);
+    return tempCalView;
+}
+#pragma mark-
+#pragma mark --scrollerview
 #pragma mark - Data Source Methods
 #define TEST_SColler 0
 - (UIView *)infiniteGridView:(IAInfiniteGridView *)gridView forIndex:(NSInteger)gridIndex {
@@ -225,20 +289,20 @@
         int width = kCalendarWidth;
         int height = kCalendarHeight;
         /*
-        UIView *testView = [[UIView alloc] initWithFrame:CGRectMake((kDeviceScreenWidth-width)/2.f, insertPoint.y, width, height)];
-        [grid addSubview:testView];
-        */
+                UIView *testView = [[UIView alloc] initWithFrame:CGRectMake((kDeviceScreenWidth-width)/2.f, insertPoint.y, width, height)];
+                [grid addSubview:testView];
+            */
         calView = [[OCCalendarView alloc] initAtPoint:insertPoint withFrame:CGRectMake(0.f,0.f, width, height) arrowPosition:OCArrowPositionNone];
         [calView setSelectionMode:OCSelectionDateRange];
         //[calView setArrowPosition:];
         //[self.view addSubview:calView];
         [calView setDelegate:self];
         [calView setUserInteractionEnabled:YES];
-        /*
-        UITapGestureRecognizer *tapG = [[UITapGestureRecognizer alloc] init];
-        tapG.delegate = self;
-        [calView addGestureRecognizer:[tapG autorelease]];
-        */
+          /*
+                UITapGestureRecognizer *tapG = [[UITapGestureRecognizer alloc] init];
+                tapG.delegate = self;
+                [calView addGestureRecognizer:[tapG autorelease]];
+                */
         [calView setTag:kNumberCalViewTag];
         [grid addSubview:calView];
         SafeRelease(calView);
@@ -257,7 +321,6 @@
 #else
     OCCalendarView *carlendarView = (OCCalendarView *)[grid viewWithTag:kNumberCalViewTag];
     if(gridIndex>0){
-        
         //[self didTouchAfterMoth:day];
     }
     else{
@@ -269,7 +332,7 @@
 }
 
 - (NSUInteger)numberOfInfiniteGrids {
-    return 1;
+    return 2;
 }
 
 - (CGSize)infiniteGridSize {
@@ -283,8 +346,11 @@ int lastIndex = -1;
 int lastDirect = -1;
 - (void)didScrollerView:(IAInfiniteGridView*)gridView withDirection:(int)direction withIndex:(int)index{
     if(lastIndex == index){
-        if(lastDirect != direction){
+        if(lastDirect != direction && lastDirect == 0){
             NSLog(@"not update %d",lastIndex -1);
+        }
+        else if(lastDirect != direction && lastDirect == 1){
+          NSLog(@"not update %d",lastIndex +1);
         }
     }
     else{
@@ -389,7 +455,6 @@ int lastDirect = -1;
 #pragma mark -
 #pragma mark net work
 - (void)refulshNetData{
-    
     CarServiceNetDataMgr *cardShopMgr = [CarServiceNetDataMgr getSingleTone];
     
     //[self startShowLoadingView];

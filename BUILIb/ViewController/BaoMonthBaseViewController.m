@@ -16,6 +16,7 @@
 @synthesize mCurrDate;
 @synthesize mDataDict;
 @synthesize mMothDateKey;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -30,7 +31,7 @@
     [super viewDidLoad];
     NSDate *currDate  = [NSDate date];
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-    [dateFormat setDateFormat:@"yyyy-MM"];
+    [dateFormat setDateFormat:@"yyyy-MM-dd"];
     //dateFormat.dateStyle = NSDateFormatterShortStyle;
     NSString *currDateStr = [dateFormat stringFromDate:currDate];
     NSArray *dateArray = [currDateStr componentsSeparatedByString:@"-"];
@@ -38,10 +39,10 @@
     
     date.month = [dateArray[1]intValue];
     date.year = [dateArray[0]intValue];
-
+    date.day = [dateArray[2]intValue];
     self.mCurrDate = date;
     SafeRelease(dateFormat);
-    
+    self.mTodayDate = date;
 	// Do any additional setup after loading the view.
 }
 

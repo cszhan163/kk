@@ -98,8 +98,8 @@
     CarServiceNetDataMgr *cardShopMgr = [CarServiceNetDataMgr getSingleTone];
     
     kNetStartShow(@"数据加载...", self.view);
-    NSString *month = [NSString stringWithFormat:@"%d",mCurrDate.month];
-    NSString *year = [NSString stringWithFormat:@"%d",mCurrDate.year];
+    NSString *month = [NSString stringWithFormat:@"%d",self.mCurrDate.month];
+    NSString *year = [NSString stringWithFormat:@"%d",self.mCurrDate.year];
     self.request = [cardShopMgr  getDriveActionAnalysisDataByCarId:@"SHD05728" withMoth:month withYear:year];
     
 }

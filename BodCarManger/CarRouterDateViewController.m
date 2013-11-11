@@ -18,7 +18,7 @@
 #import "XLCycleScrollView.h"
 #endif
 
-
+#define kDateFormart   @"%d%02d"
 #define kCalendarWidth  (kDeviceScreenWidth-18.f)
 #define kCalendarHeight 250
 #define kNumberCalViewTag 999
@@ -63,7 +63,7 @@
     [super viewDidLoad];
     [self setHiddenLeftBtn:YES];
     
-    self.mMothDateKey = [NSString stringWithFormat:@"%d%02d",self.mCurrDate.year,self.mCurrDate.month];
+    self.mMothDateKey = [NSString stringWithFormat:kDateFormart,self.mCurrDate.year,self.mCurrDate.month];
     UIImage *bgImage = nil;
     UIImageWithFileName(bgImage, @"car_bg.png");
     mainView.bgImage = bgImage;
@@ -158,8 +158,10 @@
     csView = [[XLCycleScrollView alloc] initWithFrame:CGRectMake(9.f,kMBAppTopToolBarHeight+9.f,kCalendarWidth,kCalendarHeight)];
     csView.delegate = self;
     csView.datasource = self;
+    csView.pageControl.hidden = NO;
     [self.view addSubview:csView];
     SafeRelease(csView);
+    
 #endif
     
     
@@ -220,22 +222,61 @@
 
 }
 - (UIView *)pageAtIndex:(NSInteger)index withView:(XLCycleScrollView*)senderView{
+
     
+    int month = self.mTodayDate.month +senderView.nolimitIndex+index;
+    int year = self.mTodayDate.year;
+    if(month>12){
+        int num = month/12;
+        year = self.mTodayDate.year+num;
+        month = 1;
+    }
+    if(month<0){
+        int num = month/12;
+        year = self.mTodayDate.year+num;
+        month = 12;
+    }
+
+    
+    CGPoint insertPoint = CGPointMake(167,50);
+    int width = kCalendarWidth;
+    int height = kCalendarHeight;
+    OCCalendarView *tempCalView = [[OCCalendarView alloc] initAtPoint:insertPoint withFrame:CGRectMake(0.f,0.f, width, height) arrowPosition:OCArrowPositionNone];
+    [tempCalView setSelectionMode:OCSelectionDateRange];
+    //[calView setArrowPosition:];
+    //[self.view addSubview:calView];
+    [tempCalView setDateKey:[NSString stringWithFormat:kDateFormart,year,month]];
+    [tempCalView setDelegate:self];
+    [tempCalView setUserInteractionEnabled:YES];
+    /*
+     UITapGestureRecognizer *tapG = [[UITapGestureRecognizer alloc] init];
+     tapG.delegate = self;
+     [calView addGestureRecognizer:[tapG autorelease]];
+     */
+    [tempCalView setDataWithYear:year withMonth:month];
+    //[tempCalView setInitDate:curMothDict];
+    //[tempCalView setTag:kNumberCalViewTag];
+    //[grid addSubview:calView];
+    //SafeRelease(tempCalView);
+    return SafeAutoRelease(tempCalView);
+}
+- (void)didEndScrollerView:(XLCycleScrollView*)senderView{
+
     if(currIndex == senderView.nolimitIndex){
-    
+        
     }
     else{
-        int month = mTodayDate.month +senderView.nolimitIndex;
-        int year = mTodayDate.year;
+        int month = self.mTodayDate.month +senderView.nolimitIndex;
+        int year = self.mTodayDate.year;
         if(month>12){
             int num = month/12;
-            year = mTodayDate.year+num;
-            month = 1;
+            year = self.mTodayDate.year+num;
+            month = month%12;
         }
-        if(month<0){
-            int num = month/12;
-            year = mTodayDate.year+num;
-            month = 12;
+        if(month<=0){
+            int num = -1+month/12;
+            year = self.mTodayDate.year+num;
+            month = 12+month%12;
         }
         NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:
                               [NSString stringWithFormat:@"%d",month],@"month",
@@ -247,27 +288,13 @@
         else if (currIndex <senderView.nolimitIndex){
             [self didTouchAfterMoth:dict];
         }
-        NSLog(@"%@",[dict description]);
+        //NSLog(@"%@",[dict description]);
+        NSString *barTitle  = [NSString stringWithFormat:@"%d年%02d月",year,month];
+        [self setNavgationBarTitle:barTitle];
+         currIndex = senderView.nolimitIndex;
+
     }
-    currIndex = senderView.nolimitIndex;
-    CGPoint insertPoint = CGPointMake(167,50);
-    int width = kCalendarWidth;
-    int height = kCalendarHeight;
-    OCCalendarView *tempCalView = [[OCCalendarView alloc] initAtPoint:insertPoint withFrame:CGRectMake(0.f,0.f, width, height) arrowPosition:OCArrowPositionNone];
-    [tempCalView setSelectionMode:OCSelectionDateRange];
-    //[calView setArrowPosition:];
-    //[self.view addSubview:calView];
-    [tempCalView setDelegate:self];
-    [tempCalView setUserInteractionEnabled:YES];
-    /*
-     UITapGestureRecognizer *tapG = [[UITapGestureRecognizer alloc] init];
-     tapG.delegate = self;
-     [calView addGestureRecognizer:[tapG autorelease]];
-     */
-    [tempCalView setTag:kNumberCalViewTag];
-    //[grid addSubview:calView];
-    //SafeRelease(tempCalView);
-    return SafeAutoRelease(tempCalView);
+   
 }
 #pragma mark-
 #pragma mark --scrollerview
@@ -290,7 +317,6 @@
         SafeRelease(numberLabel);
         
 #else
-        
         
         
         CGPoint insertPoint = CGPointMake(167,50);
@@ -556,13 +582,17 @@ int lastDirect = -1;
 }
 - (void)updateUIData:(NSDictionary*)netData{
 
+    calView = csView.getCurrentPageView;
+    NSLog(@"%@",[calView getDateKey]);
+    if(![[calView getDateKey]isEqualToString:self.mMothDateKey]){
+        return;
+    }
     [self.mHasDataDict  removeAllObjects];
     NSMutableDictionary *uiDataDict = [NSMutableDictionary dictionary];
     NSMutableString *driveOk = [NSMutableString stringWithString:@""];
     NSMutableString *driveFailed = [NSMutableString stringWithString:@""];
     for(NSDictionary *item in netData){
         
-       
         NSString *flag = @"";
         DateStruct dateStruct;
 #if  0
@@ -621,6 +651,8 @@ int lastDirect = -1;
     
     //Now we're going to optionally set the start and end date of a pre-selected range.
     //This is totally optional.
+    
+    //OCCalendarView *currView = [csView viewWithTag: ];
     [calView  setReLayoutView];
     isNeedReflush = NO;
 

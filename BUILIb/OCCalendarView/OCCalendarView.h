@@ -47,10 +47,11 @@ typedef enum {
 
 - (NSDate *)getStartDate;
 - (NSDate *)getEndDate;
-
+- (NSString*)getDateKey;
+- (void)setDateKey:(NSString*)key;
 - (void)setInitDate:(NSDate*)date;
 - (BOOL)selected;
-
+- (void)setDataWithYear:(int)year withMonth:(int)month;
 - (void)setStartDate:(NSDate *)sDate;
 - (void)setEndDate:(NSDate *)eDate;
 - (void)startConvertPoint:(UITouch*)touch;

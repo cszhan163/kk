@@ -29,6 +29,7 @@
     OCSelectionMode _selectionMode;
     BOOL isMoveTouch;
 }
+@property(nonatomic,strong)NSString *dateKey;
 @end
 
 @implementation OCCalendarView
@@ -76,7 +77,7 @@
     selectionView = [[OCSelectionView alloc] initWithFrame:CGRectMake(kPendingX,kDayViewStartY, hDiff*7, vDiff*6)];
     [selectionView setDayItemRowHeight:vDiff rowWidth:hDiff];
     [self addSubview:selectionView];
-    
+    //selectionView.backgroundColor = [UIColor redColor];
       /*
       UIView *view = [[UIView alloc]initWithFrame:CGRectMake(66, 95, 40, 20)];
       view.backgroundColor = [UIColor redColor];
@@ -449,6 +450,18 @@
     [daysView resetRows];
     [daysView setNeedsDisplay];
 }
+- (void)setDataWithYear:(int)year withMonth:(int)month{
+    currentMonth = month;
+    currentYear = year;
+    [daysView setMonth:currentMonth];
+    [daysView setYear:currentYear];
+    [daysView resetRows];
+    [daysView setNeedsDisplay];
+
+}
+- (NSString*)getDateKey{
+    return  _dateKey;
+}
 - (void)setInitDate:(NSDate *)date{
 
     NSDateComponents *eComponents = [[NSCalendar currentCalendar] components:NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit fromDate:date];
@@ -470,6 +483,7 @@
     [daysView setNeedsDisplay];
     
 }
+
 - (void)setEndDate:(NSDate *)eDate {
     //NSLog(@"setEndDate");
     NSDateComponents *eComponents = [[NSCalendar currentCalendar] components:NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit fromDate:eDate];

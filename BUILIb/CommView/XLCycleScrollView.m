@@ -75,20 +75,23 @@
     if([subViews count] != 0) {
         [subViews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     }
-    
     [self getDisplayImagesWithCurpage:_curPage];
     
     for (int i = 0; i < 3; i++) {
         UIView *v = [_curViews objectAtIndex:i];
         v.userInteractionEnabled = YES;
+        /*
         UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self
                                                                                     action:@selector(handleTap:)];
         [v addGestureRecognizer:singleTap];
         [singleTap release];
+         */
         v.frame = CGRectOffset(v.frame, v.frame.size.width * i, 0);
+        if(i == 0){
+            v.backgroundColor = [UIColor redColor];
+        }
         [_scrollView addSubview:v];
     }
-    
     [_scrollView setContentOffset:CGPointMake(_scrollView.frame.size.width, 0)];
 }
 
@@ -103,9 +106,13 @@
     
     [_curViews removeAllObjects];
     
-    [_curViews addObject:[_datasource pageAtIndex:pre withView:self]];
-    [_curViews addObject:[_datasource pageAtIndex:page withView:self]];
-    [_curViews addObject:[_datasource pageAtIndex:last withView:self]];
+  
+    [_curViews addObject:[_datasource pageAtIndex:-1 withView:self]];
+    
+    [_curViews addObject:[_datasource pageAtIndex:0 withView:self]];
+    
+    [_curViews addObject:[_datasource pageAtIndex:1 withView:self]];
+    
 }
 
 - (int)validPageValue:(NSInteger)value {
@@ -141,7 +148,10 @@
         }
     }
 }
+- (id)getCurrentPageView{
 
+    return [_curViews objectAtIndex:1];
+}
 #pragma mark - UIScrollViewDelegate
 - (void)scrollViewDidScroll:(UIScrollView *)aScrollView {
     int x = aScrollView.contentOffset.x;
@@ -158,6 +168,9 @@
         _curPage = [self validPageValue:_curPage-1];
         _nolimitIndex = _nolimitIndex-1;
         [self loadData];
+    }
+    if(self.delegate && [self.delegate respondsToSelector:@selector(didEndScrollerView:)]){
+        [self.delegate didEndScrollerView:self];
     }
 }
 

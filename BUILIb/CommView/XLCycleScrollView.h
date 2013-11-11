@@ -34,11 +34,13 @@
 
 - (void)reloadData;
 - (void)setViewContent:(UIView *)view atIndex:(NSInteger)index;
+- (id)getCurrentPageView;
 @end
 
 @protocol XLCycleScrollViewDelegate <NSObject>
 
 @optional
+- (void)didEndScrollerView:(XLCycleScrollView*)sender;
 - (void)didClickPage:(XLCycleScrollView *)csView atIndex:(NSInteger)index;
 
 @end

@@ -73,7 +73,8 @@ UIShareActionAlertView *sharedAlterView = nil;
     AppMainUIViewManage *appMg = [AppMainUIViewManage getSingleTone];
     appMg.window = self.window;
     [appMg addMainViewUI];
-   
+    if([AppSetting getLoginUserId])
+        [self checkCarIsRunning:nil];
     [self setLastWidnows];
     //[NSTimer timerWithTimeInterval:5 invocation:@selector(checkCarIsRunning) repeats:YES];
     [ZCSNotficationMgr addObserver:self call:@selector(backDoorCheckOk:) msgName:kZCSNetWorkOK];
@@ -129,7 +130,7 @@ UIShareActionAlertView *sharedAlterView = nil;
 }
 
 - (void)checkCarIsRunning:(id)sender{
-    return;
+    //return;
     CarServiceNetDataMgr *cardNetMgr = [CarServiceNetDataMgr getSingleTone];
     [cardNetMgr getRouterLatestData:@"SHD05728"];
 }

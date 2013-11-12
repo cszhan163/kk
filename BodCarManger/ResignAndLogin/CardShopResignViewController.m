@@ -54,6 +54,12 @@
         navTitleLabel.text = @"找回密码";
     }
     mobilePhoneTextFied.text = self.mobilePhoneNumStr;
+    
+    UIButton *btn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    btn.frame = CGRectMake(0.f, 0.f, 80, 40);
+    btn.titleLabel.text = @"确定";
+    //[self.view addSubview:btn];
+    self.radomCodeTextFied.inputAccessoryView = btn;
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -99,6 +105,7 @@
     }
     [self startLogin];
 }
+
 /*
  *username	用户名	必须 ，格式是手机号
  password	密码	必须
@@ -122,12 +129,16 @@
     if(type == 0)
     {
         param = [NSDictionary dictionaryWithObjectsAndKeys:
-                           self.mobilePhoneTextFied.text,@"username",
+                           self.mobilePhoneTextFied.text,@"name",
                            self.passwordTextFied.text,@"password",
                            self.confirmPasswordTextFied.text,@"repassword",
-                           self.radomCodeTextFied.text,@"captcha",
                            nil];
-         self.request = [cardShopMgr  userResign:param];
+        NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithDictionary:param];
+        if([self.radomCodeTextFied.text isEqualToString:@""]&&[self.radomCodeTextFied.text length] == 11){
+            [dict setValue:self.radomCodeTextFied.text forKey:@"phoneNumber"];
+         }
+        //self.radomCodeTextFied.text,@"phoneNumber",
+         self.request = [cardShopMgr  carUserRegister:param];
     }
     else
     {

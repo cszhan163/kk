@@ -464,11 +464,11 @@ int lastDirect = -1;
 - (void)didChooseCalendarDay:(NSDictionary*)day{
     
     
-//    if(![self.mHasDataDict objectForKey:[day objectForKey:@"day"]]){
-//        
-//        return;
-//        
-//    }
+    if(![self.mHasDataDict objectForKey:[day objectForKey:@"day"]]){
+        
+        return;
+        
+    }
     
     NSString *title = [NSString stringWithFormat:@"%@年%@月%@日",[day objectForKey:@"year"],[day objectForKey:@"month"],[day objectForKey:@"day"]];
     

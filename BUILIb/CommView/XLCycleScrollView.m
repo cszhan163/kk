@@ -64,7 +64,16 @@
     _pageControl.numberOfPages = _totalPages;
     [self loadData];
 }
-
+- (void)resetInitStatus{
+    self.nolimitIndex = 0;
+    [self reloadData];
+}
+- (void)scrollerToNextPage{
+    [_scrollView setContentOffset:CGPointMake(_scrollView.frame.size.width*2, 0)];
+}
+- (void)scrollerToPrePage{
+    [_scrollView setContentOffset:CGPointMake(0, 0)];
+}
 - (void)loadData
 {
     
@@ -87,9 +96,6 @@
         [singleTap release];
          */
         v.frame = CGRectOffset(v.frame, v.frame.size.width * i, 0);
-        if(i == 0){
-            v.backgroundColor = [UIColor redColor];
-        }
         [_scrollView addSubview:v];
     }
     [_scrollView setContentOffset:CGPointMake(_scrollView.frame.size.width, 0)];

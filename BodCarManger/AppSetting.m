@@ -42,15 +42,17 @@
     [usrDefaults setValue:userId forKey:@"userId"];
     [usrDefaults synchronize];
 }
-+(void)setLoginUserPassword:(NSString*)password{
-    NSUserDefaults *usrDefaults = [NSUserDefaults standardUserDefaults];
-    [usrDefaults setValue:password forKey:@"userpassword"];
-    [usrDefaults synchronize];
-}
+
 +(NSString*)getLoginUserId
 {
     NSUserDefaults *usrDefaults = [NSUserDefaults standardUserDefaults];
     return [usrDefaults objectForKey:@"userId"];
+}
+
++(void)setLoginUserPassword:(NSString*)password{
+    NSUserDefaults *usrDefaults = [NSUserDefaults standardUserDefaults];
+    [usrDefaults setValue:password forKey:@"userpassword"];
+    [usrDefaults synchronize];
 }
 
 +(NSString*)getLoginUserPassword{

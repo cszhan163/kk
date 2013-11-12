@@ -69,11 +69,11 @@ UIShareActionAlertView *sharedAlterView = nil;
     [[Container instance] launchAppWithDictionary:launchOptions isDebugMode:YES toViewController:nil AutoSetView:nil];
     
 #if 1
-    [AppSetting setLoginUserId:@"kkzhan"];
+    //[AppSetting setLoginUserId:@"kkzhan"];
     AppMainUIViewManage *appMg = [AppMainUIViewManage getSingleTone];
     appMg.window = self.window;
     [appMg addMainViewUI];
-    [self checkCarIsRunning:nil];
+   
     [self setLastWidnows];
     //[NSTimer timerWithTimeInterval:5 invocation:@selector(checkCarIsRunning) repeats:YES];
     [ZCSNotficationMgr addObserver:self call:@selector(backDoorCheckOk:) msgName:kZCSNetWorkOK];

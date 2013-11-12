@@ -179,7 +179,7 @@ static NSString *kImageTextArr[] ={
     CarServiceNetDataMgr *cardShopMgr = [CarServiceNetDataMgr getSingleTone];
     NSString *userName = @"";
     NSString *userPassword = @"";
-#if 0
+#if 1
     userName = [AppSetting getLoginUserId];
     userPassword = [AppSetting setLoginUserPassword];
 #else

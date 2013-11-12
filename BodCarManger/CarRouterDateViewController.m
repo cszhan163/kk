@@ -18,7 +18,7 @@
 #import "XLCycleScrollView.h"
 #endif
 
-#define kDateFormart   @"%d%02d"
+
 #define kCalendarWidth  (kDeviceScreenWidth-18.f)
 #define kCalendarHeight 250
 #define kNumberCalViewTag 999
@@ -26,11 +26,13 @@
     IAInfiniteGridDataSource,
     XLCycleScrollViewDatasource,
     XLCycleScrollViewDelegate,
-    OCDaysViewDelegate>{
+    OCDaysViewDelegate,
+    UIBaseViewControllerDelegate>{
     OCCalendarView *calView;
     IAInfiniteGridView  *gridView;
     XLCycleScrollView   *csView;
         int        currIndex;
+        BOOL       isTodayMonth;
         
 }
 
@@ -61,16 +63,34 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.delegate = self;
     [self setHiddenLeftBtn:YES];
+    isTodayMonth = YES;
+    NSString *barTitle  = [NSString stringWithFormat:@"%d年%02d月",self.mCurrDate.year,self.mCurrDate.month];
+    [self setNavgationBarTitle:barTitle];
     
     self.mMothDateKey = [NSString stringWithFormat:kDateFormart,self.mCurrDate.year,self.mCurrDate.month];
     UIImage *bgImage = nil;
     UIImageWithFileName(bgImage, @"car_bg.png");
     mainView.bgImage = bgImage;
-    UIImageWithFileName(bgImage, @"button-message.png");
+    UIImageWithFileName(bgImage, @"router_today_date.png");
     [super setNavgationBarRightBtnImage:bgImage forStatus:UIControlStateNormal];
+    [super setNavgationBarRightBtnImage:bgImage forStatus:UIControlStateSelected];
+    CGRect rect = self.rightBtn.frame;
+    self.rightBtn.frame = CGRectMake(kDeviceScreenWidth-10.f-bgImage.size.width/kScale, rect.origin.y, bgImage.size.width/kScale, bgImage.size.height/kScale);
     NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
     
+    UIButton *preBtn = [UIComUtil createButtonWithNormalBGImageName:@"router_page_up.png" withHightBGImageName:@"router_page_up.png" withTitle:@"" withTag:0];
+    [preBtn addTarget:self action:@selector(didScrollerToPreMoth:) forControlEvents:UIControlEventTouchUpInside];
+    preBtn.frame = CGRectMake(90.f,12.f,preBtn.frame.size.width, preBtn.frame.size.height);
+    [mainView.topBarView addSubview:preBtn];
+    UIButton *nextBtn = [UIComUtil createButtonWithNormalBGImageName:@"router_page_down.png" withHightBGImageName:@"router_page_down.png" withTitle:@"" withTag:1];
+    [mainView.topBarView addSubview:nextBtn];
+    
+    [nextBtn addTarget:self action:@selector(didScrollerToAfterMoth:) forControlEvents:UIControlEventTouchUpInside];
+    
+    nextBtn.frame = CGRectMake(220.f,12.f,nextBtn.frame.size.width, nextBtn.frame.size.height);
+    [mainView.topBarView addSubview:nextBtn];
  #ifdef  FIRST   
     //Now we're going to optionally set the start and end date of a pre-selected range.
     //This is totally optional.
@@ -158,7 +178,7 @@
     csView = [[XLCycleScrollView alloc] initWithFrame:CGRectMake(9.f,kMBAppTopToolBarHeight+9.f,kCalendarWidth,kCalendarHeight)];
     csView.delegate = self;
     csView.datasource = self;
-    csView.pageControl.hidden = NO;
+    csView.pageControl.hidden = YES;
     [self.view addSubview:csView];
     SafeRelease(csView);
     
@@ -176,39 +196,81 @@
     
    
 #endif
-    
-    CGFloat currY = 250.f+40.f+50.f;
-    UIImageWithFileName(bgImage, @"regular-small.png");
-    
+    CGFloat currY = 250.f+40.f+25;
+    UIImageWithFileName(bgImage, @"today-small.png");
     UIImageView *imageView = [[UIImageView alloc]initWithImage:bgImage];
     [self.view addSubview:imageView];
     imageView.frame = CGRectMake(60.f,currY, bgImage.size.width/kScale, bgImage.size.height/kScale);
-    
+    SafeRelease(imageView);
     UILabel * label = [[UILabel alloc]initWithFrame:CGRectMake(60.f+bgImage.size.width+7,currY-5,120.f,20.f)];
+    label.text = @"今天";
+    label.backgroundColor= [UIColor clearColor];
+    label.textColor = [UIColor whiteColor];
+    label.font = [UIFont systemFontOfSize:13];
+    [self.view addSubview:label];
+    SafeRelease(label);
+    
+    currY = 250.f+40.f+50.f;
+    UIImageWithFileName(bgImage, @"regular-small.png");
+    
+    imageView = [[UIImageView alloc]initWithImage:bgImage];
+    [self.view addSubview:imageView];
+    imageView.frame = CGRectMake(60.f,currY, bgImage.size.width/kScale, bgImage.size.height/kScale);
+    SafeRelease(imageView);
+    label = [[UILabel alloc]initWithFrame:CGRectMake(60.f+bgImage.size.width+7,currY-5,120.f,20.f)];
     label.text = @"正常行使日";
     label.backgroundColor = [UIColor clearColor];
     label.textColor = [UIColor whiteColor];
-    label.font = [UIFont systemFontOfSize:14];
+    label.font = [UIFont systemFontOfSize:13];
     [self.view addSubview:label];
+    SafeRelease(label);
     
     currY = currY + 25;
-    
     UIImageWithFileName(bgImage, @"faulty-small.png");
     
     imageView = [[UIImageView alloc]initWithImage:bgImage];
     [self.view addSubview:imageView];
     imageView.frame = CGRectMake(60.f,currY, bgImage.size.width/kScale, bgImage.size.height/kScale);
-
+    SafeRelease(imageView);
     label = [[UILabel alloc]initWithFrame:CGRectMake(60.f+bgImage.size.width+7,currY-5,120.f,20.f)];
     label.text = @"报警日/故障日";
     label.backgroundColor = [UIColor clearColor];
     label.textColor = [UIColor whiteColor];
-    label.font = [UIFont systemFontOfSize:14];
+    label.font = [UIFont systemFontOfSize:13];
     [self.view addSubview:label];
-    
-    
+    SafeRelease(label);
 	// Do any additional setup after loading the view.
 }
+#pragma mark -
+- (void)didScrollerToPreMoth:(id)sender{
+    [csView scrollerToPrePage];
+
+}
+- (void)didScrollerToAfterMoth:(id)sender{
+    [csView scrollerToNextPage];
+}
+- (void)returnToTodayMonth:(id)sender{
+
+}
+-(void)didSelectorTopNavigationBarItem:(id)sender{
+    switch ([sender tag]) {
+        case  0:
+            //[self.navigationController popViewControllerAnimated:YES];// animated:<#(BOOL)animated#>
+			break;
+        case 2:
+        case 1:{
+            [csView resetInitStatus];
+            self.mCurrDate = self.mTodayDate;
+            self.mMothDateKey = [NSString stringWithFormat:kDateFormart,self.mCurrDate.year,self.mCurrDate.month];
+            isNeedReflush = YES;
+            [self checkDataChange];
+            
+            //[ZCSNotficationMgr postMSG:kStartShowSharedViewMSG obj:nil];
+        }
+    }
+    
+}
+
 #pragma mark -
 #pragma mark -- Data Source Methods
 - (NSInteger)numberOfPages{
@@ -223,18 +285,23 @@
 }
 - (UIView *)pageAtIndex:(NSInteger)index withView:(XLCycleScrollView*)senderView{
 
-    
+    if(senderView.nolimitIndex == 0){
+        isTodayMonth = YES;
+    }
+    else{
+        isTodayMonth = NO;
+    }
     int month = self.mTodayDate.month +senderView.nolimitIndex+index;
     int year = self.mTodayDate.year;
     if(month>12){
         int num = month/12;
         year = self.mTodayDate.year+num;
-        month = 1;
+        month = month%12;
     }
-    if(month<0){
-        int num = month/12;
+    if(month<=0){
+        int num = -1+month/12;
         year = self.mTodayDate.year+num;
-        month = 12;
+        month = 12+month%12;
     }
 
     
@@ -289,8 +356,6 @@
             [self didTouchAfterMoth:dict];
         }
         //NSLog(@"%@",[dict description]);
-        NSString *barTitle  = [NSString stringWithFormat:@"%d年%02d月",year,month];
-        [self setNavgationBarTitle:barTitle];
          currIndex = senderView.nolimitIndex;
 
     }
@@ -646,6 +711,17 @@ int lastDirect = -1;
  
     [self processData:data[0] withStatus:0];
     [self processData:data[1] withStatus:1];
+    if(isTodayMonth){
+        NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+        NSDateComponents *dateParts = [[NSDateComponents alloc] init];
+        [dateParts setMonth:self.mTodayDate.month];
+        [dateParts setYear:self.mTodayDate.year];
+        [dateParts setDay:self.mTodayDate.day];
+        
+        NSDate *sDate = [calendar dateFromComponents:dateParts];
+        SafeRelease(dateParts);
+        [calView addStartDate:sDate endDate:sDate withTag:2];
+    }
     
     //        NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
     
@@ -653,6 +729,8 @@ int lastDirect = -1;
     //This is totally optional.
     
     //OCCalendarView *currView = [csView viewWithTag: ];
+    NSString *barTitle  = [NSString stringWithFormat:@"%d年%02d月",self.mCurrDate.year,self.mCurrDate.month];
+    [self setNavgationBarTitle:barTitle];
     [calView  setReLayoutView];
     isNeedReflush = NO;
 

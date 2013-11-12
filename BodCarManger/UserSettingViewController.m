@@ -13,6 +13,8 @@
 #import "constant.h"
 #import "SharePlatformCenter.h"
 #import "CancelBindViewController.h"
+
+#import "CardShopLoginViewController.h"
 //
 //////#import "FriendInvitationViewController.h"
 //////#import "UserInforEditViewController.h"
@@ -120,7 +122,7 @@ static NSString *kSectionTwoArr[] = {
     
     [self addFonterView];
     [self shouldLoadDataFromNet];
-    self.data = [AppSetting getLoginUserInfo];
+    self.data = [AppSetting getLoginUserCarData];
     /*
     logInfo.contentSize = CGSizeMake(logInfo.contentSize.width, logInfo.contentSize.height+ btnsize.height+10);
      */
@@ -512,26 +514,26 @@ static NSString *kSectionTwoArr[] = {
     {
     
         [self.navigationController popToRootViewControllerAnimated:NO];
-//#if 1
-//        [AppSetting  clearCurrentLoginUser];
-//#else
-//        [AppSetting setCurrentLoginUser:@""];
-//#endif
+#if 1
+        [AppSetting  clearCurrentLoginUser];
+#else
+        [AppSetting setCurrentLoginUser:@""];
+#endif
        /*
         NSString *loginUserId = [AppSetting getLoginUserId];
         [AppSetting setLoginUserInfo:[NSD] withUserKey:loginUserId];
          */
-//        [AppSetting setUserLoginStatus:NO];
-//        LoginAndResignMainViewController *loginVc = [[LoginAndResignMainViewController alloc]init];
-//        //[self.navigationController pushViewController:tagchooseBrandVc animated:YES];
-//        UINavigationController *loginNav  = [[UINavigationController alloc]initWithRootViewController:loginVc];
-//        loginNav.navigationBarHidden = YES;
-//        /*
-//         [navCtrl presentModalViewController:loginNav animated:YES];
-//         */
-//        [ZCSNotficationMgr postMSG:kUserDidLogOut obj:nil];
-//        [ZCSNotficationMgr postMSG:kPresentModelViewController obj:loginNav];
-//        [loginVc release];
+        [AppSetting setUserLoginStatus:NO];
+        CardShopLoginViewController *loginVc = [[CardShopLoginViewController alloc]init];
+        //[self.navigationController pushViewController:tagchooseBrandVc animated:YES];
+        UINavigationController *loginNav  = [[UINavigationController alloc]initWithRootViewController:loginVc];
+        loginNav.navigationBarHidden = YES;
+        /*
+         [navCtrl presentModalViewController:loginNav animated:YES];
+         */
+        [ZCSNotficationMgr postMSG:kUserDidLogOut obj:nil];
+        [ZCSNotficationMgr postMSG:kPresentModelViewController obj:loginNav];
+        [loginVc release];
 
     }
 }

@@ -73,10 +73,10 @@
 }
 
 - (void)didTouchPreMoth:(NSDictionary*)day{
-    
+    isNeedReflush = YES;
     mCurrDate.year = [[day objectForKey:@"year"]intValue];
     mCurrDate.month = [[day objectForKey:@"month"]intValue];
-    self.mMothDateKey = [NSString stringWithFormat:@"%d%02d",mCurrDate.year,mCurrDate.month];
+    self.mMothDateKey = [NSString stringWithFormat:kDateFormart,mCurrDate.year,mCurrDate.month];
     
     [self checkDataChange];
 }
@@ -85,7 +85,7 @@
     isNeedReflush = YES;
     mCurrDate.year = [[day objectForKey:@"year"]intValue];
     mCurrDate.month = [[day objectForKey:@"month"]intValue];
-    self.mMothDateKey = [NSString stringWithFormat:@"%d%02d",mCurrDate.year,mCurrDate.month];
+    self.mMothDateKey = [NSString stringWithFormat:kDateFormart,mCurrDate.year,mCurrDate.month];
     [self checkDataChange];
     
     

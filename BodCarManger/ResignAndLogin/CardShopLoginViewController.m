@@ -78,13 +78,18 @@
 -(IBAction)login_click:(id)sender
 {
     
-    [ZCSNotficationMgr postMSG:kDisMissModelViewController obj:nil];
+    //[ZCSNotficationMgr postMSG:kDisMissModelViewController obj:nil];
     
     [self.txtusername resignFirstResponder];
     [self.txtpassword resignFirstResponder];
-    if([self.txtusername.text length]<11)
-    {
-        kUIAlertView(@"提示", @"输入的手机号码不对");
+//    if([self.txtusername.text length]<11)
+//    {
+//        kUIAlertView(@"提示", @"输入的手机号码不对");
+//        [self.txtusername becomeFirstResponder];
+//        return;
+//    }
+    if([self.txtusername.text length] == 0|| [self.txtpassword.text length] ==0){
+        kUIAlertView(@"提示", @"帐号或密码不能为空");
         [self.txtusername becomeFirstResponder];
         return;
     }
@@ -123,11 +128,11 @@
     CarServiceNetDataMgr *cardShopMgr = [CarServiceNetDataMgr getSingleTone];
     
     NSDictionary *param = [NSDictionary dictionaryWithObjectsAndKeys:
-                              self.txtusername.text,@"username",
+                              self.txtusername.text,@"name",
                               self.txtpassword.text,@"password",
                               nil];
    
-    self.request = [cardShopMgr  userLogin:param];
+    self.request = [cardShopMgr  carUserLogin:param];
 
 }
 -(IBAction)cancelLogin:(id)sender
@@ -141,21 +146,34 @@
     id obj = [ntf object];
     id respRequest = [obj objectForKey:@"request"];
     id _data = [obj objectForKey:@"data"];
-    NSString *resKey = [respRequest resourceKey];
-    if(self.request == respRequest && [resKey isEqualToString:kNetLoginRes])
+    NSString *resKey = [obj objectForKey:@"key"];//[respRequest resourceKey];
+    if([resKey isEqualToString:kNetLoginRes])
     {
         kNetEnd(self.view);
         self.request = nil;
         NE_LOG(@"%@",[_data description]);
         //[self stopShowLoadingView];
         //[Ap]
+         [AppSetting setCurrentLoginUser:self.txtusername.text];
+        [AppSetting setLoginUserId:self.txtusername.text];
+        [AppSetting setLoginUserPassword:self.txtpassword.text];
         [ZCSNotficationMgr postMSG:kDisMissModelViewController obj:nil];
     }
     
 }
 -(void)didNetDataFailed:(NSNotification*)ntf
 {
-    kNetEnd(self.view);
+    id obj = [ntf object];
+    id respRequest = [obj objectForKey:@"request"];
+    NSDictionary *_data = [obj objectForKey:@"data"];
+     NSString *resKey = [obj objectForKey:@"key"];
+    if([resKey isEqualToString:kNetLoginRes])
+    {
+        kNetEnd(self.view);
+       
+        //NSDictionary * _data = [obj objectForKey:@"data"];
+        kUIAlertView(@"提示",[_data objectForKey:@"msg"]);
+    }
     NE_LOG(@"warning not implemetation net respond");
 }
 @end

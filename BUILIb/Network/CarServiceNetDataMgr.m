@@ -453,16 +453,19 @@ static BOOL isExit = NO;
                 [resultDict setValue:locationType forKey:@"locateType"];
             else
                 [resultDict setValue:@"1" forKey:@"locateType"];
-            [self sendFinalOkData:resultDict withKey:kCarUserLogin];
+            [self sendFinalOkData:resultDict withKey:kNetLoginRes];
         }
         else{
             //kUIAlertView(<#y#>, <#x#>);
-            [self sendFinalFailedData:@"" withKey:kCarUserLogin];
+            NSMutableDictionary *errorDict = [NSMutableDictionary dictionary];
+            [errorDict setValue:info.msg forKey:@"msg"];
+            [self sendFinalFailedData:errorDict withKey:kNetLoginRes];
         }
     }
     else{
-        
-        [self sendFinalFailedData:@"" withKey:kCarUserLogin];
+        NSMutableDictionary *errorDict = [NSMutableDictionary dictionary];
+        [errorDict setValue:info.msg forKey:@"msg"];
+        [self sendFinalFailedData:errorDict withKey:kNetLoginRes];
     }
 }
 - (void)userLoginFailed:(EiInfo*)info{

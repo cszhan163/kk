@@ -33,8 +33,11 @@
 @property (nonatomic,assign,setter = setDelegate:) id<XLCycleScrollViewDelegate> delegate;
 
 - (void)reloadData;
+- (void)resetInitStatus;
 - (void)setViewContent:(UIView *)view atIndex:(NSInteger)index;
 - (id)getCurrentPageView;
+- (void)scrollerToNextPage;
+- (void)scrollerToPrePage;
 @end
 
 @protocol XLCycleScrollViewDelegate <NSObject>

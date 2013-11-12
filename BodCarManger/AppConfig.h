@@ -130,5 +130,7 @@
 //check
 #define kResCarCheckData                        @"queryConData"
 
+#define kDateFormart   @"%d%02d"
+
 #endif
 

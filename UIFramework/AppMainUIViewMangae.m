@@ -28,7 +28,7 @@
 #import "CarStatusViewController.h"
 
 #define HAVE_WINDOWLAST
-//#define USER_LOGIN
+#define USER_LOGIN
 
 #ifdef  USER_LOGIN
 //#import "LoginAndResignMainViewController.h"
@@ -117,12 +117,16 @@ static UIButton *popup = nil;
     
     NSString *loginUser = [AppSetting getCurrentLoginUser];
     NSString *loginUserId = [AppSetting getLoginUserId];
+    /*
     NSDictionary *loginUserData = nil;
+    
     if(loginUser)
     {
         loginUserData = [AppSetting getLoginUserInfo:loginUser];
     }
-    if(loginUser == nil ||loginUserData == nil||loginUserId== nil)
+     ||loginUserData == nil||loginUserId== nil
+    */
+    if(loginUser == nil )
     {
         id loginMainVc = [[NSClassFromString(kLoginViewControllerClass) alloc]init];
         UINavigationController *navCtrl = [[UINavigationController alloc]initWithRootViewController:loginMainVc];

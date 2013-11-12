@@ -21,12 +21,15 @@
 +(NSDictionary*)getLoginUserCarData;
 +(void)setLoginUserCarData:(NSDictionary*)data;
 
++(void)getLoginUserPassword;
++(void)setLoginUserPassword:(NSString*)password;
+
 +(NSString*)getCurrentLoginUser;
 +(void)setCurrentLoginUser:(NSString*)currUserId;
 +(void)clearCurrentLoginUser;
 +(void)setLoginUserId:(NSString*)userId;
 +(NSString*)getLoginUserId;
-+(NSString*)getLoginUserPassword;
+//+(NSString*)getLoginUserPassword;
 +(BOOL)getUserLoginStatus;
 +(void)setUserLoginStatus:(BOOL)status;
 +(void)setLoginUserDetailInfo:(NSDictionary*)data userId:(NSString*)userId;

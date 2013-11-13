@@ -159,7 +159,7 @@ static BOOL isExit = NO;
 
 #pragma mark -
 - (id)carInforQuery:(NSString*)username{
-    EiInfo *inInfo = [self getCommIPlant4MParam];
+    EiInfo *inInfo = [self getCommIPlant4MParamByServiceToken:@"VESA02"];
     [inInfo set:@"name" value:username];
     //queryTripCalanderMonth @"userRegister"
     [inInfo set:METHOD_TOKEN value:kCarInfoQuery]; // 接口名
@@ -168,7 +168,7 @@ static BOOL isExit = NO;
 
 }
 - (id)carInforUpdate:(NSDictionary*)param withType:(int)type{
-    EiInfo *inInfo = [self getCommIPlant4MParam];
+    EiInfo *inInfo = [self getCommIPlant4MParamByServiceToken:@"VESA02"];
     [inInfo set:@"name" value:[param objectForKey:@"name"]];
     [inInfo set:@"brandy" value:[param objectForKey:@"brandy"]];
     [inInfo set:@"model" value:[param objectForKey:@"model"]];

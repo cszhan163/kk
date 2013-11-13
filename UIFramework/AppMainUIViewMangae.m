@@ -96,7 +96,7 @@ static UIButton *popup = nil;
     [self.window addSubview:test.view];
     return;
 #endif
-
+    [[UIApplication sharedApplication] setStatusBarHidden:NO];
 	mainVC = [[NTESMBMainMenuController alloc]init];
     mainVC.delegate = self;
 #if 1
@@ -106,8 +106,6 @@ static UIButton *popup = nil;
 	currentNavgationController = navCtrl;
     
     [self.window addSubview:navCtrl.view];
-   
-    
 	//navCtrl.delegate = self;
 #else
 	[self.window addSubview:mainVC.view];

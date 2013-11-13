@@ -124,7 +124,9 @@ static NSString *kSectionTwoArr[] = {
     //[self shouldLoadDataFromNet];
     [self performSelectorInBackground:@selector(shouldLoadDataFromNet) withObject:nil];
     NSString *userId = [AppSetting getLoginUserId];
-    self.userData = [AppSetting getLoginUserDetailInfo:userId];
+    if(userId){
+        self.userData = [AppSetting getLoginUserDetailInfo:userId];
+    }
     /*
     logInfo.contentSize = CGSizeMake(logInfo.contentSize.width, logInfo.contentSize.height+ btnsize.height+10);
      */

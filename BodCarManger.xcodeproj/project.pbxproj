@@ -265,8 +265,8 @@
 		04E4D0F418325F9C00B6D5D9 /* router_page_down.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E4D0F018325F9C00B6D5D9 /* router_page_down.png */; };
 		04E4D0F518325F9C00B6D5D9 /* router_page_up.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E4D0F118325F9C00B6D5D9 /* router_page_up.png */; };
 		04E4D0F618325F9C00B6D5D9 /* router_today_date.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E4D0F218325F9C00B6D5D9 /* router_today_date.png */; };
-		04E5D6F0182F3057006832B9 /* item_change_btn.png.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E5D6ED182F3057006832B9 /* item_change_btn.png.png */; };
-		04E5D6F1182F3057006832B9 /* item_default.png.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E5D6EE182F3057006832B9 /* item_default.png.png */; };
+		04E5D6F0182F3057006832B9 /* item_change_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E5D6ED182F3057006832B9 /* item_change_btn.png */; };
+		04E5D6F1182F3057006832B9 /* item_default_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E5D6EE182F3057006832B9 /* item_default_btn.png */; };
 		04E5D6F2182F3057006832B9 /* qr_btn.png.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E5D6EF182F3057006832B9 /* qr_btn.png.png */; };
 		04FE070A1818188F00EEC76A /* drive_oil_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 04FE07041818188F00EEC76A /* drive_oil_btn.png */; };
 		04FE070B1818188F00EEC76A /* drive_habit_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 04FE07051818188F00EEC76A /* drive_habit_btn.png */; };
@@ -689,8 +689,8 @@
 		04E4D0F018325F9C00B6D5D9 /* router_page_down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = router_page_down.png; path = ../../router/icon/router_page_down.png; sourceTree = "<group>"; };
 		04E4D0F118325F9C00B6D5D9 /* router_page_up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = router_page_up.png; path = ../../router/icon/router_page_up.png; sourceTree = "<group>"; };
 		04E4D0F218325F9C00B6D5D9 /* router_today_date.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = router_today_date.png; path = ../../router/icon/router_today_date.png; sourceTree = "<group>"; };
-		04E5D6ED182F3057006832B9 /* item_change_btn.png.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = item_change_btn.png.png; sourceTree = "<group>"; };
-		04E5D6EE182F3057006832B9 /* item_default.png.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = item_default.png.png; sourceTree = "<group>"; };
+		04E5D6ED182F3057006832B9 /* item_change_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = item_change_btn.png; sourceTree = "<group>"; };
+		04E5D6EE182F3057006832B9 /* item_default_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = item_default_btn.png; sourceTree = "<group>"; };
 		04E5D6EF182F3057006832B9 /* qr_btn.png.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = qr_btn.png.png; sourceTree = "<group>"; };
 		04FE07041818188F00EEC76A /* drive_oil_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = drive_oil_btn.png; sourceTree = "<group>"; };
 		04FE07051818188F00EEC76A /* drive_habit_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = drive_habit_btn.png; sourceTree = "<group>"; };
@@ -1662,8 +1662,8 @@
 		04FE072A181973C300EEC76A /* setting */ = {
 			isa = PBXGroup;
 			children = (
-				04E5D6ED182F3057006832B9 /* item_change_btn.png.png */,
-				04E5D6EE182F3057006832B9 /* item_default.png.png */,
+				04E5D6ED182F3057006832B9 /* item_change_btn.png */,
+				04E5D6EE182F3057006832B9 /* item_default_btn.png */,
 				04E5D6EF182F3057006832B9 /* qr_btn.png.png */,
 				042778AE18202737008C6432 /* setting_cell_footer.png */,
 				042778AF18202737008C6432 /* setting_cell_header.png */,
@@ -1985,8 +1985,8 @@
 				043385FA182E860400CEE699 /* sina_weibo.png in Resources */,
 				043385FB182E860400CEE699 /* wechat.png in Resources */,
 				04338600182E92E100CEE699 /* tencent_weibo.png in Resources */,
-				04E5D6F0182F3057006832B9 /* item_change_btn.png.png in Resources */,
-				04E5D6F1182F3057006832B9 /* item_default.png.png in Resources */,
+				04E5D6F0182F3057006832B9 /* item_change_btn.png in Resources */,
+				04E5D6F1182F3057006832B9 /* item_default_btn.png in Resources */,
 				04E5D6F2182F3057006832B9 /* qr_btn.png.png in Resources */,
 				04E4D0F418325F9C00B6D5D9 /* router_page_down.png in Resources */,
 				04E4D0F518325F9C00B6D5D9 /* router_page_up.png in Resources */,

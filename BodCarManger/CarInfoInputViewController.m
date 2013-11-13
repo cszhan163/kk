@@ -8,8 +8,10 @@
 
 #import "CarInfoInputViewController.h"
 
-@interface CarInfoInputViewController ()
+@interface CarInfoInputViewController (){
 
+}
+@property(nonatomic,strong)NSString *srcText;
 @end
 
 @implementation CarInfoInputViewController
@@ -22,13 +24,37 @@
     }
     return self;
 }
+- (void)viewWillDisappear:(BOOL)animated{
 
+    [self removeObserver:self.subClassInputTextField forKeyPath:@"text"];
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
     [self setNavgationBarTitle:self.barTitle];
+    [self setHiddenRightBtn:NO];
+    self.srcText = self.subClassInputTextField.text;
+    UIImage *bgImage = nil;
+    UIImageWithFileName(bgImage, @"car_bg.png");
+    mainView.bgImage = bgImage;
+    UIView *bgView = [[UIView alloc]initWithFrame:CGRectMake(0.f, kMBAppTopToolBarHeight,kDeviceScreenWidth, kDeviceScreenHeight-kMBAppTopToolBarHeight-kMBAppStatusBar)];
+    bgView.backgroundColor = HexRGB(202, 202, 204);
     
+    [self.view insertSubview:bgView belowSubview:self.subClassInputTextField];
+    SafeRelease(bgView);
+    
+    
+    UIImageWithFileName(bgImage, @"item_default_btn.png");
+    assert(bgImage);
+    [super setNavgationBarRightBtnImage:bgImage forStatus:UIControlStateNormal];
+    UIImageWithFileName(bgImage, @"item_change_btn.png");
+    [super setNavgationBarRightBtnImage:bgImage forStatus:UIControlStateSelected];
+    self.rightBtn.frame = CGRectMake(kDeviceScreenWidth-10-bgImage.size.width/kScale, self.rightBtn.frame.origin.y, bgImage.size.width/kScale, bgImage.size.height/kScale);
+    [self addObserver:self.subClassInputTextField forKeyPath:@"text"  options:NSKeyValueObservingOptionNew context:NULL];
+    
+    [super setNavgationBarRightBtnText:@"确定" forStatus:UIControlStateNormal];
+    //self.rightBtn.titleLabel.textColor = [UIColor whiteColor];
     if(self.type == 0)
     {
         //[self setNavgationBarTitle:NSLocalizedString(@"获取验证码", @"")];
@@ -55,6 +81,14 @@
     }
 	// Do any additional setup after loading the view.
 }
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{
+    if([object isEqualToString:self.srcText]){
+        self.rightBtn.selected = NO;
+    }
+    else{
+        self.rightBtn.selected = YES;
+    }
+}
 - (void)dateChange:(UIDatePicker*)sender{
     NSDateComponents *dateComonets = [[NSCalendar currentCalendar] components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit  fromDate:sender.date];
     //[dateComonets ]
@@ -71,6 +105,29 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+-(void)didSelectorTopNavItem:(id)navObj
+{
+	NE_LOG(@"select item:%d",[navObj tag]);
+    
+	switch ([navObj tag])
+	{
+		case 0:
+        {
+            [self.navigationController popViewControllerAnimated:YES];// animated:
+        }
+			break;
+		case 1:
+		{
+            //[self startRestPassword];
+            if(delegate && [delegate respondsToSelector:@selector(setCellItemData:withIndexPath:)]){
+                [delegate setCellItemData:self.subClassInputTextField.text withIndexPath:self.indexPath];
+            }
+            [self.navigationController popViewControllerAnimated:YES];
+			break;
+		}
+	}
+    
 }
 
 @end

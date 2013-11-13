@@ -9,7 +9,7 @@
 #import "UIBaseViewController.h"
 //#import "LoginViewController.h"
 #import "CardShopBaseViewController.h"
-@interface ResetPasswordViewController:CardShopBaseViewController
+@interface ResetPasswordViewController:UISimpleNetBaseViewController
 @property(nonatomic,retain)UITextField *subClassInputTextField;
 @property(nonatomic,retain)NSString *userEmail;
 @property(nonatomic,assign)NSInteger type;

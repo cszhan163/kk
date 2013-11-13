@@ -76,6 +76,8 @@
 #define MSG_TIMER
 
 
+#define kCheckCardRecentRun     @"checkCardRecentRun"
+
 /**
  login and register
  */

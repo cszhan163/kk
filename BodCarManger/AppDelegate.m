@@ -78,6 +78,7 @@ UIShareActionAlertView *sharedAlterView = nil;
     [self setLastWidnows];
     //[NSTimer timerWithTimeInterval:5 invocation:@selector(checkCarIsRunning) repeats:YES];
     [ZCSNotficationMgr addObserver:self call:@selector(backDoorCheckOk:) msgName:kZCSNetWorkOK];
+    [ZCSNotficationMgr addObserver:self call:@selector(checkCarIsRunning:) msgName:kCheckCardRecentRun];
     //
     //[UIAlertViewMgr getSigleTone];
     

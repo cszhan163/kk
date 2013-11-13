@@ -135,6 +135,7 @@ static UIButton *popup = nil;
         navCtrl.navigationBarHidden = YES;
         //[ZCSNotficationMgr postMSG:kPresentModelViewController obj:navCtrl];
         [currentNavgationController presentModalViewController:navCtrl animated:NO];
+        SafeAutoRelease(navCtrl);
         
     }
 #endif

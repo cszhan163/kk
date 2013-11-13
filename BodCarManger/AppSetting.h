@@ -15,13 +15,14 @@
 
 }
 
-+(void)setLoginUserInfo:(NSDictionary*)data withUserKey:(NSString*)userId;
+//+(void)setLoginUserInfo:(NSDictionary*)data withUserKey:(NSString*)userId;
 +(NSDictionary*)getLoginUserInfo:(NSString*)usrId;
+
 
 +(NSDictionary*)getLoginUserCarData;
 +(void)setLoginUserCarData:(NSDictionary*)data;
 
-+(void)getLoginUserPassword;
++(NSString*)getLoginUserPassword;
 +(void)setLoginUserPassword:(NSString*)password;
 
 +(NSString*)getCurrentLoginUser;

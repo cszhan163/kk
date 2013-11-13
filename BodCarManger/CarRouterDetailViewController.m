@@ -116,7 +116,7 @@
    
    // [mMapView showRouteFrom:mStartPoint to:mEndPoint];
     
-    [self loadRouterHistoryData];
+    [self performSelectorInBackground:@selector(loadRouterHistoryData) withObject:nil];
     
     //[mainView.topBarView ];
 	// Do any additional setup after loading the view.

@@ -58,11 +58,14 @@
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     btn.frame = CGRectMake(0.f, 0.f, 80, 40);
     btn.titleLabel.text = @"确定";
+    [btn addTarget:self action:@selector(doneInput) forControlEvents:UIControlEventTouchUpInside];
     //[self.view addSubview:btn];
     self.radomCodeTextFied.inputAccessoryView = btn;
     // Do any additional setup after loading the view from its nib.
 }
-
+- (void)doneInput{
+    [self.radomCodeTextFied resignFirstResponder];
+}
 - (void)viewDidUnload
 {
     [super viewDidUnload];
@@ -97,7 +100,7 @@
     [self.radomCodeTextFied resignFirstResponder];
     [self.passwordTextFied resignFirstResponder];
     [self.confirmPasswordTextFied resignFirstResponder];
-    if([self.mobilePhoneTextFied.text length]<11)
+    if(![self.radomCodeTextFied.text isEqualToString:@""]&&[self.radomCodeTextFied.text length]<11)
     {
         kUIAlertView(@"提示", @"输入的手机号码不对");
         [self.mobilePhoneTextFied becomeFirstResponder];
@@ -164,19 +167,21 @@
     id obj = [ntf object];
     id respRequest = [obj objectForKey:@"request"];
     id _data = [obj objectForKey:@"data"];
-    NSString *resKey = [respRequest resourceKey];
-    if(self.request == respRequest&&([resKey isEqualToString:@"register"]|| [resKey isEqualToString:@"findpassword"]))
+    NSString *resKey = [obj objectForKey:@"key"];//[respRequest resourceKey];
+    if(self.request == respRequest&&([resKey isEqualToString:kCarUserRegister]|| [resKey isEqualToString:@"findpassword"]))
     {
         self.request = nil;
         kNetEnd(self.view);
         NSDictionary *param = [NSDictionary dictionaryWithObjectsAndKeys:
                  self.mobilePhoneTextFied.text,@"username",
                                self.passwordTextFied.text,@"password",nil];
-        [AppSetting setLoginUserInfo:param];
+        //[AppSetting setLoginUserInfo:param];
         [AppSetting setLoginUserId:self.mobilePhoneTextFied.text];
+        [AppSetting setLoginUserPassword:self.passwordTextFied.text];
         NE_LOG(@"%@",[_data description]);
         //[self stopShowLoadingView];
         //[Ap]
+        [ZCSNotficationMgr postMSG:kCheckCardRecentRun obj:nil];
         [ZCSNotficationMgr postMSG:kDisMissModelViewController obj:nil];
     }
     
@@ -188,12 +193,14 @@
 }
 -(void)textFieldDidEndEditing:(id)sender
 {
-    if(sender == self.confirmPasswordTextFied)
+    //if(sender == self.confirmPasswordTextFied)
+    if(sender == self.passwordTextFied)
         [sender resignFirstResponder];
 }
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    if(textField == self.confirmPasswordTextFied)
+    //if(textField == self.confirmPasswordTextFied)
+    if(textField == self.passwordTextFied)
         [textField resignFirstResponder];
     return YES;
 }

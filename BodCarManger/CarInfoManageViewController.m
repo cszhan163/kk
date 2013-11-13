@@ -39,7 +39,7 @@ static NSString *kCarOtherInfoArray[] = {
     [super viewDidLoad];
     
     
-    
+    [self setHiddenLeftBtn:NO];
     [self setNavgationBarTitle:@"车量和设备信息"];
     self.data = [AppSetting getLoginUserCarData];
     //[self shouldLoadCarInfoData];

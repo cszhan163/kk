@@ -106,6 +106,9 @@
     [usrDefaults setValue:data forKey:userId];
     [usrDefaults synchronize];
 }
+//+(NSDictionary*)getLoginUserDetailInfo:(NSString*)userId{
+//    
+//}
 +(NSDictionary*)getLoginUserDetailInfo:(NSString*)userId
 {
     NSUserDefaults *usrDefaults = [NSUserDefaults standardUserDefaults];

@@ -119,10 +119,12 @@ static NSString *kSectionTwoArr[] = {
     [self setNavgationBarTitle:NSLocalizedString(@"设置", @""
                                                  )];
     [self setRightBtnHidden:YES];
-    
+    [self setHiddenLeftBtn:YES];
     [self addFonterView];
-    [self shouldLoadDataFromNet];
-    self.data = [AppSetting getLoginUserCarData];
+    //[self shouldLoadDataFromNet];
+    [self performSelectorInBackground:@selector(shouldLoadDataFromNet) withObject:nil];
+    NSString *userId = [AppSetting getLoginUserId];
+    self.userData = [AppSetting getLoginUserDetailInfo:userId];
     /*
     logInfo.contentSize = CGSizeMake(logInfo.contentSize.width, logInfo.contentSize.height+ btnsize.height+10);
      */
@@ -534,6 +536,7 @@ static NSString *kSectionTwoArr[] = {
         [ZCSNotficationMgr postMSG:kUserDidLogOut obj:nil];
         [ZCSNotficationMgr postMSG:kPresentModelViewController obj:loginNav];
         [loginVc release];
+        SafeAutoRelease(loginNav);
 
     }
 }
@@ -548,12 +551,13 @@ static NSString *kSectionTwoArr[] = {
 #pragma mark -
 #pragma mark net work
 - (void)shouldLoadDataFromNet{
+    
     CarServiceNetDataMgr *cardShopMgr = [CarServiceNetDataMgr getSingleTone];
     NSString *userName = @"";
     NSString *userPassword = @"";
-#if 0
+#if 1
     userName = [AppSetting getLoginUserId];
-    userPassword = [AppSetting setLoginUserPassword];
+    userPassword = [AppSetting getLoginUserPassword];
 #else
     userName = @"kkzhan";
     userPassword= @"123456";

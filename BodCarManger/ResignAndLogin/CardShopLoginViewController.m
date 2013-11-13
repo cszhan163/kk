@@ -155,8 +155,13 @@
         //[self stopShowLoadingView];
         //[Ap]
          [AppSetting setCurrentLoginUser:self.txtusername.text];
+        
+        
+        [AppSetting setLoginUserDetailInfo:_data userId:self.txtusername.text];
+        //[AppSetting setLoginUserInfo:];
         [AppSetting setLoginUserId:self.txtusername.text];
         [AppSetting setLoginUserPassword:self.txtpassword.text];
+        [ZCSNotficationMgr postMSG:kCheckCardRecentRun obj:nil];
         [ZCSNotficationMgr postMSG:kDisMissModelViewController obj:nil];
     }
     

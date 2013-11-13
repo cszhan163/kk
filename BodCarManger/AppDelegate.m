@@ -73,7 +73,8 @@ UIShareActionAlertView *sharedAlterView = nil;
     AppMainUIViewManage *appMg = [AppMainUIViewManage getSingleTone];
     appMg.window = self.window;
     [appMg addMainViewUI];
-    if([AppSetting getLoginUserId])
+    NSString *usrId = [AppSetting getLoginUserId];
+    if(usrId && ![usrId isEqualToString:@""])
         [self checkCarIsRunning:nil];
     [self setLastWidnows];
     //[NSTimer timerWithTimeInterval:5 invocation:@selector(checkCarIsRunning) repeats:YES];

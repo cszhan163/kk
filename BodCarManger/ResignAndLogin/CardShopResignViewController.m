@@ -54,13 +54,16 @@
         navTitleLabel.text = @"找回密码";
     }
     mobilePhoneTextFied.text = self.mobilePhoneNumStr;
-    
+    mobilePhoneTextFied.textColor = HexRGB(137, 137, 137);
+    self.radomCodeTextFied.textColor = HexRGB(137, 137, 137);
+    self.passwordTextFied.textColor = HexRGB(137, 137, 137);
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     btn.frame = CGRectMake(0.f, 0.f, 80, 40);
     btn.titleLabel.text = @"确定";
     [btn addTarget:self action:@selector(doneInput) forControlEvents:UIControlEventTouchUpInside];
     //[self.view addSubview:btn];
     self.radomCodeTextFied.inputAccessoryView = btn;
+    mobilePhoneTextFied.delegate = self;
     // Do any additional setup after loading the view from its nib.
 }
 - (void)doneInput{
@@ -100,10 +103,20 @@
     [self.radomCodeTextFied resignFirstResponder];
     [self.passwordTextFied resignFirstResponder];
     [self.confirmPasswordTextFied resignFirstResponder];
+    if([self.mobilePhoneTextFied.text isEqualToString:@""]){
+        kUIAlertView(@"提示", @"用户名不能为空");
+        [self.mobilePhoneTextFied becomeFirstResponder];
+        return;
+    }
+    if([self.passwordTextFied.text isEqualToString:@""]){
+        kUIAlertView(@"提示", @"密码不能为空");
+        [self.passwordTextFied becomeFirstResponder];
+        return;
+    }
     if(![self.radomCodeTextFied.text isEqualToString:@""]&&[self.radomCodeTextFied.text length]<11)
     {
-        kUIAlertView(@"提示", @"输入的手机号码不对");
-        [self.mobilePhoneTextFied becomeFirstResponder];
+        kUIAlertView(@"提示", @"手机号码输入不对");
+        [self.radomCodeTextFied becomeFirstResponder];
         return;
     }
     [self startLogin];
@@ -199,9 +212,12 @@
 }
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    //if(textField == self.confirmPasswordTextFied)
-    if(textField == self.passwordTextFied)
-        [textField resignFirstResponder];
+    if(textField == self.mobilePhoneTextFied){
+        [self.passwordTextFied becomeFirstResponder];
+        return NO;
+    }
+    //if(textField == self.passwordTextFied)
+    [textField resignFirstResponder];
     return YES;
 }
 @end

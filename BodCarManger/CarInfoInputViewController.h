@@ -12,5 +12,6 @@
     
      UIDatePicker *datePickView;
 }
+@property(nonatomic,strong)NSIndexPath *indexPath;
 @property(nonatomic,strong)NSString *barTitle;
 @end

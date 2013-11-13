@@ -160,7 +160,7 @@ static BOOL isExit = NO;
 #pragma mark -
 - (id)carInforQuery:(NSString*)username{
     EiInfo *inInfo = [self getCommIPlant4MParamByServiceToken:@"VESA02"];
-    [inInfo set:@"name" value:username];
+    [inInfo set:@"userName" value:username];
     //queryTripCalanderMonth @"userRegister"
     [inInfo set:METHOD_TOKEN value:kCarInfoQuery]; // 接口名
     [self startiPlant4MRequest:inInfo withSuccess:@selector(carInforQueryOk:) withFailed:@selector(carInforQueryFailed:)];
@@ -169,13 +169,16 @@ static BOOL isExit = NO;
 }
 - (id)carInforUpdate:(NSDictionary*)param withType:(int)type{
     EiInfo *inInfo = [self getCommIPlant4MParamByServiceToken:@"VESA02"];
-    [inInfo set:@"name" value:[param objectForKey:@"name"]];
+    [inInfo set:@"userName" value:[param objectForKey:@"userName"]];
     [inInfo set:@"brandy" value:[param objectForKey:@"brandy"]];
     [inInfo set:@"model" value:[param objectForKey:@"model"]];
     [inInfo set:@"NO" value:[param objectForKey:@"NO"]];
     [inInfo set:@"milage" value:[param objectForKey:@"milage"]];
     [inInfo set:@"lastMilage" value:[param objectForKey:@"lastMilage"]];
     [inInfo set:@"lastmaintainDate" value:[param objectForKey:@"lastmaintainDate"]];
+    [inInfo set:@"OBD" value:[param objectForKey:@"OBD"]];
+    //[inInfo set:@"type" value:[NSString stringWithFormat:@"%d",type]];
+    [inInfo set:@"type" value:[param objectForKey:@"type"]];
     [inInfo set:@"insureExpDate" value:[param objectForKey:@"insureExpDate"]];
     //queryTripCalanderMonth @"userRegister"
     [inInfo set:METHOD_TOKEN value:kCarInfoUpdate]; // 接口名
@@ -522,7 +525,7 @@ static BOOL isExit = NO;
     }
 
 }
-- (void)carInforUpdateFailed:(EiInfo*)info{
+- (void)carInforQueryFailed:(EiInfo*)info{
     [self sendFinalFailedData:@"" withKey:kCarInfoQuery];
 }
 
@@ -537,17 +540,18 @@ static BOOL isExit = NO;
         [resultDict setValue:[info get:@"versionCur"] forKey:@"versionCur"];
         [resultDict setValue:[info get:@"versionCur"] forKey:@"versionCur"];
         [resultDict setValue:[info get:@"url"] forKey:@"url"];
-        [self sendFinalOkData:resultDict withKey:kCarInfoQuery];
+        [self sendFinalOkData:resultDict withKey:kCarInfoUpdate];
     }
     else{
         
-        [self sendFinalFailedData:@"" withKey:kCarInfoQuery];
+        [self sendFinalFailedData:@"" withKey:kCarInfoUpdate];
     }
     
 }
-- (void)carInforQueryFailed:(EiInfo*)info{
-    [self sendFinalFailedData:@"" withKey:kCarInfoQuery];
+- (void)carInforUpdateFailed:(EiInfo*)info{
+    [self sendFinalFailedData:@"" withKey:kCarInfoUpdate];
 }
+
 
 #pragma mark -
 #pragma mark delegate router

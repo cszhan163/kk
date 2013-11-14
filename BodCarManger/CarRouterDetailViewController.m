@@ -106,7 +106,7 @@
     [self.view addSubview:carDetailPenalView];
     CGFloat offsetY = 0.f;
 #if kMapHasTab
-    offsetY = kMBAppBottomToolBarHeght;
+    offsetY = kMBAppBottomToolBarHeght-1;
 #endif
     carDetailPenalView.frame = CGRectMake(0.f,kDeviceScreenHeight-kMBAppStatusBar-carDetailPenalView.frame.size.height-offsetY, carDetailPenalView.frame.size.width, carDetailPenalView.frame.size.height);
     

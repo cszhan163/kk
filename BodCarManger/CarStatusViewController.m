@@ -42,7 +42,12 @@
     }
     return self;
 }
-
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    if(![[UIApplication sharedApplication] checkCarInforData]){
+        return;
+    }
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -199,7 +204,16 @@
     CarServiceNetDataMgr *cardShopMgr = [CarServiceNetDataMgr getSingleTone];
     //[self startShowLoadingView];
     //kNetStartShow(@"数据加载...", self.view);
-    [cardShopMgr getCarCheckData:@"SHD05728"];
+    NSString *userId = [AppSetting getLoginUserId];
+    NSString *cardId = nil;
+    if(userId){
+        cardId = [AppSetting getUserCarId:userId];
+    }
+    if(cardId == nil||[cardId isEqualToString:@""]){
+        return;
+    }
+    //NSString *carId = [AppSetting getUserCarId:];
+    [cardShopMgr getCarCheckData:cardId];
     self.timer = [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(timerUpdateProcess) userInfo:nil repeats:YES];
     processView.hidden = NO;
 }

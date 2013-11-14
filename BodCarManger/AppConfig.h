@@ -136,5 +136,7 @@
 
 #define kMapHasTab   1
 
+#define kAlertCardBidMSG                    @"请先添加车辆信息"
+
 #endif
 

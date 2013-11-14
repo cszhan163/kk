@@ -11,7 +11,7 @@
 @class ViewController;
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
-
+-(BOOL)checkCarInforData;
 @property (strong, nonatomic) UIWindow *window;
 
 @property (strong, nonatomic) ViewController *viewController;

@@ -30,6 +30,10 @@
 +(void)clearCurrentLoginUser;
 +(void)setLoginUserId:(NSString*)userId;
 +(NSString*)getLoginUserId;
+
++(NSString*)getUserCarId:(NSString*)userId;
++(void)setUserCarId:(NSString*)carId withUserId:(NSString*)usrId;
+
 //+(NSString*)getLoginUserPassword;
 +(BOOL)getUserLoginStatus;
 +(void)setUserLoginStatus:(BOOL)status;

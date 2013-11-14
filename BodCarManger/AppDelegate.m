@@ -74,7 +74,8 @@ UIShareActionAlertView *sharedAlterView = nil;
     appMg.window = self.window;
     [appMg addMainViewUI];
     NSString *usrId = [AppSetting getLoginUserId];
-    if(usrId && ![usrId isEqualToString:@""])
+    NSString *cardId = [AppSetting getUserCarId:usrId];
+    if(cardId && ![cardId isEqualToString:@""])
         [self checkCarIsRunning:nil];
     [self setLastWidnows];
     //[NSTimer timerWithTimeInterval:5 invocation:@selector(checkCarIsRunning) repeats:YES];
@@ -133,8 +134,13 @@ UIShareActionAlertView *sharedAlterView = nil;
 
 - (void)checkCarIsRunning:(id)sender{
     //return;
+    NSString *usrId = [AppSetting getLoginUserId];
+    NSString *cardId = [AppSetting getUserCarId:usrId];
+    if(cardId == nil||[cardId isEqualToString:@""]){
+        
+    }
     CarServiceNetDataMgr *cardNetMgr = [CarServiceNetDataMgr getSingleTone];
-    [cardNetMgr getRouterLatestData:@"SHD05728"];
+    [cardNetMgr getRouterLatestData:cardId];
 }
 - (void)backDoorRequest{
     
@@ -150,5 +156,18 @@ UIShareActionAlertView *sharedAlterView = nil;
 
 - (void)backDoorCheckOk:(NSNotification*)ntf{
     
+}
+-(BOOL)checkCarInforData{
+    NSString *userId = [AppSetting getLoginUserId];
+    NSString *cardId = nil;
+    if(userId){
+        cardId = [AppSetting getUserCarId:userId];
+    }
+    if(cardId == nil||[cardId isEqualToString:@""]){
+        kUIAlertView(@"信息", kAlertCardBidMSG);
+        [ZCSNotficationMgr postMSG:kNavTabItemMSG obj:[NSNumber numberWithInt:kTabCountMax-1]];
+        return NO;
+    }
+    return  YES;
 }
 @end

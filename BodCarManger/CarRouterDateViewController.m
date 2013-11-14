@@ -554,8 +554,9 @@ int lastDirect = -1;
 #pragma mark -
 #pragma mark net work
 - (void)refulshNetData{
-    CarServiceNetDataMgr *cardShopMgr = [CarServiceNetDataMgr getSingleTone];
     
+    
+    CarServiceNetDataMgr *cardShopMgr = [CarServiceNetDataMgr getSingleTone];
     //[self startShowLoadingView];
     NSString *mothParm = [NSString stringWithFormat:@"%d%02d",self.mCurrDate.year,self.mCurrDate.month];
     kNetStartShow(@"数据加载...", self.view);

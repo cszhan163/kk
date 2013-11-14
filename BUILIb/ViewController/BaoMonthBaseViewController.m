@@ -53,6 +53,9 @@
 }
 - (void)checkDataChange{
     
+    if(![[UIApplication sharedApplication] checkCarInforData]){
+        return;
+    }
 #if 0
     NSArray * dataArray = [NSArray arrayWithObject:
                            [NSDictionary dictionary]]

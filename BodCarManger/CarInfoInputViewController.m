@@ -53,7 +53,7 @@
     self.rightBtn.frame = CGRectMake(kDeviceScreenWidth-10-bgImage.size.width/kScale, self.rightBtn.frame.origin.y, bgImage.size.width/kScale, bgImage.size.height/kScale);
     [self addObserver:self.subClassInputTextField forKeyPath:@"text"  options:NSKeyValueObservingOptionNew context:NULL];
     
-    [super setNavgationBarRightBtnText:@"确定" forStatus:UIControlStateNormal];
+    //[super setNavgationBarRightBtnText:@"确定" forStatus:UIControlStateNormal];
     //self.rightBtn.titleLabel.textColor = [UIColor whiteColor];
     if(self.type == 0)
     {

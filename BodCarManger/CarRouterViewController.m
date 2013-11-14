@@ -311,7 +311,12 @@ NSString* gDataArr[] = {@"12.5km",@"11km/h",@"87L",@"3h"};
     NSDictionary *item = [self.dataArray objectAtIndex:indexPath.row];
     //NSDictionary *data = [item objectForKey:@"DayDetailInfo"];
     vc.mData = item;
+#if kMapHasTab
+    [self.navigationController pushViewController:vc animated:YES];
+#else
+    
     [ZCSNotficationMgr postMSG:kPushNewViewController obj:vc];
+#endif
     //[self.navigationController pushViewController:vc animated:YES];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     SafeRelease(vc);

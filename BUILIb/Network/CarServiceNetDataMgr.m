@@ -10,6 +10,7 @@
 #import "ZCSNetClientNetInterfaceMgr.h"
 #import "ZCSNetClientConfig.h"
 #import "ZCSNetClient.h"
+#import "ZCSNotficationMgr.h"
 //#import "AppSetting.h"
 #import <iPlat4M_framework/iPlat4M_framework.h>
 //#import "AppConfig_bak.h"
@@ -186,6 +187,7 @@ static BOOL isExit = NO;
     return nil;
     
 }
+
 #pragma mark -
 #pragma mark rounter
 - (id)getDetailByMonth:(NSDictionary*)param{

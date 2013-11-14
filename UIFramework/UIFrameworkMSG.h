@@ -14,4 +14,6 @@
 #define  kPresentModelViewController    @"presentModelViewController"
 #define  kDisMissModelViewController    @"dismissModelViewController"
 
+#define  kNavTabItemMSG                 @"navTabItemMSG"
+
 #endif

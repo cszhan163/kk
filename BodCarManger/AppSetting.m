@@ -109,6 +109,15 @@
 //+(NSDictionary*)getLoginUserDetailInfo:(NSString*)userId{
 //    
 //}
++(NSString*)getUserCarId:(NSString*)userId{
+    NSUserDefaults *usrDefaults = [NSUserDefaults standardUserDefaults];
+    return [usrDefaults objectForKey:@"loginUserCarId"];
+}
++(void)setUserCarId:(NSString*)carId withUserId:(NSString*)userId{
+    NSUserDefaults *usrDefaults = [NSUserDefaults standardUserDefaults];
+    [usrDefaults setValue:carId forKey:@"loginUserCarId"];
+    [usrDefaults synchronize];
+}
 +(NSDictionary*)getLoginUserDetailInfo:(NSString*)userId
 {
     NSUserDefaults *usrDefaults = [NSUserDefaults standardUserDefaults];
@@ -130,8 +139,10 @@
 +(void)clearCurrentLoginUser
 {
     NSUserDefaults *usrDefaults = [NSUserDefaults standardUserDefaults];
+#if 0
     NSString *usrId = [usrDefaults objectForKey:kCurrentLoginUser];
     [usrDefaults removeObjectForKey:usrId];
+#endif
     [usrDefaults removeObjectForKey:kCurrentLoginUser];
     [usrDefaults synchronize];
 }

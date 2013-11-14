@@ -61,6 +61,7 @@ static UIButton *popup = nil;
     [ZCSNotficationMgr addObserver:self call:@selector(presentViewControllerFromMsg:) msgName:kPresentModelViewController];
     [ZCSNotficationMgr addObserver:self call:@selector(dismissViewControllerFromMsg:) msgName:kDisMissModelViewController]; 
     //addObserver:s forKeyPath:<#(NSString *)keyPath#> options:<#(NSKeyValueObservingOptions)options#> context:<#(void *)context#> ]
+    [ZCSNotficationMgr addObserver:self call:@selector(navTabItem:) msgName:kNavTabItemMSG];
 #ifdef  USER_LOGIN
     
 	[ZCSNotficationMgr addObserver:self call:@selector(didUserLoginOkFromMsg:) msgName:kUserDidLoginOk];
@@ -104,7 +105,6 @@ static UIButton *popup = nil;
     navCtrl.navigationBar.tintColor = [UIColor redColor];//[UIColor colorWithPatternImage:];
 	navCtrl.navigationBarHidden = YES;
 	currentNavgationController = navCtrl;
-    
     [self.window addSubview:navCtrl.view];
 	//navCtrl.delegate = self;
 #else
@@ -148,7 +148,6 @@ static UIButton *popup = nil;
     //return 0;
     NSMutableArray *_navControllersArr = [NSMutableArray arrayWithCapacity:10];
     //[vcontroller1 setNavgationBarTitle:kPlayListVCTitle];
-    
     for(int i =0;i<kTabCountMax;i++){
         NSString *classNameStr = TabMainClassArray[i];
         UIViewController *vcontroller1 = [[NSClassFromString(classNameStr)alloc]init];
@@ -221,6 +220,10 @@ static UIButton *popup = nil;
 		//[[[self class] sharedAppNavigationController] setDelegate:self];
 	}
 
+}
+- (void)navTabItem:(NSNotification*)ntf{
+    int index = [[ntf object]intValue];
+    [mainVC didSelectorTabItem:index];
 }
 #ifdef USER_LOGIN
 #pragma mark user login and resign

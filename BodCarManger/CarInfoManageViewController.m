@@ -41,7 +41,7 @@ static NSString  *CarInfoKeyArray[] = {
     
     
     [self setHiddenLeftBtn:NO];
-    [self setNavgationBarTitle:@"车量和设备信息"];
+    [self setNavgationBarTitle:@"车辆和设备信息"];
     self.data = [AppSetting getLoginUserCarData];
     //[self shouldLoadCarInfoData];
 	// Do any additional setup after loading the view.
@@ -167,14 +167,24 @@ static NSString  *CarInfoKeyArray[] = {
                 case 0:
                     bgImageName = @"setting_cell_header.png";
                     tempText = [self.data objectForKey:@"milage"];
-                    if(tempText&&![tempText isEqualToString:@""]){
+                    if(tempText){
                         dataText = [NSString stringWithFormat:@"%d",[tempText intValue]];
                     }
                     break;
                 case 3:
                     tempText = [self.data objectForKey:@"insureExpDate"];
-                    if(tempText){
-                        dataText = tempText;
+                    if(tempText &&[tempText intValue]){
+                        NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
+                        [dateFormat setDateFormat:@"yyyyMMdd"];
+                        
+                        //NSString *dateString = [dateFormat dateFromString:tempText];
+                        NSDate *date = [dateFormat dateFromString:tempText];
+                        
+                        [dateFormat setDateFormat:@"yyyy年MM月dd日"];
+                        NSString *dateString = [dateFormat stringFromDate:date];
+                        //self.subClassInputTextField.text = dateString;
+                        dataText = dateString;
+                        SafeRelease(dateFormat);
                     }
                     bgImageName = @"setting_cell_footer.png";
                     break;
@@ -182,14 +192,24 @@ static NSString  *CarInfoKeyArray[] = {
                     switch (indexPath.row) {
                         case 1:
                             tempText = [self.data objectForKey:@"lastMilage"];
-                            if(tempText&&![tempText isEqualToString:@""]){
+                            if(tempText&&[tempText intValue]){
                                 dataText = [NSString stringWithFormat:@"%d",[tempText intValue]];
                             }
                             break;
                         case 2:
                             tempText = [self.data objectForKey:@"lastmaintainDate"];
-                            if(tempText){
-                                dataText = tempText;
+                            if(tempText&&![tempText isEqualToString:@""]){
+                                NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
+                                [dateFormat setDateFormat:@"yyyyMMdd"];
+                                
+                                //NSString *dateString = [dateFormat dateFromString:tempText];
+                                NSDate *date = [dateFormat dateFromString:tempText];
+                                
+                                [dateFormat setDateFormat:@"yyyy年MM月dd日"];
+                                NSString *dateString = [dateFormat stringFromDate:date];
+                                
+                                dataText = dateString;
+                                SafeRelease(dateFormat);
                             }
                             break;
                         default:
@@ -237,8 +257,6 @@ static NSString  *CarInfoKeyArray[] = {
         }
         
     }
-    
-    
     CarInfoInputViewController *changeDataVc = [[CarInfoInputViewController alloc]init];
     changeDataVc.userEmail = cell.detailTextLabel.text;
     changeDataVc.barTitle = cell.textLabel.text;
@@ -282,12 +300,16 @@ static NSString  *CarInfoKeyArray[] = {
                          @"",@"brandy",
                          @"",@"model",
                          @"",@"NO",
-                         @"",@"OBD",
+                         @"aqtkhu2160132100614",@"OBD",
                          @"",@"milage",
                          @"",@"lastMilage",
                          @"",@"lastmaintainDate",
                          @"",@"insureExpDate",
                          nil];
+        }
+        if([self.data objectForKey:@"vin"]){
+            NSString *userId = [AppSetting getCurrentLoginUser];
+            [AppSetting setUserCarId:[self.data objectForKey:@"vin"] withUserId:userId];
         }
         [AppSetting setLoginUserCarData:self.data];
         [logInfo reloadData];
@@ -298,10 +320,10 @@ static NSString  *CarInfoKeyArray[] = {
         
         kNetEnd(self.view);
         if([[data objectForKey:@"retType"]intValue]== 0){
-            kUIAlertView(@"信息",@"车量信息更新成功");
+            kUIAlertView(@"信息",@"车辆信息更新成功");
         }
         else{
-            kUIAlertView(@"信息", @"车量信息更新失败")
+            kUIAlertView(@"信息", @"车辆信息更新失败")
         }
         
         
@@ -321,6 +343,24 @@ static NSString  *CarInfoKeyArray[] = {
     }
    
 }
+- (void)addFonterView{
+    
+    //    logInfo.frame = CGRectMake(0,kMBAppTopToolBarHeight-self.mainContentViewPendingY,kDeviceScreenWidth,kDeviceScreenHeight-kMBAppTopToolBarHeight-kMBAppStatusBar-kMBAppBottomToolBarHeght- 60 );
+    UIView *bgView = [[UIView alloc]initWithFrame:CGRectMake(0.f,0.f,300.f,80)];
+    bgView.backgroundColor = HexRGB(202, 202, 204);
+    
+    CGFloat currY = kDeviceScreenHeight-kMBAppTopToolBarHeight-kMBAppStatusBar-kMBAppBottomToolBarHeght- 60+10.f;
+    UIButton *oilAnalaysisBtn = [UIComUtil createButtonWithNormalBGImageName:@"save.png" withHightBGImageName:@"save.png" withTitle:@"" withTag:0];
+    
+    CGSize btnsize= oilAnalaysisBtn.frame.size;
+    currY = 10.f;
+    oilAnalaysisBtn.frame = CGRectMake(10.f,currY,btnsize.width,btnsize.height);
+    [oilAnalaysisBtn addTarget:self action:@selector(logOutConfirm:) forControlEvents:UIControlEventTouchUpInside];
+    //[logInfo addSubview:oilAnalaysisBtn];
+    //
+    [bgView addSubview:oilAnalaysisBtn];
+    [logInfo setTableFooterView:bgView];
+}
 - (void)logOutConfirm:(id)sender{
     kNetStartShow(@"数据保存中...", self.view);
     CarServiceNetDataMgr *cardShopMgr = [CarServiceNetDataMgr getSingleTone];
@@ -331,9 +371,10 @@ static NSString  *CarInfoKeyArray[] = {
 }
 - (void)setCellItemData:(NSString*)text withIndexPath:(NSIndexPath*)indexPath{
     
-    UITableViewCell *cell = [logInfo cellForRowAtIndexPath:indexPath];
-    cell.detailTextLabel.text = text;
-    int index = [indexPath row];
+    //UITableViewCell *cell = [logInfo cellForRowAtIndexPath:indexPath];
+    //cell.detailTextLabel.text = text;
+    
+    //int index = [indexPath row];
     NSString *key = nil;
     NSMutableDictionary *newDict = [NSMutableDictionary dictionaryWithDictionary:self.data];
     switch (indexPath.section)
@@ -395,7 +436,7 @@ static NSString  *CarInfoKeyArray[] = {
     if(key)
         [newDict setValue:text forKey:key];
     self.data = newDict;
-    
+    [logInfo reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath,nil] withRowAnimation:UITableViewRowAnimationLeft];
 }
 
 

@@ -42,6 +42,7 @@ static NSString *kCellImageArr[] = {
     UISwitch *locationSwitch ;
     UILabel  *usrNameLabel ;
     UILabel  *creditLabel;
+    BOOL     isCardAdd;
 }
 @property(nonatomic,strong)NSDictionary *userData;
 @property(nonatomic,strong)NSMutableArray *imageArray;
@@ -54,8 +55,17 @@ static NSString *kCellImageArr[] = {
         // Custom initialization
         self.mainContentViewPendingY = -3.f;
         self.imageArray = [NSMutableArray array];
+        
     }
     return self;
+}
+-(void)addObservers
+{
+    [super addObservers];
+    [ZCSNotficationMgr addObserver:self call:@selector(needAddCarInfo:) msgName:kNeedCarBindMSG];
+}
+- (void)needAddCarInfo:(NSNotification*)ntf{
+    isCardAdd = YES;
 }
 - (void)locationSetting:(UISwitch*)sender
 {
@@ -169,10 +179,22 @@ static NSString *kCellImageArr[] = {
 }
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    //[self.navigationController popToRootViewControllerAnimated:NO];
    
     //[logInfo reloadData];
 }
-
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+//    if(isCardAdd){
+//        
+//        CarInfoManageViewController *carInfoVc = [[CarInfoManageViewController alloc]init];
+//        [self.navigationController pushViewController:carInfoVc animated:NO];
+//        SafeRelease(carInfoVc);
+//        isCardAdd = NO;
+//    }
+}
 
 - (void)viewDidUnload
 {
@@ -323,6 +345,10 @@ static NSString *kCellImageArr[] = {
                                 }else{
                                     [shareCell reloadData:K_PLATFORM_Tencent];
                                 }
+                shareCell.shareNameLabel.textColor = HexRGB(64, 64, 64);
+                shareCell.nameLabel.textColor = [UIColor blueColor];//cell.detailTextLabel.textColor;
+                 shareCell.shareNameLabel.font = [UIFont systemFontOfSize:15];
+                shareCell.nameLabel.font = cell.detailTextLabel.font;
                 cell = shareCell;
                                //return shareCell;
             }
@@ -546,6 +572,7 @@ static NSString *kCellImageArr[] = {
 #if 1
         [AppSetting  clearCurrentLoginUser];
         [AppSetting  setLoginUserId:@""];
+        [AppSetting  setUserCarId:@"" withUserId:@""];
 #else
         [AppSetting setCurrentLoginUser:@""];
 #endif

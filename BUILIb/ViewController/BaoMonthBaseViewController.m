@@ -43,6 +43,8 @@
     self.mCurrDate = date;
     SafeRelease(dateFormat);
     self.mTodayDate = date;
+    
+    self.mMothDateKey = [NSString stringWithFormat:kDateFormart,self.mCurrDate.year,self.mCurrDate.month];
 	// Do any additional setup after loading the view.
 }
 

@@ -20,6 +20,9 @@
 
 #import "CarDriveMannerDataViewController.h"
 
+#import "XLCycleScrollView.h"
+
+
 #define kLeftPendingX  10
 #define kTopPendingY  8
 #define kHeaderItemPendingY 8
@@ -27,13 +30,26 @@
 #define kDriveStatusViewWidth  300
 #define kDriveStatusViewHeight 259
 
+
+//#define kCalendarWidth  (kDeviceScreenWidth-18.f)
+//#define kCalendarHeight 250
+#define kNumberCalViewTag 999
+
+
 #define kDriveMaintainanceLeftPendingX 36.f
 
-@interface CarMonitorViewController()<BSPreviewScrollViewDelegate>{
+@interface CarMonitorViewController()<BSPreviewScrollViewDelegate,
+        XLCycleScrollViewDelegate,
+        XLCycleScrollViewDatasource>{
 
     UILabel *panelHeaderLabel;
     CarMaintainanceView *carMaintainanceView;
     DateStruct currDate;
+#ifndef Infinite
+    BSPreviewScrollView *scrollerView;
+#else
+    XLCycleScrollView *scrollerView;
+#endif
     
 }
 @property(nonatomic,strong)NSMutableDictionary *mMaitiananceDict;
@@ -47,15 +63,15 @@
     if (self) {
         // Custom initialization
         self.mMaitiananceDict = [NSMutableDictionary dictionary];
+        self.mDataDict = [NSMutableDictionary dictionary];
+        //self.mHasDataDict = [NSMutableDictionary dictionary];
     }
     return self;
 }
 
-- (void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    if([AppSetting getCurrentLoginUser] == nil||[[AppSetting getCurrentLoginUser]isEqualToString:@""]){
-        return;
-    }
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    [self checkDataChange];
 }
 - (void)viewDidLoad
 {
@@ -94,12 +110,10 @@
     
     
     //bgView.frame = viewRect;
-    
-    
     CGRect viewRect = CGRectMake(kLeftPendingX,currY,kDeviceScreenWidth-2*kLeftPendingX,kMBAppRealViewHeight-kTopPendingY-60.f-34.f);
-    
-  
-    CGSize size = viewRect.size;//CGSizeMake(viewRect.size, bgImage.size.height/kScale);
+    CGSize size = viewRect.size;
+#ifndef Infinite
+   //CGSizeMake(viewRect.size, bgImage.size.height/kScale);
     scrollerView = [[BSPreviewScrollView alloc]initWithFrameAndPageSize:CGRectMake(0.f, 0.f,size.width, size.height) pageSize:size];
     scrollerView.delegate = self;
     [scrollerView setBoundces:NO];
@@ -111,7 +125,6 @@
     
     [scrollerView setPageControlHidden:NO];
     
-    currY = currY+scrollerView.frame.size.height;
     StyledPageControl *pageControl = [scrollerView getPageControl];
 #if 0
     UIImage *image  = nil;
@@ -134,6 +147,16 @@
     pageControl.frame = CGRectOffset(rect, 0.f, -40.f+38-5);
 
     [scrollerView bringSubviewToFront:pageControl];
+    [scrollerView scrollerRightTonextPageNum:1];
+#else
+    scrollerView = [[XLCycleScrollView alloc] initWithFrame:viewRect];
+    scrollerView.delegate = self;
+    scrollerView.datasource = self;
+    scrollerView.pageControl.hidden = YES;
+    [self.view addSubview:scrollerView];
+    SafeRelease(scrollerView);
+    currY = currY+scrollerView.frame.size.height;
+#endif
     
     UIButton *oilAnalaysisBtn = [UIComUtil createButtonWithNormalBGImageName:@"drive_oil_btn.png" withHightBGImageName:@"drive_oil_btn.png" withTitle:@"" withTag:0];
     [scrollerView addSubview:oilAnalaysisBtn];
@@ -142,6 +165,7 @@
     [oilAnalaysisBtn addTarget:self action:@selector(didTouchButton:) forControlEvents:UIControlEventTouchUpInside];
     UIButton *driveAnalysisBtn = [UIComUtil createButtonWithNormalBGImageName:@"drive_habit_btn.png" withHightBGImageName:@"drive_habit_btn.png" withTitle:@"" withTag:1];
     [scrollerView addSubview:driveAnalysisBtn];
+    
     btnsize = driveAnalysisBtn.frame.size;
     driveAnalysisBtn.frame =  CGRectMake(180.f+12,size.height-10.f-btnsize.height,btnsize.width ,btnsize.height);
     [driveAnalysisBtn addTarget:self action:@selector(didTouchButton:) forControlEvents:UIControlEventTouchUpInside];
@@ -158,7 +182,7 @@
     SafeRelease(carMaintainanceView);
 #endif
     
-    [scrollerView scrollerRightTonextPageNum:1];
+    
     //[self setRightTextContent:NSLocalizedString(@"Done", @"")];
 	// Do any additional setup after loading the view.
 }
@@ -220,6 +244,83 @@
 }
 
 #pragma mark -
+#pragma mark -- Data Source Methods
+- (NSInteger)numberOfPages{
+    return 3;
+}
+//- (UIView *)pageAtIndex:(NSInteger)index{
+//
+//}
+- (void)checkNetData{
+    
+    
+}
+- (UIView *)pageAtIndex:(NSInteger)index withView:(XLCycleScrollView*)senderView{
+    
+//    if(senderView.nolimitIndex == 0){
+//        isTodayMonth = YES;
+//    }
+//    else{
+//        isTodayMonth = NO;
+//    }
+    int month = self.mTodayDate.month +senderView.nolimitIndex+index;
+    int year = self.mTodayDate.year;
+    if(month>12){
+        int num = month/12;
+        year = self.mTodayDate.year+num;
+        month = month%12;
+    }
+    if(month<=0){
+        int num = -1+month/12;
+        year = self.mTodayDate.year+num;
+        month = 12+month%12;
+    }
+  
+    int width = kDriveStatusViewWidth;
+    int height = kDriveStatusViewHeight;
+    CarDriveStatusView *carDriveStatusView = [UIComUtil  instanceFromNibWithName:@"CarDriveStatusView"];
+    //[maskView addSubview:carDriveStatusView];
+    [carDriveStatusView setDateKey:[NSString stringWithFormat:kDateFormart,year,month]];
+    carDriveStatusView.frame = CGRectMake(0.f, 0.f, width,height);
+    [carDriveStatusView setTarget:self withAction:@selector(didTouchButton:)];
+    return carDriveStatusView;
+}
+- (void)didEndScrollerView:(XLCycleScrollView*)senderView{
+    
+    if(currIndex == senderView.nolimitIndex){
+        
+    }
+    else{
+        int month = self.mTodayDate.month +senderView.nolimitIndex;
+        int year = self.mTodayDate.year;
+        if(month>12){
+            int num = month/12;
+            year = self.mTodayDate.year+num;
+            month = month%12;
+        }
+        if(month<=0){
+            int num = -1+month/12;
+            year = self.mTodayDate.year+num;
+            month = 12+month%12;
+        }
+        NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:
+                              [NSString stringWithFormat:@"%d",month],@"month",
+                              [NSString stringWithFormat:@"%d",year],@"year",nil];
+        if(currIndex >senderView.nolimitIndex){
+            [self didTouchPreMoth:dict];
+            
+        }
+        else if (currIndex <senderView.nolimitIndex){
+            [self didTouchAfterMoth:dict];
+        }
+        //NSLog(@"%@",[dict description]);
+        currIndex = senderView.nolimitIndex;
+        
+    }
+    
+}
+
+#pragma mark -
 #pragma mark View Delegate
 - (void)didTouchButton:(id)sender{
 
@@ -264,9 +365,7 @@
 #pragma mark net work
 - (void)refulshNetData{
     
-    if(![[[UIApplication sharedApplication]delegate]checkCarInforData]){
-        return;
-    }
+   
     NSString *userId = [AppSetting getLoginUserId];
     NSString *cardId = nil;
     if(userId){
@@ -277,7 +376,6 @@
     NSString *month = [NSString stringWithFormat:@"%d",self.mCurrDate.month];
     NSString *year = [NSString stringWithFormat:@"%d",self.mCurrDate.year];
     self.request = [cardShopMgr  getDriveDataByCarId:cardId withMonth:month withYear:year];
-    
     [cardShopMgr getCarMaintainanceData:cardId];
 }
 -(void)didNetDataOK:(NSNotification*)ntf
@@ -326,10 +424,20 @@
     kNetEnd(self.view);
 }
 - (void)updateUIData:(NSDictionary*)netData{
-    NSArray *pageArray= scrollerView.getScrollerPageViews;
+   
+    CarDriveStatusView *carDriveStatusView = nil;
+#if 0
+     NSArray *pageArray ＝ nil;
+    pageArray= scrollerView.getScrollerPageViews;
     CarDriveStatusView *carDriveStatusView = [[[pageArray objectAtIndex:pageIndex]subviews]objectAtIndex:0];
+#else
     
-    
+    carDriveStatusView = scrollerView.getCurrentPageView;
+    NSLog(@"%@",[carDriveStatusView getDateKey]);
+    if(![[carDriveStatusView getDateKey]isEqualToString:self.mMothDateKey]){
+        return;
+    }
+#endif
     int oiltest = [[netData objectForKey:@"economicScore"]intValue];
     if(oiltest>=10) oiltest = 10;
     int drivetest = [[netData objectForKey:@"safeScore"]intValue];
@@ -369,6 +477,11 @@
     CGFloat maxDistance = [[data objectForKey:@"milageSpan"]floatValue];
     CGFloat day =  realDay/(maxDay*30) *84.f;
     CGFloat distance = realDistance/maxDistance*84.f;
+    if(realDay>=maxDay-10||realDistance>=maxDistance-2000)
+    {
+        UIImageWithFileName(UIImage *bgImage, @"matain_need.png");
+        [carMaintainanceView setCenterImageView:bgImage];
+    }
     [carMaintainanceView setLeftProcessLen:day rightLen:distance];
     [carMaintainanceView setLeftProcessDay:realDay rightDistance:realDistance];
 }

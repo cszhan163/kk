@@ -267,17 +267,20 @@ static BOOL isExit = NO;
 }
 - (id)getRouterDataByMonth:(NSString*)month withYear:(NSString*)year{
     //queryDriveMonthData
+    
 #ifdef Router_Test
     year = @"2013";
     month = @"10";
 #endif
+    NSString *carId = nil;
+    carId = [AppSetting getUserCarId:nil];
     EiInfo *inInfo = [self getCommIPlant4MParamByServiceToken:@"VESA01"];
     //[inInfo set:@"year" value:[param objectForKey:@"year"]];
     [inInfo set:METHOD_TOKEN value:kResRouterDataMoth]; // 接口名
     //[inInfo set:@"vin" value:cardId];
     [inInfo set:@"year" value:year]; // 设置参数
     [inInfo set:@"month" value:month];
-    [inInfo set:@"vin" value:@"SHD05728"];
+    [inInfo set:@"vin" value:carId];
     //SHD05728
     //SHD49232
     //[inInfo set:@"day" value:[[NSNumber alloc] initWithInt:16]];
@@ -291,13 +294,14 @@ static BOOL isExit = NO;
     month = @"10";
     day = @"11";
 #endif
-    
+    NSString *carId = nil;
+    carId = [AppSetting getUserCarId:nil];
     EiInfo *inInfo = [self getCommIPlant4MParamByServiceToken:@"VESA01"];
     [inInfo set:METHOD_TOKEN value:kResRouterDataDay]; // 接口名
     [inInfo set:@"year" value:year]; // 设置参数
     [inInfo set:@"month" value:month];
     [inInfo set:@"day" value:day];
-    [inInfo set:@"vin" value:@"SHD05728"];
+    [inInfo set:@"vin" value:carId];
     [self startiPlant4MRequest:inInfo withSuccess:@selector(getRouterDataByDayOk:) withFailed:@selector(getRouterDataByDayFailed:)];
     return nil;
 }
@@ -313,11 +317,13 @@ static BOOL isExit = NO;
     month = @"10";
     cardId = @"SHD05728";
 #endif
-    EiInfo *inInfo = [self getCommIPlant4MParamByServiceToken:@"VESA01"];
+    NSString *carId = nil;
+    carId = [AppSetting getUserCarId:nil];
     
+    EiInfo *inInfo = [self getCommIPlant4MParamByServiceToken:@"VESA01"];
     //[inInfo set:@"year" value:[param objectForKey:@"year"]];
     [inInfo set:METHOD_TOKEN value:kResDriveDataMoth]; // 接口名
-    [inInfo set:@"vin" value:cardId];
+    [inInfo set:@"vin" value:carId];
     [inInfo set:@"year" value:year]; // 设置参数
     [inInfo set:@"month" value:month];
     //[inInfo set:@"day" value:[[NSNumber alloc] initWithInt:16]];
@@ -330,10 +336,12 @@ static BOOL isExit = NO;
     month = @"10";
     cardId = @"SHD05728";
 #endif
+    NSString *carId = nil;
+    carId = [AppSetting getUserCarId:nil];
     EiInfo *inInfo = [self getCommIPlant4MParamByServiceToken:@"VESA01"];
     [inInfo set:METHOD_TOKEN value:kResDriveActionAnalysis]; // 接口名
     
-    [inInfo set:@"vin" value:cardId];
+    [inInfo set:@"vin" value:carId];
     [inInfo set:@"year" value:year]; // 设置参数
     [inInfo set:@"month" value:month];
     [self startiPlant4MRequest:inInfo withSuccess:@selector(getDriveActionAnalysisDataOk:) withFailed:@selector(getDriveActionAnalysisDataFaild:)];
@@ -345,9 +353,12 @@ static BOOL isExit = NO;
     month = @"10";
     cardId = @"SHD05728";
 #endif
+    NSString *carId = nil;
+    carId = [AppSetting getUserCarId:nil];
+    
     EiInfo *inInfo = [self getCommIPlant4MParamByServiceToken:@"VESA01"];
     [inInfo set:METHOD_TOKEN value:kResDriveOilAnalysis]; // 接口名
-    [inInfo set:@"vin" value:cardId];
+    [inInfo set:@"vin" value:carId];
     [inInfo set:@"year" value:year]; // 设置参数
     [inInfo set:@"month" value:month];
     [self startiPlant4MRequest:inInfo withSuccess:@selector(getDriveOilAnalysisDataOk:) withFailed:@selector(getDriveOilAnalysisDataFailed:)];

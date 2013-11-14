@@ -181,8 +181,9 @@ UIShareActionAlertView *sharedAlterView = nil;
         cardId = [AppSetting getUserCarId:userId];
     }
     if(cardId == nil||[cardId isEqualToString:@""]){
-        kUIAlertView(@"信息", kAlertCardBidMSG);
+        kUIAlertView(@"信息", kAlertCardBidTXT);
         [ZCSNotficationMgr postMSG:kNavTabItemMSG obj:[NSNumber numberWithInt:kTabCountMax-1]];
+        [ZCSNotficationMgr postMSG:kNeedCarBindMSG obj:nil];
         return NO;
     }
     return  YES;

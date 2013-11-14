@@ -13,7 +13,7 @@
 //@interface CarDriveOilDataViewController:UIImageNetBaseViewController
 @interface CarDriveOilDataViewController:BaoMonthBaseViewController
 {
-    
+    BSPreviewScrollView *scrollerView;
     UITableView *dataTableView;
 }
 - (void)setNeedDisplaySubView;

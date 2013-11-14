@@ -12,7 +12,7 @@
 #import "CarRouterViewController.h"
 #import "CarRouterDetailViewController.h"
 
-#define Infinite
+
 #ifdef Infinite
 #import "IAInfiniteGridView.h"
 #import "XLCycleScrollView.h"
@@ -31,8 +31,7 @@
     OCCalendarView *calView;
     IAInfiniteGridView  *gridView;
     XLCycleScrollView   *csView;
-        int        currIndex;
-        BOOL       isTodayMonth;
+        
         
 }
 
@@ -69,7 +68,7 @@
     NSString *barTitle  = [NSString stringWithFormat:@"%d年%02d月",self.mCurrDate.year,self.mCurrDate.month];
     [self setNavgationBarTitle:barTitle];
     
-    self.mMothDateKey = [NSString stringWithFormat:kDateFormart,self.mCurrDate.year,self.mCurrDate.month];
+   // self.mMothDateKey = [NSString stringWithFormat:kDateFormart,self.mCurrDate.year,self.mCurrDate.month];
     UIImage *bgImage = nil;
     UIImageWithFileName(bgImage, @"car_bg.png");
     mainView.bgImage = bgImage;
@@ -616,17 +615,19 @@ int lastDirect = -1;
         else{
             
         }
-        CarRouterDetailViewController *vc = [[CarRouterDetailViewController alloc]initWithNibName:nil bundle:nil];
-        vc.delegate = self;
-        vc.mData = data;
-        vc.isLatest = YES;
-        vc.isRunning = isRunning;
+        if([[data objectForKey:@"tripID"]intValue] !=0){
+            CarRouterDetailViewController *vc = [[CarRouterDetailViewController alloc]initWithNibName:nil bundle:nil];
+            vc.delegate = self;
+            vc.mData = data;
+            vc.isLatest = YES;
+            vc.isRunning = isRunning;
 #if kMapHasTab
-        [self.navigationController pushViewController:vc animated:YES];
+            [self.navigationController pushViewController:vc animated:YES];
 #else
-        [ZCSNotficationMgr postMSG:kPushNewViewController obj:vc];
+            [ZCSNotficationMgr postMSG:kPushNewViewController obj:vc];
 #endif
-        SafeRelease(vc);
+            SafeRelease(vc);
+        }
     }
 }
 -(void)didNetDataFailed:(NSNotification*)ntf

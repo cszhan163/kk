@@ -12,6 +12,7 @@
 #define kNumberMidSize   12
 
 @implementation CarDriveStatusView
+
 @synthesize mDriveAnalaysisImageView;
 @synthesize mOilCostAnalaysisImageView;
 
@@ -23,6 +24,9 @@
         //[self setTargetAndActionFun];
     }
     return self;
+}
+- (NSString*)getDateKey{
+    return  _dateKey;
 }
 - (void)setTextFontSize{
 

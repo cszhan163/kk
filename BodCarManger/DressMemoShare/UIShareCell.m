@@ -21,7 +21,7 @@
         _shareNameLabel = [[UILabel alloc] initWithFrame:CGRectZero];
         _shareNameLabel.textAlignment = UITextAlignmentLeft;
         _shareNameLabel.backgroundColor = [UIColor clearColor];
-        _shareNameLabel.font = [UIFont boldSystemFontOfSize:17];
+        _shareNameLabel.font = [UIFont boldSystemFontOfSize:15];
         [self.contentView addSubview:_shareNameLabel];
         
         _nameLabel = [[UILabel alloc] initWithFrame:CGRectZero];

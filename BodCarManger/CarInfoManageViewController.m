@@ -300,7 +300,7 @@ static NSString  *CarInfoKeyArray[] = {
                          @"",@"brandy",
                          @"",@"model",
                          @"",@"NO",
-                         @"aqtkhu2160132100614",@"OBD",
+                         @"wwdbac2160132100397",@"OBD",
                          @"",@"milage",
                          @"",@"lastMilage",
                          @"",@"lastmaintainDate",

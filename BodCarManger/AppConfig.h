@@ -136,9 +136,12 @@
 
 #define kDateFormart   @"%d%02d"
 
+#define Infinite
 #define kMapHasTab   1
 
-#define kAlertCardBidMSG                    @"请先添加车辆信息"
+#define kAlertCardBidTXT                    @"请先添加车辆信息"
+
+#define kNeedCarBindMSG                     @"needCarBindMSG"
 
 #endif
 

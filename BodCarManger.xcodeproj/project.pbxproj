@@ -268,6 +268,8 @@
 		04E5D6F0182F3057006832B9 /* item_change_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E5D6ED182F3057006832B9 /* item_change_btn.png */; };
 		04E5D6F1182F3057006832B9 /* item_default_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E5D6EE182F3057006832B9 /* item_default_btn.png */; };
 		04E5D6F2182F3057006832B9 /* qr_btn.png.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E5D6EF182F3057006832B9 /* qr_btn.png.png */; };
+		04FA93CC1835247400B1DB3E /* matain_need.png in Resources */ = {isa = PBXBuildFile; fileRef = 04FA93CA1835247400B1DB3E /* matain_need.png */; };
+		04FA93CD1835247400B1DB3E /* matain_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 04FA93CB1835247400B1DB3E /* matain_normal.png */; };
 		04FE070A1818188F00EEC76A /* drive_oil_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 04FE07041818188F00EEC76A /* drive_oil_btn.png */; };
 		04FE070B1818188F00EEC76A /* drive_habit_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 04FE07051818188F00EEC76A /* drive_habit_btn.png */; };
 		04FE070C1818188F00EEC76A /* drive_panel_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 04FE07061818188F00EEC76A /* drive_panel_bg.png */; };
@@ -693,6 +695,8 @@
 		04E5D6ED182F3057006832B9 /* item_change_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = item_change_btn.png; sourceTree = "<group>"; };
 		04E5D6EE182F3057006832B9 /* item_default_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = item_default_btn.png; sourceTree = "<group>"; };
 		04E5D6EF182F3057006832B9 /* qr_btn.png.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = qr_btn.png.png; sourceTree = "<group>"; };
+		04FA93CA1835247400B1DB3E /* matain_need.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = matain_need.png; sourceTree = "<group>"; };
+		04FA93CB1835247400B1DB3E /* matain_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = matain_normal.png; sourceTree = "<group>"; };
 		04FE07041818188F00EEC76A /* drive_oil_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = drive_oil_btn.png; sourceTree = "<group>"; };
 		04FE07051818188F00EEC76A /* drive_habit_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = drive_habit_btn.png; sourceTree = "<group>"; };
 		04FE07061818188F00EEC76A /* drive_panel_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = drive_panel_bg.png; sourceTree = "<group>"; };
@@ -1611,6 +1615,8 @@
 		04FE07031818188F00EEC76A /* drive */ = {
 			isa = PBXGroup;
 			children = (
+				04FA93CA1835247400B1DB3E /* matain_need.png */,
+				04FA93CB1835247400B1DB3E /* matain_normal.png */,
 				04CA4115182950EB008DAE94 /* safe_green.png */,
 				04CA4116182950EB008DAE94 /* safe_red.png */,
 				04CA4117182950EB008DAE94 /* safe_yellow.png */,
@@ -1995,6 +2001,8 @@
 				04E4D0F518325F9C00B6D5D9 /* router_page_up.png in Resources */,
 				04E4D0F618325F9C00B6D5D9 /* router_today_date.png in Resources */,
 				BD45A2211834AB68000668FA /* save.png in Resources */,
+				04FA93CC1835247400B1DB3E /* matain_need.png in Resources */,
+				04FA93CD1835247400B1DB3E /* matain_normal.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

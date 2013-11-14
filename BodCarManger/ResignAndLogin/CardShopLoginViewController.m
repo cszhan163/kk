@@ -147,22 +147,32 @@
 {
     id obj = [ntf object];
     id respRequest = [obj objectForKey:@"request"];
-    id _data = [obj objectForKey:@"data"];
+    id data = [obj objectForKey:@"data"];
     NSString *resKey = [obj objectForKey:@"key"];//[respRequest resourceKey];
     if([resKey isEqualToString:kNetLoginRes])
     {
-        kNetEnd(self.view);
+      
         self.request = nil;
-        NE_LOG(@"%@",[_data description]);
+        NE_LOG(@"%@",[data description]);
         //[self stopShowLoadingView];
         //[Ap]
          [AppSetting setCurrentLoginUser:self.txtusername.text];
         
         
-        [AppSetting setLoginUserDetailInfo:_data userId:self.txtusername.text];
+        [AppSetting setLoginUserDetailInfo:data userId:self.txtusername.text];
         //[AppSetting setLoginUserInfo:];
         [AppSetting setLoginUserId:self.txtusername.text];
         [AppSetting setLoginUserPassword:self.txtpassword.text];
+        [ZCSNotficationMgr postMSG:kQueryCarInfoMSG obj:nil];
+        
+    }
+    if([resKey isEqualToString:kCarInfoQuery]){
+        if([data objectForKey:@"vin"]){
+            NSString *userId = [AppSetting getCurrentLoginUser];
+            [AppSetting setUserCarId:[data objectForKey:@"vin"] withUserId:userId];
+            
+        }
+        kNetEnd(self.view);
         [ZCSNotficationMgr postMSG:kCheckCardRecentRun obj:nil];
         [ZCSNotficationMgr postMSG:kDisMissModelViewController obj:nil];
     }
@@ -176,8 +186,10 @@
      NSString *resKey = [obj objectForKey:@"key"];
     if([resKey isEqualToString:kNetLoginRes])
     {
+        
+    }
+    if([resKey isEqualToString:kCarInfoQuery]){
         kNetEnd(self.view);
-       
         //NSDictionary * _data = [obj objectForKey:@"data"];
         kUIAlertView(@"提示",[_data objectForKey:@"msg"]);
     }

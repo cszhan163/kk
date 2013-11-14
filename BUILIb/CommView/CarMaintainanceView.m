@@ -23,6 +23,7 @@
     AMProgressView      *leftProcessView;
     AMProgressView      *rightProcessView;
     AMArcColorDrawView    *circleProcessView;
+    UIImageView           *centerView;
     CGFloat             rightLen;
     CGFloat             leftLen;
     UILabel         *runDistanceLabel;
@@ -83,7 +84,7 @@
         SafeRelease(rightProcessView);
         
         
-        
+#if 0
         circleProcessView = [[AMArcColorDrawView alloc]initWithFrame:CGRectMake(0.f,0.f,50,50)];
         circleProcessView.radius = 22;
         circleProcessView.backgroundColor = [UIColor clearColor];
@@ -91,9 +92,19 @@
         [self addSubview:circleProcessView];
         circleProcessView.center = CGPointMake(image.size.width/4.f, image.size.height/4.f);
         SafeRelease(circleProcessView);
+        [self bringSubviewToFront:circleProcessView];
+#else
+        centerView = [[UIImageView alloc]initWithFrame:CGRectMake(0.f, 0.f,45,45)];
+        centerView.center = CGPointMake(image.size.width/4.f, image.size.height/4.f);
+        UIImageWithFileName(UIImage *bgImage, @"matain_normal.png");
+        centerView.image = bgImage;
+        [self addSubview:centerView];
+        SafeRelease(centerView);
+#endif
+        
         [self bringSubviewToFront:leftCircleView];
         [self bringSubviewToFront:rightCircleView];
-        [self bringSubviewToFront:circleProcessView];
+        
         
         CGFloat textWidth = 80.f;
         CGFloat textHeight = 80.f;
@@ -113,6 +124,17 @@
 - (void)setLeftProcessDay:(CGFloat)lLen rightDistance:(CGFloat)rLen{
     [runDaysLabel setText:[NSString stringWithFormat:@"%d\n天",(int)lLen]];
     [runDistanceLabel setText:[NSString stringWithFormat:@"%0.3lf\nkm",rLen]];
+}
+/*
+- (void)setLeftGraydientColors:(NSArray*)larray rightGrayDientColors:(NSArray*)rarray{
+    leftProcessView.gradientColors = larray;
+    [leftProcessView setNeedsDisplay];
+
+}
+*/
+- (void)setCenterImageView:(UIImage*)image{
+    centerView.image = image;
+
 }
 - (void)setLeftProcessLen:(CGFloat)lLen rightLen:(CGFloat)rLen{
     leftLen = lLen/kMaxProcessLen *kMaxProcessLen;

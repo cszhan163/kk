@@ -16,10 +16,11 @@ static NSString *kCarInfoArray[] =
 static NSString *kCarOtherInfoArray[] = {
     @"行驶总里程",@"上次保养里程",@"上次保养日期",@"保险到期日",
 };
-
+static NSString  *CarInfoKeyArray[] = {
+   @"OBD",@"",@"",@"",
+};
 @interface CarInfoManageViewController (){
-
-   
+    NSInteger type ;
 }
 @end
 
@@ -166,7 +167,7 @@ static NSString *kCarOtherInfoArray[] = {
                 case 0:
                     bgImageName = @"setting_cell_header.png";
                     tempText = [self.data objectForKey:@"milage"];
-                    if(tempText){
+                    if(tempText&&![tempText isEqualToString:@""]){
                         dataText = [NSString stringWithFormat:@"%d",[tempText intValue]];
                     }
                     break;
@@ -181,7 +182,7 @@ static NSString *kCarOtherInfoArray[] = {
                     switch (indexPath.row) {
                         case 1:
                             tempText = [self.data objectForKey:@"lastMilage"];
-                            if(tempText){
+                            if(tempText&&![tempText isEqualToString:@""]){
                                 dataText = [NSString stringWithFormat:@"%d",[tempText intValue]];
                             }
                             break;
@@ -242,9 +243,8 @@ static NSString *kCarOtherInfoArray[] = {
     changeDataVc.userEmail = cell.detailTextLabel.text;
     changeDataVc.barTitle = cell.textLabel.text;
     changeDataVc.type = type;
-    
-    
-    
+    changeDataVc.delegate = self;
+    changeDataVc.indexPath = indexPath;
     [self.navigationController pushViewController:changeDataVc animated:YES];
     SafeRelease(changeDataVc);
 }
@@ -265,10 +265,138 @@ static NSString *kCarOtherInfoArray[] = {
     if([resKey isEqualToString:kCarInfoQuery])
     {
         self.data = data;
+        if([[self.data objectForKey:@"retType"]intValue]== 0){
+            /*
+             [inInfo set:@"brandy" value:[param objectForKey:@"brandy"]];
+             [inInfo set:@"model" value:[param objectForKey:@"model"]];
+             [inInfo set:@"NO" value:[param objectForKey:@"NO"]];
+             [inInfo set:@"milage" value:[param objectForKey:@"milage"]];
+             [inInfo set:@"lastMilage" value:[param objectForKey:@"lastMilage"]];
+             [inInfo set:@"lastmaintainDate" value:[param objectForKey:@"lastmaintainDate"]];
+             //[inInfo set:@"type" value:[NSString stringWithFormat:@"%d",type]];
+             [inInfo set:@"type" value:[param objectForKey:@"type"]];
+             [inInfo set:@"insureExpDate" value:[param objectForKey:@"insureExpDate"]];
+             */
+            self.data = [NSDictionary dictionaryWithObjectsAndKeys:
+                         @"0",@"type",
+                         @"",@"brandy",
+                         @"",@"model",
+                         @"",@"NO",
+                         @"",@"OBD",
+                         @"",@"milage",
+                         @"",@"lastMilage",
+                         @"",@"lastmaintainDate",
+                         @"",@"insureExpDate",
+                         nil];
+        }
         [AppSetting setLoginUserCarData:self.data];
         [logInfo reloadData];
         kNetEnd(self.view);
         
     }
+    if([resKey isEqualToString:kCarInfoUpdate]){
+        
+        kNetEnd(self.view);
+        if([[data objectForKey:@"retType"]intValue]== 0){
+            kUIAlertView(@"信息",@"车量信息更新成功");
+        }
+        else{
+            kUIAlertView(@"信息", @"车量信息更新失败")
+        }
+        
+        
+    }
 }
+-(void)didNetDataFailed:(NSNotification*)ntf
+{
+    //kNetEnd(@"", 2.f);
+    
+    id obj = [ntf object];
+    id respRequest = [obj objectForKey:@"request"];
+    id data = [obj objectForKey:@"data"];
+    NSString *resKey = [obj objectForKey:@"key"];
+    if(self.request ==respRequest && [resKey isEqualToString:kCarInfoUpdate])
+    {
+        kNetEnd(self.view);
+    }
+   
+}
+- (void)logOutConfirm:(id)sender{
+    kNetStartShow(@"数据保存中...", self.view);
+    CarServiceNetDataMgr *cardShopMgr = [CarServiceNetDataMgr getSingleTone];
+    NSString *useName = [AppSetting getLoginUserId];
+    NSMutableDictionary *param = [NSMutableDictionary dictionaryWithDictionary:self.data];
+    [param setValue:useName forKey:@"userName"];
+    [cardShopMgr carInforUpdate:param withType:0];
+}
+- (void)setCellItemData:(NSString*)text withIndexPath:(NSIndexPath*)indexPath{
+    
+    UITableViewCell *cell = [logInfo cellForRowAtIndexPath:indexPath];
+    cell.detailTextLabel.text = text;
+    int index = [indexPath row];
+    NSString *key = nil;
+    NSMutableDictionary *newDict = [NSMutableDictionary dictionaryWithDictionary:self.data];
+    switch (indexPath.section)
+    {
+            
+        case 0:
+            key = @"OBD";
+            break;
+        case 1:{
+            
+            switch (indexPath.row) {
+                case 0:
+                    key = @"brandy";
+                    
+                    break;
+                case 2:
+                    key =@"model";
+                    
+                    break;
+                    
+                default:
+                    key = @"NO";
+            }
+            
+        }
+            break;
+        case 2:{
+            //cell.textLabel.text = kCarOtherInfoArray[indexPath.row];
+            switch (indexPath.row) {
+                case 0:
+                    key = @"milage";
+                    
+                    break;
+                case 3:
+                    key = @"insureExpDate";
+                    
+                    break;
+                default:
+                    switch (indexPath.row) {
+                        case 1:
+                            key = @"lastMilage"
+                            ;
+                            
+                            break;
+                        case 2:
+                            key = @"lastmaintainDate";
+                            
+                            break;
+                        default:
+                            break;
+                    }
+                    //bgImageName = @"setting_cell_middle.png";
+                    break;
+            }
+            
+        }
+            
+    }
+    if(key)
+        [newDict setValue:text forKey:key];
+    self.data = newDict;
+    
+}
+
+
 @end

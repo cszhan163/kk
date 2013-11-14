@@ -134,5 +134,7 @@
 
 #define kDateFormart   @"%d%02d"
 
+#define kMapHasTab   1
+
 #endif
 

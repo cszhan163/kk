@@ -104,7 +104,11 @@
     
     carDetailPenalView = [UIComUtil instanceFromNibWithName:@"CarDetailPenalView"];
     [self.view addSubview:carDetailPenalView];
-    carDetailPenalView.frame = CGRectMake(0.f,kDeviceScreenHeight-kMBAppStatusBar-carDetailPenalView.frame.size.height, carDetailPenalView.frame.size.width, carDetailPenalView.frame.size.height);
+    CGFloat offsetY = 0.f;
+#if kMapHasTab
+    offsetY = kMBAppBottomToolBarHeght;
+#endif
+    carDetailPenalView.frame = CGRectMake(0.f,kDeviceScreenHeight-kMBAppStatusBar-carDetailPenalView.frame.size.height-offsetY, carDetailPenalView.frame.size.width, carDetailPenalView.frame.size.height);
     
     [UIView animateWithDuration:0.5 animations:^()
      {

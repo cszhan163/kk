@@ -33,6 +33,10 @@ static NSString *kSectionOneArr[] =
 static NSString *kSectionTwoArr[] = {
     @"添加车辆和终端",@"记住车辆位置",
 };
+
+static NSString *kCellImageArr[] = {
+    @"setting_cell_header.png",@"setting_cell_middle.png",@"setting_cell_footer.png",@"setting_cell_one.png",
+};
 @interface UserSettingViewController (){
 
     UISwitch *locationSwitch ;
@@ -40,6 +44,7 @@ static NSString *kSectionTwoArr[] = {
     UILabel  *creditLabel;
 }
 @property(nonatomic,strong)NSDictionary *userData;
+@property(nonatomic,strong)NSMutableArray *imageArray;
 @end
 @implementation UserSettingViewController
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -48,6 +53,7 @@ static NSString *kSectionTwoArr[] = {
     if (self) {
         // Custom initialization
         self.mainContentViewPendingY = -3.f;
+        self.imageArray = [NSMutableArray array];
     }
     return self;
 }
@@ -100,6 +106,16 @@ static NSString *kSectionTwoArr[] = {
     //CGPoint origin = bgView.frame.origin;
     //bgView.frame = logInfo.frame;
     //logInfo.contentSize = CGSizeMake(bgWidth,bgHeight);
+    //UIImage *bgImageName = nil;
+    for(int i = 0;i<4;i++){
+    
+        UIImageWithFileName(UIImage *bgImage,kCellImageArr[i]);
+        assert(bgImage);
+        UIImageView *bgView = [[UIImageView alloc]initWithImage:bgImage];
+        bgView.frame = CGRectMake(0.f, 0.f,300.f,42.f);
+        [self.imageArray addObject:bgView];
+        SafeRelease(bgView);
+    }
     [self.view addSubview:logInfo];
 
 }
@@ -332,7 +348,9 @@ static NSString *kSectionTwoArr[] = {
             break;
     }
     NSString *bgImageName = @"";
+    //UIImageView *bgImageName = nil;
     if(indexPath.section == 3){
+        //bgImageName = [self.imageArray objectAtIndex:3];
         bgImageName = @"setting_cell_one.png";
     }
     else{
@@ -340,13 +358,16 @@ static NSString *kSectionTwoArr[] = {
         
             switch (indexPath.row) {
                 case 0:
+                    //bgImageName = [self.imageArray objectAtIndex:0];
                     bgImageName = @"setting_cell_header.png";
                     break;
                 case 3:
+                    //bgImageName = [self.imageArray objectAtIndex:2];
                     bgImageName = @"setting_cell_footer.png";
                     break;
                     
                 default:
+                    //bgImageName = [self.imageArray objectAtIndex:1];
                     bgImageName = @"setting_cell_middle.png";
                     break;
             }
@@ -354,9 +375,11 @@ static NSString *kSectionTwoArr[] = {
         else{
             switch (indexPath.row) {
                 case 0:
+                    //bgImageName = [self.imageArray objectAtIndex:0];
                     bgImageName = @"setting_cell_header.png";
                     break;
                 case 1:
+                    //bgImageName = [self.imageArray objectAtIndex:2];
                     bgImageName = @"setting_cell_footer.png";
                     break;
                 default:
@@ -365,7 +388,7 @@ static NSString *kSectionTwoArr[] = {
         
         }
     }
-    
+#if 1
     UIImageWithFileName(UIImage *bgImage,bgImageName);
     UIImageView *bgView = [[UIImageView alloc]initWithImage:bgImage];
     bgView.frame = CGRectMake(0.f, 0.f,300.f,42.f);
@@ -374,6 +397,10 @@ static NSString *kSectionTwoArr[] = {
     //[cell.contentView  addSubview: bgView];
     cell.backgroundView = bgView;
     SafeRelease(bgView);
+#else
+    cell.backgroundView = bgImageName;
+#endif
+    
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
     if(indexPath.section == 0){
@@ -401,8 +428,6 @@ static NSString *kSectionTwoArr[] = {
             locationSwitch.on = status;
         }
     }
-    
-    
     
     cell.textLabel.backgroundColor = [UIColor clearColor];
 	return cell;
@@ -520,6 +545,7 @@ static NSString *kSectionTwoArr[] = {
         [self.navigationController popToRootViewControllerAnimated:NO];
 #if 1
         [AppSetting  clearCurrentLoginUser];
+        [AppSetting  setLoginUserId:@""];
 #else
         [AppSetting setCurrentLoginUser:@""];
 #endif

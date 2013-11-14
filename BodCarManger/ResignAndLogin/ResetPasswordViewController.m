@@ -42,12 +42,12 @@
 }
 - (void)viewDidLoad
 {
-    //[super viewDidLoad];
+    [super viewDidLoad];
     //[self addObservers];
    
     [self setHiddenRightBtn:NO];
     //mainView.topBarView.frame = CGRectMake(0.f,0.f,320.f,44.f);
-    //[self setRightTextContent:NSLocalizedString(@"Send", @"")];
+   
     
     self.subClassInputTextField = [[[UITextField alloc]initWithFrame:CGRectMake(KLoginAndResignPendingX,KLoginAndResignPendingX+kMBAppTopToolBarHeight,kDeviceScreenWidth-2*KLoginAndResignPendingX,44.f)]autorelease];
     subClassInputTextField.borderStyle = UITextBorderStyleRoundedRect;
@@ -68,7 +68,7 @@
     UIImage *bgImage = nil;
     //UIImageWithFileName(bgImage, @"inputboxL.png");
     UIImageWithFileName(bgImage, @"inputboxL.png");
-#if 1
+#if 0
     UIEdgeInsets resizeEdgeInset = UIEdgeInsetsMake(10.f,10.f,10.f,10.f);
     if([bgImage respondsToSelector:@selector(resizableImageWithCapInsets:)]&&1)
     {

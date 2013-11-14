@@ -619,7 +619,11 @@ int lastDirect = -1;
         vc.mData = data;
         vc.isLatest = YES;
         vc.isRunning = isRunning;
+#if kMapHasTab
+        [self.navigationController pushViewController:vc animated:YES];
+#else
         [ZCSNotficationMgr postMSG:kPushNewViewController obj:vc];
+#endif
         SafeRelease(vc);
     }
 }

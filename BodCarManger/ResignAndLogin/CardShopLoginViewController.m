@@ -56,6 +56,8 @@
         //[self login_click:nil];
     }
     
+    self.txtpassword.textColor = HexRGB(137, 137, 137);
+    self.txtusername.textColor = HexRGB(137, 137, 137);
     // Do any additional setup after loading the view from its nib.
 }
 

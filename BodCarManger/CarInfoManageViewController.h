@@ -12,5 +12,6 @@
 
      UIDatePicker *datePickView;
 }
+- (void)setCellItemData:(NSString*)text withIndexPath:(NSIndexPath*)indexPath;
 @property(nonatomic,strong)NSDictionary *data;
 @end

@@ -264,7 +264,7 @@
 #pragma mark net work
 - (void)refulshNetData{
     
-    if(![[UIApplication sharedApplication] checkCarInforData]){
+    if(![[[UIApplication sharedApplication]delegate]checkCarInforData]){
         return;
     }
     NSString *userId = [AppSetting getLoginUserId];

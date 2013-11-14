@@ -44,7 +44,7 @@
 }
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    if(![[UIApplication sharedApplication] checkCarInforData]){
+    if(![[[UIApplication sharedApplication]delegate]checkCarInforData]){
         return;
     }
 }

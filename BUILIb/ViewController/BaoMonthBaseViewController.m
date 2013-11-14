@@ -53,7 +53,7 @@
 }
 - (void)checkDataChange{
     
-    if(![[UIApplication sharedApplication] checkCarInforData]){
+    if(![[[UIApplication sharedApplication] delegate] checkCarInforData]){
         return;
     }
 #if 0

@@ -111,7 +111,8 @@
 //}
 +(NSString*)getUserCarId:(NSString*)userId{
     NSUserDefaults *usrDefaults = [NSUserDefaults standardUserDefaults];
-    return [usrDefaults objectForKey:@"loginUserCarId"];
+    return @"SHD05728";
+    //return [usrDefaults objectForKey:@"loginUserCarId"];
 }
 +(void)setUserCarId:(NSString*)carId withUserId:(NSString*)userId{
     NSUserDefaults *usrDefaults = [NSUserDefaults standardUserDefaults];

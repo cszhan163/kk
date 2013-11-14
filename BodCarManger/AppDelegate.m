@@ -81,6 +81,7 @@ UIShareActionAlertView *sharedAlterView = nil;
     //[NSTimer timerWithTimeInterval:5 invocation:@selector(checkCarIsRunning) repeats:YES];
     [ZCSNotficationMgr addObserver:self call:@selector(backDoorCheckOk:) msgName:kZCSNetWorkOK];
     [ZCSNotficationMgr addObserver:self call:@selector(checkCarIsRunning:) msgName:kCheckCardRecentRun];
+    [ZCSNotficationMgr addObserver:self call:@selector(queryCarInfo:) msgName:kQueryCarInfoMSG];
     //
     //[UIAlertViewMgr getSigleTone];
     
@@ -137,7 +138,7 @@ UIShareActionAlertView *sharedAlterView = nil;
     NSString *usrId = [AppSetting getLoginUserId];
     NSString *cardId = [AppSetting getUserCarId:usrId];
     if(cardId == nil||[cardId isEqualToString:@""]){
-        
+        [ZCSNotficationMgr postMSG:kNavTabItemMSG obj:[NSNumber numberWithInt:kTabCountMax-1]];
     }
     CarServiceNetDataMgr *cardNetMgr = [CarServiceNetDataMgr getSingleTone];
     [cardNetMgr getRouterLatestData:cardId];
@@ -153,8 +154,24 @@ UIShareActionAlertView *sharedAlterView = nil;
     
     
 }
-
+- (void)queryCarInfo:(NSNotification*)ntf{
+    CarServiceNetDataMgr *cardShopMgr = [CarServiceNetDataMgr getSingleTone];
+    NSString *useName = [AppSetting getLoginUserId];
+    [cardShopMgr carInforQuery:useName];
+}
 - (void)backDoorCheckOk:(NSNotification*)ntf{
+    
+    id obj = [ntf object];
+    id data = [obj objectForKey:@"data"];
+    NSString *resKey = [obj objectForKey:@"key"];//[respRequest resourceKey];
+    //NSString *resKey = [respRequest resourceKey];
+    if([resKey isEqualToString:kCarInfoQuery])
+    {
+        if([data objectForKey:@"vin"]){
+            NSString *userId = [AppSetting getCurrentLoginUser];
+            [AppSetting setUserCarId:[data objectForKey:@"vin"] withUserId:userId];
+        }
+    }
     
 }
 -(BOOL)checkCarInforData{
@@ -170,4 +187,5 @@ UIShareActionAlertView *sharedAlterView = nil;
     }
     return  YES;
 }
+
 @end

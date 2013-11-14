@@ -614,6 +614,7 @@ int lastDirect = -1;
             isRunning = YES;
         }
         else{
+            
         }
         CarRouterDetailViewController *vc = [[CarRouterDetailViewController alloc]initWithNibName:nil bundle:nil];
         vc.delegate = self;

@@ -194,6 +194,7 @@
         NE_LOG(@"%@",[_data description]);
         //[self stopShowLoadingView];
         //[Ap]
+        [ZCSNotficationMgr postMSG:kQueryCarInfoMSG obj:nil];
         [ZCSNotficationMgr postMSG:kCheckCardRecentRun obj:nil];
         [ZCSNotficationMgr postMSG:kDisMissModelViewController obj:nil];
     }

@@ -78,6 +78,8 @@
 
 #define kCheckCardRecentRun     @"checkCardRecentRun"
 
+#define kQueryCarInfoMSG        @"queryCarInfoMSG"
+
 /**
  login and register
  */

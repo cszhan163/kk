@@ -716,8 +716,6 @@ int lastDirect = -1;
 }
 - (void)perOnMainThreadFun:(NSArray*)data{
  
-    [self processData:data[0] withStatus:0];
-    [self processData:data[1] withStatus:1];
     if(isTodayMonth){
         NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
         NSDateComponents *dateParts = [[NSDateComponents alloc] init];
@@ -729,6 +727,9 @@ int lastDirect = -1;
         SafeRelease(dateParts);
         [calView addStartDate:sDate endDate:sDate withTag:2];
     }
+    [self processData:data[0] withStatus:0];
+    [self processData:data[1] withStatus:1];
+   
     
     //        NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
     

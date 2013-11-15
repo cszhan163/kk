@@ -15,6 +15,7 @@
 #import "CancelBindViewController.h"
 
 #import "CardShopLoginViewController.h"
+#import "UserChangePasswordViewController.h"
 //
 //////#import "FriendInvitationViewController.h"
 //////#import "UserInforEditViewController.h"
@@ -129,6 +130,7 @@ static NSString *kCellImageArr[] = {
     [self.view addSubview:logInfo];
 
 }
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -148,7 +150,7 @@ static NSString *kCellImageArr[] = {
     [self setHiddenLeftBtn:YES];
     [self addFonterView];
     //[self shouldLoadDataFromNet];
-    [self performSelectorInBackground:@selector(shouldLoadDataFromNet) withObject:nil];
+    
     NSString *userId = [AppSetting getLoginUserId];
     if(userId){
         self.userData = [AppSetting getLoginUserDetailInfo:userId];
@@ -182,6 +184,7 @@ static NSString *kCellImageArr[] = {
     //[self.navigationController popToRootViewControllerAnimated:NO];
    
     //[logInfo reloadData];
+    [self performSelectorInBackground:@selector(shouldLoadDataFromNet) withObject:nil];
 }
 - (void)viewDidAppear:(BOOL)animated
 {
@@ -468,14 +471,19 @@ static NSString *kCellImageArr[] = {
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     switch (indexPath.section) 
     {
-//       case 0:{
-//            FriendInvitationViewController *frInviteVc = [[FriendInvitationViewController alloc]init];
-//            [frInviteVc setNavgationBarTitle:cell.textLabel.text];
-//            [self.navigationController pushViewController:frInviteVc animated:YES];
-//            [frInviteVc release];
-//            //cell.textLabel.text = @"邀请好友";
-//        }
-//            break;
+       case 0:{
+           if(indexPath.row ==1 ||indexPath.row ==2){
+               UserChangePasswordViewController *frInviteVc = [[UserChangePasswordViewController alloc]init];
+               [frInviteVc setNavgationBarTitle:cell.textLabel.text];
+               frInviteVc.type = indexPath.row -1;
+               frInviteVc.srcText = cell.detailTextLabel.text;
+               frInviteVc.subClassInputTextField.text = cell.detailTextLabel.text;
+               [self.navigationController pushViewController:frInviteVc animated:YES];
+               [frInviteVc release];
+           }
+            //cell.textLabel.text = @"邀请好友";
+        }
+            break;
         case 2:
         {
             switch (index)
@@ -630,7 +638,7 @@ static NSString *kCellImageArr[] = {
     id data = [obj objectForKey:@"data"];
     NSString *resKey = [obj objectForKey:@"key"];//[respRequest resourceKey];
     //NSString *resKey = [respRequest resourceKey];
-    if([resKey isEqualToString:kCarUserLogin]){
+    if([resKey isEqualToString:kNetLoginRes]){
         self.userData = data;
         [AppSetting setLoginUserInfo:data];
         [logInfo reloadData];

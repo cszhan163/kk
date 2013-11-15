@@ -110,7 +110,7 @@
     
     
     //bgView.frame = viewRect;
-    CGRect viewRect = CGRectMake(kLeftPendingX,currY,kDeviceScreenWidth-2*kLeftPendingX,kMBAppRealViewHeight-kTopPendingY-60.f-34.f);
+    CGRect viewRect = CGRectMake(kLeftPendingX,currY,kDeviceScreenWidth-2*kLeftPendingX,kDriveStatusViewHeight);
     CGSize size = viewRect.size;
 #ifndef Infinite
    //CGSizeMake(viewRect.size, bgImage.size.height/kScale);
@@ -425,6 +425,15 @@
 }
 - (void)updateUIData:(NSDictionary*)netData{
    
+    NSMutableDictionary *newNetData = [NSMutableDictionary dictionaryWithDictionary:netData];
+    for(id key in netData){
+        if([[netData objectForKey:key] isKindOfClass:[NSNull class]]){
+            
+            [newNetData setValue:@"" forKey:key];
+        }
+    }
+    netData = newNetData;
+
     CarDriveStatusView *carDriveStatusView = nil;
 #if 0
      NSArray *pageArray ＝ nil;
@@ -471,6 +480,7 @@
     
     //for 84*len;
     //milageSpan
+    
     int realDay = [[data objectForKey:@"days"]intValue];
     int maxDay = [[data objectForKey:@"timeSpan"]intValue];
     CGFloat realDistance = [[data objectForKey:@"milage"]floatValue];

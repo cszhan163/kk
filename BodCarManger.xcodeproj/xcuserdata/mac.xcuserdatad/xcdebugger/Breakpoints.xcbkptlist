@@ -33,19 +33,6 @@
          shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "BodCarManger/ResignAndLogin/CardShopResignViewController.m"
-         timestampString = "406042168.267571"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "220"
-         endingLineNumber = "220"
-         landmarkName = "-textFieldShouldReturn:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
          filePath = "UIFramework/CardShopBaseViewController.m"
          timestampString = "406046169.925854"
          startingColumnNumber = "9223372036854775807"
@@ -53,6 +40,19 @@
          startingLineNumber = "39"
          endingLineNumber = "39"
          landmarkName = "-initHomePageTimelineNavBar:withIndex:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "BUILIb/Network/CarServiceNetDataMgr.m"
+         timestampString = "406228149.324991"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "496"
+         endingLineNumber = "496"
+         landmarkName = "-userLoginOk:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

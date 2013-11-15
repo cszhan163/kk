@@ -14,9 +14,7 @@
 
 #import "CardShopResignViewController.h"
 
-#define KLoginAndResignPendingX     9.f
-//#define kDeviceScreenWidth          320.f
-#define kLoginAndSignupInputTextColor [UIColor grayColor]
+
 
 @interface ResetPasswordViewController ()
 
@@ -29,6 +27,7 @@
 - (void)dealloc
 {
     self.subClassInputTextField = nil;
+    
     [super dealloc];
 }
 - (void)loadView
@@ -114,7 +113,7 @@
 			break;
 		case 1:
 		{
-            [self startRestPassword];
+            [self startNetwork];
 			break;
 		}
 	}
@@ -160,6 +159,7 @@
     }
     
 }
+
 -(void)startDoAction
 {
     kUIAlertView(@"提示",@"验证码已发送，稍后请查看短信");

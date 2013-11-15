@@ -26,7 +26,7 @@
 }
 - (void)viewWillDisappear:(BOOL)animated{
 
-    [self removeObserver:self.subClassInputTextField forKeyPath:@"text"];
+    //[self.subClassInputTextField removeObserver:self forKeyPath:@"text"];
 }
 - (void)viewDidLoad
 {
@@ -45,15 +45,24 @@
     SafeRelease(bgView);
     
     
+    //[self.rightBtn setTitle:@"确定" forState:UIControlStateNormal];
     UIImageWithFileName(bgImage, @"item_default_btn.png");
     assert(bgImage);
     [super setNavgationBarRightBtnImage:bgImage forStatus:UIControlStateNormal];
     UIImageWithFileName(bgImage, @"item_change_btn.png");
     [super setNavgationBarRightBtnImage:bgImage forStatus:UIControlStateSelected];
+   
+    //self.rightBtn.titleLabel
+    /*
+    self.rightBtn = [UIComUtil createButtonWithNormalBGImageName:@"item_default_btn.png" withHightBGImageName:@"item_change_btn.png" withTitle:@"确定" withTag:0];
+     */
     self.rightBtn.frame = CGRectMake(kDeviceScreenWidth-10-bgImage.size.width/kScale, self.rightBtn.frame.origin.y, bgImage.size.width/kScale, bgImage.size.height/kScale);
-    [self addObserver:self.subClassInputTextField forKeyPath:@"text"  options:NSKeyValueObservingOptionNew context:NULL];
-    
-    //[super setNavgationBarRightBtnText:@"确定" forStatus:UIControlStateNormal];
+    [self.subClassInputTextField  addTarget:self action:@selector(didchangeInputText:) forControlEvents:UIControlEventEditingChanged];
+    //self.rightBtn.titleLabel.text = @"确定";
+    self.rightBtn.font = [UIFont systemFontOfSize:13];
+    [self setNavgationBarRightBtnText:@"确定"forStatus:UIControlStateNormal];
+    [self setNavgationBarRightBtnText:@"确定" forStatus:UIControlStateSelected];
+//    [self.rightBtn setNeedsDisplay];
     //self.rightBtn.titleLabel.textColor = [UIColor whiteColor];
     if(self.type == 0)
     {
@@ -81,8 +90,8 @@
     }
 	// Do any additional setup after loading the view.
 }
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{
-    if([object isEqualToString:self.srcText]){
+- (void)didchangeInputText:(UITextField*)textField{
+    if([textField.text isEqualToString:self.srcText]){
         self.rightBtn.selected = NO;
     }
     else{
@@ -129,5 +138,4 @@
 	}
     
 }
-
 @end

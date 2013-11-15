@@ -186,6 +186,9 @@
      NSString *resKey = [obj objectForKey:@"key"];
     if([resKey isEqualToString:kNetLoginRes])
     {
+        kNetEnd(self.view);
+        //NSDictionary * _data = [obj objectForKey:@"data"];
+        kUIAlertView(@"提示",[_data objectForKey:@"msg"]);
         
     }
     if([resKey isEqualToString:kCarInfoQuery]){

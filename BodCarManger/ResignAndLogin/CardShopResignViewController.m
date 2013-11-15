@@ -41,10 +41,23 @@
     }
     return self;
 }
+- (void)awakeFromNib{
 
+    
+    
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    UIScrollView *bgScrollerView = [[UIScrollView alloc]initWithFrame:CGRectMake(0.f,0.f, kDeviceScreenWidth, kDeviceScreenHeight-kMBAppStatusBar)];
+    for(id item in [self.view subviews]){
+        [item removeFromSuperview];
+        [bgScrollerView addSubview:item];
+    }
+    [self.view addSubview:bgScrollerView];
+    bgScrollerView.contentSize = CGSizeMake(kDeviceScreenWidth, kDeviceScreenHeight-kMBAppStatusBar-40.f);
+    
     if(type ==0)
     {
         navTitleLabel.text = @"注册";
@@ -57,12 +70,16 @@
     mobilePhoneTextFied.textColor = HexRGB(137, 137, 137);
     self.radomCodeTextFied.textColor = HexRGB(137, 137, 137);
     self.passwordTextFied.textColor = HexRGB(137, 137, 137);
-    UIButton *btn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    btn.frame = CGRectMake(0.f, 0.f, 80, 40);
-    btn.titleLabel.text = @"确定";
+    
+    UIButton *btn = [UIComUtil createButtonWithNormalBGImageName:@"item_default_btn.png" withHightBGImageName:@"item_default_btn.png" withTitle:@"确定" withTag:0];
+    btn.titleLabel.font = [UIFont systemFontOfSize:12];
+    UIView *bgView = [[UIView alloc]initWithFrame:CGRectMake(0.f, 0.f, kDeviceScreenWidth,btn.frame.size.height)];
+    btn.frame = CGRectMake(kDeviceScreenWidth-btn.frame.size.width, 0.f, btn.frame.size.width, btn.frame.size.height);
+    [bgView addSubview:btn];
+    
     [btn addTarget:self action:@selector(doneInput) forControlEvents:UIControlEventTouchUpInside];
     //[self.view addSubview:btn];
-    self.radomCodeTextFied.inputAccessoryView = btn;
+    self.radomCodeTextFied.inputAccessoryView = bgView;
     mobilePhoneTextFied.delegate = self;
     // Do any additional setup after loading the view from its nib.
 }

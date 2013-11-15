@@ -28,6 +28,11 @@
 		043C650617FD76EF00CDBAC8 /* MesssageBoxViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 043C650517FD76EF00CDBAC8 /* MesssageBoxViewController.m */; };
 		043D9B4E17FAC4B800BE0C31 /* BaoCarNetBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 043D9B4D17FAC4B700BE0C31 /* BaoCarNetBaseViewController.m */; };
 		043D9B5317FAD1DD00BE0C31 /* CardShopBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 043D9B5017FAC56B00BE0C31 /* CardShopBaseViewController.m */; };
+		0440F2C518366F5700C71323 /* login_textbox.png in Resources */ = {isa = PBXBuildFile; fileRef = 0440F2C418366F5700C71323 /* login_textbox.png */; };
+		0440F2C718366F6100C71323 /* login_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 0440F2C618366F6100C71323 /* login_btn.png */; };
+		0440F2C918366F8900C71323 /* register_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 0440F2C818366F8900C71323 /* register_btn.png */; };
+		0440F2CD1836816200C71323 /* UserChangePasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0440F2CC1836816200C71323 /* UserChangePasswordViewController.m */; };
+		0440F2D018368DE500C71323 /* UserPhoneUpdateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0440F2CF18368DE500C71323 /* UserPhoneUpdateViewController.m */; };
 		044BEDF617EABA44004BF443 /* AppSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = 044BEDF517EABA44004BF443 /* AppSetting.m */; };
 		044BEDFA17EABEB6004BF443 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 044BEDF917EABEB6004BF443 /* CFNetwork.framework */; };
 		044BEDFC17EABEBD004BF443 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 044BEDFB17EABEBD004BF443 /* SystemConfiguration.framework */; };
@@ -318,12 +323,11 @@
 		BDC9818B181FBC65005DD720 /* FriendItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BDC9818A181FBC65005DD720 /* FriendItemCell.m */; };
 		BDC9818E181FBC88005DD720 /* CarDriveStatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = BDC9818D181FBC88005DD720 /* CarDriveStatusView.m */; };
 		BDC98191181FBC97005DD720 /* PlantTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BDC98190181FBC97005DD720 /* PlantTableViewCell.m */; };
-		BDC981A1181FC768005DD720 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		BDC981AA1820AB08005DD720 /* graph_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = BDC981A81820AB08005DD720 /* graph_btn.png */; };
 		BDC981AB1820AB08005DD720 /* list_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = BDC981A91820AB08005DD720 /* list_btn.png */; };
 		BDC981BC18210ED5005DD720 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDC981BB18210ED4005DD720 /* CoreTelephony.framework */; };
 		BDC981BE18210EDA005DD720 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDC981BD18210EDA005DD720 /* AudioToolbox.framework */; };
-		BDC981C018210FC2005DD720 /* iPlat4M_framework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDC981BF18210FC1005DD720 /* iPlat4M_framework.framework */; };
+		BDC981C018210FC2005DD720 /* iPlat4M_framework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDC981BF18210FC1005DD720 /* iPlat4M_framework.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		BDC981C318211125005DD720 /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = BDC981C218211124005DD720 /* RegexKitLite.m */; };
 /* End PBXBuildFile section */
 
@@ -372,6 +376,13 @@
 		043D9B4D17FAC4B700BE0C31 /* BaoCarNetBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaoCarNetBaseViewController.m; sourceTree = "<group>"; };
 		043D9B4F17FAC56B00BE0C31 /* CardShopBaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CardShopBaseViewController.h; sourceTree = "<group>"; };
 		043D9B5017FAC56B00BE0C31 /* CardShopBaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CardShopBaseViewController.m; sourceTree = "<group>"; };
+		0440F2C418366F5700C71323 /* login_textbox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = login_textbox.png; sourceTree = "<group>"; };
+		0440F2C618366F6100C71323 /* login_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = login_btn.png; sourceTree = "<group>"; };
+		0440F2C818366F8900C71323 /* register_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = register_btn.png; sourceTree = "<group>"; };
+		0440F2CB1836816200C71323 /* UserChangePasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserChangePasswordViewController.h; sourceTree = "<group>"; };
+		0440F2CC1836816200C71323 /* UserChangePasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserChangePasswordViewController.m; sourceTree = "<group>"; };
+		0440F2CE18368DE400C71323 /* UserPhoneUpdateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserPhoneUpdateViewController.h; sourceTree = "<group>"; };
+		0440F2CF18368DE500C71323 /* UserPhoneUpdateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserPhoneUpdateViewController.m; sourceTree = "<group>"; };
 		044BEDF417EABA44004BF443 /* AppSetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppSetting.h; sourceTree = "<group>"; };
 		044BEDF517EABA44004BF443 /* AppSetting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppSetting.m; sourceTree = "<group>"; };
 		044BEDF917EABEB6004BF443 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -771,7 +782,6 @@
 				BDC981C018210FC2005DD720 /* iPlat4M_framework.framework in Frameworks */,
 				BDC981BE18210EDA005DD720 /* AudioToolbox.framework in Frameworks */,
 				BDC981BC18210ED5005DD720 /* CoreTelephony.framework in Frameworks */,
-				BDC981A1181FC768005DD720 /* (null) in Frameworks */,
 				BDC37E91181CEF8100A4CB18 /* libstdc++.dylib in Frameworks */,
 				BD355D70181A11DD0010D16E /* libsqlite3.dylib in Frameworks */,
 				BD355D6E181A11CC0010D16E /* libxml2.dylib in Frameworks */,
@@ -835,6 +845,10 @@
 				04E458FC1825452A0028BDAD /* CarInfoManageViewController.m */,
 				044D8900182A72CA00AD2368 /* CarInfoInputViewController.h */,
 				044D8901182A72CA00AD2368 /* CarInfoInputViewController.m */,
+				0440F2CB1836816200C71323 /* UserChangePasswordViewController.h */,
+				0440F2CC1836816200C71323 /* UserChangePasswordViewController.m */,
+				0440F2CE18368DE400C71323 /* UserPhoneUpdateViewController.h */,
+				0440F2CF18368DE500C71323 /* UserPhoneUpdateViewController.m */,
 			);
 			name = User;
 			sourceTree = "<group>";
@@ -1160,6 +1174,9 @@
 		049DF9531812EAC000DFC9F1 /* login */ = {
 			isa = PBXGroup;
 			children = (
+				0440F2C818366F8900C71323 /* register_btn.png */,
+				0440F2C618366F6100C71323 /* login_btn.png */,
+				0440F2C418366F5700C71323 /* login_textbox.png */,
 				049DF9581812EE3800DFC9F1 /* register_bg.png */,
 				049DF9541812EAC000DFC9F1 /* login_bg.png */,
 			);
@@ -2003,6 +2020,9 @@
 				BD45A2211834AB68000668FA /* save.png in Resources */,
 				04FA93CC1835247400B1DB3E /* matain_need.png in Resources */,
 				04FA93CD1835247400B1DB3E /* matain_normal.png in Resources */,
+				0440F2C518366F5700C71323 /* login_textbox.png in Resources */,
+				0440F2C718366F6100C71323 /* login_btn.png in Resources */,
+				0440F2C918366F8900C71323 /* register_btn.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2097,6 +2117,8 @@
 				044D8902182A72CA00AD2368 /* CarInfoInputViewController.m in Sources */,
 				041EF93E182D502500F487A6 /* MessageBoxCell.m in Sources */,
 				043385FE182E86BF00CEE699 /* UIShareActionAlertView.m in Sources */,
+				0440F2CD1836816200C71323 /* UserChangePasswordViewController.m in Sources */,
+				0440F2D018368DE500C71323 /* UserPhoneUpdateViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -80,7 +80,7 @@
 						</object>
 						<object class="NSCustomResource" key="IBUINormalBackgroundImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">r_btn_submit.png</string>
+							<string key="NSResourceName">register_btn.png</string>
 						</object>
 						<object class="IBUIFontDescription" key="IBUIFontDescription" id="303231875">
 							<int key="type">2</int>
@@ -236,6 +236,7 @@
 						<bool key="IBUIAdjustsFontSizeToFit">YES</bool>
 						<float key="IBUIMinimumFontSize">17</float>
 						<object class="IBUITextInputTraits" key="IBUITextInputTraits">
+							<int key="IBUIReturnKeyType">9</int>
 							<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						</object>
 						<object class="IBUIFontDescription" key="IBUIFontDescription" id="351979126">
@@ -271,6 +272,8 @@
 						<float key="IBUIMinimumFontSize">17</float>
 						<object class="IBUITextInputTraits" key="IBUITextInputTraits">
 							<int key="IBUIKeyboardType">4</int>
+							<int key="IBUIReturnKeyType">9</int>
+							<bool key="IBUIEnablesReturnKeyAutomatically">YES</bool>
 							<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						</object>
 						<reference key="IBUIFontDescription" ref="351979126"/>
@@ -287,6 +290,7 @@
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+						<bool key="IBUIEnabled">NO</bool>
 						<int key="IBUIContentVerticalAlignment">0</int>
 						<string key="IBUIText"/>
 						<string key="IBUIPlaceholder">(可选）</string>
@@ -325,6 +329,7 @@
 						<bool key="IBUIAdjustsFontSizeToFit">YES</bool>
 						<float key="IBUIMinimumFontSize">17</float>
 						<object class="IBUITextInputTraits" key="IBUITextInputTraits">
+							<int key="IBUIReturnKeyType">9</int>
 							<bool key="IBUISecureTextEntry">YES</bool>
 							<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						</object>
@@ -427,16 +432,16 @@
 						<reference key="object" ref="191373211"/>
 						<array class="NSMutableArray" key="children">
 							<reference ref="116989075"/>
-							<reference ref="811416626"/>
-							<reference ref="469703451"/>
-							<reference ref="866081244"/>
 							<reference ref="109588752"/>
+							<reference ref="170120160"/>
+							<reference ref="980367633"/>
+							<reference ref="866081244"/>
+							<reference ref="469703451"/>
+							<reference ref="811416626"/>
+							<reference ref="713401035"/>
 							<reference ref="708207036"/>
 							<reference ref="261444651"/>
-							<reference ref="713401035"/>
 							<reference ref="49682976"/>
-							<reference ref="980367633"/>
-							<reference ref="170120160"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -534,7 +539,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">31</int>
+			<int key="maxID">32</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -600,17 +605,30 @@
 				<object class="IBPartialClassDescription">
 					<string key="className">CardShopResignViewController</string>
 					<string key="superclassName">CardShopLoginViewController</string>
-					<object class="NSMutableDictionary" key="actions">
-						<string key="NS.key.0">goBack:</string>
-						<string key="NS.object.0">id</string>
-					</object>
-					<object class="NSMutableDictionary" key="actionInfosByName">
-						<string key="NS.key.0">goBack:</string>
-						<object class="IBActionInfo" key="NS.object.0">
+					<dictionary class="NSMutableDictionary" key="actions">
+						<string key="cancelLogin:">id</string>
+						<string key="goBack:">id</string>
+						<string key="login_click:">id</string>
+						<string key="textFieldDidEndEditing:">id</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="actionInfosByName">
+						<object class="IBActionInfo" key="cancelLogin:">
+							<string key="name">cancelLogin:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="goBack:">
 							<string key="name">goBack:</string>
 							<string key="candidateClassName">id</string>
 						</object>
-					</object>
+						<object class="IBActionInfo" key="login_click:">
+							<string key="name">login_click:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="textFieldDidEndEditing:">
+							<string key="name">textFieldDidEndEditing:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+					</dictionary>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="confirmPasswordTextFied">UITextField</string>
 						<string key="mobilePhoneTextFied">UITextField</string>
@@ -658,9 +676,9 @@
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="btn-back.png">{61, 57}</string>
 			<string key="r_agreed.png">{289, 27}</string>
-			<string key="r_btn_submit.png">{404, 83}</string>
 			<string key="r_resend_vcode.png">{404, 83}</string>
 			<string key="register_bg.png">{640, 832}</string>
+			<string key="register_btn.png">{557, 86}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">2083</string>
 	</data>

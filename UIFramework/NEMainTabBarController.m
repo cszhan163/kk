@@ -93,7 +93,7 @@
 		UINavigationController *nav = (UINavigationController*)self.currentViewController;
 		//UIViewController *Vc = nav.visibleViewController;
         
-        if(SYSTEM_VERSION_GREATER_THAN(@"5.0"))
+        if(SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"5.0"))
         {
         }
         else 
@@ -114,7 +114,7 @@
 	//[[_navControllersArr objectAtIndex:0] viewDidAppear:animated];
 	//[[_navControllersArr objectAtIndex:1] viewDidAppear:animated];
     [super viewDidAppear:animated];
-    if(SYSTEM_VERSION_GREATER_THAN(@"5.0"))
+    if(SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"5.0"))
     {
     }
     else

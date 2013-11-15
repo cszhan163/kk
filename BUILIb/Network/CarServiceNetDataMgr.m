@@ -118,18 +118,32 @@ static ZCSNetClientNetInterfaceMgr *dressMemoInterfaceMgr = nil;
 }
 - (id)carUserPasswordUpdate:(NSDictionary*)param{
     //updateUserPhoneNumber
-    EiInfo *inInfo = [self getCommIPlant4MParam];
+    EiInfo *inInfo = [self getCommIPlant4MParamByServiceToken:@"VESA02"];
     [inInfo set:@"userName" value:[param objectForKey:@"name"]];
     [inInfo set:@"password" value:[param objectForKey:@"password"]];
 //    if([param objectForKey:@"phoneNumber"]){
 //        [inInfo set:@"phoneNumber" value:[param objectForKey:@"phoneNumber"]];
 //    }
     //queryTripCalanderMonth @"userRegister"
-    [inInfo set:METHOD_TOKEN value:kCarUserRegister]; // 接口名
-    [self startiPlant4MRequest:inInfo withSuccess:@selector(userRegisterOk:) withFailed:@selector(userRegisterFailed:)];
+    [inInfo set:METHOD_TOKEN value:kCarUserUpdatePass]; // 接口名
+    [self startiPlant4MRequest:inInfo withSuccess:@selector(userUserPasswordUpdateOk:) withFailed:@selector(userUserPasswordUpdateFailed:)];
     return nil;
 
 
+}
+- (id)carUserPhoneUpdate:(NSDictionary*)param{
+    //updateUserPhoneNumber
+    //updateUserPhoneNumber
+    EiInfo *inInfo = [self getCommIPlant4MParamByServiceToken:@"VESA02"];
+    [inInfo set:@"userName" value:[param objectForKey:@"name"]];
+    [inInfo set:@"phoneNumber" value:[param objectForKey:@"phoneNumber"]];
+    //    if([param objectForKey:@"phoneNumber"]){
+    //        [inInfo set:@"phoneNumber" value:[param objectForKey:@"phoneNumber"]];
+    //    }
+    //queryTripCalanderMonth @"userRegister"
+    [inInfo set:METHOD_TOKEN value:kCarUserUpdatePhone]; // 接口名
+    [self startiPlant4MRequest:inInfo withSuccess:@selector(userPhoneUpdateOk:) withFailed:@selector(userPhoneUpdateFailed:)];
+    return nil;
 }
 
 - (id)backDoorRequest:(NSDictionary*)param{
@@ -564,8 +578,42 @@ static BOOL isExit = NO;
 - (void)carInforUpdateFailed:(EiInfo*)info{
     [self sendFinalFailedData:@"" withKey:kCarInfoUpdate];
 }
+- (void)userUserPasswordUpdateOk:(EiInfo*)info{
+    if(info.status == 1){
+        //NSLog(@"%@",info.blocks);
+        //phoneNumber;
+        NSMutableDictionary *resultDict = [NSMutableDictionary dictionary];
+        [resultDict setValue:[info get:@"retType"] forKey:@"retType"];
+        [self sendFinalOkData:resultDict withKey:kCarUserUpdatePass];
+    }
+    else{
+        
+        [self sendFinalFailedData:@"" withKey:kCarUserUpdatePass];
+    }
+    
+}
+- (void)userUserPasswordUpdateFailed:(EiInfo*)info{
 
-
+[self sendFinalFailedData:@"" withKey:kCarUserUpdatePass];
+}
+- (void)userPhoneUpdateOk:(EiInfo*)info{
+    if(info.status == 1){
+        //NSLog(@"%@",info.blocks);
+        //phoneNumber;
+        NSMutableDictionary *resultDict = [NSMutableDictionary dictionary];
+        [resultDict setValue:[info get:@"retType"] forKey:@"retType"];
+        [self sendFinalOkData:resultDict withKey:kCarUserUpdatePhone];
+    }
+    else{
+        
+        [self sendFinalFailedData:@"" withKey:kCarUserUpdatePhone];
+    }
+    
+}
+- (void)userPhoneUpdateFailed:(EiInfo*)info{
+    
+    [self sendFinalFailedData:@"" withKey:kCarUserUpdatePhone];
+}
 #pragma mark -
 #pragma mark delegate router
 

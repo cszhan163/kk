@@ -348,7 +348,7 @@ static NSString *kCellImageArr[] = {
                 shareCell.shareNameLabel.textColor = HexRGB(64, 64, 64);
                 shareCell.nameLabel.textColor = [UIColor blueColor];//cell.detailTextLabel.textColor;
                  shareCell.shareNameLabel.font = [UIFont systemFontOfSize:15];
-                shareCell.nameLabel.font = cell.detailTextLabel.font;
+                shareCell.nameLabel.font = [UIFont systemFontOfSize:15];
                 cell = shareCell;
                                //return shareCell;
             }

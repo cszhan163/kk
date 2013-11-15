@@ -363,6 +363,7 @@ static NSString *kCellImageArr[] = {
             {
                 case 0:
                     cell.textLabel.text = @"关于";
+                    cell.detailTextLabel.text = @"";
                     break;
                 case 1:
                       cell.textLabel.text = @"退出登陆";

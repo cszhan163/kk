@@ -15,6 +15,12 @@
 @synthesize year;
 @synthesize pointDataMapDict;
 @synthesize mapPointView;
+
+- (void)dealloc{
+    self.pointDataMapDict = nil;
+    [super dealloc];
+  
+}
 - (id)init{
     if(self = [super init]){
     

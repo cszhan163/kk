@@ -76,5 +76,5 @@
 #define K_ImageButton_Width 60
 
 #define K_MAINSCREEN_WIDTH 320
-#define K_MAINSCREEN_HEIGHT 480
+#define K_MAINSCREEN_HEIGHT 
 #endif

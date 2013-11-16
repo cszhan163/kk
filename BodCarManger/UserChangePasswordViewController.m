@@ -31,6 +31,7 @@
     if(self.type == 0){
         self.subClassInputTextField.secureTextEntry = YES;
         self.subClassInputTextField.text = @"";
+        self.subClassInputTextField.placeholder = @"请输入旧密码";
     }
     else{
         self.subClassInputTextField.text = self.srcText;
@@ -62,9 +63,11 @@
         self.newPasswordInputTextField .contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
         self.newPasswordInputTextField .font = kAppTextSystemFont(16);//[UIFont systemFontOfSize:40];
         self.newPasswordInputTextField .textColor = kLoginAndSignupInputTextColor;
+        self.newPasswordInputTextField.placeholder = @"请输入新密码";
         self.newPasswordInputTextField .adjustsFontSizeToFitWidth = NO;
         self.newPasswordInputTextField .text = @"";
         self.newPasswordInputTextField .delegate = self;
+        [self.newPasswordInputTextField addTarget:self action:@selector(didchangeInputText:) forControlEvents:UIControlEventEditingChanged];
         self.newPasswordInputTextField.secureTextEntry = YES;
         [self.view addSubview:self.newPasswordInputTextField];
         //[self.newPasswordInputTextField ]

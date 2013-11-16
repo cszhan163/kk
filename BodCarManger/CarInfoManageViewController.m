@@ -21,6 +21,7 @@ static NSString  *CarInfoKeyArray[] = {
 };
 @interface CarInfoManageViewController (){
     NSInteger type ;
+    BOOL isNeedFresh;
 }
 @end
 
@@ -45,8 +46,14 @@ static NSString  *CarInfoKeyArray[] = {
     self.data = [AppSetting getLoginUserCarData];
     //[self shouldLoadCarInfoData];
 	// Do any additional setup after loading the view.
+    isNeedFresh = YES;
+    [self performSelectorInBackground:@selector(shouldLoadDataFromNet) withObject:nil];
 }
-
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    //[self.navigationController popToRootViewControllerAnimated:NO];
+    //[logInfo reloadData];
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -269,10 +276,14 @@ static NSString  *CarInfoKeyArray[] = {
 #pragma mark -
 #pragma mark net work
 - (void)shouldLoadDataFromNet{
+    if(!isNeedFresh){
+        return;
+    }
     kNetStartShow(@"数据加载...", self.view);
     CarServiceNetDataMgr *cardShopMgr = [CarServiceNetDataMgr getSingleTone];
     NSString *useName = [AppSetting getLoginUserId];
     [cardShopMgr carInforQuery:useName];
+    isNeedFresh = NO;
 }
 -(void)didNetDataOK:(NSNotification*)ntf
 {

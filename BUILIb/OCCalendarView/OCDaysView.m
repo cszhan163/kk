@@ -10,6 +10,10 @@
 #import "OCTypes.h"
 @implementation OCDaysView
 @synthesize delegate;
+- (void)dealloc{
+    [super dealloc];
+    [mDaysModel release];
+}
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -46,7 +50,7 @@
     CGFloat shadow2BlurRadius = 1;
     CGColorRef shadow2 = [UIColor blackColor].CGColor;
     
-    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSCalendar *calendar = [[[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar]autorelease];
     
     int month = currentMonth;
     int year = currentYear;
@@ -250,6 +254,8 @@
 	int numDaysInMonth = [calendar rangeOfUnit:NSDayCalendarUnit 
 										inUnit:NSMonthCalendarUnit 
                                        forDate:dateOnFirst].length;
+    [calendar release];
+    
     didAddExtraRow = NO;
 	
 	int day = 1;
@@ -265,6 +271,7 @@
 			}
 		}
 	}
+
 }
 
 - (BOOL)addExtraRow {

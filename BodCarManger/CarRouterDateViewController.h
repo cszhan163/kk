@@ -9,5 +9,5 @@
 #import "UISimpleNetBaseViewController.h"
 #import "BaoMonthBaseViewController.h"
 @interface CarRouterDateViewController : BaoMonthBaseViewController
-
+- (void)checkAdjustDate:(int)offset withMonth:(int*)month withYear:(int*)year;
 @end

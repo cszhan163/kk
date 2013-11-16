@@ -132,7 +132,9 @@
     kNetStartShow(@"数据加载...", self.view);
     NSString *tipId = [self.mData objectForKey:@"tripId"];
     NSString *startTime = [self.mData objectForKey:@"startTime"];
-    self.request = [cardShopMgr  getRouterHistoryData:@"SHD05728" withRouterId:tipId withStartTime:startTime];
+    NSString *carId = nil;
+    carId = [AppSetting getUserCarId:nil];
+    self.request = [cardShopMgr  getRouterHistoryData:carId withRouterId:tipId withStartTime:startTime];
     
     
 }
@@ -180,6 +182,7 @@
     latLogArr  = [latLogStr componentsSeparatedByString:@","];
     mEndPoint.latitude = [latLogArr[1]floatValue]/kGPSMaxScale;
 	mEndPoint.longitude = [latLogArr[0]floatValue]/kGPSMaxScale;
+    
     /*
      "rotate": "86",
      "speed": "34",
@@ -224,6 +227,9 @@
     fileName = [NSString stringWithFormat:@"dashboard%d.png",drivetest];
     UIImageWithFileName(bgImage, fileName);
     carDetailPenalView.mDriveAnalaysisImageView.image = bgImage;
+    
+    SafeRelease(mStartPoint);
+    SafeRelease(mEndPoint);
 }
 #pragma mark -
 #pragma mark navigation bar action

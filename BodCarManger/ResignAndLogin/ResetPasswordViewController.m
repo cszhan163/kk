@@ -44,6 +44,16 @@
     [super viewDidLoad];
     //[self addObservers];
    
+    UIImage *bgImage = nil;
+    UIImageWithFileName(bgImage, @"car_bg.png");
+    mainView.bgImage = bgImage;
+    UIView *bgView = [[UIView alloc]initWithFrame:CGRectMake(0.f, kMBAppTopToolBarHeight,kDeviceScreenWidth, kDeviceScreenHeight-kMBAppTopToolBarHeight-kMBAppStatusBar)];
+    bgView.backgroundColor = HexRGB(202, 202, 204);
+    
+   
+    
+    
+    
     [self setHiddenRightBtn:NO];
     //mainView.topBarView.frame = CGRectMake(0.f,0.f,320.f,44.f);
    
@@ -64,7 +74,6 @@
     }
     subClassInputTextField.placeholder = NSLocalizedString(@"请输入内容", @"");
     subClassInputTextField.returnKeyType = UIReturnKeyDone;
-    UIImage *bgImage = nil;
     //UIImageWithFileName(bgImage, @"inputboxL.png");
     UIImageWithFileName(bgImage, @"inputboxL.png");
 #if 0
@@ -85,7 +94,9 @@
     //UIButton *btn = [UIButton buttonWithType:];
     
     [subClassInputTextField becomeFirstResponder];
-
+    
+    [self.view insertSubview:bgView belowSubview:self.subClassInputTextField];
+    SafeRelease(bgView);
 	// Do any additional setup after loading the view.
 }
 

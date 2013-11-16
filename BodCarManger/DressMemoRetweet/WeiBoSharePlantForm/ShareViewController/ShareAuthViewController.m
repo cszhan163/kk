@@ -46,8 +46,11 @@
 // Implement loadView to create a view hierarchy programmatically, without using a nib.
 - (void)loadView{
     [super loadView];
-    
-    _authWeb = [[UIWebView alloc] initWithFrame:CGRectMake(0,44.f-3.f, K_FRAME_WIDTH, K_FRAME_HEIGHT-K_NAVBAR_HEIGHT-50)];
+    CGFloat frameHeight = 460.f;
+    if([[UIScreen mainScreen]bounds].size.height>=480){
+        frameHeight = 940.f;
+    }
+    _authWeb = [[UIWebView alloc] initWithFrame:CGRectMake(0,44.f-3.f, K_FRAME_WIDTH, frameHeight-K_NAVBAR_HEIGHT-50)];
     if(self.type == 3){
 		_authWeb.delegate = _baseEngine;
 	}

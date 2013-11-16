@@ -77,7 +77,6 @@
     [super setNavgationBarRightBtnImage:bgImage forStatus:UIControlStateSelected];
     CGRect rect = self.rightBtn.frame;
     self.rightBtn.frame = CGRectMake(kDeviceScreenWidth-10.f-bgImage.size.width/kScale, rect.origin.y, bgImage.size.width/kScale, bgImage.size.height/kScale);
-    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
     
     UIButton *preBtn = [UIComUtil createButtonWithNormalBGImageName:@"router_page_up.png" withHightBGImageName:@"router_page_up.png" withTitle:@"" withTag:0];
     [preBtn addTarget:self action:@selector(didScrollerToPreMoth:) forControlEvents:UIControlEventTouchUpInside];
@@ -292,18 +291,7 @@
     }
     int month = self.mTodayDate.month +senderView.nolimitIndex+index;
     int year = self.mTodayDate.year;
-    if(month>12){
-        int num = month/12;
-        year = self.mTodayDate.year+num;
-        month = month%12;
-    }
-    if(month<=0){
-        int num = -1+month/12;
-        year = self.mTodayDate.year+num;
-        month = 12+month%12;
-    }
-
-    
+    [self checkAdjustDate:senderView.nolimitIndex withMonth:&month withYear:&year];
     CGPoint insertPoint = CGPointMake(167,50);
     int width = kCalendarWidth;
     int height = kCalendarHeight;
@@ -334,16 +322,7 @@
     else{
         int month = self.mTodayDate.month +senderView.nolimitIndex;
         int year = self.mTodayDate.year;
-        if(month>12){
-            int num = month/12;
-            year = self.mTodayDate.year+num;
-            month = month%12;
-        }
-        if(month<=0){
-            int num = -1+month/12;
-            year = self.mTodayDate.year+num;
-            month = 12+month%12;
-        }
+        [self checkAdjustDate:senderView.nolimitIndex withMonth:&month withYear:&year];
         NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:
                               [NSString stringWithFormat:@"%d",month],@"month",
                               [NSString stringWithFormat:@"%d",year],@"year",nil];
@@ -615,7 +594,7 @@ int lastDirect = -1;
         else{
             
         }
-        if([[data objectForKey:@"tripID"]intValue] !=0){
+        if([[data objectForKey:@"tripId"]intValue] !=0){
             CarRouterDetailViewController *vc = [[CarRouterDetailViewController alloc]initWithNibName:nil bundle:nil];
             vc.delegate = self;
             vc.mData = data;
@@ -654,11 +633,7 @@ int lastDirect = -1;
 }
 - (void)updateUIData:(NSDictionary*)netData{
 
-    calView = csView.getCurrentPageView;
-    NSLog(@"%@",[calView getDateKey]);
-    if(![[calView getDateKey]isEqualToString:self.mMothDateKey]){
-        return;
-    }
+   
     [self.mHasDataDict  removeAllObjects];
     NSMutableDictionary *uiDataDict = [NSMutableDictionary dictionary];
     NSMutableString *driveOk = [NSMutableString stringWithString:@""];
@@ -716,6 +691,11 @@ int lastDirect = -1;
 }
 - (void)perOnMainThreadFun:(NSArray*)data{
  
+    calView = csView.getCurrentPageView;
+    NSLog(@"%@",[calView getDateKey]);
+    if(![[calView getDateKey]isEqualToString:self.mMothDateKey]){
+        return;
+    }
     if(isTodayMonth){
         NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
         NSDateComponents *dateParts = [[NSDateComponents alloc] init];
@@ -725,6 +705,7 @@ int lastDirect = -1;
         
         NSDate *sDate = [calendar dateFromComponents:dateParts];
         SafeRelease(dateParts);
+        SafeRelease(calendar);
         [calView addStartDate:sDate endDate:sDate withTag:2];
     }
     [self processData:data[0] withStatus:0];
@@ -812,8 +793,9 @@ int lastDirect = -1;
     [dateParts setDay:eday];
     
     NSDate *eDate = [calendar dateFromComponents:dateParts];
-    [dateParts release];
     [calView addStartDate:sDate endDate:eDate withTag:tag];
+    SafeRelease(calendar);
+    SafeRelease(dateParts);
 }
 #pragma mark -
 

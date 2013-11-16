@@ -31,9 +31,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
     NSString  *username=@"";
     NSString  *password=@"";
+    
+    UIImage *bgImage = nil;
+    UIImageWithFileName(bgImage, @"login_bg.png");
+    self.view.layer.contents = (id)bgImage.CGImage;
+    
     //self.txtpassword
     /*
     NSString   *filename=[self GetTempPath:@"username.txt"];

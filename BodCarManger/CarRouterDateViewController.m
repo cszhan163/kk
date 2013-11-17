@@ -68,6 +68,7 @@
     NSString *barTitle  = [NSString stringWithFormat:@"%d年%02d月",self.mCurrDate.year,self.mCurrDate.month];
     [self setNavgationBarTitle:barTitle];
     
+    [ZCSNotficationMgr postMSG:KNewMessageFromMSG obj:@"10"];
    // self.mMothDateKey = [NSString stringWithFormat:kDateFormart,self.mCurrDate.year,self.mCurrDate.month];
     UIImage *bgImage = nil;
     UIImageWithFileName(bgImage, @"car_bg.png");

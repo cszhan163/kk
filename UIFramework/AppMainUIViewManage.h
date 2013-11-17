@@ -13,6 +13,7 @@
 	UIWindow *window;
 	BOOL isShouldHiddenTabBarWhenPush;
 }
+
 @property(nonatomic,assign)UIWindow *window;
 @property(nonatomic,assign)BOOL isShouldHiddenTabBarWhenPush;
 -(void)addMainViewUI;

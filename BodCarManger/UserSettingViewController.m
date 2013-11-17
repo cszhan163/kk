@@ -467,7 +467,6 @@ static NSString *kCellImageArr[] = {
             locationSwitch.on = status;
         }
     }
-    
     cell.textLabel.backgroundColor = [UIColor clearColor];
 	return cell;
     

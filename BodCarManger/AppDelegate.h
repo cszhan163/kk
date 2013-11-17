@@ -12,6 +12,7 @@
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 -(BOOL)checkCarInforData;
+@property(nonatomic,assign)NSInteger mesCount;
 @property (strong, nonatomic) UIWindow *window;
 
 @property (strong, nonatomic) ViewController *viewController;

@@ -81,9 +81,22 @@
     
     //从scrollView上移除所有的subview
     NSArray *subViews = [_scrollView subviews];
+#if 0
+    for(id item in subViews){
+        //@synchronize(self){
+            //[item setTag:-1];
+           
+            [item removeFromSuperview];
+            //NSLog(@"%@",[item description]);
+            item = nil;
+        //}
+    }
+#else
     if([subViews count] != 0) {
         [subViews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+        
     }
+#endif
     [self getDisplayImagesWithCurpage:_curPage];
     
     for (int i = 0; i < 3; i++) {

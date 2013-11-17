@@ -16,7 +16,7 @@
 	float latitude;
 	float longitude;
 }
-
+@property (nonatomic,assign)int pointType;
 @property (nonatomic, retain) NSString* name;
 @property (nonatomic, retain) NSString* description;
 @property (nonatomic) float latitude;

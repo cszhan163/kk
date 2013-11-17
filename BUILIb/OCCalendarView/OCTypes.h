@@ -18,7 +18,7 @@ typedef enum {
  @property(assign)    int mEndX;
  @property(assign)    int mEndY;
 @property(assign) int mTag;
-@property(strong) UIColor *color;
+@property(retain) UIColor *color;
 @end
 
 

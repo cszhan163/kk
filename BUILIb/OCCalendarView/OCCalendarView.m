@@ -90,6 +90,8 @@
     [daysView setMonth:currentMonth];
     [daysView resetRows];
     [self addSubview:daysView];
+  
+      
     [daysView setDelegate:self];
     //self.clipsToBounds = YES;
     selectionView.frame = CGRectMake(kPendingX,kDayViewStartY, hDiff * 7, ([daysView addExtraRow] ? 6 : 5)*vDiff);
@@ -568,6 +570,7 @@
     NSArray *dayTitles = [dateFormatter shortStandaloneWeekdaySymbols];
     NSArray *monthTitles = [dateFormatter standaloneMonthSymbols];
 	
+    [dateFormatter release];
     //// General Declarations
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
     CGContextRef context = UIGraphicsGetCurrentContext();
@@ -1101,7 +1104,7 @@
     
     [selectionView release];
     [calendar release];
-    
+    [daysView release];
     [super dealloc];
     
 }

@@ -21,6 +21,7 @@
     [super viewDidLoad];
     [self setRightBtnHidden:YES];
     [self setNavgationBarTitle:@"解除绑定"];
+    [self setHiddenLeftBtn:NO];
 }
 - (void)shouldLoadDataFromNet{
     

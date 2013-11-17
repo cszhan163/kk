@@ -15,7 +15,7 @@
 	CLLocationCoordinate2D coordinate;
 	Place* place;
 }
-
+@property (nonatomic,assign)int type;
 @property (nonatomic, readonly) CLLocationCoordinate2D coordinate;
 @property (nonatomic, retain) Place* place;
 

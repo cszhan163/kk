@@ -35,15 +35,8 @@
     [self setNavgationBarTitle:self.barTitle];
     [self setHiddenRightBtn:NO];
     self.srcText = self.subClassInputTextField.text;
-    UIImage *bgImage = nil;
-    UIImageWithFileName(bgImage, @"car_bg.png");
-    mainView.bgImage = bgImage;
-    UIView *bgView = [[UIView alloc]initWithFrame:CGRectMake(0.f, kMBAppTopToolBarHeight,kDeviceScreenWidth, kDeviceScreenHeight-kMBAppTopToolBarHeight-kMBAppStatusBar)];
-    bgView.backgroundColor = HexRGB(202, 202, 204);
     
-    [self.view insertSubview:bgView belowSubview:self.subClassInputTextField];
-    SafeRelease(bgView);
-    
+    UIImage *bgImage;
     
     //[self.rightBtn setTitle:@"确定" forState:UIControlStateNormal];
     UIImageWithFileName(bgImage, @"item_default_btn.png");
@@ -77,7 +70,7 @@
         self.subClassInputTextField.enabled = NO;
         [self.subClassInputTextField resignFirstResponder];
         NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
-        [dateFormat setDateFormat:@"yyyyMMdd"];
+        [dateFormat setDateFormat:@"yyyy年MM月dd日"];
         
         NSDate *date = [dateFormat dateFromString:self.subClassInputTextField.text];
         datePickView.hidden = NO;
@@ -102,12 +95,19 @@
     NSDateComponents *dateComonets = [[NSCalendar currentCalendar] components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit  fromDate:sender.date];
     //[dateComonets ]
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
-    [dateFormat setDateFormat:@"yyyyMMdd"];
+    [dateFormat setDateFormat:@"yyyy年MM月dd日"];
     
     NSString *dateString = [dateFormat stringFromDate:sender.date];
     //NSDate *date = [dateFormat dateFromString:self.subClassInputTextField.text];
     self.subClassInputTextField.text = dateString;
     SafeRelease(dateFormat);
+    //SafeRelease(dateComonets);
+    if([self.subClassInputTextField.text isEqualToString:self.srcText]){
+        self.rightBtn.selected = NO;
+    }
+    else{
+       self.rightBtn.selected = YES; 
+    }
     
 }
 - (void)didReceiveMemoryWarning

@@ -141,9 +141,10 @@
 - (void)addPointToMap:(Place*)f {
 
     
-    PlaceMark* from = [[[PlaceMark alloc] initWithPlace:f] autorelease];
+    PlaceMark* point = [[[PlaceMark alloc] initWithPlace:f] autorelease];
+    point.type = f.pointType;
 	//PlaceMark* to = [[[PlaceMark alloc] initWithPlace:t] autorelease];
-	[mapView addAnnotation:from];
+	[mapView addAnnotation:point];
 	//[mapView addAnnotation:to];
 
 
@@ -154,14 +155,16 @@
     MKPointAnnotation *annotationPoint = [[MKPointAnnotation alloc] init];
     annotationPoint.coordinate = annotationCoord;
     annotationPoint.title = name;
+    annotationPoint.subtitle = @"";
     [mapView addAnnotation:annotationPoint];
     [annotationPoint release];
 }
 - (void)showRouteWithPointsData:(NSArray*)points{
     [routes release];
     routes = [points retain];
-    [self updateRouteView];
     [self centerMap];
+    [self updateRouteView];
+    
 }
 -(void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view
 {
@@ -249,16 +252,22 @@
 }
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation {
+    
     if ([annotation isKindOfClass:[MKUserLocation class]]) {
         return nil;
     }
-    
+    NSLog(@"add annotation");
     static NSString* ShopAnnotationIdentifier = @"shopAnnotationIdentifier";
     MKPinAnnotationView *pinView = (MKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:ShopAnnotationIdentifier];
     if (!pinView) {
         pinView = [[[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:ShopAnnotationIdentifier] autorelease];
-        pinView.pinColor = MKPinAnnotationColorRed;
+        pinView.pinColor = MKPinAnnotationColorGreen;
         pinView.animatesDrop = YES;
+        [pinView setCanShowCallout:YES];
+    }
+    PlaceMark *place = (PlaceMark*)annotation;
+    if(place.type == 1){
+        pinView.pinColor = MKPinAnnotationColorRed;
     }
     return pinView;
 }

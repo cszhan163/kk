@@ -29,7 +29,7 @@
 - (void)setDayItemRowHeight:(CGFloat)h rowWidth:(CGFloat)w;
 -(void)setStartPoint:(CGPoint)sPoint;
 -(void)setEndPoint:(CGPoint)ePoint;
-@property(nonatomic,strong)NSMutableArray *selectorPoints;
+@property(nonatomic,retain)NSMutableArray *selectorPoints;
 @property(nonatomic, assign) OCSelectionMode selectionMode;
 @property (nonatomic, assign) BOOL selected;
 

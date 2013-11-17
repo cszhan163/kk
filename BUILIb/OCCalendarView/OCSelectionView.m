@@ -14,10 +14,14 @@
 @synthesize mStartY;
 @synthesize mTag;
 @synthesize color;
+- (void)dealloc{
+    self.color = nil;
+    [super dealloc];
+   
+}
 @end
 @interface OCSelectionView()
-
-@property(nonatomic,strong)  NSMutableArray *colorArray;
+@property(nonatomic,retain)  NSMutableArray *colorArray;
 @end
 
 @implementation OCSelectionView
@@ -25,6 +29,12 @@
 @synthesize selectionMode = _selectionMode;
 @synthesize selected;
 @synthesize selectorPoints;
+- (void)dealloc{
+    //[self.colorArray release];
+    self.colorArray = nil;
+    self.selectorPoints = nil;
+    [super dealloc];
+}
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];

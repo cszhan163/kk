@@ -19,8 +19,11 @@ static NSString *kImageTextArr[] ={
 };
 
 #define kCellItemHeight 51
-@interface CarServiceViewController ()
+@interface CarServiceViewController (){
 
+    UIImageView *mesgeCoutView;
+    UIButton *popup;
+}
 @end
 
 @implementation CarServiceViewController
@@ -37,7 +40,7 @@ static NSString *kImageTextArr[] ={
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    [ZCSNotficationMgr addObserver:self call:@selector(popNewMSGNotify:) msgName:KNewMessageFromMSG];
 //#if 1
 //    UIImage *bgImage = nil;
 //    UIImageWithFileName(bgImage, @"server_bg.png");
@@ -48,6 +51,12 @@ static NSString *kImageTextArr[] ={
     //mainView.alpha = 0.;
     [self setNavgationBarTitle:NSLocalizedString(@"服务", @""
                                                  )];
+    UIImage *bgImage = nil;
+    /*
+    UIImageWithFileName(bgImage, @"server_bg.png");
+    mesgeCoutV = [[UIImageView alloc]initWithFrame:CGRectZero];
+    mesgeCoutView.
+    */
     [self setRightBtnHidden:YES];
      [self setHiddenLeftBtn:YES];
     //[self setRightTextContent:NSLocalizedString(@"Done", @"")];
@@ -160,6 +169,37 @@ static NSString *kImageTextArr[] ={
 
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     cell.textLabel.backgroundColor = [UIColor clearColor];
+    
+    if(indexPath.row == 0){
+        if(popup == nil)
+        {
+            UIImage *bgImage = nil;
+            UIImageWithFileName(bgImage,@"mes_bubble.png");
+            popup = [[UIButton alloc]initWithFrame:CGRectZero];
+            popup.titleLabel.adjustsFontSizeToFitWidth = YES;
+            popup.titleLabel.textColor = [UIColor whiteColor];
+            //popup.titleEdgeInsets = UIEdgeInsetsMake(0.f,2.f,6.f,2.f);
+            popup.titleLabel.font = kAppTextBoldSystemFont(13);
+            //popup.contentVerticalAlignment =UIControlContentVerticalAlignmentCenter;
+            [popup setBackgroundImage:bgImage forState:UIControlStateNormal];
+            popup.userInteractionEnabled = NO;
+            [cell addSubview: popup];
+            popup.frame = CGRectMake(160.f, 20.f, bgImage.size.width/kScale+5, bgImage.size.height/kScale);
+            SafeRelease(popup);
+        }
+        NSInteger num = [[[UIApplication sharedApplication]delegate]mesCount];
+        if(num >0)
+        {
+            [popup setTitle:[NSString stringWithFormat:@"%d",num] forState:UIControlStateNormal];
+            popup.hidden = NO;
+        }
+        else
+        {
+            popup.hidden = YES;
+        }
+    }
+
+    
 	return cell;
     
 }
@@ -203,5 +243,36 @@ static NSString *kImageTextArr[] ={
         [logInfo reloadData];
     }
     
+}
+-(void)popNewMSGNotify:(NSNotification*)ntf
+{
+    UITableViewCell *cell = [logInfo cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+
+#if 0
+    CMPopTipView *popup = [[CMPopTipView alloc]initWithMessage:@"10"];
+    popup.disableTapToDismiss  = YES;
+    popup.hidden = NO;
+#else
+//    if(popup == nil)
+//    {
+//        UIImage *bgImage = nil;
+//        UIImageWithFileName(bgImage,@"mes_bubble.png");
+//        popup = [[UIButton alloc]initWithFrame:CGRectZero];
+//        popup.titleLabel.adjustsFontSizeToFitWidth = YES;
+//        popup.titleLabel.textColor = [UIColor whiteColor];
+//        //popup.titleEdgeInsets = UIEdgeInsetsMake(0.f,2.f,6.f,2.f);
+//        popup.titleLabel.font = kAppTextBoldSystemFont(13);
+//        //popup.contentVerticalAlignment =UIControlContentVerticalAlignmentCenter;
+//        [popup setBackgroundImage:bgImage forState:UIControlStateNormal];
+//        popup.userInteractionEnabled = NO;
+//        //UIButton *view = [currentTabBar.navBarArr objectAtIndex:3];
+//        CGRect rect = CGRectMake(0.f,80.f, bgImage.size.width/kScale+5,bgImage.size.height/kScale);
+//        [cell addSubview:popup];
+//        [popup release];
+//        
+//    }
+    //NSString *num = [ntf object];
+    [logInfo reloadData];
+#endif
 }
 @end

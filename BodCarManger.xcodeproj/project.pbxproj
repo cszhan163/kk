@@ -42,6 +42,10 @@
 		044D8907182A934000AD2368 /* router_location.png in Resources */ = {isa = PBXBuildFile; fileRef = 044D8905182A934000AD2368 /* router_location.png */; };
 		044D8908182A934000AD2368 /* router_oil.png in Resources */ = {isa = PBXBuildFile; fileRef = 044D8906182A934000AD2368 /* router_oil.png */; };
 		044D890C182A9DCD00AD2368 /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 044D890B182A9DCD00AD2368 /* SVProgressHUD.bundle */; };
+		04555B501838BEED0055A44A /* car_check_status_default.png in Resources */ = {isa = PBXBuildFile; fileRef = 04555B4F1838BEED0055A44A /* car_check_status_default.png */; };
+		04555B5B1838CF760055A44A /* mes_read.png in Resources */ = {isa = PBXBuildFile; fileRef = 04555B591838CF760055A44A /* mes_read.png */; };
+		04555B5C1838CF760055A44A /* mes_unread.png in Resources */ = {isa = PBXBuildFile; fileRef = 04555B5A1838CF760055A44A /* mes_unread.png */; };
+		04555B601838CFCC0055A44A /* mes_bubble.png in Resources */ = {isa = PBXBuildFile; fileRef = 04555B5F1838CFCC0055A44A /* mes_bubble.png */; };
 		046B663217E74984006F34A1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 046B663117E74984006F34A1 /* UIKit.framework */; };
 		046B663417E74984006F34A1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 046B663317E74984006F34A1 /* Foundation.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		046B663617E74984006F34A1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 046B663517E74984006F34A1 /* CoreGraphics.framework */; };
@@ -129,7 +133,6 @@
 		04809B6D181C2224000DBB2F /* tableitemsel2.png in Resources */ = {isa = PBXBuildFile; fileRef = 04809B64181C2224000DBB2F /* tableitemsel2.png */; };
 		04809B6E181C2224000DBB2F /* tableitemsel3.png in Resources */ = {isa = PBXBuildFile; fileRef = 04809B65181C2224000DBB2F /* tableitemsel3.png */; };
 		049DF9551812EAC000DFC9F1 /* login_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 049DF9541812EAC000DFC9F1 /* login_bg.png */; };
-		049DF9591812EE3800DFC9F1 /* register_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 049DF9581812EE3800DFC9F1 /* register_bg.png */; };
 		049DF96018156DEA00DFC9F1 /* car_check_gridtable_header.png in Resources */ = {isa = PBXBuildFile; fileRef = 049DF95D18156DEA00DFC9F1 /* car_check_gridtable_header.png */; };
 		049DF96118156DEA00DFC9F1 /* car_check_header.png in Resources */ = {isa = PBXBuildFile; fileRef = 049DF95E18156DEA00DFC9F1 /* car_check_header.png */; };
 		049DF97F18157AB900DFC9F1 /* CarDetailPenalView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 049DF96F18157AB800DFC9F1 /* CarDetailPenalView.xib */; };
@@ -145,6 +148,8 @@
 		04B2F3DB182800E600049C9B /* nav_analysis_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 04B2F3D7182800E600049C9B /* nav_analysis_selected.png */; };
 		04B2F3DC182800E600049C9B /* nav_data_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 04B2F3D8182800E600049C9B /* nav_data_normal.png */; };
 		04B2F3DD182800E600049C9B /* nav_data_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 04B2F3D9182800E600049C9B /* nav_data_selected.png */; };
+		04BFD3891837752A0024F3CC /* login_title.png in Resources */ = {isa = PBXBuildFile; fileRef = 04BFD3881837752A0024F3CC /* login_title.png */; };
+		04BFD38B183776A60024F3CC /* register_title.png in Resources */ = {isa = PBXBuildFile; fileRef = 04BFD38A183776A60024F3CC /* register_title.png */; };
 		04C254BA1816D49200B4A678 /* DIGIFACEWIDE.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 04C254B91816D49200B4A678 /* DIGIFACEWIDE.ttf */; };
 		04C254C01816DD4400B4A678 /* car_check_label.png in Resources */ = {isa = PBXBuildFile; fileRef = 04C254BF1816DD4400B4A678 /* car_check_label.png */; };
 		04C254CC18180EC500B4A678 /* car_check_status_low.png in Resources */ = {isa = PBXBuildFile; fileRef = 04C254C918180EC500B4A678 /* car_check_status_low.png */; };
@@ -396,6 +401,10 @@
 		044D8905182A934000AD2368 /* router_location.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = router_location.png; sourceTree = "<group>"; };
 		044D8906182A934000AD2368 /* router_oil.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = router_oil.png; sourceTree = "<group>"; };
 		044D890B182A9DCD00AD2368 /* SVProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = SVProgressHUD.bundle; path = ../../../BaseLib/SVProgressHUD/SVProgressHUD.bundle; sourceTree = "<group>"; };
+		04555B4F1838BEED0055A44A /* car_check_status_default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = car_check_status_default.png; sourceTree = "<group>"; };
+		04555B591838CF760055A44A /* mes_read.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mes_read.png; sourceTree = "<group>"; };
+		04555B5A1838CF760055A44A /* mes_unread.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mes_unread.png; sourceTree = "<group>"; };
+		04555B5F1838CFCC0055A44A /* mes_bubble.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mes_bubble.png; sourceTree = "<group>"; };
 		046B662E17E74984006F34A1 /* BodCarManger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BodCarManger.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		046B663117E74984006F34A1 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		046B663317E74984006F34A1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -500,7 +509,6 @@
 		04809B64181C2224000DBB2F /* tableitemsel2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tableitemsel2.png; sourceTree = "<group>"; };
 		04809B65181C2224000DBB2F /* tableitemsel3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tableitemsel3.png; sourceTree = "<group>"; };
 		049DF9541812EAC000DFC9F1 /* login_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = login_bg.png; sourceTree = "<group>"; };
-		049DF9581812EE3800DFC9F1 /* register_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = register_bg.png; sourceTree = "<group>"; };
 		049DF95D18156DEA00DFC9F1 /* car_check_gridtable_header.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = car_check_gridtable_header.png; sourceTree = "<group>"; };
 		049DF95E18156DEA00DFC9F1 /* car_check_header.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = car_check_header.png; sourceTree = "<group>"; };
 		049DF96F18157AB800DFC9F1 /* CarDetailPenalView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CarDetailPenalView.xib; sourceTree = "<group>"; };
@@ -516,6 +524,8 @@
 		04B2F3D7182800E600049C9B /* nav_analysis_selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nav_analysis_selected.png; sourceTree = "<group>"; };
 		04B2F3D8182800E600049C9B /* nav_data_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nav_data_normal.png; sourceTree = "<group>"; };
 		04B2F3D9182800E600049C9B /* nav_data_selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nav_data_selected.png; sourceTree = "<group>"; };
+		04BFD3881837752A0024F3CC /* login_title.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = login_title.png; sourceTree = "<group>"; };
+		04BFD38A183776A60024F3CC /* register_title.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = register_title.png; sourceTree = "<group>"; };
 		04C254B91816D49200B4A678 /* DIGIFACEWIDE.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = DIGIFACEWIDE.ttf; sourceTree = "<group>"; };
 		04C254BF1816DD4400B4A678 /* car_check_label.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = car_check_label.png; sourceTree = "<group>"; };
 		04C254C918180EC500B4A678 /* car_check_status_low.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = car_check_status_low.png; sourceTree = "<group>"; };
@@ -1174,10 +1184,11 @@
 		049DF9531812EAC000DFC9F1 /* login */ = {
 			isa = PBXGroup;
 			children = (
+				04BFD38A183776A60024F3CC /* register_title.png */,
+				04BFD3881837752A0024F3CC /* login_title.png */,
 				0440F2C818366F8900C71323 /* register_btn.png */,
 				0440F2C618366F6100C71323 /* login_btn.png */,
 				0440F2C418366F5700C71323 /* login_textbox.png */,
-				049DF9581812EE3800DFC9F1 /* register_bg.png */,
 				049DF9541812EAC000DFC9F1 /* login_bg.png */,
 			);
 			path = login;
@@ -1186,6 +1197,7 @@
 		049DF95C18156DEA00DFC9F1 /* check */ = {
 			isa = PBXGroup;
 			children = (
+				04555B4F1838BEED0055A44A /* car_check_status_default.png */,
 				04C254CF18180ED300B4A678 /* car_check_btn.png */,
 				04C254C918180EC500B4A678 /* car_check_status_low.png */,
 				04C254CA18180EC500B4A678 /* car_check_status_mid.png */,
@@ -1693,6 +1705,9 @@
 				04E5D6EF182F3057006832B9 /* qr_btn.png.png */,
 				042778AE18202737008C6432 /* setting_cell_footer.png */,
 				042778AF18202737008C6432 /* setting_cell_header.png */,
+				04555B5F1838CFCC0055A44A /* mes_bubble.png */,
+				04555B591838CF760055A44A /* mes_read.png */,
+				04555B5A1838CF760055A44A /* mes_unread.png */,
 				042778B018202737008C6432 /* setting_cell_middle.png */,
 				042778B118202737008C6432 /* setting_cell_one.png */,
 				04FE073318197C8800EEC76A /* setting_logout_btn.png */,
@@ -1876,7 +1891,6 @@
 				BD05727017E9A2C100208699 /* dashboard1.png in Resources */,
 				BD05727117E9A2C100208699 /* dashboard0.png in Resources */,
 				049DF9551812EAC000DFC9F1 /* login_bg.png in Resources */,
-				049DF9591812EE3800DFC9F1 /* register_bg.png in Resources */,
 				049DF96018156DEA00DFC9F1 /* car_check_gridtable_header.png in Resources */,
 				049DF96118156DEA00DFC9F1 /* car_check_header.png in Resources */,
 				049DF97F18157AB900DFC9F1 /* CarDetailPenalView.xib in Resources */,
@@ -2023,6 +2037,12 @@
 				0440F2C518366F5700C71323 /* login_textbox.png in Resources */,
 				0440F2C718366F6100C71323 /* login_btn.png in Resources */,
 				0440F2C918366F8900C71323 /* register_btn.png in Resources */,
+				04BFD3891837752A0024F3CC /* login_title.png in Resources */,
+				04BFD38B183776A60024F3CC /* register_title.png in Resources */,
+				04555B501838BEED0055A44A /* car_check_status_default.png in Resources */,
+				04555B5B1838CF760055A44A /* mes_read.png in Resources */,
+				04555B5C1838CF760055A44A /* mes_unread.png in Resources */,
+				04555B601838CFCC0055A44A /* mes_bubble.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

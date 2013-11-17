@@ -98,4 +98,26 @@
 - (void)updateUIData:(NSDictionary*)netData{
 
 }
+- (void)checkAdjustDate:(int)offset withMonth:(int*)month withYear:(int*)year{
+    
+    *month = self.mTodayDate.month +offset;
+    *year = self.mTodayDate.year;
+    if(*month>12){
+        //for first year;
+        int adjust = 12-self.mTodayDate.month;
+        int num = (*month-adjust)/12;
+        *year = self.mTodayDate.year+num;
+        *month = *month%12;
+        if(*month == 0){
+            *month = 12;
+        }
+    }
+    if(*month<=0){
+        int num = -1+*month/12;
+        *year = self.mTodayDate.year+num;
+        *month = 12+*month%12;
+    }
+    
+    return;
+}
 @end

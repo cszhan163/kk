@@ -252,35 +252,37 @@ static UIButton *popup = nil;
     popup.disableTapToDismiss  = YES;
     popup.hidden = NO;
 #else
-//    if(popup == nil)
-//    {
-//    
-//        UIImage *bgImage = nil;
-//        UIImageWithFileName(bgImage,@"icon-notice.png");
-//        popup = [[UIButton alloc]initWithFrame:CGRectZero];
-//        popup.titleLabel.adjustsFontSizeToFitWidth = YES;
-//        popup.titleLabel.textColor = [UIColor whiteColor];
-//        popup.titleEdgeInsets = UIEdgeInsetsMake(0.f,2.f,6.f,2.f);
-//        popup.titleLabel.font = kAppTextBoldSystemFont(15);
-//        //popup.contentVerticalAlignment =UIControlContentVerticalAlignmentCenter;
-//        [popup setBackgroundImage:bgImage forState:UIControlStateNormal];
-//        UIButton *view = [currentTabBar.navBarArr objectAtIndex:2];
-//        CGRect rect = CGRectMake(0.f, -10.f, bgImage.size.width/kScale,bgImage.size.height/kScale);
-//        popup.frame = CGRectOffset(rect,33.f,-3);
-//        [view addSubview:popup];
-//        [popup release];
-//    
-//    }
-//    NSString *num = [ntf object];
-//    if([num intValue]>0)
-//    {
-//        [popup setTitle:num forState:UIControlStateNormal];
-//         popup.hidden = NO;
-//    }
-//    else
-//    {
-//        popup.hidden = YES;
-//    }
+    if(popup == nil)
+    {
+    
+        UIImage *bgImage = nil;
+        UIImageWithFileName(bgImage,@"mes_bubble.png");
+        popup = [[UIButton alloc]initWithFrame:CGRectZero];
+        popup.titleLabel.adjustsFontSizeToFitWidth = YES;
+        popup.titleLabel.textColor = [UIColor whiteColor];
+        //popup.titleEdgeInsets = UIEdgeInsetsMake(0.f,2.f,6.f,2.f);
+        popup.titleLabel.font = kAppTextBoldSystemFont(13);
+        //popup.contentVerticalAlignment =UIControlContentVerticalAlignmentCenter;
+        [popup setBackgroundImage:bgImage forState:UIControlStateNormal];
+        popup.userInteractionEnabled = NO;
+        UIButton *view = [currentTabBar.navBarArr objectAtIndex:3];
+        CGRect rect = CGRectMake(0.f, -5.f, bgImage.size.width/kScale+5,bgImage.size.height/kScale);
+        popup.frame = CGRectOffset(rect,30.f,12);
+        [view addSubview:popup];
+        [popup release];
+    
+    }
+    NSString *num = [ntf object];
+    [[[UIApplication sharedApplication]delegate]setMesCount:[num intValue]];
+    if([num intValue]>0)
+    {
+        [popup setTitle:num forState:UIControlStateNormal];
+         popup.hidden = NO;
+    }
+    else
+    {
+        popup.hidden = YES;
+    }
    
     /*
     UILabel *numLabel = [[UILabel alloc]initWithFrame:CGRectMake(0.f, 0.f, bgImage.size.width/kScale, bgImage.size.height/kScale)];

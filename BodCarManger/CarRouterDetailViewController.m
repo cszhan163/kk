@@ -132,7 +132,9 @@
     kNetStartShow(@"数据加载...", self.view);
     NSString *tipId = [self.mData objectForKey:@"tripId"];
     NSString *startTime = [self.mData objectForKey:@"startTime"];
-    self.request = [cardShopMgr  getRouterHistoryData:@"SHD05728" withRouterId:tipId withStartTime:startTime];
+    NSString *carId = nil;
+    carId = [AppSetting getUserCarId:nil];
+    self.request = [cardShopMgr  getRouterHistoryData:carId withRouterId:tipId withStartTime:startTime];
     
     
 }
@@ -180,6 +182,7 @@
     latLogArr  = [latLogStr componentsSeparatedByString:@","];
     mEndPoint.latitude = [latLogArr[1]floatValue]/kGPSMaxScale;
 	mEndPoint.longitude = [latLogArr[0]floatValue]/kGPSMaxScale;
+    
     /*
      "rotate": "86",
      "speed": "34",
@@ -224,6 +227,9 @@
     fileName = [NSString stringWithFormat:@"dashboard%d.png",drivetest];
     UIImageWithFileName(bgImage, fileName);
     carDetailPenalView.mDriveAnalaysisImageView.image = bgImage;
+    
+    SafeRelease(mStartPoint);
+    SafeRelease(mEndPoint);
 }
 #pragma mark -
 #pragma mark navigation bar action
@@ -337,13 +343,25 @@
         index++;
     }
     printf("\n\n");
+    Place *place = [[Place alloc]init];
+    place.description = @"";
     if(mEndName){
-        [mMapView addPinToMap:mEndCoordinate2d withName:mEndName];
+        place.latitude = mStartCoordinate2d.latitude;
+        place.longitude = mStartCoordinate2d.longitude;
+        place.name = mEndName;
+        place.pointType = 1;
+        [mMapView addPointToMap:place];
+        //[mMapView addPinToMap:mEndCoordinate2d withName:mEndName];
         //[self didGetLocationData:mEndName withIndex:-1 withTag:NO];
     }
     if(mStartName){
+        place.latitude = mEndCoordinate2d.latitude;
+        place.longitude = mEndCoordinate2d.longitude;
+        place.pointType = 0;
+        place.name = mStartName;
+        [mMapView addPointToMap:place];
         //[self didGetLocationData:mStartName withIndex:-1 withTag:YES];
-        [mMapView addPinToMap:mStartCoordinate2d withName:mStartName];
+        //[mMapView addPinToMap:mStartCoordinate2d withName:mStartName];
     }
     
     if([gpsScaleArray count])
@@ -365,16 +383,31 @@
     if(index == -1){
         Place *place = [[Place alloc]init];
         place.name = sender;
+        place.description = @"";
         if(tag){
             place.latitude = mStartCoordinate2d.latitude;
             place.longitude = mStartCoordinate2d.longitude;
-            
+            place.pointType = 0;
+            //[mMapView addPinToMap:mStartCoordinate2d withName:sender];
+            [mMapView addPointToMap:place];
         }
         else{
-            place.latitude = mStartCoordinate2d.latitude;
-            place.longitude = mStartCoordinate2d.longitude;
+            
+            place.latitude = mEndCoordinate2d.latitude;
+            place.longitude = mEndCoordinate2d.longitude;
+            place.pointType = 1;
+            //[mMapView addPinToMap:mEndCoordinate2d withName:sender];
         }
         [mMapView addPointToMap:place];
+//        if(mEndName){
+//            [mMapView addPinToMap:mEndCoordinate2d withName:mEndName];
+//            //[self didGetLocationData:mEndName withIndex:-1 withTag:NO];
+//        }
+//        if(mStartName){
+//            //[self didGetLocationData:mStartName withIndex:-1 withTag:YES];
+//            
+//        }
+
         SafeRelease(place);
     }
 }

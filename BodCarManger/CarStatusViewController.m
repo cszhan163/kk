@@ -91,7 +91,7 @@
     CGFloat  headerY = 5.f;
     rotateSpeedLabel = [[UILabel alloc]initWithFrame:CGRectMake(38,headerY, 120.f, 20)];
     rotateSpeedLabel.font = [UIFont fontWithName:@"DIGIFACEWIDE" size:12];
-    rotateSpeedLabel.text = @"3200 转";
+    rotateSpeedLabel.text = @" 转速";
     rotateSpeedLabel.textColor = [UIColor whiteColor];
     rotateSpeedLabel.backgroundColor = [UIColor clearColor];
     
@@ -102,7 +102,7 @@
     temperatureLabel = [[UILabel alloc]initWithFrame:CGRectMake(38,headerY+20, 120.f, 20)];
     temperatureLabel.textColor = [UIColor whiteColor];
     temperatureLabel.font = kUserDigiFontSize(12);
-    temperatureLabel.text = @"90 C";
+    temperatureLabel.text = @" 水温";
     temperatureLabel.backgroundColor = [UIColor clearColor];
     
     [headerView addSubview:temperatureLabel];
@@ -142,7 +142,7 @@
     [self.view addSubview:checkProcessImageView];
     SafeRelease(checkProcessImageView);
     CGRect textRect = CGRectMake(checkProcessImageView.frame.size.width+106+5,currY+30, 150, 15);
-    checkProcessLabel  = [UIComUtil createLabelWithFont:[UIFont systemFontOfSize:8] withTextColor:HexRGB(36, 220, 0) withText:@"监测燃油导轨轨压力" withFrame:textRect];
+    checkProcessLabel  = [UIComUtil createLabelWithFont:[UIFont systemFontOfSize:8] withTextColor:HexRGB(36, 220, 0) withText:@"你还没有进行故障检测" withFrame:textRect];
     checkProcessLabel.textAlignment = NSTextAlignmentLeft;
     [self.view addSubview:checkProcessLabel];
     SafeRelease(checkProcessLabel);
@@ -150,13 +150,13 @@
     
     
     
-    UIImageWithFileName(bgImage, @"car_check_status_low.png");
+    UIImageWithFileName(bgImage, @"car_check_status_default.png");
     
     checkTagImageView = [[UIImageView alloc]initWithImage:bgImage];
     
     checkTagImageView.frame = CGRectMake(23,currY+12,bgImage.size.width/kScale, bgImage.size.height/kScale);
     [self.view addSubview:checkTagImageView];
-    checkTagImageView.hidden = YES;
+    checkTagImageView.hidden = NO;
     SafeRelease(checkTagImageView);
     currY = currY+184/2.f;
     
@@ -190,7 +190,7 @@
     CGFloat height = tbHeaderView.frame.size.height;
     tweetieTableView.normalEdgeInset = UIEdgeInsetsMake(height,0.f,0.f,0.f);
     
-    [self startCarHealthCheck:nil];
+    //[self startCarHealthCheck:nil];
     //[self setRightTextContent:NSLocalizedString(@"Done", @"")];
 	// Do any additional setup after loading the view.
 }
@@ -250,6 +250,10 @@
     
 }
 - (void)updateUIData:(NSDictionary*)data{
+    if([[data objectForKey:@"state"]intValue]== 0){
+        checkProcessLabel.text = @"未获取检测数据";
+        return;
+    }
     [tweetieTableView reloadData];
     //NSArray *economicData = [data objectForKey:@"conData"];
     

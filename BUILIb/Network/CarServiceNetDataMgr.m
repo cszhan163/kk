@@ -145,7 +145,20 @@ static ZCSNetClientNetInterfaceMgr *dressMemoInterfaceMgr = nil;
     [self startiPlant4MRequest:inInfo withSuccess:@selector(userPhoneUpdateOk:) withFailed:@selector(userPhoneUpdateFailed:)];
     return nil;
 }
+- (id)carUserLocationSet:(NSString*)userName withType:(NSString*)type {
 
+    EiInfo *inInfo = [self getCommIPlant4MParamByServiceToken:@"VESA02"];
+    [inInfo set:@"userName" value:userName];
+    [inInfo set:@"type " value:type ];
+    //    if([param objectForKey:@"phoneNumber"]){
+    //        [inInfo set:@"phoneNumber" value:[param objectForKey:@"phoneNumber"]];
+    //    }
+    //queryTripCalanderMonth @"userRegister"
+    [inInfo set:METHOD_TOKEN value:kCarUserLocation]; // 接口名
+    [self startiPlant4MRequest:inInfo withSuccess:@selector(userLocationSetOk:) withFailed:@selector(userLocationSetFailed:)];
+    return nil;
+
+}
 - (id)backDoorRequest:(NSDictionary*)param{
     [dressMemoInterfaceMgr setRequestUrl:@"http://checkapp.sinaapp.com/api/index.php?command="];
     return [dressMemoInterfaceMgr startAnRequestByResKey:@"check" needLogIn:NO withParam:param withMethod:@"GET" withData:NO];
@@ -611,6 +624,25 @@ static BOOL isExit = NO;
     
 }
 - (void)userPhoneUpdateFailed:(EiInfo*)info{
+    
+    [self sendFinalFailedData:@"" withKey:kCarUserUpdatePhone];
+}
+
+- (void)userLocationSetOk:(EiInfo*)info{
+    if(info.status == 1){
+        //NSLog(@"%@",info.blocks);
+        //phoneNumber;
+        NSMutableDictionary *resultDict = [NSMutableDictionary dictionary];
+        [resultDict setValue:[info get:@"retType"] forKey:@"retType"];
+        [self sendFinalOkData:resultDict withKey:kCarUserLocation];
+    }
+    else{
+        
+        [self sendFinalFailedData:@"" withKey:kCarUserLocation];
+    }
+    
+}
+- (void)userLocationSetFailed:(EiInfo*)info{
     
     [self sendFinalFailedData:@"" withKey:kCarUserUpdatePhone];
 }

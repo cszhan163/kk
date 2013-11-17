@@ -343,13 +343,25 @@
         index++;
     }
     printf("\n\n");
+    Place *place = [[Place alloc]init];
+    place.description = @"";
     if(mEndName){
-        [mMapView addPinToMap:mEndCoordinate2d withName:mEndName];
+        place.latitude = mStartCoordinate2d.latitude;
+        place.longitude = mStartCoordinate2d.longitude;
+        place.name = mEndName;
+        place.pointType = 1;
+        [mMapView addPointToMap:place];
+        //[mMapView addPinToMap:mEndCoordinate2d withName:mEndName];
         //[self didGetLocationData:mEndName withIndex:-1 withTag:NO];
     }
     if(mStartName){
+        place.latitude = mEndCoordinate2d.latitude;
+        place.longitude = mEndCoordinate2d.longitude;
+        place.pointType = 0;
+        place.name = mStartName;
+        [mMapView addPointToMap:place];
         //[self didGetLocationData:mStartName withIndex:-1 withTag:YES];
-        [mMapView addPinToMap:mStartCoordinate2d withName:mStartName];
+        //[mMapView addPinToMap:mStartCoordinate2d withName:mStartName];
     }
     
     if([gpsScaleArray count])
@@ -371,16 +383,31 @@
     if(index == -1){
         Place *place = [[Place alloc]init];
         place.name = sender;
+        place.description = @"";
         if(tag){
             place.latitude = mStartCoordinate2d.latitude;
             place.longitude = mStartCoordinate2d.longitude;
-            
+            place.pointType = 0;
+            //[mMapView addPinToMap:mStartCoordinate2d withName:sender];
+            [mMapView addPointToMap:place];
         }
         else{
-            place.latitude = mStartCoordinate2d.latitude;
-            place.longitude = mStartCoordinate2d.longitude;
+            
+            place.latitude = mEndCoordinate2d.latitude;
+            place.longitude = mEndCoordinate2d.longitude;
+            place.pointType = 1;
+            //[mMapView addPinToMap:mEndCoordinate2d withName:sender];
         }
         [mMapView addPointToMap:place];
+//        if(mEndName){
+//            [mMapView addPinToMap:mEndCoordinate2d withName:mEndName];
+//            //[self didGetLocationData:mEndName withIndex:-1 withTag:NO];
+//        }
+//        if(mStartName){
+//            //[self didGetLocationData:mStartName withIndex:-1 withTag:YES];
+//            
+//        }
+
         SafeRelease(place);
     }
 }

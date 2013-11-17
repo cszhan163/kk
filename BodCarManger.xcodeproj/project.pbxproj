@@ -42,6 +42,7 @@
 		044D8907182A934000AD2368 /* router_location.png in Resources */ = {isa = PBXBuildFile; fileRef = 044D8905182A934000AD2368 /* router_location.png */; };
 		044D8908182A934000AD2368 /* router_oil.png in Resources */ = {isa = PBXBuildFile; fileRef = 044D8906182A934000AD2368 /* router_oil.png */; };
 		044D890C182A9DCD00AD2368 /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 044D890B182A9DCD00AD2368 /* SVProgressHUD.bundle */; };
+		04555B501838BEED0055A44A /* car_check_status_default.png in Resources */ = {isa = PBXBuildFile; fileRef = 04555B4F1838BEED0055A44A /* car_check_status_default.png */; };
 		046B663217E74984006F34A1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 046B663117E74984006F34A1 /* UIKit.framework */; };
 		046B663417E74984006F34A1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 046B663317E74984006F34A1 /* Foundation.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		046B663617E74984006F34A1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 046B663517E74984006F34A1 /* CoreGraphics.framework */; };
@@ -397,6 +398,7 @@
 		044D8905182A934000AD2368 /* router_location.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = router_location.png; sourceTree = "<group>"; };
 		044D8906182A934000AD2368 /* router_oil.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = router_oil.png; sourceTree = "<group>"; };
 		044D890B182A9DCD00AD2368 /* SVProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = SVProgressHUD.bundle; path = ../../../BaseLib/SVProgressHUD/SVProgressHUD.bundle; sourceTree = "<group>"; };
+		04555B4F1838BEED0055A44A /* car_check_status_default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = car_check_status_default.png; sourceTree = "<group>"; };
 		046B662E17E74984006F34A1 /* BodCarManger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BodCarManger.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		046B663117E74984006F34A1 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		046B663317E74984006F34A1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -1189,6 +1191,7 @@
 		049DF95C18156DEA00DFC9F1 /* check */ = {
 			isa = PBXGroup;
 			children = (
+				04555B4F1838BEED0055A44A /* car_check_status_default.png */,
 				04C254CF18180ED300B4A678 /* car_check_btn.png */,
 				04C254C918180EC500B4A678 /* car_check_status_low.png */,
 				04C254CA18180EC500B4A678 /* car_check_status_mid.png */,
@@ -2027,6 +2030,7 @@
 				0440F2C918366F8900C71323 /* register_btn.png in Resources */,
 				04BFD3891837752A0024F3CC /* login_title.png in Resources */,
 				04BFD38B183776A60024F3CC /* register_title.png in Resources */,
+				04555B501838BEED0055A44A /* car_check_status_default.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

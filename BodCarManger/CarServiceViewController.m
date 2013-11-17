@@ -19,8 +19,10 @@ static NSString *kImageTextArr[] ={
 };
 
 #define kCellItemHeight 51
-@interface CarServiceViewController ()
+@interface CarServiceViewController (){
 
+    UIImageView *mesgeCoutView;
+}
 @end
 
 @implementation CarServiceViewController
@@ -48,6 +50,10 @@ static NSString *kImageTextArr[] ={
     //mainView.alpha = 0.;
     [self setNavgationBarTitle:NSLocalizedString(@"服务", @""
                                                  )];
+    UIImage *bgImage = nil;
+    UIImageWithFileName(bgImage, @"server_bg.png");
+    mesgeCoutV = [[UIImageView alloc]initWithFrame:CGRectZero];
+    mesgeCoutView.
     [self setRightBtnHidden:YES];
      [self setHiddenLeftBtn:YES];
     //[self setRightTextContent:NSLocalizedString(@"Done", @"")];

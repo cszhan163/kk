@@ -70,8 +70,17 @@ static NSString *kCellImageArr[] = {
 }
 - (void)locationSetting:(UISwitch*)sender
 {
+    //kNetStartShow(@"数据加载...", self.view);
+    CarServiceNetDataMgr *cardShopMgr = [CarServiceNetDataMgr getSingleTone];
+    NSString *useName = [AppSetting getLoginUserId];
+    NSString *type = @"0";
+    if(sender.on){
+        type = @"1";
+    }
+    [cardShopMgr carUserLocationSet:useName withType:type];
+    //isNeedFresh = NO;
     [AppSetting setCarLocationSetting:[NSNumber numberWithBool:sender.on]];
-    
+
 }
 - (void)loadView{
     [super loadView];

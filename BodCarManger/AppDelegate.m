@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "AppMainUIViewManage.h"
 #import "ViewController.h"
+#import "SharePlatformCenter.h"
 #import <iPlat4M_framework/iPlat4M_framework.h>
 #define HAVE_WINDOWLAST
 #ifdef  HAVE_WINDOWLAST
@@ -25,40 +26,62 @@
 
 #ifdef  HAVE_WINDOWLAST
 UIShareActionAlertView *sharedAlterView = nil;
+//static UIImage *sharedImage = nil;
 - (void)setLastWidnows{
     sharedAlterView = [[UIShareActionAlertView alloc]initMoreAlertActionView:CGRectMake(0.f, 20.f, kDeviceScreenWidth, kDeviceScreenHeight) subViewStatus:NO];
     [self.window addSubview:sharedAlterView];
     sharedAlterView.delegate = self;
     sharedAlterView.hidden = YES;
     [sharedAlterView showAlertActionViewStatus:NO animated:NO];
-    [ZCSNotficationMgr addObserver:self call:@selector(startShowSharedView) msgName:kStartShowSharedViewMSG];
+    [ZCSNotficationMgr addObserver:self call:@selector(startShowSharedView:) msgName:kStartShowSharedViewMSG];
     [ZCSNotficationMgr addObserver:self call:@selector(endShowSharedView) msgName:kEndShowSharedViewMSG];
 }
 
-- (void)startShowSharedView{
+- (void)startShowSharedView:(NSNotification*)ntf{
+    self.sharedImage = [ntf object];
     sharedAlterView.hidden = NO;
     [sharedAlterView showAlertActionViewStatus:YES animated:YES];
 }
 - (void)endShowSharedView{
     [sharedAlterView disMissAlertView:YES];
+    self.sharedImage = nil;
 }
 - (void)didTouchItem:(UIButton*)sender{
+    SharePlatformCenter *sharedCenter = [SharePlatformCenter defaultCenter];
+    [sharedCenter setDelegate:self];
+    /*
+     type = K_PLATFORM_Sina;
+     }else{
+     type = K_PLATFORM_Tencent;
+     */
     switch ([sender tag]) {
         case 0://威信
             
             break;
-        case 1:
-            
+        case 1://新浪
+            if([sharedCenter modelDataWithType:K_PLATFORM_Sina]){
+                
+                [sharedCenter sendStatus:@"分享图片" ImageData:UIImagePNGRepresentation(self.sharedImage )];
+            }
+            else{
+                kUIAlertView(@"提示", @"请到设置界面先绑定微博");
+            }
             break;
-        case 2:
-            
+        case 2://tencent
+            if([sharedCenter modelDataWithType:K_PLATFORM_Tencent]){
+                
+                [sharedCenter sendStatus:@"分享图片" ImageData:UIImagePNGRepresentation(self.sharedImage)];
+            }
+            else{
+                kUIAlertView(@"提示", @"请到设置界面先绑定微博");
+            }
             break;
         default:
             break;
     }
 }
-- (void)didTouchFunItem:(id)sender withItem:(id)sender{
-
+- (void)didTouchFunItem:(id)sender withItem:(id)index{
+    //self.sharedImage  = nil;
 }
 #endif
 

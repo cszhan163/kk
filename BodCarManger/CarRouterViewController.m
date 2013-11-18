@@ -46,6 +46,11 @@ NSString* gDataArr[] = {@"12.5km",@"11km/h",@"87L",@"3h"};
     }
 
 }
+- (void)viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:animated];
+    //[super viewDidDisappear:animated];
+    [[DBManage getSingletone]setDelegate:nil];
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];

@@ -26,8 +26,12 @@ static NSString *kImageTextArr[] ={
 }
 @end
 
-@implementation CarServiceViewController
 
+@implementation CarServiceViewController
+- (void)dealloc{
+    [super dealloc];
+    SafeRelease(popup);
+}
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -185,7 +189,7 @@ static NSString *kImageTextArr[] ={
             popup.userInteractionEnabled = NO;
             [cell addSubview: popup];
             popup.frame = CGRectMake(160.f, 20.f, bgImage.size.width/kScale+5, bgImage.size.height/kScale);
-            SafeRelease(popup);
+            
         }
         NSInteger num = [[[UIApplication sharedApplication]delegate]mesCount];
         if(num >0)

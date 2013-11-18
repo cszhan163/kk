@@ -64,7 +64,8 @@ typedef enum  viewType{
     tweetieTableView.backgroundColor = [UIColor clearColor];
     tweetieTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     tweetieTableView.clipsToBounds = YES;
-    tweetieTableView.bounces = NO;
+   
+    tweetieTableView.bottomInfoView.hidden = YES;
     tweetieTableView.showsVerticalScrollIndicator = NO;
     [tweetieTableView scrollsToTop];
     tweetieTableView.hidden = YES;

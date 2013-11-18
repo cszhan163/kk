@@ -46,6 +46,7 @@
 		04555B5B1838CF760055A44A /* mes_read.png in Resources */ = {isa = PBXBuildFile; fileRef = 04555B591838CF760055A44A /* mes_read.png */; };
 		04555B5C1838CF760055A44A /* mes_unread.png in Resources */ = {isa = PBXBuildFile; fileRef = 04555B5A1838CF760055A44A /* mes_unread.png */; };
 		04555B601838CFCC0055A44A /* mes_bubble.png in Resources */ = {isa = PBXBuildFile; fileRef = 04555B5F1838CFCC0055A44A /* mes_bubble.png */; };
+		04555B65183A671D0055A44A /* CarDataShareModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04555B64183A671D0055A44A /* CarDataShareModel.m */; };
 		046B663217E74984006F34A1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 046B663117E74984006F34A1 /* UIKit.framework */; };
 		046B663417E74984006F34A1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 046B663317E74984006F34A1 /* Foundation.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		046B663617E74984006F34A1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 046B663517E74984006F34A1 /* CoreGraphics.framework */; };
@@ -405,6 +406,8 @@
 		04555B591838CF760055A44A /* mes_read.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mes_read.png; sourceTree = "<group>"; };
 		04555B5A1838CF760055A44A /* mes_unread.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mes_unread.png; sourceTree = "<group>"; };
 		04555B5F1838CFCC0055A44A /* mes_bubble.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mes_bubble.png; sourceTree = "<group>"; };
+		04555B63183A671C0055A44A /* CarDataShareModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarDataShareModel.h; sourceTree = "<group>"; };
+		04555B64183A671D0055A44A /* CarDataShareModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarDataShareModel.m; sourceTree = "<group>"; };
 		046B662E17E74984006F34A1 /* BodCarManger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BodCarManger.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		046B663117E74984006F34A1 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		046B663317E74984006F34A1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -1264,6 +1267,8 @@
 		04E4590018255CAA0028BDAD /* DressMemoRetweet */ = {
 			isa = PBXGroup;
 			children = (
+				04555B63183A671C0055A44A /* CarDataShareModel.h */,
+				04555B64183A671D0055A44A /* CarDataShareModel.m */,
 				04E4590518255CAA0028BDAD /* WeiBoSharePlantForm */,
 			);
 			path = DressMemoRetweet;
@@ -2139,6 +2144,7 @@
 				043385FE182E86BF00CEE699 /* UIShareActionAlertView.m in Sources */,
 				0440F2CD1836816200C71323 /* UserChangePasswordViewController.m in Sources */,
 				0440F2D018368DE500C71323 /* UserPhoneUpdateViewController.m in Sources */,
+				04555B65183A671D0055A44A /* CarDataShareModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

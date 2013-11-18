@@ -38,6 +38,10 @@
 
 #define kDriveMaintainanceLeftPendingX 36.f
 
+static NSString* kMonthTextArray[] = {
+    @"一月",@"二月",@"三月",@"四月",@"五月",@"六月",@"七月",@"八月",@"九月",@"十月",@"十一月",@"十二月"
+};
+
 @interface CarMonitorViewController()<BSPreviewScrollViewDelegate,
         XLCycleScrollViewDelegate,
         XLCycleScrollViewDatasource>{
@@ -474,7 +478,8 @@
     carDriveStatusView.mRunDaysLabel.text =[NSString stringWithFormat:@"%d",day];
     carDriveStatusView.mRunStepLabel.text = [NSString stringWithFormat:@"%0.2lf",segment];
     carDriveStatusView.mRunDistanceLabel.text = [NSString stringWithFormat:@"%0.2lf",totalMile];
-    carDriveStatusView.mHeadMonthLabel.text = [NSString stringWithFormat:@"%2d月驾驶情况",self.mCurrDate.month];
+    int monthInex = self.mCurrDate.month-1;
+    carDriveStatusView.mHeadMonthLabel.text = [NSString stringWithFormat:@"%@驾驶情况",kMonthTextArray[monthInex]];
 }
 - (void)updateUIMainUIData:(NSDictionary*)data{
     

@@ -77,7 +77,7 @@ NSString* gDataArr[] = {@"12.5km",@"11km/h",@"87L",@"3h"};
     if(navBarTitle == nil)
         [self setNavgationBarTitle:NSLocalizedString(@"Router", @""
                                                  )];
-    [self setHiddenRightBtn:NO];
+    [self setHiddenRightBtn:YES];
     [self setHiddenLeftBtn:NO];
     
     //[self setRightTextContent:NSLocalizedString(@"Done", @"")];

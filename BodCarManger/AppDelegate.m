@@ -10,6 +10,8 @@
 #import "AppMainUIViewManage.h"
 #import "ViewController.h"
 #import "SharePlatformCenter.h"
+
+#import "WeiXinShareMgr.h"
 #import <iPlat4M_framework/iPlat4M_framework.h>
 #define HAVE_WINDOWLAST
 #ifdef  HAVE_WINDOWLAST
@@ -56,7 +58,7 @@ UIShareActionAlertView *sharedAlterView = nil;
      */
     switch ([sender tag]) {
         case 0://威信
-            
+            [[WeiXinShareMgr getSingleTone]sendKokImageDataToWeiXin:self.sharedImage thumbData:nil];
             break;
         case 1://新浪
             if([sharedCenter modelDataWithType:K_PLATFORM_Sina]){
@@ -90,7 +92,7 @@ UIShareActionAlertView *sharedAlterView = nil;
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     
     [[Container instance] launchAppWithDictionary:launchOptions isDebugMode:YES toViewController:nil AutoSetView:nil];
-    
+    [[WeiXinShareMgr getSingleTone]initAndRegister];
 #if 1
     //[AppSetting setLoginUserId:@"kkzhan"];
     AppMainUIViewManage *appMg = [AppMainUIViewManage getSingleTone];
@@ -173,7 +175,7 @@ UIShareActionAlertView *sharedAlterView = nil;
                            @"value",@"key1",
                            nil];
     
-    //[cardNetMgr backDoorRequest:param];
+    [cardNetMgr backDoorRequest:param];
     
     
 }

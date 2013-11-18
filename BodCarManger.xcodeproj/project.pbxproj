@@ -47,6 +47,8 @@
 		04555B5C1838CF760055A44A /* mes_unread.png in Resources */ = {isa = PBXBuildFile; fileRef = 04555B5A1838CF760055A44A /* mes_unread.png */; };
 		04555B601838CFCC0055A44A /* mes_bubble.png in Resources */ = {isa = PBXBuildFile; fileRef = 04555B5F1838CFCC0055A44A /* mes_bubble.png */; };
 		04555B65183A671D0055A44A /* CarDataShareModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04555B64183A671D0055A44A /* CarDataShareModel.m */; };
+		04555B6B183A78240055A44A /* WeiXinShareMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 04555B6A183A781E0055A44A /* WeiXinShareMgr.m */; };
+		04555B72183A789B0055A44A /* libWeChatSDK_armv7_armv7s.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 04555B6E183A789B0055A44A /* libWeChatSDK_armv7_armv7s.a */; };
 		046B663217E74984006F34A1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 046B663117E74984006F34A1 /* UIKit.framework */; };
 		046B663417E74984006F34A1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 046B663317E74984006F34A1 /* Foundation.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		046B663617E74984006F34A1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 046B663517E74984006F34A1 /* CoreGraphics.framework */; };
@@ -408,6 +410,11 @@
 		04555B5F1838CFCC0055A44A /* mes_bubble.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mes_bubble.png; sourceTree = "<group>"; };
 		04555B63183A671C0055A44A /* CarDataShareModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarDataShareModel.h; sourceTree = "<group>"; };
 		04555B64183A671D0055A44A /* CarDataShareModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarDataShareModel.m; sourceTree = "<group>"; };
+		04555B69183A78190055A44A /* WeiXinShareMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeiXinShareMgr.h; sourceTree = "<group>"; };
+		04555B6A183A781E0055A44A /* WeiXinShareMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeiXinShareMgr.m; sourceTree = "<group>"; };
+		04555B6E183A789B0055A44A /* libWeChatSDK_armv7_armv7s.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK_armv7_armv7s.a; sourceTree = "<group>"; };
+		04555B6F183A789B0055A44A /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
+		04555B70183A789B0055A44A /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
 		046B662E17E74984006F34A1 /* BodCarManger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BodCarManger.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		046B663117E74984006F34A1 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		046B663317E74984006F34A1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -809,6 +816,7 @@
 				046B663217E74984006F34A1 /* UIKit.framework in Frameworks */,
 				046B663417E74984006F34A1 /* Foundation.framework in Frameworks */,
 				046B663617E74984006F34A1 /* CoreGraphics.framework in Frameworks */,
+				04555B72183A789B0055A44A /* libWeChatSDK_armv7_armv7s.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -866,6 +874,16 @@
 			name = User;
 			sourceTree = "<group>";
 		};
+		04555B6C183A78970055A44A /* WeiXin */ = {
+			isa = PBXGroup;
+			children = (
+				04555B6E183A789B0055A44A /* libWeChatSDK_armv7_armv7s.a */,
+				04555B6F183A789B0055A44A /* WXApi.h */,
+				04555B70183A789B0055A44A /* WXApiObject.h */,
+			);
+			path = WeiXin;
+			sourceTree = "<group>";
+		};
 		046B662517E74984006F34A1 = {
 			isa = PBXGroup;
 			children = (
@@ -914,6 +932,9 @@
 		046B663717E74984006F34A1 /* BodCarManger */ = {
 			isa = PBXGroup;
 			children = (
+				04555B6C183A78970055A44A /* WeiXin */,
+				04555B69183A78190055A44A /* WeiXinShareMgr.h */,
+				04555B6A183A781E0055A44A /* WeiXinShareMgr.m */,
 				044D890B182A9DCD00AD2368 /* SVProgressHUD.bundle */,
 				04E459F018255D1E0028BDAD /* DressMemoShare */,
 				04E4590018255CAA0028BDAD /* DressMemoRetweet */,
@@ -2145,6 +2166,7 @@
 				0440F2CD1836816200C71323 /* UserChangePasswordViewController.m in Sources */,
 				0440F2D018368DE500C71323 /* UserPhoneUpdateViewController.m in Sources */,
 				04555B65183A671D0055A44A /* CarDataShareModel.m in Sources */,
+				04555B6B183A78240055A44A /* WeiXinShareMgr.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2249,6 +2271,7 @@
 					"\"$(SRCROOT)/../../BaseLib/UIFramework/ZCSUIFrameWork/build/Debug-iphonesimulator\"",
 					"\"$(SRCROOT)/../../BaseLib/UIFramework/ZCSUIFrameWork/build/ZCSUIFrameWork.build/Debug-iphoneos/ZCSUIFrameWork.build/Objects-normal/armv6\"",
 					"\"$(SRCROOT)/../../BaseLib/UIFramework/ZCSUIFrameWork/build/ZCSUIFrameWork.build/Debug-iphoneos/ZCSUIFrameWork.build/Objects-normal/armv7\"",
+					"\"$(SRCROOT)/BodCarManger/WeiXin\"",
 				);
 				OTHER_LDFLAGS = "-licucore";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2278,6 +2301,7 @@
 					"\"$(SRCROOT)/../../BaseLib/UIFramework/ZCSUIFrameWork/build/Debug-iphonesimulator\"",
 					"\"$(SRCROOT)/../../BaseLib/UIFramework/ZCSUIFrameWork/build/ZCSUIFrameWork.build/Debug-iphoneos/ZCSUIFrameWork.build/Objects-normal/armv6\"",
 					"\"$(SRCROOT)/../../BaseLib/UIFramework/ZCSUIFrameWork/build/ZCSUIFrameWork.build/Debug-iphoneos/ZCSUIFrameWork.build/Objects-normal/armv7\"",
+					"\"$(SRCROOT)/BodCarManger/WeiXin\"",
 				);
 				OTHER_LDFLAGS = "-licucore";
 				PRODUCT_NAME = "$(TARGET_NAME)";

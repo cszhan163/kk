@@ -14,7 +14,7 @@
 
 #import "DriveDataModel.h"
 
-//#define ScrollerView 0
+#define ScrollerView 0
 #define kOilDataViewWidth   300
 
 #define kOilDataViewHeight  400
@@ -33,7 +33,7 @@ typedef enum  viewType{
 }
 @property(nonatomic,strong)NSArray *dataArray;
 @end
-
+//#define ScrollerView 1
 @implementation CarDriveOilDataViewController
 
 - (void)viewDidLoad{
@@ -94,7 +94,7 @@ typedef enum  viewType{
     [self.view addSubview:scrollerView];
     SafeRelease(scrollerView);
     
-    [scrollerView setPageControlHidden:NO];
+    [scrollerView setPageControlHidden:YES];
     
     currY = currY+scrollerView.frame.size.height;
     StyledPageControl *pageControl = [scrollerView getPageControl];

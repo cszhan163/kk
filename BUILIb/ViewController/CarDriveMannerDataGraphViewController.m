@@ -36,6 +36,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    mainView.topBarView.hidden = YES;
+    
 	// Do any additional setup after loading the view.
     NSArray *colorArray = @[HexRGB(79, 120, 205),
       HexRGB(92, 200, 92),
@@ -44,6 +46,7 @@
     NSArray *tagImageArray = @[@"safe_green.png",@"safe_yellow.png",@"safe_red.png",];
     dataAnaylsisView = [[DriveActionAnalysisView alloc]initWithFrame:CGRectMake(0.f, kMBAppTopToolBarHeight+10.f, 320.f,300) withLineColorArray:colorArray withTagImageArray:tagImageArray];
     [self.view addSubview:dataAnaylsisView];
+    dataAnaylsisView.backgroundColor = [UIColor clearColor];
     SafeRelease(dataAnaylsisView);
 }
 

@@ -18,7 +18,7 @@
 		042778B318202737008C6432 /* setting_cell_header.png in Resources */ = {isa = PBXBuildFile; fileRef = 042778AF18202737008C6432 /* setting_cell_header.png */; };
 		042778B418202737008C6432 /* setting_cell_middle.png in Resources */ = {isa = PBXBuildFile; fileRef = 042778B018202737008C6432 /* setting_cell_middle.png */; };
 		042778B518202737008C6432 /* setting_cell_one.png in Resources */ = {isa = PBXBuildFile; fileRef = 042778B118202737008C6432 /* setting_cell_one.png */; };
-		042778C118202B4A008C6432 /* libBUILIb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 042778C018202B41008C6432 /* libBUILIb.a */; };
+		042778C118202B4A008C6432 /* libBUILIb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 042778C018202B41008C6432 /* libBUILIb.a */; settings = {ATTRIBUTES = (Weak, ); }; };
 		043385F8182E860400CEE699 /* share_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 043385F4182E860400CEE699 /* share_bg.png */; };
 		043385F9182E860400CEE699 /* share_cancel_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 043385F5182E860400CEE699 /* share_cancel_btn.png */; };
 		043385FA182E860400CEE699 /* sina_weibo.png in Resources */ = {isa = PBXBuildFile; fileRef = 043385F6182E860400CEE699 /* sina_weibo.png */; };
@@ -122,7 +122,7 @@
 		046B682917E768BB006F34A1 /* UserSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 046B682817E7684E006F34A1 /* UserSettingViewController.m */; };
 		046B682C17E76931006F34A1 /* CarDriveStatusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 046B682B17E76930006F34A1 /* CarDriveStatusViewController.m */; };
 		046B682F17E769CB006F34A1 /* CarServiceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 046B682E17E769C9006F34A1 /* CarServiceViewController.m */; };
-		046B685017E773F6006F34A1 /* libZCSUIFrameWork.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 046B684F17E77391006F34A1 /* libZCSUIFrameWork.a */; };
+		046B685017E773F6006F34A1 /* libZCSUIFrameWork.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 046B684F17E77391006F34A1 /* libZCSUIFrameWork.a */; settings = {ATTRIBUTES = (Weak, ); }; };
 		046B685B17E884D5006F34A1 /* plantData.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 046B685A17E884CF006F34A1 /* plantData.geojson */; };
 		046B685D17E8870F006F34A1 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 046B685C17E88708006F34A1 /* QuartzCore.framework */; };
 		04809B58181C00B9000DBB2F /* oil_graph_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 04809B57181C00B9000DBB2F /* oil_graph_bg.png */; };

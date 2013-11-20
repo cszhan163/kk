@@ -286,7 +286,10 @@ static NSString* kMonthTextArray[] = {
     //[maskView addSubview:carDriveStatusView];
     [carDriveStatusView setDateKey:[NSString stringWithFormat:kDateFormart,year,month]];
     carDriveStatusView.frame = CGRectMake(0.f, 0.f, width,height);
-    [carDriveStatusView setTarget:self withAction:@selector(didTouchButton:)];
+    //for(id item in carDriveStatusView.subviews)
+    {
+        [carDriveStatusView  setTarget:self withAction:@selector(didtouchMonthChangeBtn:)];
+    }
     return carDriveStatusView;
 }
 - (void)didEndScrollerView:(XLCycleScrollView*)senderView{
@@ -326,6 +329,15 @@ static NSString* kMonthTextArray[] = {
 
 #pragma mark -
 #pragma mark View Delegate
+- (IBAction)didtouchMonthChangeBtn:(id)sender{
+    if([sender tag] == 10)
+        [scrollerView scrollerToPrePage];
+    
+    if([sender tag] == 11)
+        [scrollerView scrollerToNextPage];
+}
+
+
 - (void)didTouchButton:(id)sender{
 
     switch ([sender tag]) {
@@ -333,13 +345,15 @@ static NSString* kMonthTextArray[] = {
             {
                 CarDriveOilAnalaysisViewController *carDriveOilAnalaysisVc = [[CarDriveOilAnalaysisViewController
                                                                                alloc]init];
+                carDriveOilAnalaysisVc.isNeedInitDateMonth = NO;
                 carDriveOilAnalaysisVc.mCurrDate = self.mCurrDate;
 #if 0
                 [self.navigationController pushViewController:carDriveOilAnalaysisVc animated:YES];
                 
 #else
                 [ZCSNotficationMgr postMSG:kPushNewViewController obj:carDriveOilAnalaysisVc];
-#endif
+#endif          
+                
                 SafeRelease(carDriveOilAnalaysisVc);
             }
             break;
@@ -349,6 +363,9 @@ static NSString* kMonthTextArray[] = {
            CarDriveMannerAnalysisViewController *carDriveMannerAnalysisVc =
            [[CarDriveMannerAnalysisViewController
               alloc]init];
+            carDriveMannerAnalysisVc.isNeedInitDateMonth = NO;
+            
+            carDriveMannerAnalysisVc.mCurrDate = self.mCurrDate;
 #else
             CarDriveMannerDataViewController *carDriveMannerAnalysisVc = [[CarDriveMannerDataViewController alloc]init];
 #endif

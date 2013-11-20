@@ -16,7 +16,7 @@
     NENavItemController *navItemCtrl;
     //DateStruct   *mCurrDate;
 }
-@property(nonatomic,assign)DateStruct   mCurrDate;
+//@property(nonatomic,assign)DateStruct   mCurrDate;
 @property(weak)id<CarDataAnalysisBaseViewControllerDataSouceDelegate> dataSouce;
 - (void)loadAnalaysisData;
 - (void)setNeedDisplaySubView;

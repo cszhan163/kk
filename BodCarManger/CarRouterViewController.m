@@ -167,6 +167,7 @@ NSString* gDataArr[] = {@"12.5km",@"11km/h",@"87L",@"3h"};
             if ([oneObject isKindOfClass:[PlantTableViewCell class]])
                 cell = (PlantTableViewCell*)oneObject;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.backgroundColor = [UIColor clearColor];
         cell.clipsToBounds = YES;
     }
     /*

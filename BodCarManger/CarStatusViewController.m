@@ -252,6 +252,7 @@
 - (void)updateUIData:(NSDictionary*)data{
     if([[data objectForKey:@"state"]intValue]== 0){
         checkProcessLabel.text = @"未获取检测数据";
+        kUIAlertView(@"提示", @"请发动汽车后进行检测");
         return;
     }
     [tweetieTableView reloadData];
@@ -298,6 +299,7 @@
 #endif
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.clipsToBounds = YES;
+        cell.backgroundColor = [UIColor clearColor];
         
     }
     if(indexPath.row == 7){

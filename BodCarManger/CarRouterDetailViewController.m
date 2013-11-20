@@ -69,7 +69,7 @@
      //[self setNavgationBarRightBtnImage:bgImage forStatus:UIControlStateNormal];
     
     //ma
-    UIImageWithFileName(bgImage, @"calendar.png");
+    
     
 
 //    UIButton *btn = [UIComUtil createButtonWithNormalBGImage:bgImage withHightBGImage:bgImage withTitle:@"" withTag:2];
@@ -84,6 +84,12 @@
         [super setNavgationBarRightBtnImage:bgImage forStatus:UIControlStateNormal];
               [super setNavgationBarRightBtnImage:bgImage forStatus:UIControlStateSelected];
             */
+        UIImageWithFileName(bgImage, @"calendar.png");
+        [self.leftBtn setBackgroundImage:bgImage forState:UIControlStateNormal];
+        [self.leftBtn setBackgroundImage:bgImage forState:UIControlStateSelected];
+//        CGRect rect = self.rightBtn.frame;
+//        self.rightBtn.frame = CGRectMake(kDeviceScreenWidth-10.f-bgImage.size.width/kScale, rect.origin.y, bgImage.size.width/kScale, bgImage.size.height/kScale);
+        
         [self setNavgationBarTitle:@"最近驾驶"];
         if(self.isRunning){
            [self setNavgationBarTitle:@"正在驾驶"];

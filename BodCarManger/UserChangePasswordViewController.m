@@ -124,6 +124,7 @@
     [SVProgressHUD showWithStatus:NSLocalizedString(@"数据更新中", @"") networkIndicator:YES];
     NSDictionary *param = [NSDictionary dictionaryWithObjectsAndKeys:
                            self.newPasswordInputTextField.text,@"password",
+                           self.subClassInputTextField.text,@"oldpassword",
                            [AppSetting getLoginUserId],@"name",
                            nil];
     CarServiceNetDataMgr *netClientMgr = [CarServiceNetDataMgr getSingleTone];

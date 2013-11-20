@@ -1796,6 +1796,11 @@
 			attributes = {
 				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = cszhan;
+				TargetAttributes = {
+					046B662D17E74984006F34A1 = {
+						DevelopmentTeam = 5LCCK392WL;
+					};
+				};
 			};
 			buildConfigurationList = 046B662917E74984006F34A1 /* Build configuration list for PBXProject "BodCarManger" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -2252,6 +2257,8 @@
 		046B665217E74984006F34A1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -2275,6 +2282,7 @@
 				);
 				OTHER_LDFLAGS = "-licucore";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -2282,6 +2290,8 @@
 		046B665317E74984006F34A1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -2305,6 +2315,7 @@
 				);
 				OTHER_LDFLAGS = "-licucore";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

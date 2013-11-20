@@ -269,7 +269,7 @@ static UIButton *popup = nil;
         CGRect rect = CGRectMake(0.f, -5.f, bgImage.size.width/kScale+5,bgImage.size.height/kScale);
         popup.frame = CGRectOffset(rect,30.f,12);
         [view addSubview:popup];
-        [popup release];
+        //[popup release];
     
     }
     NSString *num = [ntf object];

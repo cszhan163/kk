@@ -187,7 +187,7 @@
     SafeRelease(tbHeaderView);
     //[tweetieTableView setTableHeaderView:tbHeaderView];
 #endif
-    CGFloat height = tbHeaderView.frame.size.height;
+    CGFloat height = tbHeaderView.frame.size.height+5;
     tweetieTableView.normalEdgeInset = UIEdgeInsetsMake(height,0.f,0.f,0.f);
     
     //[self startCarHealthCheck:nil];
@@ -273,8 +273,8 @@
 #pragma mark tableview
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-	//return  10;
-    return [self.dataArray count];
+	return  8;
+    //return [self.dataArray count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -300,20 +300,18 @@
         cell.clipsToBounds = YES;
         
     }
-    if(indexPath.row == [self.dataArray count]){
+    if(indexPath.row == 7){
         [cell setRowLineHidden:YES];
     }
-    
-    NSDictionary *item = [self.dataArray objectAtIndex:indexPath.row];
-    
-    NSString *name = [item objectForKey:@"name"];
-    NSString *range = [item objectForKey:@"range"];
-    NSString *value = [item objectForKey:@"value"];
- 
-    
-    [cell setTableCellCloumn:0 withData:name];
-    [cell setTableCellCloumn:1 withData:range];
-    [cell setTableCellCloumn:2 withData:value];
+    if(indexPath.row <[self.dataArray count]){
+        NSDictionary *item = [self.dataArray objectAtIndex:indexPath.row];
+        NSString *name = [item objectForKey:@"name"];
+        NSString *range = [item objectForKey:@"range"];
+        NSString *value = [item objectForKey:@"value"];
+        [cell setTableCellCloumn:0 withData:name];
+        [cell setTableCellCloumn:1 withData:range];
+        [cell setTableCellCloumn:2 withData:value];
+    }
     /*
      "driveflg": "1",
      "starttime": "17:54",

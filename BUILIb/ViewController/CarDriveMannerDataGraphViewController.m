@@ -78,10 +78,10 @@
             return NSOrderedDescending;
         }
         else if([arg1 intValue]<[arg1 intValue]){
-            return -1;
+            return NSOrderedAscending;
         }
         else{
-            return 0;
+            return NSOrderedSame;
         }
         
     }];

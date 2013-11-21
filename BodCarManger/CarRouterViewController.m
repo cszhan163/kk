@@ -46,6 +46,11 @@ NSString* gDataArr[] = {@"12.5km",@"11km/h",@"87L",@"3h"};
     }
 
 }
+- (void)viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:animated];
+    //[super viewDidDisappear:animated];
+    [[DBManage getSingletone]setDelegate:nil];
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -72,7 +77,7 @@ NSString* gDataArr[] = {@"12.5km",@"11km/h",@"87L",@"3h"};
     if(navBarTitle == nil)
         [self setNavgationBarTitle:NSLocalizedString(@"Router", @""
                                                  )];
-    [self setHiddenRightBtn:NO];
+    [self setHiddenRightBtn:YES];
     [self setHiddenLeftBtn:NO];
     
     //[self setRightTextContent:NSLocalizedString(@"Done", @"")];
@@ -162,6 +167,7 @@ NSString* gDataArr[] = {@"12.5km",@"11km/h",@"87L",@"3h"};
             if ([oneObject isKindOfClass:[PlantTableViewCell class]])
                 cell = (PlantTableViewCell*)oneObject;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.backgroundColor = [UIColor clearColor];
         cell.clipsToBounds = YES;
     }
     /*

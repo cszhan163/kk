@@ -328,7 +328,8 @@ static NSString *kCellImageArr[] = {
                     default:
                         break;
                 }
-            cell.detailTextLabel.text = detailText;
+            if(![detailText isKindOfClass:[NSNull class]])
+                cell.detailTextLabel.text = detailText;
             break;
         case 1:
         {

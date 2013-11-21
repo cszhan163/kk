@@ -7,6 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+
+#define kGetLocationNameMSG   @"getLocationMSG"
+
 @protocol DBManageDelegate<NSObject>
 - (void)didGetLocationData:(id)sender withIndex:(NSInteger)index;
 - (void)didGetLocationData:(id)sender withIndex:(NSInteger)index withTag:(BOOL)tag;

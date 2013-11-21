@@ -36,8 +36,9 @@
     [super viewDidLoad];
     /*
     [self setHiddenLeftBtn:YES];
-    [self setHiddenRightBtn:YES];
      */
+    [self setHiddenRightBtn:YES];
+    
   
     //self.view.backgroundColor = [UIColor clearColor];
     UIImage *bgImage = nil;

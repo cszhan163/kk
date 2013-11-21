@@ -103,14 +103,42 @@ static UIButton *popup = nil;
 #if 1
 	UINavigationController *navCtrl = [[UINavigationController alloc]initWithRootViewController:mainVC];
     navCtrl.navigationBar.tintColor = [UIColor redColor];//[UIColor colorWithPatternImage:];
-	navCtrl.navigationBarHidden = YES;
+	navCtrl.navigationBarHidden =YES;
+    //navCtrl.navigationBar.backgroundColor = [UIColor clearColor];
+    navCtrl.view.backgroundColor = [UIColor clearColor];
+    
+   
+    //else
+    {
+    
 	currentNavgationController = navCtrl;
-    [self.window addSubview:navCtrl.view];
+    [self.window  addSubview:navCtrl.view];
 	//navCtrl.delegate = self;
+    //self.window.rootViewController.view.frame = CGRectMake(0.f, 20.f, kDeviceScreenWidth, kDeviceScreenHeight);
+    }
+    
 #else
 	[self.window addSubview:mainVC.view];
 #endif
+    if(kIsIOS7Check){
+        
+        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackOpaque];
+        /*
+         UIView *addStatusBar = [[UIView alloc] init];
+         addStatusBar.frame = CGRectMake(0, 0, 320, 20);
+         addStatusBar.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:1];
+         
+         
+         
+         [navCtrl.view addSubview:addStatusBar];
+         SafeRelease(addStatusBar);
+         */
+        navCtrl.view.frame = CGRectMake(0.f, 20.f, kDeviceScreenWidth,kDeviceScreenHeight);
+        // self.window.rootViewController = navCtrl;
+    }
 
+    
+    
 #ifdef  USER_LOGIN
     
     NSString *loginUser = [AppSetting getCurrentLoginUser];
@@ -131,13 +159,18 @@ static UIButton *popup = nil;
         //navCtrl.navigationBar.tintColor = [UIColor redColor];//[UIColor colorWithPatternImage:];
         [loginMainVc release];
         navCtrl.navigationBarHidden = YES;
+        if(kIsIOS7Check){
+            
+            navCtrl.view.frame = CGRectMake(0.f, 20.f, kDeviceScreenWidth,kDeviceScreenHeight);
+            // self.window.rootViewController = navCtrl;
+        }
         //[ZCSNotficationMgr postMSG:kPresentModelViewController obj:navCtrl];
         [currentNavgationController presentModalViewController:navCtrl animated:NO];
         SafeAutoRelease(navCtrl);
         
     }
 #endif
-	//[mainView addSubview:navCtrl.view];
+   	//[mainView addSubview:navCtrl.view];
 	
 }
 #pragma mark -
@@ -146,6 +179,13 @@ static UIButton *popup = nil;
 {
 
     //return 0;
+    CGFloat offsetY = 0.f;
+    if(kIsIOS7Check){
+    
+        offsetY = 0.f;
+    
+    }
+    
     NSMutableArray *_navControllersArr = [NSMutableArray arrayWithCapacity:10];
     //[vcontroller1 setNavgationBarTitle:kPlayListVCTitle];
     for(int i =0;i<kTabCountMax;i++){
@@ -156,7 +196,7 @@ static UIButton *popup = nil;
         navCtrl1.navigationBarHidden = YES;
         navCtrl1.view.backgroundColor = [UIColor whiteColor];
         //navCtrl1.delegate = self;
-        navCtrl1.view.frame = CGRectMake(0.f, 0.f, kDeviceScreenWidth, kDeviceScreenHeight);
+        navCtrl1.view.frame = CGRectMake(0.f,offsetY, kDeviceScreenWidth, kDeviceScreenHeight);
         [_navControllersArr addObject:navCtrl1];
         
         [vcontroller1 release];

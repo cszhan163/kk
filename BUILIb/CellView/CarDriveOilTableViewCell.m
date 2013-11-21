@@ -30,7 +30,7 @@
             itemLabel.textColor = [UIColor whiteColor];
             itemLabel.backgroundColor = [UIColor clearColor];
             itemLabel.textAlignment = NSTextAlignmentCenter;
-            itemLabel.text = @"10-00";
+            itemLabel.text = @"";
             currX = currX+[kColounmItemWidthArray[i]floatValue]+1;
             [self addSubview:itemLabel];
             SafeRelease(itemLabel);

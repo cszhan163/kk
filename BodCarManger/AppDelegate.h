@@ -9,9 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @class ViewController;
-
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 -(BOOL)checkCarInforData;
+@property(nonatomic,strong)UIImage *sharedImage;
 @property(nonatomic,assign)NSInteger mesCount;
 @property (strong, nonatomic) UIWindow *window;
 

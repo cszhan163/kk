@@ -192,4 +192,15 @@ static const NSString *KEY_HIT_TEST_EDGE_INSETS = @"HitTestEdgeInsets";
             return oneObject;
     return nil;
 }
++ (UIImage*)getCurrentViewShortCut:(UIView*)view {
+
+    UIGraphicsBeginImageContextWithOptions(view.frame.size, YES, 0);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    [view.layer renderInContext:context];
+    //CGContextClipToRect(context,CGRectMake(0.f,20.f,view.frame.size.width,view.frame.size.height-20.f));
+    UIImage *imageFromCurrentView = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    UIImage *clipImage = [UIImage imageWithCGImage:CGImageCreateWithImageInRect(imageFromCurrentView.CGImage,CGRectMake(0.f,40.f,view.frame.size.width*2,view.frame.size.height*2-40.f)) scale:2 orientation:UIImageOrientationUp];
+    return clipImage;
+}
 @end

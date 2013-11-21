@@ -36,4 +36,5 @@
 + (void)shadowUIButtonText:(UIButton*)btn withShowdowColor:(UIColor*)color  withShadowOffset:(CGSize)shwSize;
 + (void)shadowUILabelText:(UILabel*)label withShowdowColor:(UIColor*)color  withShadowOffset:(CGSize)shwSize;
 + (id)instanceFromNibWithName:(NSString*)nibName;
++ (UIImage*)getCurrentViewShortCut:(UIView*)view ;
 @end

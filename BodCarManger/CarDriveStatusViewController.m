@@ -38,6 +38,10 @@
 
 #define kDriveMaintainanceLeftPendingX 36.f
 
+static NSString* kMonthTextArray[] = {
+    @"一月",@"二月",@"三月",@"四月",@"五月",@"六月",@"七月",@"八月",@"九月",@"十月",@"十一月",@"十二月"
+};
+
 @interface CarMonitorViewController()<BSPreviewScrollViewDelegate,
         XLCycleScrollViewDelegate,
         XLCycleScrollViewDatasource>{
@@ -282,7 +286,10 @@
     //[maskView addSubview:carDriveStatusView];
     [carDriveStatusView setDateKey:[NSString stringWithFormat:kDateFormart,year,month]];
     carDriveStatusView.frame = CGRectMake(0.f, 0.f, width,height);
-    [carDriveStatusView setTarget:self withAction:@selector(didTouchButton:)];
+    //for(id item in carDriveStatusView.subviews)
+    {
+        [carDriveStatusView  setTarget:self withAction:@selector(didtouchMonthChangeBtn:)];
+    }
     return carDriveStatusView;
 }
 - (void)didEndScrollerView:(XLCycleScrollView*)senderView{
@@ -322,6 +329,15 @@
 
 #pragma mark -
 #pragma mark View Delegate
+- (IBAction)didtouchMonthChangeBtn:(id)sender{
+    if([sender tag] == 10)
+        [scrollerView scrollerToPrePage];
+    
+    if([sender tag] == 11)
+        [scrollerView scrollerToNextPage];
+}
+
+
 - (void)didTouchButton:(id)sender{
 
     switch ([sender tag]) {
@@ -329,13 +345,15 @@
             {
                 CarDriveOilAnalaysisViewController *carDriveOilAnalaysisVc = [[CarDriveOilAnalaysisViewController
                                                                                alloc]init];
+                carDriveOilAnalaysisVc.isNeedInitDateMonth = NO;
                 carDriveOilAnalaysisVc.mCurrDate = self.mCurrDate;
 #if 0
                 [self.navigationController pushViewController:carDriveOilAnalaysisVc animated:YES];
                 
 #else
                 [ZCSNotficationMgr postMSG:kPushNewViewController obj:carDriveOilAnalaysisVc];
-#endif
+#endif          
+                
                 SafeRelease(carDriveOilAnalaysisVc);
             }
             break;
@@ -345,6 +363,9 @@
            CarDriveMannerAnalysisViewController *carDriveMannerAnalysisVc =
            [[CarDriveMannerAnalysisViewController
               alloc]init];
+            carDriveMannerAnalysisVc.isNeedInitDateMonth = NO;
+            
+            carDriveMannerAnalysisVc.mCurrDate = self.mCurrDate;
 #else
             CarDriveMannerDataViewController *carDriveMannerAnalysisVc = [[CarDriveMannerDataViewController alloc]init];
 #endif
@@ -474,7 +495,8 @@
     carDriveStatusView.mRunDaysLabel.text =[NSString stringWithFormat:@"%d",day];
     carDriveStatusView.mRunStepLabel.text = [NSString stringWithFormat:@"%0.2lf",segment];
     carDriveStatusView.mRunDistanceLabel.text = [NSString stringWithFormat:@"%0.2lf",totalMile];
-    carDriveStatusView.mHeadMonthLabel.text = [NSString stringWithFormat:@"%2d月驾驶情况",self.mCurrDate.month];
+    int monthInex = self.mCurrDate.month-1;
+    carDriveStatusView.mHeadMonthLabel.text = [NSString stringWithFormat:@"%@驾驶情况",kMonthTextArray[monthInex]];
 }
 - (void)updateUIMainUIData:(NSDictionary*)data{
     

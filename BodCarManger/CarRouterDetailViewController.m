@@ -52,6 +52,10 @@
     }
     return self;
 }
+- (void)viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:animated];
+    [[DBManage getSingletone]setDelegate:nil];
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -64,9 +68,8 @@
     UIImageWithFileName(bgImage, @"share.png");
      //[self setNavgationBarRightBtnImage:bgImage forStatus:UIControlStateNormal];
     
-    //map
+    //ma
     
-    UIImageWithFileName(bgImage, @"calendar.png");
     
 
 //    UIButton *btn = [UIComUtil createButtonWithNormalBGImage:bgImage withHightBGImage:bgImage withTitle:@"" withTag:2];
@@ -81,6 +84,12 @@
         [super setNavgationBarRightBtnImage:bgImage forStatus:UIControlStateNormal];
               [super setNavgationBarRightBtnImage:bgImage forStatus:UIControlStateSelected];
             */
+        UIImageWithFileName(bgImage, @"calendar.png");
+        [self.leftBtn setBackgroundImage:bgImage forState:UIControlStateNormal];
+        [self.leftBtn setBackgroundImage:bgImage forState:UIControlStateSelected];
+//        CGRect rect = self.rightBtn.frame;
+//        self.rightBtn.frame = CGRectMake(kDeviceScreenWidth-10.f-bgImage.size.width/kScale, rect.origin.y, bgImage.size.width/kScale, bgImage.size.height/kScale);
+        
         [self setNavgationBarTitle:@"最近驾驶"];
         if(self.isRunning){
            [self setNavgationBarTitle:@"正在驾驶"];
@@ -240,8 +249,13 @@
 			break;
         case 2:
         case 1:{
-                [ZCSNotficationMgr postMSG:kPopAllViewController obj:nil];
+            //[ZCSNotficationMgr postMSG:kPopAllViewController obj:nil];
             
+            UIImage *image = [UIComUtil getCurrentViewShortCut:[[[UIApplication sharedApplication]delegate]window]];
+            
+            //[NSDictionary *]
+            
+            [ZCSNotficationMgr postMSG:kStartShowSharedViewMSG obj:image];
             /*
             CarRouterDateViewController *carRouterDateChooseVc = [[CarRouterDateViewController alloc]init];
             carRouterDateChooseVc.mCurrDate = mDateStruct;
@@ -313,6 +327,7 @@
 
     NSMutableArray *gpsScaleArray = [NSMutableArray array];
     int index = 0;
+    Place *place = nil;
     for(NSDictionary *item in self.gprsDataArray){
         double lng = [[item objectForKey:@"lng"] doubleValue]/kGPSMaxScale;
         double lat = [[item objectForKey:@"lat"] doubleValue]/kGPSMaxScale;
@@ -325,6 +340,19 @@
             mStartCoordinate2d = transform(coordinate2d);
             mStartName = [[DBManage  getSingletone] getLocationPointNameByLatitude:lat withLogtitude:lng withIndex:-1 withTag:YES];
             [[DBManage getSingletone]setDelegate:self];
+         
+            if(mStartName){
+                place = [[Place alloc]init];
+                place.description = @"";
+                place.latitude = mStartCoordinate2d.latitude;
+                place.longitude = mStartCoordinate2d.longitude;
+                place.pointType = 0;
+                place.name = mStartName;
+                [mMapView addPointToMap:place];
+                //[place release];
+                SafeRelease(place);
+            }
+
         }
         if(index == [self.gprsDataArray count]-1){
             CLLocationCoordinate2D coordinate2d;
@@ -332,7 +360,19 @@
             coordinate2d.longitude = lng;
             mEndCoordinate2d = transform(coordinate2d);
             mEndName = [[DBManage  getSingletone] getLocationPointNameByLatitude:lat withLogtitude:lng withIndex:-1 withTag:NO];
-            
+         
+            if(mEndName)
+            {
+                place = [[Place alloc]init];
+                place.latitude = mEndCoordinate2d.latitude;
+                place.longitude = mEndCoordinate2d.longitude;
+                place.name = mEndName;
+                place.pointType = 1;
+                [mMapView addPointToMap:place];
+                SafeRelease(place);
+                //[mMapView addPinToMap:mEndCoordinate2d withName:mEndName];
+                //[self didGetLocationData:mEndName withIndex:-1 withTag:NO];
+            }
         }
         
         CLLocation *localpoint = [[CLLocation alloc] initWithLatitude:lat longitude:lng];
@@ -343,26 +383,6 @@
         index++;
     }
     printf("\n\n");
-    Place *place = [[Place alloc]init];
-    place.description = @"";
-    if(mEndName){
-        place.latitude = mStartCoordinate2d.latitude;
-        place.longitude = mStartCoordinate2d.longitude;
-        place.name = mEndName;
-        place.pointType = 1;
-        [mMapView addPointToMap:place];
-        //[mMapView addPinToMap:mEndCoordinate2d withName:mEndName];
-        //[self didGetLocationData:mEndName withIndex:-1 withTag:NO];
-    }
-    if(mStartName){
-        place.latitude = mEndCoordinate2d.latitude;
-        place.longitude = mEndCoordinate2d.longitude;
-        place.pointType = 0;
-        place.name = mStartName;
-        [mMapView addPointToMap:place];
-        //[self didGetLocationData:mStartName withIndex:-1 withTag:YES];
-        //[mMapView addPinToMap:mStartCoordinate2d withName:mStartName];
-    }
     
     if([gpsScaleArray count])
      [mMapView  showRouteWithPointsData:gpsScaleArray];

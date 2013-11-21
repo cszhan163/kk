@@ -22,6 +22,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        self.isNeedInitDateMonth = YES;
     }
     return self;
 }
@@ -29,6 +30,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    if(self.isNeedInitDateMonth)
+        [self initDateMonth];
+	// Do any additional setup after loading the view.
+}
+
+- (void)initDateMonth{
+
     NSDate *currDate  = [NSDate date];
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
     [dateFormat setDateFormat:@"yyyy-MM-dd"];
@@ -45,9 +53,8 @@
     self.mTodayDate = date;
     
     self.mMothDateKey = [NSString stringWithFormat:kDateFormart,self.mCurrDate.year,self.mCurrDate.month];
-	// Do any additional setup after loading the view.
-}
 
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

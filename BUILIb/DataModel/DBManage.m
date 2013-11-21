@@ -92,9 +92,11 @@ static DBManage *gDb = nil;
         self.locationData = dictData;
         [self saveDataToFile:@""];
     }
+    
     if(delegate && [delegate respondsToSelector:@selector(didGetLocationData:withIndex:withTag:)]){
         [delegate didGetLocationData:name withIndex:index withTag:tag];
     }
+    
 }
 - (void)setLocationPointNameByLocationSet:(NSArray*)data{
     @synchronized(self){

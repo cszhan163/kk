@@ -120,7 +120,8 @@ static ZCSNetClientNetInterfaceMgr *dressMemoInterfaceMgr = nil;
     //updateUserPhoneNumber
     EiInfo *inInfo = [self getCommIPlant4MParamByServiceToken:@"VESA02"];
     [inInfo set:@"userName" value:[param objectForKey:@"name"]];
-    [inInfo set:@"password" value:[param objectForKey:@"password"]];
+    [inInfo set:@"passwordNew" value:[param objectForKey:@"password"]];
+    [inInfo set:@"passwordOld" value:[param objectForKey:@"oldpassword"]];
 //    if([param objectForKey:@"phoneNumber"]){
 //        [inInfo set:@"phoneNumber" value:[param objectForKey:@"phoneNumber"]];
 //    }
@@ -336,6 +337,7 @@ static BOOL isExit = NO;
 #pragma mark -
 #pragma mark drive model
 //#define Drive_TEST
+
 - (id)getDriveDataByCarId:(NSString*)cardId withMonth:(NSString*)month withYear:(NSString*)year{
     //queryDriveMonthData
 #ifdef Drive_TEST
@@ -402,8 +404,8 @@ static BOOL isExit = NO;
 }
 - (id)getCarCheckData:(NSString*)cardId{
     //queryConData
+    //EiInfo *inInfo = [self getCommIPlant4MParamByServiceToken:@"VEMT02"];
     EiInfo *inInfo = [self getCommIPlant4MParamByServiceToken:@"VESA01"];
-    //EiInfo *inInfo = [self getCommIPlant4MParam];
     //[inInfo set:@"year" value:[param objectForKey:@"year"]];
     [inInfo set:METHOD_TOKEN value:kResCarCheckData]; // 接口名
     [inInfo set:@"vin" value:cardId];

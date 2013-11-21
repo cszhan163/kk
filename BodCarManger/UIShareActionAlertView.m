@@ -66,7 +66,7 @@ static NSString* commonArray[] = {@"share_cancel_btn"};
         textLabel.font = [UIFont systemFontOfSize:14];
         textLabel.textAlignment = NSTextAlignmentCenter;
         textLabel.textColor = [UIColor whiteColor];
-        [UIComUtil shadowUILabelText:textLabel withShowdowColor:kBlackHalfColor withShadowOffset:CGSizeMake(-1.0, -1.0)];
+        //[UIComUtil shadowUILabelText:textLabel withShowdowColor:kWhiteHalfColor withShadowOffset:CGSizeMake(-1.0, -1.0)];
         [alerActionView addSubview:textLabel];
         SafeRelease(textLabel);
         textLabel.frame = CGRectMake(item.frame.origin.x,item.frame.origin.y+item.frame.size.height+ iconItemTextPendingY,item.frame.size.width,20.f);

@@ -600,6 +600,7 @@
 		BDC37ED8181FAF0E00A4CB18 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_ENABLE_OBJC_ARC = NO;
 				DSTROOT = /tmp/BUILIb.dst;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -623,6 +624,7 @@
 		BDC37ED9181FAF0E00A4CB18 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_ENABLE_OBJC_ARC = NO;
 				DSTROOT = /tmp/BUILIb.dst;
 				FRAMEWORK_SEARCH_PATHS = (

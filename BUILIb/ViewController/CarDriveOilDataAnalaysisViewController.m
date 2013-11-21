@@ -43,7 +43,7 @@
 //    oilAnalysisView.backgroundColor = [UIColor redColor];
 //    [oilAnalysisView updateUIByData:nil];
 //    return;
-    dataAnaylsisView = [[DriveActionAnalysisView alloc]initWithFrame:CGRectMake(0.f,35+20+5, 320.f,300)];
+    dataAnaylsisView = [[DriveActionAnalysisView alloc]initWithFrame:CGRectMake(0.f,kMBAppTopToolBarHeight+10.f, 320.f,300)];
     dataAnaylsisView.backgroundColor = [UIColor clearColor];
     
     
@@ -89,10 +89,10 @@
             return NSOrderedDescending;
         }
         else if([arg1 intValue]<[arg1 intValue]){
-            return -1;
+            return NSOrderedAscending;
         }
         else{
-            return 0;
+            return NSOrderedSame;
         }
     
     }];

@@ -47,5 +47,6 @@ typedef struct dateSturct{
 #define Safe_Release(x) {[x release]; x = nil;}
 
 
+#define  kIsIOS7Check  ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0)
 
 #endif

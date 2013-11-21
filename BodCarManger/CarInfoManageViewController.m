@@ -270,6 +270,9 @@ static NSString  *CarInfoKeyArray[] = {
     changeDataVc.type = type;
     changeDataVc.delegate = self;
     changeDataVc.indexPath = indexPath;
+    if(indexPath.row == 0 && indexPath.section == 0){
+        changeDataVc.isShowQR = YES;
+    }
     [self.navigationController pushViewController:changeDataVc animated:YES];
     SafeRelease(changeDataVc);
 }

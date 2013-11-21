@@ -47,6 +47,7 @@ static NSString *kCellImageArr[] = {
 }
 @property(nonatomic,strong)NSDictionary *userData;
 @property(nonatomic,strong)NSMutableArray *imageArray;
+@property(nonatomic,strong)NSMutableDictionary *imageDict;
 @end
 @implementation UserSettingViewController
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -56,6 +57,7 @@ static NSString *kCellImageArr[] = {
         // Custom initialization
         self.mainContentViewPendingY = -3.f;
         self.imageArray = [NSMutableArray array];
+        self.imageDict = [NSMutableDictionary dictionary];
         
     }
     return self;
@@ -92,9 +94,12 @@ static NSString *kCellImageArr[] = {
      CGFloat bgWidth = kDeviceScreenWidth-2*KLoginAndResignPendingX;
      CGFloat bgHeight = 2*kLoginCellItemHeight+KLoginAndResignPendingX*2;
      */
-    
- 
-    logInfo = [[UITableView alloc] initWithFrame:CGRectMake(0,kMBAppTopToolBarHeight-self.mainContentViewPendingY,kDeviceScreenWidth,kDeviceScreenHeight-kMBAppTopToolBarHeight-kMBAppStatusBar-kMBAppBottomToolBarHeght)
+    CGFloat xPending = 0.f;
+    if(kIsIOS7Check &&0){
+        xPending = 9.f;
+    }
+  
+    logInfo = [[UITableView alloc] initWithFrame:CGRectMake(xPending,kMBAppTopToolBarHeight-self.mainContentViewPendingY,kDeviceScreenWidth-2*xPending,kDeviceScreenHeight-kMBAppTopToolBarHeight-kMBAppStatusBar-kMBAppBottomToolBarHeght)
                                                          style:UITableViewStyleGrouped];
 	//logInfo.contentInset
 #if 0
@@ -109,6 +114,9 @@ static NSString *kCellImageArr[] = {
 #else
     logInfo.backgroundColor = HexRGB(202, 202, 204);
 #endif
+    if(kIsIOS7Check ){
+        logInfo.contentInset = UIEdgeInsetsMake(-25.f,0.f, 0.f,0.f);
+    }
 	logInfo.allowsSelectionDuringEditing = NO;
 	logInfo.delegate = self;
 	logInfo.dataSource = self;
@@ -131,10 +139,13 @@ static NSString *kCellImageArr[] = {
     
         UIImageWithFileName(UIImage *bgImage,kCellImageArr[i]);
         assert(bgImage);
+        /*
         UIImageView *bgView = [[UIImageView alloc]initWithImage:bgImage];
         bgView.frame = CGRectMake(0.f, 0.f,300.f,42.f);
         [self.imageArray addObject:bgView];
         SafeRelease(bgView);
+        */
+        [self.imageDict setObject:bgImage forKey:kCellImageArr[i]];
     }
     [self.view addSubview:logInfo];
 
@@ -342,6 +353,7 @@ static NSString *kCellImageArr[] = {
         
             if (indexPath.row == 0 || indexPath.row == 1)
             {
+#if 1
                                static NSString *shareCellIdentifier = @"shareCell";
                 
                               UIShareCell *shareCell = [tableView dequeueReusableCellWithIdentifier:shareCellIdentifier];
@@ -362,7 +374,9 @@ static NSString *kCellImageArr[] = {
                 shareCell.nameLabel.textColor = [UIColor blueColor];//cell.detailTextLabel.textColor;
                  shareCell.shareNameLabel.font = [UIFont systemFontOfSize:15];
                 shareCell.nameLabel.font = [UIFont systemFontOfSize:15];
+                shareCell.backgroundColor = [UIColor clearColor];
                 cell = shareCell;
+#endif
                                //return shareCell;
             }
 
@@ -429,7 +443,9 @@ static NSString *kCellImageArr[] = {
         }
     }
 #if 1
-    UIImageWithFileName(UIImage *bgImage,bgImageName);
+    //UIImageWithFileName(UIImage *bgImage,bgImageName)
+    UIImage *bgImage = [self.imageDict objectForKey:bgImageName];
+    assert(bgImage);
     UIImageView *bgView = [[UIImageView alloc]initWithImage:bgImage];
     bgView.frame = CGRectMake(0.f, 0.f,300.f,42.f);
     
@@ -538,9 +554,11 @@ static NSString *kCellImageArr[] = {
             break;
         case 1:
         {
+            if(index == 0){
             CarInfoManageViewController *carInfoVc = [[CarInfoManageViewController alloc]init];
             [self.navigationController pushViewController:carInfoVc animated:YES];
             SafeRelease(carInfoVc);
+            }
         }
             break;
 //        case 2:

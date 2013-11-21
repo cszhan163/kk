@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0410090A183E4DA800027851 /* NewUserSettingViewContorller.m in Sources */ = {isa = PBXBuildFile; fileRef = 04100909183E4DA800027851 /* NewUserSettingViewContorller.m */; };
+		0410090C183E4E9800027851 /* NewUserSettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0410090B183E4E9800027851 /* NewUserSettingViewController.xib */; };
 		041EF934182D4C4D00F487A6 /* MessageBoxCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 041EF933182D4C4D00F487A6 /* MessageBoxCell.xib */; };
 		041EF93A182D4DDC00F487A6 /* mes_unread.png in Resources */ = {isa = PBXBuildFile; fileRef = 041EF938182D4DDC00F487A6 /* mes_unread.png */; };
 		041EF93B182D4DDC00F487A6 /* read.png in Resources */ = {isa = PBXBuildFile; fileRef = 041EF939182D4DDC00F487A6 /* read.png */; };
@@ -38,7 +40,7 @@
 		044BEDFC17EABEBD004BF443 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 044BEDFB17EABEBD004BF443 /* SystemConfiguration.framework */; };
 		044BEE0017EABF37004BF443 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 044BEDFF17EABF37004BF443 /* libz.dylib */; };
 		044BEE0317EAC011004BF443 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 044BEE0217EAC011004BF443 /* MobileCoreServices.framework */; };
-		044D8902182A72CA00AD2368 /* CarInfoInputViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 044D8901182A72CA00AD2368 /* CarInfoInputViewController.m */; };
+		044D8902182A72CA00AD2368 /* CarInfoInputViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 044D8901182A72CA00AD2368 /* CarInfoInputViewController.mm */; };
 		044D8907182A934000AD2368 /* router_location.png in Resources */ = {isa = PBXBuildFile; fileRef = 044D8905182A934000AD2368 /* router_location.png */; };
 		044D8908182A934000AD2368 /* router_oil.png in Resources */ = {isa = PBXBuildFile; fileRef = 044D8906182A934000AD2368 /* router_oil.png */; };
 		044D890C182A9DCD00AD2368 /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 044D890B182A9DCD00AD2368 /* SVProgressHUD.bundle */; };
@@ -48,7 +50,6 @@
 		04555B601838CFCC0055A44A /* mes_bubble.png in Resources */ = {isa = PBXBuildFile; fileRef = 04555B5F1838CFCC0055A44A /* mes_bubble.png */; };
 		04555B65183A671D0055A44A /* CarDataShareModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04555B64183A671D0055A44A /* CarDataShareModel.m */; };
 		04555B6B183A78240055A44A /* WeiXinShareMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 04555B6A183A781E0055A44A /* WeiXinShareMgr.m */; };
-		04555B72183A789B0055A44A /* libWeChatSDK_armv7_armv7s.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 04555B6E183A789B0055A44A /* libWeChatSDK_armv7_armv7s.a */; };
 		046B663217E74984006F34A1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 046B663117E74984006F34A1 /* UIKit.framework */; };
 		046B663417E74984006F34A1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 046B663317E74984006F34A1 /* Foundation.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		046B663617E74984006F34A1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 046B663517E74984006F34A1 /* CoreGraphics.framework */; };
@@ -280,7 +281,14 @@
 		04E4D0F618325F9C00B6D5D9 /* router_today_date.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E4D0F218325F9C00B6D5D9 /* router_today_date.png */; };
 		04E5D6F0182F3057006832B9 /* item_change_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E5D6ED182F3057006832B9 /* item_change_btn.png */; };
 		04E5D6F1182F3057006832B9 /* item_default_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E5D6EE182F3057006832B9 /* item_default_btn.png */; };
-		04E5D6F2182F3057006832B9 /* qr_btn.png.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E5D6EF182F3057006832B9 /* qr_btn.png.png */; };
+		04E5D6F2182F3057006832B9 /* qr_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E5D6EF182F3057006832B9 /* qr_btn.png */; };
+		04EF704D183E72A5000E06CE /* libZXingWidget.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 04EF7045183E6E06000E06CE /* libZXingWidget.a */; };
+		04EF7051183E764F000E06CE /* libWeChatSDK_armv7_armv7s.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 04EF7050183E764F000E06CE /* libWeChatSDK_armv7_armv7s.a */; };
+		04EF7053183E76C9000E06CE /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04EF7052183E76C9000E06CE /* AVFoundation.framework */; };
+		04EF7057183E770B000E06CE /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 04EF7056183E770B000E06CE /* libiconv.dylib */; };
+		04EF7059183E7711000E06CE /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04EF7058183E7711000E06CE /* AssetsLibrary.framework */; settings = {ATTRIBUTES = (Required, ); }; };
+		04EF705B183E772F000E06CE /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04EF705A183E772F000E06CE /* CoreVideo.framework */; };
+		04EF705D183E7749000E06CE /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04EF705C183E7749000E06CE /* CoreMedia.framework */; };
 		04FA93CC1835247400B1DB3E /* matain_need.png in Resources */ = {isa = PBXBuildFile; fileRef = 04FA93CA1835247400B1DB3E /* matain_need.png */; };
 		04FA93CD1835247400B1DB3E /* matain_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 04FA93CB1835247400B1DB3E /* matain_normal.png */; };
 		04FE070A1818188F00EEC76A /* drive_oil_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 04FE07041818188F00EEC76A /* drive_oil_btn.png */; };
@@ -354,9 +362,26 @@
 			remoteGlobalIDString = 044E74C7158C8A590048CB70;
 			remoteInfo = ZCSUIFrameWork;
 		};
+		04EF7044183E6E06000E06CE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 04EF703F183E6E05000E06CE /* ZXingWidget.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D2AAC07E0554694100DB518D;
+			remoteInfo = ZXingWidget;
+		};
+		04EF7046183E6E06000E06CE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 04EF703F183E6E05000E06CE /* ZXingWidget.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 1D60398D13DF7CAD006F4B51;
+			remoteInfo = ZXingTests;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		04100908183E4DA800027851 /* NewUserSettingViewContorller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewUserSettingViewContorller.h; sourceTree = "<group>"; };
+		04100909183E4DA800027851 /* NewUserSettingViewContorller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewUserSettingViewContorller.m; sourceTree = "<group>"; };
+		0410090B183E4E9800027851 /* NewUserSettingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewUserSettingViewController.xib; sourceTree = "<group>"; };
 		041EF933182D4C4D00F487A6 /* MessageBoxCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MessageBoxCell.xib; sourceTree = "<group>"; };
 		041EF938182D4DDC00F487A6 /* mes_unread.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mes_unread.png; sourceTree = "<group>"; };
 		041EF939182D4DDC00F487A6 /* read.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = read.png; sourceTree = "<group>"; };
@@ -400,7 +425,7 @@
 		044BEE0617EAC447004BF443 /* UIFramework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIFramework.h; sourceTree = "<group>"; };
 		044BEE0A17EACB8F004BF443 /* AppConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppConfig.h; sourceTree = "<group>"; };
 		044D8900182A72CA00AD2368 /* CarInfoInputViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarInfoInputViewController.h; sourceTree = "<group>"; };
-		044D8901182A72CA00AD2368 /* CarInfoInputViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarInfoInputViewController.m; sourceTree = "<group>"; };
+		044D8901182A72CA00AD2368 /* CarInfoInputViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CarInfoInputViewController.mm; sourceTree = "<group>"; };
 		044D8905182A934000AD2368 /* router_location.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = router_location.png; sourceTree = "<group>"; };
 		044D8906182A934000AD2368 /* router_oil.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = router_oil.png; sourceTree = "<group>"; };
 		044D890B182A9DCD00AD2368 /* SVProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = SVProgressHUD.bundle; path = ../../../BaseLib/SVProgressHUD/SVProgressHUD.bundle; sourceTree = "<group>"; };
@@ -412,7 +437,6 @@
 		04555B64183A671D0055A44A /* CarDataShareModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarDataShareModel.m; sourceTree = "<group>"; };
 		04555B69183A78190055A44A /* WeiXinShareMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeiXinShareMgr.h; sourceTree = "<group>"; };
 		04555B6A183A781E0055A44A /* WeiXinShareMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeiXinShareMgr.m; sourceTree = "<group>"; };
-		04555B6E183A789B0055A44A /* libWeChatSDK_armv7_armv7s.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK_armv7_armv7s.a; sourceTree = "<group>"; };
 		04555B6F183A789B0055A44A /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
 		04555B70183A789B0055A44A /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
 		046B662E17E74984006F34A1 /* BodCarManger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BodCarManger.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -725,7 +749,14 @@
 		04E4D0F218325F9C00B6D5D9 /* router_today_date.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = router_today_date.png; path = ../../router/icon/router_today_date.png; sourceTree = "<group>"; };
 		04E5D6ED182F3057006832B9 /* item_change_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = item_change_btn.png; sourceTree = "<group>"; };
 		04E5D6EE182F3057006832B9 /* item_default_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = item_default_btn.png; sourceTree = "<group>"; };
-		04E5D6EF182F3057006832B9 /* qr_btn.png.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = qr_btn.png.png; sourceTree = "<group>"; };
+		04E5D6EF182F3057006832B9 /* qr_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = qr_btn.png; sourceTree = "<group>"; };
+		04EF703F183E6E05000E06CE /* ZXingWidget.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ZXingWidget.xcodeproj; path = zxing/iphone/ZXingWidget/ZXingWidget.xcodeproj; sourceTree = "<group>"; };
+		04EF7050183E764F000E06CE /* libWeChatSDK_armv7_armv7s.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK_armv7_armv7s.a; sourceTree = "<group>"; };
+		04EF7052183E76C9000E06CE /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		04EF7056183E770B000E06CE /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = usr/lib/libiconv.dylib; sourceTree = SDKROOT; };
+		04EF7058183E7711000E06CE /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		04EF705A183E772F000E06CE /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		04EF705C183E7749000E06CE /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		04FA93CA1835247400B1DB3E /* matain_need.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = matain_need.png; sourceTree = "<group>"; };
 		04FA93CB1835247400B1DB3E /* matain_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = matain_normal.png; sourceTree = "<group>"; };
 		04FE07041818188F00EEC76A /* drive_oil_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = drive_oil_btn.png; sourceTree = "<group>"; };
@@ -798,6 +829,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04EF705D183E7749000E06CE /* CoreMedia.framework in Frameworks */,
+				04EF705B183E772F000E06CE /* CoreVideo.framework in Frameworks */,
+				04EF7059183E7711000E06CE /* AssetsLibrary.framework in Frameworks */,
+				04EF7057183E770B000E06CE /* libiconv.dylib in Frameworks */,
+				04EF7053183E76C9000E06CE /* AVFoundation.framework in Frameworks */,
+				04EF704D183E72A5000E06CE /* libZXingWidget.a in Frameworks */,
 				042778C118202B4A008C6432 /* libBUILIb.a in Frameworks */,
 				BDC981C018210FC2005DD720 /* iPlat4M_framework.framework in Frameworks */,
 				BDC981BE18210EDA005DD720 /* AudioToolbox.framework in Frameworks */,
@@ -815,8 +852,8 @@
 				046B685017E773F6006F34A1 /* libZCSUIFrameWork.a in Frameworks */,
 				046B663217E74984006F34A1 /* UIKit.framework in Frameworks */,
 				046B663417E74984006F34A1 /* Foundation.framework in Frameworks */,
+				04EF7051183E764F000E06CE /* libWeChatSDK_armv7_armv7s.a in Frameworks */,
 				046B663617E74984006F34A1 /* CoreGraphics.framework in Frameworks */,
-				04555B72183A789B0055A44A /* libWeChatSDK_armv7_armv7s.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -865,11 +902,14 @@
 				04E458FB1825452A0028BDAD /* CarInfoManageViewController.h */,
 				04E458FC1825452A0028BDAD /* CarInfoManageViewController.m */,
 				044D8900182A72CA00AD2368 /* CarInfoInputViewController.h */,
-				044D8901182A72CA00AD2368 /* CarInfoInputViewController.m */,
+				044D8901182A72CA00AD2368 /* CarInfoInputViewController.mm */,
 				0440F2CB1836816200C71323 /* UserChangePasswordViewController.h */,
 				0440F2CC1836816200C71323 /* UserChangePasswordViewController.m */,
 				0440F2CE18368DE400C71323 /* UserPhoneUpdateViewController.h */,
 				0440F2CF18368DE500C71323 /* UserPhoneUpdateViewController.m */,
+				04100908183E4DA800027851 /* NewUserSettingViewContorller.h */,
+				04100909183E4DA800027851 /* NewUserSettingViewContorller.m */,
+				0410090B183E4E9800027851 /* NewUserSettingViewController.xib */,
 			);
 			name = User;
 			sourceTree = "<group>";
@@ -877,7 +917,7 @@
 		04555B6C183A78970055A44A /* WeiXin */ = {
 			isa = PBXGroup;
 			children = (
-				04555B6E183A789B0055A44A /* libWeChatSDK_armv7_armv7s.a */,
+				04EF7050183E764F000E06CE /* libWeChatSDK_armv7_armv7s.a */,
 				04555B6F183A789B0055A44A /* WXApi.h */,
 				04555B70183A789B0055A44A /* WXApiObject.h */,
 			);
@@ -922,6 +962,11 @@
 		046B663017E74984006F34A1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				04EF705C183E7749000E06CE /* CoreMedia.framework */,
+				04EF705A183E772F000E06CE /* CoreVideo.framework */,
+				04EF7058183E7711000E06CE /* AssetsLibrary.framework */,
+				04EF7056183E770B000E06CE /* libiconv.dylib */,
+				04EF7052183E76C9000E06CE /* AVFoundation.framework */,
 				046B663117E74984006F34A1 /* UIKit.framework */,
 				046B663317E74984006F34A1 /* Foundation.framework */,
 				046B663517E74984006F34A1 /* CoreGraphics.framework */,
@@ -932,6 +977,7 @@
 		046B663717E74984006F34A1 /* BodCarManger */ = {
 			isa = PBXGroup;
 			children = (
+				04EF703F183E6E05000E06CE /* ZXingWidget.xcodeproj */,
 				04555B6C183A78970055A44A /* WeiXin */,
 				04555B69183A78190055A44A /* WeiXinShareMgr.h */,
 				04555B6A183A781E0055A44A /* WeiXinShareMgr.m */,
@@ -1667,6 +1713,15 @@
 			path = Tencent;
 			sourceTree = "<group>";
 		};
+		04EF7040183E6E05000E06CE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				04EF7045183E6E06000E06CE /* libZXingWidget.a */,
+				04EF7047183E6E06000E06CE /* ZXingTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		04FE07031818188F00EEC76A /* drive */ = {
 			isa = PBXGroup;
 			children = (
@@ -1728,7 +1783,7 @@
 				BD45A2201834AB68000668FA /* save.png */,
 				04E5D6ED182F3057006832B9 /* item_change_btn.png */,
 				04E5D6EE182F3057006832B9 /* item_default_btn.png */,
-				04E5D6EF182F3057006832B9 /* qr_btn.png.png */,
+				04E5D6EF182F3057006832B9 /* qr_btn.png */,
 				042778AE18202737008C6432 /* setting_cell_footer.png */,
 				042778AF18202737008C6432 /* setting_cell_header.png */,
 				04555B5F1838CFCC0055A44A /* mes_bubble.png */,
@@ -1796,11 +1851,6 @@
 			attributes = {
 				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = cszhan;
-				TargetAttributes = {
-					046B662D17E74984006F34A1 = {
-						DevelopmentTeam = 5LCCK392WL;
-					};
-				};
 			};
 			buildConfigurationList = 046B662917E74984006F34A1 /* Build configuration list for PBXProject "BodCarManger" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -1820,6 +1870,10 @@
 				{
 					ProductGroup = 046B684B17E7738C006F34A1 /* Products */;
 					ProjectRef = 046B684A17E7738C006F34A1 /* ZCSUIFrameWork.xcodeproj */;
+				},
+				{
+					ProductGroup = 04EF7040183E6E05000E06CE /* Products */;
+					ProjectRef = 04EF703F183E6E05000E06CE /* ZXingWidget.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -1842,6 +1896,20 @@
 			fileType = archive.ar;
 			path = libZCSUIFrameWork.a;
 			remoteRef = 046B684E17E77391006F34A1 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		04EF7045183E6E06000E06CE /* libZXingWidget.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libZXingWidget.a;
+			remoteRef = 04EF7044183E6E06000E06CE /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		04EF7047183E6E06000E06CE /* ZXingTests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = ZXingTests.octest;
+			remoteRef = 04EF7046183E6E06000E06CE /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -1993,6 +2061,7 @@
 				04809B6E181C2224000DBB2F /* tableitemsel3.png in Resources */,
 				BDC37E96181CFA6D00A4CB18 /* drive_matainance_bg.png in Resources */,
 				BDC37EBB181E6A2400A4CB18 /* car_plant_bg.png in Resources */,
+				0410090C183E4E9800027851 /* NewUserSettingViewController.xib in Resources */,
 				BDC37FAD181FB65E00A4CB18 /* CardShopLoginViewController.xib in Resources */,
 				BDC37FAF181FB65E00A4CB18 /* CardShopResignViewController.xib in Resources */,
 				042778B218202737008C6432 /* setting_cell_footer.png in Resources */,
@@ -2058,7 +2127,7 @@
 				04338600182E92E100CEE699 /* tencent_weibo.png in Resources */,
 				04E5D6F0182F3057006832B9 /* item_change_btn.png in Resources */,
 				04E5D6F1182F3057006832B9 /* item_default_btn.png in Resources */,
-				04E5D6F2182F3057006832B9 /* qr_btn.png.png in Resources */,
+				04E5D6F2182F3057006832B9 /* qr_btn.png in Resources */,
 				04E4D0F418325F9C00B6D5D9 /* router_page_down.png in Resources */,
 				04E4D0F518325F9C00B6D5D9 /* router_page_up.png in Resources */,
 				04E4D0F618325F9C00B6D5D9 /* router_today_date.png in Resources */,
@@ -2112,6 +2181,7 @@
 				04E458FD1825452A0028BDAD /* CarInfoManageViewController.m in Sources */,
 				04E459F518255D1E0028BDAD /* CancelBindViewController.m in Sources */,
 				04E459F618255D1E0028BDAD /* UIShareCell.m in Sources */,
+				0410090A183E4DA800027851 /* NewUserSettingViewContorller.m in Sources */,
 				04E45AA518255F150028BDAD /* NTESMBInfoBaseView.m in Sources */,
 				04E45AA618255F150028BDAD /* ShareAuthViewController.m in Sources */,
 				04E45AA718255F150028BDAD /* SharePlatformCenter.m in Sources */,
@@ -2165,7 +2235,7 @@
 				04E45AFA18255F150028BDAD /* QWeiboAsyncApi.m in Sources */,
 				04E45AFB18255F150028BDAD /* QWeiboRequest.m in Sources */,
 				04E45AFC18255F150028BDAD /* QWeiboSyncApi.m in Sources */,
-				044D8902182A72CA00AD2368 /* CarInfoInputViewController.m in Sources */,
+				044D8902182A72CA00AD2368 /* CarInfoInputViewController.mm in Sources */,
 				041EF93E182D502500F487A6 /* MessageBoxCell.m in Sources */,
 				043385FE182E86BF00CEE699 /* UIShareActionAlertView.m in Sources */,
 				0440F2CD1836816200C71323 /* UserChangePasswordViewController.m in Sources */,
@@ -2257,6 +2327,8 @@
 		046B665217E74984006F34A1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_CXX_LIBRARY = "compiler-default";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2269,20 +2341,23 @@
 					"../../BaseLib/**",
 					"./**",
 					"../BUILib/**",
+					"./zxing/iphone/ZXingWidget/Classes/**",
+					"./zxing/cpp/core/src/**",
 				);
 				INFOPLIST_FILE = "BodCarManger/BodCarManger-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/../../BaseLib/UIFramework/ZCSUIFrameWork/build/Debug-iphoneos\"",
-					"\"$(SRCROOT)/../../BaseLib/UIFramework/ZCSUIFrameWork/build/Debug-iphonesimulator\"",
-					"\"$(SRCROOT)/../../BaseLib/UIFramework/ZCSUIFrameWork/build/ZCSUIFrameWork.build/Debug-iphoneos/ZCSUIFrameWork.build/Objects-normal/armv6\"",
-					"\"$(SRCROOT)/../../BaseLib/UIFramework/ZCSUIFrameWork/build/ZCSUIFrameWork.build/Debug-iphoneos/ZCSUIFrameWork.build/Objects-normal/armv7\"",
-					"\"$(SRCROOT)/BodCarManger/WeiXin\"",
+					"\\\\\\\"$(SRCROOT)/../../BaseLib/UIFramework/ZCSUIFrameWork/build/Debug-iphoneos\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../../BaseLib/UIFramework/ZCSUIFrameWork/build/Debug-iphonesimulator\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../../BaseLib/UIFramework/ZCSUIFrameWork/build/ZCSUIFrameWork.build/Debug-iphoneos/ZCSUIFrameWork.build/Objects-normal/armv6\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../../BaseLib/UIFramework/ZCSUIFrameWork/build/ZCSUIFrameWork.build/Debug-iphoneos/ZCSUIFrameWork.build/Objects-normal/armv7\\\\\\\"",
+					/Users/mac/Desktop/work/bodCar/code/BodCarManger/BodCarManger/WeiXin,
 				);
 				OTHER_LDFLAGS = "-licucore";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -2290,8 +2365,10 @@
 		046B665317E74984006F34A1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_CXX_LIBRARY = "compiler-default";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: ZHU CAIXI (A8RA93G2CJ)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: ZHU CAIXI (A8RA93G2CJ)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -2302,20 +2379,23 @@
 					"../../BaseLib/**",
 					"./**",
 					"../BUILib/**",
+					"./zxing/iphone/ZXingWidget/Classes/**",
+					"./zxing/cpp/core/src/**",
 				);
 				INFOPLIST_FILE = "BodCarManger/BodCarManger-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/../../BaseLib/UIFramework/ZCSUIFrameWork/build/Debug-iphoneos\"",
-					"\"$(SRCROOT)/../../BaseLib/UIFramework/ZCSUIFrameWork/build/Debug-iphonesimulator\"",
-					"\"$(SRCROOT)/../../BaseLib/UIFramework/ZCSUIFrameWork/build/ZCSUIFrameWork.build/Debug-iphoneos/ZCSUIFrameWork.build/Objects-normal/armv6\"",
-					"\"$(SRCROOT)/../../BaseLib/UIFramework/ZCSUIFrameWork/build/ZCSUIFrameWork.build/Debug-iphoneos/ZCSUIFrameWork.build/Objects-normal/armv7\"",
-					"\"$(SRCROOT)/BodCarManger/WeiXin\"",
+					"\\\\\\\"$(SRCROOT)/../../BaseLib/UIFramework/ZCSUIFrameWork/build/Debug-iphoneos\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../../BaseLib/UIFramework/ZCSUIFrameWork/build/Debug-iphonesimulator\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../../BaseLib/UIFramework/ZCSUIFrameWork/build/ZCSUIFrameWork.build/Debug-iphoneos/ZCSUIFrameWork.build/Objects-normal/armv6\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../../BaseLib/UIFramework/ZCSUIFrameWork/build/ZCSUIFrameWork.build/Debug-iphoneos/ZCSUIFrameWork.build/Objects-normal/armv7\\\\\\\"",
+					/Users/mac/Desktop/work/bodCar/code/BodCarManger/BodCarManger/WeiXin,
 				);
 				OTHER_LDFLAGS = "-licucore";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

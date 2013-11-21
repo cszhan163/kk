@@ -750,7 +750,8 @@ int lastDirect = -1;
     if([okDateArray count]){
         currDay = startDay = [okDateArray[0] intValue];
     }
-    for (int i =0; i<[okDateArray count]; i++) {
+    int i;
+    for (i =0; i<[okDateArray count]; i++) {
         
         if(i+1<[okDateArray count]){
             nextDay = [okDateArray[i+1]intValue];
@@ -769,7 +770,7 @@ int lastDirect = -1;
             currDay = nextDay;
         }
     }
-    if(currDay==startDay && nextDay!=0){
+    if(i !=[okDateArray count]){
         
         [self doAddNormalStartDay:startDay endDay:currDay withStatus:tag];
         

@@ -12,6 +12,7 @@
     
      UIDatePicker *datePickView;
 }
+@property(nonatomic,assign)BOOL isShowQR;
 @property(nonatomic,strong)NSIndexPath *indexPath;
 @property(nonatomic,strong)NSString *barTitle;
 @end

@@ -282,7 +282,6 @@
 		04E5D6F0182F3057006832B9 /* item_change_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E5D6ED182F3057006832B9 /* item_change_btn.png */; };
 		04E5D6F1182F3057006832B9 /* item_default_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E5D6EE182F3057006832B9 /* item_default_btn.png */; };
 		04E5D6F2182F3057006832B9 /* qr_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E5D6EF182F3057006832B9 /* qr_btn.png */; };
-		04EF704D183E72A5000E06CE /* libZXingWidget.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 04EF7045183E6E06000E06CE /* libZXingWidget.a */; };
 		04EF7051183E764F000E06CE /* libWeChatSDK_armv7_armv7s.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 04EF7050183E764F000E06CE /* libWeChatSDK_armv7_armv7s.a */; };
 		04EF7053183E76C9000E06CE /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04EF7052183E76C9000E06CE /* AVFoundation.framework */; };
 		04EF7057183E770B000E06CE /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 04EF7056183E770B000E06CE /* libiconv.dylib */; };
@@ -361,20 +360,6 @@
 			proxyType = 2;
 			remoteGlobalIDString = 044E74C7158C8A590048CB70;
 			remoteInfo = ZCSUIFrameWork;
-		};
-		04EF7044183E6E06000E06CE /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 04EF703F183E6E05000E06CE /* ZXingWidget.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = D2AAC07E0554694100DB518D;
-			remoteInfo = ZXingWidget;
-		};
-		04EF7046183E6E06000E06CE /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 04EF703F183E6E05000E06CE /* ZXingWidget.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 1D60398D13DF7CAD006F4B51;
-			remoteInfo = ZXingTests;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -750,7 +735,6 @@
 		04E5D6ED182F3057006832B9 /* item_change_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = item_change_btn.png; sourceTree = "<group>"; };
 		04E5D6EE182F3057006832B9 /* item_default_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = item_default_btn.png; sourceTree = "<group>"; };
 		04E5D6EF182F3057006832B9 /* qr_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = qr_btn.png; sourceTree = "<group>"; };
-		04EF703F183E6E05000E06CE /* ZXingWidget.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ZXingWidget.xcodeproj; path = zxing/iphone/ZXingWidget/ZXingWidget.xcodeproj; sourceTree = "<group>"; };
 		04EF7050183E764F000E06CE /* libWeChatSDK_armv7_armv7s.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK_armv7_armv7s.a; sourceTree = "<group>"; };
 		04EF7052183E76C9000E06CE /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		04EF7056183E770B000E06CE /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = usr/lib/libiconv.dylib; sourceTree = SDKROOT; };
@@ -834,7 +818,6 @@
 				04EF7059183E7711000E06CE /* AssetsLibrary.framework in Frameworks */,
 				04EF7057183E770B000E06CE /* libiconv.dylib in Frameworks */,
 				04EF7053183E76C9000E06CE /* AVFoundation.framework in Frameworks */,
-				04EF704D183E72A5000E06CE /* libZXingWidget.a in Frameworks */,
 				042778C118202B4A008C6432 /* libBUILIb.a in Frameworks */,
 				BDC981C018210FC2005DD720 /* iPlat4M_framework.framework in Frameworks */,
 				BDC981BE18210EDA005DD720 /* AudioToolbox.framework in Frameworks */,
@@ -977,7 +960,6 @@
 		046B663717E74984006F34A1 /* BodCarManger */ = {
 			isa = PBXGroup;
 			children = (
-				04EF703F183E6E05000E06CE /* ZXingWidget.xcodeproj */,
 				04555B6C183A78970055A44A /* WeiXin */,
 				04555B69183A78190055A44A /* WeiXinShareMgr.h */,
 				04555B6A183A781E0055A44A /* WeiXinShareMgr.m */,
@@ -1713,15 +1695,6 @@
 			path = Tencent;
 			sourceTree = "<group>";
 		};
-		04EF7040183E6E05000E06CE /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				04EF7045183E6E06000E06CE /* libZXingWidget.a */,
-				04EF7047183E6E06000E06CE /* ZXingTests.octest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		04FE07031818188F00EEC76A /* drive */ = {
 			isa = PBXGroup;
 			children = (
@@ -1871,10 +1844,6 @@
 					ProductGroup = 046B684B17E7738C006F34A1 /* Products */;
 					ProjectRef = 046B684A17E7738C006F34A1 /* ZCSUIFrameWork.xcodeproj */;
 				},
-				{
-					ProductGroup = 04EF7040183E6E05000E06CE /* Products */;
-					ProjectRef = 04EF703F183E6E05000E06CE /* ZXingWidget.xcodeproj */;
-				},
 			);
 			projectRoot = "";
 			targets = (
@@ -1896,20 +1865,6 @@
 			fileType = archive.ar;
 			path = libZCSUIFrameWork.a;
 			remoteRef = 046B684E17E77391006F34A1 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		04EF7045183E6E06000E06CE /* libZXingWidget.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libZXingWidget.a;
-			remoteRef = 04EF7044183E6E06000E06CE /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		04EF7047183E6E06000E06CE /* ZXingTests.octest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = ZXingTests.octest;
-			remoteRef = 04EF7046183E6E06000E06CE /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */

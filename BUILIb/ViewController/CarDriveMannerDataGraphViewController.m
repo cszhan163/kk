@@ -111,7 +111,7 @@
     date.month = 11;
     
     oilData.date = date;
-    oilData.textFormatArray = @[@"急加速: %d%@",@"急减速: %d\%@",@"  超速: %d\%@"];
+    oilData.textFormatArray = @[@"急加速: %d%@",@"急减速: %d\%@",@"    超速: %d\%@"];
     oilData.conclusionText = @"起挺次数较多会影响油耗";
     
     [dataAnaylsisView  updateUIByData:oilData];

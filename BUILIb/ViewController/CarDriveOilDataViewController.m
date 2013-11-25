@@ -267,6 +267,7 @@ typedef enum  viewType{
 #endif
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.clipsToBounds = YES;
+        cell.backgroundColor = [UIColor clearColor];
     }
    
     NSString *bgImageName = @"";

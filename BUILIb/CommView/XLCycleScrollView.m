@@ -43,6 +43,7 @@
         _pageControl = [[UIPageControl alloc] initWithFrame:rect];
         _pageControl.userInteractionEnabled = NO;
         [self addSubview:_pageControl];
+        isRightScroller = YES;
         
         _curPage = 0;
     }
@@ -167,19 +168,28 @@
         }
     }
 }
+- (void)setRightScroller:(BOOL)status{
+    isRightScroller = status;
+}
 - (id)getCurrentPageView{
 
     return [_curViews objectAtIndex:1];
 }
 #pragma mark - UIScrollViewDelegate
 - (void)scrollViewDidScroll:(UIScrollView *)aScrollView {
-    int x = aScrollView.contentOffset.x;
     
+    
+    int x = aScrollView.contentOffset.x;
     //往下翻一张
     if(x >= (2*self.frame.size.width)) {
+        if(isRightScroller){
         _curPage = [self validPageValue:_curPage+1];
         _nolimitIndex = _nolimitIndex +1;
         [self loadData];
+        }
+        else{
+            return;
+        }
     }
     
     //往上翻

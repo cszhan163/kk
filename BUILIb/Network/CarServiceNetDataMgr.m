@@ -829,10 +829,10 @@ static BOOL isExit = NO;
         NSNumber *dayFuel = [info get:@"dayFuel"];
         NSNumber *dayDrivinglong = [info get:@"dayDrivinglong"];
         
-        [resultDict setValue:dayMilage forKey:@"dayMil"];
+        [resultDict setValue:dayMilage forKey:@"dayMilage"];
         [resultDict setValue:dayFuel forKey:@"dayFuel"];
-        [resultDict setValue:dayDrivinglong forKey:@"dayDrive"];
-        [resultDict setValue:[info get:@"dayAverageSpeed"] forKey:@"daySpeed"];
+        [resultDict setValue:dayDrivinglong forKey:@"dayDrivinglong"];
+        [resultDict setValue:[info get:@"dayAverageSpeed"] forKey:@"dayAverageSpeed"];
         
         EiBlock *tripInfo = [info getBlock:@"tripInfo"]; // block型返回值
         int rowCount = [tripInfo getRowCount];
@@ -851,7 +851,7 @@ static BOOL isExit = NO;
             NSString *endadr2 = [NSString stringWithFormat:@"%@,%@",[row objectForKey:@"endLon"],[row objectForKey:@"endLat"]];
             NSDictionary *item = [NSDictionary dictionaryWithObjectsAndKeys:
                                   [row objectForKey:@"tripMileage"],@"distance",
-                                  [row objectForKey:@"status"],@"driveflg",
+                                  [row objectForKey:@"alarmFaultCnt"],@"driveflg",
                                   [row objectForKey:@"drivingLong"],@"drivingLong",
                                   [row objectForKey:@"startTime"],@"startTime",
                                   [row objectForKey:@"endTime"],@"endTime",

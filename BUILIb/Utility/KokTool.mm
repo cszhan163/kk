@@ -526,4 +526,13 @@ typedef enum {
     [Geocoder reverseGeocodeLocation:loc completionHandler:handler];
 
 }
+static NSTimeInterval startTimer,endTimer;
++ (void)startTimeCheckPoint:(NSString*)tag{
+    startTimer = [[NSDate date]timeIntervalSince1970];
+}
++ (void)endTimeCheckPoint:(NSString*)tag{
+    endTimer = [[NSDate date]timeIntervalSince1970];
+    NE_LOG(@"%@:time interval:%lf",tag,(endTimer-startTimer)/1000.f);
+    startTimer = endTimer;
+}
 @end

@@ -60,6 +60,7 @@ static NSString *kActionTableHeaderTextArray[] = {@"日期",@"急加速",@"急�
 #endif
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.clipsToBounds = YES;
+        cell.backgroundColor = [UIColor clearColor];
     }
     
     NSString *bgImageName = @"";

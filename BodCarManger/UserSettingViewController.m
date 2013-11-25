@@ -98,7 +98,7 @@ static NSString *kCellImageArr[] = {
     if(kIsIOS7Check &&0){
         xPending = 9.f;
     }
-  
+    [KokTool  endTimeCheckPoint:@"otherload"];
     logInfo = [[UITableView alloc] initWithFrame:CGRectMake(xPending,kMBAppTopToolBarHeight-self.mainContentViewPendingY,kDeviceScreenWidth-2*xPending,kDeviceScreenHeight-kMBAppTopToolBarHeight-kMBAppStatusBar-kMBAppBottomToolBarHeght)
                                                          style:UITableViewStyleGrouped];
 	//logInfo.contentInset
@@ -135,9 +135,16 @@ static NSString *kCellImageArr[] = {
     //bgView.frame = logInfo.frame;
     //logInfo.contentSize = CGSizeMake(bgWidth,bgHeight);
     //UIImage *bgImageName = nil;
+    
+    
+    
+     [KokTool  endTimeCheckPoint:@"otherloadView"];
     for(int i = 0;i<4;i++){
     
-        UIImageWithFileName(UIImage *bgImage,kCellImageArr[i]);
+        UIImageWithNibName(UIImage *bgImage,kCellImageArr[i]);
+        
+        //[UIImage imageWithContentsOfFile:<#(NSString *)#>]
+        //UIImage *bgImage = [UIImage imageNamed:kCellImageArr[i]];
         assert(bgImage);
         /*
         UIImageView *bgView = [[UIImageView alloc]initWithImage:bgImage];
@@ -147,7 +154,9 @@ static NSString *kCellImageArr[] = {
         */
         [self.imageDict setObject:bgImage forKey:kCellImageArr[i]];
     }
-    [self.view addSubview:logInfo];
+    [KokTool  endTimeCheckPoint:@"imageViewload"];
+    [mainView addSubview:logInfo];
+    [KokTool  endTimeCheckPoint:@"addtableView"];
 
 }
 
@@ -205,6 +214,7 @@ static NSString *kCellImageArr[] = {
    
     //[logInfo reloadData];
     [self performSelectorInBackground:@selector(shouldLoadDataFromNet) withObject:nil];
+    
 }
 - (void)viewDidAppear:(BOOL)animated
 {
@@ -282,6 +292,8 @@ static NSString *kCellImageArr[] = {
 	static NSString *LabelTextFieldCell = @"LabelTextFieldCell";
 	
 	UITableViewCell *cell = nil;
+    
+    [KokTool endTimeCheckPoint:@"tableViewCell"];
     
 	cell = [tableView dequeueReusableCellWithIdentifier:LabelTextFieldCell];
 	
@@ -668,7 +680,7 @@ static NSString *kCellImageArr[] = {
     if([resKey isEqualToString:kNetLoginRes]){
         self.userData = data;
         [AppSetting setLoginUserInfo:data];
-        [logInfo reloadData];
+        [logInfo performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
     }
     BOOL status = YES;
     if([[self.data objectForKey:@"locateType"]intValue]==0){

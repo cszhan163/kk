@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "UISimpleNetBaseViewController.h"
-@interface NewUserSettingViewContorller : UISimpleNetBaseViewController
-
+#import "ZBarReaderViewController.h"
+@interface NewUserSettingViewContorller : ZBarReaderViewController
+@property(nonatomic,assign)id delegate;
 @end

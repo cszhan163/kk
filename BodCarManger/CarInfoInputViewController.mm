@@ -9,8 +9,10 @@
 #import "CarInfoInputViewController.h"
 #import "ZXingWidgetController.h"
 #import <QRCodeReader.h>
-#include <iostream>
-@interface CarInfoInputViewController ()<ZXingDelegate>{
+#import "ZBarSDK.h"
+#import "ReaderSampleViewController.h"
+#import "NewUserSettingViewContorller.h"
+@interface CarInfoInputViewController ()<ZXingDelegate,ZBarReaderDelegate>{
 
 }
 @property(nonatomic,strong)NSString *srcText;
@@ -140,7 +142,24 @@
 		{
             //[self startRestPassword];
             if(delegate && [delegate respondsToSelector:@selector(setCellItemData:withIndexPath:)]){
-                [delegate setCellItemData:self.subClassInputTextField.text withIndexPath:self.indexPath];
+                NSString *result = @"";
+                if(self.type == 0){
+                    result = self.subClassInputTextField.text;
+                }
+                else{
+                
+                    NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
+                    [dateFormat setDateFormat:@"yyyy年MM月dd日"];
+                    
+                    //NSString *dateString = [dateFormat dateFromString:tempText];
+                    NSDate *date = [dateFormat dateFromString:self.subClassInputTextField.text];
+                    
+                    [dateFormat setDateFormat:@"yyyyMMdd"];
+                    NSString *dateString = [dateFormat stringFromDate:date];
+                    result = dateString;
+                
+                }
+                [delegate setCellItemData:result withIndexPath:self.indexPath];
             }
             [self.navigationController popViewControllerAnimated:YES];
 			break;
@@ -148,14 +167,71 @@
 	}
     
 }
+- (void)didGetScanResult:(NSString*)text{
+    self.subClassInputTextField.text = text;
+}
+#define ZBAR
 - (void)qrScanAction:(id)sender{
 
     return;
+#if 0
     ZXingWidgetController *widController = [[ZXingWidgetController alloc] initWithDelegate:self showCancel:YES OneDMode:NO];
     NSMutableSet *readers = [[NSMutableSet alloc] init];
     QRCodeReader *qrcodeReader = [[QRCodeReader alloc] init];
     [readers addObject:qrcodeReader];
     widController.readers = readers;
     [self presentViewController:widController animated:YES completion:^{}];
+#else
+#if 1
+    NewUserSettingViewContorller *reader = [NewUserSettingViewContorller new];
+    //reader.readerDelegate = self;
+    reader.delegate = self;
+    reader.showsZBarControls = NO;
+    ZBarImageScanner *scanner = reader.scanner;
+    
+    [scanner setSymbology: ZBAR_I25
+                   config: ZBAR_CFG_ENABLE
+                       to: 0];
+    /*
+    [self.navigationController presentModalViewController: reader    animated: YES];
+   
+     */
+    [ZCSNotficationMgr postMSG:kPushNewViewController obj:reader];
+    
+    [reader release];
+    
+#else
+    ReaderSampleViewController *scanVC = [[ReaderSampleViewController alloc]init];
+    [self.navigationController pushViewController:scanVC animated:YES];
+    SafeRelease(scanVC);
+#endif
+    
+#endif
+}
+//代理方法
+
+- (void) imagePickerController: (UIImagePickerController*) reader
+ didFinishPickingMediaWithInfo: (NSDictionary*) info
+{
+    
+    NSLog(@"info=%@",info);
+    // 得到条形码结果
+    id<NSFastEnumeration> results =
+    [info objectForKey: ZBarReaderControllerResults];
+    ZBarSymbol *symbol = nil;
+    for(symbol in results)
+        // EXAMPLE: just grab the first barcode
+        break;
+    
+    // 将获得到条形码显示到我们的界面上
+    //resultText.text = symbol.data;
+    
+    // 扫描时的图片显示到我们的界面上
+    /*
+    resultImage.image =
+    [info objectForKey: UIImagePickerControllerOriginalImage];
+    */
+    // 扫描界面退出
+    [reader dismissModalViewControllerAnimated: YES];
 }
 @end

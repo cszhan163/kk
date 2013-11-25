@@ -150,7 +150,7 @@ static NSString  *CarInfoKeyArray[] = {
                     }
                     break;
                 case 2:
-                    tempText = [self.data objectForKey:@"model"];
+                    tempText = [self.data objectForKey:@"NO"];
                     if(tempText){
                         dataText = tempText;
                     }
@@ -158,7 +158,7 @@ static NSString  *CarInfoKeyArray[] = {
                     break;
                     
                 default:
-                    tempText = [self.data objectForKey:@"NO"];
+                    tempText = [self.data objectForKey:@"model"];
                     if(tempText){
                         dataText = tempText;
                     }
@@ -230,7 +230,7 @@ static NSString  *CarInfoKeyArray[] = {
             
     }
     cell.detailTextLabel.text = dataText;
-    UIImageWithFileName(UIImage *bgImage,bgImageName);
+    UIImageWithNibName(UIImage *bgImage,bgImageName);
     UIImageView *bgView = [[UIImageView alloc]initWithImage:bgImage];
     bgView.frame = CGRectMake(0.f, 0.f,300.f,42.f);
     

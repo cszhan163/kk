@@ -629,6 +629,13 @@ static NSString *kCellImageArr[] = {
         [AppSetting setLoginUserInfo:[NSD] withUserKey:loginUserId];
          */
         [AppSetting setUserLoginStatus:NO];
+        
+        
+        
+        
+
+   
+#if 0
         CardShopLoginViewController *loginVc = [[CardShopLoginViewController alloc]init];
         //[self.navigationController pushViewController:tagchooseBrandVc animated:YES];
         UINavigationController *loginNav  = [[UINavigationController alloc]initWithRootViewController:loginVc];
@@ -636,10 +643,35 @@ static NSString *kCellImageArr[] = {
         /*
          [navCtrl presentModalViewController:loginNav animated:YES];
          */
+//        UINavigationController *vc = [[UINavigationController alloc]init];
+//        [vc.view addSubview:loginNav.view];
+        if(kIsIOS7Check){
+            
+            [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackOpaque];
+            /*
+             UIView *addStatusBar = [[UIView alloc] init];
+             addStatusBar.frame = CGRectMake(0, 0, 320, 20);
+             addStatusBar.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:1];
+             
+             
+             
+             [navCtrl.view addSubview:addStatusBar];
+             SafeRelease(addStatusBar);
+             */
+            //navCtrl.navigationBar.translucent = NO;
+            loginVc.view.frame = CGRectMake(0.f, 20.f, kDeviceScreenWidth,kDeviceScreenHeight);
+            loginNav.view.frame = CGRectMake(0.f, 20.f, kDeviceScreenWidth,kDeviceScreenHeight);
+            // self.window.rootViewController = navCtrl;
+        }
         [ZCSNotficationMgr postMSG:kUserDidLogOut obj:nil];
         [ZCSNotficationMgr postMSG:kPresentModelViewController obj:loginNav];
-        [loginVc release];
+     
+        SafeRelease(loginVc);
         SafeAutoRelease(loginNav);
+#else 
+        [ZCSNotficationMgr postMSG:kUserDidLogOut obj:nil];
+#endif
+        //SafeRelease(vc);
 
     }
 }

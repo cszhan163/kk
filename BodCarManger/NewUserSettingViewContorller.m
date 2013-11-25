@@ -21,6 +21,8 @@
     }
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     btn.titleLabel.text = @"取消";
+    [btn setTitle:@"取消" forState:UIControlStateNormal];
+    [btn setTitle:@"取消" forState:UIControlStateSelected];
     [self.view addSubview:btn];
     [btn addTarget:self action:@selector(cancel:) forControlEvents:UIControlEventTouchUpInside];
     btn.frame = CGRectMake(130.f, 400.f,60,40.f);

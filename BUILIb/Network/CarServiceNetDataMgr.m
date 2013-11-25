@@ -857,6 +857,8 @@ static BOOL isExit = NO;
                                   [row objectForKey:@"endTime"],@"endTime",
                                    startadr2,@"startadr2",
                                    endadr2,@"endadr2",
+                                  [row objectForKey:@"startPosition"],@"startPosition",
+                                  [row objectForKey:@"endPosition"],@"endPosition",
                                   [row objectForKey:@"fuelWear"],@"oil",
                                   [row objectForKey:@"tripId"],@"tripId",
                                   [row objectForKey:@"economicScore"],@"economicScore",

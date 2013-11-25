@@ -8,7 +8,7 @@
 
 #import "DriveActionAnalysisView.h"
 
-#define  kOilMothFormart    @"%02d月起停油耗分析表" 
+
 
 @interface DriveActionAnalysisView(){
     
@@ -110,9 +110,9 @@
   
     
     
-    NSString *showText = [NSString stringWithFormat:kOilMothFormart,oilData.date.month];
+   
     conclusionLabel.text = oilData.conclusionText;
-    dateShowLabel.text = showText;
+    dateShowLabel.text = oilData.indictorText;
     
     NSArray *formartArray = data.textFormatArray;
     

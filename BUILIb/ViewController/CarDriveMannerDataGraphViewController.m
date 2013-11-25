@@ -41,7 +41,7 @@
 	// Do any additional setup after loading the view.
     NSArray *colorArray = @[HexRGB(79, 120, 205),
       HexRGB(92, 200, 92),
-      HexRGB(237, 209, 69),
+      HexRGB(237, 54, 75),
       ];
     NSArray *tagImageArray = @[@"safe_green.png",@"safe_yellow.png",@"safe_red.png",];
     dataAnaylsisView = [[DriveActionAnalysisView alloc]initWithFrame:CGRectMake(0.f, kMBAppTopToolBarHeight+10.f, 320.f,300) withLineColorArray:colorArray withTagImageArray:tagImageArray];
@@ -107,12 +107,12 @@
     oilData.linesDataArray = linesArray;
     //oilData.percentDataArray = @[@32,@28,@40];
     
-    DateStruct date;
-    date.month = 11;
     
-    oilData.date = date;
+    
+    oilData.date = self.mCurrDate;
+    oilData.indictorText = @"本月安全驾驶指数";
     oilData.textFormatArray = @[@"急加速: %d%@",@"急减速: %d\%@",@"    超速: %d\%@"];
-    oilData.conclusionText = @"起挺次数较多会影响油耗";
+    oilData.conclusionText = @"急减速较多，容易导致后车追尾";
     
     [dataAnaylsisView  updateUIByData:oilData];
     

@@ -22,8 +22,7 @@
     
     CLLocationCoordinate2D mStartCoordinate2d;
     CLLocationCoordinate2D mEndCoordinate2d;
-    NSString            *mStartName;
-    NSString            *mEndName;
+   
     
 }
 @property(nonatomic,strong)NSTimer *realDataTimer;
@@ -49,6 +48,8 @@
     if (self) {
         // Custom initialization
         self.gprsDataArray = [NSMutableArray array];
+        self.mEndName = @"未知";
+        self.mStartName = @"未知";
     }
     return self;
 }
@@ -70,6 +71,24 @@
     
     //ma
     
+    // startPosition, endPosition;
+#if kLocationPhone
+#else
+    NSString *startLocation = [mData objectForKey:@"startPosition"];
+    if(startLocation == nil||[startLocation isKindOfClass:[NSNull class]]||[startLocation isEqualToString:@""]){
+        self.mStartName = @"未知";
+    }
+    else{
+        self.mStartName = startLocation;
+    }
+    NSString *endLocation = [mData objectForKey:@"endPosition"];
+    if(endLocation == nil||[endLocation isKindOfClass:[NSNull class]]||[endLocation isEqualToString:@""]){
+        self.mEndName = @"未知";
+    }
+    else{
+        self.mEndName = endLocation;
+    }
+#endif
     
 
 //    UIButton *btn = [UIComUtil createButtonWithNormalBGImage:bgImage withHightBGImage:bgImage withTitle:@"" withTag:2];
@@ -210,9 +229,9 @@
     }
     NSString *tempreture = [data objectForKey:@"tempreture"];
     
-    carDetailPenalView.mRunDistanceLabel.text = [NSString stringWithFormat:@"行驶距离:-  %0.2lfkm",[distance floatValue]];
+    carDetailPenalView.mRunDistanceLabel.text = [NSString stringWithFormat:@"行驶距离: %0.2lfkm",[distance floatValue]];
     carDetailPenalView.mRunSpeedLabel.text = [NSString stringWithFormat:@"行驶速度-  %@km/h",speed];
-    carDetailPenalView.mRotateSpeedLabel.text= [NSString stringWithFormat:@"油耗-  %0.2lfL",[rotate floatValue]];
+    carDetailPenalView.mRotateSpeedLabel.text= [NSString stringWithFormat:@"油耗: %0.2lfL",[rotate floatValue]];
     carDetailPenalView.mRunTemperatureLabel.text = [NSString stringWithFormat:@"水温:-  %@度",tempreture];
     
 //    NSString *timeStr = [data objectForKey:@"starttime"];
@@ -333,40 +352,46 @@
         double lat = [[item objectForKey:@"lat"] doubleValue]/kGPSMaxScale;
         printf("[%lf,%lf]",lat,lng);
         //WGS2Mars(&lat, &lng);
-        if(index == 0){
+        if(index == [self.gprsDataArray count]-1){
             CLLocationCoordinate2D coordinate2d;
             coordinate2d.latitude = lat;
             coordinate2d.longitude = lng;
             mStartCoordinate2d = transform(coordinate2d);
-            mStartName = [[DBManage  getSingletone] getLocationPointNameByLatitude:lat withLogtitude:lng withIndex:-1 withTag:YES];
+#if kLocationPhone
+            _mStartName = [[DBManage  getSingletone] getLocationPointNameByLatitude:lat withLogtitude:lng withIndex:-1 withTag:YES];
             [[DBManage getSingletone]setDelegate:self];
-         
-            if(mStartName){
+#else
+            
+#endif
+            if(_mStartName){
                 place = [[Place alloc]init];
                 place.description = @"";
                 place.latitude = mStartCoordinate2d.latitude;
                 place.longitude = mStartCoordinate2d.longitude;
                 place.pointType = 0;
-                place.name = mStartName;
+                place.name = _mStartName;
                 [mMapView addPointToMap:place];
                 //[place release];
                 SafeRelease(place);
             }
 
         }
-        if(index == [self.gprsDataArray count]-1){
+        if(index == 0){
             CLLocationCoordinate2D coordinate2d;
             coordinate2d.latitude = lat;
             coordinate2d.longitude = lng;
             mEndCoordinate2d = transform(coordinate2d);
-            mEndName = [[DBManage  getSingletone] getLocationPointNameByLatitude:lat withLogtitude:lng withIndex:-1 withTag:NO];
-         
-            if(mEndName)
+#if kLocationPhone
+            _mEndName = [[DBManage  getSingletone] getLocationPointNameByLatitude:lat withLogtitude:lng withIndex:-1 withTag:NO];
+#else
+            
+#endif
+            if(_mEndName)
             {
                 place = [[Place alloc]init];
                 place.latitude = mEndCoordinate2d.latitude;
                 place.longitude = mEndCoordinate2d.longitude;
-                place.name = mEndName;
+                place.name = _mEndName;
                 place.pointType = 1;
                 [mMapView addPointToMap:place];
                 SafeRelease(place);

@@ -22,6 +22,7 @@
     NSInteger _totalPages;
     NSInteger _curPage;
    
+    BOOL isRightScroller;
     
     NSMutableArray *_curViews;
 }
@@ -31,7 +32,7 @@
 @property (nonatomic,assign) NSInteger currentPage;
 @property (nonatomic,assign,setter = setDataource:) id<XLCycleScrollViewDatasource> datasource;
 @property (nonatomic,assign,setter = setDelegate:) id<XLCycleScrollViewDelegate> delegate;
-
+- (void)setRightScroller:(BOOL)status;
 - (void)reloadData;
 - (void)resetInitStatus;
 - (void)setViewContent:(UIView *)view atIndex:(NSInteger)index;

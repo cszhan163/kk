@@ -13,9 +13,10 @@
 #define kAppStatusBarHeight      20.f
 //#define kAppNavigationBarHeight     45.f
 
-#define UIImageWithNibName(filename)   [UIImage imageNamed:filename]
+#define UIImageWithNibName(image,filename)   image = [UIImage imageNamed:filename]
 #define kDeviceCheckIphone5 (([[UIScreen mainScreen] bounds].size.height <= 480.0) ? 0:1)
-#define UIImageWithFileName(image,filename) image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:filename ofType:@""]]
+//#define UIImageWithFileName(image,filename) image = [UIImage imageWithContentsOfFile:[NSString stringWithFormat:@"%@/%@",[[NSBundle mainBundle]bundlePath],filename]]
+#define UIImageWithFileName(image,filename) image = [UIImage imageNamed:filename]
 #define IPhone5FileName(filename) (([[UIScreen mainScreen] bounds].size.height <= 480.0) ? filename : [NSString stringWithFormat:@"%@-568h@2x",filename])
 // iPhone 5 support
 #define UIImageWithIPhone5FileName(image,filename,ext) image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:IPhone5FileName(filename) ofType:ext]]
@@ -61,4 +62,6 @@
 +(NSString *)getIPAddress;
 +(BOOL)isIPAdrressAvailable:(NSString*)ipString withPort:(NSString*)port;
 #endif
++ (void)startTimeCheckPoint:(NSString*)tag;
++ (void)endTimeCheckPoint:(NSString*)tag;
 @end

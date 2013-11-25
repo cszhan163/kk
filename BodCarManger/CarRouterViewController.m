@@ -19,7 +19,7 @@
 
 NSString* gDataArr[] = {@"12.5km",@"11km/h",@"87L",@"3h"};
 @interface CarRouterViewController()<DBManageDelegate>{
-    
+    UIView *tbHeaderView;
 }
 @property(nonatomic,strong)NSDictionary *locationDict;
 @end
@@ -39,9 +39,13 @@ NSString* gDataArr[] = {@"12.5km",@"11km/h",@"87L",@"3h"};
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    if([self.dataArray count]==0){
     
-        [self shouldLoadNewerData:tweetieTableView];
+}
+- (void)viewDidAppear:(BOOL)animated{
+    
+    if([self.dataArray count]==0){
+        
+        [self performSelectorInBackground:@selector(shouldLoadNewerData:) withObject:tweetieTableView];
         //self.locationDict = [DBManage getLocationPointsData];
     }
 
@@ -98,9 +102,10 @@ NSString* gDataArr[] = {@"12.5km",@"11km/h",@"87L",@"3h"};
     tweetieTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     tweetieTableView.clipsToBounds = YES;
     
+
+    tbHeaderView = [self addHeaderView:tableViewBg   withArrayData:nil];
+    tweetieTableView.normalEdgeInset = UIEdgeInsetsMake(tbHeaderView.frame.size.height,0.f,0.f,0.f);
 #if 0
-    UIView *headerView = [self addHeaderView:tableViewBg   withArrayData:nil];
-    tweetieTableView.normalEdgeInset = UIEdgeInsetsMake(headerView.frame.size.height,0.f,0.f,0.f);
     NSError *error = nil;
     NSString *filePath = [[NSBundle mainBundle] pathForResource:@"plantData" ofType:@"geojson"];
     NSString *dataStr = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:&error];
@@ -123,9 +128,10 @@ NSString* gDataArr[] = {@"12.5km",@"11km/h",@"87L",@"3h"};
     UIImage *bgImage = nil;
     UIImageWithFileName(bgImage, @"car_plant_header.png");
     UIView *headerView = [[UIImageView alloc]initWithImage:bgImage];
-    headerView.frame = CGRectMake(0., 0., bgImage.size.width/kScale, bgImage.size.height/kScale);
+    headerView.frame = CGRectMake(0.,-1., bgImage.size.width/kScale, bgImage.size.height/kScale);
     [parentView addSubview:headerView];
     CGFloat startX = 5.f;
+    CGFloat itemWidth = 60.f;
     for(int i =0;i<4;i++){
         NSString *fileName = [NSString stringWithFormat:@"plant_header_tag%d.png",i];
         UIImageWithFileName(bgImage,fileName);
@@ -133,18 +139,20 @@ NSString* gDataArr[] = {@"12.5km",@"11km/h",@"87L",@"3h"};
         UIImageView *item = [[UIImageView alloc]initWithImage:bgImage];
         item.frame = CGRectMake(startX,kHeaderItemPendingY,bgImage.size.width/kScale, bgImage.size.height/kScale);
         startX += item.frame.size.width +5.f;
-        UILabel *valueLabel = [[UILabel alloc]initWithFrame:CGRectMake(startX,kHeaderItemPendingY, 40.f,14.f)];
+        UILabel *valueLabel = [[UILabel alloc]initWithFrame:CGRectMake(startX,kHeaderItemPendingY,itemWidth,14.f)];
         valueLabel.font = [UIFont systemFontOfSize:12];
-        valueLabel.text = gDataArr[i];
+        valueLabel.text = @"";
+        valueLabel.tag = i;
+        valueLabel.adjustsFontSizeToFitWidth = YES;
         valueLabel.textColor = [UIColor whiteColor];
         valueLabel.backgroundColor = [UIColor clearColor];
-        [parentView addSubview:valueLabel];
+        [headerView addSubview:valueLabel];
         SafeRelease(valueLabel);
-        [parentView addSubview:item];
+        [headerView addSubview:item];
         SafeRelease(item);
-        startX += 40.f+25.f;
+        startX += 40+20.f;
     }
-    return headerView;
+    return SafeAutoRelease(headerView);
 }
 #pragma mark -
 #pragma mark tableview
@@ -199,7 +207,7 @@ NSString* gDataArr[] = {@"12.5km",@"11km/h",@"87L",@"3h"};
     float oilvolume = [[data objectForKey:@"oil"]floatValue];
     
     CGPoint origin = cell.mTagImageView.frame.origin;
-    if([flag isEqualToString:@"1"]){
+    if([flag isEqualToString:@"0"]){
         UIImageWithFileName(bgImage, @"tag-green.png");
         cell.mTagImageView.image = bgImage;
         
@@ -230,13 +238,13 @@ NSString* gDataArr[] = {@"12.5km",@"11km/h",@"87L",@"3h"};
     
     //time
     origin = cell.mTimeImageView.frame.origin;
-    if(time<100){
-        UIImageWithFileName(bgImage, @"time-green.png");
+    if([flag isEqualToString:@"0"]){
+        UIImageWithFileName(bgImage, @"time.png");
         cell.mTimeImageView.image = bgImage;
         
     }
     else{
-        UIImageWithFileName(bgImage, @"time-green.png");
+        UIImageWithFileName(bgImage, @"time-red.png");
         cell.mTimeImageView.image = bgImage;
         
     }
@@ -271,7 +279,7 @@ NSString* gDataArr[] = {@"12.5km",@"11km/h",@"87L",@"3h"};
     
     //distance
     origin = cell.mDistanceImageView.frame.origin;
-    if(time<10.0){
+    if([flag isEqualToString:@"0"]){
         UIImageWithFileName(bgImage, @"distance.png");
         cell.mDistanceImageView.image = bgImage;
         
@@ -286,7 +294,7 @@ NSString* gDataArr[] = {@"12.5km",@"11km/h",@"87L",@"3h"};
     cell.mDistanceLabel.text = [NSString stringWithFormat:@"%.1lfkm",distance];
     //oil
     origin = cell.mOilImageView.frame.origin;
-    if(oilvolume<15.0){
+    if([flag isEqualToString:@"0"]){
         UIImageWithFileName(bgImage, @"oil.png");
         cell.mOilImageView.image = bgImage;
         
@@ -404,7 +412,8 @@ NSString* gDataArr[] = {@"12.5km",@"11km/h",@"87L",@"3h"};
             //[self getPlaceNameByPositionwithLatitue:lat withLongitude:lng];
         }
         [tweetieTableView reloadData];
-        kNetEnd(self.view);
+        
+        [self performSelectorOnMainThread:@selector(updateUIData:) withObject:data waitUntilDone:NO];
 
     }
     if(self.request ==respRequest && [resKey isEqualToString:@"addreply"])
@@ -417,6 +426,33 @@ NSString* gDataArr[] = {@"12.5km",@"11km/h",@"87L",@"3h"};
     }
     
     //self.view.userInteractionEnabled = YES;
+}
+- (void)updateUIData:(NSDictionary*)netData{
+    kNetEnd(self.view);
+    for(id item in [tbHeaderView subviews]){
+        NSString *text = nil;
+        if([item isKindOfClass:[UILabel class]]){
+            
+            switch ([item tag]) {
+                case 0:
+                    text = [NSString stringWithFormat:@"%0.2lfkm", [[netData objectForKey:@"dayMilage"] floatValue]];
+                    break;
+                case 1:
+                    text = [NSString stringWithFormat:@"%0.2lfkm/h", [[netData objectForKey:@"dayAverageSpeed"] floatValue]];
+                    break;
+                case 2:
+                    text = [NSString stringWithFormat:@"%0.2lfL",[[netData objectForKey:@"dayFuel"]floatValue]];
+                    break;
+                case 3:
+                    text = [NSString stringWithFormat:@"%dh",[[netData objectForKey:@"dayDrivinglong"]intValue]];
+                    break;
+                default:
+                    break;
+            }
+           [item setText:text];
+        }
+    }
+
 }
 -(void)didNetDataFailed:(NSNotification*)ntf
 {

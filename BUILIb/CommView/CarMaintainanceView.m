@@ -123,7 +123,7 @@
 }
 - (void)setLeftProcessDay:(CGFloat)lLen rightDistance:(CGFloat)rLen{
     [runDaysLabel setText:[NSString stringWithFormat:@"%d\n天",(int)lLen]];
-    [runDistanceLabel setText:[NSString stringWithFormat:@"%0.3lf\nkm",rLen]];
+    [runDistanceLabel setText:[NSString stringWithFormat:@"%0.0lf\nkm",rLen]];
 }
 /*
 - (void)setLeftGraydientColors:(NSArray*)larray rightGrayDientColors:(NSArray*)rarray{

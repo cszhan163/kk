@@ -97,6 +97,9 @@ static UIButton *popup = nil;
     [self.window addSubview:test.view];
     return;
 #endif
+   
+    //vc.navigationBarHidden = YES;
+    
     [[UIApplication sharedApplication] setStatusBarHidden:NO];
 	mainVC = [[NTESMBMainMenuController alloc]init];
     mainVC.delegate = self;
@@ -112,7 +115,13 @@ static UIButton *popup = nil;
     {
     
 	currentNavgationController = navCtrl;
-    [self.window  addSubview:navCtrl.view];
+#if 1
+    UINavigationController *vc = [[UINavigationController alloc]init];
+    [vc.view addSubview:navCtrl.view];
+    [self.window  addSubview:vc.view];
+#else
+      [self.window  addSubview:navCtrl.view];
+#endif
 	//navCtrl.delegate = self;
     //self.window.rootViewController.view.frame = CGRectMake(0.f, 20.f, kDeviceScreenWidth, kDeviceScreenHeight);
     }
@@ -133,6 +142,7 @@ static UIButton *popup = nil;
          [navCtrl.view addSubview:addStatusBar];
          SafeRelease(addStatusBar);
          */
+        //navCtrl.navigationBar.translucent = NO;
         navCtrl.view.frame = CGRectMake(0.f, 20.f, kDeviceScreenWidth,kDeviceScreenHeight);
         // self.window.rootViewController = navCtrl;
     }

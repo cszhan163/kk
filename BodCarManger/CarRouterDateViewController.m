@@ -31,6 +31,7 @@
     OCCalendarView *calView;
     IAInfiniteGridView  *gridView;
     XLCycleScrollView   *csView;
+        BOOL isRunning ;
         
         
 }
@@ -63,7 +64,7 @@
 {
     [super viewDidLoad];
     self.delegate = self;
-    [self setHiddenLeftBtn:YES];
+    [self setHiddenLeftBtn:NO];
     isTodayMonth = YES;
     NSString *barTitle  = [NSString stringWithFormat:@"%d年%02d月",self.mCurrDate.year,self.mCurrDate.month];
     [self setNavgationBarTitle:barTitle];
@@ -254,7 +255,26 @@
 -(void)didSelectorTopNavigationBarItem:(id)sender{
     switch ([sender tag]) {
         case  0:
+            
+            //isRunning = NO;
+            if([self.data objectForKey:@"endTime"] == 0){//the card is Running
+                isRunning = YES;
+            }
+            else{
+                
+            }
             //[self.navigationController popViewControllerAnimated:YES];// animated:<#(BOOL)animated#>
+            CarRouterDetailViewController *vc = [[CarRouterDetailViewController alloc]initWithNibName:nil bundle:nil];
+            vc.delegate = self;
+            vc.mData = self.data;
+            vc.isLatest = YES;
+            vc.isRunning = isRunning;
+#if kMapHasTab
+            [self.navigationController pushViewController:vc animated:YES];
+#else
+            [ZCSNotficationMgr postMSG:kPushNewViewController obj:vc];
+#endif
+            
 			break;
         case 2:
         case 1:{
@@ -577,6 +597,7 @@ int lastDirect = -1;
         [tweetieTableView reloadData];
          */
         isNeedReflush = YES;
+    
         NSArray *netData = data;//[data objectForKey:@"data"];
         
       
@@ -596,6 +617,7 @@ int lastDirect = -1;
             
         }
         if([[data objectForKey:@"tripId"]intValue] !=0){
+            self.data = data;
             CarRouterDetailViewController *vc = [[CarRouterDetailViewController alloc]initWithNibName:nil bundle:nil];
             vc.delegate = self;
             vc.mData = data;
@@ -750,7 +772,8 @@ int lastDirect = -1;
     if([okDateArray count]){
         currDay = startDay = [okDateArray[0] intValue];
     }
-    for (int i =0; i<[okDateArray count]; i++) {
+    int i;
+    for (i =0; i<[okDateArray count]; i++) {
         
         if(i+1<[okDateArray count]){
             nextDay = [okDateArray[i+1]intValue];
@@ -769,7 +792,7 @@ int lastDirect = -1;
             currDay = nextDay;
         }
     }
-    if(currDay==startDay && nextDay!=0){
+    if(i !=[okDateArray count]){
         
         [self doAddNormalStartDay:startDay endDay:currDay withStatus:tag];
         

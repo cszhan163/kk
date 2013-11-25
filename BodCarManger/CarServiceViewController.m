@@ -70,7 +70,9 @@ static NSString *kImageTextArr[] ={
 
 - (void)addFonterView{
     logInfo.scrollEnabled = NO;
+    
     CGFloat currY = kMBAppTopToolBarHeight+10.f+52*3.f+10.f;
+   
     UIButton *oilAnalaysisBtn = [UIComUtil createButtonWithNormalBGImageName:@"server_urge_btn.png" withHightBGImageName:@"server_urge_btn.png" withTitle:@"" withTag:0];
     [self.view addSubview:oilAnalaysisBtn];
     CGSize btnsize= oilAnalaysisBtn.frame.size;
@@ -138,7 +140,7 @@ static NSString *kImageTextArr[] ={
 		//cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:LabelTextFieldCell];
         cell  = [FriendItemCell getFromNibFile];
         //cell.reuseIdentifier = LabelTextFieldCell;
-        cell.backgroundColor = [UIColor whiteColor];
+        //cell.backgroundColor = [UIColor clearColor];
         
         //cell.clipsToBounds = YES;
         //cell.contentView.clipsToBounds = YES;

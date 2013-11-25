@@ -211,8 +211,8 @@
     NSString *tempreture = [data objectForKey:@"tempreture"];
     
     carDetailPenalView.mRunDistanceLabel.text = [NSString stringWithFormat:@"行驶距离:-  %0.2lfkm",[distance floatValue]];
-    carDetailPenalView.mRunSpeedLabel.text = [NSString stringWithFormat:@"行驶速度:-  %@km/h",speed];
-    carDetailPenalView.mRotateSpeedLabel.text= [NSString stringWithFormat:@"油耗:-  %0.2lfL/km",[rotate floatValue]];
+    carDetailPenalView.mRunSpeedLabel.text = [NSString stringWithFormat:@"行驶速度-  %@km/h",speed];
+    carDetailPenalView.mRotateSpeedLabel.text= [NSString stringWithFormat:@"油耗-  %0.2lfL",[rotate floatValue]];
     carDetailPenalView.mRunTemperatureLabel.text = [NSString stringWithFormat:@"水温:-  %@度",tempreture];
     
 //    NSString *timeStr = [data objectForKey:@"starttime"];

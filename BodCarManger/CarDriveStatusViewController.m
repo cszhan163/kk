@@ -157,6 +157,7 @@ static NSString* kMonthTextArray[] = {
     scrollerView.delegate = self;
     scrollerView.datasource = self;
     scrollerView.pageControl.hidden = YES;
+    [scrollerView setRightScroller:NO];
     [self.view addSubview:scrollerView];
     SafeRelease(scrollerView);
     currY = currY+scrollerView.frame.size.height;
@@ -217,6 +218,7 @@ static NSString* kMonthTextArray[] = {
 }
 -(void)didScrollerView:(BSPreviewScrollView*)scrollView{
     int curIndex = scrollView.getPageControl.currentPage;
+  
     if(curIndex>pageIndex){
         NSString *year = [NSString stringWithFormat:@"%d",self.mCurrDate.year];
         NSString *month = [NSString stringWithFormat:@"%d",self.mCurrDate.month];
@@ -321,8 +323,14 @@ static NSString* kMonthTextArray[] = {
             [self didTouchAfterMoth:dict];
         }
         //NSLog(@"%@",[dict description]);
-        currIndex = senderView.nolimitIndex;
         
+        currIndex = senderView.nolimitIndex;
+        if(self.mTodayDate.month==self.mCurrDate.month && self.mTodayDate.year==self.mCurrDate.year){
+            [senderView setRightScroller:NO];
+        }
+        else{
+            [senderView setRightScroller:YES];
+        }
     }
     
 }

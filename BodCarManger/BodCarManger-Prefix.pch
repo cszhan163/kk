@@ -26,6 +26,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "AppSetting.h"
 #import "convert.h"
+#import "KokTool.h"
 //for net
 #import "ZCSNetClientConfig.h"
 

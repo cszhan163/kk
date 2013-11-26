@@ -177,6 +177,7 @@ NSString* gDataArr[] = {@"12.5km",@"11km/h",@"87L",@"3h"};
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.backgroundColor = [UIColor clearColor];
         cell.clipsToBounds = YES;
+       
     }
     /*
      "driveflg": "1",
@@ -210,6 +211,7 @@ NSString* gDataArr[] = {@"12.5km",@"11km/h",@"87L",@"3h"};
     if([flag isEqualToString:@"0"]){
         UIImageWithFileName(bgImage, @"tag-green.png");
         cell.mTagImageView.image = bgImage;
+         cell.mTagLabel.textColor = [UIColor greenColor];
         
     }
     else{
@@ -257,12 +259,14 @@ NSString* gDataArr[] = {@"12.5km",@"11km/h",@"87L",@"3h"};
 	mStartPoint.longitude = [latLogArr[0]floatValue]/kGPSMaxScale;
      */
     //NSString *startLocationKey = @"";
+#if kLocationPhone
     NSString *startLocation = [[DBManage getSingletone] getLocationPointNameByLatitude:[latLogArr[1]floatValue]/kGPSMaxScale withLogtitude:[latLogArr[0]floatValue]/kGPSMaxScale withIndex:indexPath.row  withTag:YES];
     if(startLocation == nil){
         startLocation = @"未知";
     }
     latLogStr = [data objectForKey:@"endadr2"];
     latLogArr  = [latLogStr componentsSeparatedByString:@","];
+
     /*
      mStartPoint.latitude =
      mStartPoint.longitude = [latLogArr[0]floatValue]/kGPSMaxScale;
@@ -272,6 +276,19 @@ NSString* gDataArr[] = {@"12.5km",@"11km/h",@"87L",@"3h"};
     if(endLocation == nil){
         endLocation = @"未知";
     }
+    
+#else
+    // startPosition, endPosition;
+    NSString *startLocation = [data objectForKey:@"startPosition"];
+    if(startLocation == nil||[startLocation isKindOfClass:[NSNull class]]||[startLocation isEqualToString:@""]){
+        startLocation = @"未知";
+    }
+    NSString *endLocation = [data objectForKey:@"endPosition"];
+    if(endLocation == nil||[endLocation isKindOfClass:[NSNull class]]||[endLocation isEqualToString:@""]){
+        endLocation = @"未知";
+    }
+    
+#endif
     cell.mTimeLabel.text = [NSString stringWithFormat:@"%@",[self baoNormalFormat:[data objectForKey:@"drivingLong"]]];
     cell.mStartLabel.text = [NSString stringWithFormat:@"始: %@",startLocation];
     cell.mEndLabel.text = [NSString stringWithFormat:@"终: %@",endLocation];

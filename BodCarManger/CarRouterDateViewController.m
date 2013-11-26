@@ -274,7 +274,7 @@
 #else
             [ZCSNotficationMgr postMSG:kPushNewViewController obj:vc];
 #endif
-            
+            SafeRelease(vc);
 			break;
         case 2:
         case 1:{

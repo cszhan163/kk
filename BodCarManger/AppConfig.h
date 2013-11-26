@@ -140,6 +140,10 @@
 #define Infinite
 #define kMapHasTab   1
 
+#define kLocationPhone 0
+
+
+
 #define kAlertCardBidTXT                    @"请先添加车辆信息"
 
 #define kNeedCarBindMSG                     @"needCarBindMSG"

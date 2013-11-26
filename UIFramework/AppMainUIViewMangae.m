@@ -116,9 +116,12 @@ static UIButton *popup = nil;
     
 	currentNavgationController = navCtrl;
 #if 1
-    UINavigationController *vc = [[UINavigationController alloc]init];
-    [vc.view addSubview:navCtrl.view];
-    [self.window  addSubview:vc.view];
+        
+        UINavigationController *vc = [[UINavigationController alloc]init];
+        [vc.view addSubview:navCtrl.view];
+        [self.window  addSubview:vc.view];
+        [self.window makeKeyAndVisible];
+   
 #else
       [self.window  addSubview:navCtrl.view];
 #endif
@@ -143,11 +146,12 @@ static UIButton *popup = nil;
          SafeRelease(addStatusBar);
          */
         //navCtrl.navigationBar.translucent = NO;
-        navCtrl.view.frame = CGRectMake(0.f, 20.f, kDeviceScreenWidth,kDeviceScreenHeight);
+        mainVC.view.frame = CGRectMake(0.f, 20.f, kDeviceScreenWidth,kDeviceScreenHeight);
+        currentNavgationController.view.frame = CGRectMake(0.f, 20.f, kDeviceScreenWidth,kDeviceScreenHeight);
         // self.window.rootViewController = navCtrl;
     }
 
-    
+   
     
 #ifdef  USER_LOGIN
     
@@ -164,25 +168,14 @@ static UIButton *popup = nil;
     */
     if(loginUser == nil )
     {
-        id loginMainVc = [[NSClassFromString(kLoginViewControllerClass) alloc]init];
-        UINavigationController *navCtrl = [[UINavigationController alloc]initWithRootViewController:loginMainVc];
-        //navCtrl.navigationBar.tintColor = [UIColor redColor];//[UIColor colorWithPatternImage:];
-        [loginMainVc release];
-        navCtrl.navigationBarHidden = YES;
-        if(kIsIOS7Check){
-            
-            navCtrl.view.frame = CGRectMake(0.f, 20.f, kDeviceScreenWidth,kDeviceScreenHeight);
-            // self.window.rootViewController = navCtrl;
-        }
-        //[ZCSNotficationMgr postMSG:kPresentModelViewController obj:navCtrl];
-        [currentNavgationController presentModalViewController:navCtrl animated:NO];
-        SafeAutoRelease(navCtrl);
+        [self startLoginAction];
         
     }
 #endif
    	//[mainView addSubview:navCtrl.view];
 	
 }
+
 #pragma mark -
 #pragma mark create tabBar viewcontrollers delegate
 -(NSArray*)viewcontrollersForTabBarController:(NTESMBMainMenuController*)controller;
@@ -277,10 +270,30 @@ static UIButton *popup = nil;
 }
 #ifdef USER_LOGIN
 #pragma mark user login and resign
+- (void)startLoginAction{
+    
+    UIViewController *loginMainVc = [[NSClassFromString(kLoginViewControllerClass) alloc]init];
+    
+    UINavigationController *navCtrl = [[UINavigationController alloc]initWithRootViewController:loginMainVc];
+    
+    //navCtrl.navigationBar.tintColor = [UIColor redColor];//[UIColor colorWithPatternImage:];
+    [loginMainVc release];
+    navCtrl.navigationBarHidden = YES;
+    //[ZCSNotficationMgr postMSG:kPresentModelViewController obj:navCtrl];
+    [currentNavgationController presentModalViewController:navCtrl animated:NO];
+    if(kIsIOS7Check){
+        loginMainVc.view.frame =  CGRectMake(0.f, 20.f, kDeviceScreenWidth,kDeviceScreenHeight);
+        navCtrl.view.frame = CGRectMake(0.f, 20.f, kDeviceScreenWidth,kDeviceScreenHeight);
+        // self.window.rootViewController = navCtrl;
+    }
+    
+    SafeAutoRelease(navCtrl);
+}
 -(void)didUserLoginOkFromMsg:(NSNotification*)ntf
 {
     [mainVC didSelectorTabItem:0];
     [self dismissViewControllerFromMsg:nil];
+    
 }
 -(void)didUserResignOkFromMsg:(NSNotification*)ntf{
     [mainVC didSelectorTabItem:0];
@@ -292,6 +305,7 @@ static UIButton *popup = nil;
     {
         [item popToRootViewControllerAnimated:YES];
     }
+    [self  startLoginAction];
 }
 #endif  
 
@@ -392,6 +406,13 @@ static UIButton *popup = nil;
         }
     }
     [currentNavgationController dismissModalViewControllerAnimated:animation];
+    if(kIsIOS7Check){
+        
+        //[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackOpaque];
+        
+        currentNavgationController.view.frame = CGRectMake(0.f, 20.f, kDeviceScreenWidth,kDeviceScreenHeight);
+        // self.window.rootViewController = navCtrl;
+    }
 }
 +(UINavigationController*)sharedAppNavigationController{
 	return currentNavgationController;

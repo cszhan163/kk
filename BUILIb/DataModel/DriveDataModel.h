@@ -17,5 +17,6 @@
 @property(nonatomic,strong)NSMutableArray *linesDataArray;
 @property(nonatomic,strong)NSArray *textFormatArray;
 @property(nonatomic,strong)NSString *conclusionText;
+@property(nonatomic,strong)NSString *indictorText;
 @property(nonatomic,assign)DateStruct date;
 @end

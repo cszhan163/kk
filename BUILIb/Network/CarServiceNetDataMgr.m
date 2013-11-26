@@ -423,9 +423,10 @@ static BOOL isExit = NO;
                                               withMethod:@"POST"
                                                 withData:NO];
 #else
-    EiInfo *inInfo = [self getCommIPlant4MParam];
+    EiInfo *inInfo = [self getCommIPlant4MParamByServiceToken:@"VESA02"];
     //[inInfo set:@"year" value:[param objectForKey:@"year"]];
-    [inInfo set:METHOD_TOKEN value:@"queryMessage"]; // 接口名
+    [inInfo set:@"userName" value:[param objectForKey:@"userName"]];
+    [inInfo set:METHOD_TOKEN value:kResMessageData]; // 接口名
     //[inInfo set:@"vin" value:cardId];
     [self startiPlant4MRequest:inInfo withSuccess:@selector(getMessageListOk:) withFailed:@selector(getMessageListFailed:)];
     
@@ -497,7 +498,11 @@ static BOOL isExit = NO;
                 [resultDict setValue:locationType forKey:@"locateType"];
             else
                 [resultDict setValue:@"1" forKey:@"locateType"];
+            
+            [resultDict setValue:[info get:@"maintainPhone"] forKey:@"maintainPhone"];
+            [resultDict setValue:[info get:@"emergPhone"] forKey:@"emergPhone"];
             [self sendFinalOkData:resultDict withKey:kNetLoginRes];
+            
         }
         else{
             //kUIAlertView(<#y#>, <#x#>);
@@ -581,6 +586,7 @@ static BOOL isExit = NO;
         [resultDict setValue:[info get:@"versionCur"] forKey:@"versionCur"];
         [resultDict setValue:[info get:@"versionCur"] forKey:@"versionCur"];
         [resultDict setValue:[info get:@"url"] forKey:@"url"];
+        
         [self sendFinalOkData:resultDict withKey:kCarInfoUpdate];
     }
     else{
@@ -654,13 +660,26 @@ static BOOL isExit = NO;
     if(info.status == 1){
         NSLog(@"%@",info.blocks);
         NSMutableDictionary *resultDict = [NSMutableDictionary dictionary];
+        NSMutableArray *gpsArray = [NSMutableArray array];
         [resultDict setValue:[info get:@"tripMileage"] forKey:@"tripMileage"];
         [resultDict setValue:[info get:@"fuelWear"] forKey:@"fuelWear"];
         [resultDict setValue:[info get:@"safeScore"]  forKey:@"safeScore"];
         [resultDict setValue:[info get:@"economicScore"] forKey:@"economicScore"];
-        EiBlock *tripInfo = [info getBlock:@"gps"]; // block型返回值
         
-            [self sendFinalOkData:resultDict withKey:kResRouterNow];
+        EiBlock *tripInfo = [info getBlock:@"gps"]; // block型返回值
+        int rowCount = [tripInfo getRowCount];
+        for(int i = 0;i<rowCount;i++){
+            NSMutableDictionary *row = [tripInfo getRow:i]; // block有多个row，每个为一个
+            NSDictionary *item = [NSDictionary dictionaryWithObjectsAndKeys:
+                                  [row objectForKey:@"lng"],@"lng",
+                                  [row objectForKey:@"lat"],@"lat",
+                                  nil];
+            [gpsArray addObject:item];
+            
+        }
+        [resultDict setValue:gpsArray forKey:@"gps"];
+        
+        [self sendFinalOkData:resultDict withKey:kResRouterNow];
     }
     else{
         
@@ -718,7 +737,7 @@ static BOOL isExit = NO;
         NSMutableDictionary *resultDict = [NSMutableDictionary dictionary];
         NSMutableArray *gpsArray = [NSMutableArray array];
         
-        [resultDict setValue:[info get:@"tripMileage"] forKey:@"distance"];
+        [resultDict setValue:[info get:@"tripMileage"] forKey:@"tripMileage"];
         [resultDict setValue:[info get:@"fuelWear"] forKey:@"fuelWear"];
         [resultDict setValue:[info get:@"safeScore"]  forKey:@"safeScore"];
         [resultDict setValue:[info get:@"economicScore"] forKey:@"economicScore"];
@@ -1023,6 +1042,7 @@ static BOOL isExit = NO;
         [resultDict setValue:[info get:@"conclusion"] forKey:@"conclusion"];
         [resultDict setValue:[info get:@"time"] forKey:@"time"];
         [resultDict setValue:[info get:@"level"] forKey:@"level"];
+        [resultDict setValue:[info get:@"state"] forKey:@"state"];
         EiBlock *tripInfo = [info getBlock:@"conData"]; // block型返回值
         int rowCount = [tripInfo getRowCount];
         for(int i = 0;i<rowCount;i++){
@@ -1049,6 +1069,38 @@ static BOOL isExit = NO;
 #pragma mark card status delegate
 
 - (void)getMessageListOk:(EiInfo*)info{
+    /*
+     EiBlock eiBlock = eiInfo.getBlock("listMessage");
+     //		for(int i = 0; i < eiBlock.getRowCount(); i++) {
+     //			Map row = eiBlock.getRow(i);
+     //
+     //			System.out.println("*********************");
+     //
+     //			System.out.println(row.get("pushMesType").toString());
+     //			System.out.println(row.get("pushMesCon").toString());
+     //			System.out.println(row.get("createdTime").toString());
+     */
+    if(info.status == 1){
+        NSMutableDictionary *resultDict = [NSMutableDictionary dictionary];
+        NSMutableArray *data = [NSMutableArray array];
+        //[resultDict setValue:[info get:@"conclusion"] forKey:@"conclusion"];
+        EiBlock *tripInfo = [info getBlock:@"listMessage"]; // block型返回值
+        int rowCount = [tripInfo getRowCount];
+        for(int i = 0;i<rowCount;i++){
+            NSMutableDictionary *row = [tripInfo getRow:i];
+            NSDictionary *item = [NSDictionary dictionaryWithObjectsAndKeys:
+                                  [row objectForKey:@"pushMesType"],@"pushMesType",
+                                  [row objectForKey:@"pushMesCon"],@"pushMesCon",
+                                  [row objectForKey:@"createdTime"],@"createdTime",
+                                  nil];
+            [data addObject:item];
+        }
+        [resultDict setValue:data forKey:@"messageBox"];
+        [self sendFinalOkData:resultDict withKey:kResMessageData];
+    }
+    else{
+        [self sendFinalFailedData:@"" withKey:kResMessageData];
+    }
     
 }
 - (void)getMessageListFailed:(EiInfo*)info{

@@ -130,7 +130,7 @@
         
       
         
-        UIImageWithFileName(UIImage*image, @"ragular_day-mid.png");
+        //UIImageWithFileName(UIImage*image, @"ragular_day-mid.png");
     
         
         

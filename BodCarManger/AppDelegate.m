@@ -109,7 +109,7 @@ UIShareActionAlertView *sharedAlterView = nil;
     NSString *usrId = [AppSetting getLoginUserId];
     NSString *cardId = [AppSetting getUserCarId:usrId];
     if(cardId && ![cardId isEqualToString:@""])
-        [self checkCarIsRunning:nil];
+        //[self checkCarIsRunning:nil];
     [self setLastWidnows];
     //[NSTimer timerWithTimeInterval:5 invocation:@selector(checkCarIsRunning) repeats:YES];
     [ZCSNotficationMgr addObserver:self call:@selector(backDoorCheckOk:) msgName:kZCSNetWorkOK];

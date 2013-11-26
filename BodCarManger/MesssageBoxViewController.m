@@ -117,8 +117,8 @@
 #pragma mark UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-	return 10;
-    //return [self.dataArray count];
+	//return 10;
+    return [self.dataArray count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -156,7 +156,19 @@
     cell.backgroundView = bgView;
     SafeRelease(bgView);
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    cell.mMsgTextLabel.text = @"这个市消息这个市消息这个市消息这个市消息这个市消息这个市消息这个市消息这个市消息这个市消息这个市消息这个市消息这个市消息这个市消息这个市消息这个市消息这个市消息这个市消息";
+    
+    NSDictionary *item = [self.dataArray objectAtIndex:indexPath.row];
+    /*
+     int pushMesType;               //消息类型
+     //0:系统消息 1:行程消息
+     //2：报警消息 3：故障消息
+     //4：需回复消息
+     */
+    
+    
+    
+    cell.mMsgTextLabel.text = [item objectForKey:@"pushMesCon"];
+    cell.mDateLabel.text = [item objectForKey:@"createdTime"];
     return cell;
     
 }
@@ -266,9 +278,9 @@
     
     CarServiceNetDataMgr *netMgr = [CarServiceNetDataMgr getSingleTone];
     NSDictionary *param = [NSDictionary dictionaryWithObjectsAndKeys:
-                           pageNumStr    ,@"pageno",
-                           @"15",@"pagesize",
+                           [AppSetting getLoginUserId],@"userName",
                            nil];
+    
     self.request = [netMgr getMessageList:param];
      
     
@@ -361,11 +373,12 @@
     id obj = [ntf object];
     id respRequest = [obj objectForKey:@"request"];
     id data = [obj objectForKey:@"data"];
-    NSString *resKey = [respRequest resourceKey];
-    if(self.request == respRequest)
+    NSString *resKey = [obj  objectForKey:@"key"];
+    if([resKey isEqualToString:resKey])
     {
         self.request = nil;
-        [self stopShowLoadingView];
+        //[self stopShowLoadingView];
+        /*
         [self processReturnData:data];
         if([data count])
         currentPageNum++;
@@ -388,6 +401,9 @@
         {
             [tweetieTableView closeInfoView];
         }
+         */
+        self.dataArray = [data objectForKey:@"messageBox"];
+        [self reloadAllData];
     }
     if(self.clearRequest == respRequest)
     {

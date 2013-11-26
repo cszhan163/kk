@@ -135,6 +135,8 @@
 //check
 #define kResCarCheckData                        @"queryConData"
 
+#define kResMessageData                         @"queryMessage"
+
 #define kDateFormart   @"%d%02d"
 
 #define Infinite

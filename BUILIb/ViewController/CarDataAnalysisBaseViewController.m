@@ -78,7 +78,7 @@
 #endif
     [self.view bringSubviewToFront:mainView.topBarView ];
     [self setNeedDisplaySubView];
-    [self loadAnalaysisData];
+    [self  performSelectorInBackground:@selector(loadAnalaysisData) withObject:nil];
 	// Do any additional setup after loading the view.
 }
 - (void)selectTopNavItem:(id)navObj{

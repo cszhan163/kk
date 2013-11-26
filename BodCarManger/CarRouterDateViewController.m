@@ -31,7 +31,7 @@
     OCCalendarView *calView;
     IAInfiniteGridView  *gridView;
     XLCycleScrollView   *csView;
-        BOOL isRunning ;
+    BOOL isFirstLogin ;
         
         
 }
@@ -59,6 +59,23 @@
     [super viewDidAppear:animated];
     [self checkDataChange];
 }
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    if(isFirstLogin){
+        CarRouterDetailViewController *vc = [[CarRouterDetailViewController alloc]initWithNibName:nil bundle:nil];
+        vc.delegate = self;
+        //vc.mData = self.data;
+        vc.isLatest = YES;
+        vc.isFromDateView = YES;
+#if kMapHasTab
+        [self.navigationController pushViewController:vc animated:YES];
+#else
+        [ZCSNotficationMgr postMSG:kPushNewViewController obj:vc];
+#endif
+        SafeRelease(vc);
+        isFirstLogin = NO;
+    }
+}
 //#define FIRST
 - (void)viewDidLoad
 {
@@ -66,6 +83,7 @@
     self.delegate = self;
     [self setHiddenLeftBtn:NO];
     isTodayMonth = YES;
+    isFirstLogin = YES;
     NSString *barTitle  = [NSString stringWithFormat:@"%d年%02d月",self.mCurrDate.year,self.mCurrDate.month];
     [self setNavgationBarTitle:barTitle];
     
@@ -239,6 +257,7 @@
     label.font = [UIFont systemFontOfSize:13];
     [self.view addSubview:label];
     SafeRelease(label);
+    
 	// Do any additional setup after loading the view.
 }
 #pragma mark -
@@ -254,27 +273,19 @@
 }
 -(void)didSelectorTopNavigationBarItem:(id)sender{
     switch ([sender tag]) {
-        case  0:
-            
-            //isRunning = NO;
-            if([self.data objectForKey:@"endTime"] == 0){//the card is Running
-                isRunning = YES;
-            }
-            else{
-                
-            }
-            //[self.navigationController popViewControllerAnimated:YES];// animated:<#(BOOL)animated#>
+        case  0:{
             CarRouterDetailViewController *vc = [[CarRouterDetailViewController alloc]initWithNibName:nil bundle:nil];
             vc.delegate = self;
-            vc.mData = self.data;
+            //vc.mData = self.data;
             vc.isLatest = YES;
-            vc.isRunning = isRunning;
+            vc.isFromDateView = YES;
 #if kMapHasTab
             [self.navigationController pushViewController:vc animated:YES];
 #else
             [ZCSNotficationMgr postMSG:kPushNewViewController obj:vc];
 #endif
             SafeRelease(vc);
+            }
 			break;
         case 2:
         case 1:{
@@ -616,20 +627,20 @@ int lastDirect = -1;
         else{
             
         }
-        if([[data objectForKey:@"tripId"]intValue] !=0){
-            self.data = data;
-            CarRouterDetailViewController *vc = [[CarRouterDetailViewController alloc]initWithNibName:nil bundle:nil];
-            vc.delegate = self;
-            vc.mData = data;
-            vc.isLatest = YES;
-            vc.isRunning = isRunning;
-#if kMapHasTab
-            [self.navigationController pushViewController:vc animated:YES];
-#else
-            [ZCSNotficationMgr postMSG:kPushNewViewController obj:vc];
-#endif
-            SafeRelease(vc);
-        }
+//        if([[data objectForKey:@"tripId"]intValue] !=0){
+//            //self.data = data;
+//            CarRouterDetailViewController *vc = [[CarRouterDetailViewController alloc]initWithNibName:nil bundle:nil];
+//            vc.delegate = self;
+//            //vc.mData = data;
+//            vc.isLatest = YES;
+//            vc.isFromDateView = YES;
+//#if kMapHasTab
+//            [self.navigationController pushViewController:vc animated:YES];
+//#else
+//            [ZCSNotficationMgr postMSG:kPushNewViewController obj:vc];
+//#endif
+//            SafeRelease(vc);
+//        }
     }
 }
 -(void)didNetDataFailed:(NSNotification*)ntf

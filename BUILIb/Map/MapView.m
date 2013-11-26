@@ -171,6 +171,24 @@
     [view setCanShowCallout:YES];
     NSLog(@"Title:%@",view.annotation.title);
 }
+-(void) addRouterView:(NSArray*)points{
+    CLLocationCoordinate2D pointsToUse[[points count]];
+    for (int i = 0; i < [points count]; i++) {
+        CLLocationCoordinate2D coords;
+        CLLocation *loc = [points objectAtIndex:i];
+        coords.latitude = loc.coordinate.latitude;
+        coords.longitude = loc.coordinate.longitude;
+        coords = transform(coords);
+        printf("[%lf,%lf]",coords.latitude,coords.longitude);
+        pointsToUse[i] = coords;
+    }
+    MKPolyline *lineOne = [MKPolyline polylineWithCoordinates:pointsToUse count:[points count]];
+    [mapView addOverlay:lineOne];
+}
+- (void)addRouterView:(CLLocationCoordinate2D *)points withCount:(int)count{
+    MKPolyline *lineOne = [MKPolyline polylineWithCoordinates:points count:count];
+    [mapView addOverlay:lineOne];
+}
 -(void) updateRouteView {
     [mapView removeOverlays:mapView.overlays];
 

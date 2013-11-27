@@ -72,8 +72,8 @@
     btn.frame = CGRectMake(currX, 10.f,kOilNavControllerItemWidth, btn.frame.size.height);
     
     btn.titleLabel.font = [UIFont systemFontOfSize:18];
-    [btn setTitleColor:HexRGB(231, 234, 236) forState:UIControlStateNormal];
-    [btn setTitleColor:HexRGB(153, 153, 153) forState:UIControlStateSelected];
+    [btn setTitleColor:HexRGB(153, 153, 153) forState:UIControlStateNormal];
+    [btn setTitleColor:HexRGB(231, 234, 236) forState:UIControlStateSelected];
     
     [btnArray addObject:btn];
     
@@ -83,9 +83,8 @@
     btn.frame = CGRectMake(currX, 10.f,kOilNavControllerItemWidth, btn.frame.size.height);
     
     btn.titleLabel.font = [UIFont systemFontOfSize:18];
-    [btn setTitleColor:HexRGB(231, 234, 236) forState:UIControlStateNormal];
-    [btn setTitleColor:HexRGB(153, 153, 153) forState:UIControlStateSelected];
-    
+    [btn setTitleColor:HexRGB(153, 153, 153) forState:UIControlStateNormal];
+    [btn setTitleColor:HexRGB(231, 234, 236) forState:UIControlStateSelected];
     
     [btnArray addObject:btn];
     

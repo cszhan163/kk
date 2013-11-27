@@ -13,5 +13,6 @@
 @property(nonatomic,strong) NSString            *mEndName;
 @property(nonatomic,assign)BOOL isLatest;
 @property(nonatomic,assign)BOOL isRunning;
+@property(nonatomic,assign)BOOL isFromDateView;
 @property(nonatomic,strong) NSDictionary*mData;
 @end

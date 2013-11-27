@@ -57,9 +57,15 @@
     [super viewDidDisappear:animated];
     [[DBManage getSingletone]setDelegate:nil];
 }
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [self.realDataTimer invalidate];
+    self.realDataTimer  = nil;
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     
     UIImage *bgImage = nil;
     UIImageWithFileName(bgImage, @"car_bg.png");
@@ -98,31 +104,9 @@
 #if 0
     [mainView.topBarView addSubview:btn];
 #else
-    if(isLatest){
-        /*
-        [super setNavgationBarRightBtnImage:bgImage forStatus:UIControlStateNormal];
-              [super setNavgationBarRightBtnImage:bgImage forStatus:UIControlStateSelected];
-            */
-        UIImageWithFileName(bgImage, @"calendar.png");
-        [self.leftBtn setBackgroundImage:bgImage forState:UIControlStateNormal];
-        [self.leftBtn setBackgroundImage:bgImage forState:UIControlStateSelected];
-//        CGRect rect = self.rightBtn.frame;
-//        self.rightBtn.frame = CGRectMake(kDeviceScreenWidth-10.f-bgImage.size.width/kScale, rect.origin.y, bgImage.size.width/kScale, bgImage.size.height/kScale);
-        
-        [self setNavgationBarTitle:@"最近驾驶"];
-        if(self.isRunning){
-           [self setNavgationBarTitle:@"正在驾驶"];
-            self.realDataTimer = [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(checkRunningData) userInfo:nil repeats:YES];
-        }
-    //self.leftBtn = btn;
-    }
-    else{
-        
-    }
+    
+  
 #endif
-   
-    
-    
     mMapView = [[MapView alloc] initWithFrame:
                CGRectMake(0, 44, self.view.frame.size.width,460-44)];
     
@@ -147,9 +131,18 @@
     [self initMapPointData:mData];
    
    // [mMapView showRouteFrom:mStartPoint to:mEndPoint];
-    
-    [self performSelectorInBackground:@selector(loadRouterHistoryData) withObject:nil];
-    
+    if(_isFromDateView){
+        kNetStartShow(@"数据加载...", self.view);
+        [ZCSNotficationMgr postMSG:kCheckCardRecentRun obj:nil];
+        UIImageWithFileName(bgImage, @"calendar.png");
+        [self.leftBtn setBackgroundImage:bgImage forState:UIControlStateNormal];
+        [self.leftBtn setBackgroundImage:bgImage forState:UIControlStateSelected];
+        //self.leftBtn = btn;
+    }
+    else{
+        
+        [self performSelectorInBackground:@selector(loadRouterHistoryData) withObject:nil];
+    }
     //[mainView.topBarView ];
 	// Do any additional setup after loading the view.
 }
@@ -218,7 +211,14 @@
      "oiltest": "8",
      "drivetest": "7"
      */
-    NSString *distance = [data objectForKey:@"distance"];
+    [self setPanelUIByData:data];
+    
+    SafeRelease(mStartPoint);
+    SafeRelease(mEndPoint);
+}
+- (void)setPanelUIByData:(NSDictionary*)data{
+
+    NSString *distance = [data objectForKey:@"tripMileage"];
     if(distance == nil){
         distance = @"00";
     }
@@ -234,15 +234,15 @@
     carDetailPenalView.mRotateSpeedLabel.text= [NSString stringWithFormat:@"油耗: %0.2lfL",[rotate floatValue]];
     carDetailPenalView.mRunTemperatureLabel.text = [NSString stringWithFormat:@"水温:-  %@度",tempreture];
     
-//    NSString *timeStr = [data objectForKey:@"starttime"];
-//    
-//    NSArray *timeArr  = [timeStr componentsSeparatedByString:@" "];
-//    if(!isLatest && timeArr[0])
-//        [self setNavgationBarTitle:timeArr[0]];
-//	NSArray *dateArr = [timeArr[0] componentsSeparatedByString:@"/"];
-//    mDateStruct.year = [dateArr[0]intValue];
-//    mDateStruct.month = [dateArr[1]intValue];
-//    mDateStruct.day =  [dateArr[2]intValue];
+    //    NSString *timeStr = [data objectForKey:@"starttime"];
+    //
+    //    NSArray *timeArr  = [timeStr componentsSeparatedByString:@" "];
+    //    if(!isLatest && timeArr[0])
+    //        [self setNavgationBarTitle:timeArr[0]];
+    //	NSArray *dateArr = [timeArr[0] componentsSeparatedByString:@"/"];
+    //    mDateStruct.year = [dateArr[0]intValue];
+    //    mDateStruct.month = [dateArr[1]intValue];
+    //    mDateStruct.day =  [dateArr[2]intValue];
     
     int oiltest = [[data objectForKey:@"economicScore"]intValue];
     if(oiltest>=10) oiltest = 10;
@@ -255,9 +255,6 @@
     fileName = [NSString stringWithFormat:@"dashboard%d.png",drivetest];
     UIImageWithFileName(bgImage, fileName);
     carDetailPenalView.mDriveAnalaysisImageView.image = bgImage;
-    
-    SafeRelease(mStartPoint);
-    SafeRelease(mEndPoint);
 }
 #pragma mark -
 #pragma mark navigation bar action
@@ -312,15 +309,35 @@
     }
     if(self.request ==respRequest && [resKey isEqualToString:kResRouterNow])
     {
+        kNetEnd(self.view);
         NSDictionary *netData = data;//[data objectForKey:@"data"];
-        self.gprsDataArray = [netData objectForKey:@"gps"];
+        //[self.gprsDataArray insertObject:[netData objectForKey:@"gps"] atIndex:0];
         //[self getPlaceNameByPosition:self.gprsDataArray];
-        
+
         [self  performSelectorOnMainThread:@selector(updateUIRealTimeData:) withObject:netData waitUntilDone:NO ];
         //[mDataDict setObject:netData forKey:mMothDateKey];
         //}
         //kNetEnd(self.view);
         
+    }
+    if([resKey isEqualToString:kResRouterLatest])
+    {
+        //BOOL isRunning = NO;
+        
+        if([[data objectForKey:@"endTime"] isEqualToString:@"0"])
+        {//the card is Running
+            self.isRunning = YES;
+            
+        }
+        else{
+            self.isRunning = NO;
+        }
+        //self.isRunning = YES;
+        if([[data objectForKey:@"tripId"]intValue] !=0){
+            self.mData = data;
+            
+        }
+        [self performSelectorOnMainThread:@selector(updateUIRealTimeCheck:) withObject:nil waitUntilDone:NO];
     }
     
 }
@@ -386,7 +403,7 @@
 #else
             
 #endif
-            if(_mEndName)
+            if(_mEndName && !self.isRunning)
             {
                 place = [[Place alloc]init];
                 place.latitude = mEndCoordinate2d.latitude;
@@ -414,15 +431,42 @@
     [self initMapPointData:data];
 }
 - (void)updateUIRealTimeData:(NSDictionary*)data{
-
-
+    
+    [self setPanelUIByData:data];
+    
+    NSArray *cordPoints = [data objectForKey:@"gps"];
+    NSMutableArray *points = [NSMutableArray array];
+    CLLocationCoordinate2D pointsToUse[[cordPoints count]];
+    for(int i =0;i<[cordPoints count];i++){
+        CLLocation *item = [cordPoints objectAtIndex:i];
+        CLLocationCoordinate2D coords;
+        double lng = [[item objectForKey:@"lng"] doubleValue]/kGPSMaxScale;
+        double lat = [[item objectForKey:@"lat"] doubleValue]/kGPSMaxScale;
+        coords.latitude = lat;
+        coords.longitude = lng;
+        pointsToUse[i] = coords;
+    }
+    [mMapView addRouterView:pointsToUse withCount:[cordPoints count]];
+}
+- (void)updateUIRealTimeCheck:(NSDictionary*)data{
+ 
+        if(self.isRunning){
+            [self setNavgationBarTitle:@"正在驾驶"];
+            [self performSelectorInBackground:@selector(loadRouterHistoryData) withObject:nil];
+            self.realDataTimer = [NSTimer scheduledTimerWithTimeInterval:10 target:self selector:@selector(checkRunningData) userInfo:nil repeats:YES];
+        }
+        else{
+            [self setNavgationBarTitle:@"最近驾驶"];
+            [self performSelectorInBackground:@selector(loadRouterHistoryData) withObject:nil];
+        }
 }
 #pragma mark -
 #pragma mark get realtime data
 - (void)checkRunningData{
     CarServiceNetDataMgr *cardShopMgr = [CarServiceNetDataMgr getSingleTone];
     //kNetStartShow(@"数据加载...", self.view);
-    self.request = [cardShopMgr  getRouterRealTimeData:@"SHD05728" ];
+    NSString *carId = [AppSetting  getUserCarId:nil];
+    self.request = [cardShopMgr  getRouterRealTimeData:carId];
 }
 - (void)didGetLocationData:(id)sender withIndex:(NSInteger)index withTag:(BOOL)tag{
     if(index == -1){

@@ -166,13 +166,13 @@ static NSString* kMonthTextArray[] = {
     UIButton *oilAnalaysisBtn = [UIComUtil createButtonWithNormalBGImageName:@"drive_oil_btn.png" withHightBGImageName:@"drive_oil_btn.png" withTitle:@"" withTag:0];
     [scrollerView addSubview:oilAnalaysisBtn];
     CGSize btnsize= oilAnalaysisBtn.frame.size;
-    oilAnalaysisBtn.frame = CGRectMake(25.f,size.height-10.f-btnsize.height,btnsize.width ,btnsize.height);
+    oilAnalaysisBtn.frame = CGRectMake(30.f,size.height-10.f-btnsize.height,btnsize.width ,btnsize.height);
     [oilAnalaysisBtn addTarget:self action:@selector(didTouchButton:) forControlEvents:UIControlEventTouchUpInside];
     UIButton *driveAnalysisBtn = [UIComUtil createButtonWithNormalBGImageName:@"drive_habit_btn.png" withHightBGImageName:@"drive_habit_btn.png" withTitle:@"" withTag:1];
     [scrollerView addSubview:driveAnalysisBtn];
     
     btnsize = driveAnalysisBtn.frame.size;
-    driveAnalysisBtn.frame =  CGRectMake(180.f+12,size.height-10.f-btnsize.height,btnsize.width ,btnsize.height);
+    driveAnalysisBtn.frame =  CGRectMake(300-30.f-btnsize.width+5,size.height-10.f-btnsize.height,btnsize.width ,btnsize.height);
     [driveAnalysisBtn addTarget:self action:@selector(didTouchButton:) forControlEvents:UIControlEventTouchUpInside];
     
     //for 
@@ -433,7 +433,6 @@ static NSString* kMonthTextArray[] = {
 -(void)didNetDataFailed:(NSNotification*)ntf
 {
     //kNetEnd(@"", 2.f);
-    
     id obj = [ntf object];
     id respRequest = [obj objectForKey:@"request"];
     id data = [obj objectForKey:@"data"];
@@ -501,7 +500,7 @@ static NSString* kMonthTextArray[] = {
     carDriveStatusView.mRunOilCostLabel.text = [NSString stringWithFormat:@"%0.2lf",avgOil];
     carDriveStatusView.mRunMoneyCostLabel.text = [NSString stringWithFormat:@"%0.2lf",totalOil];
     carDriveStatusView.mRunDaysLabel.text =[NSString stringWithFormat:@"%d",day];
-    carDriveStatusView.mRunStepLabel.text = [NSString stringWithFormat:@"%0.2lf",segment];
+    carDriveStatusView.mRunStepLabel.text = [NSString stringWithFormat:@"%0.lf",segment];
     carDriveStatusView.mRunDistanceLabel.text = [NSString stringWithFormat:@"%0.2lf",totalMile];
     int monthInex = self.mCurrDate.month-1;
     carDriveStatusView.mHeadMonthLabel.text = [NSString stringWithFormat:@"%@驾驶情况",kMonthTextArray[monthInex]];

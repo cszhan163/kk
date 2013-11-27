@@ -85,7 +85,13 @@ static NSString *kImageTextArr[] ={
 #pragma mark -
 
 - (void)didTouchButton:(id)sender{
-
+    NSDictionary *data = [AppSetting getLoginUserInfo];
+    NSString *phoneNumber = [data objectForKey:@"emergPhone"];
+    if(phoneNumber){
+    
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel:/%@",phoneNumber]]];
+    
+    }
     
 
 }
@@ -217,6 +223,9 @@ static NSString *kImageTextArr[] ={
         MesssageBoxViewController *msgVc = [[MesssageBoxViewController alloc]init];
         [self.navigationController pushViewController:msgVc  animated:YES];
         SafeRelease(msgVc);
+    }
+    else{
+        kUIAlertView(@"提示", @"正在建设，敬请期待");
     }
 }
 #pragma mark -

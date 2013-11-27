@@ -30,6 +30,10 @@
 
 - (void)showRouteWithPointsData:(NSArray*)points;
 
+-(void) addRouterView:(NSArray*)points;
+
+- (void)addRouterView:(CLLocationCoordinate2D *)points withCount:(int)count;
+
 - (void)addFromPoint:(Place*)f toPoint:(Place*)t;
 - (void)addPointToMap:(Place*)f;
 @end

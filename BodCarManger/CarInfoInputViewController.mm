@@ -173,7 +173,7 @@
 #define ZBAR
 - (void)qrScanAction:(id)sender{
 
-    return;
+    //return;
 #if 0
     ZXingWidgetController *widController = [[ZXingWidgetController alloc] initWithDelegate:self showCancel:YES OneDMode:NO];
     NSMutableSet *readers = [[NSMutableSet alloc] init];
@@ -188,7 +188,8 @@
     reader.delegate = self;
     reader.showsZBarControls = NO;
     ZBarImageScanner *scanner = reader.scanner;
-    
+//    [scanner setSymbology:ZBAR_CODE39
+//                   config:ZBAR_CFG_ENABLE to:0];
     [scanner setSymbology: ZBAR_I25
                    config: ZBAR_CFG_ENABLE
                        to: 0];

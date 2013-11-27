@@ -32,7 +32,7 @@
              @"2013",@"year",
              @"10",@"month",
              nil];
-    //[cardNetMgr getDetailByDay:param];
+    [cardNetMgr getCarBand];
 //    [cardNetMgr carUserRegister:[NSDictionary dictionaryWithObjectsAndKeys:
 //                              @"test",@"name",
 //                              @"123456",@"password",

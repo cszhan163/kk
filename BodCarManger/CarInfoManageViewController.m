@@ -8,7 +8,8 @@
 
 #import "CarInfoManageViewController.h"
 #import "CarInfoInputViewController.h"
-
+#import "CarSelectedViewController.h"
+#import "CarNumberInputViewController.h"
 static NSString *kCarInfoArray[] =
 {
     @"车辆品牌",@"车牌型号",@"车牌号",
@@ -23,6 +24,9 @@ static NSString  *CarInfoKeyArray[] = {
     NSInteger type ;
     BOOL isNeedFresh;
 }
+@property(nonatomic,strong)NSString *brandSeq;
+@property(nonatomic,strong)NSString *seriesSeq;
+@property(nonatomic,strong)NSString *modelSeq;
 @end
 
 @implementation CarInfoManageViewController
@@ -144,7 +148,7 @@ static NSString  *CarInfoKeyArray[] = {
             switch (indexPath.row) {
                 case 0:
                     bgImageName = @"setting_cell_header.png";
-                    tempText = [self.data objectForKey:@"brandy"];
+                    tempText = [self.data objectForKey:@"seriesName"];
                     if(tempText){
                         dataText = tempText;
                     }
@@ -158,7 +162,7 @@ static NSString  *CarInfoKeyArray[] = {
                     break;
                     
                 default:
-                    tempText = [self.data objectForKey:@"model"];
+                    tempText = [self.data objectForKey:@"modelInfo"];
                     if(tempText){
                         dataText = tempText;
                     }
@@ -263,6 +267,37 @@ static NSString  *CarInfoKeyArray[] = {
             type  =1;
         }
         
+    }
+    if(indexPath.section ==1){
+        
+        if(indexPath.row == 0){
+        CarSelectedViewController *carSelectedVc = [[CarSelectedViewController alloc] init];
+        
+            carSelectedVc.brandSeq = self.brandSeq;
+            carSelectedVc.seriesSeq = self.seriesSeq;
+            carSelectedVc.type = 0;
+        [self.navigationController pushViewController:carSelectedVc animated:YES];
+        SafeRelease(carSelectedVc);
+            
+        }
+        else if(indexPath.row == 1){
+        
+            CarSelectedViewController *carSelectedVc = [[CarSelectedViewController alloc] init];
+            carSelectedVc.type = 2;
+            carSelectedVc.modelSeq = self.modelSeq;
+            
+            [self.navigationController pushViewController:carSelectedVc animated:YES];
+            SafeRelease(carSelectedVc);
+        }
+        //[carSelectedVc ]
+        else{
+            CarNumberInputViewController *changeDataVc = [[CarNumberInputViewController alloc] init];
+            changeDataVc.userEmail = cell.detailTextLabel.text;
+            changeDataVc.barTitle = cell.textLabel.text;
+            [self.navigationController pushViewController:changeDataVc animated:YES];
+            SafeRelease(changeDataVc);
+        }
+         return;
     }
     CarInfoInputViewController *changeDataVc = [[CarInfoInputViewController alloc]init];
     changeDataVc.userEmail = cell.detailTextLabel.text;

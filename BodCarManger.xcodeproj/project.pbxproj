@@ -289,6 +289,8 @@
 		04E5D6F0182F3057006832B9 /* item_change_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E5D6ED182F3057006832B9 /* item_change_btn.png */; };
 		04E5D6F1182F3057006832B9 /* item_default_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E5D6EE182F3057006832B9 /* item_default_btn.png */; };
 		04E5D6F2182F3057006832B9 /* qr_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E5D6EF182F3057006832B9 /* qr_btn.png */; };
+		04EAFB811846397A00D9702D /* CarSelectedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04EAFB801846397A00D9702D /* CarSelectedViewController.m */; };
+		04EAFB8618464A9500D9702D /* CarNumberInputViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04EAFB8518464A9500D9702D /* CarNumberInputViewController.m */; };
 		04EF7051183E764F000E06CE /* libWeChatSDK_armv7_armv7s.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 04EF7050183E764F000E06CE /* libWeChatSDK_armv7_armv7s.a */; };
 		04EF7053183E76C9000E06CE /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04EF7052183E76C9000E06CE /* AVFoundation.framework */; };
 		04EF7057183E770B000E06CE /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 04EF7056183E770B000E06CE /* libiconv.dylib */; };
@@ -770,6 +772,10 @@
 		04E5D6ED182F3057006832B9 /* item_change_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = item_change_btn.png; sourceTree = "<group>"; };
 		04E5D6EE182F3057006832B9 /* item_default_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = item_default_btn.png; sourceTree = "<group>"; };
 		04E5D6EF182F3057006832B9 /* qr_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = qr_btn.png; sourceTree = "<group>"; };
+		04EAFB7F1846397A00D9702D /* CarSelectedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarSelectedViewController.h; sourceTree = "<group>"; };
+		04EAFB801846397A00D9702D /* CarSelectedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarSelectedViewController.m; sourceTree = "<group>"; };
+		04EAFB8418464A9500D9702D /* CarNumberInputViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarNumberInputViewController.h; sourceTree = "<group>"; };
+		04EAFB8518464A9500D9702D /* CarNumberInputViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarNumberInputViewController.m; sourceTree = "<group>"; };
 		04EF7050183E764F000E06CE /* libWeChatSDK_armv7_armv7s.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK_armv7_armv7s.a; sourceTree = "<group>"; };
 		04EF7052183E76C9000E06CE /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		04EF7056183E770B000E06CE /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = usr/lib/libiconv.dylib; sourceTree = SDKROOT; };
@@ -993,6 +999,10 @@
 				04100908183E4DA800027851 /* NewUserSettingViewContorller.h */,
 				04100909183E4DA800027851 /* NewUserSettingViewContorller.m */,
 				0410090B183E4E9800027851 /* NewUserSettingViewController.xib */,
+				04EAFB7F1846397A00D9702D /* CarSelectedViewController.h */,
+				04EAFB801846397A00D9702D /* CarSelectedViewController.m */,
+				04EAFB8418464A9500D9702D /* CarNumberInputViewController.h */,
+				04EAFB8518464A9500D9702D /* CarNumberInputViewController.m */,
 			);
 			name = User;
 			sourceTree = "<group>";
@@ -2230,6 +2240,7 @@
 				046B67F417E75179006F34A1 /* AppMainUIViewMangae.m in Sources */,
 				046B67F517E75179006F34A1 /* NEMainTabBarController.m in Sources */,
 				046B67F617E75179006F34A1 /* NTESMBMainMenuController.m in Sources */,
+				04EAFB811846397A00D9702D /* CarSelectedViewController.m in Sources */,
 				046B681F17E76784006F34A1 /* CarRouterViewController.m in Sources */,
 				046B682217E767B5006F34A1 /* CarRouterDetailViewController.m in Sources */,
 				046B682517E7680B006F34A1 /* CarStatusViewController.m in Sources */,
@@ -2260,6 +2271,7 @@
 				04E45AAA18255F150028BDAD /* WeiBoBaseEngine.m in Sources */,
 				04E45AAF18255F150028BDAD /* SBJsonParser+Ex.m in Sources */,
 				04E45AB018255F150028BDAD /* UIImage+GrayImage.m in Sources */,
+				04EAFB8618464A9500D9702D /* CarNumberInputViewController.m in Sources */,
 				04E45AB118255F150028BDAD /* Renren.m in Sources */,
 				04E45AB218255F150028BDAD /* ROError.m in Sources */,
 				04E45AB318255F150028BDAD /* ROPayError.m in Sources */,

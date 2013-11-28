@@ -48,14 +48,22 @@ static char *carNumProvince[] = {"京","津","冀","晋","蒙","辽","吉","黑"
         NSString *item = [NSString stringWithFormat:@"%c",character[i]];
         [self.characterArray addObject:item];
     }
+    NSString *provinceStr = nil;
+    
+    
+    if([self.userEmail length]>=2){
+    }
+    else{
+        self.userEmail = @"沪A123456";
+    }
     self.subClassInputTextField.text = [self.userEmail substringFromIndex:2];
-    NSString *provinceStr = [self.userEmail substringToIndex:1];
+    provinceStr = [self.userEmail substringToIndex:1];
     NSRange range ;
     range.location = 1;
     range.length = 1;
     NSString *charStr = [self.userEmail substringWithRange:range];
-    int charIndex = -1;
-    int proviceIndex = -1;
+    int charIndex = 0;
+    int proviceIndex = 0;
     for(int i = 0;i<26;i++){
         if([[self.characterArray objectAtIndex:i]isEqualToString:charStr]){
             charIndex = i;
@@ -134,4 +142,30 @@ static char *carNumProvince[] = {"京","津","冀","晋","蒙","辽","吉","黑"
     headerLabel.text = headerStr;
     
 }
+-(void)didSelectorTopNavItem:(id)navObj
+{
+	NE_LOG(@"select item:%d",[navObj tag]);
+    
+	switch ([navObj tag])
+	{
+		case 0:
+        {
+            [self.navigationController popViewControllerAnimated:YES];// animated:
+        }
+        break;
+		case 1:
+		{
+            //[self startRestPassword];
+            if(delegate && [delegate respondsToSelector:@selector(setCellItemData:withIndexPath:)]){
+                NSString *result = @"";
+                result = [NSString stringWithFormat:@"%@%@",headerLabel.text,self.subClassInputTextField.text];
+                [delegate setCellItemData:result withIndexPath:self.indexPath];
+            }
+            [self.navigationController popViewControllerAnimated:YES];
+			break;
+		}
+	}
+    
+}
+
 @end

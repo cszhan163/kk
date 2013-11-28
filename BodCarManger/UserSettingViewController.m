@@ -213,7 +213,8 @@ static NSString *kCellImageArr[] = {
     //[self.navigationController popToRootViewControllerAnimated:NO];
    
     //[logInfo reloadData];
-    [self performSelectorInBackground:@selector(shouldLoadDataFromNet) withObject:nil];
+    //[self performSelectorInBackground:@selector(shouldLoadDataFromNet) withObject:nil];
+    [self shouldLoadDataFromNet];
     
 }
 - (void)viewDidAppear:(BOOL)animated

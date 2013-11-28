@@ -76,11 +76,14 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     //[self.navigationController pushViewController:vc animated:YES];
+    NSDictionary *item = [self.dataArray objectAtIndex:indexPath.row];
     if(self.type  == 0){
         CarSelectedViewController *carSelectedVc = [[CarSelectedViewController alloc] init];
         
-        carSelectedVc.brandSeq = self.brandSeq;
-        carSelectedVc.seriesSeq = self.seriesSeq;
+        //carSelectedVc.brandSeq = self.brandSeq;
+        //carSelectedVc.brandSeq = [item]
+        carSelectedVc.brandName = [item objectForKey:@"name"];
+        carSelectedVc.brandSeq = [item objectForKey:@"seq"];
         carSelectedVc.type = 1;
         [self.navigationController pushViewController:carSelectedVc animated:YES];
         SafeRelease(carSelectedVc);
@@ -89,7 +92,33 @@
     else{
         if(self.type == 1){
          //ok get branseq and seriesSeq;
+            CarSelectedViewController *carSelectedVc = [[CarSelectedViewController alloc] init];
             
+            //carSelectedVc.brandSeq = self.brandSeq;
+            carSelectedVc.brandName = self.brandName;
+            carSelectedVc.seriesName = [item objectForKey:@"name"];
+            carSelectedVc.seriesSeq = [item objectForKey:@"seq"];
+            carSelectedVc.type = 2;
+            [self.navigationController pushViewController:carSelectedVc animated:YES];
+            SafeRelease(carSelectedVc);
+        }
+        else{
+            
+            
+            NSDictionary *data = [NSDictionary dictionaryWithObjectsAndKeys:
+                               [item objectForKey:@"name"],@"modelName",
+                                self.seriesName,@"seriesName",
+                                self.brandName,@"brandName",
+                                [item objectForKey:@"seq"],@"modelSeq",
+                                   nil];
+            
+            [ZCSNotficationMgr postMSG:kCarModelSelectedMSG obj:data];
+            
+            UIViewController *topViewcontroller =  [self.navigationController.viewControllers objectAtIndex:1];
+            
+            [self.navigationController popToViewController:topViewcontroller animated:YES];
+            
+        
         }
     }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];

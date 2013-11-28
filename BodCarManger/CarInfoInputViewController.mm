@@ -76,8 +76,13 @@
         [self.subClassInputTextField resignFirstResponder];
         NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
         [dateFormat setDateFormat:@"yyyy年MM月dd日"];
-        
-        NSDate *date = [dateFormat dateFromString:self.subClassInputTextField.text];
+        NSDate *date = nil;
+        if([self.subClassInputTextField.text isEqualToString:@""]){
+            date = [NSDate date];
+        }
+        else{
+            date = [dateFormat dateFromString:self.subClassInputTextField.text];
+        }
         datePickView.hidden = NO;
         [datePickView setDate:date animated:YES];
         

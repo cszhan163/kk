@@ -165,6 +165,10 @@
 		04C254CD18180EC500B4A678 /* car_check_status_mid.png in Resources */ = {isa = PBXBuildFile; fileRef = 04C254CA18180EC500B4A678 /* car_check_status_mid.png */; };
 		04C254CE18180EC500B4A678 /* car_check_status_top.png in Resources */ = {isa = PBXBuildFile; fileRef = 04C254CB18180EC500B4A678 /* car_check_status_top.png */; };
 		04C254D018180ED300B4A678 /* car_check_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 04C254CF18180ED300B4A678 /* car_check_btn.png */; };
+		04C515B218477F4200EC80F1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04C515B118477F4200EC80F1 /* Images.xcassets */; };
+		04C515B91847850E00EC80F1 /* Icon-57.png in Resources */ = {isa = PBXBuildFile; fileRef = 04C515B61847850E00EC80F1 /* Icon-57.png */; };
+		04C515BA1847850E00EC80F1 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 04C515B71847850E00EC80F1 /* icon.png */; };
+		04C515BB1847850E00EC80F1 /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04C515B81847850E00EC80F1 /* icon@2x.png */; };
 		04CA4118182950EB008DAE94 /* safe_green.png in Resources */ = {isa = PBXBuildFile; fileRef = 04CA4115182950EB008DAE94 /* safe_green.png */; };
 		04CA4119182950EB008DAE94 /* safe_red.png in Resources */ = {isa = PBXBuildFile; fileRef = 04CA4116182950EB008DAE94 /* safe_red.png */; };
 		04CA411A182950EB008DAE94 /* safe_yellow.png in Resources */ = {isa = PBXBuildFile; fileRef = 04CA4117182950EB008DAE94 /* safe_yellow.png */; };
@@ -586,6 +590,10 @@
 		04C254CA18180EC500B4A678 /* car_check_status_mid.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = car_check_status_mid.png; sourceTree = "<group>"; };
 		04C254CB18180EC500B4A678 /* car_check_status_top.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = car_check_status_top.png; sourceTree = "<group>"; };
 		04C254CF18180ED300B4A678 /* car_check_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = car_check_btn.png; sourceTree = "<group>"; };
+		04C515B118477F4200EC80F1 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		04C515B61847850E00EC80F1 /* Icon-57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-57.png"; sourceTree = "<group>"; };
+		04C515B71847850E00EC80F1 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
+		04C515B81847850E00EC80F1 /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = "<group>"; };
 		04CA4115182950EB008DAE94 /* safe_green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = safe_green.png; sourceTree = "<group>"; };
 		04CA4116182950EB008DAE94 /* safe_red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = safe_red.png; sourceTree = "<group>"; };
 		04CA4117182950EB008DAE94 /* safe_yellow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = safe_yellow.png; sourceTree = "<group>"; };
@@ -1109,6 +1117,7 @@
 				041878841840FD5200ACB9CA /* ReaderSampleViewController.m */,
 				043385FC182E86BF00CEE699 /* UIShareActionAlertView.h */,
 				043385FD182E86BF00CEE699 /* UIShareActionAlertView.m */,
+				04C515B118477F4200EC80F1 /* Images.xcassets */,
 			);
 			path = BodCarManger;
 			sourceTree = "<group>";
@@ -1116,6 +1125,9 @@
 		046B663817E74984006F34A1 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				04C515B61847850E00EC80F1 /* Icon-57.png */,
+				04C515B71847850E00EC80F1 /* icon.png */,
+				04C515B81847850E00EC80F1 /* icon@2x.png */,
 				04C254B91816D49200B4A678 /* DIGIFACEWIDE.ttf */,
 				046B663917E74984006F34A1 /* BodCarManger-Info.plist */,
 				046B663A17E74984006F34A1 /* InfoPlist.strings */,
@@ -1994,6 +2006,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				046B663C17E74984006F34A1 /* InfoPlist.strings in Resources */,
+				04C515B218477F4200EC80F1 /* Images.xcassets in Resources */,
 				046B664417E74984006F34A1 /* Default.png in Resources */,
 				046B664617E74984006F34A1 /* Default@2x.png in Resources */,
 				046B664817E74984006F34A1 /* Default-568h@2x.png in Resources */,
@@ -2020,6 +2033,7 @@
 				046B66C117E74C37006F34A1 /* car_plant_bg_bak.png in Resources */,
 				046B66C217E74C37006F34A1 /* tabbarbg.png in Resources */,
 				046B66C317E74C37006F34A1 /* car_plant_cellline.png in Resources */,
+				04C515BA1847850E00EC80F1 /* icon.png in Resources */,
 				046B66C417E74C37006F34A1 /* btn-back.png in Resources */,
 				046B66C517E74C37006F34A1 /* button-message.png in Resources */,
 				046B66C617E74C37006F34A1 /* icon-arrow.png in Resources */,
@@ -2045,6 +2059,7 @@
 				046B66E717E74C37006F34A1 /* spot2.png in Resources */,
 				046B66E817E74C37006F34A1 /* spot3.png in Resources */,
 				046B66E917E74C37006F34A1 /* spot4.png in Resources */,
+				04C515B91847850E00EC80F1 /* Icon-57.png in Resources */,
 				046B66EB17E74C37006F34A1 /* map-P.png in Resources */,
 				046B66EC17E74C37006F34A1 /* pin green.png in Resources */,
 				046B66ED17E74C37006F34A1 /* pin red.png in Resources */,
@@ -2068,6 +2083,7 @@
 				049DF96018156DEA00DFC9F1 /* car_check_gridtable_header.png in Resources */,
 				049DF96118156DEA00DFC9F1 /* car_check_header.png in Resources */,
 				049DF97F18157AB900DFC9F1 /* CarDetailPenalView.xib in Resources */,
+				04C515BB1847850E00EC80F1 /* icon@2x.png in Resources */,
 				049DF98218157AB900DFC9F1 /* CarDriveStatusView.xib in Resources */,
 				049DF98618157AB900DFC9F1 /* PlantTableViewCell.xib in Resources */,
 				049DF98C181588AF00DFC9F1 /* car_check_gridtable_bg.png in Resources */,
@@ -2409,6 +2425,7 @@
 		046B665217E74984006F34A1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
 				CLANG_CXX_LIBRARY = "compiler-default";
 				CODE_SIGN_IDENTITY = "iPhone Developer: Jiaen Liang (Y7T886XFFH)";
@@ -2449,6 +2466,7 @@
 		046B665317E74984006F34A1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
 				CLANG_CXX_LIBRARY = "compiler-default";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: ZHU CAIXI (A8RA93G2CJ)";

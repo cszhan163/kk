@@ -193,7 +193,7 @@ static ZCSNetClientNetInterfaceMgr *dressMemoInterfaceMgr = nil;
     //        [inInfo set:@"phoneNumber" value:[param objectForKey:@"phoneNumber"]];
     //    }
     //queryTripCalanderMonth @"userRegister"
-    [inInfo set:METHOD_TOKEN value:kCarBrandQuery]; // 接口名
+    [inInfo set:METHOD_TOKEN value:kCarModelQuery]; // 接口名
     [self startiPlant4MRequest:inInfo withSuccess:@selector(queryCarModelOk:) withFailed:@selector(queryCarModelFailed:)];
     
 }
@@ -236,10 +236,11 @@ static BOOL isExit = NO;
 - (id)carInforUpdate:(NSDictionary*)param withType:(int)type{
     EiInfo *inInfo = [self getCommIPlant4MParamByServiceToken:@"VESA02"];
     [inInfo set:@"userName" value:[param objectForKey:@"userName"]];
-    
+    /*
     [inInfo set:@"seriesName" value:[param objectForKey:@"seriesName"]];
     [inInfo set:@"modelInfo" value:[param objectForKey:@"modelInfo"]];
-    
+    */
+    [inInfo set:@"modelSeq" value:[param objectForKey:@"modelSeq"]];
     [inInfo set:@"NO" value:[param objectForKey:@"NO"]];
     [inInfo set:@"milage" value:[param objectForKey:@"milage"]];
     [inInfo set:@"lastMilage" value:[param objectForKey:@"lastMilage"]];
@@ -690,14 +691,17 @@ static BOOL isExit = NO;
         [resultDict setValue:[info get:@"retType"] forKey:@"retType"];
         [resultDict setValue:[info get:@"milage"] forKey:@"milage"];
         [resultDict setValue:[info get:@"insureExpDate"] forKey:@"insureExpDate"];
-        
+        NSString *carFullName = [NSString stringWithFormat:@"%@/%@",[info get:@"seriesName"],[info get:@"modelInfo"]];
+        /*
         [resultDict setValue:[info get:@"modelInfo"] forKey:@"modelInfo"];
         [resultDict setValue:[info get:@"seriesName"] forKey:@"seriesName"];
-        
+         */
         [resultDict setValue:[info get:@"modelSeq"] forKey:@"modelSeq"];
         [resultDict setValue:[info get:@"seriesSeq"] forKey:@"seriesSeq"];
         [resultDict setValue:[info get:@"brandSeq"] forKey:@"brandSeq"];
-
+        
+        [resultDict setValue:carFullName forKey:@"model"];
+        
         
         [resultDict setValue:[info get:@"vin"] forKey:@"vin"];
         [resultDict setValue:[info get:@"brandy"] forKey:@"brandy"];

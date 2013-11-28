@@ -141,7 +141,8 @@
     }
     else{
         
-        [self performSelectorInBackground:@selector(loadRouterHistoryData) withObject:nil];
+        //[self performSelectorInBackground:@selector(loadRouterHistoryData) withObject:nil];
+        [self loadRouterHistoryData];
     }
     //[mainView.topBarView ];
 	// Do any additional setup after loading the view.
@@ -452,12 +453,14 @@
  
         if(self.isRunning){
             [self setNavgationBarTitle:@"正在驾驶"];
-            [self performSelectorInBackground:@selector(loadRouterHistoryData) withObject:nil];
+            //[self performSelectorInBackground:@selector(loadRouterHistoryData) withObject:nil];
+            [self loadRouterHistoryData];
             self.realDataTimer = [NSTimer scheduledTimerWithTimeInterval:10 target:self selector:@selector(checkRunningData) userInfo:nil repeats:YES];
         }
         else{
             [self setNavgationBarTitle:@"最近驾驶"];
-            [self performSelectorInBackground:@selector(loadRouterHistoryData) withObject:nil];
+            //[self performSelectorInBackground:@selector(loadRouterHistoryData) withObject:nil];
+            [self loadRouterHistoryData];
         }
 }
 #pragma mark -

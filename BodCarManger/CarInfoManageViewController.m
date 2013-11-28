@@ -10,9 +10,10 @@
 #import "CarInfoInputViewController.h"
 #import "CarSelectedViewController.h"
 #import "CarNumberInputViewController.h"
+//@"车牌型号"
 static NSString *kCarInfoArray[] =
 {
-    @"车辆品牌",@"车牌型号",@"车牌号",
+    @"车辆品牌/型号",@"车牌号",
 };
 static NSString *kCarOtherInfoArray[] = {
     @"行驶总里程",@"上次保养里程",@"上次保养日期",@"保险到期日",
@@ -43,7 +44,8 @@ static NSString  *CarInfoKeyArray[] = {
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    //
+    [ZCSNotficationMgr addObserver:self call:@selector(didGetCarModelChange:) msgName:kCarModelSelectedMSG];
     
     [self setHiddenLeftBtn:NO];
     [self setNavgationBarTitle:@"车辆和设备信息"];
@@ -51,12 +53,23 @@ static NSString  *CarInfoKeyArray[] = {
     //[self shouldLoadCarInfoData];
 	// Do any additional setup after loading the view.
     isNeedFresh = YES;
-    [self performSelectorInBackground:@selector(shouldLoadDataFromNet) withObject:nil];
+    //[self performSelectorInBackground:@selector(shouldLoadDataFromNet) withObject:nil];
+    [self shouldLoadDataFromNet];
 }
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     //[self.navigationController popToRootViewControllerAnimated:NO];
     //[logInfo reloadData];
+    
+}
+- (void)didGetCarModelChange:(NSNotification*)ntf{
+    NSDictionary *data = [ntf object];
+    NSString *carInfoFullName = [NSString stringWithFormat:@"%@/%@",[data objectForKey:@"seriesName"],[data objectForKey:@"modelName"]];
+    NSMutableDictionary *newDict = [NSMutableDictionary dictionaryWithDictionary:self.data];
+    [newDict setObject:[data objectForKey:@"modelSeq"] forKey:@"modelSeq"];
+    self.data = newDict;
+    [self setCellItemData:carInfoFullName withIndexPath:[NSIndexPath indexPathForRow:0 inSection:1]];
+
 }
 - (void)didReceiveMemoryWarning
 {
@@ -79,7 +92,9 @@ static NSString  *CarInfoKeyArray[] = {
     }
     else
     {
-        return 3;
+        
+        //
+        return 2;
     }
     
 }
@@ -148,12 +163,12 @@ static NSString  *CarInfoKeyArray[] = {
             switch (indexPath.row) {
                 case 0:
                     bgImageName = @"setting_cell_header.png";
-                    tempText = [self.data objectForKey:@"seriesName"];
+                    tempText = [self.data objectForKey:@"model"];
                     if(tempText){
                         dataText = tempText;
                     }
                     break;
-                case 2:
+                case 1:
                     tempText = [self.data objectForKey:@"NO"];
                     if(tempText){
                         dataText = tempText;
@@ -281,19 +296,23 @@ static NSString  *CarInfoKeyArray[] = {
             
         }
         else if(indexPath.row == 1){
-        
+            /*
             CarSelectedViewController *carSelectedVc = [[CarSelectedViewController alloc] init];
             carSelectedVc.type = 2;
             carSelectedVc.modelSeq = self.modelSeq;
             
             [self.navigationController pushViewController:carSelectedVc animated:YES];
             SafeRelease(carSelectedVc);
+             
         }
         //[carSelectedVc ]
         else{
+             */
             CarNumberInputViewController *changeDataVc = [[CarNumberInputViewController alloc] init];
             changeDataVc.userEmail = cell.detailTextLabel.text;
             changeDataVc.barTitle = cell.textLabel.text;
+            changeDataVc.delegate = self;
+            changeDataVc.indexPath = indexPath;
             [self.navigationController pushViewController:changeDataVc animated:YES];
             SafeRelease(changeDataVc);
         }
@@ -356,6 +375,11 @@ static NSString  *CarInfoKeyArray[] = {
                          @"",@"insureExpDate",
                          nil];
         }
+        else{
+            NSMutableDictionary *newDict = [NSMutableDictionary dictionaryWithDictionary:self.data];
+            [newDict setValue:@"1" forKey:@"type"];
+            self.data = newDict;
+        }
         if([self.data objectForKey:@"vin"]){
             NSString *userId = [AppSetting getCurrentLoginUser];
             [AppSetting setUserCarId:[self.data objectForKey:@"vin"] withUserId:userId];
@@ -369,10 +393,32 @@ static NSString  *CarInfoKeyArray[] = {
         
         kNetEnd(self.view);
         if([[data objectForKey:@"retType"]intValue]== 0){
+            
             kUIAlertView(@"信息",@"车辆信息更新成功");
         }
         else{
-            kUIAlertView(@"信息", @"车辆信息更新失败")
+            /*
+             1          //失败     OBD设备号不对
+             2          //失败     OBD设备已经绑定别的车辆
+             3          //失败     车辆已经存在
+             4          //失败     其他原因
+             */
+            int type = [[data objectForKey:@"retType"]intValue];
+            NSString *msg = @"车辆信息更新失败";
+            switch (type) {
+                case 1:
+                msg = @"OBD设备号不对";
+                break;
+                case 2:
+                 msg = @"OBD设备已经绑定别的车辆";
+                break;
+                case 3:
+                 msg = @"车辆已经存在";
+                break;
+                default:
+                break;
+            }
+            kUIAlertView(@"信息",msg);
         }
         
         
@@ -437,8 +483,7 @@ static NSString  *CarInfoKeyArray[] = {
             switch (indexPath.row) {
                 case 0:
                     key = @"brandy";
-                    
-                    break;
+                    //break;
                 case 2:
                     key =@"model";
                     

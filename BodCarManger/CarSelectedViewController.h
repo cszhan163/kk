@@ -10,6 +10,9 @@
 
 @interface CarSelectedViewController :UIImageNetBaseViewController
 @property(nonatomic,assign)int type;
+@property(nonatomic,strong)NSString *brandName;
+@property(nonatomic,strong)NSString *seriesName;
+@property(nonatomic,strong)NSString *modelName;
 @property(nonatomic,strong)NSString *brandSeq;
 @property(nonatomic,strong)NSString *seriesSeq;
 @property(nonatomic,strong)NSString *modelSeq;

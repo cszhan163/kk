@@ -26,20 +26,20 @@ static DBManage *gDb = nil;
 	return gDb;
 }
 - (void)saveDataToFile:(NSString*)fileName{
-    fileName = @"locationData.plist";
+    //fileName = @"locationData.plist";
     NSString *path = [NSString stringWithFormat:@"%@/Documents/%@",NSHomeDirectory(),fileName];
     [self.locationData writeToFile:path atomically:YES];
 }
 - (NSString*)getDataFileFullPath:(NSString*)fileName{
-    fileName = @"locationData.plist";
+    //fileName = @"locationData.plist";
     NSString *path = [NSString stringWithFormat:@"%@/Documents/%@",NSHomeDirectory(),fileName];
     return path;
 }
 -(NSDictionary*)getLocationPointsData{
-    NSDictionary *locationData = [NSDictionary dictionaryWithContentsOfFile:[self getDataFileFullPath:@""]];
+    NSDictionary *locationData = [NSDictionary dictionaryWithContentsOfFile:[self getDataFileFullPath:@"locationData.plist"]];
     if(locationData == nil){
         locationData = [NSDictionary dictionary];
-        [self saveDataToFile:@""];
+        [self saveDataToFile:@"locationData.plist"];
     }
     self.locationData = locationData;
     return locationData;
@@ -78,7 +78,7 @@ static DBManage *gDb = nil;
         if([dictData objectForKey:key]== nil)
             [dictData setValue:name forKey:key];
         self.locationData = dictData;
-        [self saveDataToFile:@""];
+        [self saveDataToFile:@"locationData.plist"];
     }
 }
 - (void)setLocationPointNameByLatitude:(double)lat withLogtitude:(double)lng withData:(NSString*)name withIndex:(NSInteger)index withTag:(BOOL)tag{
@@ -90,7 +90,7 @@ static DBManage *gDb = nil;
         if([dictData objectForKey:key]== nil)
             [dictData setValue:name forKey:key];
         self.locationData = dictData;
-        [self saveDataToFile:@""];
+        [self saveDataToFile:@"locationData.plist"];
     }
     
     if(delegate && [delegate respondsToSelector:@selector(didGetLocationData:withIndex:withTag:)]){
@@ -171,5 +171,20 @@ static DBManage *gDb = nil;
     SafeRelease(loc);
     SafeRelease(Geocoder);
 
+}
+- (NSArray*)getMessageHistData:(NSString*)userId{
+    NSString *fileName = [NSString stringWithFormat:@"%@.data",userId];
+    NSArray *data = [NSArray arrayWithContentsOfFile:[self getDataFileFullPath:fileName]];
+    //if([self getDataFileFullPath])
+    if(data == nil){
+        return  [NSMutableArray array];
+    }
+    else{
+        return data;
+    }
+}
+- (void)saveMessageHistData:(NSArray*)data withUserId:(NSString*)userId{
+    NSString *fileName = [NSString stringWithFormat:@"%@.data",userId];
+    [data writeToFile:[self getDataFileFullPath:fileName] atomically:YES];
 }
 @end

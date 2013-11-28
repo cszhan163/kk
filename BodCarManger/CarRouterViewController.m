@@ -45,8 +45,9 @@ NSString* gDataArr[] = {@"12.5km",@"11km/h",@"87L",@"3h"};
     
     if([self.dataArray count]==0){
         
-        [self performSelectorInBackground:@selector(shouldLoadNewerData:) withObject:tweetieTableView];
+        //[self performSelectorInBackground:@selector(shouldLoadNewerData:) withObject:tweetieTableView];
         //self.locationDict = [DBManage getLocationPointsData];
+        [self shouldLoadNewerData:tweetieTableView];
     }
 
 }

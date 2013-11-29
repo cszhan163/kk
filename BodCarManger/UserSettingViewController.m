@@ -541,6 +541,8 @@ static NSString *kCellImageArr[] = {
                 case 1: //新浪微博
                 case 2: //腾讯微博
                 {
+                    kUIAlertView(@"提示", @"正在建设，敬请期待");
+                    return;
                     NSString *type = nil;
                 
                     if (index == 0) {
@@ -711,8 +713,17 @@ static NSString *kCellImageArr[] = {
     NSString *resKey = [obj objectForKey:@"key"];//[respRequest resourceKey];
     //NSString *resKey = [respRequest resourceKey];
     if([resKey isEqualToString:kNetLoginRes]){
-        self.userData = data;
-        [AppSetting setLoginUserInfo:data];
+        NSMutableDictionary *newDict = [NSMutableDictionary  dictionary];
+        for(id item in [data allKeys]){
+            if([[data objectForKey:item] isKindOfClass:[NSNull class]]){
+                [newDict setValue:@"" forKey:item];
+            }
+            else{
+                [newDict setValue:[data objectForKey:item] forKey:item];
+            }
+        }
+        self.userData = newDict;
+        [AppSetting setLoginUserInfo:newDict];
         [logInfo performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
     }
     BOOL status = YES;

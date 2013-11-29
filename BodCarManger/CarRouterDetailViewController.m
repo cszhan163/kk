@@ -146,6 +146,7 @@
     }
     //[mainView.topBarView ];
 	// Do any additional setup after loading the view.
+    [self setRightBtnHidden:YES];
 }
 
 - (void)loadRouterHistoryData{
@@ -379,7 +380,10 @@
             _mStartName = [[DBManage  getSingletone] getLocationPointNameByLatitude:lat withLogtitude:lng withIndex:-1 withTag:YES];
             [[DBManage getSingletone]setDelegate:self];
 #else
-            
+            if([_mStartName isEqualToString:@"未知"]){
+                _mStartName = [[DBManage  getSingletone] getLocationPointNameByLatitude:lat withLogtitude:lng withIndex:-1 withTag:YES];
+                [[DBManage getSingletone]setDelegate:self];
+            }
 #endif
             if(_mStartName){
                 place = [[Place alloc]init];
@@ -402,7 +406,9 @@
 #if kLocationPhone
             _mEndName = [[DBManage  getSingletone] getLocationPointNameByLatitude:lat withLogtitude:lng withIndex:-1 withTag:NO];
 #else
-            
+            if([_mEndName isEqualToString:@"未知"]){
+                _mEndName = [[DBManage  getSingletone] getLocationPointNameByLatitude:lat withLogtitude:lng withIndex:-1 withTag:NO];
+            }
 #endif
             if(_mEndName && !self.isRunning)
             {

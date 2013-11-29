@@ -51,12 +51,12 @@ static char *carNumProvince[] = {"京","津","冀","晋","蒙","辽","吉","黑"
     NSString *provinceStr = nil;
     
     
-    if([self.userEmail length]>=2){
+    if([self.userEmail length]>=1){
     }
     else{
-        self.userEmail = @"沪A123456";
+        self.userEmail = @"沪A12345";
     }
-    self.subClassInputTextField.text = [self.userEmail substringFromIndex:2];
+    self.subClassInputTextField.text = [self.userEmail substringFromIndex:1];
     provinceStr = [self.userEmail substringToIndex:1];
     NSRange range ;
     range.location = 1;
@@ -79,9 +79,11 @@ static char *carNumProvince[] = {"京","津","冀","晋","蒙","辽","吉","黑"
     }
      CGRect rect = self.subClassInputTextField.frame;
      headerLabel = [UIComUtil createLabelWithFont:[UIFont systemFontOfSize:14] withTextColor:[UIColor whiteColor] withText:[self.userEmail substringToIndex:2 ] withFrame:CGRectMake(rect.origin.x,rect.origin.y,80.f,rect.size.height)];
-    
+    headerLabel.textAlignment = NSTextAlignmentRight;
+    headerLabel.text = provinceStr;
     [self.view addSubview:headerLabel];
     SafeRelease(headerLabel);
+    
    
     self.subClassInputTextField.frame = CGRectMake(rect.origin.x+80, rect.origin.y, rect.size.width-80.f, rect.size.height);
     
@@ -91,7 +93,7 @@ static char *carNumProvince[] = {"京","津","冀","晋","蒙","辽","吉","黑"
     picView.dataSource = self;
     [self.view addSubview:picView];
     [picView selectRow:proviceIndex inComponent:0 animated:YES];
-    [picView selectRow:charIndex inComponent:1 animated:YES];
+    //[picView selectRow:charIndex inComponent:1 animated:YES];
     SafeRelease(picView);
     
     
@@ -106,7 +108,7 @@ static char *carNumProvince[] = {"京","津","冀","晋","蒙","辽","吉","黑"
 // returns the number of 'columns' to display.
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
 
-    return 2;
+    return 1;
 }
 
 // returns the # of rows in each component..
@@ -132,12 +134,19 @@ static char *carNumProvince[] = {"京","津","冀","晋","蒙","辽","吉","黑"
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
     NSInteger provinceIndex = [pickerView selectedRowInComponent:0];
+#if 0
     NSInteger charIndex = [pickerView selectedRowInComponent:1];
     
     NSString *headerStr = [NSString stringWithFormat:@"%@%@",[self.proviceArray objectAtIndex:provinceIndex],[self.characterArray objectAtIndex:charIndex]];
     NSRange range;
     range.length = 2;
     range.location = 0;
+#else
+    NSString *headerStr = [NSString stringWithFormat:@"%@",[self.proviceArray objectAtIndex:provinceIndex]];
+    NSRange range;
+    range.length = 1;
+    range.location = 0;
+#endif
     self.userEmail = [self.userEmail stringByReplacingCharactersInRange:range withString:headerStr];
     headerLabel.text = headerStr;
     
@@ -167,5 +176,17 @@ static char *carNumProvince[] = {"京","津","冀","晋","蒙","辽","吉","黑"
 	}
     
 }
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+    if([textField.text length]>6){
+        return NO;
+    }
+    else if([textField.text length]==6 && range.location>[textField.text length]-1){
+        return NO;
+    }
+    else{
+        return YES;
+    }
+}
+
 
 @end

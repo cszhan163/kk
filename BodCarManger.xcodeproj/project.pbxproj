@@ -165,7 +165,6 @@
 		04C254CD18180EC500B4A678 /* car_check_status_mid.png in Resources */ = {isa = PBXBuildFile; fileRef = 04C254CA18180EC500B4A678 /* car_check_status_mid.png */; };
 		04C254CE18180EC500B4A678 /* car_check_status_top.png in Resources */ = {isa = PBXBuildFile; fileRef = 04C254CB18180EC500B4A678 /* car_check_status_top.png */; };
 		04C254D018180ED300B4A678 /* car_check_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 04C254CF18180ED300B4A678 /* car_check_btn.png */; };
-		04C515B218477F4200EC80F1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04C515B118477F4200EC80F1 /* Images.xcassets */; };
 		04C515B91847850E00EC80F1 /* Icon-57.png in Resources */ = {isa = PBXBuildFile; fileRef = 04C515B61847850E00EC80F1 /* Icon-57.png */; };
 		04C515BA1847850E00EC80F1 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 04C515B71847850E00EC80F1 /* icon.png */; };
 		04C515BB1847850E00EC80F1 /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04C515B81847850E00EC80F1 /* icon@2x.png */; };
@@ -590,7 +589,6 @@
 		04C254CA18180EC500B4A678 /* car_check_status_mid.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = car_check_status_mid.png; sourceTree = "<group>"; };
 		04C254CB18180EC500B4A678 /* car_check_status_top.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = car_check_status_top.png; sourceTree = "<group>"; };
 		04C254CF18180ED300B4A678 /* car_check_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = car_check_btn.png; sourceTree = "<group>"; };
-		04C515B118477F4200EC80F1 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		04C515B61847850E00EC80F1 /* Icon-57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-57.png"; sourceTree = "<group>"; };
 		04C515B71847850E00EC80F1 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		04C515B81847850E00EC80F1 /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = "<group>"; };
@@ -1117,7 +1115,6 @@
 				041878841840FD5200ACB9CA /* ReaderSampleViewController.m */,
 				043385FC182E86BF00CEE699 /* UIShareActionAlertView.h */,
 				043385FD182E86BF00CEE699 /* UIShareActionAlertView.m */,
-				04C515B118477F4200EC80F1 /* Images.xcassets */,
 			);
 			path = BodCarManger;
 			sourceTree = "<group>";
@@ -2006,7 +2003,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				046B663C17E74984006F34A1 /* InfoPlist.strings in Resources */,
-				04C515B218477F4200EC80F1 /* Images.xcassets in Resources */,
 				046B664417E74984006F34A1 /* Default.png in Resources */,
 				046B664617E74984006F34A1 /* Default@2x.png in Resources */,
 				046B664817E74984006F34A1 /* Default-568h@2x.png in Resources */,
@@ -2425,10 +2421,9 @@
 		046B665217E74984006F34A1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
 				CLANG_CXX_LIBRARY = "compiler-default";
-				CODE_SIGN_IDENTITY = "iPhone Developer: Jiaen Liang (Y7T886XFFH)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jiaen Liang (Y7T886XFFH)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2466,10 +2461,9 @@
 		046B665317E74984006F34A1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
 				CLANG_CXX_LIBRARY = "compiler-default";
-				CODE_SIGN_IDENTITY = "iPhone Distribution: ZHU CAIXI (A8RA93G2CJ)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: ZHU CAIXI (A8RA93G2CJ)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

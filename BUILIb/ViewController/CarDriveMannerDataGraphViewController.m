@@ -39,8 +39,8 @@
     mainView.topBarView.hidden = YES;
     
 	// Do any additional setup after loading the view.
-    NSArray *colorArray = @[HexRGB(79, 120, 205),
-      HexRGB(92, 200, 92),
+    NSArray *colorArray = @[HexRGB(92, 200, 92),
+      HexRGB(237, 209, 69),
       HexRGB(237, 54, 75),
       ];
     NSArray *tagImageArray = @[@"safe_green.png",@"safe_yellow.png",@"safe_red.png",];
@@ -60,9 +60,9 @@
     OilAnalysisData *oilData =  [[OilAnalysisData alloc]init];
     
     oilData.percentDataArray = [NSArray arrayWithObjects:
+                                [data objectForKey:@"accRate"],
                                 [data objectForKey:@"breakRate"],
                                 [data objectForKey:@"overSpeedRate"],
-                                [data objectForKey:@"accRate"],
                                 nil];
     NSMutableArray *linesArray = [NSMutableArray array];
     for(int i = 0;i<3;i++){

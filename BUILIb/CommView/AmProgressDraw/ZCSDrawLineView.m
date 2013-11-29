@@ -97,7 +97,7 @@
         for(int i =0;i<[_pointsData count];i++){
             id item = [_pointsData objectAtIndex:i];
             CGFloat xPointItem = [[item objectForKey:@"x"]floatValue];
-            CGFloat yPointItem = [[item objectForKey:@"y"]floatValue]*10;
+            CGFloat yPointItem = [[item objectForKey:@"y"]floatValue];
             CGFloat xPoint = xPointItem *_xStep+_offsetX;
             CGFloat yPoint = _maxLenY-(yPointItem *_yStep)+_offsetY;
             //startX = startX+xPoint;

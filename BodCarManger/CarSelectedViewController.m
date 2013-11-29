@@ -26,7 +26,20 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.view.backgroundColor = HexRGB(202, 202, 204);
+    tweetieTableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     [self shouldLoadNewerData:tweetieTableView];
+    NSString *title = @"";
+     if(self.type  == 0){
+         title = @"品牌选择";
+     }
+    else if(self.type ==1){
+        title = @"车系选择";
+    }
+    else if(self.type ==2){
+        title = @"车型选择";
+    }
+    [self setNavgationBarTitle:title];
 	// Do any additional setup after loading the view.
 }
 
@@ -54,7 +67,7 @@
 	cell = [tableView dequeueReusableCellWithIdentifier:LabelTextFieldCell];
     if(cell == nil){
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:LabelTextFieldCell];
-        cell.backgroundColor = [UIColor clearColor];
+        cell.backgroundColor = [UIColor whiteColor];
         
         //cell.clipsToBounds = YES;
         //cell.contentView.clipsToBounds = YES;
@@ -99,6 +112,7 @@
             carSelectedVc.seriesName = [item objectForKey:@"name"];
             carSelectedVc.seriesSeq = [item objectForKey:@"seq"];
             carSelectedVc.type = 2;
+            //carSelectedVc.barTitle =
             [self.navigationController pushViewController:carSelectedVc animated:YES];
             SafeRelease(carSelectedVc);
         }

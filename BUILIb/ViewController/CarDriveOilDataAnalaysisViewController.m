@@ -75,8 +75,8 @@
     
     oilData.percentDataArray = [NSArray arrayWithObjects:
                                 [data objectForKey:@"breakRate"],
-                                [data objectForKey:@"highRPMRate"],
                                 [data objectForKey:@"accRate"],
+                                [data objectForKey:@"highRPMRate"],
                                 nil];
     NSMutableArray *linesArray = [NSMutableArray array];
     for(int i = 0;i<3;i++){
@@ -103,15 +103,15 @@
         
         NSString *speedUp = [NSString stringWithFormat:@"%@",[item objectForKey:@"accCount"]];
         NSString *speedDown = [NSString stringWithFormat:@"%@",[item objectForKey:@"breakCount"]];
-        NSString *overSpeadCoutn = [NSString stringWithFormat:@"%@",[item objectForKey:@"overSpeedCount"]];
+        NSString *overSpeadCoutn = [NSString stringWithFormat:@"%@",[item objectForKey:@"highRPMCount"]];
         //[cell setTableCellCloumn:0 withData:date];
         [[linesArray objectAtIndex:0] addObject:[NSDictionary dictionaryWithObjectsAndKeys:
                                                 [item objectForKey:@"day"],@"x",
-                                                 speedUp,@"y",nil]];
+                                                 speedDown,@"y",nil]];
         
         [[linesArray objectAtIndex:1] addObject:[NSDictionary dictionaryWithObjectsAndKeys:
                                                  [item objectForKey:@"day"],@"x",
-                                                 speedDown,@"y",nil]];
+                                                 speedUp,@"y",nil]];
         
         [[linesArray objectAtIndex:2] addObject:[NSDictionary dictionaryWithObjectsAndKeys:
                                                  [item objectForKey:@"day"],@"x",

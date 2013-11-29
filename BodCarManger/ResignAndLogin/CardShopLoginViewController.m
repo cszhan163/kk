@@ -163,7 +163,7 @@
          [AppSetting setCurrentLoginUser:self.txtusername.text];
         
         
-        [AppSetting setLoginUserDetailInfo:data userId:self.txtusername.text];
+        //[AppSetting setLoginUserDetailInfo:data userId:self.txtusername.text];
         //[AppSetting setLoginUserInfo:];
         [AppSetting setLoginUserId:self.txtusername.text];
         [AppSetting setLoginUserPassword:self.txtpassword.text];

@@ -282,11 +282,11 @@ NSString* gDataArr[] = {@"12.5km",@"11km/h",@"87L",@"3h"};
     // startPosition, endPosition;
     NSString *startLocation = [data objectForKey:@"startPosition"];
     if(startLocation == nil||[startLocation isKindOfClass:[NSNull class]]||[startLocation isEqualToString:@""]){
-        startLocation = @"未知";
+        startLocation = [[DBManage getSingletone] getLocationPointNameByLatitude:[latLogArr[1]floatValue]/kGPSMaxScale withLogtitude:[latLogArr[0]floatValue]/kGPSMaxScale withIndex:indexPath.row  withTag:YES];
     }
     NSString *endLocation = [data objectForKey:@"endPosition"];
     if(endLocation == nil||[endLocation isKindOfClass:[NSNull class]]||[endLocation isEqualToString:@""]){
-        endLocation = @"未知";
+        endLocation = [[DBManage getSingletone] getLocationPointNameByLatitude:[latLogArr[1]floatValue]/kGPSMaxScale withLogtitude:[latLogArr[0]floatValue]/kGPSMaxScale withIndex:indexPath.row withTag:NO];
     }
     
 #endif

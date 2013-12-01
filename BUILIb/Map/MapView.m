@@ -235,6 +235,7 @@
         pointsToUse[i] = coords;
     }
     MKPolyline *lineOne = [MKPolyline polylineWithCoordinates:pointsToUse count:[routes count]];
+    lineOne.title = @"green";
     [mapView addOverlay:lineOne];
     
 //********************作者源代码********************

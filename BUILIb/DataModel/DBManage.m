@@ -65,7 +65,7 @@ static DBManage *gDb = nil;
     NSLog(@"key:%@",key);
     if([self.locationData objectForKey:key] == nil){
         [self getLocationDataFromVendorWithLatitude:lat withLotitude:lng withIndex:index withTag:tag];
-        return nil;
+        return @"";
     }
     return [self.locationData objectForKey:key];
 }

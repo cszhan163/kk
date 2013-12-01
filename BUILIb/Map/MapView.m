@@ -121,7 +121,33 @@
 
 	[mapView setRegion:region animated:YES];
 }
+- (void)centralMapwithPoints:(NSArray*)points{
 
+    MKCoordinateRegion region;
+    
+	CLLocationDegrees maxLat = -90;
+	CLLocationDegrees maxLon = -180;
+	CLLocationDegrees minLat = 90;
+	CLLocationDegrees minLon = 180;
+	for(int idx = 0; idx < points.count; idx++)
+	{
+		CLLocation* currentLocation = [points objectAtIndex:idx];
+		if(currentLocation.coordinate.latitude > maxLat)
+			maxLat = currentLocation.coordinate.latitude;
+		if(currentLocation.coordinate.latitude < minLat)
+			minLat = currentLocation.coordinate.latitude;
+		if(currentLocation.coordinate.longitude > maxLon)
+			maxLon = currentLocation.coordinate.longitude;
+		if(currentLocation.coordinate.longitude < minLon)
+			minLon = currentLocation.coordinate.longitude;
+	}
+	region.center.latitude     = (maxLat + minLat) / 2;
+	region.center.longitude    = (maxLon + minLon) / 2;
+	region.span.latitudeDelta  = maxLat - minLat + 0.018;
+	region.span.longitudeDelta = maxLon - minLon + 0.018;
+    
+	[mapView setRegion:region animated:YES];
+}
 -(void) showRouteFrom: (Place*) f to:(Place*) t {
 	
 	if(routes) {
@@ -187,6 +213,12 @@
 }
 - (void)addRouterView:(CLLocationCoordinate2D *)points withCount:(int)count{
     MKPolyline *lineOne = [MKPolyline polylineWithCoordinates:points count:count];
+    lineOne.title = @"red";
+    [mapView addOverlay:lineOne];
+}
+- (void)addRouterView:(CLLocationCoordinate2D *)points withCount:(int)count withColor:(NSString*)color{
+    MKPolyline *lineOne = [MKPolyline polylineWithCoordinates:points count:count];
+    lineOne.title = color;
     [mapView addOverlay:lineOne];
 }
 -(void) updateRouteView {
@@ -255,20 +287,50 @@
 //	routeView.hidden = NO;
 //	[routeView setNeedsDisplay];
 //}
-
+static MKPolylineView *lineview =  nil;
 - (MKOverlayView *)mapView:(MKMapView *)mapView viewForOverlay:(id <MKOverlay>)overlay
 {
     if ([overlay isKindOfClass:[MKPolyline class]])
     {
-        MKPolylineView *lineview=[[MKPolylineView alloc] initWithOverlay:overlay] ;
+        MKPolyline *targetView = (MKPolyline*)overlay;
+        
+        //if(lineview == nil)
+            lineview=[[MKPolylineView alloc] initWithOverlay:overlay] ;
+
+        if([targetView.title isEqual:@"red"]){
+            lineview.strokeColor = [UIColor redColor];
+        }
+        if([targetView.title isEqualToString:@"yeallow"]){
+            lineview.strokeColor = [UIColor yellowColor];
+        }
+        if([targetView.title isEqualToString:@"green"]){
+            lineview.strokeColor = [UIColor greenColor];
+        }
         //路线颜色
-        lineview.strokeColor=[UIColor colorWithRed:69.0f/255.0f green:212.0f/255.0f blue:255.0f/255.0f alpha:0.9];
+//        lineview.strokeColor=[UIColor colorWithRed:69.0f/255.0f green:212.0f/255.0f blue:255.0f/255.0f alpha:0.9];
         lineview.lineWidth=8.0;
-        return lineview;
+        
+        return [lineview autorelease];
     }
     return nil;
 }
+- (void)mapView:(MKMapView *)mapView didAddOverlayViews:(NSArray *)overlayViews NS_DEPRECATED_IOS(4_0, 7_0){
 
+
+}
+//- (void)mapView:(MKMapView *)mapView didAddOverlayRenderers:(NSArray *)renderers NS_AVAILABLE(10_9, 7_0);{
+//    if ([overlay isKindOfClass:[MKPolyline class]])
+//    {
+//        
+//        MKPolylineView *lineview=[[MKPolylineView alloc] initWithOverlay:overlay] ;
+//        //路线颜色
+//        lineview.strokeColor=[UIColor colorWithRed:69.0f/255.0f green:212.0f/255.0f blue:255.0f/255.0f alpha:0.9];
+//        lineview.lineWidth=8.0;
+//        
+//        return lineview;
+//    }
+//
+//}
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation {
     
     if ([annotation isKindOfClass:[MKUserLocation class]]) {

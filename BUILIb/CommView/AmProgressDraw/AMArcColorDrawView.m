@@ -145,7 +145,9 @@
 #endif	
     CGContextRestoreGState (context); 	//Restore the context to the previously saved state in case you want to do something else.
 }
-
+//- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
+//    
+//}
 #if __has_feature(objc_arc)
 #else
 - (void)dealloc {

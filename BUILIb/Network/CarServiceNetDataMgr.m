@@ -906,6 +906,7 @@ static BOOL isExit = NO;
             NSDictionary *item = [NSDictionary dictionaryWithObjectsAndKeys:
                                   [row objectForKey:@"lng"],@"lng",
                                   [row objectForKey:@"lat"],@"lat",
+                                  [row objectForKey:@"speed"],@"speed",
                                   nil];
             [gpsArray addObject:item];
 

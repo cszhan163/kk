@@ -361,6 +361,11 @@
     //NE_LOG(@"warning not implemetation net respond");
 }
 
+#define  kLowSpeed   15
+#define  kNormalSpeed  25
+
+#define  kHighSpeed  30
+
 - (void)updateUIData:(NSDictionary*)data{
 
     NSMutableArray *gpsScaleArray = [NSMutableArray array];
@@ -422,6 +427,8 @@
                 //[mMapView addPinToMap:mEndCoordinate2d withName:mEndName];
                 //[self didGetLocationData:mEndName withIndex:-1 withTag:NO];
             }
+            
+            
         }
         
         CLLocation *localpoint = [[CLLocation alloc] initWithLatitude:lat longitude:lng];
@@ -432,9 +439,52 @@
         index++;
     }
     printf("\n\n");
-    
+#if 0
     if([gpsScaleArray count])
      [mMapView  showRouteWithPointsData:gpsScaleArray];
+#else
+    [mMapView centralMapwithPoints:gpsScaleArray];
+    for(int i = 0;i<[self.gprsDataArray count]-1;i++){
+        CGFloat startPoint = 0.f;
+        CGFloat endPoint = 0.f;
+        CLLocationCoordinate2D pointsToUse[2];
+        for(int j =0 ;j<2;j++)
+        {
+           
+            NSDictionary *item = [self.gprsDataArray objectAtIndex:i+j];
+            CGFloat value = [[item objectForKey:@"speed"] floatValue];
+           
+            CLLocationCoordinate2D coords;
+            double lng = [[item objectForKey:@"lng"] doubleValue]/kGPSMaxScale;
+            double lat = [[item objectForKey:@"lat"] doubleValue]/kGPSMaxScale;
+            coords.latitude = lat;
+            coords.longitude = lng;
+            coords = transform(coords);
+            printf("[%lf,%lf]",coords.latitude,coords.longitude);
+            if(j== 0){
+                startPoint = value;
+                pointsToUse[0] = coords;
+            }
+            else{
+                endPoint = value;
+                pointsToUse[1] = coords;
+            }
+            
+        }
+        NSString *color = @"red";
+        CGFloat avgSpeed = (startPoint+endPoint/2.f);
+        if(avgSpeed < kLowSpeed){
+            
+        }
+        else if(avgSpeed <kNormalSpeed){
+            color = @"yeallow";
+        }
+        else{
+            color = @"green";
+        }
+        [mMapView addRouterView:pointsToUse withCount:2 withColor:color];
+    }
+#endif
     [self initMapPointData:data];
 }
 - (void)updateUIRealTimeData:(NSDictionary*)data{

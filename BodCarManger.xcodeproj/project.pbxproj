@@ -2450,6 +2450,7 @@
 					/Users/mac/Desktop/work/bodCar/code/BodCarManger/BodCarManger/ZBarSDK,
 					/Users/mac/Desktop/work/bodCar/code/BodCarManger/ZBarSDK,
 				);
+				OTHER_CFLAGS = "-mthumb";
 				OTHER_LDFLAGS = "-licucore";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -2489,6 +2490,10 @@
 					/Users/mac/Desktop/work/bodCar/code/BodCarManger/BodCarManger/WeiXin,
 					/Users/mac/Desktop/work/bodCar/code/BodCarManger/BodCarManger/ZBarSDK,
 					/Users/mac/Desktop/work/bodCar/code/BodCarManger/ZBarSDK,
+				);
+				OTHER_CFLAGS = (
+					"-DNS_BLOCK_ASSERTIONS=1",
+					"-mthumb",
 				);
 				OTHER_LDFLAGS = "-licucore";
 				PRODUCT_NAME = "$(TARGET_NAME)";

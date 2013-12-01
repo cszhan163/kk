@@ -36,4 +36,5 @@
 
 - (void)addFromPoint:(Place*)f toPoint:(Place*)t;
 - (void)addPointToMap:(Place*)f;
+- (void)centralMapwithPoints:(NSArray*)points;
 @end

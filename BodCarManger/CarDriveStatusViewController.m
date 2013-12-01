@@ -502,7 +502,7 @@ static NSString* kMonthTextArray[] = {
     carDriveStatusView.mRunOilCostLabel.text = [NSString stringWithFormat:@"%0.2lf",avgOil];
     carDriveStatusView.mRunMoneyCostLabel.text = [NSString stringWithFormat:@"%0.2lf",totalOil];
     carDriveStatusView.mRunDaysLabel.text =[NSString stringWithFormat:@"%d",day];
-    carDriveStatusView.mRunStepLabel.text = [NSString stringWithFormat:@"%0.2lf",segment];
+    carDriveStatusView.mRunStepLabel.text = [NSString stringWithFormat:@"%0.lf",segment];
     carDriveStatusView.mRunDistanceLabel.text = [NSString stringWithFormat:@"%0.2lf",totalMile];
     int monthInex = self.mCurrDate.month-1;
     carDriveStatusView.mHeadMonthLabel.text = [NSString stringWithFormat:@"%@驾驶情况",kMonthTextArray[monthInex]];
@@ -538,7 +538,7 @@ static NSString* kMonthTextArray[] = {
     else{
         maxDistance = [[data objectForKey:@"milageSpan"]floatValue];
     }
-    CGFloat day =  realDay/(maxDay*30) *84.f;
+    CGFloat day =  realDay/(maxDay*30.f) *84.f;
     CGFloat distance = realDistance/maxDistance*84.f;
     if(realDay>=maxDay-10||realDistance>=maxDistance-2000)
     {

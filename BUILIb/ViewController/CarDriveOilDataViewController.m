@@ -80,7 +80,7 @@ typedef enum  viewType{
     
 #else
     CGFloat currY = 0.f;
-    CGRect viewRect = CGRectMake(0.f,0.f,bgImage.size.width/kScale,bgImage.size.height/kScale);
+    CGRect viewRect = CGRectMake(0.f,0.f,bgImage.size.width/kScale,bgImage.size.height/kScale+20.f);
     
     
     CGSize size = viewRect.size;//CGSizeMake(viewRect.size, bgImage.size.height/kScale);
@@ -175,8 +175,8 @@ typedef enum  viewType{
 #pragma mark scrollerView
 -(UIView*)viewForItemAtIndex:(BSPreviewScrollView*)scrollView index:(int)index{
     UIImageWithFileName(UIImage *bgImage, @"car_plant_bg.png");
-    UIView *maskView =[[UIView alloc]initWithFrame:CGRectMake(0.,0.f,kOilDataViewWidth, kOilDataViewHeight)];
-    maskView.backgroundColor = [UIColor clearColor];
+    UIView *maskView =[[UIView alloc]initWithFrame:CGRectMake(0,0.f,bgImage.size.width/kScale , bgImage.size.height/kScale+20.f)];
+    //maskView.backgroundColor = [UIColor redColor];
     // maskView.frame =
     //[maskView addSubview:maskView];
     if(index == 0){
@@ -186,8 +186,9 @@ typedef enum  viewType{
         dataTableView.backgroundColor = [UIColor clearColor];
         dataTableView.separatorStyle  = UITableViewCellSeparatorStyleNone;
         dataTableView.contentInset = UIEdgeInsetsMake(50.f,0.f,0.f,0.f);
-        dataTableView.frame = CGRectMake(0.f,0.f,bgImage.size.width/kScale,bgImage.size.height/kScale);
+        dataTableView.frame = CGRectMake(0.f,0.f,bgImage.size.width/kScale,bgImage.size.height/kScale+20.f);
         [maskView addSubview:dataTableView];
+        //dataTableView.backgroundColor = [UIColor cl ];
         SafeRelease(dataTableView);
         [dataTableView reloadData];
         //[carDriveStatusView setTarget:self withAction:@selector(didTouchButton:)];

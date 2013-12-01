@@ -67,7 +67,7 @@
     //topNavBar.delegate = navItemCtrl;
     
     [tableViewBg addSubview:navItemCtrl.view];
-    navItemCtrl.view.frame = CGRectMake(0.f,-20.f,kDeviceScreenWidth,kDeviceScreenHeight-kMBAppStatusBar-kMBAppBottomToolBarHeght-kMBAppTopToolBarHeight);
+    navItemCtrl.view.frame = CGRectMake(0.f,-20.f,kDeviceScreenWidth,kDeviceScreenHeight-kMBAppStatusBar-kMBAppBottomToolBarHeght-kMBAppTopToolBarHeight+20.f);
 #if 1
     [tableViewBg addSubview:topNavBar];
     SafeRelease(topNavBar);

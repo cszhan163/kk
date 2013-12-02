@@ -76,9 +76,9 @@
     mainView.mainFramView.backgroundColor = kAppUserBGWhiteColor;
 #endif
     
-    tweetieTableView.frame = CGRectMake(9.f,kMBAppBottomToolBarHeght+18.f,302,400);
+    tweetieTableView.frame = CGRectMake(9.f,kMBAppTopToolBarHeight+18.f,302,kDeviceScreenHeight-kMBAppBottomToolBarHeght-kMBAppTopToolBarHeight-kMBAppStatusBar-18.f-9.f);
     tweetieTableView.layer.cornerRadius = 8.f;
-    [self setNavgationBarTitle:NSLocalizedString(@"Message", @""
+    [self setNavgationBarTitle:NSLocalizedString(@"消息列表", @""
                                                 )];
     [self setHiddenRightBtn:NO];
     [self setRightTextContent:NSLocalizedString(@"Clear", @"")];
@@ -162,18 +162,36 @@
     SafeRelease(bgView);
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
-    NSDictionary *item = [self.dataArray objectAtIndex:indexPath.row];
-    /*
-     int pushMesType;               //消息类型
-     //0:系统消息 1:行程消息
-     //2：报警消息 3：故障消息
-     //4：需回复消息
-     */
-    
-    
-    
-    cell.mMsgTextLabel.text = [item objectForKey:@"pushMesCon"];
-    cell.mDateLabel.text = [item objectForKey:@"createdTime"];
+    if(1){
+        NSDictionary *item = [self.dataArray objectAtIndex:indexPath.row];
+        /*
+         int pushMesType;               //消息类型
+         //0:系统消息 1:行程消息
+         //2：报警消息 3：故障消息
+         //4：需回复消息
+         */
+        NSString * msgType = [item objectForKey:@"pushMesType"];
+        NSString *msgTypeText = @"系统消息";
+        switch ([msgType intValue]) {
+            case 1:
+            msgTypeText = @"行程消息";
+            break;
+            case 2:
+            msgTypeText = @"报警消息";
+            break;
+            case 3:
+            msgTypeText = @"故障消息";
+            break;
+            case 4:
+            msgTypeText = @"回复消息";
+            break;
+            default:
+            break;
+        }
+        cell.mTypeLabel.text = msgTypeText;
+        cell.mMsgTextLabel.text = [item objectForKey:@"pushMesCon"];
+        cell.mDateLabel.text = [item objectForKey:@"createdTime"];
+    }
     return cell;
     
 }
@@ -198,6 +216,20 @@
     [self.navigationController pushViewController:userProfileVc animated:YES];
     [userProfileVc release];
     */
+    NSDictionary *item = [self.dataArray objectAtIndex:indexPath.row];
+    /*
+     int pushMesType;               //消息类型
+     //0:系统消息 1:行程消息
+     //2：报警消息 3：故障消息
+     //4：需回复消息
+     */
+    NSString * msgType = [item objectForKey:@"pushMesType"];
+    if([msgType intValue] == 4){
+        
+    }
+    else{
+        
+    }
 }
 -(void)setItemCell:(MessageTableViewCell*)cell  withIndex:(NSIndexPath*)indexPath
 {
@@ -382,32 +414,6 @@
     if([resKey isEqualToString:kResMessageData])
     {
         self.request = nil;
-        //[self stopShowLoadingView];
-        /*
-        [self processReturnData:data];
-        if([data count])
-        currentPageNum++;
-        [self reloadAllData];
-        if([self.dataArray count]==0)
-        {
-            self.myEmptyBgView.hidden = NO;
-            tweetieTableView.hidden = YES;
-        }
-        else
-        {
-            self.myEmptyBgView.hidden  = YES;
-            tweetieTableView.hidden = NO;
-        }
-        if (self.reflushType == Reflush_OLDE)
-        {
-            [tweetieTableView closeBottomView];
-        }
-        else
-        {
-            [tweetieTableView closeInfoView];
-        }
-         */
-        //self.dataArray = [data objectForKey:@"messageBox"];
         if([self.dataArray count] == 0){
             self.dataArray = [data objectForKey:@"messageBox"];
         }
@@ -416,19 +422,19 @@
             NSRange range;
             range.location = 0;
             range.length = [netData count];
-            [self.dataArray insertObjects:netData atIndexes:[NSIndexSet initWithIndexesInRange:range]];
-            [[DBManage getSingletone] saveMessageHistData:self.dataArray withUserId:[AppSetting getLoginUserId]];
+            NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:range];
+            [self.dataArray insertObjects:netData atIndexes:indexSet];
         }
-        
-        [self reloadAllData];
+        [[DBManage getSingletone] saveMessageHistData:self.dataArray withUserId:[AppSetting getLoginUserId]];
+        [self performSelectorOnMainThread:@selector(reloadAllData) withObject:nil waitUntilDone:NO];
     }
-    if(self.clearRequest == respRequest)
-    {
-        kNetEndSuccStr(@"消息已清空",self.view);
-        tweetieTableView.hidden = YES;
-        self.myEmptyBgView.hidden = NO;
-        //[self.navigationController popViewControllerAnimated:YES];
-    }
+//    if(self.clearRequest == respRequest)
+//    {
+//        kNetEndSuccStr(@"消息已清空",self.view);
+//        tweetieTableView.hidden = YES;
+//        self.myEmptyBgView.hidden = NO;
+//        //[self.navigationController popViewControllerAnimated:YES];
+//    }
    
 }
 -(void)didNetDataFailed:(NSNotification*)ntf

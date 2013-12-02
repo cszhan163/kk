@@ -45,6 +45,7 @@
                 <outlet property="mDateLabel" destination="21" id="126"/>
                 <outlet property="mMsgTextLabel" destination="48" id="125"/>
                 <outlet property="mTagImageView" destination="3" id="124"/>
+                <outlet property="mTypeLabel" destination="16" id="JMA-5B-Rsw"/>
             </connections>
         </tableViewCell>
     </objects>

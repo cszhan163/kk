@@ -11,6 +11,7 @@
 @interface MessageBoxCell : UITableViewCell
 @property(nonatomic,strong)IBOutlet UIImageView *mTagImageView;
 @property(nonatomic,strong)IBOutlet UILabel     *mDateLabel;
+@property(nonatomic,strong)IBOutlet UILabel     *mTypeLabel;
 @property(nonatomic,strong)IBOutlet UITextView  *mMsgTextLabel;
 
 +(CGFloat)cellHeight:(NSDictionary*)data;

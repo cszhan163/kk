@@ -45,8 +45,9 @@ NSString* gDataArr[] = {@"12.5km",@"11km/h",@"87L",@"3h"};
     
     if([self.dataArray count]==0){
         
-        [self performSelectorInBackground:@selector(shouldLoadNewerData:) withObject:tweetieTableView];
+        //[self performSelectorInBackground:@selector(shouldLoadNewerData:) withObject:tweetieTableView];
         //self.locationDict = [DBManage getLocationPointsData];
+        [self shouldLoadNewerData:tweetieTableView];
     }
 
 }
@@ -281,11 +282,13 @@ NSString* gDataArr[] = {@"12.5km",@"11km/h",@"87L",@"3h"};
     // startPosition, endPosition;
     NSString *startLocation = [data objectForKey:@"startPosition"];
     if(startLocation == nil||[startLocation isKindOfClass:[NSNull class]]||[startLocation isEqualToString:@""]){
-        startLocation = @"未知";
+        startLocation = [[DBManage getSingletone] getLocationPointNameByLatitude:[latLogArr[1]floatValue]/kGPSMaxScale withLogtitude:[latLogArr[0]floatValue]/kGPSMaxScale withIndex:indexPath.row  withTag:YES];
     }
+    latLogStr = [data objectForKey:@"endadr2"];
+    latLogArr  = [latLogStr componentsSeparatedByString:@","];
     NSString *endLocation = [data objectForKey:@"endPosition"];
     if(endLocation == nil||[endLocation isKindOfClass:[NSNull class]]||[endLocation isEqualToString:@""]){
-        endLocation = @"未知";
+        endLocation = [[DBManage getSingletone] getLocationPointNameByLatitude:[latLogArr[1]floatValue]/kGPSMaxScale withLogtitude:[latLogArr[0]floatValue]/kGPSMaxScale withIndex:indexPath.row withTag:NO];
     }
     
 #endif

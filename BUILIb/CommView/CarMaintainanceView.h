@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface CarMaintainanceView : UIView
-
+- (id)getCircleViewController;
 - (void)setCenterImageView:(UIImage*)image;
 - (void)setLeftProcessLen:(CGFloat)llen rightLen:(CGFloat)right;
 - (void)setLeftProcessDay:(CGFloat)lLen rightDistance:(CGFloat)rLen;

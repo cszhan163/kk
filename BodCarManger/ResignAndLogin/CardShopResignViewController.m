@@ -58,6 +58,9 @@
     [self.view addSubview:bgScrollerView];
     bgScrollerView.contentSize = CGSizeMake(kDeviceScreenWidth, kDeviceScreenHeight-kMBAppStatusBar-40.f);
     
+    UIImage *bgImage = nil;
+    UIImageWithFileName(bgImage, @"car_bg.png");
+    self.view.layer.contents = (id)bgImage.CGImage;
     if(type ==0)
     {
         navTitleLabel.text = @"注册";

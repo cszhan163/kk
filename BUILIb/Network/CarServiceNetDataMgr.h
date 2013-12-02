@@ -49,4 +49,9 @@ ZCSNetClientNetInterfaceMgrDelegate>
 - (id)getDriveOilAnalysisDataByCarId:(NSString*)cardId withMoth:(NSString*)month withYear:(NSString*)year;
 /*Service*/
 - (id)getMessageList:(NSDictionary*)param;
+
+
+- (id)getCarBand;
+- (id)getCarSeries:(NSString*)brand;
+- (id)getCarModel:(NSString*)seriesSeq;
 @end

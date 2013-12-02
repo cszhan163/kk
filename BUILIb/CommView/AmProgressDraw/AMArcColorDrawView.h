@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AMArcColorDrawView : UIView
+@interface AMArcColorDrawView : UIControl
 @property(nonatomic,assign)CGFloat radius;
 - (void)setGradientColor:(CGFloat*)gradientColors;
--(void) gradientColorWithRed:(CGFloat)aRed green:(CGFloat)aGreen blue:(CGFloat)aBlue;
+- (void) gradientColorWithRed:(CGFloat)aRed green:(CGFloat)aGreen blue:(CGFloat)aBlue;
+//- (void)addTarget:(
 @end

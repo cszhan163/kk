@@ -495,8 +495,10 @@ static NSString* kMonthTextArray[] = {
     int day = [[netData objectForKey:@"days" ]intValue];
     float segment = [[netData objectForKey:@"segments"]floatValue];
     float totalMile = [[netData objectForKey:@"totalMilage"]floatValue];
-    float avgOil = totalOil/totalMile;
-
+    float avgOil = 0.f;
+    if(totalMile>0.f){
+        avgOil = totalOil/totalMile;
+    }
     carDriveStatusView.mRunOilCostLabel.text = [NSString stringWithFormat:@"%0.2lf",avgOil];
     carDriveStatusView.mRunMoneyCostLabel.text = [NSString stringWithFormat:@"%0.2lf",totalOil];
     carDriveStatusView.mRunDaysLabel.text =[NSString stringWithFormat:@"%d",day];
@@ -509,12 +511,34 @@ static NSString* kMonthTextArray[] = {
     
     //for 84*len;
     //milageSpan
+    int realDay = 0;
+    int maxDay = 1;
+    CGFloat realDistance = 0.f;
+    CGFloat maxDistance = 100.f;
+    if([[data objectForKey:@"days"] isKindOfClass:[NSNull class]]){
+    }
+    else{
+        realDay = [[data objectForKey:@"days"] intValue];
+    }
+    if([[data objectForKey:@"timeSpan"] isKindOfClass:[NSNull class]]){
     
-    int realDay = [[data objectForKey:@"days"]intValue];
-    int maxDay = [[data objectForKey:@"timeSpan"]intValue];
-    CGFloat realDistance = [[data objectForKey:@"milage"]floatValue];
-    CGFloat maxDistance = [[data objectForKey:@"milageSpan"]floatValue];
-    CGFloat day =  realDay/(maxDay*30) *84.f;
+    }
+    else{
+        maxDay = [[data objectForKey:@"timeSpan"]intValue];
+    }
+    if([[data objectForKey:@"milage"] isKindOfClass:[NSNull class]]){
+        
+    }
+    else{
+        realDistance = [[data objectForKey:@"milage"]floatValue];
+    }
+    if([[data objectForKey:@"milageSpan"] isKindOfClass:[NSNull class]]){
+        
+    }
+    else{
+        maxDistance = [[data objectForKey:@"milageSpan"]floatValue];
+    }
+    CGFloat day =  realDay/(maxDay*30.f) *84.f;
     CGFloat distance = realDistance/maxDistance*84.f;
     if(realDay>=maxDay-10||realDistance>=maxDistance-2000)
     {

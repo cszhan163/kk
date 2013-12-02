@@ -51,4 +51,6 @@
 
 #define kEndShowSharedViewMSG        @"endShowSharedViewMSG"
 
+#define kCarModelSelectedMSG          @"carModelSelectedMSG"
+
 #endif

@@ -67,7 +67,7 @@
     //topNavBar.delegate = navItemCtrl;
     
     [tableViewBg addSubview:navItemCtrl.view];
-    navItemCtrl.view.frame = CGRectMake(0.f,-20.f,kDeviceScreenWidth,kDeviceScreenHeight-kMBAppStatusBar-kMBAppBottomToolBarHeght-kMBAppTopToolBarHeight);
+    navItemCtrl.view.frame = CGRectMake(0.f,-20.f,kDeviceScreenWidth,kDeviceScreenHeight-kMBAppStatusBar-kMBAppBottomToolBarHeght-kMBAppTopToolBarHeight+20.f);
 #if 1
     [tableViewBg addSubview:topNavBar];
     SafeRelease(topNavBar);
@@ -78,7 +78,8 @@
 #endif
     [self.view bringSubviewToFront:mainView.topBarView ];
     [self setNeedDisplaySubView];
-    [self  performSelectorInBackground:@selector(loadAnalaysisData) withObject:nil];
+    //[self  performSelectorInBackground:@selector(loadAnalaysisData) withObject:nil];
+    [self loadAnalaysisData];
 	// Do any additional setup after loading the view.
 }
 - (void)selectTopNavItem:(id)navObj{

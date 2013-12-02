@@ -32,6 +32,9 @@
 @end
 @implementation CarMaintainanceView
 
+//- (id)getCircleViewController{
+//    return
+//}
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -123,7 +126,7 @@
 }
 - (void)setLeftProcessDay:(CGFloat)lLen rightDistance:(CGFloat)rLen{
     [runDaysLabel setText:[NSString stringWithFormat:@"%d\n天",(int)lLen]];
-    [runDistanceLabel setText:[NSString stringWithFormat:@"%0.0lf\nkm",rLen]];
+    [runDistanceLabel setText:[NSString stringWithFormat:@"%0.02lf\nkm",rLen]];
 }
 /*
 - (void)setLeftGraydientColors:(NSArray*)larray rightGrayDientColors:(NSArray*)rarray{

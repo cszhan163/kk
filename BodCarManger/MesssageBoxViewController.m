@@ -9,6 +9,7 @@
 #import "MesssageBoxViewController.h"
 #import "CarServiceNetDataMgr.h"
 #import "MessageBoxCell.h"
+#import "DBManage.h"
 //#import "DBManage.h"
 //#import "MyProfileViewController.h"
 //#import "DressMemoCommentController.h"
@@ -63,6 +64,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.dataArray = [NSMutableArray arrayWithArray:[[DBManage getSingletone] getMessageHistData:[AppSetting getLoginUserId]]];
+    
+    
 #if 1
     UIImage *bgImage = nil;
     UIImageWithFileName(bgImage, @"BG-regis&login.png");
@@ -402,7 +407,19 @@
             [tweetieTableView closeInfoView];
         }
          */
-        self.dataArray = [data objectForKey:@"messageBox"];
+        //self.dataArray = [data objectForKey:@"messageBox"];
+        if([self.dataArray count] == 0){
+            self.dataArray = [data objectForKey:@"messageBox"];
+        }
+        else{
+            NSArray *netData = [data objectForKey:@"messageBox"];
+            NSRange range;
+            range.location = 0;
+            range.length = [netData count];
+            [self.dataArray insertObjects:netData atIndexes:[NSIndexSet initWithIndexesInRange:range]];
+            [[DBManage getSingletone] saveMessageHistData:self.dataArray withUserId:[AppSetting getLoginUserId]];
+        }
+        
         [self reloadAllData];
     }
     if(self.clearRequest == respRequest)

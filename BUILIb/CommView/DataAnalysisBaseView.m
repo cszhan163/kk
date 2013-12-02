@@ -10,6 +10,8 @@
 #import "DAMultipleProgressLayer.h"
 #import "WSLineChartView.h"
 #import "ZCSDrawLineView.h"
+
+#define YMax 25
 @interface DataAnalysisBaseView(){
    
    
@@ -49,7 +51,7 @@
     [drawLineView setMaxLenY:88.f];//y
     
     [drawLineView setXStep:215/30.f];//208 x len
-    [drawLineView setYStep:88/250.f];
+    [drawLineView setYStep:88/YMax];
     
     [self addSubview:drawLineView];
     

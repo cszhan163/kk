@@ -67,7 +67,7 @@
     //mainView.alpha = 0.;
     [self setNavgationBarTitle:NSLocalizedString(@"车辆健康监测", @""
                                                  )];
-    [self setRightBtnHidden:NO];
+    [self setRightBtnHidden:YES];
     [self setHiddenLeftBtn:YES];
     
     CGFloat currY =  kMBAppTopToolBarHeight;

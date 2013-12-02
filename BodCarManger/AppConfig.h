@@ -116,6 +116,10 @@
 #define kCarUserUpdatePass              @"updateUserPassword"
 #define kCarUserUpdatePhone             @"updateUserPhoneNumber"
 #define kCarUserLocation                @"setLocationEnable"
+#define kCarBrandQuery                  @"queryVehcileBrand"
+#define kCarSeriesQuery                 @"queryVehcileSeries"
+#define kCarModelQuery                 @"queryVehcileModel"
+
 
 #define kCarInfoQuery                   @"queryVehInfo"
 #define kCarInfoUpdate                  @"updateVehicleInfo"

@@ -51,7 +51,7 @@
     dataVc.mCurrDate = self.mCurrDate;
     dataVc.view.backgroundColor = [UIColor clearColor];
     //[vcCtl setRootViewController:controller];
-    //vcCtl.view.backgroundColor = [UIColor redColor];
+    //dataVc.view.backgroundColor = [UIColor redColor];
     [vcArray addObject:dataVc];
     SafeRelease(dataVc);
 #endif

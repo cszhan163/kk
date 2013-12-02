@@ -160,6 +160,43 @@ static ZCSNetClientNetInterfaceMgr *dressMemoInterfaceMgr = nil;
     return nil;
 
 }
+- (id)getCarBand{
+    //queryVehcileBrand
+    EiInfo *inInfo = [self getCommIPlant4MParamByServiceToken:@"VESA02"];
+    //    if([param objectForKey:@"phoneNumber"]){
+    //        [inInfo set:@"phoneNumber" value:[param objectForKey:@"phoneNumber"]];
+    //    }
+    //queryTripCalanderMonth @"userRegister"
+    [inInfo set:METHOD_TOKEN value:kCarBrandQuery]; // 接口名
+    [self startiPlant4MRequest:inInfo withSuccess:@selector(queryCarBrandOk:) withFailed:@selector(queryCarBrandFailed:)];
+}
+-  (id)getCarSeries:(NSString*)brandSeq{
+    //
+    //brandSeq
+    EiInfo *inInfo = [self getCommIPlant4MParamByServiceToken:@"VESA02"];
+    //[inInfo set:@"userName" value:userName];
+    [inInfo set:@"brandSeq" value:brandSeq ];
+    //    if([param objectForKey:@"phoneNumber"]){
+    //        [inInfo set:@"phoneNumber" value:[param objectForKey:@"phoneNumber"]];
+    //    }
+    //queryTripCalanderMonth @"userRegister"
+    [inInfo set:METHOD_TOKEN value:kCarSeriesQuery]; // 接口名
+    [self startiPlant4MRequest:inInfo withSuccess:@selector(queryCarSeriesOk:) withFailed:@selector(queryCarSeriesFailed:)];
+}
+- (id)getCarModel:(NSString*)seriesSeq{
+    //queryVehcileModel
+    //kCarModelQuery
+    EiInfo *inInfo = [self getCommIPlant4MParamByServiceToken:@"VESA02"];
+    //[inInfo set:@"userName" value:userName];
+    [inInfo set:@"seriesSeq" value:seriesSeq];
+    //    if([param objectForKey:@"phoneNumber"]){
+    //        [inInfo set:@"phoneNumber" value:[param objectForKey:@"phoneNumber"]];
+    //    }
+    //queryTripCalanderMonth @"userRegister"
+    [inInfo set:METHOD_TOKEN value:kCarModelQuery]; // 接口名
+    [self startiPlant4MRequest:inInfo withSuccess:@selector(queryCarModelOk:) withFailed:@selector(queryCarModelFailed:)];
+    
+}
 - (id)backDoorRequest:(NSDictionary*)param{
     [dressMemoInterfaceMgr setRequestUrl:@"http://checkapp.sinaapp.com/api/index.php?command="];
     return [dressMemoInterfaceMgr startAnRequestByResKey:@"check" needLogIn:NO withParam:param withMethod:@"GET" withData:NO];
@@ -199,8 +236,11 @@ static BOOL isExit = NO;
 - (id)carInforUpdate:(NSDictionary*)param withType:(int)type{
     EiInfo *inInfo = [self getCommIPlant4MParamByServiceToken:@"VESA02"];
     [inInfo set:@"userName" value:[param objectForKey:@"userName"]];
-    [inInfo set:@"brandy" value:[param objectForKey:@"brandy"]];
-    [inInfo set:@"model" value:[param objectForKey:@"model"]];
+    /*
+    [inInfo set:@"seriesName" value:[param objectForKey:@"seriesName"]];
+    [inInfo set:@"modelInfo" value:[param objectForKey:@"modelInfo"]];
+    */
+    [inInfo set:@"modelSeq" value:[param objectForKey:@"modelSeq"]];
     [inInfo set:@"NO" value:[param objectForKey:@"NO"]];
     [inInfo set:@"milage" value:[param objectForKey:@"milage"]];
     [inInfo set:@"lastMilage" value:[param objectForKey:@"lastMilage"]];
@@ -485,6 +525,101 @@ static BOOL isExit = NO;
 }
 #pragma mark -
 #pragma mark delegate user
+- (void)queryCarBrandOk:(EiInfo*)info{
+    //vehicleBSM
+    if(info.status == 1){
+        NSLog(@"%@",info.blocks);
+        NSMutableDictionary *resultDict = [NSMutableDictionary dictionary];
+        NSMutableArray *gpsArray = [NSMutableArray array];
+        
+        EiBlock *tripInfo = [info getBlock:@"vehicleBSM"]; // block型返回值
+        int rowCount = [tripInfo getRowCount];
+        for(int i = 0;i<rowCount;i++){
+            NSMutableDictionary *row = [tripInfo getRow:i]; // block有多个row，每个为一个
+            NSDictionary *item = [NSDictionary dictionaryWithObjectsAndKeys:
+                                  [row objectForKey:@"seq"],@"seq",
+                                  [row objectForKey:@"name"],@"name",
+                                  nil];
+            [gpsArray addObject:item];
+            
+        }
+        [resultDict setValue:gpsArray forKey:@"data"];
+        
+        [self sendFinalOkData:resultDict withKey:kCarBrandQuery];
+    }
+    else{
+        
+        [self sendFinalFailedData:@"" withKey:kCarBrandQuery];
+    }
+
+}
+- (void)queryCarBrandFailed:(EiInfo*)info{
+    
+    
+}
+- (void)queryCarSeriesOk:(EiInfo*)info{
+    if(info.status == 1){
+        NSLog(@"%@",info.blocks);
+        NSMutableDictionary *resultDict = [NSMutableDictionary dictionary];
+        NSMutableArray *gpsArray = [NSMutableArray array];
+        
+        EiBlock *tripInfo = [info getBlock:@"vehicleBSM"]; // block型返回值
+        int rowCount = [tripInfo getRowCount];
+        for(int i = 0;i<rowCount;i++){
+            NSMutableDictionary *row = [tripInfo getRow:i]; // block有多个row，每个为一个
+            NSDictionary *item = [NSDictionary dictionaryWithObjectsAndKeys:
+                                  [row objectForKey:@"seq"],@"seq",
+                                  [row objectForKey:@"name"],@"name",
+                                  nil];
+            [gpsArray addObject:item];
+            
+        }
+        [resultDict setValue:gpsArray forKey:@"data"];
+        
+        [self sendFinalOkData:resultDict withKey:kCarSeriesQuery];
+    }
+    else{
+        
+        [self sendFinalFailedData:@"" withKey:kCarSeriesQuery];
+    }
+
+    
+}
+- (void)queryCarSeriesFailed:(EiInfo*)info{
+    
+    
+}
+- (void)queryCarModelOk:(EiInfo*)info{
+    if(info.status == 1){
+        NSLog(@"%@",info.blocks);
+        NSMutableDictionary *resultDict = [NSMutableDictionary dictionary];
+        NSMutableArray *gpsArray = [NSMutableArray array];
+        
+        EiBlock *tripInfo = [info getBlock:@"vehicleBSM"]; // block型返回值
+        int rowCount = [tripInfo getRowCount];
+        for(int i = 0;i<rowCount;i++){
+            NSMutableDictionary *row = [tripInfo getRow:i]; // block有多个row，每个为一个
+            NSDictionary *item = [NSDictionary dictionaryWithObjectsAndKeys:
+                                  [row objectForKey:@"seq"],@"seq",
+                                  [row objectForKey:@"name"],@"name",
+                                  nil];
+            [gpsArray addObject:item];
+            
+        }
+        [resultDict setValue:gpsArray forKey:@"data"];
+        
+        [self sendFinalOkData:resultDict withKey:kCarModelQuery];
+    }
+    else{
+        
+        [self sendFinalFailedData:@"" withKey:kCarModelQuery];
+    }
+    
+}
+- (void)queryCarModelFailed:(EiInfo*)info{
+
+
+}
 - (void)userLoginOk:(EiInfo*)info{
     if(info.status == 1){
         //NSLog(@"%@",info.blocks);
@@ -556,7 +691,18 @@ static BOOL isExit = NO;
         [resultDict setValue:[info get:@"retType"] forKey:@"retType"];
         [resultDict setValue:[info get:@"milage"] forKey:@"milage"];
         [resultDict setValue:[info get:@"insureExpDate"] forKey:@"insureExpDate"];
-        [resultDict setValue:[info get:@"model"] forKey:@"model"];
+        NSString *carFullName = [NSString stringWithFormat:@"%@/%@",[info get:@"seriesName"],[info get:@"modelInfo"]];
+        /*
+        [resultDict setValue:[info get:@"modelInfo"] forKey:@"modelInfo"];
+        [resultDict setValue:[info get:@"seriesName"] forKey:@"seriesName"];
+         */
+        [resultDict setValue:[info get:@"modelSeq"] forKey:@"modelSeq"];
+        [resultDict setValue:[info get:@"seriesSeq"] forKey:@"seriesSeq"];
+        [resultDict setValue:[info get:@"brandSeq"] forKey:@"brandSeq"];
+        
+        [resultDict setValue:carFullName forKey:@"model"];
+        
+        
         [resultDict setValue:[info get:@"vin"] forKey:@"vin"];
         [resultDict setValue:[info get:@"brandy"] forKey:@"brandy"];
         [resultDict setValue:[info get:@"NO"] forKey:@"NO"];
@@ -760,6 +906,7 @@ static BOOL isExit = NO;
             NSDictionary *item = [NSDictionary dictionaryWithObjectsAndKeys:
                                   [row objectForKey:@"lng"],@"lng",
                                   [row objectForKey:@"lat"],@"lat",
+                                  [row objectForKey:@"speed"],@"speed",
                                   nil];
             [gpsArray addObject:item];
 

@@ -374,7 +374,7 @@
     id respRequest = [obj objectForKey:@"request"];
     id data = [obj objectForKey:@"data"];
     NSString *resKey = [obj  objectForKey:@"key"];
-    if([resKey isEqualToString:resKey])
+    if([resKey isEqualToString:kResMessageData])
     {
         self.request = nil;
         //[self stopShowLoadingView];

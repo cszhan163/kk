@@ -98,6 +98,9 @@
         btn.frame = CGRectMake(60.f, 120.f,btn.frame.size.width, btn.frame.size.height);
         [self.view addSubview:btn];
     }
+    if(_isOnlyNumber){
+        self.subClassInputTextField.keyboardType = UIKeyboardTypeNumberPad;
+    }
 	// Do any additional setup after loading the view.
 }
 - (void)didchangeInputText:(UITextField*)textField{

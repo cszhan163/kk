@@ -361,10 +361,7 @@
     //NE_LOG(@"warning not implemetation net respond");
 }
 
-#define  kLowSpeed   15
-#define  kNormalSpeed  25
 
-#define  kHighSpeed  30
 
 - (void)updateUIData:(NSDictionary*)data{
 

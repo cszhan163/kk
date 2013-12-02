@@ -60,7 +60,7 @@
 
 #define  kUserImageDefaultName                  @"pic-user.png"
 
-#define kAppUserBGWhiteColor        HexRGB(236,236,236)
+#define kAppUserBGWhiteColor        HexRGB(202, 202, 204)
 
 #define kBaoTApp                @"baoTapp"
 
@@ -148,6 +148,13 @@
 
 #define kLocationPhone 0
 
+
+#define  kLowSpeed   20
+#define  kNormalSpeed  40
+
+#define  kHighSpeed  60
+
+#define kFetchMessageLen 10
 
 
 #define kAlertCardBidTXT                    @"请先添加车辆信息"

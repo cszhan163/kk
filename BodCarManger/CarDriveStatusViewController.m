@@ -499,11 +499,11 @@ static NSString* kMonthTextArray[] = {
     if(totalMile>0.f){
         avgOil = totalOil/totalMile;
     }
-    carDriveStatusView.mRunOilCostLabel.text = [NSString stringWithFormat:@"%0.2lf",avgOil];
+    carDriveStatusView.mRunOilCostLabel.text = [NSString stringWithFormat:@"%0.2lf",avgOil*100];
     carDriveStatusView.mRunMoneyCostLabel.text = [NSString stringWithFormat:@"%0.2lf",totalOil];
     carDriveStatusView.mRunDaysLabel.text =[NSString stringWithFormat:@"%d",day];
     carDriveStatusView.mRunStepLabel.text = [NSString stringWithFormat:@"%0.lf",segment];
-    carDriveStatusView.mRunDistanceLabel.text = [NSString stringWithFormat:@"%0.2lf",totalMile];
+    carDriveStatusView.mRunDistanceLabel.text = [NSString stringWithFormat:@"%0.1lf",totalMile];
     int monthInex = self.mCurrDate.month-1;
     carDriveStatusView.mHeadMonthLabel.text = [NSString stringWithFormat:@"%@驾驶情况",kMonthTextArray[monthInex]];
 }
@@ -547,5 +547,10 @@ static NSString* kMonthTextArray[] = {
     }
     [carMaintainanceView setLeftProcessLen:day rightLen:distance];
     [carMaintainanceView setLeftProcessDay:realDay rightDistance:realDistance];
+}
+- (void)clearLogoutData:(NSNotification*)ntf{
+    [self.mDataDict removeAllObjects];
+    //[self.mHasDataDict removeAllObjects];
+    
 }
 @end

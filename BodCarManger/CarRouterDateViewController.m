@@ -87,7 +87,7 @@
     NSString *barTitle  = [NSString stringWithFormat:@"%d年%02d月",self.mCurrDate.year,self.mCurrDate.month];
     [self setNavgationBarTitle:barTitle];
     
-    [ZCSNotficationMgr postMSG:KNewMessageFromMSG obj:@"10"];
+    //[ZCSNotficationMgr postMSG:KNewMessageFromMSG obj:@"10"];
    // self.mMothDateKey = [NSString stringWithFormat:kDateFormart,self.mCurrDate.year,self.mCurrDate.month];
     UIImage *bgImage = nil;
     UIImageWithFileName(bgImage, @"car_bg.png");
@@ -831,6 +831,13 @@ int lastDirect = -1;
     [calView addStartDate:sDate endDate:eDate withTag:tag];
     SafeRelease(calendar);
     SafeRelease(dateParts);
+}
+
+- (void)clearLogoutData:(NSNotification*)ntf{
+    [self.mDataDict removeAllObjects];
+    [self.mHasDataDict removeAllObjects];
+    isFirstLogin = YES;
+    
 }
 #pragma mark -
 

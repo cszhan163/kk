@@ -14,7 +14,9 @@
 //#import "MyProfileViewController.h"
 //#import "DressMemoCommentController.h"
 
-@interface MesssageBoxViewController ()
+@interface MesssageBoxViewController (){
+    NSInteger unReadCount;
+}
 @property(nonatomic,assign)id clearRequest;
 @end
 
@@ -64,11 +66,15 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    NSString *usrId = [AppSetting getLoginUserId];
+    NSArray *unReadData  = [[DBManage getSingletone] getUnReadMessageData:usrId];
+    unReadCount = [unReadData count];
+    NSMutableArray *totalData = [NSMutableArray arrayWithArray:unReadData];
+    [totalData addObjectsFromArray:[[DBManage getSingletone] getMessageHistData:usrId]];
+    self.dataArray = totalData;
     
-    self.dataArray = [NSMutableArray arrayWithArray:[[DBManage getSingletone] getMessageHistData:[AppSetting getLoginUserId]]];
     
-    
-#if 1
+#if 0
     UIImage *bgImage = nil;
     UIImageWithFileName(bgImage, @"BG-regis&login.png");
     mainView.bgImage = bgImage;
@@ -85,8 +91,12 @@
     [self shouldLoadOlderData:tweetieTableView];
 	// Do any additional setup after loading the view.
     tweetieTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
 }
-
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [ZCSNotficationMgr postMSG:KNewMessageFromMSG obj:nil];
+}
 - (void)viewDidUnload
 {
     [super viewDidUnload];
@@ -190,7 +200,25 @@
         }
         cell.mTypeLabel.text = msgTypeText;
         cell.mMsgTextLabel.text = [item objectForKey:@"pushMesCon"];
-        cell.mDateLabel.text = [item objectForKey:@"createdTime"];
+        NSString *time = [item objectForKey:@"createdTime"];
+        if(time){
+            NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
+            [dateFormat setDateFormat:@"yyyyMMddHHmmss"];
+            
+            //NSString *dateString = [dateFormat dateFromString:tempText];
+            NSDate *date = [dateFormat dateFromString:time];
+            
+            [dateFormat setDateFormat:@"yyyy-MM-dd HH:mm"];
+            NSString *dateString = [dateFormat stringFromDate:date];
+            time = dateString;
+            //;
+        }
+        cell.mDateLabel.text = time;
+    }
+    if(indexPath.row <unReadCount){
+        cell.mDateLabel.textColor = HexRGB(255, 47, 10);
+        cell.mMsgTextLabel.textColor = HexRGB(255, 47, 10);
+        cell.mTypeLabel.textColor = HexRGB(255, 47, 10);
     }
     return cell;
     
@@ -419,14 +447,20 @@
         }
         else{
             NSArray *netData = [data objectForKey:@"messageBox"];
-            NSRange range;
-            range.location = 0;
-            range.length = [netData count];
-            NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:range];
-            [self.dataArray insertObjects:netData atIndexes:indexSet];
+            if([netData count]>0){
+                NSRange range;
+                range.location = 0;
+                range.length = [netData count];
+                unReadCount = [netData count];
+                NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:range];
+                [self.dataArray insertObjects:netData atIndexes:indexSet];
+               
+                [self performSelectorOnMainThread:@selector(reloadAllData) withObject:nil waitUntilDone:NO];
+                
+            }
+            if([self.dataArray count]>0)
+                [[DBManage getSingletone] saveMessageHistData:self.dataArray withUserId:[AppSetting getLoginUserId]];
         }
-        [[DBManage getSingletone] saveMessageHistData:self.dataArray withUserId:[AppSetting getLoginUserId]];
-        [self performSelectorOnMainThread:@selector(reloadAllData) withObject:nil waitUntilDone:NO];
     }
 //    if(self.clearRequest == respRequest)
 //    {

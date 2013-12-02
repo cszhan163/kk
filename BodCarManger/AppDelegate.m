@@ -10,7 +10,7 @@
 #import "AppMainUIViewManage.h"
 #import "ViewController.h"
 #import "SharePlatformCenter.h"
-
+#import "DBManage.h"
 #import "WeiXinShareMgr.h"
 #import <iPlat4M_framework/iPlat4M_framework.h>
 #define HAVE_WINDOWLAST
@@ -115,6 +115,9 @@ UIShareActionAlertView *sharedAlterView = nil;
     [ZCSNotficationMgr addObserver:self call:@selector(backDoorCheckOk:) msgName:kZCSNetWorkOK];
     [ZCSNotficationMgr addObserver:self call:@selector(checkCarIsRunning:) msgName:kCheckCardRecentRun];
     [ZCSNotficationMgr addObserver:self call:@selector(queryCarInfo:) msgName:kQueryCarInfoMSG];
+    
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:kFetchMessageLen target:self selector:@selector(checkUnReadMessageList) userInfo:nil repeats:YES];
+    [self.timer fire];
     //
     //[UIAlertViewMgr getSigleTone];
     
@@ -187,13 +190,25 @@ UIShareActionAlertView *sharedAlterView = nil;
     
     
 }
+- (void)checkUnReadMessageList{
+    NSString *usrId = [AppSetting getLoginUserId];
+    if(usrId == nil || [usrId isEqualToString:@""]){
+        return;
+    }
+    CarServiceNetDataMgr *netMgr = [CarServiceNetDataMgr getSingleTone];
+    NSDictionary *param = [NSDictionary dictionaryWithObjectsAndKeys:
+                           [AppSetting getLoginUserId],@"userName",
+                           nil];
+    
+    [netMgr getMessageList:param];
+}
 - (void)queryCarInfo:(NSNotification*)ntf{
     CarServiceNetDataMgr *cardShopMgr = [CarServiceNetDataMgr getSingleTone];
     NSString *useName = [AppSetting getLoginUserId];
     [cardShopMgr carInforQuery:useName];
 }
 - (void)backDoorCheckOk:(NSNotification*)ntf{
-    
+    static int i = 0;
     id obj = [ntf object];
     id data = [obj objectForKey:@"data"];
     NSString *resKey = [obj objectForKey:@"key"];//[respRequest resourceKey];
@@ -204,6 +219,17 @@ UIShareActionAlertView *sharedAlterView = nil;
             NSString *userId = [AppSetting getCurrentLoginUser];
             [AppSetting setUserCarId:[data objectForKey:@"vin"] withUserId:userId];
         }
+    }
+    if([resKey isEqualToString:kResMessageData]){
+        NSArray *mesData = [data objectForKey:@"messageBox"];
+        if([mesData count]>0){
+            NSString *userId = [AppSetting getCurrentLoginUser];
+            [[DBManage  getSingletone] saveUnReadMessageData:data withUserId:userId];
+             [ZCSNotficationMgr postMSG:KNewMessageFromMSG obj:[NSString stringWithFormat:@"%d",[mesData count]]];
+            
+        }
+        //if([mesData count]>0)
+           
     }
     
 }

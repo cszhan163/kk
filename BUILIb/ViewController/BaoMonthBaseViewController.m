@@ -26,7 +26,11 @@
     }
     return self;
 }
-
+- (void)addObservers{
+    [super addObservers];
+    //[ZCSNotficationMgr postMSG:kUserDidLogOut obj:nil];
+    [ZCSNotficationMgr addObserver:self call:@selector(clearLogoutData:) msgName:kUserDidLogOut];
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -126,5 +130,8 @@
     }
     
     return;
+}
+- (void)clearLogoutData:(NSNotification*)ntf{
+
 }
 @end

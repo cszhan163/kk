@@ -24,5 +24,8 @@
 - (void)setLocationPointNameByLatitude:(double)lat withLogtitude:(double)lng withData:(NSString*)name withIndex:(NSInteger)index withTag:(BOOL)tag;
 - (NSString*)getLocationPointNameByLatitude:(double)lat withLogtitude:(double)lng withIndex:(NSInteger)index withTag:(BOOL)tag;
 - (NSArray*)getMessageHistData:(NSString*)userId;
+- (NSArray*)getUnReadMessageData:(NSString*)userId;
+- (void)clearUnReadMessageData:(NSString*)userId;
 - (void)saveMessageHistData:(NSArray*)data withUserId:(NSString*)userId;
+- (void)saveUnReadMessageData:(NSArray*)data withUserId:(NSString*)userId;
 @end

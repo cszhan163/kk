@@ -44,7 +44,10 @@ static NSString *kImageTextArr[] ={
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    /*
     [ZCSNotficationMgr addObserver:self call:@selector(popNewMSGNotify:) msgName:KNewMessageFromMSG];
+     */
+    
 //#if 1
 //    UIImage *bgImage = nil;
 //    UIImageWithFileName(bgImage, @"server_bg.png");
@@ -61,13 +64,18 @@ static NSString *kImageTextArr[] ={
     mesgeCoutV = [[UIImageView alloc]initWithFrame:CGRectZero];
     mesgeCoutView.
     */
-    [self setRightBtnHidden:YES];
+     [self setRightBtnHidden:YES];
      [self setHiddenLeftBtn:YES];
     //[self setRightTextContent:NSLocalizedString(@"Done", @"")];
 	// Do any additional setup after loading the view.
    
 }
-
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    if(![[[UIApplication sharedApplication]delegate]checkCarInforData]){
+        return;
+    }
+}
 - (void)addFonterView{
     logInfo.scrollEnabled = NO;
     

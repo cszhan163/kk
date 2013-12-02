@@ -58,6 +58,7 @@
     CarDriveOilDataAnalaysisViewController *analysisVc = [[CarDriveOilDataAnalaysisViewController  alloc]init];
     analysisVc.view.backgroundColor = [UIColor clearColor];
     //[vcCtl setRootViewController:controller];
+     analysisVc.mCurrDate = self.mCurrDate;
     [vcArray addObject:analysisVc];
     SafeRelease(analysisVc);
     //return nil;

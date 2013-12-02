@@ -27,4 +27,5 @@
 - (void)didTouchAfterMoth:(NSDictionary *)day;
 - (void)refulshNetData;
 - (void)updateUIData:(NSDictionary*)netData;
+- (void)clearLogoutData:(NSNotification*)ntf;
 @end

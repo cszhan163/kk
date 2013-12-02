@@ -187,4 +187,30 @@ static DBManage *gDb = nil;
     NSString *fileName = [NSString stringWithFormat:@"%@.data",userId];
     [data writeToFile:[self getDataFileFullPath:fileName] atomically:YES];
 }
+- (NSArray*)getUnReadMessageData:(NSString*)userId{
+    NSString *fileName = [NSString stringWithFormat:@"%@_unread.data",userId];
+    NSArray *data = [NSArray arrayWithContentsOfFile:[self getDataFileFullPath:fileName]];
+    //if([self getDataFileFullPath])
+    [self clearUnReadMessageData:userId];
+    if(data == nil){
+        return  [NSMutableArray array];
+    }
+    else{
+        return data;
+    }
+    
+}
+- (void)clearUnReadMessageData:(NSString*)userId{
+    NSFileManager *fileMgr = [NSFileManager defaultManager];
+    NSString *fileName = [NSString stringWithFormat:@"%@_unread.data",userId];
+    NSError *error = nil;
+    NSString *filePath = [self getDataFileFullPath:fileName];
+    if([fileMgr fileExistsAtPath:filePath isDirectory:NO]){
+        [fileMgr removeItemAtPath:filePath error:&error];
+    }
+}
+- (void)saveUnReadMessageData:(NSArray*)data withUserId:(NSString*)userId{
+    NSString *fileName = [NSString stringWithFormat:@"%@_unread.data",userId];
+    [data writeToFile:[self getDataFileFullPath:fileName] atomically:YES];
+}
 @end

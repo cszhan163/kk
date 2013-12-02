@@ -11,6 +11,7 @@
 @class ViewController;
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 -(BOOL)checkCarInforData;
+@property(nonatomic,strong) NSTimer *timer;
 @property(nonatomic,strong)UIImage *sharedImage;
 @property(nonatomic,assign)NSInteger mesCount;
 @property (strong, nonatomic) UIWindow *window;

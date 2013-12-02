@@ -16,7 +16,7 @@ static NSString *kCarInfoArray[] =
     @"车辆品牌/型号",@"车牌号",
 };
 static NSString *kCarOtherInfoArray[] = {
-    @"行驶总里程",@"上次保养里程",@"上次保养日期",@"保险到期日",
+    @"初始里程",@"上次保养里程",@"上次保养日期",@"保险到期日",
 };
 static NSString  *CarInfoKeyArray[] = {
    @"OBD",@"",@"",@"",
@@ -194,12 +194,12 @@ static NSString  *CarInfoKeyArray[] = {
                     bgImageName = @"setting_cell_header.png";
                     tempText = [self.data objectForKey:@"milage"];
                     if(tempText){
-                        dataText = [NSString stringWithFormat:@"%d",[tempText intValue]];
+                        dataText = [NSString stringWithFormat:@"%dKM",[tempText intValue]];
                     }
                     break;
                 case 3:
                     tempText = [self.data objectForKey:@"insureExpDate"];
-                    if(tempText &&[tempText intValue]){
+                    if(![tempText isKindOfClass:[NSNull class]]){
                         NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
                         [dateFormat setDateFormat:@"yyyyMMdd"];
                         
@@ -218,8 +218,8 @@ static NSString  *CarInfoKeyArray[] = {
                     switch (indexPath.row) {
                         case 1:
                             tempText = [self.data objectForKey:@"lastMilage"];
-                            if(tempText&&[tempText intValue]){
-                                dataText = [NSString stringWithFormat:@"%d",[tempText intValue]];
+                            if(![tempText isKindOfClass:[NSNull class]]){
+                                dataText = [NSString stringWithFormat:@"%dKM",[tempText intValue]];
                             }
                             break;
                         case 2:
@@ -319,13 +319,21 @@ static NSString  *CarInfoKeyArray[] = {
          return;
     }
     CarInfoInputViewController *changeDataVc = [[CarInfoInputViewController alloc]init];
-    changeDataVc.userEmail = cell.detailTextLabel.text;
+    NSString *text = cell.detailTextLabel.text;
+    text = [text stringByReplacingOccurrencesOfString:@"KM" withString:@""];
+    changeDataVc.userEmail = text;
     changeDataVc.barTitle = cell.textLabel.text;
     changeDataVc.type = type;
     changeDataVc.delegate = self;
     changeDataVc.indexPath = indexPath;
     if(indexPath.row == 0 && indexPath.section == 0){
         changeDataVc.isShowQR = YES;
+    }
+    if(indexPath.section == 2){
+        if(indexPath.row == 0||indexPath.row == 1){
+            changeDataVc.isOnlyNumber = YES;
+            
+        }
     }
     [self.navigationController pushViewController:changeDataVc animated:YES];
     SafeRelease(changeDataVc);

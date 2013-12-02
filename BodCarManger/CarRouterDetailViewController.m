@@ -436,7 +436,7 @@
         index++;
     }
     printf("\n\n");
-#if 1
+#if 0
     if([gpsScaleArray count])
      [mMapView  showRouteWithPointsData:gpsScaleArray];
 #else

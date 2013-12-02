@@ -72,7 +72,7 @@
     NSMutableArray *totalData = [NSMutableArray arrayWithArray:unReadData];
     [totalData addObjectsFromArray:[[DBManage getSingletone] getMessageHistData:usrId]];
     self.dataArray = totalData;
-    
+    [self setHiddenRightBtn:YES];
     
 #if 0
     UIImage *bgImage = nil;

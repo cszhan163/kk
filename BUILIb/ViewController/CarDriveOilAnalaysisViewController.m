@@ -33,7 +33,7 @@
     [super viewDidLoad];
     //self.delegate = self;
 	// Do any additional setup after loading the view.
-    
+    [self setNavgationBarTitle:[NSString stringWithFormat:@"%d年%d月",self.mCurrDate.year,self.mCurrDate.month]];
 }
 
 - (void)didReceiveMemoryWarning

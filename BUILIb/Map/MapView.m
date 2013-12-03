@@ -8,8 +8,10 @@
 
 #import "MapView.h"
 #import "convert.h"
-@interface MapView()
+@interface MapView(){
 
+}
+@property(nonatomic,strong)PlaceMark *motionPoint;
 -(NSMutableArray *)decodePolyLine: (NSMutableString *)encoded :(CLLocationCoordinate2D) f to: (CLLocationCoordinate2D) t ;
 -(void) updateRouteView;
 -(NSArray*) calculateRoutesFrom:(CLLocationCoordinate2D) from to: (CLLocationCoordinate2D) to;
@@ -169,11 +171,32 @@
     
     PlaceMark* point = [[[PlaceMark alloc] initWithPlace:f] autorelease];
     point.type = f.pointType;
+    
+    if(f.pointType == 2){
+        self.motionPoint = point;
+    }
 	//PlaceMark* to = [[[PlaceMark alloc] initWithPlace:t] autorelease];
 	[mapView addAnnotation:point];
 	//[mapView addAnnotation:to];
 
 
+}
+- (void)addMotionPointToMap:(Place*)f{
+    
+//    for(MKAnnotation *item in mapView.annotations){
+//        if(item.pinColor == MKPinAnnotationColorRed){
+//            
+//        }
+//    }
+    MKAnnotationView *motionPointView = [mapView viewForAnnotation:self.motionPoint];
+    
+    
+    
+    [self addPointToMap:f];
+    if(motionPointView)
+     [motionPointView removeFromSuperview];
+    //[mapView removeAnnotation:<#(id<MKAnnotation>)#>]
+    
 }
 - (void)addPinToMap:(CLLocationCoordinate2D)annotationCoord withName:(NSString*)name{
 
@@ -339,16 +362,40 @@ static MKPolylineView *lineview =  nil;
     }
     NSLog(@"add annotation");
     static NSString* ShopAnnotationIdentifier = @"shopAnnotationIdentifier";
-    MKPinAnnotationView *pinView = (MKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:ShopAnnotationIdentifier];
-    if (!pinView) {
-        pinView = [[[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:ShopAnnotationIdentifier] autorelease];
-        pinView.pinColor = MKPinAnnotationColorGreen;
-        pinView.animatesDrop = YES;
-        [pinView setCanShowCallout:YES];
-    }
     PlaceMark *place = (PlaceMark*)annotation;
+    if(place.type == 2){
+        ShopAnnotationIdentifier = @"customAnnomation";
+    }
+    else{
+        
+        ShopAnnotationIdentifier = @"shopAnnotationIdentifier";
+    }
+    MKPinAnnotationView *pinView = (MKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:ShopAnnotationIdentifier];
+    if(place.type == 2){
+        if (!pinView) {
+            pinView = [[[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:ShopAnnotationIdentifier] autorelease];
+            
+            UIImageWithFileName(UIImage *bg, @"run_arrow.png");
+            pinView.image = bg;
+            pinView.animatesDrop = NO;
+            [pinView setCanShowCallout:NO];
+            pinView.tag = 3;
+        }
+    }
+    else{
+        if (!pinView) {
+            pinView = [[[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:ShopAnnotationIdentifier] autorelease];
+            pinView.pinColor = MKPinAnnotationColorGreen;
+            pinView.animatesDrop = YES;
+            [pinView setCanShowCallout:YES];
+            pinView.tag = 0;
+        }
+    }
     if(place.type == 1){
         pinView.pinColor = MKPinAnnotationColorRed;
+        pinView.tag = 1;
+    }
+    if(place.type == 2){
     }
     return pinView;
 }

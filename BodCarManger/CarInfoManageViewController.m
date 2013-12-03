@@ -16,7 +16,7 @@ static NSString *kCarInfoArray[] =
     @"车辆品牌/型号",@"车牌号",
 };
 static NSString *kCarOtherInfoArray[] = {
-    @"初始里程",@"上次保养里程",@"上次保养日期",@"保险到期日",
+    @"初始里程(KM)",@"上次保养里程(KM)",@"上次保养日期",@"保险到期日",
 };
 static NSString  *CarInfoKeyArray[] = {
    @"OBD",@"",@"",@"",
@@ -193,13 +193,13 @@ static NSString  *CarInfoKeyArray[] = {
                 case 0:
                     bgImageName = @"setting_cell_header.png";
                     tempText = [self.data objectForKey:@"milage"];
-                    if(tempText){
-                        dataText = [NSString stringWithFormat:@"%dKM",[tempText intValue]];
+                    if(![tempText isKindOfClass:[NSNull class]]&&tempText){
+                        dataText = [NSString stringWithFormat:@"%d",[tempText intValue]];
                     }
                     break;
                 case 3:
                     tempText = [self.data objectForKey:@"insureExpDate"];
-                    if(![tempText isKindOfClass:[NSNull class]]){
+                    if(![tempText isKindOfClass:[NSNull class]]&&tempText&&![tempText isEqualToString:@""]){
                         NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
                         [dateFormat setDateFormat:@"yyyyMMdd"];
                         
@@ -218,13 +218,13 @@ static NSString  *CarInfoKeyArray[] = {
                     switch (indexPath.row) {
                         case 1:
                             tempText = [self.data objectForKey:@"lastMilage"];
-                            if(![tempText isKindOfClass:[NSNull class]]){
-                                dataText = [NSString stringWithFormat:@"%dKM",[tempText intValue]];
+                            if(![tempText isKindOfClass:[NSNull class]]&&tempText){
+                                dataText = [NSString stringWithFormat:@"%d",[tempText intValue]];
                             }
                             break;
                         case 2:
                             tempText = [self.data objectForKey:@"lastmaintainDate"];
-                            if(tempText&&![tempText isEqualToString:@""]){
+                            if(![tempText isKindOfClass:[NSNull class]]&&tempText&&![tempText isEqualToString:@""]){
                                 NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
                                 [dateFormat setDateFormat:@"yyyyMMdd"];
                                 
@@ -378,6 +378,7 @@ static NSString  *CarInfoKeyArray[] = {
                          @"",@"NO",
                          @"",@"OBD",
                          @"",@"milage",
+                         @"",@"modelSeq",
                          @"",@"lastMilage",
                          @"",@"lastmaintainDate",
                          @"",@"insureExpDate",
@@ -465,6 +466,52 @@ static NSString  *CarInfoKeyArray[] = {
     [logInfo setTableFooterView:bgView];
 }
 - (void)logOutConfirm:(id)sender{
+    
+    /*
+     [inInfo set:@"modelSeq" value:[param objectForKey:@"modelSeq"]];
+     [inInfo set:@"NO" value:[param objectForKey:@"NO"]];
+     [inInfo set:@"milage" value:[param objectForKey:@"milage"]];
+     [inInfo set:@"lastMilage" value:[param objectForKey:@"lastMilage"]];
+     [inInfo set:@"lastmaintainDate" value:[param objectForKey:@"lastmaintainDate"]];
+     [inInfo set:@"OBD" value:[param objectForKey:@"OBD"]];
+     //[inInfo set:@"type" value:[NSString stringWithFormat:@"%d",type]];
+     [inInfo set:@"type" value:[param objectForKey:@"type"]];
+     [inInfo set:@"insureExpDate" value:[param objectForKey:@"insureExpDate"]];
+     初始里程",@"上次保养里程(KM)",@"上次保养日期(KM)",@"保险到期日"
+     */
+    NSString *msg = @"";
+    if([[self.data objectForKey:@"OBD"] isEqualToString:@""]){
+        msg = @"请输入OBD号";
+        
+    }
+    else if([[self.data objectForKey:@"modelSeq"] isEqualToString:@""]){
+        msg = @"请输入车品牌/型号";
+        
+    }
+    else if([[self.data objectForKey:@"NO"] isEqualToString:@""]){
+        msg = @"请输入车品号";
+        
+    }
+    else if([[self.data objectForKey:@"milage"] isEqualToString:@""]){
+        msg = @"请输入初始里程";
+        
+    }
+    else if([[self.data objectForKey:@"lastMilage"] isEqualToString:@""]){
+        msg = @"请输入上次保养里程";
+        
+    }
+    else if([[self.data objectForKey:@"lastmaintainDate"] isEqualToString:@""]){
+        msg = @"请输入上次保养日期";
+        
+    }
+    else if([[self.data objectForKey:@"insureExpDate"] isEqualToString:@""]){
+        msg = @"请输入保险到期日";
+        
+    }
+    if(![msg isEqualToString:@""]){
+        kUIAlertView(@"信息",msg);
+        return;
+    }
     kNetStartShow(@"数据保存中...", self.view);
     CarServiceNetDataMgr *cardShopMgr = [CarServiceNetDataMgr getSingleTone];
     NSString *useName = [AppSetting getLoginUserId];

@@ -91,6 +91,7 @@ static char *carNumProvince[] = {"京","津","冀","晋","蒙","辽","吉","黑"
     UIPickerView *picView = [[UIPickerView alloc]initWithFrame:CGRectMake(0.f,100, 320.f,218)];
     picView.delegate = self;
     picView.dataSource = self;
+    picView.showsSelectionIndicator = YES;
     [self.view addSubview:picView];
     [picView selectRow:proviceIndex inComponent:0 animated:YES];
     //[picView selectRow:charIndex inComponent:1 animated:YES];

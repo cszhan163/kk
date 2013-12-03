@@ -191,7 +191,7 @@ static DBManage *gDb = nil;
     NSString *fileName = [NSString stringWithFormat:@"%@_unread.data",userId];
     NSArray *data = [NSArray arrayWithContentsOfFile:[self getDataFileFullPath:fileName]];
     //if([self getDataFileFullPath])
-    [self clearUnReadMessageData:userId];
+    //[self clearUnReadMessageData:userId];
     if(data == nil){
         return  [NSMutableArray array];
     }

@@ -575,7 +575,7 @@ int lastDirect = -1;
                            //catStr,@"cat",
                            //mothParm, @"month",
                            [NSString stringWithFormat:@"%d",self.mCurrDate.year],@"year",
-                           [NSString stringWithFormat:@"%d",self.mCurrDate.month],@"month",
+                           [NSString stringWithFormat:@"%02d",self.mCurrDate.month],@"month",
                            // @"page",@"1",
                            // @"records",@""
                            nil];

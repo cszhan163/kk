@@ -37,6 +37,7 @@ static NSString *kImageTextArr[] ={
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        [ZCSNotficationMgr addObserver:self call:@selector(popNewMSGNotify:) msgName:KNewMessageFromMSG];
     }
     return self;
 }
@@ -44,9 +45,9 @@ static NSString *kImageTextArr[] ={
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    /*
-    [ZCSNotficationMgr addObserver:self call:@selector(popNewMSGNotify:) msgName:KNewMessageFromMSG];
-     */
+    
+    
+    
     
 //#if 1
 //    UIImage *bgImage = nil;

@@ -69,6 +69,9 @@
     NSString *usrId = [AppSetting getLoginUserId];
     NSArray *unReadData  = [[DBManage getSingletone] getUnReadMessageData:usrId];
     unReadCount = [unReadData count];
+    if(unReadCount>0){
+        [ZCSNotficationMgr postMSG:KNewMessageFromMSG obj:[NSNumber numberWithInteger:0]];
+    }
     NSMutableArray *totalData = [NSMutableArray arrayWithArray:unReadData];
     [totalData addObjectsFromArray:[[DBManage getSingletone] getMessageHistData:usrId]];
     self.dataArray = totalData;
@@ -95,7 +98,6 @@
 }
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
-    [ZCSNotficationMgr postMSG:KNewMessageFromMSG obj:nil];
 }
 - (void)viewDidUnload
 {
@@ -458,9 +460,10 @@
                 [self performSelectorOnMainThread:@selector(reloadAllData) withObject:nil waitUntilDone:NO];
                 
             }
-            if([self.dataArray count]>0)
-                [[DBManage getSingletone] saveMessageHistData:self.dataArray withUserId:[AppSetting getLoginUserId]];
+           
         }
+        if([self.dataArray count]>0)
+            [[DBManage getSingletone] saveMessageHistData:self.dataArray withUserId:[AppSetting getLoginUserId]];
     }
 //    if(self.clearRequest == respRequest)
 //    {

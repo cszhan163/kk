@@ -337,9 +337,13 @@
         //self.isRunning = YES;
         if([[data objectForKey:@"tripId"]intValue] !=0){
             self.mData = data;
-            
+            [self performSelectorOnMainThread:@selector(updateUIRealTimeCheck:) withObject:nil waitUntilDone:NO];
         }
-        [self performSelectorOnMainThread:@selector(updateUIRealTimeCheck:) withObject:nil waitUntilDone:NO];
+        else{
+            kNetEnd(self.view);
+            [self.navigationController popToRootViewControllerAnimated:NO];
+        }
+       
     }
     
 }
@@ -492,12 +496,13 @@
     NSMutableArray *points = [NSMutableArray array];
     CLLocationCoordinate2D pointsToUse[[cordPoints count]];
     for(int i =0;i<[cordPoints count];i++){
-        CLLocation *item = [cordPoints objectAtIndex:i];
+        NSDictionary *item = [cordPoints objectAtIndex:i];
         CLLocationCoordinate2D coords;
         double lng = [[item objectForKey:@"lng"] doubleValue]/kGPSMaxScale;
         double lat = [[item objectForKey:@"lat"] doubleValue]/kGPSMaxScale;
         coords.latitude = lat;
         coords.longitude = lng;
+        coords = transform(coords);
         pointsToUse[i] = coords;
     }
     [mMapView addRouterView:pointsToUse withCount:[cordPoints count]];

@@ -383,8 +383,8 @@ NSString* gDataArr[] = {@"12.5km",@"11km/h",@"87L",@"3h"};
              // @"records",@""
              nil];
     //self.request = [cardShopMgr  getDetailByDay:param];
-    NSString *day = [NSString stringWithFormat:@"%d",currDateStruct.day];
-    NSString *month = [NSString stringWithFormat:@"%d",currDateStruct.month];
+    NSString *day = [NSString stringWithFormat:@"%02d",currDateStruct.day];
+    NSString *month = [NSString stringWithFormat:@"%02d",currDateStruct.month];
     NSString *year = [NSString stringWithFormat:@"%d",currDateStruct.year];
     [cardShopMgr getRouterDataByDay:day withMoth:month withYear:year];
 //    if(isNeedHeaderView)

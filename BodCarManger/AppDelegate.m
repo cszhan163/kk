@@ -216,15 +216,15 @@ UIShareActionAlertView *sharedAlterView = nil;
     if([resKey isEqualToString:kCarInfoQuery])
     {
         if([data objectForKey:@"vin"]){
-            NSString *userId = [AppSetting getCurrentLoginUser];
+            NSString *userId = [AppSetting getLoginUserId];
             [AppSetting setUserCarId:[data objectForKey:@"vin"] withUserId:userId];
         }
     }
     if([resKey isEqualToString:kResMessageData]){
         NSArray *mesData = [data objectForKey:@"messageBox"];
         if([mesData count]>0){
-            NSString *userId = [AppSetting getCurrentLoginUser];
-            [[DBManage  getSingletone] saveUnReadMessageData:data withUserId:userId];
+            NSString *userId = [AppSetting getLoginUserId];
+            [[DBManage  getSingletone] saveUnReadMessageData:mesData withUserId:userId];
              [ZCSNotficationMgr postMSG:KNewMessageFromMSG obj:[NSString stringWithFormat:@"%d",[mesData count]]];
             
         }

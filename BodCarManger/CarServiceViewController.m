@@ -76,6 +76,9 @@ static NSString *kImageTextArr[] ={
     if(![[[UIApplication sharedApplication]delegate]checkCarInforData]){
         return;
     }
+    if([[[UIApplication sharedApplication]delegate]mesCount]>0){
+        [logInfo reloadData];
+    }
 }
 - (void)addFonterView{
     logInfo.scrollEnabled = NO;

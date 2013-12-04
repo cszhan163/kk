@@ -75,7 +75,7 @@
     NSMutableArray *totalData = [NSMutableArray arrayWithArray:unReadData];
     [totalData addObjectsFromArray:[[DBManage getSingletone] getMessageHistData:usrId]];
     self.dataArray = totalData;
-    [self setHiddenRightBtn:YES];
+    
     
 #if 0
     UIImage *bgImage = nil;
@@ -89,7 +89,7 @@
     tweetieTableView.layer.cornerRadius = 8.f;
     [self setNavgationBarTitle:NSLocalizedString(@"消息列表", @""
                                                 )];
-    [self setHiddenRightBtn:NO];
+    [self setHiddenRightBtn:YES];
     [self setRightTextContent:NSLocalizedString(@"Clear", @"")];
     [self shouldLoadOlderData:tweetieTableView];
 	// Do any additional setup after loading the view.
@@ -173,7 +173,7 @@
     cell.backgroundView = bgView;
     SafeRelease(bgView);
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    
+    cell.backgroundColor = [UIColor clearColor];
     if(1){
         NSDictionary *item = [self.dataArray objectAtIndex:indexPath.row];
         /*

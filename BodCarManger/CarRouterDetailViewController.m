@@ -22,6 +22,7 @@
     
     CLLocationCoordinate2D mStartCoordinate2d;
     CLLocationCoordinate2D mEndCoordinate2d;
+    CGFloat                mEndSpeed;
    
     
 }
@@ -371,13 +372,16 @@
 
     NSMutableArray *gpsScaleArray = [NSMutableArray array];
     int index = 0;
+    int totalCount =  [self.gprsDataArray count];
     Place *place = nil;
-    for(NSDictionary *item in self.gprsDataArray){
+    for(int i = totalCount-1;i>=0;i--)
+    {
+        NSDictionary *item  = [self.gprsDataArray objectAtIndex:i];
         double lng = [[item objectForKey:@"lng"] doubleValue]/kGPSMaxScale;
         double lat = [[item objectForKey:@"lat"] doubleValue]/kGPSMaxScale;
         printf("[%lf,%lf]",lat,lng);
         //WGS2Mars(&lat, &lng);
-        if(index == [self.gprsDataArray count]-1){
+        if(index == totalCount -1){
             CLLocationCoordinate2D coordinate2d;
             coordinate2d.latitude = lat;
             coordinate2d.longitude = lng;
@@ -405,6 +409,7 @@
 
         }
         if(index == 0){
+            mEndSpeed = [[item objectForKey:@"speed"]floatValue];
             CLLocationCoordinate2D coordinate2d;
             coordinate2d.latitude = lat;
             coordinate2d.longitude = lng;
@@ -461,7 +466,7 @@
             coords.latitude = lat;
             coords.longitude = lng;
             coords = transform(coords);
-            printf("[%lf,%lf]",coords.latitude,coords.longitude);
+            //printf("[%lf,%lf]",coords.latitude,coords.longitude);
             if(j== 0){
                 startPoint = value;
                 pointsToUse[0] = coords;
@@ -488,27 +493,76 @@
 #endif
     [self initMapPointData:data];
 }
+
+static int indexCount = 0;
 - (void)updateUIRealTimeData:(NSDictionary*)data{
     
-    [self setPanelUIByData:data];
-    
+    CGFloat startPoint = mEndSpeed;
+    CGFloat endPoint = 0.f;
+#if !TEST_RUNNING
     NSArray *cordPoints = [data objectForKey:@"gps"];
-    NSMutableArray *points = [NSMutableArray array];
-    CLLocationCoordinate2D pointsToUse[[cordPoints count]];
-    for(int i =0;i<[cordPoints count];i++){
+#else
+    if(indexCount>[self.gprsDataArray count]){
+        indexCount = 0;
+    }
+    data = [self.gprsDataArray objectAtIndex:indexCount++];
+#endif
+    [self setPanelUIByData:data];
+    CLLocationCoordinate2D pointsToUse[2];
+    
+    pointsToUse[0] = mEndCoordinate2d;
+    
+    for(int i =0;i<1;i++){
+        #if !TEST_RUNNING
         NSDictionary *item = [cordPoints objectAtIndex:i];
+        #else
+        NSDictionary *item = data;
+        #endif
+        endPoint = [[item objectForKey:@"speed"] floatValue];
         CLLocationCoordinate2D coords;
         double lng = [[item objectForKey:@"lng"] doubleValue]/kGPSMaxScale;
         double lat = [[item objectForKey:@"lat"] doubleValue]/kGPSMaxScale;
         coords.latitude = lat;
         coords.longitude = lng;
         coords = transform(coords);
-        pointsToUse[i] = coords;
+        pointsToUse[1] = coords;
     }
-    [mMapView addRouterView:pointsToUse withCount:[cordPoints count]];
+    NSString *color = @"red";
+    CGFloat avgSpeed = (startPoint+endPoint/2.f);
+    if(avgSpeed < kLowSpeed){
+        
+    }
+    else if(avgSpeed <kNormalSpeed){
+        color = @"yeallow";
+    }
+    else{
+        color = @"green";
+    }
+    [mMapView addRouterView:pointsToUse withCount:2 withColor:color];
+    
+    //[mMapView addRouterView:pointsToUse withCount:2];
+     mEndCoordinate2d = pointsToUse[1];
+    mEndSpeed = endPoint;
+    
+    Place *place = [[Place alloc]init];
+    place.description = @"";
+    place.latitude = mEndCoordinate2d.latitude;
+    place.longitude = mEndCoordinate2d.longitude;
+    place.pointType = 2;
+    //place.name = _mStartName;
+    [mMapView addMotionPointToMap:place];
+    //[place release];
+    SafeRelease(place);
+    
+   
+    
+    
+    //[mMapView addMotionPointToMap:];
 }
 - (void)updateUIRealTimeCheck:(NSDictionary*)data{
- 
+#if TEST_RUNNING
+        self.isRunning = YES;
+#endif
         if(self.isRunning){
             [self setNavgationBarTitle:@"正在驾驶"];
             //[self performSelectorInBackground:@selector(loadRouterHistoryData) withObject:nil];

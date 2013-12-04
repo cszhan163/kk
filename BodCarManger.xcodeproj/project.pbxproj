@@ -300,6 +300,8 @@
 		04EF7059183E7711000E06CE /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04EF7058183E7711000E06CE /* AssetsLibrary.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		04EF705B183E772F000E06CE /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04EF705A183E772F000E06CE /* CoreVideo.framework */; };
 		04EF705D183E7749000E06CE /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04EF705C183E7749000E06CE /* CoreMedia.framework */; };
+		04F6B014184E21B20034ED8B /* run_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 04F6B013184E21B20034ED8B /* run_arrow.png */; };
+		04F6B019184E3A060034ED8B /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F6B018184E3A060034ED8B /* AboutViewController.m */; };
 		04FA93CC1835247400B1DB3E /* matain_need.png in Resources */ = {isa = PBXBuildFile; fileRef = 04FA93CA1835247400B1DB3E /* matain_need.png */; };
 		04FA93CD1835247400B1DB3E /* matain_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 04FA93CB1835247400B1DB3E /* matain_normal.png */; };
 		04FE070A1818188F00EEC76A /* drive_oil_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 04FE07041818188F00EEC76A /* drive_oil_btn.png */; };
@@ -788,6 +790,9 @@
 		04EF7058183E7711000E06CE /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		04EF705A183E772F000E06CE /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		04EF705C183E7749000E06CE /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		04F6B013184E21B20034ED8B /* run_arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = run_arrow.png; sourceTree = "<group>"; };
+		04F6B017184E3A060034ED8B /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
+		04F6B018184E3A060034ED8B /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
 		04FA93CA1835247400B1DB3E /* matain_need.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = matain_need.png; sourceTree = "<group>"; };
 		04FA93CB1835247400B1DB3E /* matain_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = matain_normal.png; sourceTree = "<group>"; };
 		04FE07041818188F00EEC76A /* drive_oil_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = drive_oil_btn.png; sourceTree = "<group>"; };
@@ -945,6 +950,8 @@
 				04EAFB801846397A00D9702D /* CarSelectedViewController.m */,
 				04EAFB8418464A9500D9702D /* CarNumberInputViewController.h */,
 				04EAFB8518464A9500D9702D /* CarNumberInputViewController.m */,
+				04F6B017184E3A060034ED8B /* AboutViewController.h */,
+				04F6B018184E3A060034ED8B /* AboutViewController.m */,
 			);
 			name = User;
 			sourceTree = "<group>";
@@ -1294,6 +1301,7 @@
 				044D8905182A934000AD2368 /* router_location.png */,
 				044D8906182A934000AD2368 /* router_oil.png */,
 				046B669D17E74C37006F34A1 /* arrow.png */,
+				04F6B013184E21B20034ED8B /* run_arrow.png */,
 				046B669E17E74C37006F34A1 /* color.png */,
 				046B669F17E74C37006F34A1 /* dashboard */,
 				046B66A517E74C37006F34A1 /* map-P.png */,
@@ -2063,6 +2071,7 @@
 				046B66EF17E74C37006F34A1 /* rotate.png in Resources */,
 				046B66F017E74C37006F34A1 /* tempr.png in Resources */,
 				046B67F917E7594F006F34A1 /* tableitemsel4.png in Resources */,
+				04F6B014184E21B20034ED8B /* run_arrow.png in Resources */,
 				046B685B17E884D5006F34A1 /* plantData.geojson in Resources */,
 				BD05726717E9A2C100208699 /* dashboard10.png in Resources */,
 				BD05726817E9A2C100208699 /* dashboard9.png in Resources */,
@@ -2301,6 +2310,7 @@
 				04E45AD318255F150028BDAD /* ROFriendResponseItem.m in Sources */,
 				04E45AD418255F150028BDAD /* ROPublishPhotoResponseItem.m in Sources */,
 				04E45AD518255F150028BDAD /* ROResponseItem.m in Sources */,
+				04F6B019184E3A060034ED8B /* AboutViewController.m in Sources */,
 				04E45AD618255F150028BDAD /* ROUserResponseItem.m in Sources */,
 				04E45AD718255F150028BDAD /* RORequest.m in Sources */,
 				04E45AD818255F150028BDAD /* ROResponse.m in Sources */,

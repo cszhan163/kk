@@ -16,6 +16,8 @@
 
 #import "CardShopLoginViewController.h"
 #import "UserChangePasswordViewController.h"
+
+#import "AboutViewController.h"
 //
 //////#import "FriendInvitationViewController.h"
 //////#import "UserInforEditViewController.h"
@@ -603,6 +605,12 @@ static NSString *kCellImageArr[] = {
 //                    break;
 //            }
             
+        case 3:{
+            AboutViewController *abVc = [[AboutViewController alloc]init];
+            [self.navigationController pushViewController:abVc animated:YES];
+            SafeRelease(abVc);
+        }
+            break;
         default:
             break;
     }

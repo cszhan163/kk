@@ -106,9 +106,7 @@ UIShareActionAlertView *sharedAlterView = nil;
     AppMainUIViewManage *appMg = [AppMainUIViewManage getSingleTone];
     appMg.window = self.window;
     [appMg addMainViewUI];
-    NSString *usrId = [AppSetting getLoginUserId];
-    NSString *cardId = [AppSetting getUserCarId:usrId];
-    if(cardId && ![cardId isEqualToString:@""])
+    
         //[self checkCarIsRunning:nil];
     [self setLastWidnows];
     //[NSTimer timerWithTimeInterval:5 invocation:@selector(checkCarIsRunning) repeats:YES];
@@ -138,6 +136,12 @@ UIShareActionAlertView *sharedAlterView = nil;
 #endif
     
     [self.window makeKeyAndVisible];
+    
+    NSString *usrId = [AppSetting getLoginUserId];
+    NSString *cardId = [AppSetting getUserCarId:usrId];
+    if(cardId && ![cardId isEqualToString:@""]){
+        [self performSelector:@selector(didLoginOK:) withObject:nil  afterDelay:1.0];
+    }
     return YES;
 }
 
@@ -224,14 +228,35 @@ UIShareActionAlertView *sharedAlterView = nil;
         NSArray *mesData = [data objectForKey:@"messageBox"];
         if([mesData count]>0){
             NSString *userId = [AppSetting getLoginUserId];
-            [[DBManage  getSingletone] saveUnReadMessageData:mesData withUserId:userId];
-             [ZCSNotficationMgr postMSG:KNewMessageFromMSG obj:[NSString stringWithFormat:@"%d",[mesData count]]];
+            NSMutableArray *histData = [NSMutableArray arrayWithArray:[[DBManage getSingletone]getMessageHistData:userId]];
+            [histData addObject:mesData];
+            [[DBManage  getSingletone] saveMessageHistData:histData withUserId:userId];
+            self.mesCount = self.mesCount+[mesData count];
+            [ZCSNotficationMgr postMSG:KNewMessageFromMSG obj:[NSString stringWithFormat:@"%d",self.mesCount]];
             
         }
+       
         //if([mesData count]>0)
            
     }
+    if([resKey isEqualToString:kCarUserLogin]){
     
+        [self didLoginOK:ntf];
+    }
+    
+}
+- (void)didLoginOK:(NSNotification*)ntf{
+    self.mesCount = 0;
+    NSString *usrId = [AppSetting getLoginUserId];
+    if(usrId && ![usrId isEqualToString:@""]){
+        NSArray *histData = [[DBManage getSingletone]getMessageHistData:usrId];
+        for(NSDictionary *item in histData){
+            if([[item objectForKey:@"readTag"] intValue] == 0){
+                self.mesCount = self.mesCount +1;
+            }
+        }
+        [ZCSNotficationMgr postMSG:KNewMessageFromMSG obj:[NSString stringWithFormat:@"%d",self.mesCount]];
+    }
 }
 -(BOOL)checkCarInforData{
     NSString *userId = [AppSetting getLoginUserId];

@@ -302,6 +302,7 @@
 		04EF705D183E7749000E06CE /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04EF705C183E7749000E06CE /* CoreMedia.framework */; };
 		04F6B014184E21B20034ED8B /* run_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 04F6B013184E21B20034ED8B /* run_arrow.png */; };
 		04F6B019184E3A060034ED8B /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F6B018184E3A060034ED8B /* AboutViewController.m */; };
+		04F6B022184F83860034ED8B /* MessageDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F6B021184F83860034ED8B /* MessageDetailViewController.m */; };
 		04FA93CC1835247400B1DB3E /* matain_need.png in Resources */ = {isa = PBXBuildFile; fileRef = 04FA93CA1835247400B1DB3E /* matain_need.png */; };
 		04FA93CD1835247400B1DB3E /* matain_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 04FA93CB1835247400B1DB3E /* matain_normal.png */; };
 		04FE070A1818188F00EEC76A /* drive_oil_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 04FE07041818188F00EEC76A /* drive_oil_btn.png */; };
@@ -793,6 +794,8 @@
 		04F6B013184E21B20034ED8B /* run_arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = run_arrow.png; sourceTree = "<group>"; };
 		04F6B017184E3A060034ED8B /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
 		04F6B018184E3A060034ED8B /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
+		04F6B020184F83860034ED8B /* MessageDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageDetailViewController.h; sourceTree = "<group>"; };
+		04F6B021184F83860034ED8B /* MessageDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageDetailViewController.m; sourceTree = "<group>"; };
 		04FA93CA1835247400B1DB3E /* matain_need.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = matain_need.png; sourceTree = "<group>"; };
 		04FA93CB1835247400B1DB3E /* matain_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = matain_normal.png; sourceTree = "<group>"; };
 		04FE07041818188F00EEC76A /* drive_oil_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = drive_oil_btn.png; sourceTree = "<group>"; };
@@ -952,6 +955,8 @@
 				04EAFB8518464A9500D9702D /* CarNumberInputViewController.m */,
 				04F6B017184E3A060034ED8B /* AboutViewController.h */,
 				04F6B018184E3A060034ED8B /* AboutViewController.m */,
+				04F6B020184F83860034ED8B /* MessageDetailViewController.h */,
+				04F6B021184F83860034ED8B /* MessageDetailViewController.m */,
 			);
 			name = User;
 			sourceTree = "<group>";
@@ -2282,6 +2287,7 @@
 				BDC981C318211125005DD720 /* RegexKitLite.m in Sources */,
 				04E458FD1825452A0028BDAD /* CarInfoManageViewController.m in Sources */,
 				04E459F518255D1E0028BDAD /* CancelBindViewController.m in Sources */,
+				04F6B022184F83860034ED8B /* MessageDetailViewController.m in Sources */,
 				04E459F618255D1E0028BDAD /* UIShareCell.m in Sources */,
 				0410090A183E4DA800027851 /* NewUserSettingViewContorller.m in Sources */,
 				04E45AA518255F150028BDAD /* NTESMBInfoBaseView.m in Sources */,

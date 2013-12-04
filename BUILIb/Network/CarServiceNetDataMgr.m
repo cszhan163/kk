@@ -819,6 +819,7 @@ static BOOL isExit = NO;
             NSDictionary *item = [NSDictionary dictionaryWithObjectsAndKeys:
                                   [row objectForKey:@"lng"],@"lng",
                                   [row objectForKey:@"lat"],@"lat",
+                                  [row objectForKey:@"speed"],@"speed",
                                   nil];
             [gpsArray addObject:item];
             
@@ -1089,7 +1090,7 @@ static BOOL isExit = NO;
         [resultDict setValue:[info get:@"overSpeedRate"] forKey:@"overSpeedRate"];
         [resultDict setValue:[info get:@"breakRate"] forKey:@"breakRate"];
         [resultDict setValue:[info get:@"accRate"] forKey:@"accRate"];
-        
+        [resultDict setValue:[info get:@"conclusion"] forKey:@"conclusion"];
         EiBlock *tripInfo = [info getBlock:@"safeData"]; // block型返回值
         int rowCount = [tripInfo getRowCount];
         for(int i = 0;i<rowCount;i++){
@@ -1126,6 +1127,7 @@ static BOOL isExit = NO;
         [resultDict setValue:[info get:@"breakRate"] forKey:@"breakRate"];
         [resultDict setValue:[info get:@"highRPMRate"] forKey:@"highRPMRate"];
         [resultDict setValue:[info get:@"accRate"] forKey:@"accRate"];
+        [resultDict setValue:[info get:@"conclusion"] forKey:@"conclusion"];
         //[resultDict setValue:[info get:@"conclusion"] forKey:@"conclusion"];
         EiBlock *tripInfo = [info getBlock:@"economicData"]; // block型返回值
         int rowCount = [tripInfo getRowCount];
@@ -1239,6 +1241,7 @@ static BOOL isExit = NO;
                                   [row objectForKey:@"pushMesType"],@"pushMesType",
                                   [row objectForKey:@"pushMesCon"],@"pushMesCon",
                                   [row objectForKey:@"createdTime"],@"createdTime",
+                                  @"0",@"readTag",
                                   nil];
             [data addObject:item];
         }

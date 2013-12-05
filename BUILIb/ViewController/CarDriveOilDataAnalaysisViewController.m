@@ -127,7 +127,13 @@
     oilData.date = self.mCurrDate;
     oilData.indictorText = showText;
     oilData.textFormatArray = @[@"低速行驶时间: %d%@",@"经济行驶时间: %d\%@",@"高速行驶时间: %d\%@"];
-    oilData.conclusionText = @"起停次数较多会影响油耗";
+    NSString *conclusion = [data objectForKey:@"conclusion"];
+    if(conclusion && ![conclusion isKindOfClass:[NSNull class]&& ![conclusion isEqualToString:@""]]){
+    }
+    else{
+        conclusion = @"暂无";
+    }
+    oilData.conclusionText = conclusion;//@"起停次数较多会影响油耗";
     
     [dataAnaylsisView  updateUIByData:oilData];
 

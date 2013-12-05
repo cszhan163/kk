@@ -374,7 +374,7 @@
     int index = 0;
     int totalCount =  [self.gprsDataArray count];
     Place *place = nil;
-    for(int i = totalCount-1;i>=0;i--)
+    for(int i = 0;i<totalCount;i++)
     {
         NSDictionary *item  = [self.gprsDataArray objectAtIndex:i];
         double lng = [[item objectForKey:@"lng"] doubleValue]/kGPSMaxScale;

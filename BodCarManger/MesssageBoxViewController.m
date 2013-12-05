@@ -10,6 +10,8 @@
 #import "CarServiceNetDataMgr.h"
 #import "MessageBoxCell.h"
 #import "DBManage.h"
+
+#import "MessageDetailViewController.h"
 //#import "DBManage.h"
 //#import "MyProfileViewController.h"
 //#import "DressMemoCommentController.h"
@@ -72,8 +74,18 @@
     if(unReadCount>0){
         [ZCSNotficationMgr postMSG:KNewMessageFromMSG obj:[NSNumber numberWithInteger:0]];
     }
+
     NSMutableArray *totalData = [NSMutableArray arrayWithArray:unReadData];
     [totalData addObjectsFromArray:[[DBManage getSingletone] getMessageHistData:usrId]];
+#if 0
+    NSMutableArray *newData = [NSMutableArray array];
+    for(NSDictionary *item in totalData){
+        NSMutableDictionary *newItem = [NSMutableDictionary dictionaryWithDictionary:item];
+        [newItem setValue:@"0" forKey:@"readTag"];
+        [newData addObject:newItem];
+    }
+    [[DBManage getSingletone]saveMessageHistData:newData withUserId:usrId];
+#endif
     self.dataArray = totalData;
     
     
@@ -98,6 +110,7 @@
 }
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
+    [tweetieTableView reloadData];
 }
 - (void)viewDidUnload
 {
@@ -216,11 +229,18 @@
             //;
         }
         cell.mDateLabel.text = time;
-    }
-    if(indexPath.row <unReadCount){
-        cell.mDateLabel.textColor = HexRGB(255, 47, 10);
-        cell.mMsgTextLabel.textColor = HexRGB(255, 47, 10);
-        cell.mTypeLabel.textColor = HexRGB(255, 47, 10);
+  
+    int readTag = [[item objectForKey:@"readTag"]intValue];
+    if(readTag == 0){
+            cell.mDateLabel.textColor = HexRGB(255, 47, 10);
+            cell.mMsgTextLabel.textColor = HexRGB(255, 47, 10);
+            cell.mTypeLabel.textColor = HexRGB(255, 47, 10);
+        }
+        else{
+            cell.mDateLabel.textColor = [UIColor blackColor];
+            cell.mMsgTextLabel.textColor = [UIColor blackColor];
+            cell.mTypeLabel.textColor = [UIColor blackColor];
+        }
     }
     return cell;
     
@@ -253,13 +273,28 @@
      //2：报警消息 3：故障消息
      //4：需回复消息
      */
+   
+    MessageDetailViewController *detailVc = [[MessageDetailViewController alloc]init];
+    
     NSString * msgType = [item objectForKey:@"pushMesType"];
     if([msgType intValue] == 4){
-        
+        detailVc.type = 1;
     }
     else{
-        
+        detailVc.type = 0;
     }
+    detailVc.userEmail = [item objectForKey:@"pushMesCon"];
+    [self.navigationController pushViewController:detailVc animated:YES];
+    SafeRelease(detailVc);
+    if([[item objectForKey:@"readTag"] intValue] == 0){
+        NSMutableDictionary *newItem = [NSMutableDictionary dictionaryWithDictionary:item];
+        [newItem setValue:@"1" forKey:@"readTag"];
+        [self.dataArray replaceObjectAtIndex:indexPath.row withObject:newItem];
+        int unReadCount = [[[UIApplication sharedApplication]delegate]mesCount];
+        [[[UIApplication sharedApplication]delegate]setMesCount:unReadCount-1];
+        [ZCSNotficationMgr postMSG:KNewMessageFromMSG obj:[NSString stringWithFormat:@"%d",unReadCount-1]];
+    }
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 -(void)setItemCell:(MessageTableViewCell*)cell  withIndex:(NSIndexPath*)indexPath
 {

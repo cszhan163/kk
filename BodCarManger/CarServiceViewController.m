@@ -46,6 +46,23 @@ static NSString *kImageTextArr[] ={
 {
     [super viewDidLoad];
     
+    if(popup == nil)
+    {
+        UIImage *bgImage = nil;
+        UIImageWithFileName(bgImage,@"mes_bubble.png");
+        popup = [[UIButton alloc]initWithFrame:CGRectZero];
+        popup.titleLabel.adjustsFontSizeToFitWidth = YES;
+        popup.titleLabel.textColor = [UIColor whiteColor];
+        //popup.titleEdgeInsets = UIEdgeInsetsMake(0.f,2.f,6.f,2.f);
+        popup.titleLabel.font = kAppTextBoldSystemFont(13);
+        //popup.contentVerticalAlignment =UIControlContentVerticalAlignmentCenter;
+        [popup setBackgroundImage:bgImage forState:UIControlStateNormal];
+        popup.userInteractionEnabled = NO;
+        [logInfo addSubview: popup];
+        popup.frame = CGRectMake(160.f, 30.f, bgImage.size.width/kScale+5, bgImage.size.height/kScale);
+        
+    }
+
     
     
     
@@ -76,9 +93,19 @@ static NSString *kImageTextArr[] ={
     if(![[[UIApplication sharedApplication]delegate]checkCarInforData]){
         return;
     }
-    if([[[UIApplication sharedApplication]delegate]mesCount]>0){
-        [logInfo reloadData];
+    NSInteger num = [[[UIApplication sharedApplication]delegate]mesCount];
+    if(num >0)
+    {
+        [popup setTitle:[NSString stringWithFormat:@"%d",num] forState:UIControlStateNormal];
+        if(popup.hidden == YES)
+            popup.hidden = NO;
+        
     }
+    else
+    {
+        popup.hidden = YES;
+    }
+
 }
 - (void)addFonterView{
     logInfo.scrollEnabled = NO;
@@ -195,32 +222,6 @@ static NSString *kImageTextArr[] ={
     cell.textLabel.backgroundColor = [UIColor clearColor];
     
     if(indexPath.row == 0){
-        if(popup == nil)
-        {
-            UIImage *bgImage = nil;
-            UIImageWithFileName(bgImage,@"mes_bubble.png");
-            popup = [[UIButton alloc]initWithFrame:CGRectZero];
-            popup.titleLabel.adjustsFontSizeToFitWidth = YES;
-            popup.titleLabel.textColor = [UIColor whiteColor];
-            //popup.titleEdgeInsets = UIEdgeInsetsMake(0.f,2.f,6.f,2.f);
-            popup.titleLabel.font = kAppTextBoldSystemFont(13);
-            //popup.contentVerticalAlignment =UIControlContentVerticalAlignmentCenter;
-            [popup setBackgroundImage:bgImage forState:UIControlStateNormal];
-            popup.userInteractionEnabled = NO;
-            [cell addSubview: popup];
-            popup.frame = CGRectMake(160.f, 20.f, bgImage.size.width/kScale+5, bgImage.size.height/kScale);
-            
-        }
-        NSInteger num = [[[UIApplication sharedApplication]delegate]mesCount];
-        if(num >0)
-        {
-            [popup setTitle:[NSString stringWithFormat:@"%d",num] forState:UIControlStateNormal];
-            popup.hidden = NO;
-        }
-        else
-        {
-            popup.hidden = YES;
-        }
     }
 
     

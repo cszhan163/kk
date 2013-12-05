@@ -48,6 +48,7 @@
     NSMutableArray *vcArray = [NSMutableArray array];
 #if 1
     CarDriveOilDataViewController *dataVc = [[CarDriveOilDataViewController alloc]init];
+    dataVc.isNeedInitDateMonth = NO;
     dataVc.mCurrDate = self.mCurrDate;
     dataVc.view.backgroundColor = [UIColor clearColor];
     //[vcCtl setRootViewController:controller];
@@ -58,6 +59,7 @@
     CarDriveOilDataAnalaysisViewController *analysisVc = [[CarDriveOilDataAnalaysisViewController  alloc]init];
     analysisVc.view.backgroundColor = [UIColor clearColor];
     //[vcCtl setRootViewController:controller];
+    analysisVc.isNeedInitDateMonth = NO;
      analysisVc.mCurrDate = self.mCurrDate;
     [vcArray addObject:analysisVc];
     SafeRelease(analysisVc);

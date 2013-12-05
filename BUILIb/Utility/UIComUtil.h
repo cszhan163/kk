@@ -37,4 +37,5 @@
 + (void)shadowUILabelText:(UILabel*)label withShowdowColor:(UIColor*)color  withShadowOffset:(CGSize)shwSize;
 + (id)instanceFromNibWithName:(NSString*)nibName;
 + (UIImage*)getCurrentViewShortCut:(UIView*)view ;
++ (NSMutableAttributedString*)getCustomAttributeString:(NSString*)text withFont:(UIFont*)font withColor:(UIColor*)color;
 @end

@@ -70,9 +70,19 @@
         navTitleLabel.text = @"找回密码";
     }
     mobilePhoneTextFied.text = self.mobilePhoneNumStr;
-    mobilePhoneTextFied.textColor = HexRGB(137, 137, 137);
+    
+    mobilePhoneTextFied.attributedPlaceholder = [UIComUtil getCustomAttributeString:mobilePhoneTextFied.placeholder withFont:mobilePhoneTextFied.font withColor:HexRGB(137, 137, 137)];
+    
+    mobilePhoneTextFied.textColor =  HexRGB(137, 137, 137);
+    
+    radomCodeTextFied.attributedPlaceholder = [UIComUtil getCustomAttributeString:radomCodeTextFied.placeholder withFont:radomCodeTextFied.font withColor:HexRGB(137, 137, 137)];
     self.radomCodeTextFied.textColor = HexRGB(137, 137, 137);
-    self.passwordTextFied.textColor = HexRGB(137, 137, 137);
+    
+     passwordTextFied.attributedPlaceholder = [UIComUtil getCustomAttributeString:passwordTextFied.placeholder withFont:passwordTextFied.font withColor:HexRGB(137, 137, 137)];
+    
+    self.passwordTextFied.textColor =  HexRGB(137, 137, 137);
+    
+    
     
     UIButton *btn = [UIComUtil createButtonWithNormalBGImageName:@"item_default_btn.png" withHightBGImageName:@"item_default_btn.png" withTitle:@"确定" withTag:0];
     btn.titleLabel.font = [UIFont systemFontOfSize:12];
@@ -170,7 +180,7 @@
                            self.confirmPasswordTextFied.text,@"repassword",
                            nil];
         NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithDictionary:param];
-        if([self.radomCodeTextFied.text isEqualToString:@""]&&[self.radomCodeTextFied.text length] == 11){
+        if(![self.radomCodeTextFied.text isEqualToString:@""]&&[self.radomCodeTextFied.text length] == 11){
             [dict setValue:self.radomCodeTextFied.text forKey:@"phoneNumber"];
          }
         //self.radomCodeTextFied.text,@"phoneNumber",

@@ -203,4 +203,11 @@ static const NSString *KEY_HIT_TEST_EDGE_INSETS = @"HitTestEdgeInsets";
     UIImage *clipImage = [UIImage imageWithCGImage:CGImageCreateWithImageInRect(imageFromCurrentView.CGImage,CGRectMake(0.f,40.f,view.frame.size.width*2,view.frame.size.height*2-40.f)) scale:2 orientation:UIImageOrientationUp];
     return clipImage;
 }
++ (NSMutableAttributedString*)getCustomAttributeString:(NSString*)text withFont:(UIFont*)font withColor:(UIColor*)color{
+    NSMutableAttributedString *ms = [[[NSMutableAttributedString alloc] initWithString:text]autorelease];
+    NSDictionary *newProps = @{NSForegroundColorAttributeName:color, NSFontAttributeName:font};
+    NSRange fullRange = NSMakeRange(0, [text length]);
+    [ms setAttributes:newProps range:fullRange];
+    return ms;
+}
 @end

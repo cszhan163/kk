@@ -46,15 +46,19 @@
 }
 -(NSArray*)viewControllersForNavItemController:(CarDataAnalysisBaseViewController*)controller{
     NSMutableArray *vcArray = [NSMutableArray array];
-    UIViewController *vcCtl = [[CarDriveMannerDataViewController alloc]init];
+    CarDriveMannerDataViewController *vcCtl = [[CarDriveMannerDataViewController alloc]init];
+    vcCtl.isNeedInitDateMonth = NO;
+    vcCtl.mCurrDate = self.mCurrDate;
     vcCtl.view.backgroundColor = [UIColor clearColor];
     //vcCtl.view.backgroundColor = [UIColor redColor];
     [vcArray addObject:vcCtl];
     SafeRelease(vcCtl);
-    vcCtl = [[CarDriveMannerDataGraphViewController alloc]init];
-    vcCtl.view.backgroundColor = [UIColor clearColor];
-    [vcArray addObject:vcCtl];
-    SafeRelease(vcCtl);
+    CarDriveMannerDataGraphViewController *vcGraphCtl = [[CarDriveMannerDataGraphViewController alloc]init];
+    vcGraphCtl.view.backgroundColor = [UIColor clearColor];
+    vcGraphCtl.isNeedInitDateMonth = NO;
+    vcGraphCtl.mCurrDate = self.mCurrDate;
+    [vcArray addObject:vcGraphCtl];
+    SafeRelease(vcGraphCtl);
     return  vcArray;
 }
 -(NETopNavBar*)topNavBarForNavItemController:(CarDataAnalysisBaseViewController*)controller{

@@ -479,12 +479,14 @@ static NSString  *CarInfoKeyArray[] = {
      [inInfo set:@"insureExpDate" value:[param objectForKey:@"insureExpDate"]];
      初始里程",@"上次保养里程(KM)",@"上次保养日期(KM)",@"保险到期日"
      */
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:1 inSection:0];
+    UITableViewCell *modelCell = [logInfo cellForRowAtIndexPath:indexPath];
     NSString *msg = @"";
     if([[self.data objectForKey:@"OBD"] isEqualToString:@""]){
         msg = @"请输入OBD号";
         
     }
-    else if([[self.data objectForKey:@"modelSeq"] isEqualToString:@""]){
+    else if([modelCell.detailTextLabel.text isEqualToString:@""]){
         msg = @"请输入车品牌/型号";
         
     }
@@ -492,14 +494,14 @@ static NSString  *CarInfoKeyArray[] = {
         msg = @"请输入车品号";
         
     }
-    else if([[self.data objectForKey:@"milage"] isEqualToString:@""]){
-        msg = @"请输入初始里程";
-        
-    }
-    else if([[self.data objectForKey:@"lastMilage"] isEqualToString:@""]){
-        msg = @"请输入上次保养里程";
-        
-    }
+//    else if([[self.data objectForKey:@"milage"] isEqualToString:@""]){
+//        msg = @"请输入初始里程";
+//        
+//    }
+//    else if([[self.data objectForKey:@"lastMilage"] isEqualToString:@""]){
+//        msg = @"请输入上次保养里程";
+//        
+//    }
     else if([[self.data objectForKey:@"lastmaintainDate"] isEqualToString:@""]){
         msg = @"请输入上次保养日期";
         

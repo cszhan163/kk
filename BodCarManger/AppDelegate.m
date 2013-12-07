@@ -251,8 +251,10 @@ UIShareActionAlertView *sharedAlterView = nil;
     if(usrId && ![usrId isEqualToString:@""]){
         NSArray *histData = [[DBManage getSingletone]getMessageHistData:usrId];
         for(NSDictionary *item in histData){
-            if([[item objectForKey:@"readTag"] intValue] == 0){
-                self.mesCount = self.mesCount +1;
+            if([item objectForKey:@"readTag"]){
+                if([[item objectForKey:@"readTag"] intValue] == 0){
+                    self.mesCount = self.mesCount +1;
+                }
             }
         }
         [ZCSNotficationMgr postMSG:KNewMessageFromMSG obj:[NSString stringWithFormat:@"%d",self.mesCount]];

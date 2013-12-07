@@ -355,7 +355,7 @@ static MKPolylineView *lineview =  nil;
 //    }
 //
 //}
-- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation {
+- (MKAnnotationView *)mapView:(MKMapView *)_mapView viewForAnnotation:(id <MKAnnotation>)annotation {
     
     if ([annotation isKindOfClass:[MKUserLocation class]]) {
         return nil;
@@ -370,13 +370,14 @@ static MKPolylineView *lineview =  nil;
         
         ShopAnnotationIdentifier = @"shopAnnotationIdentifier";
     }
-    MKPinAnnotationView *pinView = (MKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:ShopAnnotationIdentifier];
+    MKPinAnnotationView *pinView = (MKPinAnnotationView *)[_mapView dequeueReusableAnnotationViewWithIdentifier:ShopAnnotationIdentifier];
     if(place.type == 2){
         if (!pinView) {
             pinView = [[[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:ShopAnnotationIdentifier] autorelease];
             
             UIImageWithFileName(UIImage *bg, @"run_arrow.png");
             pinView.image = bg;
+            pinView.frame = CGRectMake(0.f, 0.f,bg.size.width/kScale, bg.size.height/kScale);
             pinView.animatesDrop = NO;
             [pinView setCanShowCallout:NO];
             pinView.tag = 3;

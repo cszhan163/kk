@@ -107,7 +107,6 @@
 		046B66E117E74C37006F34A1 /* calendar.png in Resources */ = {isa = PBXBuildFile; fileRef = 046B669917E74C37006F34A1 /* calendar.png */; };
 		046B66E217E74C37006F34A1 /* message.png in Resources */ = {isa = PBXBuildFile; fileRef = 046B669A17E74C37006F34A1 /* message.png */; };
 		046B66E317E74C37006F34A1 /* share.png in Resources */ = {isa = PBXBuildFile; fileRef = 046B669B17E74C37006F34A1 /* share.png */; };
-		046B66E417E74C37006F34A1 /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 046B669D17E74C37006F34A1 /* arrow.png */; };
 		046B66E517E74C37006F34A1 /* color.png in Resources */ = {isa = PBXBuildFile; fileRef = 046B669E17E74C37006F34A1 /* color.png */; };
 		046B66E617E74C37006F34A1 /* spot1.png in Resources */ = {isa = PBXBuildFile; fileRef = 046B66A017E74C37006F34A1 /* spot1.png */; };
 		046B66E717E74C37006F34A1 /* spot2.png in Resources */ = {isa = PBXBuildFile; fileRef = 046B66A117E74C37006F34A1 /* spot2.png */; };
@@ -522,7 +521,6 @@
 		046B669917E74C37006F34A1 /* calendar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = calendar.png; sourceTree = "<group>"; };
 		046B669A17E74C37006F34A1 /* message.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = message.png; sourceTree = "<group>"; };
 		046B669B17E74C37006F34A1 /* share.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = share.png; sourceTree = "<group>"; };
-		046B669D17E74C37006F34A1 /* arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow.png; sourceTree = "<group>"; };
 		046B669E17E74C37006F34A1 /* color.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = color.png; sourceTree = "<group>"; };
 		046B66A017E74C37006F34A1 /* spot1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spot1.png; sourceTree = "<group>"; };
 		046B66A117E74C37006F34A1 /* spot2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spot2.png; sourceTree = "<group>"; };
@@ -1305,7 +1303,6 @@
 			children = (
 				044D8905182A934000AD2368 /* router_location.png */,
 				044D8906182A934000AD2368 /* router_oil.png */,
-				046B669D17E74C37006F34A1 /* arrow.png */,
 				04F6B013184E21B20034ED8B /* run_arrow.png */,
 				046B669E17E74C37006F34A1 /* color.png */,
 				046B669F17E74C37006F34A1 /* dashboard */,
@@ -2062,7 +2059,6 @@
 				046B66E217E74C37006F34A1 /* message.png in Resources */,
 				046B66E317E74C37006F34A1 /* share.png in Resources */,
 				0469CF8F184CC96000AA8152 /* zbar-help.html in Resources */,
-				046B66E417E74C37006F34A1 /* arrow.png in Resources */,
 				046B66E517E74C37006F34A1 /* color.png in Resources */,
 				046B66E617E74C37006F34A1 /* spot1.png in Resources */,
 				046B66E717E74C37006F34A1 /* spot2.png in Resources */,

@@ -223,6 +223,7 @@ UIShareActionAlertView *sharedAlterView = nil;
             NSString *userId = [AppSetting getLoginUserId];
             [AppSetting setUserCarId:[data objectForKey:@"vin"] withUserId:userId];
         }
+         [self didLoginOK:ntf];
     }
     if([resKey isEqualToString:kResMessageData]){
         NSArray *mesData = [data objectForKey:@"messageBox"];
@@ -239,9 +240,9 @@ UIShareActionAlertView *sharedAlterView = nil;
         //if([mesData count]>0)
            
     }
-    if([resKey isEqualToString:kCarUserLogin]){
+    if([resKey isEqualToString:kNetLoginRes]){
     
-        [self didLoginOK:ntf];
+       
     }
     
 }

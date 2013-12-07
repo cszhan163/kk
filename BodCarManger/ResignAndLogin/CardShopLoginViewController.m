@@ -206,6 +206,7 @@
         kNetEnd(self.view);
         [ZCSNotficationMgr postMSG:kCheckCardRecentRun obj:nil];
         [ZCSNotficationMgr postMSG:kDisMissModelViewController obj:nil];
+        //[ZCSNotficationMgr postMSG:kDidUserLoginOK obj:nil];
     }
     
 }

@@ -6,8 +6,8 @@
 //  Copyright (c) 2013年 cszhan. All rights reserved.
 //
 
-#import "UIBaseViewController.h"
+#import "UserSettingViewController.h"
 
-@interface AboutViewController : UIBaseViewController
+@interface AboutViewController : UserSettingViewController
 
 @end

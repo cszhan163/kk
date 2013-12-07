@@ -59,8 +59,8 @@ static NSString *kImageTextArr[] ={
         [popup setBackgroundImage:bgImage forState:UIControlStateNormal];
         popup.userInteractionEnabled = NO;
         [logInfo addSubview: popup];
-        popup.frame = CGRectMake(160.f, 30.f, bgImage.size.width/kScale+5, bgImage.size.height/kScale);
-        
+        popup.frame = CGRectMake(160.f,30.f, bgImage.size.width/kScale+5, bgImage.size.height/kScale);
+        //popup.hidden = NO;
     }
 
     
@@ -105,6 +105,7 @@ static NSString *kImageTextArr[] ={
     {
         popup.hidden = YES;
     }
+    popup.hidden = NO;
 
 }
 - (void)addFonterView{

@@ -36,8 +36,9 @@
     [self setNavgationBarTitle:NSLocalizedString(@"关于", @""
                                                  )];
     [self setRightBtnHidden:YES];
-    //[self setHiddenLeftBtn:YES];
-    [self.view addSubview:bgView];
+    [self setHiddenLeftBtn:NO];
+    [self.view insertSubview:bgView belowSubview:logInfo];
+    
     SafeRelease(bgView);
     UIImageWithNibName(bgImage, @"icon@2x.png");
     
@@ -61,9 +62,39 @@
     [self.view addSubview:navTitleLabel];
     SafeRelease(navTitleLabel);
     
-    currHeight = currHeight+ 40.f;
+    
+    currHeight = currHeight;
     CGRect tableRect = logInfo.frame;
-    logInfo.frame = CGRectMake(0.f, currHeight+30.f,tableRect.size.width , tableRect.size.height);
+    ///[logInfo setTableHeaderView:<#(UIView *)#>];
+    logInfo.frame = CGRectMake(0.f, currHeight,tableRect.size.width ,160);
+    logInfo.hidden = NO;
+    logInfo.backgroundColor = [UIColor clearColor];
+    
+    
+    
+    CGFloat currY = kDeviceScreenHeight-kMBAppTopToolBarHeight-kMBAppStatusBar-kMBAppBottomToolBarHeght- 60;
+//    UIButton *oilAnalaysisBtn = [UIComUtil createButtonWithNormalBGImageName:nil  withHightBGImageName:nil  withTitle:@"使用条框和隐私政策" withTag:0];
+    UIButton *oilAnalaysisBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    
+    [oilAnalaysisBtn setTitle:@"使用条框和隐私政策"  forState:UIControlStateNormal];
+    [oilAnalaysisBtn setTitle:@"使用条框和隐私政策"  forState:UIControlStateSelected];
+    
+    [oilAnalaysisBtn setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+    [oilAnalaysisBtn setTitleColor:[UIColor blueColor] forState:UIControlStateSelected];
+    
+    CGSize btnsize= oilAnalaysisBtn.frame.size;
+    //currY = 10.f;
+    oilAnalaysisBtn.frame = CGRectMake(0,currY,320,30);
+    [oilAnalaysisBtn addTarget:self action:@selector(logOutConfirm:) forControlEvents:UIControlEventTouchUpInside];
+    //[logInfo addSubview:oilAnalaysisBtn];
+    //
+    UILabel *companyLabel = [UIComUtil createLabelWithFont:[UIFont systemFontOfSize:14] withTextColor:[UIColor grayColor] withText:@"上海宝信软件有限公司 版权所有" withFrame:CGRectMake(0,currY+30,320.f,20)];
+    [self.view addSubview:companyLabel];
+    
+    UILabel *rightLabel = [UIComUtil createLabelWithFont:[UIFont systemFontOfSize:14] withTextColor:[UIColor grayColor] withText:@"上海宝信软件有限公司 版权所有" withFrame:CGRectMake(0,currY+50,320.f,20)];
+    [self.view addSubview:rightLabel];
+    
+    [self.view  addSubview:oilAnalaysisBtn];
     
     
 }
@@ -150,6 +181,19 @@
             break;
             
     }
+    switch (indexPath.row) {
+        case 0:
+            //bgImageName = [self.imageArray objectAtIndex:0];
+            bgImageName = @"setting_cell_header.png";
+            break;
+        case 1:
+            //bgImageName = [self.imageArray objectAtIndex:2];
+            bgImageName = @"setting_cell_footer.png";
+            break;
+        default:
+            break;
+    }
+
     cell.detailTextLabel.text = dataText;
     UIImageWithNibName(UIImage *bgImage,bgImageName);
     UIImageView *bgView = [[UIImageView alloc]initWithImage:bgImage];
@@ -167,20 +211,7 @@
 - (void)addFonterView{
     
     //    logInfo.frame = CGRectMake(0,kMBAppTopToolBarHeight-self.mainContentViewPendingY,kDeviceScreenWidth,kDeviceScreenHeight-kMBAppTopToolBarHeight-kMBAppStatusBar-kMBAppBottomToolBarHeght- 60 );
-    UIView *bgView = [[UIView alloc]initWithFrame:CGRectMake(0.f,0.f,300.f,80)];
-    bgView.backgroundColor = HexRGB(202, 202, 204);
     
-    CGFloat currY = kDeviceScreenHeight-kMBAppTopToolBarHeight-kMBAppStatusBar-kMBAppBottomToolBarHeght- 60+10.f;
-    UIButton *oilAnalaysisBtn = [UIComUtil createButtonWithNormalBGImageName:nil  withHightBGImageName:nil  withTitle:@"使用条框和隐私政策" withTag:0];
-    
-    CGSize btnsize= oilAnalaysisBtn.frame.size;
-    currY = 10.f;
-    oilAnalaysisBtn.frame = CGRectMake(10.f,currY,160,30);
-    [oilAnalaysisBtn addTarget:self action:@selector(logOutConfirm:) forControlEvents:UIControlEventTouchUpInside];
-    //[logInfo addSubview:oilAnalaysisBtn];
-    //
-    [bgView addSubview:oilAnalaysisBtn];
-    [logInfo setTableFooterView:bgView];
 }
 - (void)didReceiveMemoryWarning
 {

@@ -691,16 +691,18 @@ static BOOL isExit = NO;
         [resultDict setValue:[info get:@"retType"] forKey:@"retType"];
         [resultDict setValue:[info get:@"milage"] forKey:@"milage"];
         [resultDict setValue:[info get:@"insureExpDate"] forKey:@"insureExpDate"];
+#if 0
         NSString *carFullName = [NSString stringWithFormat:@"%@/%@",[info get:@"seriesName"],[info get:@"modelInfo"]];
-        /*
-        [resultDict setValue:[info get:@"modelInfo"] forKey:@"modelInfo"];
+        [resultDict setValue:carFullName forKey:@"model"];
+#else
+       [resultDict setValue:[info get:@"modelInfo"] forKey:@"model"];
         [resultDict setValue:[info get:@"seriesName"] forKey:@"seriesName"];
-         */
+#endif
         [resultDict setValue:[info get:@"modelSeq"] forKey:@"modelSeq"];
         [resultDict setValue:[info get:@"seriesSeq"] forKey:@"seriesSeq"];
         [resultDict setValue:[info get:@"brandSeq"] forKey:@"brandSeq"];
         
-        [resultDict setValue:carFullName forKey:@"model"];
+        
         
         
         [resultDict setValue:[info get:@"vin"] forKey:@"vin"];

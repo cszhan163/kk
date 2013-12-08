@@ -13,7 +13,7 @@
 //@"车牌型号"
 static NSString *kCarInfoArray[] =
 {
-    @"车辆品牌/型号",@"车牌号",
+    @"车辆品牌",@"车辆型号",@"车牌号",
 };
 static NSString *kCarOtherInfoArray[] = {
     @"初始里程(KM)",@"上次保养里程(KM)",@"上次保养日期",@"保险到期日",
@@ -64,11 +64,21 @@ static NSString  *CarInfoKeyArray[] = {
 }
 - (void)didGetCarModelChange:(NSNotification*)ntf{
     NSDictionary *data = [ntf object];
-    NSString *carInfoFullName = [NSString stringWithFormat:@"%@/%@",[data objectForKey:@"seriesName"],[data objectForKey:@"modelName"]];
     NSMutableDictionary *newDict = [NSMutableDictionary dictionaryWithDictionary:self.data];
+#if 0
+    NSString *carInfoFullName = [NSString stringWithFormat:@"%@/%@",[data objectForKey:@"seriesName"],[data objectForKey:@"modelName"]];
+#else
+    [newDict setObject:[data objectForKey:@"seriesName"] forKey:@"seriesName"];
+    [newDict setObject:[data objectForKey:@"modelName"] forKey:@"model"];
+#endif
+    
+    
     [newDict setObject:[data objectForKey:@"modelSeq"] forKey:@"modelSeq"];
     self.data = newDict;
+    /*
     [self setCellItemData:carInfoFullName withIndexPath:[NSIndexPath indexPathForRow:0 inSection:1]];
+     */
+    [logInfo reloadData];
 
 }
 - (void)didReceiveMemoryWarning
@@ -94,7 +104,7 @@ static NSString  *CarInfoKeyArray[] = {
     {
         
         //
-        return 2;
+        return 3;
     }
     
 }
@@ -162,13 +172,16 @@ static NSString  *CarInfoKeyArray[] = {
             cell.textLabel.text = kCarInfoArray[indexPath.row];
             switch (indexPath.row) {
                 case 0:
+
                     bgImageName = @"setting_cell_header.png";
-                    tempText = [self.data objectForKey:@"model"];
+                    //tempText = [self.data objectForKey:@"model"];
+                    
+                    tempText = [self.data objectForKey:@"seriesName"];
                     if(tempText){
                         dataText = tempText;
                     }
                     break;
-                case 1:
+                case 2:
                     tempText = [self.data objectForKey:@"NO"];
                     if(tempText){
                         dataText = tempText;
@@ -177,7 +190,7 @@ static NSString  *CarInfoKeyArray[] = {
                     break;
                     
                 default:
-                    tempText = [self.data objectForKey:@"modelInfo"];
+                    tempText = [self.data objectForKey:@"model"];
                     if(tempText){
                         dataText = tempText;
                     }
@@ -257,7 +270,11 @@ static NSString  *CarInfoKeyArray[] = {
     //[cell.contentView  addSubview: bgView];
     cell.backgroundView = bgView;
     SafeRelease(bgView);
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    if(indexPath.section == 1 && indexPath.row == 1){
+    }
+    else {
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    }
     cell.textLabel.backgroundColor = [UIColor clearColor];
 	return cell;
 
@@ -266,7 +283,9 @@ static NSString  *CarInfoKeyArray[] = {
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    
+    if(indexPath.section == 1 && indexPath.row == 1){
+        return;
+    }
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     
     int type = 0;
@@ -295,7 +314,7 @@ static NSString  *CarInfoKeyArray[] = {
         SafeRelease(carSelectedVc);
             
         }
-        else if(indexPath.row == 1){
+        else if(indexPath.row == 2){
             /*
             CarSelectedViewController *carSelectedVc = [[CarSelectedViewController alloc] init];
             carSelectedVc.type = 2;
@@ -491,7 +510,7 @@ static NSString  *CarInfoKeyArray[] = {
         
     }
     else if([[self.data objectForKey:@"NO"] isEqualToString:@""]){
-        msg = @"请输入车品号";
+        msg = @"请输入车牌号";
         
     }
 //    else if([[self.data objectForKey:@"milage"] isEqualToString:@""]){

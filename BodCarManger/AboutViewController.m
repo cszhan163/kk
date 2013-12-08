@@ -49,7 +49,7 @@
     [self.view addSubview:imageView];
     SafeRelease(imageView);
     CGFloat currHeight = imageView.frame.origin.y+bgImage.size.height/kScale;
-    UILabel *navTitleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0.f,currHeight+20.f, kDeviceScreenWidth, 20.f)];
+    UILabel *navTitleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0.f,currHeight+10.f, kDeviceScreenWidth, 20.f)];
     navTitleLabel.textAlignment = NSTextAlignmentCenter;
     navTitleLabel.font = [UIFont systemFontOfSize:16];
     navTitleLabel.textColor = [UIColor blackColor];
@@ -59,7 +59,7 @@
     NSString* strVersionPrompt = [NSString stringWithFormat:kAppVersionFormart,version];
     navTitleLabel.text = strVersionPrompt;
     navTitleLabel.textColor = [UIColor grayColor];
-    currHeight = currHeight+navTitleLabel.frame.size.height+10.f;
+    currHeight = currHeight+navTitleLabel.frame.size.height+20.f;
     [self.view addSubview:navTitleLabel];
     SafeRelease(navTitleLabel);
     

@@ -109,7 +109,7 @@ static NSString *kImageTextArr[] ={
     {
         popup.hidden = YES;
     }
-    popup.hidden = NO;
+    //popup.hidden = NO;
 
 }
 - (void)addFonterView{

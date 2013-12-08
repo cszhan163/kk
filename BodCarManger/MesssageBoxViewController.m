@@ -279,6 +279,7 @@
     NSString * msgType = [item objectForKey:@"pushMesType"];
     if([msgType intValue] == 4){
         detailVc.type = 1;
+        detailVc.data = item;
     }
     else{
         detailVc.type = 0;

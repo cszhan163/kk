@@ -11,4 +11,5 @@
 @interface UserChangePasswordViewController : ResetPasswordViewController
 @property(nonatomic,strong)NSString *srcText;
 @property(nonatomic,strong)UITextField *newPasswordInputTextField;
+@property(nonatomic,strong)UITextField *againNewPasswordInputTextField;
 @end

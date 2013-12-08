@@ -27,6 +27,7 @@
     UILabel           *temperatureLabel;
     UIImageView         *checkTagImageView ;
     UILabel           *checkProcessLabel;
+    BOOL isNeedReflush;
     
 }
 @property(nonatomic,strong)NSTimer             *timer;
@@ -44,7 +45,15 @@
 }
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    
+    if(isNeedReflush){
+        [self checkCacheData];
+        isNeedReflush = NO;
+    }
+}
+- (void)addObservers{
+    [super addObservers];
+    //[ZCSNotficationMgr postMSG:kUserDidLogOut obj:nil];
+    [ZCSNotficationMgr addObserver:self call:@selector(clearLogoutData:) msgName:kUserDidLogOut];
 }
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
@@ -52,11 +61,26 @@
         return;
     }
 }
+- (void)checkCacheData{
+
+    NSString *userId = [AppSetting getLoginUserId];
+    if(userId && ![userId isEqualToString:@""]){
+        
+        self.data = [AppSetting getUserCarCheckData:userId];
+        if(self.data){
+            self.dataArray = [self.data objectForKey:@"conData"];
+            [tweetieTableView reloadData];
+            [self setOtherUIData];
+        }
+    }
+}
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
-    self.delegate = self;
     
+    [super viewDidLoad];
+    
+    self.delegate = self;
+    [self checkCacheData];
 #if 1
     UIImage *bgImage = nil;
     UIImageWithFileName(bgImage, @"car_bg.png");
@@ -244,6 +268,8 @@
         [self  performSelectorOnMainThread:@selector(updateUIData:) withObject:data waitUntilDone:NO ];
         //[mDataDict setObject:netData forKey:mMothDateKey];
         //}
+        NSString *usrId = [AppSetting getLoginUserId];
+        [AppSetting setUserCarCheckData:data withUserId:usrId];
         kNetEnd(self.view);
         
     }
@@ -257,18 +283,23 @@
     }
     [tweetieTableView reloadData];
     //NSArray *economicData = [data objectForKey:@"conData"];
-    
-    rotateSpeedLabel.text = [NSString stringWithFormat:@"%@ 转",[data objectForKey:@"RPM"]];
-    temperatureLabel.text = [NSString stringWithFormat:@"%@ 度",[data objectForKey:@"temper"]];
-    int level = [[data objectForKey:@"level"] intValue];
+    [self setOtherUIData];
+}
+- (void)clearLogoutData:(NSNotification*)ntf{
+    isNeedReflush = YES;
+}
+- (void)setOtherUIData{
+
+    rotateSpeedLabel.text = [NSString stringWithFormat:@"%@ 转",[self.data objectForKey:@"RPM"]];
+    temperatureLabel.text = [NSString stringWithFormat:@"%@ 度",[self.data objectForKey:@"temper"]];
+    int level = [[self.data objectForKey:@"level"] intValue];
     if(level>=1 && level<=3){
         UIImageWithFileName(UIImage *bgImage, kCheckResultLevelArray[level-1]);
         checkTagImageView.hidden = NO;
         checkTagImageView.image = bgImage;
     }
-    checkProcessLabel.text = [data objectForKey:@"conclusion"];
+    checkProcessLabel.text = [self.data objectForKey:@"conclusion"];
 }
-
 
 #pragma mark -
 #pragma mark tableview

@@ -34,6 +34,8 @@
 +(NSString*)getUserCarId:(NSString*)userId;
 +(void)setUserCarId:(NSString*)carId withUserId:(NSString*)usrId;
 
++(NSString*)getUserCarCheckData:(NSString*)userId;
++(void)setUserCarCheckData:(NSDictionary*)data withUserId:(NSString*)userId;
 //+(NSString*)getLoginUserPassword;
 +(BOOL)getUserLoginStatus;
 +(void)setUserLoginStatus:(BOOL)status;

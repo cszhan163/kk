@@ -72,6 +72,24 @@
         [self.view addSubview:self.newPasswordInputTextField];
         //[self.newPasswordInputTextField ]
         SafeRelease(self.newPasswordInputTextField);
+        self.againNewPasswordInputTextField =  [[[UITextField alloc]initWithFrame:CGRectMake(KLoginAndResignPendingX,KLoginAndResignPendingX+kMBAppTopToolBarHeight+53,kDeviceScreenWidth-2*KLoginAndResignPendingX,44.f)]autorelease];
+        self.againNewPasswordInputTextField.borderStyle = UITextBorderStyleRoundedRect;
+        self.againNewPasswordInputTextField.delegate = self;
+        self.againNewPasswordInputTextField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+        self.newPasswordInputTextField.font = kAppTextSystemFont(16);//[UIFont systemFontOfSize:40];
+        self.newPasswordInputTextField.textColor = kLoginAndSignupInputTextColor;
+        self.againNewPasswordInputTextField.placeholder = @"请在次输入新密码";
+        self.againNewPasswordInputTextField .adjustsFontSizeToFitWidth = NO;
+        self.againNewPasswordInputTextField .text = @"";
+        self.againNewPasswordInputTextField .delegate = self;
+        [self.againNewPasswordInputTextField addTarget:self action:@selector(didchangeInputText:) forControlEvents:UIControlEventEditingChanged];
+        self.newPasswordInputTextField.secureTextEntry = YES;
+      
+        CGRect rect = self.newPasswordInputTextField.frame;
+        self.againNewPasswordInputTextField.frame = CGRectMake(rect.origin.x, rect.origin.y+rect.size.height+10.f, rect.size.width, rect.size.height);
+        [self.view addSubview:self.againNewPasswordInputTextField];
+       SafeRelease(self.againNewPasswordInputTextField);
+        
     }
 }
 - (void)didchangeInputText:(UITextField*)textField{
@@ -116,11 +134,18 @@
         kUIAlertView(@"提示",@"旧密码错误");
         return;
     }
-    if([self.newPasswordInputTextField.text isEqualToString:@""])
+    if([self.newPasswordInputTextField.text isEqualToString:@""]||
+       [self.againNewPasswordInputTextField.text isEqualToString:@""])
     {
         [self.newPasswordInputTextField becomeFirstResponder];
         return;
     }
+    if(![self.newPasswordInputTextField.text isEqualToString:self.againNewPasswordInputTextField.text]){
+        kUIAlertView(@"提示",@"两次新密码不一致");
+        return;
+    
+    }
+    
     [SVProgressHUD showWithStatus:NSLocalizedString(@"数据更新中", @"") networkIndicator:YES];
     NSDictionary *param = [NSDictionary dictionaryWithObjectsAndKeys:
                            self.newPasswordInputTextField.text,@"password",

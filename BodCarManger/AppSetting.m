@@ -216,4 +216,15 @@
     [usrDefaults synchronize];
     
 }
++(NSDictionary*)getUserCarCheckData:(NSString*)userId{
+    NSUserDefaults *usrDefaults = [NSUserDefaults standardUserDefaults];
+    NSString *realKey = [NSString stringWithFormat:@"%@_checkdata",userId];
+    return [usrDefaults objectForKey:userId];
+}
++(void)setUserCarCheckData:(NSDictionary*)data withUserId:(NSString*)userId{
+    NSUserDefaults *usrDefaults = [NSUserDefaults standardUserDefaults];
+    NSString *realKey = [NSString stringWithFormat:@"%@_checkdata",userId];
+    [usrDefaults setValue:data forKey:realKey];
+    [usrDefaults synchronize];
+}
 @end

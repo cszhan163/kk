@@ -49,7 +49,7 @@
     [self.view addSubview:imageView];
     SafeRelease(imageView);
     CGFloat currHeight = imageView.frame.origin.y+bgImage.size.height/kScale;
-    UILabel *navTitleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0.f,currHeight+10.f, kDeviceScreenWidth, 20.f)];
+    UILabel *navTitleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0.f,currHeight+20.f, kDeviceScreenWidth, 20.f)];
     navTitleLabel.textAlignment = NSTextAlignmentCenter;
     navTitleLabel.font = [UIFont systemFontOfSize:16];
     navTitleLabel.textColor = [UIColor blackColor];
@@ -58,6 +58,7 @@
     NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
     NSString* strVersionPrompt = [NSString stringWithFormat:kAppVersionFormart,version];
     navTitleLabel.text = strVersionPrompt;
+    navTitleLabel.textColor = [UIColor grayColor];
     currHeight = currHeight+navTitleLabel.frame.size.height+10.f;
     [self.view addSubview:navTitleLabel];
     SafeRelease(navTitleLabel);
@@ -91,7 +92,8 @@
     UILabel *companyLabel = [UIComUtil createLabelWithFont:[UIFont systemFontOfSize:14] withTextColor:[UIColor grayColor] withText:@"上海宝信软件有限公司 版权所有" withFrame:CGRectMake(0,currY+30,320.f,20)];
     [self.view addSubview:companyLabel];
     
-    UILabel *rightLabel = [UIComUtil createLabelWithFont:[UIFont systemFontOfSize:14] withTextColor:[UIColor grayColor] withText:@"上海宝信软件有限公司 版权所有" withFrame:CGRectMake(0,currY+50,320.f,20)];
+    UILabel *rightLabel = [UIComUtil createLabelWithFont:[UIFont systemFontOfSize:14] withTextColor:[UIColor grayColor] withText:@"CopyRight\n All Right Reserved" withFrame:CGRectMake(0,currY+40,320.f,60)];
+    rightLabel.numberOfLines = 0;
     [self.view addSubview:rightLabel];
     
     [self.view  addSubview:oilAnalaysisBtn];
@@ -217,6 +219,13 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if(indexPath.row  == 0){
+        kUIAlertView(@"提示", @"当前是最新版本");
+    }
 }
 
 @end

@@ -8,8 +8,10 @@
 
 #import "MessageDetailViewController.h"
 
-@interface MessageDetailViewController ()
+@interface MessageDetailViewController (){
 
+    UITextView *msgShowTextView;
+}
 @end
 
 @implementation MessageDetailViewController
@@ -34,16 +36,43 @@
     UIView *bgView = [[UIView alloc]initWithFrame:CGRectMake(0.f, kMBAppTopToolBarHeight,kDeviceScreenWidth, kDeviceScreenHeight-kMBAppTopToolBarHeight-kMBAppStatusBar)];
     bgView.backgroundColor = HexRGB(202, 202, 204);
     
+    [self.view addSubview:bgView];
+    SafeRelease(bgView);
+    
 	// Do any additional setup after loading the view.
     self.subClassInputTextField.hidden = YES;
-    UITextView *msgShowTextView = [[UITextView alloc]initWithFrame:CGRectMake(10.f,kMBAppTopToolBarHeight+20.f, 300.f,160.f)];
+    msgShowTextView = [[UITextView alloc]initWithFrame:CGRectMake(10.f,kMBAppTopToolBarHeight+20.f, 300.f,160.f)];
     msgShowTextView.layer.cornerRadius = 5.f;
     msgShowTextView.text = self.userEmail;
+    msgShowTextView.font = [UIFont systemFontOfSize:15];
+    
     if(self.type == 1){
-        msgShowTextView.editable = YES;
+        msgShowTextView.editable = NO;
+        UIImageWithFileName(bgImage, @"item_default_btn.png");
+        assert(bgImage);
+        [super setNavgationBarRightBtnImage:bgImage forStatus:UIControlStateNormal];
+        UIImageWithFileName(bgImage, @"item_default_btn.png");
+        [super setNavgationBarRightBtnImage:bgImage forStatus:UIControlStateSelected];
+        [self setNavgationBarRightBtnText:@"回复"forStatus:UIControlStateNormal];
+        [self setNavgationBarRightBtnText:@"回复" forStatus:UIControlStateSelected];
+        self.rightBtn.frame = CGRectMake(kDeviceScreenWidth-10-bgImage.size.width/kScale, self.rightBtn.frame.origin.y, bgImage.size.width/kScale, bgImage.size.height/kScale);
+        self.rightBtn.font = [UIFont systemFontOfSize:13];
+
     }
-    else{
-        msgShowTextView.editable  = NO;
+    else if(self.type == 2){
+        [msgShowTextView becomeFirstResponder];
+        UIImageWithFileName(bgImage, @"item_default_btn.png");
+        assert(bgImage);
+        [super setNavgationBarRightBtnImage:bgImage forStatus:UIControlStateNormal];
+        UIImageWithFileName(bgImage, @"item_change_btn.png");
+        self.rightBtn.frame = CGRectMake(kDeviceScreenWidth-10-bgImage.size.width/kScale, self.rightBtn.frame.origin.y, bgImage.size.width/kScale, bgImage.size.height/kScale);
+         self.rightBtn.font = [UIFont systemFontOfSize:13];
+        [super setNavgationBarRightBtnImage:bgImage forStatus:UIControlStateSelected];
+        [self setNavgationBarRightBtnText:@"确定"forStatus:UIControlStateNormal];
+        [self setNavgationBarRightBtnText:@"确定" forStatus:UIControlStateSelected];
+    }
+    else {
+       msgShowTextView.editable  = NO;
         [self setHiddenRightBtn:YES];
     }
     [self.view addSubview:msgShowTextView];
@@ -59,48 +88,39 @@
 }
 - (void)startNetwork{
     
-    if(self.type == 0)
-        [self startRestPassword];
-    else
+//    if(self.type == 0)
+//        [self startRestPassword];
+//    else
         [self startUpdatePhone];
 }
 - (void)startUpdatePhone{
     [SVProgressHUD showWithStatus:NSLocalizedString(@"数据更新中", @"") networkIndicator:YES];
+    if([msgShowTextView.text isEqualToString:@""]){
+        kUIAlertView(@"提示", @"请输入反馈内容");
+        [msgShowTextView becomeFirstResponder];
+        return;
+    }
+    //NSString *replyDate = [date ];
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
+    [dateFormat setDateFormat:@"yyyyMMddHHmmss"];
+    
+    NSString *dateString = [dateFormat stringFromDate:[NSDate date]];
+    
     NSDictionary *param = [NSDictionary dictionaryWithObjectsAndKeys:
-                           self.subClassInputTextField.text,@"phoneNumber",
-                           [AppSetting getLoginUserId],@"name",
+                           [self.data objectForKey:@"createdTime"],@"createdTime",
+                           dateString,@"ackTime",
+                            msgShowTextView.text,@"ackMesCon",
+                           [AppSetting getLoginUserId],@"userName",
                            nil];
     CarServiceNetDataMgr *netClientMgr = [CarServiceNetDataMgr getSingleTone];
     
-    self.request = [netClientMgr  carUserPhoneUpdate:param];
+    self.request = [netClientMgr  replyMessageList:param];
     
     
 }
 -(void)startRestPassword
 {
-    
-    
-    if(![self.subClassInputTextField.text isEqualToString:[AppSetting getLoginUserPassword]]){
-        kUIAlertView(@"提示",@"旧密码错误");
-        return;
-    }
-
-    [SVProgressHUD showWithStatus:NSLocalizedString(@"数据更新中", @"") networkIndicator:YES];
-//    NSDictionary *param = [NSDictionary dictionaryWithObjectsAndKeys:
-//                           self.newPasswordInputTextField.text,@"password",
-//                           self.subClassInputTextField.text,@"oldpassword",
-//                           [AppSetting getLoginUserId],@"name",
-//                           nil];
-//    CarServiceNetDataMgr *netClientMgr = [CarServiceNetDataMgr getSingleTone];
-//    if(self.type == 0)
-//    {
-//        self.request = [netClientMgr  carUserPasswordUpdate:param];
-//    }
-//    else
-//    {
-//        //self.request = [netClientMgr  userResetPwdRadomCode:param];
-//    }
-    //[self ];
+  
 }
 -(void)didNetDataOK:(NSNotification*)ntf
 {
@@ -110,13 +130,13 @@
     id respRequest = [obj objectForKey:@"request"];
     id data = [obj objectForKey:@"data"];
     NSString *resKey = [obj objectForKey:@"key"];
-    if(self.request == respRequest&&([resKey isEqualToString:kCarUserUpdatePass]))
+    if(self.request == respRequest&&([resKey isEqualToString:kResReplyMessageData]))
     {
         self.request = nil;
         //[self performSelector:@selector(startDoAction) withObject:nil afterDelay:0.3];
-        if([[data objectForKey:@"retType"]intValue]==0){
-            kUIAlertView(@"提示",@"密码更新成功");
-            
+        //if([[data objectForKey:@"retType"]intValue]==0)
+        {
+            kUIAlertView(@"提示",@"回复成功");
             [self.navigationController popViewControllerAnimated:YES];
         }
         
@@ -138,5 +158,35 @@
 {
     [SVProgressHUD dismissWithError:@""];
 }
-
+-(void)didSelectorTopNavItem:(id)navObj
+{
+	NE_LOG(@"select item:%d",[navObj tag]);
+    
+	switch ([navObj tag])
+	{
+		case 0:
+        {
+            [self.navigationController popViewControllerAnimated:YES];// animated:
+        }
+			break;
+		case 1:
+		{
+            if(self.type == 1){
+            
+                MessageDetailViewController *detailVc = [[MessageDetailViewController alloc]init];
+                detailVc.barTitle = @"回复";
+                detailVc.type = 2;
+                detailVc.data = self.data;
+                [self.navigationController pushViewController:detailVc animated:YES];
+                SafeRelease(detailVc);
+                    
+            }
+            else if(self.type == 2){
+                [self startNetwork];
+            }
+			break;
+		}
+	}
+    
+}
 @end

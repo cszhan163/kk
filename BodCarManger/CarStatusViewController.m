@@ -268,8 +268,10 @@
         [self  performSelectorOnMainThread:@selector(updateUIData:) withObject:data waitUntilDone:NO ];
         //[mDataDict setObject:netData forKey:mMothDateKey];
         //}
-        NSString *usrId = [AppSetting getLoginUserId];
-        [AppSetting setUserCarCheckData:data withUserId:usrId];
+        if([self.dataArray count]>0){
+            NSString *usrId = [AppSetting getLoginUserId];
+            [AppSetting setUserCarCheckData:data withUserId:usrId];
+        }
         kNetEnd(self.view);
         
     }

@@ -228,6 +228,7 @@
         kUIAlertView(@"提示", @"当前是最新版本");
     }
 }
+
 - (void)logOutConfirm:(id)sender{
     
 }

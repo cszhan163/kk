@@ -141,6 +141,8 @@
 
 #define kResMessageData                         @"queryMessage"
 
+#define kResReplyMessageData                         @"ackMessage"
+
 #define kDateFormart   @"%d%02d"
 
 #define Infinite

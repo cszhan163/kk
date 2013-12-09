@@ -472,7 +472,27 @@ static BOOL isExit = NO;
     
 #endif
 }
-
+//ackMessage
+- (id)replyMessageList:(NSDictionary*)param{
+#if BAO_TEST
+    return [dressMemoInterfaceMgr startAnRequestByResKey:@"getDetailByDay"
+                                               needLogIn:NO
+                                               withParam:param
+                                              withMethod:@"POST"
+                                                withData:NO];
+#else
+    EiInfo *inInfo = [self getCommIPlant4MParamByServiceToken:@"VESA02"];
+    //[inInfo set:@"year" value:[param objectForKey:@"year"]];
+    [inInfo set:@"userName" value:[param objectForKey:@"userName"]];
+    [inInfo set:@"createdTime" value:[param objectForKey:@"createdTime"]];
+    [inInfo set:@"ackMesCon" value:[param objectForKey:@"ackMesCon"]];
+    [inInfo set:@"ackTime" value:[param objectForKey:@"ackTime"]];
+    [inInfo set:METHOD_TOKEN value:kResReplyMessageData]; // 接口名
+    //[inInfo set:@"vin" value:cardId];
+    [self startiPlant4MRequest:inInfo withSuccess:@selector(replyMessageOk:) withFailed:@selector(replyMessageFailed:)];
+    
+#endif
+}
 #pragma mark -
 #pragma mark iPlant4M common
 - (EiInfo*)getCommIPlant4MParam{
@@ -531,7 +551,6 @@ static BOOL isExit = NO;
         NSLog(@"%@",info.blocks);
         NSMutableDictionary *resultDict = [NSMutableDictionary dictionary];
         NSMutableArray *gpsArray = [NSMutableArray array];
-        
         EiBlock *tripInfo = [info getBlock:@"vehicleBSM"]; // block型返回值
         int rowCount = [tripInfo getRowCount];
         for(int i = 0;i<rowCount;i++){
@@ -1218,7 +1237,29 @@ static BOOL isExit = NO;
 
 #pragma mark -
 #pragma mark card status delegate
+- (void)replyMessageOk:(EiInfo*)info{
 
+    if(info.status == 1){
+        /*
+         "{"time":"1383533806","state":"1","conclusion":"检测情况良好","RPM":"800","temper":"78"},"blocks":{"conData":{"meta":{"columns":[{"pos":0,"name":"name","descName":" "},{"pos":1,"name":"ran
+         */
+        NSLog(@"%@",info.blocks);
+        NSMutableDictionary *resultDict = [NSMutableDictionary dictionary];
+        NSMutableArray *data = [NSMutableArray array];
+        //        [resultDict setValue:[info get:@"RPM"] forKey:@"RPM"];
+        //        [resultDict setValue:[info get:@"temper"] forKey:@"temper"];
+        //        [resultDict setValue:[info get:@"conclusion"] forKey:@"conclusion"];
+        //        [resultDict setValue:[info get:@"time"] forKey:@"time"];
+        //        [resultDict setValue:[info get:@"level"] forKey:@"level"];
+        //        [resultDict setValue:[info get:@"state"] forKey:@"state"];
+        
+        [resultDict setValue:data forKey:@"conData"];
+        [self sendFinalOkData:resultDict withKey:kResReplyMessageData];
+    }
+    else{
+        [self sendFinalFailedData:@"" withKey:kResReplyMessageData];
+    }
+}
 - (void)getMessageListOk:(EiInfo*)info{
     /*
      EiBlock eiBlock = eiInfo.getBlock("listMessage");

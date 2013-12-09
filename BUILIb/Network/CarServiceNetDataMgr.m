@@ -718,6 +718,7 @@ static BOOL isExit = NO;
 #else
        [resultDict setValue:[info get:@"modelInfo"] forKey:@"model"];
         [resultDict setValue:[info get:@"seriesName"] forKey:@"seriesName"];
+        [resultDict setValue:[info get:@"brandName"] forKey:@"brandName"];
 #endif
         [resultDict setValue:[info get:@"modelSeq"] forKey:@"modelSeq"];
         [resultDict setValue:[info get:@"seriesSeq"] forKey:@"seriesSeq"];

@@ -69,6 +69,7 @@ static NSString  *CarInfoKeyArray[] = {
     NSString *carInfoFullName = [NSString stringWithFormat:@"%@/%@",[data objectForKey:@"seriesName"],[data objectForKey:@"modelName"]];
 #else
     [newDict setObject:[data objectForKey:@"seriesName"] forKey:@"seriesName"];
+    [newDict setObject:[data objectForKey:@"brandName"] forKey:@"brandName"];
     [newDict setObject:[data objectForKey:@"modelName"] forKey:@"model"];
 #endif
     
@@ -176,7 +177,7 @@ static NSString  *CarInfoKeyArray[] = {
                     bgImageName = @"setting_cell_header.png";
                     //tempText = [self.data objectForKey:@"model"];
                     
-                    tempText = [self.data objectForKey:@"seriesName"];
+                    tempText = [self.data objectForKey:@"brandName"];
                     if(tempText){
                         dataText = tempText;
                     }
@@ -394,6 +395,7 @@ static NSString  *CarInfoKeyArray[] = {
                          @"0",@"type",
                          @"",@"brandy",
                          @"",@"model",
+                         @"",@"brandName",
                          @"",@"NO",
                          @"",@"OBD",
                          @"",@"milage",
@@ -498,7 +500,7 @@ static NSString  *CarInfoKeyArray[] = {
      [inInfo set:@"insureExpDate" value:[param objectForKey:@"insureExpDate"]];
      初始里程",@"上次保养里程(KM)",@"上次保养日期(KM)",@"保险到期日"
      */
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:1 inSection:0];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:1];
     UITableViewCell *modelCell = [logInfo cellForRowAtIndexPath:indexPath];
     NSString *msg = @"";
     if([[self.data objectForKey:@"OBD"] isEqualToString:@""]){
@@ -506,7 +508,7 @@ static NSString  *CarInfoKeyArray[] = {
         
     }
     else if([modelCell.detailTextLabel.text isEqualToString:@""]){
-        msg = @"请输入车品牌/型号";
+        msg = @"请输入车品牌";
         
     }
     else if([[self.data objectForKey:@"NO"] isEqualToString:@""]){

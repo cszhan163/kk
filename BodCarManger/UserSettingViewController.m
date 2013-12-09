@@ -518,6 +518,9 @@ static NSString *kCellImageArr[] = {
                frInviteVc.type = indexPath.row -1;
                frInviteVc.srcText = cell.detailTextLabel.text;
                frInviteVc.subClassInputTextField.text = cell.detailTextLabel.text;
+               if(indexPath.row == 2){
+                   frInviteVc.isOnlyNumber = YES;
+               }
                [self.navigationController pushViewController:frInviteVc animated:YES];
                [frInviteVc release];
            }

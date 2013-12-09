@@ -78,7 +78,7 @@
         self.againNewPasswordInputTextField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
         self.newPasswordInputTextField.font = kAppTextSystemFont(16);//[UIFont systemFontOfSize:40];
         self.newPasswordInputTextField.textColor = kLoginAndSignupInputTextColor;
-        self.againNewPasswordInputTextField.placeholder = @"请在次输入新密码";
+        self.againNewPasswordInputTextField.placeholder = @"请再次输入新密码";
         self.againNewPasswordInputTextField .adjustsFontSizeToFitWidth = NO;
         self.againNewPasswordInputTextField .text = @"";
         self.againNewPasswordInputTextField .delegate = self;
@@ -90,6 +90,9 @@
         [self.view addSubview:self.againNewPasswordInputTextField];
        SafeRelease(self.againNewPasswordInputTextField);
         
+    }
+    if(_isOnlyNumber){
+        self.subClassInputTextField.keyboardType = UIKeyboardTypeNumberPad;
     }
 }
 - (void)didchangeInputText:(UITextField*)textField{
@@ -177,7 +180,7 @@
         //[self performSelector:@selector(startDoAction) withObject:nil afterDelay:0.3];
         if([[data objectForKey:@"retType"]intValue]==0){
             kUIAlertView(@"提示",@"密码更新成功");
-            
+            [AppSetting setLoginUserPassword:self.newPasswordInputTextField.text];
             [self.navigationController popViewControllerAnimated:YES];
         }
         

@@ -56,6 +56,7 @@
     navTitleLabel.backgroundColor = [UIColor clearColor];
     
     NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
+    NSNumber *number = [[[NSBundle mainBundle]infoDictionary]objectForKey:@"CFBundleShortVersionString"];
     NSString* strVersionPrompt = [NSString stringWithFormat:kAppVersionFormart,version];
     navTitleLabel.text = strVersionPrompt;
     navTitleLabel.textColor = [UIColor grayColor];
@@ -227,5 +228,7 @@
         kUIAlertView(@"提示", @"当前是最新版本");
     }
 }
-
+- (void)logOutConfirm:(id)sender{
+    
+}
 @end

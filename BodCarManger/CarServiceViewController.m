@@ -97,6 +97,11 @@ static NSString *kImageTextArr[] ={
     if(![[[UIApplication sharedApplication]delegate]checkCarInforData]){
         return;
     }
+    [self checkNewMessage];
+    //popup.hidden = NO;
+
+}
+- (void)checkNewMessage{
     NSInteger num = [[[UIApplication sharedApplication]delegate]mesCount];
     if(num >0)
     {
@@ -109,7 +114,6 @@ static NSString *kImageTextArr[] ={
     {
         popup.hidden = YES;
     }
-    //popup.hidden = NO;
 
 }
 - (void)addFonterView{
@@ -305,7 +309,8 @@ static NSString *kImageTextArr[] ={
 //        
 //    }
     //NSString *num = [ntf object];
-    [logInfo reloadData];
+    //[logInfo reloadData];
+    [self checkNewMessage];
 #endif
 }
 @end

@@ -94,12 +94,13 @@
         [self startUpdatePhone];
 }
 - (void)startUpdatePhone{
-    [SVProgressHUD showWithStatus:NSLocalizedString(@"数据更新中", @"") networkIndicator:YES];
+    
     if([msgShowTextView.text isEqualToString:@""]){
         kUIAlertView(@"提示", @"请输入反馈内容");
         [msgShowTextView becomeFirstResponder];
         return;
     }
+    
     //NSString *replyDate = [date ];
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
     [dateFormat setDateFormat:@"yyyyMMddHHmmss"];
@@ -112,6 +113,7 @@
                             msgShowTextView.text,@"ackMesCon",
                            [AppSetting getLoginUserId],@"userName",
                            nil];
+    [SVProgressHUD showWithStatus:NSLocalizedString(@"数据更新中", @"") networkIndicator:YES];
     CarServiceNetDataMgr *netClientMgr = [CarServiceNetDataMgr getSingleTone];
     
     self.request = [netClientMgr  replyMessageList:param];

@@ -61,7 +61,7 @@
 }
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    if(isFirstLogin && 0)
+    if(isFirstLogin )
     {
         CarRouterDetailViewController *vc = [[CarRouterDetailViewController alloc]initWithNibName:nil bundle:nil];
         vc.delegate = self;

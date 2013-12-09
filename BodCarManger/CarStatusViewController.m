@@ -80,7 +80,7 @@
     [super viewDidLoad];
     
     self.delegate = self;
-    [self checkCacheData];
+    
 #if 1
     UIImage *bgImage = nil;
     UIImageWithFileName(bgImage, @"car_bg.png");
@@ -213,7 +213,7 @@
 #endif
     CGFloat height = tbHeaderView.frame.size.height+5;
     tweetieTableView.normalEdgeInset = UIEdgeInsetsMake(height,0.f,0.f,0.f);
-    
+    [self checkCacheData];
     //[self startCarHealthCheck:nil];
     //[self setRightTextContent:NSLocalizedString(@"Done", @"")];
 	// Do any additional setup after loading the view.

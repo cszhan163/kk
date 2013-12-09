@@ -184,7 +184,7 @@
             [dict setValue:self.radomCodeTextFied.text forKey:@"phoneNumber"];
          }
         //self.radomCodeTextFied.text,@"phoneNumber",
-         self.request = [cardShopMgr  carUserRegister:param];
+         self.request = [cardShopMgr  carUserRegister:dict];
     }
     else
     {
@@ -215,25 +215,34 @@
     {
         self.request = nil;
         kNetEnd(self.view);
-        NSDictionary *param = [NSDictionary dictionaryWithObjectsAndKeys:
-                 self.mobilePhoneTextFied.text,@"username",
-                               self.passwordTextFied.text,@"password",nil];
-        //[AppSetting setLoginUserInfo:param];
-        [AppSetting setLoginUserId:self.mobilePhoneTextFied.text];
-        [AppSetting setLoginUserPassword:self.passwordTextFied.text];
-        NE_LOG(@"%@",[_data description]);
-        //[self stopShowLoadingView];
-        //[Ap]
-        
-        [ZCSNotficationMgr postMSG:kCheckCardRecentRun obj:nil];
-        [ZCSNotficationMgr postMSG:kDisMissModelViewController obj:nil];
+        if([[_data objectForKey:@"retType"]intValue] == 0){
+            //[AppSetting setLoginUserInfo:param];
+            [AppSetting setLoginUserId:self.mobilePhoneTextFied.text];
+            [AppSetting setLoginUserPassword:self.passwordTextFied.text];
+            NE_LOG(@"%@",[_data description]);
+            //[self stopShowLoadingView];
+            //[Ap]
+            
+            [ZCSNotficationMgr postMSG:kCheckCardRecentRun obj:nil];
+            [ZCSNotficationMgr postMSG:kDisMissModelViewController obj:nil];
+        }
+        else{
+            kUIAlertView(@"提示", @"注册失败,用户名已存在");
+        }
     }
     
 }
 -(void)didNetDataFailed:(NSNotification*)ntf
 {
-    kNetEnd(self.view);
-    NE_LOG(@"warning not implemetation net respond");
+      id obj = [ntf object];
+    id respRequest = [obj objectForKey:@"request"];
+    id _data = [obj objectForKey:@"data"];
+    NSString *resKey = [obj objectForKey:@"key"];//[respRequest resourceKey];
+    if([resKey isEqualToString:kCarUserRegister]){
+        kNetEnd(self.view);
+        kUIAlertView(@"提示",@"网络错误");
+    }
+    //NE_LOG(@"warning not implemetation net respond");
 }
 -(void)textFieldDidEndEditing:(id)sender
 {

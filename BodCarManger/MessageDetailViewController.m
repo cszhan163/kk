@@ -25,7 +25,15 @@
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
+    //[super viewDidLoad];
+    [self setNavgationBarTitle:self.barTitle];
+    //[self setHiddenRightBtn:NO];
+    UIImage *bgImage = nil;
+    UIImageWithFileName(bgImage, @"car_bg.png");
+    mainView.bgImage = bgImage;
+    UIView *bgView = [[UIView alloc]initWithFrame:CGRectMake(0.f, kMBAppTopToolBarHeight,kDeviceScreenWidth, kDeviceScreenHeight-kMBAppTopToolBarHeight-kMBAppStatusBar)];
+    bgView.backgroundColor = HexRGB(202, 202, 204);
+    
 	// Do any additional setup after loading the view.
     self.subClassInputTextField.hidden = YES;
     UITextView *msgShowTextView = [[UITextView alloc]initWithFrame:CGRectMake(10.f,kMBAppTopToolBarHeight+20.f, 300.f,160.f)];

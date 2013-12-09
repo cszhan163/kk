@@ -230,8 +230,6 @@
     {
         kNetEnd(self.view);
     }
-    
-    
     //NE_LOG(@"warning not implemetation net respond");
 }
 -(void)didRequestFailed:(NSNotification*)ntf

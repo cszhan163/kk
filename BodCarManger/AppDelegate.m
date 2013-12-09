@@ -230,7 +230,11 @@ UIShareActionAlertView *sharedAlterView = nil;
         if([mesData count]>0){
             NSString *userId = [AppSetting getLoginUserId];
             NSMutableArray *histData = [NSMutableArray arrayWithArray:[[DBManage getSingletone]getMessageHistData:userId]];
-            [histData addObject:mesData];
+            NSRange range;
+            range.location = 0;
+            range.length = [mesData count];
+            NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:range];
+            [histData insertObjects:mesData atIndexes:indexSet];
             [[DBManage  getSingletone] saveMessageHistData:histData withUserId:userId];
             self.mesCount = self.mesCount+[mesData count];
             [ZCSNotficationMgr postMSG:KNewMessageFromMSG obj:[NSString stringWithFormat:@"%d",self.mesCount]];
@@ -252,7 +256,10 @@ UIShareActionAlertView *sharedAlterView = nil;
     if(usrId && ![usrId isEqualToString:@""]){
         NSArray *histData = [[DBManage getSingletone]getMessageHistData:usrId];
         for(NSDictionary *item in histData){
-            if([item objectForKey:@"readTag"]){
+            if([item isKindOfClass:[NSArray class]]){
+                NSLog(@"%@",[item description]);
+            }
+            else if([item objectForKey:@"readTag"]){
                 if([[item objectForKey:@"readTag"] intValue] == 0){
                     self.mesCount = self.mesCount +1;
                 }

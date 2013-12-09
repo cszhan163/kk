@@ -74,7 +74,6 @@
     if(unReadCount>0){
         [ZCSNotficationMgr postMSG:KNewMessageFromMSG obj:[NSNumber numberWithInteger:0]];
     }
-
     NSMutableArray *totalData = [NSMutableArray arrayWithArray:unReadData];
     [totalData addObjectsFromArray:[[DBManage getSingletone] getMessageHistData:usrId]];
 #if 0
@@ -275,11 +274,25 @@
      */
    
     MessageDetailViewController *detailVc = [[MessageDetailViewController alloc]init];
-    
+    NSString *timeStr = [item objectForKey:@"createdTime"];
+    if(timeStr){
+        NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
+        [dateFormat setDateFormat:@"yyyyMMddHHmmss"];
+        
+        //NSString *dateString = [dateFormat dateFromString:tempText];
+        NSDate *date = [dateFormat dateFromString:timeStr];
+        
+        [dateFormat setDateFormat:@"yyyy-MM-dd HH:mm"];
+        NSString *dateString = [dateFormat stringFromDate:date];
+        timeStr = dateString;
+        //;
+    }
+    detailVc.barTitle = timeStr;
     NSString * msgType = [item objectForKey:@"pushMesType"];
     if([msgType intValue] == 4){
         detailVc.type = 1;
         detailVc.data = item;
+       
     }
     else{
         detailVc.type = 0;

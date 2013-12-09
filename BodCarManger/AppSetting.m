@@ -227,4 +227,16 @@
     [usrDefaults setValue:data forKey:realKey];
     [usrDefaults synchronize];
 }
++(NSString*)getUserCarCheckTime:(NSString*)userId{
+    NSUserDefaults *usrDefaults = [NSUserDefaults standardUserDefaults];
+    NSString *realKey = [NSString stringWithFormat:@"%@_lastchecktime",userId];
+    return [usrDefaults objectForKey:realKey];
+}
++(void)setUserCarCheckTime:(NSString*)dateStr withUserId:(NSString*)userId{
+    NSUserDefaults *usrDefaults = [NSUserDefaults standardUserDefaults];
+    NSString *realKey = [NSString stringWithFormat:@"%@_lastchecktime",userId];
+    [usrDefaults setValue:dateStr forKey:realKey];
+    [usrDefaults synchronize];
+}
+
 @end

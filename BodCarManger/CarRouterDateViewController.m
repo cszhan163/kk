@@ -535,6 +535,8 @@ int lastDirect = -1;
 //    
 //    [self checkDataChange];
     [super didTouchAfterMoth:day];
+    NSString *barTitle  = [NSString stringWithFormat:@"%d年%02d月",self.mCurrDate.year,self.mCurrDate.month];
+    [self setNavgationBarTitle:barTitle];
 }
 - (void)didTouchAfterMoth:(NSDictionary *)day{
 
@@ -545,6 +547,8 @@ int lastDirect = -1;
 //    [self checkDataChange];
 
     [super didTouchAfterMoth:day];
+    NSString *barTitle  = [NSString stringWithFormat:@"%d年%02d月",self.mCurrDate.year,self.mCurrDate.month];
+    [self setNavgationBarTitle:barTitle];
 }
 
 - (void)didReceiveMemoryWarning

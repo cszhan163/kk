@@ -8,8 +8,9 @@
 
 #import "AboutViewController.h"
 #define kAppVersionFormart  @"宝逸行%@"
-@interface AboutViewController ()
-
+@interface AboutViewController (){
+    NSInteger curVersionNumber;
+}
 @end
 
 @implementation AboutViewController
@@ -58,6 +59,8 @@
     NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
     NSNumber *number = [[[NSBundle mainBundle]infoDictionary]objectForKey:@"CFBundleShortVersionString"];
     NSString* strVersionPrompt = [NSString stringWithFormat:kAppVersionFormart,version];
+    curVersionNumber = [number intValue];
+    
     navTitleLabel.text = strVersionPrompt;
     navTitleLabel.textColor = [UIColor grayColor];
     currHeight = currHeight+navTitleLabel.frame.size.height+20.f;
@@ -225,11 +228,35 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if(indexPath.row  == 1){
-        kUIAlertView(@"提示", @"当前是最新版本");
+        
+        NSDictionary *data = [AppSetting getLoginUserInfo];
+        NSString *versionStr = [data objectForKey:@"versionIOS"];
+        if([versionStr intValue]>curVersionNumber){
+            [self logOutConfirm:nil]
+            ;            //kUIAlertConfirmView(<#title#>, <#msg#>, <#left#>, <#right#>)
+        }
+        else{
+            kUIAlertView(@"提示", @"当前是最新版本");
+        }
     }
 }
 
 - (void)logOutConfirm:(id)sender{
     
+    UIAlertView *alertErr = [[UIAlertView alloc]initWithTitle:NSLocalizedString(@"提示", @"")message:NSLocalizedString(@"是否要更新新版本",@"") delegate:self cancelButtonTitle:NSLocalizedString(@"取消",@"") otherButtonTitles:NSLocalizedString(@"确定",@""),nil];
+    [alertErr show];
+    SafeAutoRelease(alertErr);
+    
+}
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if(buttonIndex == 1){
+        [self updateNewVersion];
+    }
+}
+-(void)updateNewVersion{
+    NSDictionary *data = [AppSetting getLoginUserInfo];
+    
+    NSString *urlStr = [data objectForKey:@"urlIOS"];
+    [[UIApplication sharedApplication]openURL:[NSURL URLWithString:urlStr]];
 }
 @end

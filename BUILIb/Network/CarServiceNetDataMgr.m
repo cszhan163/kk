@@ -653,6 +653,8 @@ static BOOL isExit = NO;
             else
                 [resultDict setValue:@"1" forKey:@"locateType"];
             
+            [resultDict setValue:[info get:@"versionIOS"] forKey:@"versionIOS"];
+            [resultDict setValue:[info get:@"urlIOS"] forKey:@"urlIOS"];
             [resultDict setValue:[info get:@"maintainPhone"] forKey:@"maintainPhone"];
             [resultDict setValue:[info get:@"emergPhone"] forKey:@"emergPhone"];
             [self sendFinalOkData:resultDict withKey:kNetLoginRes];

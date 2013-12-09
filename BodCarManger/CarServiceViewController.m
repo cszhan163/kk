@@ -53,7 +53,7 @@ static NSString *kImageTextArr[] ={
         popup = [[UIButton alloc]initWithFrame:CGRectZero];
         popup.titleLabel.adjustsFontSizeToFitWidth = YES;
         popup.titleLabel.textColor = [UIColor whiteColor];
-        //popup.titleEdgeInsets = UIEdgeInsetsMake(0.f,2.f,6.f,2.f);
+        popup.titleEdgeInsets = UIEdgeInsetsMake(2.f,0.f,3.f,2.f);
         popup.titleLabel.font = kAppTextBoldSystemFont(13);
         //popup.contentVerticalAlignment =UIControlContentVerticalAlignmentCenter;
         [popup setBackgroundImage:bgImage forState:UIControlStateNormal];
@@ -103,6 +103,7 @@ static NSString *kImageTextArr[] ={
 }
 - (void)checkNewMessage{
     NSInteger num = [[[UIApplication sharedApplication]delegate]mesCount];
+    //num = 10;
     if(num >0)
     {
         [popup setTitle:[NSString stringWithFormat:@"%d",num] forState:UIControlStateNormal];

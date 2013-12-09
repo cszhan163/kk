@@ -126,7 +126,6 @@ static NSString* kMonthTextArray[] = {
     scrollerView.layer.cornerRadius = 5.f;
     scrollerView.frame =  viewRect;
     scrollerView.clipsToBounds = YES;
-    
     [scrollerView setPageControlHidden:NO];
     
     StyledPageControl *pageControl = [scrollerView getPageControl];

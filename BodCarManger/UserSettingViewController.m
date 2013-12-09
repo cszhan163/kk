@@ -627,7 +627,7 @@ static NSString *kCellImageArr[] = {
 #pragma mark logout confir delegate
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
-    if(buttonIndex == 1)
+    if(buttonIndex == 1 && alertView.tag == 1000)
     {
     
         [self.navigationController popToRootViewControllerAnimated:NO];
@@ -694,8 +694,9 @@ static NSString *kCellImageArr[] = {
 - (void)logOutConfirm:(id)sender{
     
     UIAlertView *alertErr = [[[UIAlertView alloc]initWithTitle:NSLocalizedString(@"提示", @"")message:NSLocalizedString(@"是否真的要退出",@"") delegate:self cancelButtonTitle:NSLocalizedString(@"取消",@"") otherButtonTitles:NSLocalizedString(@"确定",@""),nil]autorelease];
+    alertErr.tag = 1000;
     [alertErr show];
-
+    
 }
 #pragma mark -
 #pragma mark net work

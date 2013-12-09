@@ -27,6 +27,7 @@
     UILabel           *temperatureLabel;
     UIImageView         *checkTagImageView ;
     UILabel           *checkProcessLabel;
+    UILabel            *checkTimeLabel;
     BOOL isNeedReflush;
     
 }
@@ -144,7 +145,7 @@
     [self.view addSubview:checkProcessView];
     KokSafeRelease(checkProcessView);
 #else
-    processView = [[DDProgressView alloc]initWithFrame:CGRectMake(106,currY+57,186,10)];
+    processView = [[DDProgressView alloc]initWithFrame:CGRectMake(106,currY+70,186,10)];
     processView.innerColor = [UIColor greenColor];
     processView.outerColor = [UIColor whiteColor];
     processView.emptyColor = [UIColor blackColor];
@@ -158,19 +159,41 @@
     
 #endif
     //for headerLabel
-    UIImageWithFileName(bgImage, @"car_check_label.png");
-    UIImageView *checkProcessImageView = [[UIImageView alloc]initWithImage:bgImage];
+//    UIImageWithFileName(bgImage, @"car_check_label.png");
+//    UIImageView *checkProcessImageView = [[UIImageView alloc]initWithImage:bgImage];
+//    
+//    checkProcessImageView.frame = CGRectMake(106,currY+30 ,bgImage.size.width/kScale, bgImage.size.height/kScale);
+//    checkProcessImageView.userInteractionEnabled = YES;
+//    [self.view addSubview:checkProcessImageView];
+//    SafeRelease(checkProcessImageView);
+    CGRect textRect = CGRectMake(106,currY+30,100, 10);
+    UILabel *checkHeaderLabel = [UIComUtil createLabelWithFont:[UIFont systemFontOfSize:12] withTextColor:[UIColor whiteColor] withText:@"故障检测时间:" withFrame:textRect];
+    checkHeaderLabel.textAlignment = NSTextAlignmentLeft;
+    [self.view addSubview:checkHeaderLabel];
+    SafeRelease(checkHeaderLabel);
     
-    checkProcessImageView.frame = CGRectMake(106,currY+30 ,bgImage.size.width/kScale, bgImage.size.height/kScale);
-    checkProcessImageView.userInteractionEnabled = YES;
-    [self.view addSubview:checkProcessImageView];
-    SafeRelease(checkProcessImageView);
-    CGRect textRect = CGRectMake(checkProcessImageView.frame.size.width+106+5,currY+30, 150, 15);
-    checkProcessLabel  = [UIComUtil createLabelWithFont:[UIFont systemFontOfSize:8] withTextColor:HexRGB(36, 220, 0) withText:@"你还没有进行故障检测" withFrame:textRect];
+    
+    textRect = CGRectMake(106,currY+30+20, 100, 10);
+   checkHeaderLabel= [UIComUtil createLabelWithFont:[UIFont systemFontOfSize:12] withTextColor:[UIColor whiteColor]  withText:@"车辆故障检测:" withFrame:textRect];
+    checkHeaderLabel.textAlignment = NSTextAlignmentLeft;
+    [self.view addSubview:checkHeaderLabel];
+    SafeRelease(checkHeaderLabel);
+    
+    CGFloat offsetX = 80;
+    
+    
+    textRect = CGRectMake(106+offsetX,currY+28, 150, 15);
+    checkTimeLabel = [UIComUtil createLabelWithFont:[UIFont systemFontOfSize:14] withTextColor:HexRGB(36, 220, 0) withText:@"2013-10-09 11:30" withFrame:textRect];
+    checkTimeLabel.textAlignment = NSTextAlignmentLeft;
+    [self.view addSubview:checkTimeLabel];
+    SafeRelease(checkTimeLabel);
+
+    
+    textRect = CGRectMake(106+offsetX,currY+30+17, 150, 15);
+    checkProcessLabel  = [UIComUtil createLabelWithFont:[UIFont systemFontOfSize:14] withTextColor:HexRGB(36, 220, 0) withText:@"未进行故障检测" withFrame:textRect];
     checkProcessLabel.textAlignment = NSTextAlignmentLeft;
     [self.view addSubview:checkProcessLabel];
     SafeRelease(checkProcessLabel);
-    
     
     
     
@@ -271,6 +294,13 @@
         if([self.dataArray count]>0){
             NSString *usrId = [AppSetting getLoginUserId];
             [AppSetting setUserCarCheckData:data withUserId:usrId];
+            
+            NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
+            [dateFormat setDateFormat:@"yyyy-MM-dd HH:mm"];
+            
+            NSString *dateString = [dateFormat stringFromDate:[NSDate date]];
+            
+            [AppSetting setUserCarCheckTime:dateString withUserId:usrId];
         }
         kNetEnd(self.view);
         
@@ -292,6 +322,9 @@
 }
 - (void)setOtherUIData{
 
+    NSString *usrId = [AppSetting getLoginUserId];
+    NSString *timeStr = [AppSetting getUserCarCheckTime:usrId];
+    checkTimeLabel.text = timeStr;
     rotateSpeedLabel.text = [NSString stringWithFormat:@"%@ 转",[self.data objectForKey:@"RPM"]];
     temperatureLabel.text = [NSString stringWithFormat:@"%@ 度",[self.data objectForKey:@"temper"]];
     int level = [[self.data objectForKey:@"level"] intValue];

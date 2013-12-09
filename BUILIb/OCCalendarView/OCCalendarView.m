@@ -340,6 +340,9 @@
     CGPoint endPoint = [self getDatePoint:eDate];
     [selectionView addPointSetWithStartPoint:startPoint andEndPoint:endPoint withTag:tag];
 }
+- (void)clearSelectedData{
+    [selectionView clearSelectedData];
+}
 - (void)setReLayoutView{
     [selectionView setSelected:YES];
     /*

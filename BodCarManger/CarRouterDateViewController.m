@@ -730,6 +730,7 @@ int lastDirect = -1;
     if(![[calView getDateKey]isEqualToString:self.mMothDateKey]){
         return;
     }
+    [calView clearSelectedData];
     if(isTodayMonth){
         NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
         NSDateComponents *dateParts = [[NSDateComponents alloc] init];

@@ -286,6 +286,9 @@
     selected = YES;
     [self setNeedsDisplay];
 }
+- (void)clearSelectedData{
+    [self.selectorPoints removeAllObjects];
+}
 - (void)addPointSetWithStartPoint:(CGPoint)sPoint andEndPoint:(CGPoint)ePoint withTag:(int)tag{
     StructPoint *points = [[StructPoint alloc]init];
     points.mStartX = sPoint.x;

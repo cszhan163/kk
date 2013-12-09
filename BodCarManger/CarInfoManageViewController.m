@@ -560,7 +560,7 @@ static NSString  *CarInfoKeyArray[] = {
                 case 0:
                     key = @"brandy";
                     //break;
-                case 2:
+                case 1:
                     key =@"model";
                     
                     break;

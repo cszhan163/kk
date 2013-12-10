@@ -46,6 +46,7 @@
 +(BOOL)getCarLocationSetting;
 +(void)setCarLocationSetting:(BOOL)status;
 
++(NSString*)getUserCarCheckTime:(NSString*)userId;
 +(NSString*)getEmergPhoneNumber;
 -(void)setEmergPhoneNumber;
 @end

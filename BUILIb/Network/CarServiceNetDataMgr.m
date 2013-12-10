@@ -1182,7 +1182,7 @@ static BOOL isExit = NO;
          */
         NSLog(@"%@",info.blocks);
         NSMutableDictionary *resultDict = [NSMutableDictionary dictionary];
-        NSMutableArray *data = [NSMutableArray array];
+        //NSMutableArray *data = [NSMutableArray array];
         [resultDict setValue:[info get:@"milage"] forKey:@"milage"];
         [resultDict setValue:[info get:@"days"] forKey:@"days"];
         [resultDict setValue:[info get:@"milageSpan"] forKey:@"milageSpan"];

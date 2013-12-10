@@ -7,7 +7,7 @@
 //
 
 #import "AboutViewController.h"
-#define kAppVersionFormart  @"宝逸行%@"
+#define kAppVersionFormart  @"人保e行%@"
 @interface AboutViewController (){
     NSInteger curVersionNumber;
 }

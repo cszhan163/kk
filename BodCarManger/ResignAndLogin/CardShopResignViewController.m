@@ -252,10 +252,10 @@
 }
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    if(textField == self.mobilePhoneTextFied){
-        [self.passwordTextFied becomeFirstResponder];
-        return NO;
-    }
+//    if(textField == self.mobilePhoneTextFied){
+//        [self.passwordTextFied becomeFirstResponder];
+//        return NO;
+//    }
     //if(textField == self.passwordTextFied)
     [textField resignFirstResponder];
     return YES;

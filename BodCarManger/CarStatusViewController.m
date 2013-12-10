@@ -166,14 +166,14 @@
 //    checkProcessImageView.userInteractionEnabled = YES;
 //    [self.view addSubview:checkProcessImageView];
 //    SafeRelease(checkProcessImageView);
-    CGRect textRect = CGRectMake(106,currY+30,100, 10);
+    CGRect textRect = CGRectMake(106,currY+30,100, 15);
     UILabel *checkHeaderLabel = [UIComUtil createLabelWithFont:[UIFont systemFontOfSize:12] withTextColor:[UIColor whiteColor] withText:@"故障检测时间:" withFrame:textRect];
     checkHeaderLabel.textAlignment = NSTextAlignmentLeft;
     [self.view addSubview:checkHeaderLabel];
     SafeRelease(checkHeaderLabel);
     
     
-    textRect = CGRectMake(106,currY+30+20, 100, 10);
+    textRect = CGRectMake(106,currY+30+20, 100, 15);
    checkHeaderLabel= [UIComUtil createLabelWithFont:[UIFont systemFontOfSize:12] withTextColor:[UIColor whiteColor]  withText:@"车辆故障检测:" withFrame:textRect];
     checkHeaderLabel.textAlignment = NSTextAlignmentLeft;
     [self.view addSubview:checkHeaderLabel];
@@ -182,14 +182,14 @@
     CGFloat offsetX = 80;
     
     
-    textRect = CGRectMake(106+offsetX,currY+28, 150, 15);
-    checkTimeLabel = [UIComUtil createLabelWithFont:[UIFont systemFontOfSize:14] withTextColor:HexRGB(36, 220, 0) withText:@"2013-10-09 11:30" withFrame:textRect];
+    textRect = CGRectMake(106+offsetX,currY+30, 150, 15);
+    checkTimeLabel = [UIComUtil createLabelWithFont:[UIFont systemFontOfSize:14] withTextColor:HexRGB(36, 220, 0) withText:@"" withFrame:textRect];
     checkTimeLabel.textAlignment = NSTextAlignmentLeft;
     [self.view addSubview:checkTimeLabel];
     SafeRelease(checkTimeLabel);
 
     
-    textRect = CGRectMake(106+offsetX,currY+30+17, 150, 15);
+    textRect = CGRectMake(106+offsetX,currY+30+19, 150, 15);
     checkProcessLabel  = [UIComUtil createLabelWithFont:[UIFont systemFontOfSize:14] withTextColor:HexRGB(36, 220, 0) withText:@"未进行故障检测" withFrame:textRect];
     checkProcessLabel.textAlignment = NSTextAlignmentLeft;
     [self.view addSubview:checkProcessLabel];

@@ -290,6 +290,7 @@
 			break;
         case 2:
         case 1:{
+            currIndex = 0;
             [csView resetInitStatus];
             self.mCurrDate = self.mTodayDate;
             self.mMothDateKey = [NSString stringWithFormat:kDateFormart,self.mCurrDate.year,self.mCurrDate.month];
@@ -534,9 +535,9 @@ int lastDirect = -1;
 //     self.mMothDateKey = [NSString stringWithFormat:@"%d%02d",mCurrDate.year,mCurrDate.month];
 //    
 //    [self checkDataChange];
-    [super didTouchAfterMoth:day];
-    NSString *barTitle  = [NSString stringWithFormat:@"%d年%02d月",self.mCurrDate.year,self.mCurrDate.month];
-    [self setNavgationBarTitle:barTitle];
+    [super didTouchPreMoth:day];
+//    NSString *barTitle  = [NSString stringWithFormat:@"%d年%02d月",self.mCurrDate.year,self.mCurrDate.month];
+//    [self setNavgationBarTitle:barTitle];
 }
 - (void)didTouchAfterMoth:(NSDictionary *)day{
 
@@ -547,8 +548,8 @@ int lastDirect = -1;
 //    [self checkDataChange];
 
     [super didTouchAfterMoth:day];
-    NSString *barTitle  = [NSString stringWithFormat:@"%d年%02d月",self.mCurrDate.year,self.mCurrDate.month];
-    [self setNavgationBarTitle:barTitle];
+//    NSString *barTitle  = [NSString stringWithFormat:@"%d年%02d月",self.mCurrDate.year,self.mCurrDate.month];
+//    [self setNavgationBarTitle:barTitle];
 }
 
 - (void)didReceiveMemoryWarning

@@ -111,7 +111,7 @@
     
     oilData.date = self.mCurrDate;
     oilData.indictorText = @"本月安全驾驶指数";
-    oilData.textFormatArray = @[@"急加速: %d%@",@"急减速: %d\%@",@"    超速: %d\%@"];
+    oilData.textFormatArray = @[@"急加速: %d%@",@"急减速: %d\%@",@"超    速: %d\%@"];
     NSString *conclusion = [data objectForKey:@"conclusion"];
     if(conclusion && ![conclusion isKindOfClass:[NSNull class]&& ![conclusion isEqualToString:@""]]){
     }

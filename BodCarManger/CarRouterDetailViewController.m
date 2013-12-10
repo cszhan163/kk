@@ -54,6 +54,11 @@
     }
     return self;
 }
+- (void)viewWillAppear:(BOOL)animated{
+    if(self.isRunning){
+        [ZCSNotficationMgr postMSG:kCheckCardRecentRun obj:nil];
+    }
+}
 - (void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
     [[DBManage getSingletone]setDelegate:nil];
@@ -594,15 +599,19 @@ static int indexCount = 0;
             place.pointType = 0;
             //[mMapView addPinToMap:mStartCoordinate2d withName:sender];
             [mMapView addPointToMap:place];
+            [mMapView addPointToMap:place];
         }
         else{
-            
-            place.latitude = mEndCoordinate2d.latitude;
-            place.longitude = mEndCoordinate2d.longitude;
-            place.pointType = 1;
+            if(!self.isRunning){
+                place.latitude = mEndCoordinate2d.latitude;
+                place.longitude = mEndCoordinate2d.longitude;
+                place.pointType = 1;
+                [mMapView addPointToMap:place];
+            }
             //[mMapView addPinToMap:mEndCoordinate2d withName:sender];
         }
-        [mMapView addPointToMap:place];
+       
+        
 //        if(mEndName){
 //            [mMapView addPinToMap:mEndCoordinate2d withName:mEndName];
 //            //[self didGetLocationData:mEndName withIndex:-1 withTag:NO];

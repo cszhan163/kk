@@ -292,7 +292,8 @@ NSString* gDataArr[] = {@"12.5km",@"11km/h",@"87L",@"3h"};
     }
     
 #endif
-    cell.mTimeLabel.text = [NSString stringWithFormat:@"%@",[self baoNormalFormat:[data objectForKey:@"drivingLong"]]];
+    //[self baoNormalFormat:[data objectForKey:@"drivingLong"]]
+    cell.mTimeLabel.text = [NSString stringWithFormat:@"%dmin",[[data objectForKey:@"drivingLong"]intValue]];
     cell.mStartLabel.text = [NSString stringWithFormat:@"始: %@",startLocation];
     cell.mEndLabel.text = [NSString stringWithFormat:@"终: %@",endLocation];
     //[data objectForKey:@"endadr"];
@@ -464,7 +465,9 @@ NSString* gDataArr[] = {@"12.5km",@"11km/h",@"87L",@"3h"};
                     text = [NSString stringWithFormat:@"%0.2lfL",[[netData objectForKey:@"dayFuel"]floatValue]];
                     break;
                 case 3:
-                    text = [NSString stringWithFormat:@"%dh",[[netData objectForKey:@"dayDrivinglong"]intValue]];
+                    
+                    text = [NSString stringWithFormat:@"%dmin",[[netData objectForKey:@"dayDrivinglong"]intValue]];
+                    //text= [self baoNormalFormat:text];
                     break;
                 default:
                     break;
@@ -518,10 +521,10 @@ NSString* gDataArr[] = {@"12.5km",@"11km/h",@"87L",@"3h"};
     }
     else if(time>60 && time<60*24)
     {
-        return [NSString stringWithFormat:@"%0.1lfhour",time/60.f];
+        return [NSString stringWithFormat:@"%0.1lfhr",time/60.f];
     }
     else{
-        return [NSString stringWithFormat:@"%0.1lfday",time/(60.*24)];
+        return [NSString stringWithFormat:@"%0.1lfd",time/(60.*24)];
     }
 }
 

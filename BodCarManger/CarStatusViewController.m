@@ -50,6 +50,7 @@
         [self checkCacheData];
         isNeedReflush = NO;
     }
+   
 }
 - (void)addObservers{
     [super addObservers];

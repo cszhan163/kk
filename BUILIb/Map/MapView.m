@@ -178,7 +178,12 @@
 	//PlaceMark* to = [[[PlaceMark alloc] initWithPlace:t] autorelease];
 	[mapView addAnnotation:point];
 	//[mapView addAnnotation:to];
-
+//    if(self.motionPoint){
+//        MKAnnotationView *motionPointView = [mapView viewForAnnotation:self.motionPoint];
+//        
+//        if(motionPointView)
+//            [motionPointView removeFromSuperview];
+//    }
 
 }
 - (void)addMotionPointToMap:(Place*)f{

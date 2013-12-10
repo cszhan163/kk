@@ -236,9 +236,11 @@ UIShareActionAlertView *sharedAlterView = nil;
             NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:range];
             [histData insertObjects:mesData atIndexes:indexSet];
             [[DBManage  getSingletone] saveMessageHistData:histData withUserId:userId];
+            /*
             self.mesCount = self.mesCount+[mesData count];
             [ZCSNotficationMgr postMSG:KNewMessageFromMSG obj:[NSString stringWithFormat:@"%d",self.mesCount]];
-            
+            */
+            [self didLoginOK:nil];
         }
        
         //if([mesData count]>0)

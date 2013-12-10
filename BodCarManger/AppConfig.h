@@ -160,6 +160,7 @@
 
 #define TEST_RUNNING 0
 
+#define RunningCenter 0
 
 #define kAlertCardBidTXT                    @"请先添加车辆信息"
 

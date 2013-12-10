@@ -9,14 +9,39 @@
 #import "ViewController.h"
 #import "CarServiceNetDataMgr.h"
 @interface ViewController ()
-
+{
+    UIImageView *testView;
+}
 @end
 
 @implementation ViewController
+static CGFloat  degrees = 0.f;
+- (void)checkRunningData{
+    [self performSelectorOnMainThread:@selector(doRotation:) withObject:nil  waitUntilDone:NO];
+}
+- (void)doRotation:(id)sender{
 
+    degrees = degrees+20.f;
+    CGAffineTransform rotation = CGAffineTransformMakeRotation(degrees/2*M_PI/360);
+    [testView setTransform:rotation];
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    
+    UIImageWithFileName(UIImage *bg, @"run_arrow.png");
+    
+    testView = [[UIImageView alloc] initWithFrame:CGRectMake(50.f, 60.f, bg.size.width/kScale, bg.size.height/kScale)];
+    testView.image = bg;
+    [self.view addSubview:testView];
+    SafeRelease(testView);
+    
+    
+    NSTimer *timer  = [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(checkRunningData) userInfo:nil repeats:YES];
+    
+    return;
+    
     
     NSString *imgPath = nil;
     UIImage *defaultStatusImg,*selectStatusImg;

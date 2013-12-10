@@ -513,13 +513,15 @@ static int indexCount = 0;
     CGFloat startPoint = mEndSpeed;
     CGFloat endPoint = 0.f;
     CGFloat degree = 0.f;
+    static CGFloat startDegree = 0.f;
 #if !TEST_RUNNING
     NSArray *cordPoints = [data objectForKey:@"gps"];
 #else
-    if(indexCount>[self.gprsDataArray count]){
-        indexCount = 0;
+    
+    if(indexCount<=0){
+        indexCount = [self.gprsDataArray count]-1;
     }
-    data = [self.gprsDataArray objectAtIndex:indexCount++];
+    data = [self.gprsDataArray objectAtIndex:indexCount--];
 #endif
     [self setPanelUIByData:data];
     CLLocationCoordinate2D pointsToUse[2];
@@ -564,8 +566,10 @@ static int indexCount = 0;
     place.latitude = mEndCoordinate2d.latitude;
     place.longitude = mEndCoordinate2d.longitude;
     place.pointType = 2;
-    place.degree = degree;
+    place.degree = (degree+startDegree)/2.f;
+    startDegree = degree;
     //place.name = _mStartName;
+    
     [mMapView addMotionPointToMap:place];
     //[place release];
     SafeRelease(place);

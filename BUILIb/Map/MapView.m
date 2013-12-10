@@ -194,14 +194,14 @@
 //            
 //        }
 //    }
-    MKAnnotationView *motionPointView = [mapView viewForAnnotation:self.motionPoint];
+//    MKAnnotationView *motionPointView = [mapView viewForAnnotation:self.motionPoint];
     
     
-    
+    [mapView removeAnnotation:self.motionPoint];
     [self addPointToMap:f];
-    if(motionPointView)
-     [motionPointView removeFromSuperview];
-    //[mapView removeAnnotation:<#(id<MKAnnotation>)#>]
+    //if(motionPointView)
+     //[motionPointView removeFromSuperview];
+        
     
 }
 - (void)addPinToMap:(CLLocationCoordinate2D)annotationCoord withName:(NSString*)name{
@@ -249,6 +249,20 @@
     MKPolyline *lineOne = [MKPolyline polylineWithCoordinates:points count:count];
     lineOne.title = color;
     [mapView addOverlay:lineOne];
+#if RunningCenter
+   float maxLat = points[0].latitude;
+   float maxLon = points[1].longitude;
+   float minLat = points[0].latitude;
+   float minLon = points[1].longitude;
+    MKCoordinateRegion region;
+    region.center.latitude     = (maxLat + minLat) / 2;
+	region.center.longitude    = (maxLon + minLon) / 2;
+	region.span.latitudeDelta  = maxLat - minLat + 0.018;
+	region.span.longitudeDelta = maxLon - minLon + 0.018;
+    
+	[mapView setRegion:region animated:YES];
+#endif
+    
 }
 -(void) updateRouteView {
     [mapView removeOverlays:mapView.overlays];
@@ -388,7 +402,9 @@ static MKPolylineView *lineview =  nil;
             [pinView setCanShowCallout:NO];
             pinView.tag = 3;
         }
-        CGAffineTransform rotation = CGAffineTransformMakeRotation(place.degree/2*M_PI);
+        CGFloat fdegree = place.degree/180.f*M_PI;
+        NE_LOG(@"rotation:%lf==%lf",place.degree,fdegree);
+        CGAffineTransform rotation = CGAffineTransformMakeRotation(fdegree);
         [pinView setTransform:rotation];
     }
     

@@ -340,8 +340,15 @@ static NSString* kMonthTextArray[] = {
     if([sender tag] == 10)
         [scrollerView scrollerToPrePage];
     
-    if([sender tag] == 11)
-        [scrollerView scrollerToNextPage];
+    if([sender tag] == 11){
+         if(self.mTodayDate.month==self.mCurrDate.month && self.mTodayDate.year==self.mCurrDate.year){
+             kUIAlertView(@"提示", @"暂无下个月数据");
+             return;
+         }
+         else{
+             [scrollerView scrollerToNextPage];
+         }
+    }
 }
 
 

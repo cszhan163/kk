@@ -844,6 +844,7 @@ static BOOL isExit = NO;
                                   [row objectForKey:@"lng"],@"lng",
                                   [row objectForKey:@"lat"],@"lat",
                                   [row objectForKey:@"speed"],@"speed",
+                                  [row objectForKey:@"direct"],@"direct",
                                   nil];
             [gpsArray addObject:item];
             
@@ -932,6 +933,7 @@ static BOOL isExit = NO;
                                   [row objectForKey:@"lng"],@"lng",
                                   [row objectForKey:@"lat"],@"lat",
                                   [row objectForKey:@"speed"],@"speed",
+                                  [row objectForKey:@"direct"],@"direct",
                                   nil];
             [gpsArray addObject:item];
 

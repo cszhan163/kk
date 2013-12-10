@@ -21,5 +21,6 @@
 @property (nonatomic, retain) NSString* description;
 @property (nonatomic) float latitude;
 @property (nonatomic) float longitude;
+@property (nonatomic) float degree;
 
 @end

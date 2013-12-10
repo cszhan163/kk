@@ -137,7 +137,13 @@
     [self initMapPointData:mData];
    
    // [mMapView showRouteFrom:mStartPoint to:mEndPoint];
-    if(_isFromDateView){
+#if TEST_RUNNING
+    if(_isFromDateView)
+        return;
+    [self  performSelector:@selector(updateUIRealTimeCheck:) withObject:nil  afterDelay:0.f];
+#else
+    if(_isFromDateView)
+    {
         kNetStartShow(@"数据加载...", self.view);
         [ZCSNotficationMgr postMSG:kCheckCardRecentRun obj:nil];
         UIImageWithFileName(bgImage, @"calendar.png");
@@ -150,6 +156,7 @@
         //[self performSelectorInBackground:@selector(loadRouterHistoryData) withObject:nil];
         [self loadRouterHistoryData];
     }
+#endif
     //[mainView.topBarView ];
 	// Do any additional setup after loading the view.
     [self setRightBtnHidden:YES];
@@ -312,6 +319,7 @@
         [self  performSelectorOnMainThread:@selector(updateUIData:) withObject:netData waitUntilDone:NO ];
         //[mDataDict setObject:netData forKey:mMothDateKey];
         //}
+
         
         
     }
@@ -504,6 +512,7 @@ static int indexCount = 0;
     
     CGFloat startPoint = mEndSpeed;
     CGFloat endPoint = 0.f;
+    CGFloat degree = 0.f;
 #if !TEST_RUNNING
     NSArray *cordPoints = [data objectForKey:@"gps"];
 #else
@@ -524,6 +533,7 @@ static int indexCount = 0;
         NSDictionary *item = data;
         #endif
         endPoint = [[item objectForKey:@"speed"] floatValue];
+        degree = [[item objectForKey:@"direct"]floatValue];
         CLLocationCoordinate2D coords;
         double lng = [[item objectForKey:@"lng"] doubleValue]/kGPSMaxScale;
         double lat = [[item objectForKey:@"lat"] doubleValue]/kGPSMaxScale;
@@ -554,6 +564,7 @@ static int indexCount = 0;
     place.latitude = mEndCoordinate2d.latitude;
     place.longitude = mEndCoordinate2d.longitude;
     place.pointType = 2;
+    place.degree = degree;
     //place.name = _mStartName;
     [mMapView addMotionPointToMap:place];
     //[place release];
@@ -565,14 +576,18 @@ static int indexCount = 0;
     //[mMapView addMotionPointToMap:];
 }
 - (void)updateUIRealTimeCheck:(NSDictionary*)data{
+    NSTimeInterval timer = 10.f;
 #if TEST_RUNNING
-        self.isRunning = YES;
+    self.isRunning = YES;
+    timer = 3.f;
+#else
+    
 #endif
         if(self.isRunning){
             [self setNavgationBarTitle:@"正在驾驶"];
             //[self performSelectorInBackground:@selector(loadRouterHistoryData) withObject:nil];
             [self loadRouterHistoryData];
-            self.realDataTimer = [NSTimer scheduledTimerWithTimeInterval:10 target:self selector:@selector(checkRunningData) userInfo:nil repeats:YES];
+            self.realDataTimer = [NSTimer scheduledTimerWithTimeInterval:timer target:self selector:@selector(checkRunningData) userInfo:nil repeats:YES];
         }
         else{
             [self setNavgationBarTitle:@"最近驾驶"];

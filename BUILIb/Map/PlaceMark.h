@@ -18,6 +18,7 @@
 @property (nonatomic,assign)int type;
 @property (nonatomic, readonly) CLLocationCoordinate2D coordinate;
 @property (nonatomic, retain) Place* place;
+@property (nonatomic,assign)CGFloat degree;
 
 -(id) initWithPlace: (Place*) p;
 

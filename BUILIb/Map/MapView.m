@@ -174,6 +174,7 @@
     
     if(f.pointType == 2){
         self.motionPoint = point;
+        point.degree = f.degree;
     }
 	//PlaceMark* to = [[[PlaceMark alloc] initWithPlace:t] autorelease];
 	[mapView addAnnotation:point];
@@ -387,7 +388,10 @@ static MKPolylineView *lineview =  nil;
             [pinView setCanShowCallout:NO];
             pinView.tag = 3;
         }
+        CGAffineTransform rotation = CGAffineTransformMakeRotation(place.degree/2*M_PI);
+        [pinView setTransform:rotation];
     }
+    
     else{
         if (!pinView) {
             pinView = [[[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:ShopAnnotationIdentifier] autorelease];

@@ -59,7 +59,8 @@
 #if TEST_RUNNING
          [self updateUIRealTimeCheck:nil];
 #else
-         [ZCSNotficationMgr postMSG:kCheckCardRecentRun obj:nil];
+        
+        [ZCSNotficationMgr postMSG:kCheckCardRecentRun obj:nil];
 #endif
     }
 }
@@ -466,7 +467,8 @@
     if([gpsScaleArray count])
      [mMapView  showRouteWithPointsData:gpsScaleArray];
 #else
-    [mMapView centralMapwithPoints:gpsScaleArray];
+    if(!self.isRunning)
+        [mMapView centralMapwithPoints:gpsScaleArray];
     for(int i = 0;i<[self.gprsDataArray count]-1;i++){
         CGFloat startPoint = 0.f;
         CGFloat endPoint = 0.f;

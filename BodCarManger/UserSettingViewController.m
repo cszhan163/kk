@@ -736,13 +736,15 @@ static NSString *kCellImageArr[] = {
         }
         self.userData = newDict;
         [AppSetting setLoginUserInfo:newDict];
+        BOOL status = YES;
+        if([[self.userData objectForKey:@"locateType"]intValue]==0){
+            status = NO;
+        }
+        [AppSetting setCarLocationSetting:status];
+        
         [logInfo performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
     }
-    BOOL status = YES;
-    if([[self.data objectForKey:@"locateType"]intValue]==0){
-        status = NO;
-    }
-    [AppSetting setCarLocationSetting:status];
+    
   
 }
 @end

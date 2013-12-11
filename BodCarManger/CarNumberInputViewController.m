@@ -58,19 +58,21 @@ static char *carNumProvince[] = {"京","津","冀","晋","蒙","辽","吉","黑"
     }
     self.subClassInputTextField.text = [self.userEmail substringFromIndex:1];
     provinceStr = [self.userEmail substringToIndex:1];
+    /*
     NSRange range ;
     range.location = 1;
     range.length = 1;
     NSString *charStr = [self.userEmail substringWithRange:range];
     int charIndex = 0;
-    int proviceIndex = 0;
+    
     for(int i = 0;i<26;i++){
         if([[self.characterArray objectAtIndex:i]isEqualToString:charStr]){
             charIndex = i;
             break;
         }
     }
-    
+    */
+    int proviceIndex = 0;
     for(int i = 0;i<[self.proviceArray count];i++){
         if([[self.proviceArray objectAtIndex:i]isEqualToString:provinceStr]){
             proviceIndex = i;
@@ -165,6 +167,9 @@ static char *carNumProvince[] = {"京","津","冀","晋","蒙","辽","吉","黑"
         break;
 		case 1:
 		{
+            if([self.subClassInputTextField.text isEqualToString:@""]){
+                return;
+            }
             //[self startRestPassword];
             if(delegate && [delegate respondsToSelector:@selector(setCellItemData:withIndexPath:)]){
                 NSString *result = @"";
@@ -178,6 +183,7 @@ static char *carNumProvince[] = {"京","津","冀","晋","蒙","辽","吉","黑"
     
 }
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+
     if([textField.text length]>6){
         return NO;
     }

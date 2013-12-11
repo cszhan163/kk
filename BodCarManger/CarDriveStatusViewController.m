@@ -556,8 +556,14 @@ static NSString* kMonthTextArray[] = {
     else{
         maxDistance = [[data objectForKey:@"milageSpan"]floatValue];
     }
-    CGFloat day =  realDay/(maxDay*30.f) *84.f;
-    CGFloat distance = realDistance/maxDistance*84.f;
+    CGFloat day =  0;
+    if(maxDay){
+        day =  realDay/(maxDay*30.f) *84.f;
+    }
+    CGFloat distance = 0;
+    if(maxDistance){
+        distance = realDistance/maxDistance*84.f;
+    }
     if(realDay>=maxDay-10||realDistance>=maxDistance-2000)
     {
         UIImageWithFileName(UIImage *bgImage, @"matain_need.png");

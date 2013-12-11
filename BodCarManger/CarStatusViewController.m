@@ -263,7 +263,7 @@
     //getCarCheckDataOk
     CarServiceNetDataMgr *cardShopMgr = [CarServiceNetDataMgr getSingleTone];
     //[self startShowLoadingView];
-    //kNetStartShow(@"数据加载...", self.view);
+    kNetStartShow(@"数据加载...", self.view);
     NSString *userId = [AppSetting getLoginUserId];
     NSString *cardId = nil;
     if(userId){

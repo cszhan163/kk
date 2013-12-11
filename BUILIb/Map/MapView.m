@@ -288,16 +288,16 @@
     [mapView addOverlay:lineOne];
 
     if(isCenter){
-        float maxLat = points[0].latitude;
+        float maxLat = points[1].latitude;
         float maxLon = points[1].longitude;
-        float minLat = points[0].latitude;
+        float minLat = points[1].latitude;
         float minLon = points[1].longitude;
         MKCoordinateRegion region;
-        region.center.latitude     = (maxLat + minLat) / 2;
-        region.center.longitude    = (maxLon + minLon) / 2;
+        region.center.latitude     = (minLat+maxLat)/2.f;
+        region.center.longitude    = (minLon+maxLon)/2.f;
         region.span.latitudeDelta  = maxLat - minLat + 0.018;
-        region.span.longitudeDelta = maxLon - minLon + 0.018;
-        
+        region.span.longitudeDelta = maxLon - minLon + 0.028;
+        [mapView regionThatFits:region];
         [mapView setRegion:region animated:YES];
     }
     
@@ -436,7 +436,9 @@ static MKPolylineView *lineview =  nil;
             pinView.image = _arrowImage;
             pinView.frame = CGRectMake(0.f, 0.f,_arrowImage.size.width/kScale, _arrowImage.size.height/kScale);
             pinView.animatesDrop = NO;
-            pinView.centerOffset = CGPointMake(0,3);
+            CGFloat width = _arrowImage.size.width/4;
+            CGFloat height = _arrowImage.size.height/4;
+            pinView.centerOffset = CGPointMake(width,height);
             //pinView.centerOffset = CGPointMake(0,0);
             [pinView setCanShowCallout:NO];
             pinView.tag = 3;
@@ -447,7 +449,9 @@ static MKPolylineView *lineview =  nil;
         UIImage *newImage = [_arrowImage imageRotatedByDegrees:fdegree withSize:CGSizeMake(self.arrowImage.size.width/kScale, self.arrowImage.size.height/kScale)];
         //[pinView setTransform:rotation];
         pinView.image = newImage;
-        
+        CGFloat width = _arrowImage.size.width/4;
+        CGFloat height = _arrowImage.size.height/4;
+        pinView.centerOffset = CGPointMake(width-10,height);
     }
     
     else{

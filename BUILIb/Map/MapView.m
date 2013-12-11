@@ -186,6 +186,17 @@
     
 	[mapView setRegion:region animated:YES];
 }
+- (void)centralMapwithPoint:(CLLocationCoordinate2D)point{
+    
+    MKCoordinateRegion region;
+	region.center.latitude     = point.latitude;
+	region.center.longitude    = point.longitude;
+	region.span.latitudeDelta  = 0.118;
+	region.span.longitudeDelta =0.018;
+    
+	[mapView setRegion:region animated:YES];
+}
+
 -(void) showRouteFrom: (Place*) f to:(Place*) t {
 	
 	if(routes) {

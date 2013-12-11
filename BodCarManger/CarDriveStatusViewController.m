@@ -112,6 +112,10 @@ static NSString* kMonthTextArray[] = {
     
 #endif
     
+    if(kDeviceCheckIphone5){
+        currY = currY+30;
+    }
+    
     
     //bgView.frame = viewRect;
     CGRect viewRect = CGRectMake(kLeftPendingX,currY,kDeviceScreenWidth-2*kLeftPendingX,kDriveStatusViewHeight);
@@ -162,6 +166,8 @@ static NSString* kMonthTextArray[] = {
     currY = currY+scrollerView.frame.size.height;
 #endif
     
+    
+    
     UIButton *oilAnalaysisBtn = [UIComUtil createButtonWithNormalBGImageName:@"drive_oil_btn.png" withHightBGImageName:@"drive_oil_btn.png" withTitle:@"" withTag:0];
     [scrollerView addSubview:oilAnalaysisBtn];
     CGSize btnsize= oilAnalaysisBtn.frame.size;
@@ -177,6 +183,10 @@ static NSString* kMonthTextArray[] = {
     //for 
     //[self addMaintainaceUI];
 #if 1
+    if(kDeviceCheckIphone5){
+        currY = currY+30;
+    }
+    
     carMaintainanceView = [[CarMaintainanceView alloc]initWithFrame:CGRectMake(kDriveMaintainanceLeftPendingX,currY+8.f, kDeviceScreenWidth-2*kDriveMaintainanceLeftPendingX,80)];
     
     

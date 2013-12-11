@@ -8,8 +8,8 @@
 
 #import "CarDriveActionTableViewCell.h"
 
-#define kDriveActionMaxItemClounm 3
-#define kDriveActionColounmItemWidthArray @[@100.f,@110.f,@80.f,@80.f]
+#define kDriveActionMaxItemClounm 4
+#define kDriveActionColounmItemWidthArray @[@50.f,@80.f,@80.f,@80.f]
 
 @implementation CarDriveActionTableViewCell
 

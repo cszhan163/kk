@@ -467,8 +467,11 @@
     if([gpsScaleArray count])
      [mMapView  showRouteWithPointsData:gpsScaleArray];
 #else
-    if(!self.isRunning)
-        [mMapView centralMapwithPoints:gpsScaleArray];
+//    if(!self.isRunning)
+//        [mMapView centralMapwithPoints:gpsScaleArray];
+    
+    [mMapView centralMapwithPoint:mEndCoordinate2d];
+    
     for(int i = 0;i<[self.gprsDataArray count]-1;i++){
         CGFloat startPoint = 0.f;
         CGFloat endPoint = 0.f;

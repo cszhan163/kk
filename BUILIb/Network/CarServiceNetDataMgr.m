@@ -1219,6 +1219,7 @@ static BOOL isExit = NO;
         [resultDict setValue:[info get:@"time"] forKey:@"time"];
         [resultDict setValue:[info get:@"level"] forKey:@"level"];
         [resultDict setValue:[info get:@"state"] forKey:@"state"];
+        [resultDict setValue:[info get:@"time"] forKey:@"time"];
         EiBlock *tripInfo = [info getBlock:@"conData"]; // block型返回值
         int rowCount = [tripInfo getRowCount];
         for(int i = 0;i<rowCount;i++){
@@ -1238,7 +1239,7 @@ static BOOL isExit = NO;
     }
 }
 - (void)getCarCheckDataFailed:(EiInfo*)info{
-    
+    [self sendFinalFailedData:@"" withKey:kResCarCheckData];
 }
 
 #pragma mark -

@@ -194,7 +194,11 @@
     [self.gridView jumpToIndex:0];
        [self.view addSubview:self.gridView];
        */
-    csView = [[XLCycleScrollView alloc] initWithFrame:CGRectMake(9.f,kMBAppTopToolBarHeight+9.f,kCalendarWidth,kCalendarHeight)];
+    CGFloat currY = 9.f;
+    if(kDeviceCheckIphone5){
+        currY = 30+9.f;
+    }
+    csView = [[XLCycleScrollView alloc] initWithFrame:CGRectMake(9.f,kMBAppTopToolBarHeight+currY,kCalendarWidth,kCalendarHeight)];
     csView.delegate = self;
     csView.datasource = self;
     csView.pageControl.hidden = YES;
@@ -215,7 +219,12 @@
     
    
 #endif
-    CGFloat currY = 250.f+40.f+25;
+    CGFloat offsetY = 10.f;
+    if(kDeviceCheckIphone5){
+        offsetY = 30.f;
+    }
+    
+    currY = currY+kMBAppTopToolBarHeight+kCalendarHeight+offsetY;
     UIImageWithFileName(bgImage, @"today-small.png");
     UIImageView *imageView = [[UIImageView alloc]initWithImage:bgImage];
     [self.view addSubview:imageView];
@@ -229,7 +238,7 @@
     [self.view addSubview:label];
     SafeRelease(label);
     
-    currY = 250.f+40.f+50.f;
+    currY = currY+25;
     UIImageWithFileName(bgImage, @"regular-small.png");
     
     imageView = [[UIImageView alloc]initWithImage:bgImage];

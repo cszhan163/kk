@@ -376,20 +376,22 @@ static NSString  *CarInfoKeyArray[] = {
     id data = [obj objectForKey:@"data"];
     NSString *resKey = [obj objectForKey:@"key"];//[respRequest resourceKey];
     //NSString *resKey = [respRequest resourceKey];
-    NSMutableDictionary *newDict = [NSMutableDictionary dictionary];
-    for(id item in [data allKeys]){
-        if([[data objectForKey:item] isKindOfClass:[NSNull class]]){
-            [newDict setValue:@"" forKey:item];
-        }
-        else{
-            [newDict setValue:[data objectForKey:item] forKey:item];
-        }
-    }
-    data = newDict;
+   
     
     if([resKey isEqualToString:kCarInfoQuery])
     {
     
+        
+        NSMutableDictionary *newDict = [NSMutableDictionary dictionary];
+        for(id item in [data allKeys]){
+            if([[data objectForKey:item] isKindOfClass:[NSNull class]]){
+                [newDict setValue:@"" forKey:item];
+            }
+            else{
+                [newDict setValue:[data objectForKey:item] forKey:item];
+            }
+        }
+        data = newDict;
         
 
         self.data = data;

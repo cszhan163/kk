@@ -11,7 +11,7 @@
 #import "CarDriveActionTableViewCell.h"
 #import "CarDriveOilTableViewCell.h"
 
-static NSString *kActionTableHeaderTextArray[] = {@"日期",@"急加速",@"急减速"};
+static NSString *kActionTableHeaderTextArray[] = {@"日期",@"超速",@"急加速",@"急减速"};
 
 
 @interface CarDriveMannerDataViewController ()
@@ -67,10 +67,10 @@ static NSString *kActionTableHeaderTextArray[] = {@"日期",@"急加速",@"急�
    
     if(indexPath.row == [self.dataArray count]){
         //[cell setSeperateLineHidden:YES];
-        bgImageName = @"drive_habit_table_footer.png";
+        bgImageName = @"oil_table_footer.png";
     }
     else{
-        bgImageName = @"drive_habit_table_cell.png";
+        bgImageName = @"oil_table_cell.png";
        
     }
     
@@ -88,7 +88,7 @@ static NSString *kActionTableHeaderTextArray[] = {@"日期",@"急加速",@"急�
         [cell setTableCellCloumn:0 withData:kActionTableHeaderTextArray[0]];
         [cell setTableCellCloumn:1 withData:kActionTableHeaderTextArray[1]];
         [cell setTableCellCloumn:2 withData:kActionTableHeaderTextArray[2]];
-        //[cell setTableCellCloumn:3 withData:kOilTableHeaderTextArray[3]];
+        [cell setTableCellCloumn:3 withData:kActionTableHeaderTextArray[3]];
         return cell;
         
     }
@@ -96,9 +96,11 @@ static NSString *kActionTableHeaderTextArray[] = {@"日期",@"急加速",@"急�
     NSString *date = [NSString stringWithFormat:@"%02d-%02d",self.mCurrDate.month,[[item objectForKey:@"day"]intValue]];
     NSString *speedUp = [NSString stringWithFormat:@"%@",[item objectForKey:@"accCount"]];
     NSString *speedDown = [NSString stringWithFormat:@"%@",[item objectForKey:@"breakCount"]];
+    NSString *overSpeed = [NSString stringWithFormat:@"%@",[item objectForKey:@"overSpeedCount"]];
     [cell setTableCellCloumn:0 withData:date];
-    [cell setTableCellCloumn:1 withData:speedUp];
-    [cell setTableCellCloumn:2 withData:speedDown];
+    [cell setTableCellCloumn:2 withData:speedUp];
+    [cell setTableCellCloumn:3 withData:speedDown];
+    [cell setTableCellCloumn:1 withData:overSpeed];
     return cell;
 }
 - (void)updateUIData:(NSDictionary*)data{

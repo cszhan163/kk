@@ -105,6 +105,10 @@
     
     CGFloat currY =  kMBAppTopToolBarHeight;
     
+    if(kDeviceCheckIphone5){
+        currY = currY+10;
+    }
+    
     UIImageWithFileName(bgImage, @"car_check_header.png");
     
     UIImageView *headerView = [[UIImageView alloc]initWithImage:bgImage];
@@ -153,17 +157,14 @@
     [self.view addSubview:checkProcessView];
     KokSafeRelease(checkProcessView);
 #else
-    processView = [[DDProgressView alloc]initWithFrame:CGRectMake(106,currY+70,186,10)];
-    processView.innerColor = [UIColor greenColor];
-    processView.outerColor = [UIColor whiteColor];
-    processView.emptyColor = [UIColor blackColor];
-    processView.progress = 0.0;
-    processView.hidden = YES;
-    [self.view addSubview:processView];
+    if(kDeviceCheckIphone5){
+        currY = currY+20;
+    }
+   
+    
+   
     
     UIImageWithFileName(bgImage, @"car_check_header.png");
-    
-
     
 #endif
     //for headerLabel
@@ -174,47 +175,86 @@
 //    checkProcessImageView.userInteractionEnabled = YES;
 //    [self.view addSubview:checkProcessImageView];
 //    SafeRelease(checkProcessImageView);
-    CGRect textRect = CGRectMake(106,currY+30,100, 15);
+    
+     currY = currY+30;
+     CGFloat offsetX = 80;
+    
+    CGFloat adjustY = 0.f;
+    if(kDeviceCheckIphone5){
+        currY = currY+10.f;
+        adjustY = -7.f;
+    }
+    
+    
+    CGRect textRect = CGRectMake(106,currY+adjustY,100, 15);
     UILabel *checkHeaderLabel = [UIComUtil createLabelWithFont:[UIFont systemFontOfSize:12] withTextColor:[UIColor whiteColor] withText:@"故障检测时间:" withFrame:textRect];
     checkHeaderLabel.textAlignment = NSTextAlignmentLeft;
     [self.view addSubview:checkHeaderLabel];
     SafeRelease(checkHeaderLabel);
     
     
-    textRect = CGRectMake(106,currY+30+20, 100, 15);
+    textRect = CGRectMake(106+offsetX,currY+adjustY, 150, 15);
+    checkTimeLabel = [UIComUtil createLabelWithFont:[UIFont systemFontOfSize:14] withTextColor:HexRGB(36, 220, 0) withText:@"" withFrame:textRect];
+    checkTimeLabel.textAlignment = NSTextAlignmentLeft;
+    [self.view addSubview:checkTimeLabel];
+    SafeRelease(checkTimeLabel);
+    
+    //next line
+    currY = currY+20.f;
+    
+    if(kDeviceCheckIphone5){
+        currY = currY+10.f;
+    }
+    
+    textRect = CGRectMake(106,currY+adjustY, 100, 15);
    checkHeaderLabel= [UIComUtil createLabelWithFont:[UIFont systemFontOfSize:12] withTextColor:[UIColor whiteColor]  withText:@"车辆故障检测:" withFrame:textRect];
     checkHeaderLabel.textAlignment = NSTextAlignmentLeft;
     [self.view addSubview:checkHeaderLabel];
     SafeRelease(checkHeaderLabel);
     
-    CGFloat offsetX = 80;
-    
-    
-    textRect = CGRectMake(106+offsetX,currY+30, 150, 15);
-    checkTimeLabel = [UIComUtil createLabelWithFont:[UIFont systemFontOfSize:14] withTextColor:HexRGB(36, 220, 0) withText:@"" withFrame:textRect];
-    checkTimeLabel.textAlignment = NSTextAlignmentLeft;
-    [self.view addSubview:checkTimeLabel];
-    SafeRelease(checkTimeLabel);
-
-    
-    textRect = CGRectMake(106+offsetX,currY+30+19, 150, 15);
+    textRect = CGRectMake(106+offsetX,currY+adjustY, 150, 15);
     checkProcessLabel  = [UIComUtil createLabelWithFont:[UIFont systemFontOfSize:14] withTextColor:HexRGB(36, 220, 0) withText:@"未进行故障检测" withFrame:textRect];
     checkProcessLabel.textAlignment = NSTextAlignmentLeft;
     [self.view addSubview:checkProcessLabel];
     SafeRelease(checkProcessLabel);
     
+
+    CGFloat adjustProcess = 20.f;
+    if(kDeviceCheckIphone5){
+        adjustProcess = 30.f;
+    }
+    
+    
+    processView = [[DDProgressView alloc]initWithFrame:CGRectMake(106,currY+adjustProcess,186,10)];
+    processView.innerColor = [UIColor greenColor];
+    processView.outerColor = [UIColor whiteColor];
+    processView.emptyColor = [UIColor blackColor];
+    processView.progress = 0.0;
+    processView.hidden = YES;
+    [self.view addSubview:processView];
+    
+    CGFloat currOffsetY = 40.f;
+    
+    
+    if(kDeviceCheckIphone5){
+        currOffsetY = 50.f;
+    }
     
     
     UIImageWithFileName(bgImage, @"car_check_status_default.png");
+
     
     checkTagImageView = [[UIImageView alloc]initWithImage:bgImage];
-    
-    checkTagImageView.frame = CGRectMake(23,currY+12,bgImage.size.width/kScale, bgImage.size.height/kScale);
+    checkTagImageView.frame = CGRectMake(23,currY-currOffsetY,bgImage.size.width/kScale, bgImage.size.height/kScale);
     [self.view addSubview:checkTagImageView];
     checkTagImageView.hidden = NO;
     SafeRelease(checkTagImageView);
-    currY = currY+184/2.f;
     
+    currY = currY+40;
+    
+    if(kDeviceCheckIphone5){
+        currY = currY+20;
+    }
   
     tweetieTableView.frame = CGRectMake(kCheckViewPendingX,currY,kDeviceScreenWidth-2*kCheckViewPendingX+1,202.f);
     UIImageWithFileName(bgImage, @"car_check_gridtable_bg.png");
@@ -301,13 +341,15 @@
         //[mDataDict setObject:netData forKey:mMothDateKey];
         //}
         if([self.dataArray count]>0){
+            NSTimeInterval interval = [[self.data objectForKey:@"time"]floatValue];
+            NSDate *date = [NSDate dateWithTimeIntervalSince1970:interval];
             NSString *usrId = [AppSetting getLoginUserId];
             [AppSetting setUserCarCheckData:data withUserId:usrId];
             
             NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
             [dateFormat setDateFormat:@"yyyy-MM-dd HH:mm"];
             
-            NSString *dateString = [dateFormat stringFromDate:[NSDate date]];
+            NSString *dateString = [dateFormat stringFromDate:date];
             
             [AppSetting setUserCarCheckTime:dateString withUserId:usrId];
         }
@@ -315,6 +357,23 @@
         
     }
     
+}
+-(void)didNetDataFailed:(NSNotification*)ntf
+{
+    
+    id obj = [ntf object];
+    id respRequest = [obj objectForKey:@"request"];
+    id data = [obj objectForKey:@"data"];
+    NSString *resKey = [obj objectForKey:@"key"];
+    if(self.request ==respRequest && [resKey isEqualToString:kResCarCheckData])
+    {
+        kNetEnd(self.view);
+        //kNetEndWithErrorAutoDismiss(@"加载数据失败", 2.f);
+        //[self.navigationController popToRootViewControllerAnimated:YES];
+    }
+    
+    
+    //NE_LOG(@"warning not implemetation net respond");
 }
 - (void)updateUIData:(NSDictionary*)data{
     if([[data objectForKey:@"state"]intValue]== 0){

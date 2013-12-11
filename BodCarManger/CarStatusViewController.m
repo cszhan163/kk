@@ -68,11 +68,18 @@
     NSString *userId = [AppSetting getLoginUserId];
     if(userId && ![userId isEqualToString:@""]){
         
-        self.data = [AppSetting getUserCarCheckData:userId];
+        self.data = [NSDictionary dictionaryWithDictionary:[AppSetting getUserCarCheckData:userId]];
         if(self.data){
-            self.dataArray = [self.data objectForKey:@"conData"];
-            [tweetieTableView reloadData];
+            id checkDataArray = [self.data objectForKey:@"conData"];
+            //if([checkDataArray isKindOfClass:[NSArray class]])
+            {
+                self.dataArray = checkDataArray;
+                [tweetieTableView reloadData];
+            }
             [self setOtherUIData];
+        }
+        else{
+        
         }
     }
 }
@@ -216,7 +223,7 @@
     tableViewBg.frame = tweetieTableView.frame;
     [tweetieTableView removeFromSuperview];
     [tableViewBg addSubview:tweetieTableView];
-    tweetieTableView.frame = CGRectMake(0.f,0.f,tableViewBg.frame.size.width,tableViewBg.frame.size.height);
+    tweetieTableView.frame = CGRectMake(0.f,0.f,tableViewBg.frame.size.width,tableViewBg.frame.size.height+40);
     tableViewBg.clipsToBounds = YES;
     tableViewBg.userInteractionEnabled = NO;
     tweetieTableView.delegate = self;
@@ -235,8 +242,9 @@
     SafeRelease(tbHeaderView);
     //[tweetieTableView setTableHeaderView:tbHeaderView];
 #endif
-    CGFloat height = tbHeaderView.frame.size.height+5;
+    CGFloat height = tbHeaderView.frame.size.height;
     tweetieTableView.normalEdgeInset = UIEdgeInsetsMake(height,0.f,0.f,0.f);
+//    tweetieTableView.contentInset = UIEdgeInsetsMake(height,0.f,0.f,0.f);
     [self checkCacheData];
     //[self startCarHealthCheck:nil];
     //[self setRightTextContent:NSLocalizedString(@"Done", @"")];
@@ -320,21 +328,54 @@
 }
 - (void)clearLogoutData:(NSNotification*)ntf{
     isNeedReflush = YES;
+//    NSMutableDictionary *newDict = [NSMutableDictionary dictionary];
+//    for(id item in self.data){
+//        id data = [self.data objectForKey:item];
+//        if([data isKindOfClass:[NSString class]]|| [data isKindOfClass:[NSNumber class]])
+//            [newDict setObject:@"" forKey:item];
+//        else if([data isKindOfClass:[NSArray class]]){
+//            [newDict setObject:[NSArray array] forKey:item];
+//        }
+//    }
+//    self.data = newDict;
 }
 - (void)setOtherUIData{
 
     NSString *usrId = [AppSetting getLoginUserId];
     NSString *timeStr = [AppSetting getUserCarCheckTime:usrId];
-    checkTimeLabel.text = timeStr;
-    rotateSpeedLabel.text = [NSString stringWithFormat:@"%@ 转",[self.data objectForKey:@"RPM"]];
-    temperatureLabel.text = [NSString stringWithFormat:@"%@ 度",[self.data objectForKey:@"temper"]];
+    if(timeStr)
+        checkTimeLabel.text = timeStr;
+    else
+        checkTimeLabel.text = @"";
+    NSString *rotateStr = [self.data objectForKey:@"RPM"];
+    if(!rotateStr){
+       rotateStr = @"";
+    }
+    rotateSpeedLabel.text = [NSString stringWithFormat:@"%@ 转",rotateStr];
+    NSString *tempStr = [self.data objectForKey:@"temper"];
+    if(!tempStr){
+       tempStr = @"";
+    }
+    temperatureLabel.text = [NSString stringWithFormat:@"%@ 度",tempStr];
     int level = [[self.data objectForKey:@"level"] intValue];
     if(level>=1 && level<=3){
         UIImageWithFileName(UIImage *bgImage, kCheckResultLevelArray[level-1]);
         checkTagImageView.hidden = NO;
         checkTagImageView.image = bgImage;
     }
-    checkProcessLabel.text = [self.data objectForKey:@"conclusion"];
+    else{
+        UIImageWithFileName(UIImage*bgImage, @"car_check_status_default.png");
+        checkTagImageView.hidden = NO;
+        checkTagImageView.image = bgImage;
+    }
+    NSString *conculsion = [self.data objectForKey:@"conclusion"];
+    if(conculsion){
+        checkProcessLabel.text =  conculsion;
+    }
+    else{
+        checkProcessLabel.text = @"";
+    }
+   
 }
 
 #pragma mark -
@@ -381,6 +422,12 @@
         [cell setTableCellCloumn:1 withData:range];
         [cell setTableCellCloumn:2 withData:value];
     }
+    else{
+        
+        [cell setTableCellCloumn:0 withData:@""];
+        [cell setTableCellCloumn:1 withData:@""];
+        [cell setTableCellCloumn:2 withData:@""];
+    }
     /*
      "driveflg": "1",
      "starttime": "17:54",
@@ -410,7 +457,7 @@
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 18.f+5.f;
+    return 18.f+4.f;
 }
 -(void)didSelectorTopNavigationBarItem:(id)sender{
     switch ([sender tag]) {

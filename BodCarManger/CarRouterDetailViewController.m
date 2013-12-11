@@ -56,7 +56,11 @@
 }
 - (void)viewWillAppear:(BOOL)animated{
     if(self.isRunning){
-        [ZCSNotficationMgr postMSG:kCheckCardRecentRun obj:nil];
+#if TEST_RUNNING
+         [self updateUIRealTimeCheck:nil];
+#else
+         [ZCSNotficationMgr postMSG:kCheckCardRecentRun obj:nil];
+#endif
     }
 }
 - (void)viewDidDisappear:(BOOL)animated{
@@ -501,7 +505,7 @@
         else{
             color = @"green";
         }
-        [mMapView addRouterView:pointsToUse withCount:2 withColor:color];
+        [mMapView addRouterView:pointsToUse withCount:2 withColor:color withCenter:NO];
     }
 #endif
     [self initMapPointData:data];
@@ -555,10 +559,14 @@ static int indexCount = 0;
     else{
         color = @"green";
     }
-    [mMapView addRouterView:pointsToUse withCount:2 withColor:color];
+    BOOL centerTag = NO;
+    #if RunningCenter
+    centerTag = YES;
+    #endif
+    [mMapView addRouterView:pointsToUse withCount:2 withColor:color withCenter:centerTag];
     
     //[mMapView addRouterView:pointsToUse withCount:2];
-     mEndCoordinate2d = pointsToUse[1];
+    mEndCoordinate2d = pointsToUse[1];
     mEndSpeed = endPoint;
     
     Place *place = [[Place alloc]init];

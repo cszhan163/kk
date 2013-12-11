@@ -434,6 +434,17 @@ static NSString* kMonthTextArray[] = {
     }
     if([resKey isEqualToString:kResDriveMaintainData])
     {
+        NSMutableDictionary *newDict = [NSMutableDictionary dictionary];
+        for(id item in [data allKeys]){
+            if([[data objectForKey:item] isKindOfClass:[NSNull class]]){
+                [newDict setValue:@"" forKey:item];
+            }
+            else{
+                [newDict setValue:[data objectForKey:item] forKey:item];
+            }
+        }
+        data = newDict;
+        
         [self performSelectorOnMainThread:@selector(updateUIMainUIData:) withObject:data waitUntilDone:NO];
     }
 }

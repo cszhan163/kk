@@ -8,9 +8,45 @@
 
 #import "MapView.h"
 #import "convert.h"
-@interface MapView(){
 
+@interface UIImage (RotationMethods)
+- (UIImage *)imageRotatedByDegrees:(CGFloat)degrees withSize:(CGSize)size;
+@end
+
+@implementation UIImage (RotationMethods)
+
+- (UIImage *)imageRotatedByDegrees:(CGFloat)degrees withSize:(CGSize)size
+{
+    // calculate the size of the rotated view's containing box for our drawing space
+    UIView *rotatedViewBox = [[UIView alloc] initWithFrame:CGRectMake(0,0,size.width, size.height)];
+    CGAffineTransform t = CGAffineTransformMakeRotation(degrees);
+    rotatedViewBox.transform = t;
+    CGSize rotatedSize = rotatedViewBox.frame.size;
+    
+    // Create the bitmap context
+    UIGraphicsBeginImageContext(rotatedSize);
+    CGContextRef bitmap = UIGraphicsGetCurrentContext();
+    
+    // Move the origin to the middle of the image so we will rotate and scale around the center.
+    CGContextTranslateCTM(bitmap, rotatedSize.width/2, rotatedSize.height/2);
+    
+    //   // Rotate the image context
+    CGContextRotateCTM(bitmap, degrees);
+    
+    // Now, draw the rotated/scaled image into the context
+    CGContextScaleCTM(bitmap, 1.0, -1.0);
+    CGContextDrawImage(bitmap, CGRectMake(-size.width / 2, -size.height / 2, size.width,size.height), [self CGImage]);
+    
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return newImage;
+    
 }
+@end
+@interface MapView(){
+    //UIImage *arrowImage;
+}
+@property(nonatomic,strong)UIImage *arrowImage;
 @property(nonatomic,strong)PlaceMark *motionPoint;
 -(NSMutableArray *)decodePolyLine: (NSMutableString *)encoded :(CLLocationCoordinate2D) f to: (CLLocationCoordinate2D) t ;
 -(void) updateRouteView;
@@ -196,8 +232,9 @@
 //    }
 //    MKAnnotationView *motionPointView = [mapView viewForAnnotation:self.motionPoint];
     
-    
-    [mapView removeAnnotation:self.motionPoint];
+    if(self.motionPoint){
+        [mapView removeAnnotation:self.motionPoint];
+    }
     [self addPointToMap:f];
     //if(motionPointView)
      //[motionPointView removeFromSuperview];
@@ -245,23 +282,24 @@
     lineOne.title = @"red";
     [mapView addOverlay:lineOne];
 }
-- (void)addRouterView:(CLLocationCoordinate2D *)points withCount:(int)count withColor:(NSString*)color{
+- (void)addRouterView:(CLLocationCoordinate2D *)points withCount:(int)count withColor:(NSString*)color withCenter:(BOOL)isCenter{
     MKPolyline *lineOne = [MKPolyline polylineWithCoordinates:points count:count];
     lineOne.title = color;
     [mapView addOverlay:lineOne];
-#if RunningCenter
-   float maxLat = points[0].latitude;
-   float maxLon = points[1].longitude;
-   float minLat = points[0].latitude;
-   float minLon = points[1].longitude;
-    MKCoordinateRegion region;
-    region.center.latitude     = (maxLat + minLat) / 2;
-	region.center.longitude    = (maxLon + minLon) / 2;
-	region.span.latitudeDelta  = maxLat - minLat + 0.018;
-	region.span.longitudeDelta = maxLon - minLon + 0.018;
-    
-	[mapView setRegion:region animated:YES];
-#endif
+
+    if(isCenter){
+        float maxLat = points[0].latitude;
+        float maxLon = points[1].longitude;
+        float minLat = points[0].latitude;
+        float minLon = points[1].longitude;
+        MKCoordinateRegion region;
+        region.center.latitude     = (maxLat + minLat) / 2;
+        region.center.longitude    = (maxLon + minLon) / 2;
+        region.span.latitudeDelta  = maxLat - minLat + 0.018;
+        region.span.longitudeDelta = maxLon - minLon + 0.018;
+        
+        [mapView setRegion:region animated:YES];
+    }
     
 }
 -(void) updateRouteView {
@@ -394,18 +432,22 @@ static MKPolylineView *lineview =  nil;
     if(place.type == 2){
         if (!pinView) {
             pinView = [[[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:ShopAnnotationIdentifier] autorelease];
-            
-            UIImageWithFileName(UIImage *bg, @"run_arrow.png");
-            pinView.image = bg;
-            pinView.frame = CGRectMake(0.f, 0.f,bg.size.width/kScale, bg.size.height/kScale);
+            UIImageWithFileName(self.arrowImage, @"run_arrow.png");
+            pinView.image = _arrowImage;
+            pinView.frame = CGRectMake(0.f, 0.f,_arrowImage.size.width/kScale, _arrowImage.size.height/kScale);
             pinView.animatesDrop = NO;
+            pinView.centerOffset = CGPointMake(0,3);
+            //pinView.centerOffset = CGPointMake(0,0);
             [pinView setCanShowCallout:NO];
             pinView.tag = 3;
         }
         CGFloat fdegree = place.degree/180.f*M_PI;
         NE_LOG(@"rotation:%lf==%lf",place.degree,fdegree);
-        CGAffineTransform rotation = CGAffineTransformMakeRotation(fdegree);
-        [pinView setTransform:rotation];
+        //CGAffineTransform rotation = CGAffineTransformMakeRotation(fdegree);
+        UIImage *newImage = [_arrowImage imageRotatedByDegrees:fdegree withSize:CGSizeMake(self.arrowImage.size.width/kScale, self.arrowImage.size.height/kScale)];
+        //[pinView setTransform:rotation];
+        pinView.image = newImage;
+        
     }
     
     else{

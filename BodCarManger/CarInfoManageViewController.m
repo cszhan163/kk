@@ -376,8 +376,22 @@ static NSString  *CarInfoKeyArray[] = {
     id data = [obj objectForKey:@"data"];
     NSString *resKey = [obj objectForKey:@"key"];//[respRequest resourceKey];
     //NSString *resKey = [respRequest resourceKey];
+    NSMutableDictionary *newDict = [NSMutableDictionary dictionary];
+    for(id item in [data allKeys]){
+        if([[data objectForKey:item] isKindOfClass:[NSNull class]]){
+            [newDict setValue:@"" forKey:item];
+        }
+        else{
+            [newDict setValue:[data objectForKey:item] forKey:item];
+        }
+    }
+    data = newDict;
+    
     if([resKey isEqualToString:kCarInfoQuery])
     {
+    
+        
+
         self.data = data;
         if([[self.data objectForKey:@"retType"]intValue]== 0){
             /*
@@ -414,6 +428,8 @@ static NSString  *CarInfoKeyArray[] = {
             NSString *userId = [AppSetting getCurrentLoginUser];
             [AppSetting setUserCarId:[self.data objectForKey:@"vin"] withUserId:userId];
         }
+        
+        
         [AppSetting setLoginUserCarData:self.data];
         [logInfo reloadData];
         kNetEnd(self.view);

@@ -158,7 +158,7 @@
 
 #define kFetchMessageLen 10
 
-#define TEST_RUNNING 1
+#define TEST_RUNNING 0
 
 #define RunningCenter 1
 

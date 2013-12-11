@@ -55,13 +55,13 @@
     return self;
 }
 - (void)viewWillAppear:(BOOL)animated{
-    if(self.isRunning){
-#if TEST_RUNNING
-         [self updateUIRealTimeCheck:nil];
-#else
-        
-        [ZCSNotficationMgr postMSG:kCheckCardRecentRun obj:nil];
-#endif
+    if(self.isRunning ){
+//#if TEST_RUNNING
+//         [self updateUIRealTimeCheck:nil];
+//#else
+//        
+//        [ZCSNotficationMgr postMSG:kCheckCardRecentRun obj:nil];
+//#endif
     }
 }
 - (void)viewDidDisappear:(BOOL)animated{
@@ -70,6 +70,9 @@
 }
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
+    
+}
+- (void)releseTimer{
     [self.realDataTimer invalidate];
     self.realDataTimer  = nil;
 }
@@ -281,7 +284,9 @@
 -(void)didSelectorTopNavItem:(id)navObj{
     switch ([navObj tag]) {
         case  0:
+            [self releseTimer];
             [self.navigationController popViewControllerAnimated:YES];// animated:<#(BOOL)animated#>
+            
 			break;
         case 2:
         case 1:{
@@ -510,6 +515,8 @@
         else{
             color = @"green";
         }
+
+        
         [mMapView addRouterView:pointsToUse withCount:2 withColor:color withCenter:NO];
     }
 #endif
@@ -567,7 +574,12 @@ static int indexCount = 0;
     BOOL centerTag = NO;
     #if RunningCenter
     centerTag = YES;
+    
     #endif
+    
+#if TEST_RUNNING
+    color = @"red";
+#endif
     [mMapView addRouterView:pointsToUse withCount:2 withColor:color withCenter:centerTag];
     
     //[mMapView addRouterView:pointsToUse withCount:2];

@@ -409,7 +409,7 @@
             [[DBManage getSingletone]setDelegate:self];
 #else
             if([_mStartName isEqualToString:@"未知"]){
-                _mStartName = [[DBManage  getSingletone] getLocationPointNameByLatitude:lat withLogtitude:lng withIndex:-1 withTag:YES];
+                self.mStartName = [[DBManage  getSingletone] getLocationPointNameByLatitude:lat withLogtitude:lng withIndex:-1 withTag:YES];
                 [[DBManage getSingletone]setDelegate:self];
             }
 #endif
@@ -436,7 +436,7 @@
             _mEndName = [[DBManage  getSingletone] getLocationPointNameByLatitude:lat withLogtitude:lng withIndex:-1 withTag:NO];
 #else
             if([_mEndName isEqualToString:@"未知"]){
-                _mEndName = [[DBManage  getSingletone] getLocationPointNameByLatitude:lat withLogtitude:lng withIndex:-1 withTag:NO];
+                self.mEndName = [[DBManage  getSingletone] getLocationPointNameByLatitude:lat withLogtitude:lng withIndex:-1 withTag:NO];
             }
 #endif
             if(_mEndName && !self.isRunning)

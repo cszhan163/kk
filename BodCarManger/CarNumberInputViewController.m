@@ -12,8 +12,11 @@ static char *carNumProvince[] = {"京","津","冀","晋","蒙","辽","吉","黑"
 @interface CarNumberInputViewController (){
     
     UILabel *headerLabel;
+    NSRange currRange;
+    
 }
-
+@property(nonatomic,strong)NSString *lastString;
+@property(nonatomic,strong)NSString *replaceString;
 @property(nonatomic,strong)NSMutableArray *proviceArray;
 @property(nonatomic,strong)NSMutableArray *characterArray;
 @end
@@ -27,7 +30,7 @@ static char *carNumProvince[] = {"京","津","冀","晋","蒙","辽","吉","黑"
         // Custom initialization
         self.proviceArray = [NSMutableArray array];
         self.characterArray = [NSMutableArray array];
-        [ZCSNotficationMgr addObserver:self call:@selector(didChangeText:) msgName:UITextFieldTextDidChangeNotification];
+        //[ZCSNotficationMgr addObserver:self call:@selector(didChangeText:) msgName:UITextFieldTextDidChangeNotification];
     }
     return self;
 }
@@ -88,7 +91,7 @@ static char *carNumProvince[] = {"京","津","冀","晋","蒙","辽","吉","黑"
     [self.view addSubview:headerLabel];
     SafeRelease(headerLabel);
 
-   
+    self.subClassInputTextField.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
     self.subClassInputTextField.frame = CGRectMake(rect.origin.x+80, rect.origin.y, rect.size.width-80.f, rect.size.height);
     
 #endif
@@ -185,7 +188,15 @@ static char *carNumProvince[] = {"京","津","冀","晋","蒙","辽","吉","黑"
     
 }
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
-
+    NSString *newString = [textField.text stringByReplacingCharactersInRange:range withString:string];
+    if([newString length]>6){
+    
+        return NO;
+    }
+    else
+        return YES;
+    
+    
 //    if([textField.text length]>6){
 //        return NO;
 //    }
@@ -195,14 +206,18 @@ static char *carNumProvince[] = {"京","津","冀","晋","蒙","辽","吉","黑"
 //    else{
 //        return YES;
 //    }
-    return YES;
+//    self.lastString = textField.text;
+//    currRange = range;
+//    self.replaceString = string;
+//    return YES;
 }
 
 - (void)didChangeText:(NSNotification*)ntf{
-    if([self.subClassInputTextField.text length]>6){
-        self.subClassInputTextField.text = [self.subClassInputTextField.text substringToIndex:6];
-        
-    }
+//    if([self.subClassInputTextField.text length]>6){
+//        
+//        self.subClassInputTextField.text = self.lastString;
+//        
+//    }
         //        return NO;
         //    }
         //    else if([textField.text length]==6 && range.location>[textField.text length]-1){

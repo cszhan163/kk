@@ -61,19 +61,31 @@
 }
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    
+    
     if(isFirstLogin )
     {
-        CarRouterDetailViewController *vc = [[CarRouterDetailViewController alloc]initWithNibName:nil bundle:nil];
-        vc.delegate = self;
-        //vc.mData = self.data;
-        vc.isLatest = YES;
-        vc.isFromDateView = YES;
+        NSString *userId = [AppSetting getLoginUserId];
+        NSString *carId = nil;
+        if(userId){
+            carId = [AppSetting getUserCarId:userId];
+        }
+        if(carId == nil||[carId isEqualToString:@""]){
+           
+        }
+        else{
+            CarRouterDetailViewController *vc = [[CarRouterDetailViewController alloc]initWithNibName:nil bundle:nil];
+            vc.delegate = self;
+            //vc.mData = self.data;
+            vc.isLatest = YES;
+            vc.isFromDateView = YES;
 #if kMapHasTab
-        [self.navigationController pushViewController:vc animated:YES];
+            [self.navigationController pushViewController:vc animated:YES];
 #else
-        [ZCSNotficationMgr postMSG:kPushNewViewController obj:vc];
+            [ZCSNotficationMgr postMSG:kPushNewViewController obj:vc];
 #endif
-        SafeRelease(vc);
+            SafeRelease(vc);
+        }
         isFirstLogin = NO;
     }
 }
@@ -224,13 +236,15 @@
         offsetY = 30.f;
     }
     
+    CGFloat offsetX = 30.f;
+    
     currY = currY+kMBAppTopToolBarHeight+kCalendarHeight+offsetY;
     UIImageWithFileName(bgImage, @"today-small.png");
     UIImageView *imageView = [[UIImageView alloc]initWithImage:bgImage];
     [self.view addSubview:imageView];
-    imageView.frame = CGRectMake(60.f,currY, bgImage.size.width/kScale, bgImage.size.height/kScale);
+    imageView.frame = CGRectMake(offsetX,currY, bgImage.size.width/kScale, bgImage.size.height/kScale);
     SafeRelease(imageView);
-    UILabel * label = [[UILabel alloc]initWithFrame:CGRectMake(60.f+bgImage.size.width+7,currY-5,120.f,20.f)];
+    UILabel * label = [[UILabel alloc]initWithFrame:CGRectMake(offsetX+bgImage.size.width+7,currY-5,120.f,20.f)];
     label.text = @"今天";
     label.backgroundColor= [UIColor clearColor];
     label.textColor = [UIColor whiteColor];
@@ -243,9 +257,9 @@
     
     imageView = [[UIImageView alloc]initWithImage:bgImage];
     [self.view addSubview:imageView];
-    imageView.frame = CGRectMake(60.f,currY, bgImage.size.width/kScale, bgImage.size.height/kScale);
+    imageView.frame = CGRectMake(offsetX,currY, bgImage.size.width/kScale, bgImage.size.height/kScale);
     SafeRelease(imageView);
-    label = [[UILabel alloc]initWithFrame:CGRectMake(60.f+bgImage.size.width+7,currY-5,120.f,20.f)];
+    label = [[UILabel alloc]initWithFrame:CGRectMake(offsetX+bgImage.size.width+7,currY-5,120.f,20.f)];
     label.text = @"正常行使日";
     label.backgroundColor = [UIColor clearColor];
     label.textColor = [UIColor whiteColor];
@@ -258,9 +272,9 @@
     
     imageView = [[UIImageView alloc]initWithImage:bgImage];
     [self.view addSubview:imageView];
-    imageView.frame = CGRectMake(60.f,currY, bgImage.size.width/kScale, bgImage.size.height/kScale);
+    imageView.frame = CGRectMake(offsetX,currY, bgImage.size.width/kScale, bgImage.size.height/kScale);
     SafeRelease(imageView);
-    label = [[UILabel alloc]initWithFrame:CGRectMake(60.f+bgImage.size.width+7,currY-5,120.f,20.f)];
+    label = [[UILabel alloc]initWithFrame:CGRectMake(offsetX+bgImage.size.width+7,currY-5,120.f,20.f)];
     label.text = @"报警日/故障日";
     label.backgroundColor = [UIColor clearColor];
     label.textColor = [UIColor whiteColor];
@@ -379,7 +393,15 @@
         //NSLog(@"%@",[dict description]);
          currIndex = senderView.nolimitIndex;
 
+//        if(self.mTodayDate.month==self.mCurrDate.month && self.mTodayDate.year==self.mCurrDate.year){
+//            [senderView setRightScroller:NO];
+//        }
+//        else{
+//            [senderView setRightScroller:YES];
+//        }
     }
+    
+    
    
 }
 #pragma mark-

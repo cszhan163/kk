@@ -520,6 +520,7 @@ static NSString *kCellImageArr[] = {
                frInviteVc.subClassInputTextField.text = cell.detailTextLabel.text;
                if(indexPath.row == 2){
                    frInviteVc.isOnlyNumber = YES;
+                   frInviteVc.isPhoneNumber = YES;
                }
                [self.navigationController pushViewController:frInviteVc animated:YES];
                [frInviteVc release];

@@ -23,7 +23,7 @@
         //NSArray *widthArray = ;
         for(int i = 0;i<kMaxItemClounm;i++){
             UILabel *itemLabel = [[UILabel alloc]initWithFrame:CGRectMake(currX,0.f,[kColounmItemWidthArray[i]floatValue],18)];
-            itemLabel.font = [UIFont systemFontOfSize:10];
+            itemLabel.font = [UIFont systemFontOfSize:12];
             itemLabel.textColor = [UIColor whiteColor];
             itemLabel.backgroundColor = [UIColor clearColor];
             itemLabel.textAlignment = NSTextAlignmentCenter;

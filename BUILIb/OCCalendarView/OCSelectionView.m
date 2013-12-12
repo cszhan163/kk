@@ -65,7 +65,7 @@
 - (void)initColorData{
 
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
-    UIColor* color = [UIColor blueColor];//[UIColor colorWithPatternImage:image];//[UIColor colorWithRed: 0.82 green: 0.08 blue: 0 alpha: 0.86];
+    UIColor* color = HexRGB(30,92,171);// [UIColor colorWithRed: 30/255.f green: 92/255.f blue:171/255.f alpha:1];
     UIColor* color2 = color;//[UIColor colorWithPatternImage:image];//[UIColor colorWithRed: 0.66 green: 0.02 blue: 0.04 alpha: 0.88];
     NSArray* gradient3Colors = [NSArray arrayWithObjects:
                                 (id)color.CGColor,
@@ -76,8 +76,8 @@
     CGGradientRelease(gradient3);
     
     
-    UIColor* color3 = [UIColor yellowColor];
-    UIColor* color4 = [UIColor yellowColor];
+    UIColor* color3 = HexRGB(233, 151, 36);//[UIColor colorWithRed: 233/255.f green: 92/255.f blue:171/255.f alpha:1];//[UIColor yellowColor];
+    UIColor* color4 = color3;//[UIColor yellowColor];
     NSArray* gradient4Colors = [NSArray arrayWithObjects:
                                 (id)color3.CGColor,
                                 (id)color4.CGColor, nil];

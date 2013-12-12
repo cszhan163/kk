@@ -10,6 +10,7 @@
 #import "ResetPasswordViewController.h"
 @interface UserChangePasswordViewController : ResetPasswordViewController
 @property(nonatomic,assign)BOOL isOnlyNumber;
+@property(nonatomic)BOOL isPhoneNumber;
 @property(nonatomic,strong)NSString *srcText;
 @property(nonatomic,strong)UITextField *newPasswordInputTextField;
 @property(nonatomic,strong)UITextField *againNewPasswordInputTextField;

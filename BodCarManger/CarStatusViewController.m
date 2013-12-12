@@ -482,6 +482,7 @@
     if(indexPath.row == 7){
         [cell setRowLineHidden:YES];
     }
+    
     if(indexPath.row <[self.dataArray count]){
         NSDictionary *item = [self.dataArray objectAtIndex:indexPath.row];
         NSString *name = [item objectForKey:@"name"];
@@ -490,6 +491,9 @@
         [cell setTableCellCloumn:0 withData:name];
         [cell setTableCellCloumn:1 withData:range];
         [cell setTableCellCloumn:2 withData:value];
+        UILabel *nameLabel = [cell getClounmWithIndex:0];
+        [nameLabel setTextAlignment:NSTextAlignmentLeft];
+        [nameLabel setFrame:CGRectOffset(nameLabel.frame,5, 0)];
     }
     else{
         

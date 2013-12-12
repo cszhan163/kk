@@ -149,6 +149,20 @@
 		case 1:
 		{
             //[self startRestPassword];
+            if(self.isShowQR){
+                if([self.subClassInputTextField.text length]>22){
+                    kUIAlertView(@"提示", @"obd号码最多为22位");
+                    return;
+                }
+            }
+            if(self.isOnlyNumber){
+            
+                    if([self.subClassInputTextField.text length]>7){
+                        kUIAlertView(@"提示", @"里程数最多为7位");
+                        return;
+                    }
+            
+            }
             if(delegate && [delegate respondsToSelector:@selector(setCellItemData:withIndexPath:)]){
                 NSString *result = @"";
                 if(self.type == 0){

@@ -82,5 +82,12 @@
 - (void)setTableCellCloumn:(int)clum withData:(NSString*)text{
     UILabel *label = [self.mCellItemArray objectAtIndex:clum];
     label.text = text;
+    
+}
+- (UILabel*)getClounmWithIndex:(int)index{
+    if(index<[self.mCellItemArray count]){
+        return [self.mCellItemArray objectAtIndex:index];
+    }
+    return nil;
 }
 @end

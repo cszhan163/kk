@@ -118,6 +118,13 @@
         [self startUpdatePhone];
 }
 - (void)startUpdatePhone{
+    if(self.type ==1){
+        if([self.subClassInputTextField.text length]!=11){
+            kUIAlertView(@"提示", @"请输入正确手机号码");
+            [self.subClassInputTextField becomeFirstResponder];
+            return;
+        }
+    }
     [SVProgressHUD showWithStatus:NSLocalizedString(@"数据更新中", @"") networkIndicator:YES];
     NSDictionary *param = [NSDictionary dictionaryWithObjectsAndKeys:
                            self.subClassInputTextField.text,@"phoneNumber",

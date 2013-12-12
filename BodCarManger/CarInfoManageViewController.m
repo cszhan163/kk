@@ -28,6 +28,7 @@ static NSString  *CarInfoKeyArray[] = {
 @property(nonatomic,strong)NSString *brandSeq;
 @property(nonatomic,strong)NSString *seriesSeq;
 @property(nonatomic,strong)NSString *modelSeq;
+@property(nonatomic,strong)NSDictionary *tempServerData;
 @end
 
 @implementation CarInfoManageViewController
@@ -158,6 +159,7 @@ static NSString  *CarInfoKeyArray[] = {
     NSString *bgImageName = nil;
     NSString *tempText = @"";
     NSString *dataText = @"";
+    cell.detailTextLabel.textColor = [UIColor blueColor];
     switch (indexPath.section)
     {
         
@@ -167,6 +169,9 @@ static NSString  *CarInfoKeyArray[] = {
             tempText = [self.data objectForKey:@"OBD"];
             if(tempText){
                 dataText = tempText;
+            }
+            if(![[self.tempServerData objectForKey:@"OBD"]isEqualToString:tempText]){
+                cell.detailTextLabel.textColor = [UIColor redColor];
             }
             break;
         case 1:{
@@ -181,11 +186,17 @@ static NSString  *CarInfoKeyArray[] = {
                     if(tempText){
                         dataText = tempText;
                     }
+                    if(![[self.tempServerData objectForKey:@"brandName"]isEqualToString:tempText]){
+                        cell.detailTextLabel.textColor = [UIColor redColor];
+                    }
                     break;
                 case 2:
                     tempText = [self.data objectForKey:@"NO"];
                     if(tempText){
                         dataText = tempText;
+                    }
+                    if(![[self.tempServerData objectForKey:@"NO"]isEqualToString:tempText]){
+                        cell.detailTextLabel.textColor = [UIColor redColor];
                     }
                     bgImageName = @"setting_cell_footer.png";
                     break;
@@ -194,6 +205,9 @@ static NSString  *CarInfoKeyArray[] = {
                     tempText = [self.data objectForKey:@"model"];
                     if(tempText){
                         dataText = tempText;
+                    }
+                    if(![[self.tempServerData objectForKey:@"model"]isEqualToString:tempText]){
+                        cell.detailTextLabel.textColor = [UIColor redColor];
                     }
                     bgImageName = @"setting_cell_middle.png";
                     break;
@@ -209,7 +223,12 @@ static NSString  *CarInfoKeyArray[] = {
                     tempText = [self.data objectForKey:@"milage"];
                     if(![tempText isKindOfClass:[NSNull class]]&&tempText){
                         dataText = [NSString stringWithFormat:@"%d",[tempText intValue]];
+                        
+                        if([[self.tempServerData objectForKey:@"milage"]intValue] !=[tempText intValue]){
+                            cell.detailTextLabel.textColor = [UIColor redColor];
+                        }
                     }
+                   
                     break;
                 case 3:
                     tempText = [self.data objectForKey:@"insureExpDate"];
@@ -225,6 +244,11 @@ static NSString  *CarInfoKeyArray[] = {
                         //self.subClassInputTextField.text = dateString;
                         dataText = dateString;
                         SafeRelease(dateFormat);
+                        
+                        if(![[self.tempServerData objectForKey:@"insureExpDate"]isEqualToString:tempText]){
+                            cell.detailTextLabel.textColor = [UIColor redColor];
+                        }
+                        
                     }
                     bgImageName = @"setting_cell_footer.png";
                     break;
@@ -234,6 +258,10 @@ static NSString  *CarInfoKeyArray[] = {
                             tempText = [self.data objectForKey:@"lastMilage"];
                             if(![tempText isKindOfClass:[NSNull class]]&&tempText){
                                 dataText = [NSString stringWithFormat:@"%d",[tempText intValue]];
+                                
+                                if([[self.tempServerData objectForKey:@"lastMilage"]intValue] !=[tempText intValue]){
+                                    cell.detailTextLabel.textColor = [UIColor redColor];
+                                }
                             }
                             break;
                         case 2:
@@ -250,6 +278,12 @@ static NSString  *CarInfoKeyArray[] = {
                                 
                                 dataText = dateString;
                                 SafeRelease(dateFormat);
+                                
+                                if(![[self.tempServerData objectForKey:@"lastmaintainDate"]isEqualToString:tempText]){
+                                    cell.detailTextLabel.textColor = [UIColor redColor];
+                                }
+                                
+                                
                             }
                             break;
                         default:
@@ -393,7 +427,7 @@ static NSString  *CarInfoKeyArray[] = {
         }
         data = newDict;
         
-
+        self.tempServerData = data;
         self.data = data;
         if([[self.data objectForKey:@"retType"]intValue]== 0){
             /*
@@ -420,6 +454,7 @@ static NSString  *CarInfoKeyArray[] = {
                          @"",@"lastmaintainDate",
                          @"",@"insureExpDate",
                          nil];
+            self.tempServerData = self.data;
         }
         else{
             NSMutableDictionary *newDict = [NSMutableDictionary dictionaryWithDictionary:self.data];
@@ -441,7 +476,8 @@ static NSString  *CarInfoKeyArray[] = {
         
         kNetEnd(self.view);
         if([[data objectForKey:@"retType"]intValue]== 0){
-            
+            self.tempServerData = self.data;
+            [logInfo reloadData];
             kUIAlertView(@"信息",@"车辆信息更新成功");
         }
         else{

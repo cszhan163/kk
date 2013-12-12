@@ -27,7 +27,7 @@ static char *carNumProvince[] = {"京","津","冀","晋","蒙","辽","吉","黑"
         // Custom initialization
         self.proviceArray = [NSMutableArray array];
         self.characterArray = [NSMutableArray array];
-        
+        [ZCSNotficationMgr addObserver:self call:@selector(didChangeText:) msgName:UITextFieldTextDidChangeNotification];
     }
     return self;
 }
@@ -36,6 +36,7 @@ static char *carNumProvince[] = {"京","津","冀","晋","蒙","辽","吉","黑"
 {
     [super viewDidLoad];
     
+
     for(int i = 0;i<sizeof(carNumProvince)/sizeof(carNumProvince[0]);i++){
         NSString *item = [NSString stringWithUTF8String:carNumProvince[i]];
         [self.proviceArray addObject:item];
@@ -79,17 +80,18 @@ static char *carNumProvince[] = {"京","津","冀","晋","蒙","辽","吉","黑"
             break;
         }
     }
-     CGRect rect = self.subClassInputTextField.frame;
-     headerLabel = [UIComUtil createLabelWithFont:[UIFont systemFontOfSize:14] withTextColor:[UIColor whiteColor] withText:[self.userEmail substringToIndex:2 ] withFrame:CGRectMake(rect.origin.x,rect.origin.y,80.f,rect.size.height)];
+#if 1
+    CGRect rect = self.subClassInputTextField.frame;
+    headerLabel = [UIComUtil createLabelWithFont:[UIFont systemFontOfSize:14] withTextColor:[UIColor whiteColor] withText:[self.userEmail substringToIndex:1] withFrame:CGRectMake(rect.origin.x,rect.origin.y,80.f,rect.size.height)];
     headerLabel.textAlignment = NSTextAlignmentRight;
     headerLabel.text = provinceStr;
     [self.view addSubview:headerLabel];
     SafeRelease(headerLabel);
-    
+
    
     self.subClassInputTextField.frame = CGRectMake(rect.origin.x+80, rect.origin.y, rect.size.width-80.f, rect.size.height);
     
-    
+#endif
     UIPickerView *picView = [[UIPickerView alloc]initWithFrame:CGRectMake(0.f,100, 320.f,218)];
     picView.delegate = self;
     picView.dataSource = self;
@@ -184,16 +186,32 @@ static char *carNumProvince[] = {"京","津","冀","晋","蒙","辽","吉","黑"
 }
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
 
-    if([textField.text length]>6){
-        return NO;
-    }
-    else if([textField.text length]==6 && range.location>[textField.text length]-1){
-        return NO;
-    }
-    else{
-        return YES;
-    }
+//    if([textField.text length]>6){
+//        return NO;
+//    }
+//    else if([textField.text length]==6 && range.location>[textField.text length]-1){
+//        return NO;
+//    }
+//    else{
+//        return YES;
+//    }
+    return YES;
 }
 
+- (void)didChangeText:(NSNotification*)ntf{
+    if([self.subClassInputTextField.text length]>6){
+        self.subClassInputTextField.text = [self.subClassInputTextField.text substringToIndex:6];
+        
+    }
+        //        return NO;
+        //    }
+        //    else if([textField.text length]==6 && range.location>[textField.text length]-1){
+        //        return NO;
+        //    }
+        //    else{
+        //        return YES;
+        //    }
+
+}
 
 @end

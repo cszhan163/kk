@@ -314,11 +314,18 @@
     }
     //NSString *carId = [AppSetting getUserCarId:];
     [cardShopMgr getCarCheckData:cardId];
+     processView.hidden = NO;
+    processView.progress = 0.f;
     self.timer = [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(timerUpdateProcess) userInfo:nil repeats:YES];
-    processView.hidden = NO;
+    [self.timer fire];
+   
 }
 - (void)timerUpdateProcess{
-    processView.progress += 0.3;
+    [self performSelectorOnMainThread:@selector(updateTimerUI) withObject:nil waitUntilDone:YES];
+   
+}
+- (void)updateTimerUI{
+     processView.progress += 0.2;
 }
 -(void)didNetDataOK:(NSNotification*)ntf
 {
@@ -328,10 +335,7 @@
     id data = [obj objectForKey:@"data"];
     NSString *resKey = [obj objectForKey:@"key"];
     
-    processView.progress = 1.0;
-    processView.hidden = YES;
-    [_timer invalidate];
-    self.timer = nil;
+    
     //NSString *resKey = [respRequest resourceKey];
     if(self.request ==respRequest && [resKey isEqualToString:kResCarCheckData])
     {
@@ -376,6 +380,12 @@
     //NE_LOG(@"warning not implemetation net respond");
 }
 - (void)updateUIData:(NSDictionary*)data{
+    
+    processView.progress = 1.0;
+    processView.hidden = YES;
+    [_timer invalidate];
+    self.timer = nil;
+    
     if([[data objectForKey:@"state"]intValue]== 0){
         checkProcessLabel.text = @"未获取检测数据";
         kUIAlertView(@"提示", @"请发动汽车后进行检测");

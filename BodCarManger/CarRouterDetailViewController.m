@@ -56,12 +56,12 @@
 }
 - (void)viewWillAppear:(BOOL)animated{
     if(self.isRunning ){
-//#if TEST_RUNNING
-//         [self updateUIRealTimeCheck:nil];
-//#else
-//        
-//        [ZCSNotficationMgr postMSG:kCheckCardRecentRun obj:nil];
-//#endif
+#if TEST_RUNNING
+         [self updateUIRealTimeCheck:nil];
+#else
+        
+        [ZCSNotficationMgr postMSG:kCheckCardRecentRun obj:nil];
+#endif
     }
 }
 - (void)viewDidDisappear:(BOOL)animated{
@@ -70,7 +70,7 @@
 }
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
-    
+    [self releseTimer];
 }
 - (void)releseTimer{
     [self.realDataTimer invalidate];
@@ -155,9 +155,10 @@
         kNetStartShow(@"数据加载...", self.view);
         [ZCSNotficationMgr postMSG:kCheckCardRecentRun obj:nil];
         UIImageWithFileName(bgImage, @"calendar.png");
+        CGRect newRect = self.leftBtn.frame;
         [self.leftBtn setBackgroundImage:bgImage forState:UIControlStateNormal];
         [self.leftBtn setBackgroundImage:bgImage forState:UIControlStateSelected];
-        //self.leftBtn = btn;
+        self.leftBtn.frame = CGRectMake(10, 5, bgImage.size.width, bgImage.size.height);
     }
     else{
         
@@ -284,7 +285,7 @@
 -(void)didSelectorTopNavItem:(id)navObj{
     switch ([navObj tag]) {
         case  0:
-            [self releseTimer];
+            //[self releseTimer];
             [self.navigationController popViewControllerAnimated:YES];// animated:<#(BOOL)animated#>
             
 			break;
@@ -365,7 +366,9 @@
         }
         else{
             kNetEnd(self.view);
-            [self.navigationController popToRootViewControllerAnimated:NO];
+            //kNetEnd(self.view);
+            kUIAlertView(@"提示", @"无最近驾驶纪录");
+            //[self.navigationController popToRootViewControllerAnimated:NO];
         }
        
     }
@@ -456,6 +459,22 @@
                 //[mMapView addPinToMap:mEndCoordinate2d withName:mEndName];
                 //[self didGetLocationData:mEndName withIndex:-1 withTag:NO];
             }
+            if(self.isRunning){
+            
+                Place *place = [[Place alloc]init];
+                place.description = @"";
+                place.latitude = mEndCoordinate2d.latitude;
+                place.longitude = mEndCoordinate2d.longitude;
+                place.pointType = 2;
+                place.degree = 0.f;
+                //startDegree = degree;
+                //place.name = _mStartName;
+                
+                [mMapView addMotionPointToMap:place];
+                //[place release];
+                SafeRelease(place);
+                
+            }
             
             
         }
@@ -515,8 +534,6 @@
         else{
             color = @"green";
         }
-
-        
         [mMapView addRouterView:pointsToUse withCount:2 withColor:color withCenter:NO];
     }
 #endif
@@ -617,6 +634,7 @@ static int indexCount = 0;
             //[self performSelectorInBackground:@selector(loadRouterHistoryData) withObject:nil];
             [self loadRouterHistoryData];
             self.realDataTimer = [NSTimer scheduledTimerWithTimeInterval:timer target:self selector:@selector(checkRunningData) userInfo:nil repeats:YES];
+            //[self.realDataTimer fire];
         }
         else{
             [self setNavgationBarTitle:@"最近驾驶"];

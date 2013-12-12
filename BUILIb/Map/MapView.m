@@ -462,7 +462,7 @@ static MKPolylineView *lineview =  nil;
         pinView.image = newImage;
         CGFloat width = _arrowImage.size.width/4;
         CGFloat height = _arrowImage.size.height/4;
-        pinView.centerOffset = CGPointMake(width-10,height);
+        pinView.centerOffset = CGPointMake(width-12,height);
     }
     
     else{

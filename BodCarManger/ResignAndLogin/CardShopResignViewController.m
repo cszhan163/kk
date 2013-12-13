@@ -84,7 +84,8 @@
     
     
     
-    UIButton *btn = [UIComUtil createButtonWithNormalBGImageName:@"item_default_btn.png" withHightBGImageName:@"item_default_btn.png" withTitle:@"确定" withTag:0];
+    UIButton *btn = [UIComUtil createButtonWithNormalBGImageName:@"item_change_btn.png" withHightBGImageName:@"item_default_btn.png" withTitle:@"" withTag:0];
+    
     btn.titleLabel.font = [UIFont systemFontOfSize:12];
     UIView *bgView = [[UIView alloc]initWithFrame:CGRectMake(0.f, 0.f, kDeviceScreenWidth,btn.frame.size.height)];
     btn.frame = CGRectMake(kDeviceScreenWidth-btn.frame.size.width, 0.f, btn.frame.size.width, btn.frame.size.height);

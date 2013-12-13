@@ -43,10 +43,10 @@
     UIImage *bgImage;
     
     //[self.rightBtn setTitle:@"确定" forState:UIControlStateNormal];
-    UIImageWithFileName(bgImage, @"item_default_btn.png");
+    UIImageWithFileName(bgImage, @"item_change_btn.png");
     assert(bgImage);
     [super setNavgationBarRightBtnImage:bgImage forStatus:UIControlStateNormal];
-    UIImageWithFileName(bgImage, @"item_change_btn.png");
+    UIImageWithFileName(bgImage, @"item_default_btn.png");
     [super setNavgationBarRightBtnImage:bgImage forStatus:UIControlStateSelected];
    
     //self.rightBtn.titleLabel
@@ -106,12 +106,12 @@
 	// Do any additional setup after loading the view.
 }
 - (void)didchangeInputText:(UITextField*)textField{
-    if([textField.text isEqualToString:self.srcText]){
-        self.rightBtn.selected = NO;
-    }
-    else{
-        self.rightBtn.selected = YES;
-    }
+//    if([textField.text isEqualToString:self.srcText]){
+//        self.rightBtn.selected = NO;
+//    }
+//    else{
+//        self.rightBtn.selected = YES;
+//    }
 }
 - (void)dateChange:(UIDatePicker*)sender{
     NSDateComponents *dateComonets = [[NSCalendar currentCalendar] components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit  fromDate:sender.date];
@@ -124,12 +124,12 @@
     self.subClassInputTextField.text = dateString;
     SafeRelease(dateFormat);
     //SafeRelease(dateComonets);
-    if([self.subClassInputTextField.text isEqualToString:self.srcText]){
-        self.rightBtn.selected = NO;
-    }
-    else{
-       self.rightBtn.selected = YES; 
-    }
+//    if([self.subClassInputTextField.text isEqualToString:self.srcText]){
+//        self.rightBtn.selected = NO;
+//    }
+//    else{
+//       self.rightBtn.selected = YES; 
+//    }
     
 }
 - (void)didReceiveMemoryWarning

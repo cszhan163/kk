@@ -298,8 +298,8 @@ NSString* gDataArr[] = {@"12.5km",@"11km/h",@"87L",@"3h"};
     
 #endif
     //[self baoNormalFormat:[data objectForKey:@"drivingLong"]]
-    cell.mTimeLabel.text = [self baoNormalFormat:[data objectForKey:@"drivingLong"]];
-    //[NSString stringWithFormat:@"%dmin",[[data objectForKey:@"drivingLong"]intValue]];
+    cell.mTimeLabel.text =  //[self baoNormalFormat:[data objectForKey:@"drivingLong"]];
+    [NSString stringWithFormat:@"%dmin",[[data objectForKey:@"drivingLong"]intValue]];
     cell.mStartLabel.text = [NSString stringWithFormat:@"始: %@",startLocation];
     cell.mEndLabel.text = [NSString stringWithFormat:@"终: %@",endLocation];
     //[data objectForKey:@"endadr"];

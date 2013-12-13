@@ -48,23 +48,25 @@
     
     if(self.type == 1){
         msgShowTextView.editable = NO;
-        UIImageWithFileName(bgImage, @"item_default_btn.png");
+        UIImageWithFileName(bgImage, @"item_change_btn.png");
         assert(bgImage);
         [super setNavgationBarRightBtnImage:bgImage forStatus:UIControlStateNormal];
         UIImageWithFileName(bgImage, @"item_default_btn.png");
         [super setNavgationBarRightBtnImage:bgImage forStatus:UIControlStateSelected];
+        
         [self setNavgationBarRightBtnText:@"回复"forStatus:UIControlStateNormal];
         [self setNavgationBarRightBtnText:@"回复" forStatus:UIControlStateSelected];
+        
         self.rightBtn.frame = CGRectMake(kDeviceScreenWidth-10-bgImage.size.width/kScale, self.rightBtn.frame.origin.y, bgImage.size.width/kScale, bgImage.size.height/kScale);
         self.rightBtn.font = [UIFont systemFontOfSize:13];
 
     }
     else if(self.type == 2){
         [msgShowTextView becomeFirstResponder];
-        UIImageWithFileName(bgImage, @"item_default_btn.png");
+        UIImageWithFileName(bgImage, @"item_change_btn.png");
         assert(bgImage);
         [super setNavgationBarRightBtnImage:bgImage forStatus:UIControlStateNormal];
-        UIImageWithFileName(bgImage, @"item_change_btn.png");
+        UIImageWithFileName(bgImage, @"item_default_btn.png");
         self.rightBtn.frame = CGRectMake(kDeviceScreenWidth-10-bgImage.size.width/kScale, self.rightBtn.frame.origin.y, bgImage.size.width/kScale, bgImage.size.height/kScale);
         
 //         self.rightBtn.font = [UIFont systemFontOfSize:13];

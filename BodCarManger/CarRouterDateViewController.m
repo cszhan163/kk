@@ -260,7 +260,7 @@
     imageView.frame = CGRectMake(offsetX,currY, bgImage.size.width/kScale, bgImage.size.height/kScale);
     SafeRelease(imageView);
     label = [[UILabel alloc]initWithFrame:CGRectMake(offsetX+bgImage.size.width+7,currY-5,120.f,20.f)];
-    label.text = @"正常行使日";
+    label.text = @"正常行驶日";
     label.backgroundColor = [UIColor clearColor];
     label.textColor = [UIColor whiteColor];
     label.font = [UIFont systemFontOfSize:13];

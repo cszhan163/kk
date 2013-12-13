@@ -38,10 +38,10 @@
     }
     UIImage *bgImage;
     //[self.rightBtn setTitle:@"确定" forState:UIControlStateNormal];
-    UIImageWithFileName(bgImage, @"item_default_btn.png");
+    UIImageWithFileName(bgImage, @"item_change_btn.png");
     assert(bgImage);
     [super setNavgationBarRightBtnImage:bgImage forStatus:UIControlStateNormal];
-    UIImageWithFileName(bgImage, @"item_change_btn.png");
+    UIImageWithFileName(bgImage, @"item_default_btn.png");
     [super setNavgationBarRightBtnImage:bgImage forStatus:UIControlStateSelected];
     
     //self.rightBtn.titleLabel
@@ -96,19 +96,19 @@
     }
 }
 - (void)didchangeInputText:(UITextField*)textField{
-    BOOL checkTag = YES;
-    if(self.type == 0){
-        checkTag = [self.newPasswordInputTextField.text isEqualToString:@""];
-    }
-    else{
-        checkTag = [self.subClassInputTextField.text isEqualToString:self.srcText];
-    }
-    if(checkTag){
-        self.rightBtn.selected = NO;
-    }
-    else{
-        self.rightBtn.selected = YES;
-    }
+//    BOOL checkTag = YES;
+//    if(self.type == 0){
+//        checkTag = [self.newPasswordInputTextField.text isEqualToString:@""];
+//    }
+//    else{
+//        checkTag = [self.subClassInputTextField.text isEqualToString:self.srcText];
+//    }
+//    if(checkTag){
+//        self.rightBtn.selected = NO;
+//    }
+//    else{
+//        self.rightBtn.selected = YES;
+//    }
 }
 - (void)startNetwork{
     

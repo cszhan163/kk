@@ -172,7 +172,7 @@
 		04CA4119182950EB008DAE94 /* safe_red.png in Resources */ = {isa = PBXBuildFile; fileRef = 04CA4116182950EB008DAE94 /* safe_red.png */; };
 		04CA411A182950EB008DAE94 /* safe_yellow.png in Resources */ = {isa = PBXBuildFile; fileRef = 04CA4117182950EB008DAE94 /* safe_yellow.png */; };
 		04E1762C183FBF2E006C2EFC /* time.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E1762B183FBF2E006C2EFC /* time.png */; };
-		04E1762E183FC236006C2EFC /* time_red.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E1762D183FC236006C2EFC /* time_red.png */; };
+		04E1762E183FC236006C2EFC /* time-red.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E1762D183FC236006C2EFC /* time-red.png */; };
 		04E2A0AD181B6FFF006D8C0C /* oil_analysis_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E2A0A9181B6FFF006D8C0C /* oil_analysis_selected.png */; };
 		04E2A0AE181B6FFF006D8C0C /* oil_analysis_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E2A0AA181B6FFF006D8C0C /* oil_analysis_normal.png */; };
 		04E2A0AF181B6FFF006D8C0C /* oil_data_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E2A0AB181B6FFF006D8C0C /* oil_data_normal.png */; };
@@ -598,7 +598,7 @@
 		04CA4116182950EB008DAE94 /* safe_red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = safe_red.png; sourceTree = "<group>"; };
 		04CA4117182950EB008DAE94 /* safe_yellow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = safe_yellow.png; sourceTree = "<group>"; };
 		04E1762B183FBF2E006C2EFC /* time.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = time.png; sourceTree = "<group>"; };
-		04E1762D183FC236006C2EFC /* time_red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = time_red.png; sourceTree = "<group>"; };
+		04E1762D183FC236006C2EFC /* time-red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "time-red.png"; sourceTree = "<group>"; };
 		04E2A0A9181B6FFF006D8C0C /* oil_analysis_selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = oil_analysis_selected.png; sourceTree = "<group>"; };
 		04E2A0AA181B6FFF006D8C0C /* oil_analysis_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = oil_analysis_normal.png; sourceTree = "<group>"; };
 		04E2A0AB181B6FFF006D8C0C /* oil_data_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = oil_data_normal.png; sourceTree = "<group>"; };
@@ -1242,7 +1242,7 @@
 				046B667C17E74C37006F34A1 /* distance.png */,
 				046B667E17E74C37006F34A1 /* oil-red.png */,
 				046B667F17E74C37006F34A1 /* oil.png */,
-				04E1762D183FC236006C2EFC /* time_red.png */,
+				04E1762D183FC236006C2EFC /* time-red.png */,
 				04E1762B183FBF2E006C2EFC /* time.png */,
 				046B668417E74C37006F34A1 /* tag-green.png */,
 				046B668517E74C37006F34A1 /* tag-red.png */,
@@ -1959,7 +1959,7 @@
 				ORGANIZATIONNAME = cszhan;
 				TargetAttributes = {
 					046B662D17E74984006F34A1 = {
-						DevelopmentTeam = 5LCCK392WL;
+						DevelopmentTeam = A8RA93G2CJ;
 					};
 				};
 			};
@@ -2232,7 +2232,7 @@
 				04E4D0F518325F9C00B6D5D9 /* router_page_up.png in Resources */,
 				04E4D0F618325F9C00B6D5D9 /* router_today_date.png in Resources */,
 				BD45A2211834AB68000668FA /* save.png in Resources */,
-				04E1762E183FC236006C2EFC /* time_red.png in Resources */,
+				04E1762E183FC236006C2EFC /* time-red.png in Resources */,
 				04FA93CC1835247400B1DB3E /* matain_need.png in Resources */,
 				04FA93CD1835247400B1DB3E /* matain_normal.png in Resources */,
 				0440F2C518366F5700C71323 /* login_textbox.png in Resources */,
@@ -2473,7 +2473,7 @@
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
 				CLANG_CXX_LIBRARY = "compiler-default";
-				CODE_SIGN_IDENTITY = "iPhone Distribution: ZHU CAIXI (A8RA93G2CJ)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: ZHU CAIXI (A8RA93G2CJ)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

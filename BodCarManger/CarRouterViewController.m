@@ -138,7 +138,11 @@ NSString* gDataArr[] = {@"12.5km",@"11km/h",@"87L",@"3h"};
         UIImageWithFileName(bgImage,fileName);
         assert(bgImage);
         UIImageView *item = [[UIImageView alloc]initWithImage:bgImage];
-        item.frame = CGRectMake(startX,kHeaderItemPendingY,bgImage.size.width/kScale, bgImage.size.height/kScale);
+        CGFloat offsetY = 0.f;
+        if(i == 2){
+            offsetY = -2.f;
+        }
+        item.frame = CGRectMake(startX,kHeaderItemPendingY+offsetY,bgImage.size.width/kScale, bgImage.size.height/kScale);
         startX += item.frame.size.width +5.f;
         UILabel *valueLabel = [[UILabel alloc]initWithFrame:CGRectMake(startX,kHeaderItemPendingY,itemWidth,14.f)];
         valueLabel.font = [UIFont systemFontOfSize:12];
@@ -203,6 +207,7 @@ NSString* gDataArr[] = {@"12.5km",@"11km/h",@"87L",@"3h"};
     NSDictionary *data = item;//[item objectForKey:@"DayDetailInfo"];
     //cell = (PlantTableViewCell*)cell;
     NSString *flag = [data objectForKey:@"driveflg"];
+    //flag = @"1";
     int time = [[data objectForKey:@"drivingLong"]intValue];
     //baoNormalFormat
     float distance = [[data objectForKey:@"distance"]floatValue];
@@ -293,7 +298,8 @@ NSString* gDataArr[] = {@"12.5km",@"11km/h",@"87L",@"3h"};
     
 #endif
     //[self baoNormalFormat:[data objectForKey:@"drivingLong"]]
-    cell.mTimeLabel.text = [NSString stringWithFormat:@"%dmin",[[data objectForKey:@"drivingLong"]intValue]];
+    cell.mTimeLabel.text = [self baoNormalFormat:[data objectForKey:@"drivingLong"]];
+    //[NSString stringWithFormat:@"%dmin",[[data objectForKey:@"drivingLong"]intValue]];
     cell.mStartLabel.text = [NSString stringWithFormat:@"始: %@",startLocation];
     cell.mEndLabel.text = [NSString stringWithFormat:@"终: %@",endLocation];
     //[data objectForKey:@"endadr"];
@@ -456,18 +462,18 @@ NSString* gDataArr[] = {@"12.5km",@"11km/h",@"87L",@"3h"};
             
             switch ([item tag]) {
                 case 0:
-                    text = [NSString stringWithFormat:@"%0.2lfkm", [[netData objectForKey:@"dayMilage"] floatValue]];
+                    text = [NSString stringWithFormat:@"%0.1lfkm", [[netData objectForKey:@"dayMilage"] floatValue]];
                     break;
                 case 1:
-                    text = [NSString stringWithFormat:@"%0.2lfkm/h", [[netData objectForKey:@"dayAverageSpeed"] floatValue]];
+                    text = [NSString stringWithFormat:@"%0.1lfkm/h", [[netData objectForKey:@"dayAverageSpeed"] floatValue]];
                     break;
                 case 2:
-                    text = [NSString stringWithFormat:@"%0.2lfL",[[netData objectForKey:@"dayFuel"]floatValue]];
+                    text = [NSString stringWithFormat:@"%0.1lfL",[[netData objectForKey:@"dayFuel"]floatValue]];
                     break;
                 case 3:
                     
                     text = [NSString stringWithFormat:@"%dmin",[[netData objectForKey:@"dayDrivinglong"]intValue]];
-                    //text= [self baoNormalFormat:text];
+                    text= [self baoNormalFormat:text];
                     break;
                 default:
                     break;
@@ -521,7 +527,7 @@ NSString* gDataArr[] = {@"12.5km",@"11km/h",@"87L",@"3h"};
     }
     else if(time>60 && time<60*24)
     {
-        return [NSString stringWithFormat:@"%0.1lfhr",time/60.f];
+        return [NSString stringWithFormat:@"%0.1lfh",time/60.f];
     }
     else{
         return [NSString stringWithFormat:@"%0.1lfd",time/(60.*24)];

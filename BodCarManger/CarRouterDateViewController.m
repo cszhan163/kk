@@ -779,6 +779,16 @@ int lastDirect = -1;
         SafeRelease(dateParts);
         SafeRelease(calendar);
         [calView addStartDate:sDate endDate:sDate withTag:2];
+//        NSMutableArray *tempArray = [NSMutableArray array];
+//        for(NSString *item in data){
+//            NSMutableArray *newItem = [NSMutableArray arrayWithArray:item];
+//            if([newItem  count]>0){
+//                if([[newItem lastObject]intValue] == self.mTodayDate.day){
+//                    [newItem removeLastObject];
+//                }
+//            }
+//            [tempArray addObject:newItem];
+//        }
     }
     [self processData:data[0] withStatus:0];
     [self processData:data[1] withStatus:1];
@@ -836,12 +846,46 @@ int lastDirect = -1;
             currDay =nextDay;
         }
         else{
+            if(isTodayMonth){
+                if(currDay == self.mTodayDate.day){//
+                
+                    if(currDay-1>startDay){
+                        
+                        [self doAddNormalStartDay:startDay endDay:currDay-1 withStatus:tag];
+                        
+                    }
+                
+                }
+                else{
+                    [self doAddNormalStartDay:startDay endDay:currDay withStatus:tag];
+                }
+                
+            }
+            else
             [self doAddNormalStartDay:startDay endDay:currDay withStatus:tag];
+            
             startDay = nextDay;
             currDay = nextDay;
         }
     }
     if(i !=[okDateArray count]){
+        
+        if(isTodayMonth){
+            if(currDay == self.mTodayDate.day){//
+                
+                if(currDay-1>startDay){
+                    
+                    [self doAddNormalStartDay:startDay endDay:currDay-1 withStatus:tag];
+                    
+                }
+                
+            }
+            else{
+                [self doAddNormalStartDay:startDay endDay:currDay withStatus:tag];
+            }
+            
+        }
+        else
         
         [self doAddNormalStartDay:startDay endDay:currDay withStatus:tag];
         

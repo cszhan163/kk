@@ -51,6 +51,7 @@ static NSString  *CarInfoKeyArray[] = {
     [self setHiddenLeftBtn:NO];
     [self setNavgationBarTitle:@"车辆和设备信息"];
     self.data = [AppSetting getLoginUserCarData];
+    self.tempServerData = self.data;
     //[self shouldLoadCarInfoData];
 	// Do any additional setup after loading the view.
     isNeedFresh = YES;

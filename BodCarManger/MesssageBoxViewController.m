@@ -68,6 +68,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    UIImage *bgImage = nil;
+    UIImageWithFileName(bgImage, @"car_bg.png");
+    mainView.bgImage = bgImage;
+    
     NSString *usrId = [AppSetting getLoginUserId];
     NSArray *unReadData  = [[DBManage getSingletone] getUnReadMessageData:usrId];
     unReadCount = [unReadData count];

@@ -26,7 +26,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.view.backgroundColor = HexRGB(202, 202, 204);
+    UIImage *bgImage = nil;
+    UIImageWithFileName(bgImage, @"car_bg.png");
+    mainView.bgImage = bgImage;
+    
+    tweetieTableView.backgroundColor = HexRGB(202, 202, 204);
     tweetieTableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     [self shouldLoadNewerData:tweetieTableView];
     NSString *title = @"";

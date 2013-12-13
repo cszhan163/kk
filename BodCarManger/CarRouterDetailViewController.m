@@ -56,11 +56,13 @@
 }
 - (void)viewWillAppear:(BOOL)animated{
     if(self.isRunning ){
+#if RUNNING_PAUST
 #if TEST_RUNNING
          [self updateUIRealTimeCheck:nil];
 #else
         
         [ZCSNotficationMgr postMSG:kCheckCardRecentRun obj:nil];
+#endif
 #endif
     }
 }
@@ -70,7 +72,9 @@
 }
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
+#if RUNNING_PAUST
     [self releseTimer];
+#endif
 }
 - (void)releseTimer{
     [self.realDataTimer invalidate];
@@ -285,7 +289,9 @@
 -(void)didSelectorTopNavItem:(id)navObj{
     switch ([navObj tag]) {
         case  0:
-            //[self releseTimer];
+#if RUNNING_PAUST
+            [self releseTimer];
+#endif
             [self.navigationController popViewControllerAnimated:YES];// animated:<#(BOOL)animated#>
             
 			break;

@@ -493,7 +493,8 @@
         [cell setTableCellCloumn:2 withData:value];
         UILabel *nameLabel = [cell getClounmWithIndex:0];
         [nameLabel setTextAlignment:NSTextAlignmentLeft];
-        [nameLabel setFrame:CGRectOffset(nameLabel.frame,5, 0)];
+        CGRect originRect = nameLabel.frame;
+        [nameLabel setFrame:CGRectMake(5.f,originRect.origin.y, originRect.size.width, originRect.size.height)];
     }
     else{
         

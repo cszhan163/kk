@@ -51,9 +51,9 @@
     self.rightBtn.frame = CGRectMake(kDeviceScreenWidth-10-bgImage.size.width/kScale, self.rightBtn.frame.origin.y, bgImage.size.width/kScale, bgImage.size.height/kScale);
     [self.subClassInputTextField  addTarget:self action:@selector(didchangeInputText:) forControlEvents:UIControlEventEditingChanged];
     //self.rightBtn.titleLabel.text = @"确定";
-    self.rightBtn.font = [UIFont systemFontOfSize:13];
-    [self setNavgationBarRightBtnText:@"确定"forStatus:UIControlStateNormal];
-    [self setNavgationBarRightBtnText:@"确定" forStatus:UIControlStateSelected];
+//    self.rightBtn.font = [UIFont systemFontOfSize:13];
+//    [self setNavgationBarRightBtnText:@"确定"forStatus:UIControlStateNormal];
+//    [self setNavgationBarRightBtnText:@"确定" forStatus:UIControlStateSelected];
     
     
     if(self.type == 0){

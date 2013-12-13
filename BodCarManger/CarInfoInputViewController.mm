@@ -57,9 +57,11 @@
     self.subClassInputTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
     [self.subClassInputTextField  addTarget:self action:@selector(didchangeInputText:) forControlEvents:UIControlEventEditingChanged];
     //self.rightBtn.titleLabel.text = @"确定";
+#if 0
     self.rightBtn.font = [UIFont systemFontOfSize:13];
     [self setNavgationBarRightBtnText:@"确定"forStatus:UIControlStateNormal];
     [self setNavgationBarRightBtnText:@"确定" forStatus:UIControlStateSelected];
+#endif
 //    [self.rightBtn setNeedsDisplay];
     //self.rightBtn.titleLabel.textColor = [UIColor whiteColor];
     if(self.type == 0)

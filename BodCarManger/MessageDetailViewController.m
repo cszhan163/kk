@@ -66,10 +66,12 @@
         [super setNavgationBarRightBtnImage:bgImage forStatus:UIControlStateNormal];
         UIImageWithFileName(bgImage, @"item_change_btn.png");
         self.rightBtn.frame = CGRectMake(kDeviceScreenWidth-10-bgImage.size.width/kScale, self.rightBtn.frame.origin.y, bgImage.size.width/kScale, bgImage.size.height/kScale);
-         self.rightBtn.font = [UIFont systemFontOfSize:13];
-        [super setNavgationBarRightBtnImage:bgImage forStatus:UIControlStateSelected];
-        [self setNavgationBarRightBtnText:@"确定"forStatus:UIControlStateNormal];
-        [self setNavgationBarRightBtnText:@"确定" forStatus:UIControlStateSelected];
+        
+//         self.rightBtn.font = [UIFont systemFontOfSize:13];
+//        [super setNavgationBarRightBtnImage:bgImage forStatus:UIControlStateSelected];
+//        [self setNavgationBarRightBtnText:@"确定"forStatus:UIControlStateNormal];
+//        [self setNavgationBarRightBtnText:@"确定" forStatus:UIControlStateSelected];
+        
     }
     else {
        msgShowTextView.editable  = NO;

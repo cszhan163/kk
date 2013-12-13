@@ -48,7 +48,7 @@
     [super setNavgationBarRightBtnImage:bgImage forStatus:UIControlStateNormal];
     UIImageWithFileName(bgImage, @"item_default_btn.png");
     [super setNavgationBarRightBtnImage:bgImage forStatus:UIControlStateSelected];
-   
+    //[super setNavgationBarRightBtnImage:bgImage forStatus:UIControlStateSelected];
     //self.rightBtn.titleLabel
     /*
     self.rightBtn = [UIComUtil createButtonWithNormalBGImageName:@"item_default_btn.png" withHightBGImageName:@"item_change_btn.png" withTitle:@"确定" withTag:0];
@@ -153,7 +153,9 @@
             //[self startRestPassword];
             if(self.isShowQR){
                 if([self.subClassInputTextField.text length]>22){
+                    
                     kUIAlertView(@"提示", @"obd号码最多为22位");
+                    //[self.rightBtn resignFirstResponder];
                     return;
                 }
             }
@@ -161,6 +163,7 @@
             
                     if([self.subClassInputTextField.text length]>7){
                         kUIAlertView(@"提示", @"里程数最多为7位");
+                        //[self.rightBtn resignFirstResponder];
                         return;
                     }
             
@@ -190,6 +193,9 @@
 		}
 	}
     
+}
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    self.rightBtn.selected = NO;
 }
 - (void)didGetScanResult:(NSString*)text{
     self.subClassInputTextField.text = text;

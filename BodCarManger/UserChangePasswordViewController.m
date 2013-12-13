@@ -40,6 +40,7 @@
     //[self.rightBtn setTitle:@"确定" forState:UIControlStateNormal];
     UIImageWithFileName(bgImage, @"item_change_btn.png");
     assert(bgImage);
+    [super setNavgationBarRightBtnImage:bgImage forStatus:UIControlStateApplication];
     [super setNavgationBarRightBtnImage:bgImage forStatus:UIControlStateNormal];
     UIImageWithFileName(bgImage, @"item_default_btn.png");
     [super setNavgationBarRightBtnImage:bgImage forStatus:UIControlStateSelected];
@@ -152,6 +153,7 @@
     }
     if(![self.newPasswordInputTextField.text isEqualToString:self.againNewPasswordInputTextField.text]){
         kUIAlertView(@"提示",@"两次新密码不一致");
+        
         return;
     
     }
@@ -172,6 +174,9 @@
         //self.request = [netClientMgr  userResetPwdRadomCode:param];
     }
     //[self ];
+}
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    self.rightBtn.selected = NO;
 }
 -(void)didNetDataOK:(NSNotification*)ntf
 {

@@ -68,13 +68,14 @@
 }
 - (void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
-    [[DBManage getSingletone]setDelegate:nil];
+    //[[DBManage getSingletone]setDelegate:nil];
 }
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
 #if RUNNING_PAUST
     [self releseTimer];
 #endif
+    [[DBManage getSingletone] setDelegate:nil];
 }
 - (void)releseTimer{
     [self.realDataTimer invalidate];
@@ -657,6 +658,7 @@ static int indexCount = 0;
     self.request = [cardShopMgr  getRouterRealTimeData:carId];
 }
 - (void)didGetLocationData:(id)sender withIndex:(NSInteger)index withTag:(BOOL)tag{
+    
     if(index == -1){
         Place *place = [[Place alloc]init];
         place.name = sender;
@@ -667,7 +669,7 @@ static int indexCount = 0;
             place.pointType = 0;
             //[mMapView addPinToMap:mStartCoordinate2d withName:sender];
             [mMapView addPointToMap:place];
-            [mMapView addPointToMap:place];
+            //[mMapView addPointToMap:place];
         }
         else{
             if(!self.isRunning){

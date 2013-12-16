@@ -55,7 +55,7 @@
     labIntroudction.font = [UIFont boldSystemFontOfSize:16];
     labIntroudction.textColor=[UIColor whiteColor];
     
-    labIntroudction.text=@"请横向拍摄,使形码图像置于方框内,摄像头尽可能靠近条形码,系统会自动识别.";
+    labIntroudction.text=@"请横向拍摄,使条形码图像置于方框内,摄像头尽可能靠近条形码,系统会自动识别.";
     
     [upView addSubview:labIntroudction];
     

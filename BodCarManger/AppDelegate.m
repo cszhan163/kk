@@ -16,6 +16,8 @@
 #define HAVE_WINDOWLAST
 #ifdef  HAVE_WINDOWLAST
 #import "UIShareActionAlertView.h"
+
+#import "MobClick.h"
 #endif
 @implementation AppDelegate
 
@@ -142,7 +144,27 @@ UIShareActionAlertView *sharedAlterView = nil;
     if(cardId && ![cardId isEqualToString:@""]){
         [self performSelector:@selector(didLoginOK:) withObject:nil  afterDelay:1.0];
     }
+    
+    [MobClick startWithAppkey:UMENG_APPKEY reportPolicy:(ReportPolicy) REALTIME channelId:nil];
+    //   reportPolicy为枚举类型,可以为 REALTIME, BATCH,SENDDAILY,SENDWIFIONLY几种
+    //   channelId 为NSString * 类型，channelId 为nil或@""时,默认会被被当作@"App Store"渠道
+    
+    //      [MobClick checkUpdate];   //自动更新检查, 如果需要自定义更新请使用下面的方法,需要接收一个(NSDictionary *)appInfo的参数
+    //    [MobClick checkUpdateWithDelegate:self selector:@selector(updateMethod:)];
+    
+    [MobClick updateOnlineConfig];  //在线参数配置
+    
+    //    1.6.8之前的初始化方法
+    //    [MobClick setDelegate:self reportPolicy:REALTIME];  //建议使用新方法
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onlineConfigCallBack:) name:UMOnlineConfigDidFinishedNotification object:nil];
+
+    
     return YES;
+}
+
+- (void)onlineConfigCallBack:(NSNotification *)note {
+    
+    NSLog(@"online config has fininshed and note = %@", note.userInfo);
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application

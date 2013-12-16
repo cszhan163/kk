@@ -340,6 +340,7 @@
 		BD355D6E181A11CC0010D16E /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BD355D6D181A11CC0010D16E /* libxml2.dylib */; };
 		BD355D70181A11DD0010D16E /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BD355D6F181A11DD0010D16E /* libsqlite3.dylib */; };
 		BD45A2211834AB68000668FA /* save.png in Resources */ = {isa = PBXBuildFile; fileRef = BD45A2201834AB68000668FA /* save.png */; };
+		BDADFC74185EA5DF00A6EF21 /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BDADFC72185EA5DF00A6EF21 /* libMobClickLibrary.a */; };
 		BDC37E91181CEF8100A4CB18 /* libstdc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BDC37E90181CEF8100A4CB18 /* libstdc++.dylib */; };
 		BDC37E96181CFA6D00A4CB18 /* drive_matainance_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = BDC37E95181CFA6D00A4CB18 /* drive_matainance_bg.png */; };
 		BDC37EBB181E6A2400A4CB18 /* car_plant_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = BDC37EBA181E6A2400A4CB18 /* car_plant_bg.png */; };
@@ -833,6 +834,8 @@
 		BD355D6D181A11CC0010D16E /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		BD355D6F181A11DD0010D16E /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		BD45A2201834AB68000668FA /* save.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = save.png; sourceTree = "<group>"; };
+		BDADFC72185EA5DF00A6EF21 /* libMobClickLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMobClickLibrary.a; sourceTree = "<group>"; };
+		BDADFC73185EA5DF00A6EF21 /* MobClick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobClick.h; sourceTree = "<group>"; };
 		BDC37E90181CEF8100A4CB18 /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.dylib"; path = "usr/lib/libstdc++.dylib"; sourceTree = SDKROOT; };
 		BDC37E95181CFA6D00A4CB18 /* drive_matainance_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = drive_matainance_bg.png; sourceTree = "<group>"; };
 		BDC37EBA181E6A2400A4CB18 /* car_plant_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = car_plant_bg.png; sourceTree = "<group>"; };
@@ -881,6 +884,7 @@
 				044BEE0017EABF37004BF443 /* libz.dylib in Frameworks */,
 				044BEE0317EAC011004BF443 /* MobileCoreServices.framework in Frameworks */,
 				044BEDFC17EABEBD004BF443 /* SystemConfiguration.framework in Frameworks */,
+				BDADFC74185EA5DF00A6EF21 /* libMobClickLibrary.a in Frameworks */,
 				044BEDFA17EABEB6004BF443 /* CFNetwork.framework in Frameworks */,
 				BD05725217E9871E00208699 /* CoreLocation.framework in Frameworks */,
 				0469CF8D184CC96000AA8152 /* libzbar.a in Frameworks */,
@@ -1026,6 +1030,8 @@
 		0469CF92184CCA3100AA8152 /* WeiXin */ = {
 			isa = PBXGroup;
 			children = (
+				BDADFC72185EA5DF00A6EF21 /* libMobClickLibrary.a */,
+				BDADFC73185EA5DF00A6EF21 /* MobClick.h */,
 				0469CF93184CCA3100AA8152 /* libWeChatSDK_armv7_armv7s.a */,
 				0469CF94184CCA3100AA8152 /* WXApi.h */,
 				0469CF95184CCA3100AA8152 /* WXApiObject.h */,

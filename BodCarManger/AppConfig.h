@@ -166,5 +166,7 @@
 
 #define kNeedCarBindMSG                     @"needCarBindMSG"
 
+#define UMENG_APPKEY                        @"52ae6d1256240b08b11d1968"
+
 #endif
 

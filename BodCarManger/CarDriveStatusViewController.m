@@ -44,7 +44,8 @@ static NSString* kMonthTextArray[] = {
 
 @interface CarMonitorViewController()<BSPreviewScrollViewDelegate,
         XLCycleScrollViewDelegate,
-        XLCycleScrollViewDatasource>{
+        XLCycleScrollViewDatasource,
+        TouchEventDelegate>{
 
     UILabel *panelHeaderLabel;
     CarMaintainanceView *carMaintainanceView;
@@ -54,6 +55,7 @@ static NSString* kMonthTextArray[] = {
 #else
     XLCycleScrollView *scrollerView;
 #endif
+            BOOL isNeedMaintain;
     
 }
 @property(nonatomic,strong)NSMutableDictionary *mMaitiananceDict;
@@ -200,7 +202,7 @@ static NSString* kMonthTextArray[] = {
     }
     
     carMaintainanceView = [[CarMaintainanceView alloc]initWithFrame:CGRectMake(kDriveMaintainanceLeftPendingX,currY+8.f, kDeviceScreenWidth-2*kDriveMaintainanceLeftPendingX,80)];
-    
+    [carMaintainanceView setDelegate:self];
     
     [carMaintainanceView setLeftProcessLen:84 rightLen:84];
     
@@ -211,6 +213,18 @@ static NSString* kMonthTextArray[] = {
     
     //[self setRightTextContent:NSLocalizedString(@"Done", @"")];
 	// Do any additional setup after loading the view.
+}
+- (void)didTouchEvent:(id)sender{
+    if(isNeedMaintain){
+        NSDictionary *data = [AppSetting getLoginUserInfo];
+        NSString *phoneNumber = [data objectForKey:@"maintainPhone"];
+        if(phoneNumber){
+            
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel:/%@",phoneNumber]]];
+            
+        }
+    }
+    
 }
 - (void)addMaintainaceUI{
     
@@ -589,10 +603,16 @@ static NSString* kMonthTextArray[] = {
     if(maxDistance){
         distance = realDistance/maxDistance*84.f;
     }
-    if(realDay>=maxDay-10||realDistance>=maxDistance-2000)
+    if(realDay>=(maxDay*30)||realDistance>=maxDistance)
     {
         UIImageWithFileName(UIImage *bgImage, @"matain_need.png");
         [carMaintainanceView setCenterImageView:bgImage];
+        isNeedMaintain = YES;
+    }
+    else{
+        UIImageWithFileName(UIImage *bgImage, @"matain_normal.png");
+        [carMaintainanceView setCenterImageView:bgImage];
+        isNeedMaintain = NO;
     }
     [carMaintainanceView setLeftProcessLen:day rightLen:distance];
     [carMaintainanceView setLeftProcessDay:realDay rightDistance:realDistance];

@@ -7,8 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@protocol TouchEventDelegate<NSObject>;
+- (void)didTouchEvent:(id)sender;
+@end
 @interface CarMaintainanceView : UIView
+@property(nonatomic,assign)id<TouchEventDelegate> delegate;
 - (id)getCircleViewController;
 - (void)setCenterImageView:(UIImage*)image;
 - (void)setLeftProcessLen:(CGFloat)llen rightLen:(CGFloat)right;

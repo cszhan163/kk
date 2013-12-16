@@ -23,7 +23,8 @@
     AMProgressView      *leftProcessView;
     AMProgressView      *rightProcessView;
     AMArcColorDrawView    *circleProcessView;
-    UIImageView           *centerView;
+    //UIImageView           *centerView;
+    UIControl       *centerView;
     CGFloat             rightLen;
     CGFloat             leftLen;
     UILabel         *runDistanceLabel;
@@ -31,7 +32,7 @@
 }
 @end
 @implementation CarMaintainanceView
-
+@synthesize delegate;
 //- (id)getCircleViewController{
 //    return
 //}
@@ -97,12 +98,19 @@
         SafeRelease(circleProcessView);
         [self bringSubviewToFront:circleProcessView];
 #else
-        centerView = [[UIImageView alloc]initWithFrame:CGRectMake(0.f, 0.f,45,45)];
+        /*
+        centerView = [[ alloc]initWithFrame:CGRectMake(0.f, 0.f,45,45)];
+         centerView.image = bgImage;
+          */
+        centerView = [[UIControl alloc]initWithFrame:CGRectMake(0.f, 0.f,45,45)];
         centerView.center = CGPointMake(image.size.width/4.f, image.size.height/4.f);
         UIImageWithFileName(UIImage *bgImage, @"matain_normal.png");
-        centerView.image = bgImage;
+        centerView.layer.contents = (id)bgImage.CGImage;
+        [centerView addTarget:self action:@selector(didTouchAction:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:centerView];
         SafeRelease(centerView);
+        
+        
 #endif
         
         [self bringSubviewToFront:leftCircleView];
@@ -124,6 +132,12 @@
     }
     return self;
 }
+- (void)didTouchAction:(id)sender{
+    if(delegate && [delegate respondsToSelector:@selector(didTouchEvent:)]){
+    
+        [delegate didTouchEvent:sender];
+    }
+}
 - (void)setLeftProcessDay:(CGFloat)lLen rightDistance:(CGFloat)rLen{
     [runDaysLabel setText:[NSString stringWithFormat:@"%d\n天",(int)lLen]];
     [runDistanceLabel setText:[NSString stringWithFormat:@"%0.0lf\nkm",rLen]];
@@ -136,8 +150,10 @@
 }
 */
 - (void)setCenterImageView:(UIImage*)image{
+    /*
     centerView.image = image;
-
+     */
+    centerView.layer.contents = (id)image.CGImage;
 }
 - (void)setLeftProcessLen:(CGFloat)lLen rightLen:(CGFloat)rLen{
     leftLen = lLen/kMaxProcessLen *kMaxProcessLen;

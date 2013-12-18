@@ -290,7 +290,7 @@
 -(void)didSelectorTopNavItem:(id)navObj{
     switch ([navObj tag]) {
         case  0:
-#if RUNNING_PAUST
+#if !RUNNING_PAUST
             [self releseTimer];
 #endif
             [self.navigationController popViewControllerAnimated:YES];// animated:<#(BOOL)animated#>

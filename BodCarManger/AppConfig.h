@@ -150,6 +150,7 @@
 
 #define kLocationPhone 0
 
+#define RUNNING_PAUST 0
 
 #define  kLowSpeed   20
 #define  kNormalSpeed  40

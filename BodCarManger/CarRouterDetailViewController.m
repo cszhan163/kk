@@ -12,7 +12,7 @@
 #import "WGS2Mars.h"
 #import "DBManage.h"
 #import "CarRouterDateViewController.h"
-
+static int indexCount = 0;
 @interface CarRouterDetailViewController (){
     MapView     *mMapView;
     Place       *mStartPoint;
@@ -54,6 +54,35 @@
     }
     return self;
 }
+- (void)addObservers
+{
+    [super addObservers];
+    [ZCSNotficationMgr addObserver:self call:@selector(willResignActive:) msgName:UIApplicationWillResignActiveNotification];
+    [ZCSNotficationMgr addObserver:self call:@selector(didBecomeActive:) msgName:UIApplicationDidBecomeActiveNotification];
+}
+- (void)willResignActive:(NSNotification*)ntf{
+    
+    if(self.isRunning){
+        #if RUNNING_PAUST
+#else
+        [self releseTimer];
+        
+        [mMapView clearMapView];
+        
+#endif
+    }
+}
+- (void)didBecomeActive:(NSNotification*)ntf{
+    if(self.isRunning){
+#if RUNNING_PAUST
+#else
+        //[self releseTimer];
+        [ZCSNotficationMgr postMSG:kCheckCardRecentRun obj:nil];
+#endif
+    }
+
+}
+
 - (void)viewWillAppear:(BOOL)animated{
     if(self.isRunning ){
 #if RUNNING_PAUST
@@ -337,7 +366,16 @@
         [self  performSelectorOnMainThread:@selector(updateUIData:) withObject:netData waitUntilDone:NO ];
         //[mDataDict setObject:netData forKey:mMothDateKey];
         //}
-
+        
+        NSTimeInterval timer = 10.f;
+#if TEST_RUNNING
+        self.isRunning = YES;
+        timer = 3.f;
+#else
+        
+#endif
+        self.realDataTimer = [NSTimer scheduledTimerWithTimeInterval:timer target:self selector:@selector(checkRunningData) userInfo:nil repeats:YES];
+        //[self.realDataTimer fire];
         
         
     }
@@ -547,7 +585,7 @@
     [self initMapPointData:data];
 }
 
-static int indexCount = 0;
+
 - (void)updateUIRealTimeData:(NSDictionary*)data{
     
     CGFloat startPoint = mEndSpeed;
@@ -629,25 +667,19 @@ static int indexCount = 0;
     //[mMapView addMotionPointToMap:];
 }
 - (void)updateUIRealTimeCheck:(NSDictionary*)data{
-    NSTimeInterval timer = 10.f;
-#if TEST_RUNNING
-    self.isRunning = YES;
-    timer = 3.f;
-#else
-    
-#endif
+ 
         if(self.isRunning){
             [self setNavgationBarTitle:@"正在驾驶"];
             //[self performSelectorInBackground:@selector(loadRouterHistoryData) withObject:nil];
-            [self loadRouterHistoryData];
-            self.realDataTimer = [NSTimer scheduledTimerWithTimeInterval:timer target:self selector:@selector(checkRunningData) userInfo:nil repeats:YES];
-            //[self.realDataTimer fire];
+            //[self loadRouterHistoryData];
+           
         }
         else{
             [self setNavgationBarTitle:@"最近驾驶"];
             //[self performSelectorInBackground:@selector(loadRouterHistoryData) withObject:nil];
-            [self loadRouterHistoryData];
+            
         }
+    [self loadRouterHistoryData];
 }
 #pragma mark -
 #pragma mark get realtime data

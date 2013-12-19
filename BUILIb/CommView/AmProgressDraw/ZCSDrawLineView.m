@@ -87,7 +87,7 @@
     //CGContextMoveToPoint(context, startX, y);
     for(int j = 0;j<[_linesArray count];j++){
         CGContextBeginPath (context);
-        CGContextSetLineWidth(context,4.f);
+        CGContextSetLineWidth(context,2.f);
         UIColor *lineColor = _drawLineColors[j];
         if(lineColor)
             CGContextSetStrokeColorWithColor(context,lineColor.CGColor);

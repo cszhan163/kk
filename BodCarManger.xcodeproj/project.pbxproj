@@ -341,6 +341,7 @@
 		BD355D70181A11DD0010D16E /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BD355D6F181A11DD0010D16E /* libsqlite3.dylib */; };
 		BD45A2211834AB68000668FA /* save.png in Resources */ = {isa = PBXBuildFile; fileRef = BD45A2201834AB68000668FA /* save.png */; };
 		BDADFC74185EA5DF00A6EF21 /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BDADFC72185EA5DF00A6EF21 /* libMobClickLibrary.a */; };
+		BDADFC7F1862986A00A6EF21 /* UICarTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BDADFC7E1862986A00A6EF21 /* UICarTableViewCell.m */; };
 		BDC37E91181CEF8100A4CB18 /* libstdc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BDC37E90181CEF8100A4CB18 /* libstdc++.dylib */; };
 		BDC37E96181CFA6D00A4CB18 /* drive_matainance_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = BDC37E95181CFA6D00A4CB18 /* drive_matainance_bg.png */; };
 		BDC37EBB181E6A2400A4CB18 /* car_plant_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = BDC37EBA181E6A2400A4CB18 /* car_plant_bg.png */; };
@@ -836,6 +837,8 @@
 		BD45A2201834AB68000668FA /* save.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = save.png; sourceTree = "<group>"; };
 		BDADFC72185EA5DF00A6EF21 /* libMobClickLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMobClickLibrary.a; sourceTree = "<group>"; };
 		BDADFC73185EA5DF00A6EF21 /* MobClick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobClick.h; sourceTree = "<group>"; };
+		BDADFC7D1862986A00A6EF21 /* UICarTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICarTableViewCell.h; sourceTree = "<group>"; };
+		BDADFC7E1862986A00A6EF21 /* UICarTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICarTableViewCell.m; sourceTree = "<group>"; };
 		BDC37E90181CEF8100A4CB18 /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.dylib"; path = "usr/lib/libstdc++.dylib"; sourceTree = SDKROOT; };
 		BDC37E95181CFA6D00A4CB18 /* drive_matainance_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = drive_matainance_bg.png; sourceTree = "<group>"; };
 		BDC37EBA181E6A2400A4CB18 /* car_plant_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = car_plant_bg.png; sourceTree = "<group>"; };
@@ -1419,6 +1422,8 @@
 				049DF97418157AB800DFC9F1 /* CarDriveStatusView.xib */,
 				049DF97B18157AB900DFC9F1 /* PlantTableViewCell.xib */,
 				041EF933182D4C4D00F487A6 /* MessageBoxCell.xib */,
+				BDADFC7D1862986A00A6EF21 /* UICarTableViewCell.h */,
+				BDADFC7E1862986A00A6EF21 /* UICarTableViewCell.m */,
 			);
 			path = CellView;
 			sourceTree = "<group>";
@@ -2324,6 +2329,7 @@
 				04E45AD818255F150028BDAD /* ROResponse.m in Sources */,
 				04E45AD918255F150028BDAD /* ROUtility.m in Sources */,
 				04E45ADA18255F150028BDAD /* RODialogModel.m in Sources */,
+				BDADFC7F1862986A00A6EF21 /* UICarTableViewCell.m in Sources */,
 				04E45ADB18255F150028BDAD /* RODialogView.m in Sources */,
 				04E45ADC18255F150028BDAD /* ROCloseButton.m in Sources */,
 				04E45ADD18255F150028BDAD /* ROGlobalStyle.m in Sources */,

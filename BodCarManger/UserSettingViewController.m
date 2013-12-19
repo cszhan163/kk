@@ -17,6 +17,7 @@
 #import "CardShopLoginViewController.h"
 #import "UserChangePasswordViewController.h"
 
+#import "UICarTableViewCell.h"
 #import "AboutViewController.h"
 //
 //////#import "FriendInvitationViewController.h"
@@ -181,7 +182,7 @@ static NSString *kCellImageArr[] = {
     [self setHiddenLeftBtn:YES];
     [self addFonterView];
     //[self shouldLoadDataFromNet];
-    
+    logInfo.bounces = NO;
     NSString *userId = [AppSetting getLoginUserId];
     if(userId){
         self.userData = [AppSetting getLoginUserDetailInfo:userId];
@@ -304,7 +305,7 @@ static NSString *kCellImageArr[] = {
     if (cell == nil) 
     {
 #if 1
-		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:LabelTextFieldCell];
+		cell = [[UICarTableViewCell  alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:LabelTextFieldCell];
         cell.backgroundColor = [UIColor clearColor];
         
         //cell.clipsToBounds = YES;
@@ -356,12 +357,15 @@ static NSString *kCellImageArr[] = {
                 }
             if(![detailText isKindOfClass:[NSNull class]])
                 cell.detailTextLabel.text = detailText;
+            else{
+                cell.detailTextLabel.text = @"";
+            }
             break;
         case 1:
         {
         
             cell.textLabel.text = kSectionTwoArr[index];
-            
+            cell.detailTextLabel.text = @"";
         }
             break;
         case 2:{
@@ -411,7 +415,7 @@ static NSString *kCellImageArr[] = {
                       cell.textLabel.text = @"退出登陆";
                     break;
             }
-        
+           cell.detailTextLabel.text = @"";
         }
         default:
             break;

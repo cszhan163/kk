@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface UIShareCell : UITableViewCell{
+#import "UICarTableViewCell.h"
+@interface UIShareCell : UICarTableViewCell{
     UILabel     *_shareNameLabel;
     UILabel     *_nameLabel;
 }

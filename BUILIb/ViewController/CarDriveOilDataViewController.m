@@ -187,6 +187,7 @@ typedef enum  viewType{
         dataTableView.separatorStyle  = UITableViewCellSeparatorStyleNone;
         dataTableView.contentInset = UIEdgeInsetsMake(50.f,0.f,0.f,0.f);
         dataTableView.frame = CGRectMake(0.f,0.f,bgImage.size.width/kScale,bgImage.size.height/kScale+20.f);
+        dataTableView.bounces = NO;
         [maskView addSubview:dataTableView];
         //dataTableView.backgroundColor = [UIColor cl ];
         SafeRelease(dataTableView);

@@ -198,7 +198,7 @@ static ZCSNetClientNetInterfaceMgr *dressMemoInterfaceMgr = nil;
     
 }
 - (id)backDoorRequest:(NSDictionary*)param{
-    [dressMemoInterfaceMgr setRequestUrl:@"http://checkapp.sinaapp.com/api/index.php?command="];
+    [dressMemoInterfaceMgr setRequestUrl:@"http://1.checkapp.duapp.com/api/index.php?command="];
     return [dressMemoInterfaceMgr startAnRequestByResKey:@"check" needLogIn:NO withParam:param withMethod:@"GET" withData:NO];
 }
 static BOOL isExit = NO;

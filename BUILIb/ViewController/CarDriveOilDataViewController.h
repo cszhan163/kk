@@ -10,6 +10,9 @@
 #import "UIImageNetBaseViewController.h"
 #import "UISimpleNetBaseViewcontroller.h"
 #import "BaoMonthBaseViewController.h"
+
+#define Header  1
+
 //@interface CarDriveOilDataViewController:UIImageNetBaseViewController
 @interface CarDriveOilDataViewController:BaoMonthBaseViewController
 {

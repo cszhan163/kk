@@ -14,6 +14,8 @@
 
 #import "DriveDataModel.h"
 
+
+
 #define ScrollerView 0
 #define kOilDataViewWidth   300
 
@@ -237,7 +239,15 @@ typedef enum  viewType{
     UIImageView *tableHeaderView = [[UIImageView alloc]initWithFrame:CGRectMake(0.f, 0.f, bgImage.size.width/kScale, bgImage.size.height/kScale)];
     tableHeaderView.image = bgImage;
     
-    return SafeAutoRelease(tableHeaderView);;
+    
+    CarDriveOilTableViewCell *cell = [[CarDriveOilTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"headercell"];
+    cell.backgroundView = tableHeaderView;
+    //SafeAutoRelease(cell);
+    [cell setTableCellCloumn:0 withData:kOilTableHeaderTextArray[0]];
+    [cell setTableCellCloumn:1 withData:kOilTableHeaderTextArray[1]];
+    [cell setTableCellCloumn:2 withData:kOilTableHeaderTextArray[2]];
+    [cell setTableCellCloumn:3 withData:kOilTableHeaderTextArray[3]];
+    return SafeAutoRelease(cell);
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -293,18 +303,24 @@ typedef enum  viewType{
     //[cell.contentView  addSubview: bgView];
     cell.backgroundView = bgView;
     SafeRelease(bgView);
-    
+#if !Header
     if(indexPath.row == 0){
+        
         [cell setTableCellCloumn:0 withData:kOilTableHeaderTextArray[0]];
         [cell setTableCellCloumn:1 withData:kOilTableHeaderTextArray[1]];
         [cell setTableCellCloumn:2 withData:kOilTableHeaderTextArray[2]];
         [cell setTableCellCloumn:3 withData:kOilTableHeaderTextArray[3]];
         return cell;
     }
+#endif
+    int realIndex = indexPath.row;
+ #if !Header
+    realIndex = realIndex -1;
+#else
     
+#endif
     
-    
-    NSDictionary *item = [self.dataArray objectAtIndex:indexPath.row-1];
+    NSDictionary *item = [self.dataArray objectAtIndex:realIndex];
     
     NSString *date = [NSString stringWithFormat:@"%2d-%2d",self.mCurrDate.month,[[item objectForKey:@"day"]intValue]];
     NSString *speedUp = [NSString stringWithFormat:@"%@",[item objectForKey:@"accCount"]];

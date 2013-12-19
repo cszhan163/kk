@@ -10,6 +10,9 @@
 #import "CarInfoInputViewController.h"
 #import "CarSelectedViewController.h"
 #import "CarNumberInputViewController.h"
+
+#import "UICarTableViewCell.h"
+
 //@"车牌型号"
 static NSString *kCarInfoArray[] =
 {
@@ -123,7 +126,7 @@ static NSString  *CarInfoKeyArray[] = {
     if (cell == nil)
     {
 #if 1
-		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:LabelTextFieldCell];
+		cell = [[UICarTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:LabelTextFieldCell];
         cell.backgroundColor = [UIColor clearColor];
         
         //cell.clipsToBounds = YES;

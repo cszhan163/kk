@@ -83,16 +83,24 @@ static NSString *kActionTableHeaderTextArray[] = {@"日期",@"超速",@"急加�
     cell.backgroundView = bgView;
     SafeRelease(bgView);
     
+#if !Header
     if(indexPath.row == 0){
         
-        [cell setTableCellCloumn:0 withData:kActionTableHeaderTextArray[0]];
-        [cell setTableCellCloumn:1 withData:kActionTableHeaderTextArray[1]];
-        [cell setTableCellCloumn:2 withData:kActionTableHeaderTextArray[2]];
-        [cell setTableCellCloumn:3 withData:kActionTableHeaderTextArray[3]];
+        [cell setTableCellCloumn:0 withData:kOilTableHeaderTextArray[0]];
+        [cell setTableCellCloumn:1 withData:kOilTableHeaderTextArray[1]];
+        [cell setTableCellCloumn:2 withData:kOilTableHeaderTextArray[2]];
+        [cell setTableCellCloumn:3 withData:kOilTableHeaderTextArray[3]];
         return cell;
-        
     }
-    NSDictionary *item = [self.dataArray objectAtIndex:indexPath.row-1];
+#endif
+    int realIndex = indexPath.row;
+#if !Header
+    realIndex = realIndex -1;
+#else
+    
+#endif
+    
+    NSDictionary *item = [self.dataArray objectAtIndex:realIndex];
     NSString *date = [NSString stringWithFormat:@"%02d-%02d",self.mCurrDate.month,[[item objectForKey:@"day"]intValue]];
     NSString *speedUp = [NSString stringWithFormat:@"%@",[item objectForKey:@"accCount"]];
     NSString *speedDown = [NSString stringWithFormat:@"%@",[item objectForKey:@"breakCount"]];

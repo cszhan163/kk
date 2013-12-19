@@ -126,7 +126,7 @@
     NSString *showText = [NSString stringWithFormat:kOilMothFormart,self.mCurrDate.month];
     oilData.date = self.mCurrDate;
     oilData.indictorText = showText;
-    oilData.textFormatArray = @[@"低速行驶时间: %d%@",@"经济行驶时间: %d\%@",@"高速行驶时间: %d\%@"];
+    oilData.textFormatArray = @[@"急减速: %d%@",@"急加速: %d\%@",@"高转速: %d\%@"];
     NSString *conclusion = [data objectForKey:@"conclusion"];
     if(conclusion && ![conclusion isKindOfClass:[NSNull class]&& ![conclusion isEqualToString:@""]]){
     }

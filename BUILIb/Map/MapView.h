@@ -26,6 +26,8 @@
 //@property (nonatomic, retain) UIColor* lineColor;
 @property (nonatomic, retain) MKMapView* mapView;
 
+- (void)clearMapView;
+
 -(void) showRouteFrom: (Place*) f to:(Place*) t;
 
 - (void)showRouteWithPointsData:(NSArray*)points;

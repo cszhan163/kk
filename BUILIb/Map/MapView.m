@@ -293,6 +293,18 @@
     lineOne.title = @"red";
     [mapView addOverlay:lineOne];
 }
+- (void)clearMapView{
+
+    if([[mapView overlays]count]){
+        [mapView removeOverlays:[mapView overlays]];
+    }
+    //clear motion map
+    if([[mapView annotations] count]){
+        [mapView removeAnnotations:[mapView annotations]];
+    }
+    
+    
+}
 - (void)addRouterView:(CLLocationCoordinate2D *)points withCount:(int)count withColor:(NSString*)color withCenter:(BOOL)isCenter{
     MKPolyline *lineOne = [MKPolyline polylineWithCoordinates:points count:count];
     lineOne.title = color;

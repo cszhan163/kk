@@ -74,9 +74,9 @@
     OilAnalysisData *oilData =  [[OilAnalysisData alloc]init];
     
     oilData.percentDataArray = [NSArray arrayWithObjects:
-                                [data objectForKey:@"breakRate"],
+                                 [data objectForKey:@"highRPMRate"],
                                 [data objectForKey:@"accRate"],
-                                [data objectForKey:@"highRPMRate"],
+                               [data objectForKey:@"breakRate"],
                                 nil];
     NSMutableArray *linesArray = [NSMutableArray array];
     for(int i = 0;i<3;i++){
@@ -107,7 +107,7 @@
         //[cell setTableCellCloumn:0 withData:date];
         [[linesArray objectAtIndex:0] addObject:[NSDictionary dictionaryWithObjectsAndKeys:
                                                 [item objectForKey:@"day"],@"x",
-                                                 speedDown,@"y",nil]];
+                                                 overSpeadCoutn,@"y",nil]];
         
         [[linesArray objectAtIndex:1] addObject:[NSDictionary dictionaryWithObjectsAndKeys:
                                                  [item objectForKey:@"day"],@"x",
@@ -115,7 +115,7 @@
         
         [[linesArray objectAtIndex:2] addObject:[NSDictionary dictionaryWithObjectsAndKeys:
                                                  [item objectForKey:@"day"],@"x",
-                                                 overSpeadCoutn,@"y",nil]];
+                                                 speedDown,@"y",nil]];
         
         
     }
@@ -126,7 +126,7 @@
     NSString *showText = [NSString stringWithFormat:kOilMothFormart,self.mCurrDate.month];
     oilData.date = self.mCurrDate;
     oilData.indictorText = showText;
-    oilData.textFormatArray = @[@"急减速: %d%@",@"急加速: %d\%@",@"高转速: %d\%@"];
+    oilData.textFormatArray = @[@"高转速: %d\%@",@"急加速: %d\%@",@"急减速: %d%@"];
     NSString *conclusion = [data objectForKey:@"conclusion"];
     if(conclusion && ![conclusion isKindOfClass:[NSNull class]&& ![conclusion isEqualToString:@""]]){
     }

@@ -43,7 +43,7 @@
     [super setNavgationBarRightBtnImage:bgImage forStatus:UIControlStateApplication];
     [super setNavgationBarRightBtnImage:bgImage forStatus:UIControlStateNormal];
     UIImageWithFileName(bgImage, @"item_default_btn.png");
-    [super setNavgationBarRightBtnImage:bgImage forStatus:UIControlStateSelected];
+    [super setNavgationBarRightBtnImage:bgImage forStatus:UIControlStateHighlighted];
     
     //self.rightBtn.titleLabel
     /*

@@ -52,11 +52,12 @@
         assert(bgImage);
         [super setNavgationBarRightBtnImage:bgImage forStatus:UIControlStateNormal];
         UIImageWithFileName(bgImage, @"item_default_btn.png");
-        [super setNavgationBarRightBtnImage:bgImage forStatus:UIControlStateSelected];
-        
+        //[super setNavgationBarRightBtnImage:bgImage forStatus:UIControlStateSelected];
+        [super setNavgationBarRightBtnImage:bgImage forStatus:UIControlStateHighlighted];
+        /*
         [self setNavgationBarRightBtnText:@"回复"forStatus:UIControlStateNormal];
         [self setNavgationBarRightBtnText:@"回复" forStatus:UIControlStateSelected];
-        
+             */
         self.rightBtn.frame = CGRectMake(kDeviceScreenWidth-10-bgImage.size.width/kScale, self.rightBtn.frame.origin.y, bgImage.size.width/kScale, bgImage.size.height/kScale);
         self.rightBtn.font = [UIFont systemFontOfSize:13];
 
@@ -67,10 +68,12 @@
         assert(bgImage);
         [super setNavgationBarRightBtnImage:bgImage forStatus:UIControlStateNormal];
         UIImageWithFileName(bgImage, @"item_default_btn.png");
+        [super setNavgationBarRightBtnImage:bgImage forStatus:UIControlStateHighlighted];
+        
         self.rightBtn.frame = CGRectMake(kDeviceScreenWidth-10-bgImage.size.width/kScale, self.rightBtn.frame.origin.y, bgImage.size.width/kScale, bgImage.size.height/kScale);
         
 //         self.rightBtn.font = [UIFont systemFontOfSize:13];
-//        [super setNavgationBarRightBtnImage:bgImage forStatus:UIControlStateSelected];
+
 //        [self setNavgationBarRightBtnText:@"确定"forStatus:UIControlStateNormal];
 //        [self setNavgationBarRightBtnText:@"确定" forStatus:UIControlStateSelected];
         

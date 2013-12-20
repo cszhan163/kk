@@ -47,7 +47,7 @@
     assert(bgImage);
     [super setNavgationBarRightBtnImage:bgImage forStatus:UIControlStateNormal];
     UIImageWithFileName(bgImage, @"item_default_btn.png");
-    [super setNavgationBarRightBtnImage:bgImage forStatus:UIControlStateSelected];
+    [super setNavgationBarRightBtnImage:bgImage forStatus:UIControlStateHighlighted];
     //[super setNavgationBarRightBtnImage:bgImage forStatus:UIControlStateSelected];
     //self.rightBtn.titleLabel
     /*
@@ -60,7 +60,7 @@
 #if 0
     self.rightBtn.font = [UIFont systemFontOfSize:13];
     [self setNavgationBarRightBtnText:@"确定"forStatus:UIControlStateNormal];
-    [self setNavgationBarRightBtnText:@"确定" forStatus:UIControlStateSelected];
+    [self setNavgationBarRightBtnText:@"确定" forStatus:UIControlStateHighlighted];
 #endif
 //    [self.rightBtn setNeedsDisplay];
     //self.rightBtn.titleLabel.textColor = [UIColor whiteColor];

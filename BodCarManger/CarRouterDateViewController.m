@@ -107,7 +107,7 @@
     mainView.bgImage = bgImage;
     UIImageWithFileName(bgImage, @"router_today_date.png");
     [super setNavgationBarRightBtnImage:bgImage forStatus:UIControlStateNormal];
-    [super setNavgationBarRightBtnImage:bgImage forStatus:UIControlStateSelected];
+    [super setNavgationBarRightBtnImage:bgImage forStatus:UIControlStateHighlighted];
     CGRect rect = self.rightBtn.frame;
     self.rightBtn.frame = CGRectMake(kDeviceScreenWidth-10.f-bgImage.size.width/kScale, rect.origin.y, bgImage.size.width/kScale, bgImage.size.height/kScale);
     

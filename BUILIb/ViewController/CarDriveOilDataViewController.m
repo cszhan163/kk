@@ -327,8 +327,8 @@ typedef enum  viewType{
     NSString *speedDown = [NSString stringWithFormat:@"%@",[item objectForKey:@"breakCount"]];
     NSString *overSpeadCoutn = [NSString stringWithFormat:@"%@",[item objectForKey:@"highRPMCount"]];
     [cell setTableCellCloumn:0 withData:date];
-    [cell setTableCellCloumn:3 withData:speedUp];
-    [cell setTableCellCloumn:2 withData:speedDown];
+    [cell setTableCellCloumn:3 withData:speedDown];
+    [cell setTableCellCloumn:2 withData:speedUp];
     [cell setTableCellCloumn:1 withData:overSpeadCoutn];
     
     return cell;

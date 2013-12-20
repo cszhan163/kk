@@ -191,7 +191,7 @@ static int indexCount = 0;
         UIImageWithFileName(bgImage, @"calendar.png");
         CGRect newRect = self.leftBtn.frame;
         [self.leftBtn setBackgroundImage:bgImage forState:UIControlStateNormal];
-        [self.leftBtn setBackgroundImage:bgImage forState:UIControlStateSelected];
+        [self.leftBtn setBackgroundImage:bgImage forState:UIControlStateHighlighted];
         //self.leftBtn.frame = CGRectMake(10, 5, bgImage.size.width, bgImage.size.height);
     }
     else{

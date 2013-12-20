@@ -40,6 +40,26 @@ static NSString *kActionTableHeaderTextArray[] = {@"日期",@"超速",@"急加�
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    UIImage *bgImage = nil;
+    mainView.backgroundColor = [UIColor clearColor];
+    //tweetieTableView.frame = CGRectMake(0.f,0.f,300.f,380.f);
+    UIImageWithFileName(bgImage, @"oil_table_header.png");
+    /*UIView *tableSectionView = [UIView alloc]initWithFrame:CGRectMake(0.f, 0.f, <#CGFloat width#>, <#CGFloat height#>)
+     */
+    UIImageView *tableHeaderView = [[UIImageView alloc]initWithFrame:CGRectMake(0.f, 0.f, bgImage.size.width/kScale, bgImage.size.height/kScale)];
+    tableHeaderView.image = bgImage;
+    
+    
+    CarDriveOilTableViewCell *cell = [[CarDriveOilTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"headercell"];
+    cell.backgroundView = tableHeaderView;
+    //SafeAutoRelease(cell);
+    [cell setTableCellCloumn:0 withData:kActionTableHeaderTextArray[0]];
+    [cell setTableCellCloumn:1 withData:kActionTableHeaderTextArray[1]];
+    [cell setTableCellCloumn:2 withData:kActionTableHeaderTextArray[2]];
+    [cell setTableCellCloumn:3 withData:kActionTableHeaderTextArray[3]];
+    return SafeAutoRelease(cell);
+}
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	static NSString *CellIdentifier = @"CarDriveActionTableViewCell";

@@ -27,6 +27,7 @@
     // Configure the view for the selected state
 }
 - (void)setFrame:(CGRect)frame {
+    inset = 9.f;
     if(kIsIOS7Check){
         frame.origin.x += inset;
         frame.size.width -= 2 * inset;

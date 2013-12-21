@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 //#import "UINetActiveIndicatorButton.h"
+#import "UICarTableViewCell.h"
 @class UINetActiveIndicatorButton;
-@interface FriendItemCell : UITableViewCell
+@interface FriendItemCell : UICarTableViewCell
 @property(nonatomic,retain)IBOutlet UILabel *nickNameLabel;
 @property(nonatomic,retain)IBOutlet UILabel *locationLabel;
 @property(nonatomic,strong)IBOutlet UILabel *indictTextLabel;

@@ -342,6 +342,8 @@
 		BD45A2211834AB68000668FA /* save.png in Resources */ = {isa = PBXBuildFile; fileRef = BD45A2201834AB68000668FA /* save.png */; };
 		BDADFC74185EA5DF00A6EF21 /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BDADFC72185EA5DF00A6EF21 /* libMobClickLibrary.a */; };
 		BDADFC7F1862986A00A6EF21 /* UICarTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BDADFC7E1862986A00A6EF21 /* UICarTableViewCell.m */; };
+		BDADFC8D1865661C00A6EF21 /* reply_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = BDADFC8B1865661C00A6EF21 /* reply_pressed.png */; };
+		BDADFC8E1865661C00A6EF21 /* reply_default.png in Resources */ = {isa = PBXBuildFile; fileRef = BDADFC8C1865661C00A6EF21 /* reply_default.png */; };
 		BDC37E91181CEF8100A4CB18 /* libstdc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BDC37E90181CEF8100A4CB18 /* libstdc++.dylib */; };
 		BDC37E96181CFA6D00A4CB18 /* drive_matainance_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = BDC37E95181CFA6D00A4CB18 /* drive_matainance_bg.png */; };
 		BDC37EBB181E6A2400A4CB18 /* car_plant_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = BDC37EBA181E6A2400A4CB18 /* car_plant_bg.png */; };
@@ -839,6 +841,8 @@
 		BDADFC73185EA5DF00A6EF21 /* MobClick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobClick.h; sourceTree = "<group>"; };
 		BDADFC7D1862986A00A6EF21 /* UICarTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICarTableViewCell.h; sourceTree = "<group>"; };
 		BDADFC7E1862986A00A6EF21 /* UICarTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICarTableViewCell.m; sourceTree = "<group>"; };
+		BDADFC8B1865661C00A6EF21 /* reply_pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = reply_pressed.png; sourceTree = "<group>"; };
+		BDADFC8C1865661C00A6EF21 /* reply_default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = reply_default.png; sourceTree = "<group>"; };
 		BDC37E90181CEF8100A4CB18 /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.dylib"; path = "usr/lib/libstdc++.dylib"; sourceTree = SDKROOT; };
 		BDC37E95181CFA6D00A4CB18 /* drive_matainance_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = drive_matainance_bg.png; sourceTree = "<group>"; };
 		BDC37EBA181E6A2400A4CB18 /* car_plant_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = car_plant_bg.png; sourceTree = "<group>"; };
@@ -1897,6 +1901,8 @@
 		04FE072A181973C300EEC76A /* setting */ = {
 			isa = PBXGroup;
 			children = (
+				BDADFC8B1865661C00A6EF21 /* reply_pressed.png */,
+				BDADFC8C1865661C00A6EF21 /* reply_default.png */,
 				BD45A2201834AB68000668FA /* save.png */,
 				04E5D6ED182F3057006832B9 /* item_change_btn.png */,
 				04E5D6EE182F3057006832B9 /* item_default_btn.png */,
@@ -2101,6 +2107,7 @@
 				049DF96118156DEA00DFC9F1 /* car_check_header.png in Resources */,
 				049DF97F18157AB900DFC9F1 /* CarDetailPenalView.xib in Resources */,
 				04C515BB1847850E00EC80F1 /* icon@2x.png in Resources */,
+				BDADFC8E1865661C00A6EF21 /* reply_default.png in Resources */,
 				049DF98218157AB900DFC9F1 /* CarDriveStatusView.xib in Resources */,
 				049DF98618157AB900DFC9F1 /* PlantTableViewCell.xib in Resources */,
 				049DF98C181588AF00DFC9F1 /* car_check_gridtable_bg.png in Resources */,
@@ -2120,6 +2127,7 @@
 				04FE07111818282F00EEC76A /* panel_bg.png in Resources */,
 				04FE071A1818306600EEC76A /* server_mes.png in Resources */,
 				04FE071B1818306600EEC76A /* server_phone.png in Resources */,
+				BDADFC8D1865661C00A6EF21 /* reply_pressed.png in Resources */,
 				04FE071C1818306600EEC76A /* server_bg.png in Resources */,
 				04FE071D1818306600EEC76A /* server_car.png in Resources */,
 				04FE071E1818306600EEC76A /* table1.png in Resources */,

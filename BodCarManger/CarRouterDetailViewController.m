@@ -374,7 +374,9 @@ static int indexCount = 0;
 #else
         
 #endif
-        self.realDataTimer = [NSTimer scheduledTimerWithTimeInterval:timer target:self selector:@selector(checkRunningData) userInfo:nil repeats:YES];
+        if(self.isRunning){
+            self.realDataTimer = [NSTimer scheduledTimerWithTimeInterval:timer target:self selector:@selector(checkRunningData) userInfo:nil repeats:YES];
+        }
         //[self.realDataTimer fire];
         
         

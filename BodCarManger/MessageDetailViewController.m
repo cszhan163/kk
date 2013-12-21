@@ -48,10 +48,10 @@
     
     if(self.type == 1){
         msgShowTextView.editable = NO;
-        UIImageWithFileName(bgImage, @"item_change_btn.png");
+        UIImageWithFileName(bgImage, @"reply_default.png");
         assert(bgImage);
         [super setNavgationBarRightBtnImage:bgImage forStatus:UIControlStateNormal];
-        UIImageWithFileName(bgImage, @"item_default_btn.png");
+        UIImageWithFileName(bgImage, @"reply_pressed.png");
         //[super setNavgationBarRightBtnImage:bgImage forStatus:UIControlStateSelected];
         [super setNavgationBarRightBtnImage:bgImage forStatus:UIControlStateHighlighted];
         /*

@@ -104,7 +104,7 @@
     tweetieTableView.layer.cornerRadius = 8.f;
     [self setNavgationBarTitle:NSLocalizedString(@"消息列表", @""
                                                 )];
-    [self setHiddenRightBtn:YES];
+    [self setHiddenRightBtn:NO];
     [self setRightTextContent:NSLocalizedString(@"Clear", @"")];
     [self shouldLoadOlderData:tweetieTableView];
 	// Do any additional setup after loading the view.
@@ -459,12 +459,21 @@
     {
         
         //[self.navigationController popToRootViewControllerAnimated:NO];
-        kNetStartShow(NSLocalizedString(@"清除中", @""),self.view);
+        //kNetStartShow(NSLocalizedString(@"清除中", @""),self.view);
         /*
         ZCSNetClientDataMgr *netMgr = [ZCSNetClientDataMgr getSingleTone];
         NSMutableDictionary *param = [NSMutableDictionary dictionary];
         self.clearRequest = [netMgr     clearMSGNotify:param];
          */
+         NSString *usrId = [AppSetting getLoginUserId];
+        [[DBManage getSingletone] clearUnReadMessageData:usrId];
+        
+        //kNetEndSuccStr(@"消息已清空",self.view);
+       
+        //[self.navigationController popViewControllerAnimated:YES];
+        self.dataArray = nil;
+        [tweetieTableView reloadData];
+         kUIAlertView(@"提示", @"消息已清空");
     }
 }
 

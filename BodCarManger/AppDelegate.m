@@ -128,6 +128,8 @@ UIShareActionAlertView *sharedAlterView = nil;
     //ZCSNetClientDataMgr *clientMgr = [ZCSNetClientDataMgr getSingleTone];
     //[clientMgr startMemoImageTagDataSource];
     //[clientMgr startMemoDataUpload:nil];
+    
+    
 #ifdef UI_APPEARANCE_SELECTOR
     if([UINavigationBar resolveClassMethod:@selector(appearanceWhenContainedIn:)])
     {

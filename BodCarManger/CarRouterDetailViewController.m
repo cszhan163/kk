@@ -414,7 +414,7 @@ static int indexCount = 0;
         else{
             kNetEnd(self.view);
             //kNetEnd(self.view);
-            kUIAlertView(@"提示", @"无最近驾驶纪录");
+            //kUIAlertView(@"提示", @"无最近驾驶纪录");
             //[self.navigationController popToRootViewControllerAnimated:NO];
         }
        

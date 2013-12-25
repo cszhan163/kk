@@ -26,6 +26,7 @@
 - (NSArray*)getMessageHistData:(NSString*)userId;
 - (NSArray*)getUnReadMessageData:(NSString*)userId;
 - (void)clearUnReadMessageData:(NSString*)userId;
+- (void)clearHistMessageData:(NSString*)userId;
 - (void)saveMessageHistData:(NSArray*)data withUserId:(NSString*)userId;
 - (void)saveUnReadMessageData:(NSArray*)data withUserId:(NSString*)userId;
 @end

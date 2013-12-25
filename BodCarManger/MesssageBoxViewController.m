@@ -100,6 +100,17 @@
     mainView.mainFramView.backgroundColor = kAppUserBGWhiteColor;
 #endif
     
+    
+    //[self.rightBtn setTitle:@"确定" forState:UIControlStateNormal];
+    UIImageWithFileName(bgImage, @"del_ios.png");
+    assert(bgImage);
+    //[super setNavgationBarRightBtnImage:bgImage forStatus:UIControlStateApplication];
+    [super setNavgationBarRightBtnImage:bgImage forStatus:UIControlStateNormal];
+    UIImageWithFileName(bgImage, @"del_pressed_ios.png");
+    [super setNavgationBarRightBtnImage:bgImage forStatus:UIControlStateHighlighted];
+    
+    self.rightBtn.frame = CGRectMake(kDeviceScreenWidth-10-bgImage.size.width/kScale, self.rightBtn.frame.origin.y, bgImage.size.width/kScale, bgImage.size.height/kScale);
+    
     tweetieTableView.frame = CGRectMake(9.f,kMBAppTopToolBarHeight+18.f,302,kDeviceScreenHeight-kMBAppBottomToolBarHeght-kMBAppTopToolBarHeight-kMBAppStatusBar-18.f-9.f);
     tweetieTableView.layer.cornerRadius = 8.f;
     [self setNavgationBarTitle:NSLocalizedString(@"消息列表", @""
@@ -407,7 +418,7 @@
 }
 -(void)alterClearConfirm
 {
-    UIAlertView *alertErr = [[[UIAlertView alloc]initWithTitle:NSLocalizedString(@"提示", @"")message:NSLocalizedString(@"是否确认全部清除?",@"") delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel",@"") otherButtonTitles:NSLocalizedString(@"Ok",@""),nil]autorelease];
+    UIAlertView *alertErr = [[[UIAlertView alloc]initWithTitle:NSLocalizedString(@"提示", @"")message:NSLocalizedString(@"是否确认全部清除?",@"") delegate:self cancelButtonTitle:NSLocalizedString(@"取消",@"") otherButtonTitles:NSLocalizedString(@"确定",@""),nil]autorelease];
     [alertErr show];
 
 
@@ -466,14 +477,18 @@
         self.clearRequest = [netMgr     clearMSGNotify:param];
          */
          NSString *usrId = [AppSetting getLoginUserId];
-        [[DBManage getSingletone] clearUnReadMessageData:usrId];
+        [[DBManage getSingletone] clearHistMessageData:usrId];
+        [[[UIApplication sharedApplication]delegate]setMesCount:0];
         
+        [ZCSNotficationMgr postMSG:KNewMessageFromMSG obj:[NSString stringWithFormat:@"%d",0]];
+        kUIAlertViewNoDelegate(@"提示", @"消息已清空");
         //kNetEndSuccStr(@"消息已清空",self.view);
-       
-        //[self.navigationController popViewControllerAnimated:YES];
+        //[ZCSNotficationMgr postMSG:<#(NSString *)#> obj:<#(id)#>]
+        [self.navigationController popViewControllerAnimated:YES];
+        
         self.dataArray = nil;
         [tweetieTableView reloadData];
-         kUIAlertView(@"提示", @"消息已清空");
+        
     }
 }
 

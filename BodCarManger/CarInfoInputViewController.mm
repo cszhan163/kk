@@ -166,6 +166,9 @@
                         //[self.rightBtn resignFirstResponder];
                         return;
                     }
+                if([self.subClassInputTextField.text length]==0){
+                    return;
+                }
             
             }
             if(delegate && [delegate respondsToSelector:@selector(setCellItemData:withIndexPath:)]){

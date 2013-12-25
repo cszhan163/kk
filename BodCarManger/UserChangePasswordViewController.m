@@ -80,11 +80,12 @@
         self.newPasswordInputTextField.font = kAppTextSystemFont(16);//[UIFont systemFontOfSize:40];
         self.newPasswordInputTextField.textColor = kLoginAndSignupInputTextColor;
         self.againNewPasswordInputTextField.placeholder = @"请再次输入新密码";
+        self.againNewPasswordInputTextField.keyboardType = 
         self.againNewPasswordInputTextField .adjustsFontSizeToFitWidth = NO;
         self.againNewPasswordInputTextField .text = @"";
         self.againNewPasswordInputTextField .delegate = self;
         [self.againNewPasswordInputTextField addTarget:self action:@selector(didchangeInputText:) forControlEvents:UIControlEventEditingChanged];
-        self.newPasswordInputTextField.secureTextEntry = YES;
+        self.againNewPasswordInputTextField.secureTextEntry = YES;
       
         CGRect rect = self.newPasswordInputTextField.frame;
         self.againNewPasswordInputTextField.frame = CGRectMake(rect.origin.x, rect.origin.y+rect.size.height+10.f, rect.size.width, rect.size.height);
@@ -191,7 +192,7 @@
         self.request = nil;
         //[self performSelector:@selector(startDoAction) withObject:nil afterDelay:0.3];
         if([[data objectForKey:@"retType"]intValue]==0){
-            kUIAlertView(@"提示",@"密码更新成功");
+            kUIAlertViewNoDelegate(@"提示",@"密码更新成功");
             [AppSetting setLoginUserPassword:self.newPasswordInputTextField.text];
             [self.navigationController popViewControllerAnimated:YES];
         }
@@ -201,7 +202,7 @@
         self.request = nil;
         //[self performSelector:@selector(startDoAction) withObject:nil afterDelay:0.3];
         if([[data objectForKey:@"retType"]intValue]==0){
-            kUIAlertView(@"提示",@"手机号码更新成功");
+            kUIAlertViewNoDelegate(@"提示",@"手机号码更新成功");
             [self.navigationController popViewControllerAnimated:YES];
         }
 

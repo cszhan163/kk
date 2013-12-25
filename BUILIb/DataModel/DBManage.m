@@ -183,6 +183,20 @@ static DBManage *gDb = nil;
         return data;
     }
 }
+- (void)clearHistMessageData:(NSString*)userId{
+    NSFileManager *fileMgr = [NSFileManager defaultManager];
+    NSString *fileName = [NSString stringWithFormat:@"%@.data",userId];
+    NSError *error = nil;
+    NSString *filePath = [self getDataFileFullPath:fileName];
+//    if([fileMgr removeItemAtURL:[NSURL URLWithString:filePath] error:&error]){
+//        NE_LOG(@"remove ok");
+//    }
+    
+     if([fileMgr fileExistsAtPath:filePath isDirectory:NO]){
+         [fileMgr removeItemAtPath:filePath error:&error];
+     }
+    
+}
 - (void)saveMessageHistData:(NSArray*)data withUserId:(NSString*)userId{
     NSString *fileName = [NSString stringWithFormat:@"%@.data",userId];
     [data writeToFile:[self getDataFileFullPath:fileName] atomically:YES];
@@ -191,7 +205,7 @@ static DBManage *gDb = nil;
     NSString *fileName = [NSString stringWithFormat:@"%@_unread.data",userId];
     NSArray *data = [NSArray arrayWithContentsOfFile:[self getDataFileFullPath:fileName]];
     //if([self getDataFileFullPath])
-    [self clearUnReadMessageData:userId];
+    //[self clearUnReadMessageData:userId];
     if(data == nil){
         return  [NSMutableArray array];
     }
@@ -205,9 +219,14 @@ static DBManage *gDb = nil;
     NSString *fileName = [NSString stringWithFormat:@"%@_unread.data",userId];
     NSError *error = nil;
     NSString *filePath = [self getDataFileFullPath:fileName];
+    if([fileMgr removeItemAtURL:[NSURL URLWithString:filePath] error:&error]){
+        NE_LOG(@"remove ok");
+    }
+    /*
     if([fileMgr fileExistsAtPath:filePath isDirectory:NO]){
         [fileMgr removeItemAtPath:filePath error:&error];
     }
+     */
 }
 - (void)saveUnReadMessageData:(NSArray*)data withUserId:(NSString*)userId{
     NSString *fileName = [NSString stringWithFormat:@"%@_unread.data",userId];

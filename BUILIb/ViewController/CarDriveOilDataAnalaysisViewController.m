@@ -11,7 +11,7 @@
 
 #import "DriveOilAnalysisView.h"
 
-#define  kOilMothFormart    @"%02d月起停油耗分析表"
+#define  kOilMothFormart    @"本月经济驾驶指数表"
 
 
 @interface CarDriveOilDataAnalaysisViewController(){

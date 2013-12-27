@@ -83,13 +83,16 @@ typedef enum  viewType{
 #else
     CGFloat currY = 0.f;
     CGRect viewRect = CGRectMake(0.f,0.f,bgImage.size.width/kScale,bgImage.size.height/kScale+20.f);
-    
+    if(kIsIOS7Check){
+        viewRect = CGRectMake(0.f,0.f,bgImage.size.width/kScale,bgImage.size.height/kScale+20.f+80);
+    }
     
     CGSize size = viewRect.size;//CGSizeMake(viewRect.size, bgImage.size.height/kScale);
+   
     scrollerView = [[BSPreviewScrollView alloc]initWithFrameAndPageSize:CGRectMake(0.f, 0.f,size.width, size.height) pageSize:size];
     scrollerView.delegate = self;
     [scrollerView setBoundces:NO];
-    scrollerView.backgroundColor = [UIColor clearColor];
+    scrollerView.backgroundColor = [UIColor redColor];
     scrollerView.layer.cornerRadius = 5.f;
     scrollerView.frame =  viewRect;
     scrollerView.clipsToBounds = YES;
@@ -189,6 +192,7 @@ typedef enum  viewType{
         dataTableView.separatorStyle  = UITableViewCellSeparatorStyleNone;
         dataTableView.contentInset = UIEdgeInsetsMake(50.f,0.f,0.f,0.f);
         dataTableView.frame = CGRectMake(0.f,0.f,bgImage.size.width/kScale,bgImage.size.height/kScale+20.f);
+       
         dataTableView.bounces = NO;
         [maskView addSubview:dataTableView];
         //dataTableView.backgroundColor = [UIColor cl ];

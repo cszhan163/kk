@@ -27,4 +27,6 @@ typedef struct dateSturct{
     int day;
 }DateStruct;
 #define APP_SET
+
+#define  kIsIOS7Check  ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0)
 #endif

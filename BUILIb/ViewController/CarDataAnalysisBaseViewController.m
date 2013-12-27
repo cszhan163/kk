@@ -49,7 +49,7 @@
     UIImageView *tableViewBg = [[UIImageView alloc]initWithImage:bgImage];
     [self.view  addSubview:tableViewBg];
       
-     tableViewBg.frame = CGRectMake(kLeftPendingX,kMBAppTopToolBarHeight+kTopPendingY,kDeviceScreenWidth-2*kLeftPendingX,bgImage.size.height/kScale);
+    tableViewBg.frame = CGRectMake(kLeftPendingX,kMBAppTopToolBarHeight+kTopPendingY,kDeviceScreenWidth-2*kLeftPendingX,kDeviceScreenHeight-kMBAppStatusBar-kMBAppTopToolBarHeight-2*kLeftPendingX);
     tableViewBg.clipsToBounds = YES;
     
     tableViewBg.clipsToBounds = YES;
@@ -68,6 +68,12 @@
     
     [tableViewBg addSubview:navItemCtrl.view];
     navItemCtrl.view.frame = CGRectMake(0.f,-20.f,kDeviceScreenWidth,kDeviceScreenHeight-kMBAppStatusBar-kMBAppBottomToolBarHeght-kMBAppTopToolBarHeight+20.f);
+    
+//    if(kIsIOS7Check){
+//        navItemCtrl.view.frame = CGRectMake(0.f,-20.f,kDeviceScreenWidth,kDeviceScreenHeight-kMBAppStatusBar-kMBAppBottomToolBarHeght-kMBAppTopToolBarHeight+100);
+//    }
+
+    
 #if 1
     [tableViewBg addSubview:topNavBar];
     SafeRelease(topNavBar);

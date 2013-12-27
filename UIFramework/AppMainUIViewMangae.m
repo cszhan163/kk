@@ -114,7 +114,7 @@ static UIButton *popup = nil;
     //else
     {
     
-	currentNavgationController = navCtrl;
+        currentNavgationController = navCtrl;
 #if 1
         
         UINavigationController *vc = [[UINavigationController alloc]init];

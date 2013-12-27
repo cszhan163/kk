@@ -81,6 +81,7 @@ typedef enum  viewType{
     viewType = View_Graph ;
     
 #else
+    
     CGFloat currY = 0.f;
     CGRect viewRect = CGRectMake(0.f,0.f,bgImage.size.width/kScale,bgImage.size.height/kScale+20.f);
     if(kIsIOS7Check){
@@ -92,7 +93,7 @@ typedef enum  viewType{
     scrollerView = [[BSPreviewScrollView alloc]initWithFrameAndPageSize:CGRectMake(0.f, 0.f,size.width, size.height) pageSize:size];
     scrollerView.delegate = self;
     [scrollerView setBoundces:NO];
-    scrollerView.backgroundColor = [UIColor redColor];
+    scrollerView.backgroundColor = [UIColor clearColor];
     scrollerView.layer.cornerRadius = 5.f;
     scrollerView.frame =  viewRect;
     scrollerView.clipsToBounds = YES;
@@ -180,7 +181,13 @@ typedef enum  viewType{
 #pragma mark scrollerView
 -(UIView*)viewForItemAtIndex:(BSPreviewScrollView*)scrollView index:(int)index{
     UIImageWithFileName(UIImage *bgImage, @"car_plant_bg.png");
-    UIView *maskView =[[UIView alloc]initWithFrame:CGRectMake(0,0.f,bgImage.size.width/kScale , bgImage.size.height/kScale+20.f)];
+    CGRect viewRect = CGRectMake(0,0.f,bgImage.size.width/kScale , bgImage.size.height/kScale+20.f);
+    
+    
+    if(kIsIOS7Check){
+        viewRect = CGRectMake(0.f,0.f,bgImage.size.width/kScale,bgImage.size.height/kScale+20.f+80);
+    }
+    UIView *maskView =[[UIView alloc]initWithFrame:viewRect];
     //maskView.backgroundColor = [UIColor redColor];
     // maskView.frame =
     //[maskView addSubview:maskView];
@@ -191,7 +198,7 @@ typedef enum  viewType{
         dataTableView.backgroundColor = [UIColor clearColor];
         dataTableView.separatorStyle  = UITableViewCellSeparatorStyleNone;
         dataTableView.contentInset = UIEdgeInsetsMake(50.f,0.f,0.f,0.f);
-        dataTableView.frame = CGRectMake(0.f,0.f,bgImage.size.width/kScale,bgImage.size.height/kScale+20.f);
+        dataTableView.frame = CGRectMake(0.f,0.f,viewRect.size.width,viewRect.size.height);
        
         dataTableView.bounces = NO;
         [maskView addSubview:dataTableView];

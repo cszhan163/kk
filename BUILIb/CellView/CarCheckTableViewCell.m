@@ -19,10 +19,14 @@
     if (self) {
         // Initialization code
         CGFloat currX = 0.f;
+        CGFloat currY = 0.f;
         self.clipsToBounds = YES;
+        if(kDeviceCheckIphone5){
+            currY = 5.f;
+        }
         //NSArray *widthArray = ;
         for(int i = 0;i<kMaxItemClounm;i++){
-            UILabel *itemLabel = [[UILabel alloc]initWithFrame:CGRectMake(currX,0.f,[kColounmItemWidthArray[i]floatValue],18)];
+            UILabel *itemLabel = [[UILabel alloc]initWithFrame:CGRectMake(currX,currY,[kColounmItemWidthArray[i]floatValue],18)];
             itemLabel.font = [UIFont systemFontOfSize:12];
             itemLabel.textColor = [UIColor whiteColor];
             itemLabel.backgroundColor = [UIColor clearColor];

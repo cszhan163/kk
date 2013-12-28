@@ -105,11 +105,17 @@
     
     CGFloat currY =  kMBAppTopToolBarHeight;
     
+     CGFloat  headerY = 5.f;
+    
+     UIImageWithFileName(bgImage, @"car_check_header.png");
+    
     if(kDeviceCheckIphone5){
-        currY = currY+10;
+        //currY = currY+10;
+        headerY = 8.f;
+        UIImageWithFileName(bgImage, @"car_check_header-568h@2x.png");
     }
     
-    UIImageWithFileName(bgImage, @"car_check_header.png");
+   
     
     UIImageView *headerView = [[UIImageView alloc]initWithImage:bgImage];
     
@@ -123,9 +129,13 @@
     
     [checkButton addTarget:self action:@selector(startCarHealthCheck:) forControlEvents:UIControlEventTouchUpInside];
     [headerView addSubview:checkButton];
-    checkButton.frame = CGRectMake(headerView.frame.size.width-100-16,7,checkButton.frame.size.width,checkButton.frame.size.height);
     
-    CGFloat  headerY = 5.f;
+    checkButton.frame = CGRectMake(headerView.frame.size.width-100-16,7,checkButton.frame.size.width+2.f,checkButton.frame.size.height);
+    
+    if(kDeviceCheckIphone5){
+        checkButton.frame = CGRectOffset(checkButton.frame , 0, 5.f);
+    }
+    
     rotateSpeedLabel = [[UILabel alloc]initWithFrame:CGRectMake(38,headerY, 120.f, 20)];
     rotateSpeedLabel.font = [UIFont fontWithName:@"DIGIFACEWIDE" size:12];
     rotateSpeedLabel.text = @" 转速";
@@ -157,14 +167,21 @@
     [self.view addSubview:checkProcessView];
     KokSafeRelease(checkProcessView);
 #else
+    
+    UIImageWithFileName(bgImage, @"car_check_header.png");
+    
     if(kDeviceCheckIphone5){
-        currY = currY+20;
+        
+        //UIImageWithFileName(bgImage, @"car_check_header-568h@2x.png");
+        currY = currY-10;
     }
    
     
    
     
-    UIImageWithFileName(bgImage, @"car_check_header.png");
+    
+    
+    
     
 #endif
     //for headerLabel
@@ -221,7 +238,7 @@
 
     CGFloat adjustProcess = 20.f;
     if(kDeviceCheckIphone5){
-        adjustProcess = 30.f;
+        adjustProcess = 15;
     }
     
     
@@ -251,13 +268,19 @@
     SafeRelease(checkTagImageView);
     
     currY = currY+40;
-    
+
     if(kDeviceCheckIphone5){
         currY = currY+20;
     }
-  
-    tweetieTableView.frame = CGRectMake(kCheckViewPendingX,currY,kDeviceScreenWidth-2*kCheckViewPendingX+1,202.f);
-    UIImageWithFileName(bgImage, @"car_check_gridtable_bg.png");
+    CGFloat checkTableHeight = 199.f;
+    if(kDeviceCheckIphone5){
+    
+        currY = currY -30.f;
+        checkTableHeight = 270.f;
+        
+    }
+    tweetieTableView.frame = CGRectMake(kCheckViewPendingX,currY,kDeviceScreenWidth-2*kCheckViewPendingX+1,checkTableHeight);
+    UIImageWithFileName(bgImage, @"car_plant_bg_bak.png");
     UIImageView *tableViewBg = [[UIImageView alloc]initWithImage:bgImage];
     [self.view  addSubview:tableViewBg];
     tableViewBg.frame = tweetieTableView.frame;
@@ -272,7 +295,7 @@
     tweetieTableView.clipsToBounds = YES;
     
     
-#if 1
+#if 0
     UIImageWithFileName(bgImage, @"car_check_gridtable_header.png");
     
     UIImageView *tbHeaderView = [[UIImageView alloc]initWithImage:bgImage];
@@ -281,9 +304,10 @@
     [self.view addSubview:tbHeaderView];
     SafeRelease(tbHeaderView);
     //[tweetieTableView setTableHeaderView:tbHeaderView];
-#endif
+
     CGFloat height = tbHeaderView.frame.size.height;
     tweetieTableView.normalEdgeInset = UIEdgeInsetsMake(height,0.f,0.f,0.f);
+#endif
 //    tweetieTableView.contentInset = UIEdgeInsetsMake(height,0.f,0.f,0.f);
     [self checkCacheData];
     //[self startCarHealthCheck:nil];
@@ -451,7 +475,7 @@
 #pragma mark tableview
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-	return  8;
+	return  9;
     //return [self.dataArray count];
 }
 
@@ -479,12 +503,21 @@
         cell.backgroundColor = [UIColor clearColor];
         
     }
-    if(indexPath.row == 7){
+    if(indexPath.row == 8){
         [cell setRowLineHidden:YES];
     }
-    
-    if(indexPath.row <[self.dataArray count]){
-        NSDictionary *item = [self.dataArray objectAtIndex:indexPath.row];
+    if(indexPath.row == 0){
+        UIColor *color = UIColorWithRGBA(255, 153, 51, 1);
+        [cell setTableCellCloumn:0 withData:@"名称"];
+        [cell setTableCellCloumn:1 withData:@"范围"];
+        [cell setTableCellCloumn:2 withData:@"数值"];
+        [cell setTableCellCloumn:0 withColor:color];
+        [cell setTableCellCloumn:1 withColor:color];
+        [cell setTableCellCloumn:2 withColor:color];
+    }
+    else if(indexPath.row <=[self.dataArray count]){
+        int index = indexPath.row;
+        NSDictionary *item = [self.dataArray objectAtIndex:index-1];
         NSString *name = [item objectForKey:@"name"];
         NSString *range = [item objectForKey:@"range"];
         NSString *value = [item objectForKey:@"value"];
@@ -497,7 +530,6 @@
         [nameLabel setFrame:CGRectMake(5.f,originRect.origin.y, originRect.size.width, originRect.size.height)];
     }
     else{
-        
         [cell setTableCellCloumn:0 withData:@""];
         [cell setTableCellCloumn:1 withData:@""];
         [cell setTableCellCloumn:2 withData:@""];
@@ -531,7 +563,11 @@
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if(kDeviceCheckIphone5){
+        return 30.f;
+    }
     return 18.f+4.f;
+    
 }
 -(void)didSelectorTopNavigationBarItem:(id)sender{
     switch ([sender tag]) {

@@ -50,4 +50,5 @@ typedef struct dateSturct{
 
 #define  kIsIOS7Check  ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0)
 
+
 #endif

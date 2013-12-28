@@ -84,6 +84,10 @@
     label.text = text;
     
 }
+- (void)setTableCellCloumn:(int)clum withColor:(UIColor*)color{
+    UILabel *label = [self.mCellItemArray objectAtIndex:clum];
+    label.textColor = color;
+}
 - (UILabel*)getClounmWithIndex:(int)index{
     if(index<[self.mCellItemArray count]){
         return [self.mCellItemArray objectAtIndex:index];

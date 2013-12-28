@@ -18,6 +18,7 @@
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier;
 - (void)setTableCellCloumn:(int)clum withData:(NSString*)text;
 - (void)setClounmLineColor:(UIColor*)color;
+- (void)setTableCellCloumn:(int)clum withColor:(UIColor*)color;
 - (void)setClounmWidthArrays:(NSArray*)widhArray;
 - (UILabel*)getClounmWithIndex:(int)index;
 @end

@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		040CBDAE186DD1B900D9F7FA /* car_check_header-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 040CBDAD186DD1B900D9F7FA /* car_check_header-568h@2x.png */; };
+		040CBDB2186DD21400D9F7FA /* car_check_btn-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 040CBDB1186DD21400D9F7FA /* car_check_btn-568h@2x.png */; };
+		040CBDB4186DDFF400D9F7FA /* CarDriveStatusViewLong.xib in Resources */ = {isa = PBXBuildFile; fileRef = 040CBDB3186DDFF400D9F7FA /* CarDriveStatusViewLong.xib */; };
+		040CBDB6186DE1AC00D9F7FA /* panel_bg-568@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 040CBDB5186DE1AC00D9F7FA /* panel_bg-568@2x.png */; };
 		0410090A183E4DA800027851 /* NewUserSettingViewContorller.m in Sources */ = {isa = PBXBuildFile; fileRef = 04100909183E4DA800027851 /* NewUserSettingViewContorller.m */; };
 		0410090C183E4E9800027851 /* NewUserSettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0410090B183E4E9800027851 /* NewUserSettingViewController.xib */; };
 		041878851840FD5200ACB9CA /* ReaderSampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 041878841840FD5200ACB9CA /* ReaderSampleViewController.m */; };
@@ -306,7 +310,6 @@
 		04FA93CD1835247400B1DB3E /* matain_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 04FA93CB1835247400B1DB3E /* matain_normal.png */; };
 		04FE070A1818188F00EEC76A /* drive_oil_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 04FE07041818188F00EEC76A /* drive_oil_btn.png */; };
 		04FE070B1818188F00EEC76A /* drive_habit_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 04FE07051818188F00EEC76A /* drive_habit_btn.png */; };
-		04FE070C1818188F00EEC76A /* drive_panel_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 04FE07061818188F00EEC76A /* drive_panel_bg.png */; };
 		04FE070D1818188F00EEC76A /* drive_panel_header.png in Resources */ = {isa = PBXBuildFile; fileRef = 04FE07071818188F00EEC76A /* drive_panel_header.png */; };
 		04FE070E1818188F00EEC76A /* page_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 04FE07081818188F00EEC76A /* page_normal.png */; };
 		04FE070F1818188F00EEC76A /* page_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 04FE07091818188F00EEC76A /* page_selected.png */; };
@@ -384,6 +387,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		040CBDAD186DD1B900D9F7FA /* car_check_header-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "car_check_header-568h@2x.png"; path = "images/car_check_header-568h@2x.png"; sourceTree = "<group>"; };
+		040CBDB1186DD21400D9F7FA /* car_check_btn-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "car_check_btn-568h@2x.png"; sourceTree = "<group>"; };
+		040CBDB3186DDFF400D9F7FA /* CarDriveStatusViewLong.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CarDriveStatusViewLong.xib; sourceTree = "<group>"; };
+		040CBDB5186DE1AC00D9F7FA /* panel_bg-568@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "panel_bg-568@2x.png"; path = "images/panel_bg-568@2x.png"; sourceTree = "<group>"; };
 		04100908183E4DA800027851 /* NewUserSettingViewContorller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewUserSettingViewContorller.h; sourceTree = "<group>"; };
 		04100909183E4DA800027851 /* NewUserSettingViewContorller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewUserSettingViewContorller.m; sourceTree = "<group>"; };
 		0410090B183E4E9800027851 /* NewUserSettingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewUserSettingViewController.xib; sourceTree = "<group>"; };
@@ -804,7 +811,6 @@
 		04FA93CB1835247400B1DB3E /* matain_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = matain_normal.png; sourceTree = "<group>"; };
 		04FE07041818188F00EEC76A /* drive_oil_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = drive_oil_btn.png; sourceTree = "<group>"; };
 		04FE07051818188F00EEC76A /* drive_habit_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = drive_habit_btn.png; sourceTree = "<group>"; };
-		04FE07061818188F00EEC76A /* drive_panel_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = drive_panel_bg.png; sourceTree = "<group>"; };
 		04FE07071818188F00EEC76A /* drive_panel_header.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = drive_panel_header.png; sourceTree = "<group>"; };
 		04FE07081818188F00EEC76A /* page_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = page_normal.png; sourceTree = "<group>"; };
 		04FE07091818188F00EEC76A /* page_selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = page_selected.png; sourceTree = "<group>"; };
@@ -1399,6 +1405,8 @@
 		049DF95C18156DEA00DFC9F1 /* check */ = {
 			isa = PBXGroup;
 			children = (
+				040CBDB1186DD21400D9F7FA /* car_check_btn-568h@2x.png */,
+				040CBDAD186DD1B900D9F7FA /* car_check_header-568h@2x.png */,
 				04555B4F1838BEED0055A44A /* car_check_status_default.png */,
 				04C254CF18180ED300B4A678 /* car_check_btn.png */,
 				04C254C918180EC500B4A678 /* car_check_status_low.png */,
@@ -1432,6 +1440,7 @@
 				041EF933182D4C4D00F487A6 /* MessageBoxCell.xib */,
 				BDADFC7D1862986A00A6EF21 /* UICarTableViewCell.h */,
 				BDADFC7E1862986A00A6EF21 /* UICarTableViewCell.m */,
+				040CBDB3186DDFF400D9F7FA /* CarDriveStatusViewLong.xib */,
 			);
 			path = CellView;
 			sourceTree = "<group>";
@@ -1850,6 +1859,7 @@
 		04FE07031818188F00EEC76A /* drive */ = {
 			isa = PBXGroup;
 			children = (
+				040CBDB5186DE1AC00D9F7FA /* panel_bg-568@2x.png */,
 				04FA93CA1835247400B1DB3E /* matain_need.png */,
 				04FA93CB1835247400B1DB3E /* matain_normal.png */,
 				04CA4115182950EB008DAE94 /* safe_green.png */,
@@ -1879,7 +1889,6 @@
 				04FE07101818282F00EEC76A /* panel_bg.png */,
 				04FE07041818188F00EEC76A /* drive_oil_btn.png */,
 				04FE07051818188F00EEC76A /* drive_habit_btn.png */,
-				04FE07061818188F00EEC76A /* drive_panel_bg.png */,
 				04FE07071818188F00EEC76A /* drive_panel_header.png */,
 				04FE07081818188F00EEC76A /* page_normal.png */,
 				04FE07091818188F00EEC76A /* page_selected.png */,
@@ -2090,6 +2099,7 @@
 				04C515B91847850E00EC80F1 /* Icon-57.png in Resources */,
 				046B66EB17E74C37006F34A1 /* map-P.png in Resources */,
 				046B66EC17E74C37006F34A1 /* pin green.png in Resources */,
+				040CBDB6186DE1AC00D9F7FA /* panel_bg-568@2x.png in Resources */,
 				046B66ED17E74C37006F34A1 /* pin red.png in Resources */,
 				046B66EE17E74C37006F34A1 /* router_speed.png in Resources */,
 				046B66EF17E74C37006F34A1 /* rotate.png in Resources */,
@@ -2125,7 +2135,6 @@
 				04C254D018180ED300B4A678 /* car_check_btn.png in Resources */,
 				04FE070A1818188F00EEC76A /* drive_oil_btn.png in Resources */,
 				04FE070B1818188F00EEC76A /* drive_habit_btn.png in Resources */,
-				04FE070C1818188F00EEC76A /* drive_panel_bg.png in Resources */,
 				04FE070D1818188F00EEC76A /* drive_panel_header.png in Resources */,
 				04FE070E1818188F00EEC76A /* page_normal.png in Resources */,
 				0469CF91184CC96000AA8152 /* zbar-samples.png in Resources */,
@@ -2181,6 +2190,7 @@
 				04809B6A181C2224000DBB2F /* tableitem4.png in Resources */,
 				04809B6B181C2224000DBB2F /* tableitemsel0.png in Resources */,
 				04809B6C181C2224000DBB2F /* tableitemsel1.png in Resources */,
+				040CBDAE186DD1B900D9F7FA /* car_check_header-568h@2x.png in Resources */,
 				04809B6D181C2224000DBB2F /* tableitemsel2.png in Resources */,
 				04809B6E181C2224000DBB2F /* tableitemsel3.png in Resources */,
 				BDC37E96181CFA6D00A4CB18 /* drive_matainance_bg.png in Resources */,
@@ -2196,6 +2206,7 @@
 				BDC981AB1820AB08005DD720 /* list_btn.png in Resources */,
 				04E45AAB18255F150028BDAD /* clip.png in Resources */,
 				04E45AAC18255F150028BDAD /* ren.png in Resources */,
+				040CBDB2186DD21400D9F7FA /* car_check_btn-568h@2x.png in Resources */,
 				04E45AAD18255F150028BDAD /* sinaweiboicon.png in Resources */,
 				04E45AAE18255F150028BDAD /* tencentweiboicon.png in Resources */,
 				04E45AB418255F150028BDAD /* bottom-bar.png in Resources */,
@@ -2240,6 +2251,7 @@
 				044D8907182A934000AD2368 /* router_location.png in Resources */,
 				044D8908182A934000AD2368 /* router_oil.png in Resources */,
 				044D890C182A9DCD00AD2368 /* SVProgressHUD.bundle in Resources */,
+				040CBDB4186DDFF400D9F7FA /* CarDriveStatusViewLong.xib in Resources */,
 				041EF934182D4C4D00F487A6 /* MessageBoxCell.xib in Resources */,
 				041EF93A182D4DDC00F487A6 /* mes_unread.png in Resources */,
 				041EF93B182D4DDC00F487A6 /* read.png in Resources */,

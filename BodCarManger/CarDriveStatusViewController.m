@@ -126,13 +126,18 @@ static NSString* kMonthTextArray[] = {
     
 #endif
     
+    int height =kDriveStatusViewHeight;
     if(kDeviceCheckIphone5){
-        currY = currY+30;
+        height = 329.f;
+        //currY = currY
     }
     
     
     //bgView.frame = viewRect;
-    CGRect viewRect = CGRectMake(kLeftPendingX,currY,kDeviceScreenWidth-2*kLeftPendingX,kDriveStatusViewHeight);
+    
+    
+    
+    CGRect viewRect = CGRectMake(kLeftPendingX,currY,kDeviceScreenWidth-2*kLeftPendingX,height);
     CGSize size = viewRect.size;
 #ifndef Infinite
    //CGSizeMake(viewRect.size, bgImage.size.height/kScale);
@@ -179,26 +184,27 @@ static NSString* kMonthTextArray[] = {
     SafeRelease(scrollerView);
     currY = currY+scrollerView.frame.size.height;
 #endif
-    
-    
-    
+    CGFloat yPending = 10.f;
+    if(kDeviceCheckIphone5){
+        yPending = 20.f;
+    }
     UIButton *oilAnalaysisBtn = [UIComUtil createButtonWithNormalBGImageName:@"drive_oil_btn.png" withHightBGImageName:@"drive_oil_btn.png" withTitle:@"" withTag:0];
     [scrollerView addSubview:oilAnalaysisBtn];
     CGSize btnsize= oilAnalaysisBtn.frame.size;
-    oilAnalaysisBtn.frame = CGRectMake(30.f,size.height-10.f-btnsize.height,btnsize.width ,btnsize.height);
+    oilAnalaysisBtn.frame = CGRectMake(30.f,size.height-yPending-btnsize.height,btnsize.width ,btnsize.height);
     [oilAnalaysisBtn addTarget:self action:@selector(didTouchButton:) forControlEvents:UIControlEventTouchUpInside];
     UIButton *driveAnalysisBtn = [UIComUtil createButtonWithNormalBGImageName:@"drive_habit_btn.png" withHightBGImageName:@"drive_habit_btn.png" withTitle:@"" withTag:1];
     [scrollerView addSubview:driveAnalysisBtn];
     
     btnsize = driveAnalysisBtn.frame.size;
-    driveAnalysisBtn.frame =  CGRectMake(300-30.f-btnsize.width+5,size.height-10.f-btnsize.height,btnsize.width ,btnsize.height);
+    driveAnalysisBtn.frame =  CGRectMake(300-30.f-btnsize.width+5,size.height-yPending-btnsize.height,btnsize.width ,btnsize.height);
     [driveAnalysisBtn addTarget:self action:@selector(didTouchButton:) forControlEvents:UIControlEventTouchUpInside];
     
     //for 
     //[self addMaintainaceUI];
 #if 1
     if(kDeviceCheckIphone5){
-        currY = currY+30;
+        currY = currY+10;
     }
     
     carMaintainanceView = [[CarMaintainanceView alloc]initWithFrame:CGRectMake(kDriveMaintainanceLeftPendingX,currY+8.f, kDeviceScreenWidth-2*kDriveMaintainanceLeftPendingX,80)];
@@ -243,6 +249,10 @@ static NSString* kMonthTextArray[] = {
     // maskView.frame =
     //[maskView addSubview:maskView];
     CarDriveStatusView *carDriveStatusView = [UIComUtil  instanceFromNibWithName:@"CarDriveStatusView"];
+    if(kDeviceCheckIphone5){
+        CGRect rect = carDriveStatusView.frame;
+        carDriveStatusView.frame = CGRectMake(0.f, 0.f,rect.size.width,329.f);
+    }
     [maskView addSubview:carDriveStatusView];
     [carDriveStatusView setTarget:self withAction:@selector(didTouchButton:)];
     //SafeRelease(carDriveStatusView);
@@ -319,10 +329,15 @@ static NSString* kMonthTextArray[] = {
   
     int width = kDriveStatusViewWidth;
     int height = kDriveStatusViewHeight;
+    
+    if(kDeviceCheckIphone5){
+        height = 329.f;
+    }
     CarDriveStatusView *carDriveStatusView = [UIComUtil  instanceFromNibWithName:@"CarDriveStatusView"];
     //[maskView addSubview:carDriveStatusView];
     [carDriveStatusView setDateKey:[NSString stringWithFormat:kDateFormart,year,month]];
     carDriveStatusView.frame = CGRectMake(0.f, 0.f, width,height);
+    //carDriveStatusView.backgroundColor = [UIColor redColor];
     //for(id item in carDriveStatusView.subviews)
     {
         [carDriveStatusView  setTarget:self withAction:@selector(didtouchMonthChangeBtn:)];

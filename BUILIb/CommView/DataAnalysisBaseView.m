@@ -37,6 +37,9 @@
     //[appearance setProgressTintColor:[UIColor whiteColor]];
     [mutipleView setBackgroundColor:[UIColor clearColor]];
     [mutipleView setThicknessRatio:0.3f];
+    if(kDeviceCheckIphone5){
+        [mutipleView setThicknessRatio:0.4f];
+    }
     [self addSubview:mutipleView];
 }
 - (void)addLineChartView:(CGRect)rect withBGImage:(UIImage*)image{
@@ -45,13 +48,22 @@
     [drawLineView setBackgroundColor:[UIColor clearColor]];
     [drawLineView setBackgroundImage:image];
     
-    [drawLineView setOffsetX:19.f];
-    [drawLineView setOffsetY:41.f];
+    CGFloat offsexY = 41.f;
+    CGFloat maxLenY = 88.f;
+    CGFloat offsetX = 19.f;
+    if(kDeviceCheckIphone5){
+        maxLenY = 133.f;
+        offsetX = 29.f;
+    }
     
-    [drawLineView setMaxLenY:88.f];//y
+    
+    [drawLineView setOffsetX:offsetX];
+    [drawLineView setOffsetY:offsexY];
+    
+    [drawLineView setMaxLenY:maxLenY];//y
     
     [drawLineView setXStep:215/30.f];//208 x len
-    [drawLineView setYStep:88/YMax];
+    [drawLineView setYStep:maxLenY/YMax];
     
     [self addSubview:drawLineView];
     

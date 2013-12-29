@@ -83,8 +83,8 @@ typedef enum  viewType{
 #else
     
     CGFloat currY = 0.f;
-    CGRect viewRect = CGRectMake(0.f,0.f,bgImage.size.width/kScale,bgImage.size.height/kScale+20.f);
-    if(kIsIOS7Check){
+    CGRect viewRect = CGRectMake(0.f,0.f,bgImage.size.width/kScale,bgImage.size.height/kScale+12);
+    if(kDeviceCheckIphone5){
         viewRect = CGRectMake(0.f,0.f,bgImage.size.width/kScale,bgImage.size.height/kScale+20.f+80);
     }
     
@@ -181,18 +181,21 @@ typedef enum  viewType{
 #pragma mark scrollerView
 -(UIView*)viewForItemAtIndex:(BSPreviewScrollView*)scrollView index:(int)index{
     UIImageWithFileName(UIImage *bgImage, @"car_plant_bg.png");
-    CGRect viewRect = CGRectMake(0,0.f,bgImage.size.width/kScale , bgImage.size.height/kScale+20.f);
+    CGRect viewRect = CGRectMake(0,0.f,bgImage.size.width/kScale , bgImage.size.height/kScale+10.f);
     
     
-    if(kIsIOS7Check){
+    if(kDeviceCheckIphone5){
         viewRect = CGRectMake(0.f,0.f,bgImage.size.width/kScale,bgImage.size.height/kScale+20.f+80);
     }
     UIView *maskView =[[UIView alloc]initWithFrame:viewRect];
+    maskView.clipsToBounds = YES;
     //maskView.backgroundColor = [UIColor redColor];
     // maskView.frame =
     //[maskView addSubview:maskView];
     if(index == 0){
         dataTableView= [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];
+        dataTableView.layer.cornerRadius = 10.f;
+        //dataTableView.contentInset = UIEdgeInsetsMake(10.f, 0.f, 5.f, 0.f);
         dataTableView.dataSource = self;
         dataTableView.delegate = self;
         dataTableView.backgroundColor = [UIColor clearColor];
@@ -295,11 +298,13 @@ typedef enum  viewType{
    
     NSString *bgImageName = @"";
    
-    if(indexPath.row == [self.dataArray count]){
+    if(indexPath.row >[self.dataArray count])
+    {
         //[cell setSeperateLineHidden:YES];
         bgImageName = @"oil_table_footer.png";
     }
-    else{
+    else
+    {
         bgImageName = @"oil_table_cell.png";
         if(indexPath.row == 10){
            

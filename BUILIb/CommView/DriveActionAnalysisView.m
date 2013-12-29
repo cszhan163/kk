@@ -44,15 +44,36 @@
 }
 - (void)addUIView{
     
-    CGFloat startY = 27.f;
-    CGRect rect = CGRectMake(18.f,20.f,50, 50);
+    CGFloat startY = 20.f;
+    CGFloat radius = 50.f;
+    CGFloat startX = 20.f;
+    CGFloat startGraphY = 104.f;
+    CGFloat offsetY = 24.f;
+    NSString *graphImageName = @"oil_analysis_graph.png";
+    if(kDeviceCheckIphone5){
+        radius = 110.f;
+        offsetY = 34.f;
+        startGraphY = 166.f;
+        startX = startX +10.f;
+        graphImageName = @"oil_analysis_graph-568h@2x.png";
+    }
+    else{
+        startX = startX+radius;
+    }
+    
+    CGRect rect = CGRectMake(18.f,startY,radius, radius);
+    
     [self addPercentView:rect];
-    UIImage *bgImage = [UIImage imageNamed:@"oil_analysis_graph.png"];
-    rect = CGRectMake(15.f, 104.f, bgImage.size.width/kScale, bgImage.size.height/kScale);
+    UIImage *bgImage = [UIImage imageNamed:graphImageName];
+    
+    
+    rect = CGRectMake(15.f,startGraphY, bgImage.size.width/kScale, bgImage.size.height/kScale);
     CGFloat currY = rect.origin.y+rect.size.height;
     [self addLineChartView:rect withBGImage:bgImage];
     
-    rect = CGRectMake(25, 102,200, 20);
+    rect = CGRectMake(25, startGraphY-2,200, 20);
+    
+    
     dateShowLabel = [UIComUtil createLabelWithFont:[UIFont systemFontOfSize:12] withTextColor:[UIColor whiteColor] withText:@"" withFrame:rect];
     dateShowLabel.textAlignment = NSTextAlignmentLeft;
     [self addSubview:dateShowLabel];
@@ -61,19 +82,19 @@
     //
     for(int i = 0;i<3;i++){
         bgImage = [UIImage imageNamed:self.tagImageArray[i]];
-        rect = CGRectMake(141,startY+6, bgImage.size.width/kScale, bgImage.size.height/kScale);
+        rect = CGRectMake(startX+radius+20.f,startY+6, bgImage.size.width/kScale, bgImage.size.height/kScale);
         UIImageView *imageView = [[UIImageView alloc]initWithImage:bgImage];
         imageView.frame = rect;
         [self addSubview:imageView];
         SafeRelease(imageView);
         
-        rect = CGRectMake(141+rect.size.width+10,startY,250, 20);
+        rect = CGRectMake(startX+radius+20.f+rect.size.width+10,startY,250, 20);
         UILabel *textLabel  = [UIComUtil createLabelWithFont:[UIFont systemFontOfSize:14] withTextColor:[UIColor whiteColor] withText:@"" withFrame:rect];
         textLabel.textAlignment = NSTextAlignmentLeft;
         [self addSubview:textLabel];
         SafeRelease(textLabel);
         [self.percentShowLabelArray addObject:textLabel];
-        startY = startY+ 24;
+        startY = startY+ offsetY;
     }
     
     bgImage = [UIImage imageNamed:@"oil_conclusion_tag.png"];

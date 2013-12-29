@@ -10,7 +10,8 @@
 		040CBDAE186DD1B900D9F7FA /* car_check_header-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 040CBDAD186DD1B900D9F7FA /* car_check_header-568h@2x.png */; };
 		040CBDB2186DD21400D9F7FA /* car_check_btn-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 040CBDB1186DD21400D9F7FA /* car_check_btn-568h@2x.png */; };
 		040CBDB4186DDFF400D9F7FA /* CarDriveStatusViewLong.xib in Resources */ = {isa = PBXBuildFile; fileRef = 040CBDB3186DDFF400D9F7FA /* CarDriveStatusViewLong.xib */; };
-		040CBDB6186DE1AC00D9F7FA /* panel_bg-568@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 040CBDB5186DE1AC00D9F7FA /* panel_bg-568@2x.png */; };
+		040CBDBD186F189B00D9F7FA /* oil_analysis_graph-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 040CBDBB186F189B00D9F7FA /* oil_analysis_graph-568h@2x.png */; };
+		040CBDBE186F189B00D9F7FA /* panel_bg-568@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 040CBDBC186F189B00D9F7FA /* panel_bg-568@2x.png */; };
 		0410090A183E4DA800027851 /* NewUserSettingViewContorller.m in Sources */ = {isa = PBXBuildFile; fileRef = 04100909183E4DA800027851 /* NewUserSettingViewContorller.m */; };
 		0410090C183E4E9800027851 /* NewUserSettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0410090B183E4E9800027851 /* NewUserSettingViewController.xib */; };
 		041878851840FD5200ACB9CA /* ReaderSampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 041878841840FD5200ACB9CA /* ReaderSampleViewController.m */; };
@@ -390,7 +391,8 @@
 		040CBDAD186DD1B900D9F7FA /* car_check_header-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "car_check_header-568h@2x.png"; path = "images/car_check_header-568h@2x.png"; sourceTree = "<group>"; };
 		040CBDB1186DD21400D9F7FA /* car_check_btn-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "car_check_btn-568h@2x.png"; sourceTree = "<group>"; };
 		040CBDB3186DDFF400D9F7FA /* CarDriveStatusViewLong.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CarDriveStatusViewLong.xib; sourceTree = "<group>"; };
-		040CBDB5186DE1AC00D9F7FA /* panel_bg-568@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "panel_bg-568@2x.png"; path = "images/panel_bg-568@2x.png"; sourceTree = "<group>"; };
+		040CBDBB186F189B00D9F7FA /* oil_analysis_graph-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "oil_analysis_graph-568h@2x.png"; sourceTree = "<group>"; };
+		040CBDBC186F189B00D9F7FA /* panel_bg-568@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "panel_bg-568@2x.png"; sourceTree = "<group>"; };
 		04100908183E4DA800027851 /* NewUserSettingViewContorller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewUserSettingViewContorller.h; sourceTree = "<group>"; };
 		04100909183E4DA800027851 /* NewUserSettingViewContorller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewUserSettingViewContorller.m; sourceTree = "<group>"; };
 		0410090B183E4E9800027851 /* NewUserSettingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewUserSettingViewController.xib; sourceTree = "<group>"; };
@@ -1859,7 +1861,8 @@
 		04FE07031818188F00EEC76A /* drive */ = {
 			isa = PBXGroup;
 			children = (
-				040CBDB5186DE1AC00D9F7FA /* panel_bg-568@2x.png */,
+				040CBDBB186F189B00D9F7FA /* oil_analysis_graph-568h@2x.png */,
+				040CBDBC186F189B00D9F7FA /* panel_bg-568@2x.png */,
 				04FA93CA1835247400B1DB3E /* matain_need.png */,
 				04FA93CB1835247400B1DB3E /* matain_normal.png */,
 				04CA4115182950EB008DAE94 /* safe_green.png */,
@@ -2099,7 +2102,6 @@
 				04C515B91847850E00EC80F1 /* Icon-57.png in Resources */,
 				046B66EB17E74C37006F34A1 /* map-P.png in Resources */,
 				046B66EC17E74C37006F34A1 /* pin green.png in Resources */,
-				040CBDB6186DE1AC00D9F7FA /* panel_bg-568@2x.png in Resources */,
 				046B66ED17E74C37006F34A1 /* pin red.png in Resources */,
 				046B66EE17E74C37006F34A1 /* router_speed.png in Resources */,
 				046B66EF17E74C37006F34A1 /* rotate.png in Resources */,
@@ -2157,6 +2159,7 @@
 				04A3F453181AC06D00E52DC1 /* drive_habit_Indict.png in Resources */,
 				04A3F454181AC06D00E52DC1 /* drive_habit_Text.png in Resources */,
 				04A3F459181AC07800E52DC1 /* drive_habit_table_cell.png in Resources */,
+				040CBDBE186F189B00D9F7FA /* panel_bg-568@2x.png in Resources */,
 				04A3F45A181AC07800E52DC1 /* drive_habit_table_footer.png in Resources */,
 				04A3F45B181AC07800E52DC1 /* drive_habit_table_header.png in Resources */,
 				04E2A0AD181B6FFF006D8C0C /* oil_analysis_selected.png in Resources */,
@@ -2279,6 +2282,7 @@
 				04BFD3891837752A0024F3CC /* login_title.png in Resources */,
 				04BFD38B183776A60024F3CC /* register_title.png in Resources */,
 				04555B501838BEED0055A44A /* car_check_status_default.png in Resources */,
+				040CBDBD186F189B00D9F7FA /* oil_analysis_graph-568h@2x.png in Resources */,
 				04555B5B1838CF760055A44A /* mes_read.png in Resources */,
 				04555B5C1838CF760055A44A /* mes_unread.png in Resources */,
 				BDE47C5D18682DD90071D30D /* del_pressed_ios.png in Resources */,

@@ -462,7 +462,7 @@ static NSString* kMonthTextArray[] = {
     
     CarServiceNetDataMgr *cardShopMgr = [CarServiceNetDataMgr getSingleTone];
     kNetStartShow(@"数据加载...", self.view);
-    NSString *month = [NSString stringWithFormat:@"%d",self.mCurrDate.month];
+    NSString *month = [NSString stringWithFormat:@"%02d",self.mCurrDate.month];
     NSString *year = [NSString stringWithFormat:@"%d",self.mCurrDate.year];
     self.request = [cardShopMgr  getDriveDataByCarId:cardId withMonth:month withYear:year];
     

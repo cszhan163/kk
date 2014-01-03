@@ -19,7 +19,7 @@
 #import "UserConfig.h"
 #import "AppSetting.h"
 #import "convert.h"
-//#import "KokTool.h"
+#import "KokTool.h"
 //#define  kUserDidResignOK           @"userDidResignOk"
 typedef struct dateSturct{
     int year;

@@ -74,7 +74,11 @@
     currHeight = currHeight;
     CGRect tableRect = logInfo.frame;
     ///[logInfo setTableHeaderView:<#(UIView *)#>];
-    logInfo.frame = CGRectMake(0.f, currHeight,tableRect.size.width ,160);
+    CGFloat tableHeight = 160.f;
+    if(kDeviceCheckIphone5){
+        tableHeight = 240.f;
+    }
+    logInfo.frame = CGRectMake(0.f, currHeight,tableRect.size.width ,tableHeight);
     logInfo.hidden = NO;
     logInfo.backgroundColor = [UIColor clearColor];
     
@@ -97,15 +101,17 @@
     //[logInfo addSubview:oilAnalaysisBtn];
     //
     oilAnalaysisBtn.hidden = YES;
-    
-    UILabel *companyLabel = [UIComUtil createLabelWithFont:[UIFont systemFontOfSize:14] withTextColor:[UIColor grayColor] withText:@"上海宝信软件有限公司 版权所有" withFrame:CGRectMake(0,currY+30,320.f,20)];
+    currY = currY+50;
+    UILabel *companyLabel = [UIComUtil createLabelWithFont:[UIFont systemFontOfSize:11] withTextColor:[UIColor grayColor] withText:@"上海宝信软件有限公司 版权所有" withFrame:CGRectMake(0,currY,320.f,20)];
     [self.view addSubview:companyLabel];
+    companyLabel.textColor = HexRGB(0x2b, 0x61, 0x91);
     //@"CopyRightAll Right Reserved"
-    NSString *otherCompanyString = @"杭州迈特斯智能";
-    UILabel *rightLabel = [UIComUtil createLabelWithFont:[UIFont systemFontOfSize:14] withTextColor:[UIColor grayColor] withText:otherCompanyString withFrame:CGRectMake(0,currY+40,320.f,60)];
+    currY = currY;
+    NSString *otherCompanyString = @"杭州迈特斯智能科技有限公司联合开发";
+    UILabel *rightLabel = [UIComUtil createLabelWithFont:[UIFont systemFontOfSize:11] withTextColor:[UIColor grayColor] withText:otherCompanyString withFrame:CGRectMake(0,currY,320.f,60)];
     rightLabel.numberOfLines = 0;
     [self.view addSubview:rightLabel];
-    
+    rightLabel.textColor = HexRGB(0x2b, 0x61, 0x91);
     [self.view  addSubview:oilAnalaysisBtn];
     
     
@@ -131,8 +137,10 @@
     //        (indexPath.row == 1 || indexPath.row == 2)) {
     //        return [UIShareCell cellHeight];
     //    }
-    
-    return  42.f;
+    if(kDeviceCheckIphone5){
+        return 42.f;
+    }
+    return  35;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -252,6 +260,9 @@
         else{
             kUIAlertView(@"提示", @"当前是最新版本");
         }
+    }
+    else{
+        kUIAlertView(@"提示", @"正在建设，敬请期待");
     }
 }
 

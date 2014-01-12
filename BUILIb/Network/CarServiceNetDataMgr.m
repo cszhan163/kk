@@ -472,6 +472,15 @@ static BOOL isExit = NO;
     
 #endif
 }
+- (id)setCallEmergency:(NSString*)usrId{
+    EiInfo *inInfo = [self getCommIPlant4MParamByServiceToken:@"VESA02"];
+    //[inInfo set:@"year" value:[param objectForKey:@"year"]];
+    [inInfo set:@"userName" value:usrId];
+    [inInfo set:METHOD_TOKEN value:kResMessageData]; // 接口名
+    //[inInfo set:@"vin" value:cardId];
+    [self startiPlant4MRequest:inInfo withSuccess:@selector(setEmergenceOk:) withFailed:@selector(setEmergenceFailed:)];
+}
+
 //ackMessage
 - (id)replyMessageList:(NSDictionary*)param{
 #if BAO_TEST
@@ -1266,6 +1275,19 @@ static BOOL isExit = NO;
     else{
         [self sendFinalFailedData:@"" withKey:kResReplyMessageData];
     }
+}
+- (void)setEmergenceOk:(EiInfo*)info{
+
+    if(info.status == 1){
+        /*
+         "{"time":"1383533806","state":"1","conclusion":"检测情况良好","RPM":"800","temper":"78"},"blocks":{"conData":{"meta":{"columns":[{"pos":0,"name":"name","descName":" "},{"pos":1,"name":"ran
+         */
+        NSLog(@"%@",info.blocks);
+    }
+
+}
+- (void)setEmergenceFailed:(EiInfo*)info{
+    
 }
 - (void)getMessageListOk:(EiInfo*)info{
     /*

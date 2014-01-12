@@ -137,11 +137,12 @@ static NSString *kImageTextArr[] ={
     NSDictionary *data = [AppSetting getLoginUserInfo];
     NSString *phoneNumber = [data objectForKey:@"emergPhone"];
     if(phoneNumber){
-    
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel:/%@",phoneNumber]]];
     
     }
-    
+    NSString *usrId = [AppSetting getLoginUserId];
+    CarServiceNetDataMgr *cardShopMgr = [CarServiceNetDataMgr getSingleTone];
+    [cardShopMgr setCallEmergency:usrId];
 
 }
 

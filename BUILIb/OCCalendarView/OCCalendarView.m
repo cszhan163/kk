@@ -30,6 +30,7 @@
     BOOL isMoveTouch;
 }
 @property(nonatomic,strong)NSString *dateKey;
+@property(nonatomic,strong)UITouch *lastTouch;
 @end
 
 @implementation OCCalendarView
@@ -135,61 +136,70 @@
 	//NSLog(@"Touches began");
     if(isMoveTouch)
         return;
-    UITouch *touch = [touches anyObject];
-    CGPoint point = [touch locationInView:self];
-    if(CGRectContainsPoint(CGRectMake(kLeftBackPendingX-15,kPendingY, 30, 35), point)) {
-        //User tapped the prevMonth button
-        if(currentMonth == 1) {
-            currentMonth = 12;
-            currentYear--;
-        } else {
-            currentMonth--;
-        }
-        [UIView beginAnimations:@"fadeOutViews" context:nil];
-        [UIView setAnimationDuration:0.1f];
-        [daysView setAlpha:0.0f];
-        [selectionView setAlpha:0.0f];
-        [UIView commitAnimations];
-        //[self performSelector:@selector(resetViews) withObject:nil afterDelay:0.0f];
-        [self resetViews];
-        if(delegate && [delegate respondsToSelector:@selector(didTouchPreMoth:)]){
-            NSDictionary *day = [NSDictionary dictionaryWithObjectsAndKeys:
-                                 [NSString stringWithFormat:@"%d",currentYear],@"year",
-                                 [NSString stringWithFormat:@"%d",currentMonth],@"month",
-                                 //[NSString stringWithFormat:@"%ld",currentYear],@"year",
-                                 nil];
-            [delegate didTouchPreMoth:day];
-        }
-    } else if(CGRectContainsPoint(CGRectMake(self.frame.size.width-kLeftBackPendingX-15,kPendingY, 30, 35), point)) {
-        //User tapped the nextMonth button
-        if(currentMonth == 12) {
-            currentMonth = 1;
-            currentYear++;
-        } else {
-            currentMonth++;
-        }
-        [UIView beginAnimations:@"fadeOutViews" context:nil];
-        [UIView setAnimationDuration:0.1f];
-        [daysView setAlpha:0.0f];
-        [selectionView setAlpha:0.0f];
-        [UIView commitAnimations];
-        
-        //[self performSelector:@selector(resetViews) withObject:nil afterDelay:0.0f];
-        [self resetViews];
-        if(delegate && [delegate respondsToSelector:@selector(didTouchPreMoth:)]){
-            NSDictionary *day = [NSDictionary dictionaryWithObjectsAndKeys:
-                                 [NSString stringWithFormat:@"%d",currentYear],@"year",
-                                 [NSString stringWithFormat:@"%d",currentMonth],@"month",
-                                 //[NSString stringWithFormat:@"%ld",currentYear],@"year",
-                                 nil];
-            NE_LOG(@"%@",[day description]);
-            [delegate didTouchAfterMoth:day];
-        }
+    if([[touches allObjects] count]>=2)
+        return;
+   
+    UITouch *touch = [[touches allObjects]lastObject];
+    NSTimeInterval interval = touch.timestamp- _lastTouch.timestamp;
+    NSLog(@"%lf",interval);
+    if(interval<0.5){
+        return;
     }
-    else{
+    self.lastTouch = touch;
+    CGPoint point = [touch locationInView:self];
+//    if(CGRectContainsPoint(CGRectMake(kLeftBackPendingX-15,kPendingY, 30, 35), point)) {
+//        //User tapped the prevMonth button
+//        if(currentMonth == 1) {
+//            currentMonth = 12;
+//            currentYear--;
+//        } else {
+//            currentMonth--;
+//        }
+//        [UIView beginAnimations:@"fadeOutViews" context:nil];
+//        [UIView setAnimationDuration:0.1f];
+//        [daysView setAlpha:0.0f];
+//        [selectionView setAlpha:0.0f];
+//        [UIView commitAnimations];
+//        //[self performSelector:@selector(resetViews) withObject:nil afterDelay:0.0f];
+//        [self resetViews];
+//        if(delegate && [delegate respondsToSelector:@selector(didTouchPreMoth:)]){
+//            NSDictionary *day = [NSDictionary dictionaryWithObjectsAndKeys:
+//                                 [NSString stringWithFormat:@"%d",currentYear],@"year",
+//                                 [NSString stringWithFormat:@"%d",currentMonth],@"month",
+//                                 //[NSString stringWithFormat:@"%ld",currentYear],@"year",
+//                                 nil];
+//            [delegate didTouchPreMoth:day];
+//        }
+//    } else if(CGRectContainsPoint(CGRectMake(self.frame.size.width-kLeftBackPendingX-15,kPendingY, 30, 35), point)) {
+//        //User tapped the nextMonth button
+//        if(currentMonth == 12) {
+//            currentMonth = 1;
+//            currentYear++;
+//        } else {
+//            currentMonth++;
+//        }
+//        [UIView beginAnimations:@"fadeOutViews" context:nil];
+//        [UIView setAnimationDuration:0.1f];
+//        [daysView setAlpha:0.0f];
+//        [selectionView setAlpha:0.0f];
+//        [UIView commitAnimations];
+//        
+//        //[self performSelector:@selector(resetViews) withObject:nil afterDelay:0.0f];
+//        [self resetViews];
+//        if(delegate && [delegate respondsToSelector:@selector(didTouchPreMoth:)]){
+//            NSDictionary *day = [NSDictionary dictionaryWithObjectsAndKeys:
+//                                 [NSString stringWithFormat:@"%d",currentYear],@"year",
+//                                 [NSString stringWithFormat:@"%d",currentMonth],@"month",
+//                                 //[NSString stringWithFormat:@"%ld",currentYear],@"year",
+//                                 nil];
+//            NE_LOG(@"%@",[day description]);
+//            [delegate didTouchAfterMoth:day];
+//        }
+//    }
+//    else
+    {
         if(CGRectContainsPoint(daysView.frame ,point)){
-           [daysView getTouchDayViewByPoint:point withParentView:self]; 
-            
+           [daysView getTouchDayViewByPoint:point withParentView:self];
         }
         return;
     }

@@ -338,7 +338,7 @@ typedef enum  viewType{
     
     NSDictionary *item = [self.dataArray objectAtIndex:realIndex];
     
-    NSString *date = [NSString stringWithFormat:@"%2d-%2d",self.mCurrDate.month,[[item objectForKey:@"day"]intValue]];
+    NSString *date = [NSString stringWithFormat:@"%02d-%02d",self.mCurrDate.month,[[item objectForKey:@"day"]intValue]];
     NSString *speedUp = [NSString stringWithFormat:@"%@",[item objectForKey:@"accCount"]];
     NSString *speedDown = [NSString stringWithFormat:@"%@",[item objectForKey:@"breakCount"]];
     NSString *overSpeadCoutn = [NSString stringWithFormat:@"%@",[item objectForKey:@"highRPMCount"]];

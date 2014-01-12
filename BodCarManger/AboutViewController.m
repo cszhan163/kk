@@ -7,6 +7,9 @@
 //
 
 #import "AboutViewController.h"
+#import "UICarTableViewCell.h"
+
+
 #define kAppVersionFormart  @"人保e行%@"
 @interface AboutViewController (){
     NSInteger curVersionNumber;
@@ -41,18 +44,18 @@
     [self.view insertSubview:bgView belowSubview:logInfo];
     
     SafeRelease(bgView);
-    UIImageWithNibName(bgImage, @"icon@2x.png");
+    UIImageWithNibName(bgImage, @"about_logo.png");
     
     UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectZero];
     
     imageView.image =bgImage;
-    imageView.frame = CGRectMake((320.f-bgImage.size.width/kScale)/2.f,kMBAppTopToolBarHeight+20.f,bgImage.size.width/kScale, bgImage.size.height/kScale);
+    imageView.frame = CGRectMake((320.f-bgImage.size.width/kScale)/2.f,kMBAppTopToolBarHeight+15.f,bgImage.size.width/kScale, bgImage.size.height/kScale);
     [self.view addSubview:imageView];
     SafeRelease(imageView);
     CGFloat currHeight = imageView.frame.origin.y+bgImage.size.height/kScale;
     UILabel *navTitleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0.f,currHeight+10.f, kDeviceScreenWidth, 20.f)];
     navTitleLabel.textAlignment = NSTextAlignmentCenter;
-    navTitleLabel.font = [UIFont systemFontOfSize:16];
+    navTitleLabel.font = [UIFont systemFontOfSize:14];
     navTitleLabel.textColor = [UIColor blackColor];
     navTitleLabel.backgroundColor = [UIColor clearColor];
     
@@ -93,10 +96,13 @@
     [oilAnalaysisBtn addTarget:self action:@selector(logOutConfirm:) forControlEvents:UIControlEventTouchUpInside];
     //[logInfo addSubview:oilAnalaysisBtn];
     //
+    oilAnalaysisBtn.hidden = YES;
+    
     UILabel *companyLabel = [UIComUtil createLabelWithFont:[UIFont systemFontOfSize:14] withTextColor:[UIColor grayColor] withText:@"上海宝信软件有限公司 版权所有" withFrame:CGRectMake(0,currY+30,320.f,20)];
     [self.view addSubview:companyLabel];
-    
-    UILabel *rightLabel = [UIComUtil createLabelWithFont:[UIFont systemFontOfSize:14] withTextColor:[UIColor grayColor] withText:@"CopyRight\n All Right Reserved" withFrame:CGRectMake(0,currY+40,320.f,60)];
+    //@"CopyRightAll Right Reserved"
+    NSString *otherCompanyString = @"杭州迈特斯智能";
+    UILabel *rightLabel = [UIComUtil createLabelWithFont:[UIFont systemFontOfSize:14] withTextColor:[UIColor grayColor] withText:otherCompanyString withFrame:CGRectMake(0,currY+40,320.f,60)];
     rightLabel.numberOfLines = 0;
     [self.view addSubview:rightLabel];
     
@@ -114,7 +120,7 @@
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-	return 2.f;
+	return 4.f;
     
 }
 
@@ -140,7 +146,7 @@
     if (cell == nil)
     {
 #if 1
-		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:LabelTextFieldCell];
+		cell = [[UICarTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:LabelTextFieldCell];
         cell.backgroundColor = [UIColor clearColor];
         
         //cell.clipsToBounds = YES;
@@ -182,7 +188,14 @@
             case 0:
             cell.textLabel.text = @"功能介绍";
             break;
-            case 1:
+        case 1:
+            cell.textLabel.text = @"评分";
+            break;
+            case 2:
+            cell.textLabel.text = @"意见与反馈";
+            break;
+            
+            case 3:
             cell.textLabel.text = @"版本更新";
             break;
             
@@ -192,11 +205,12 @@
             //bgImageName = [self.imageArray objectAtIndex:0];
             bgImageName = @"setting_cell_header.png";
             break;
-        case 1:
+        case 3:
             //bgImageName = [self.imageArray objectAtIndex:2];
             bgImageName = @"setting_cell_footer.png";
             break;
         default:
+            bgImageName = @"setting_cell_middle.png";
             break;
     }
 
@@ -227,7 +241,7 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    if(indexPath.row  == 1){
+    if(indexPath.row  == 3){
         
         NSDictionary *data = [AppSetting getLoginUserInfo];
         NSString *versionStr = [data objectForKey:@"versionIOS"];

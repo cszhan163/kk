@@ -10,12 +10,14 @@
 #import "FriendItemCell.h"
 
 #import "MesssageBoxViewController.h"
+
+#define kMaxItem 7
 static NSString *kSectionOneArr[] =
 {
-    @"消息中心",@"汽车服务",@"常用电话",
+    @"消息中心",@"人保优惠",@"汽车保养",@"卫星导航",@"代驾服务",@"车友汇",@"出险上报",
 };
 static NSString *kImageTextArr[] ={
-    @"server_mes.png",@"server_car.png",@"server_phone.png",
+    @"server_mes.png",@"server_discount.png",@"server_maintenance.png",@"server_navigation.png",@"server_drive.png",@"server_bbs.png",@"server_emergentphone.png",
 };
 
 #define kCellItemHeight 51
@@ -118,17 +120,24 @@ static NSString *kImageTextArr[] ={
 
 }
 - (void)addFonterView{
-    logInfo.scrollEnabled = NO;
     
-    CGFloat currY = kMBAppTopToolBarHeight+10.f+52*3.f+10.f;
-   
+    logInfo.scrollEnabled = YES;
+    CGRect rect = logInfo.frame;
+    logInfo.frame = CGRectMake(rect.origin.x, rect.origin.y, kDeviceScreenWidth, kDeviceScreenHeight-kAppStatusBarHeight-kMBAppTopToolBarHeight-kMBAppBottomToolBarHeght);
+    CGFloat currY = kMBAppTopToolBarHeight+10.f+52*3.f+10.f+80.f;
+    if(kDeviceCheckIphone5){
+        currY = currY+40.f;
+    }
+    
+    return;
     UIButton *oilAnalaysisBtn = [UIComUtil createButtonWithNormalBGImageName:@"server_urge_btn.png" withHightBGImageName:@"server_urge_btn.png" withTitle:@"" withTag:0];
-    [self.view addSubview:oilAnalaysisBtn];
+    //[self.view addSubview:oilAnalaysisBtn];
     CGSize btnsize= oilAnalaysisBtn.frame.size;
     
-    oilAnalaysisBtn.frame = CGRectMake(10.f,currY,btnsize.width ,btnsize.height);
+    oilAnalaysisBtn.frame = CGRectMake(10.f,currY,btnsize.width-4*10,btnsize.height);
     [oilAnalaysisBtn addTarget:self action:@selector(didTouchButton:) forControlEvents:UIControlEventTouchUpInside];
-
+    [logInfo setTableFooterView:oilAnalaysisBtn];
+    
 }
 
 #pragma mark -
@@ -158,7 +167,7 @@ static NSString *kImageTextArr[] ={
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-	return 3;
+	return kMaxItem;
     
 }
 
@@ -214,20 +223,42 @@ static NSString *kImageTextArr[] ={
 #endif
 	}
     
+    NSString *bgImageName = nil;
+    
     int index = [indexPath row];
-    NSString *imageStr = [NSString stringWithFormat:@"table%d.png",index+1];
     cell.indictTextLabel.text = kSectionOneArr[index];
+    /*
+    NSString *imageStr = [NSString stringWithFormat:@"table%d.png",index+1];
+   
     UIImageWithFileName(UIImage *bgImage,imageStr);
+     */
+     cell.indictTextLabel.text = kSectionOneArr[index];
+    switch (indexPath.row) {
+        case 0:
+            //bgImageName = [self.imageArray objectAtIndex:0];
+            bgImageName = @"table1.png";
+            break;
+        case 6:
+            //bgImageName = [self.imageArray objectAtIndex:2];
+            bgImageName = @"table3.png";
+            break;
+        default:
+            bgImageName = @"table2.png";
+            break;
+    }
+    UIImageWithNibName(UIImage *bgImage,bgImageName);
     UIImageView *bgView = [[UIImageView alloc]initWithImage:bgImage];
     bgView.frame = CGRectMake(0.f, 0.f,300.f,42.f);
     
-    UIImageWithFileName(bgImage,kImageTextArr[index]);
+    
+     UIImageWithNibName(bgImage,kImageTextArr[index]);
     cell.userIconImageView.image = bgImage;
     //cell.imageView.frame =
-    [cell insertSubview:bgView belowSubview:cell.contentView];
-    //[cell.contentView  addSubview: bgView];
+    
     cell.backgroundView = bgView;
     SafeRelease(bgView);
+    //[cell insertSubview:bgView belowSubview:cell.contentView];
+    //[cell.contentView  addSubview: bgView];
 
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     cell.textLabel.backgroundColor = [UIColor clearColor];
@@ -247,6 +278,9 @@ static NSString *kImageTextArr[] ={
         MesssageBoxViewController *msgVc = [[MesssageBoxViewController alloc]init];
         [self.navigationController pushViewController:msgVc  animated:YES];
         SafeRelease(msgVc);
+    }
+    else if(indexPath.row == kMaxItem-1){
+        [self didTouchButton:nil];
     }
     else{
         kUIAlertView(@"提示", @"正在建设，敬请期待");

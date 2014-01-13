@@ -35,7 +35,7 @@ static NSString *kSectionOneArr[] =
     @"用户名",@"修改密码",@"手机号码",@"积分",
 };
 static NSString *kSectionTwoArr[] = {
-    @"添加车辆和终端",@"记住车辆位置",
+    @"设置车辆和设备信息",@"记住车辆位置",
 };
 
 static NSString *kCellImageArr[] = {

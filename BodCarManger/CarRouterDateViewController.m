@@ -843,17 +843,20 @@ int lastDirect = -1;
             
         }
         if(currDay+1 == nextDay){
+            
+            
             currDay =nextDay;
         }
         else{
             if(isTodayMonth){
                 if(currDay == self.mTodayDate.day){//
                 
-                    if(currDay-1>startDay){
+                    if(currDay-1>=startDay){
                         
                         [self doAddNormalStartDay:startDay endDay:currDay-1 withStatus:tag];
                         
                     }
+                    
                 
                 }
                 else{

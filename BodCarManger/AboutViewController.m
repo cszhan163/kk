@@ -100,14 +100,20 @@
     [oilAnalaysisBtn addTarget:self action:@selector(logOutConfirm:) forControlEvents:UIControlEventTouchUpInside];
     //[logInfo addSubview:oilAnalaysisBtn];
     //
+    //
+    
     oilAnalaysisBtn.hidden = YES;
     currY = currY+50;
-    UILabel *companyLabel = [UIComUtil createLabelWithFont:[UIFont systemFontOfSize:11] withTextColor:[UIColor grayColor] withText:@"上海宝信软件股份有限公司" withFrame:CGRectMake(0,currY,320.f,20)];
+#if 1
+    UILabel *companyLabel = [UIComUtil createLabelWithFont:[UIFont systemFontOfSize:11] withTextColor:[UIColor grayColor] withText:@"杭州麦特斯智能科技有限公司" withFrame:CGRectMake(0,currY,320.f,20)];
     [self.view addSubview:companyLabel];
     companyLabel.textColor = HexRGB(0x2b, 0x61, 0x91);
+#else
+     currY = currY-10;
+#endif
     //@"CopyRightAll Right Reserved"
-    currY = currY;
-    NSString *otherCompanyString = @"杭州麦特斯智能科技有限公司联合开发";
+   
+    NSString *otherCompanyString = @"上海宝信软件股份有限公司联合开发";
     UILabel *rightLabel = [UIComUtil createLabelWithFont:[UIFont systemFontOfSize:11] withTextColor:[UIColor grayColor] withText:otherCompanyString withFrame:CGRectMake(0,currY,320.f,60)];
     rightLabel.numberOfLines = 0;
     [self.view addSubview:rightLabel];

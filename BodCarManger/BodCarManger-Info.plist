@@ -14,6 +14,11 @@
 		<dict>
 			<key>CFBundleIconFiles</key>
 			<array>
+				<string>ios_57</string>
+				<string>ios_144</string>
+				<string>table2</string>
+				<string>zbar-back</string>
+				<string>icon_120</string>
 				<string>Icon-57</string>
 				<string>icon</string>
 			</array>
@@ -58,6 +63,8 @@
 	<array>
 		<string>DIGIFACEWIDE.ttf</string>
 	</array>
+	<key>UILaunchImageFile</key>
+	<string>Default</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>

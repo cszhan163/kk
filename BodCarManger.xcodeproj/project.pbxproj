@@ -68,9 +68,6 @@
 		046B663C17E74984006F34A1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 046B663A17E74984006F34A1 /* InfoPlist.strings */; };
 		046B663E17E74984006F34A1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 046B663D17E74984006F34A1 /* main.m */; };
 		046B664217E74984006F34A1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 046B664117E74984006F34A1 /* AppDelegate.m */; };
-		046B664417E74984006F34A1 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 046B664317E74984006F34A1 /* Default.png */; };
-		046B664617E74984006F34A1 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 046B664517E74984006F34A1 /* Default@2x.png */; };
-		046B664817E74984006F34A1 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 046B664717E74984006F34A1 /* Default-568h@2x.png */; };
 		046B664B17E74984006F34A1 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 046B664A17E74984006F34A1 /* ViewController.m */; };
 		046B664E17E74984006F34A1 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 046B664C17E74984006F34A1 /* ViewController.xib */; };
 		046B66AD17E74C37006F34A1 /* car_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 046B665B17E74C37006F34A1 /* car_bg.png */; };
@@ -170,9 +167,6 @@
 		04C254CD18180EC500B4A678 /* car_check_status_mid.png in Resources */ = {isa = PBXBuildFile; fileRef = 04C254CA18180EC500B4A678 /* car_check_status_mid.png */; };
 		04C254CE18180EC500B4A678 /* car_check_status_top.png in Resources */ = {isa = PBXBuildFile; fileRef = 04C254CB18180EC500B4A678 /* car_check_status_top.png */; };
 		04C254D018180ED300B4A678 /* car_check_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 04C254CF18180ED300B4A678 /* car_check_btn.png */; };
-		04C515B91847850E00EC80F1 /* Icon-57.png in Resources */ = {isa = PBXBuildFile; fileRef = 04C515B61847850E00EC80F1 /* Icon-57.png */; };
-		04C515BA1847850E00EC80F1 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 04C515B71847850E00EC80F1 /* icon.png */; };
-		04C515BB1847850E00EC80F1 /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04C515B81847850E00EC80F1 /* icon@2x.png */; };
 		04CA4118182950EB008DAE94 /* safe_green.png in Resources */ = {isa = PBXBuildFile; fileRef = 04CA4115182950EB008DAE94 /* safe_green.png */; };
 		04CA4119182950EB008DAE94 /* safe_red.png in Resources */ = {isa = PBXBuildFile; fileRef = 04CA4116182950EB008DAE94 /* safe_red.png */; };
 		04CA411A182950EB008DAE94 /* safe_yellow.png in Resources */ = {isa = PBXBuildFile; fileRef = 04CA4117182950EB008DAE94 /* safe_yellow.png */; };
@@ -340,6 +334,12 @@
 		BD05727017E9A2C100208699 /* dashboard1.png in Resources */ = {isa = PBXBuildFile; fileRef = BD05726517E9A2C100208699 /* dashboard1.png */; };
 		BD05727117E9A2C100208699 /* dashboard0.png in Resources */ = {isa = PBXBuildFile; fileRef = BD05726617E9A2C100208699 /* dashboard0.png */; };
 		BD05728417E9B99600208699 /* CarRouterDateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BD05728317E9B99600208699 /* CarRouterDateViewController.m */; };
+		BD17249118852043007F4C90 /* icon_120.png in Resources */ = {isa = PBXBuildFile; fileRef = BD17248E18852043007F4C90 /* icon_120.png */; };
+		BD17249218852043007F4C90 /* ios_57.png in Resources */ = {isa = PBXBuildFile; fileRef = BD17248F18852043007F4C90 /* ios_57.png */; };
+		BD17249318852043007F4C90 /* ios_144.png in Resources */ = {isa = PBXBuildFile; fileRef = BD17249018852043007F4C90 /* ios_144.png */; };
+		BD172497188521D8007F4C90 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = BD172494188521D8007F4C90 /* Default.png */; };
+		BD172498188521D8007F4C90 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BD172495188521D8007F4C90 /* Default-568h@2x.png */; };
+		BD172499188521D8007F4C90 /* Default~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = BD172496188521D8007F4C90 /* Default~iphone.png */; };
 		BD355D6E181A11CC0010D16E /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BD355D6D181A11CC0010D16E /* libxml2.dylib */; };
 		BD355D70181A11DD0010D16E /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BD355D6F181A11DD0010D16E /* libsqlite3.dylib */; };
 		BD45A2211834AB68000668FA /* save.png in Resources */ = {isa = PBXBuildFile; fileRef = BD45A2201834AB68000668FA /* save.png */; };
@@ -497,9 +497,6 @@
 		046B663F17E74984006F34A1 /* BodCarManger-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BodCarManger-Prefix.pch"; sourceTree = "<group>"; };
 		046B664017E74984006F34A1 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		046B664117E74984006F34A1 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		046B664317E74984006F34A1 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
-		046B664517E74984006F34A1 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
-		046B664717E74984006F34A1 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		046B664917E74984006F34A1 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		046B664A17E74984006F34A1 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		046B664D17E74984006F34A1 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController.xib; sourceTree = "<group>"; };
@@ -612,9 +609,6 @@
 		04C254CA18180EC500B4A678 /* car_check_status_mid.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = car_check_status_mid.png; sourceTree = "<group>"; };
 		04C254CB18180EC500B4A678 /* car_check_status_top.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = car_check_status_top.png; sourceTree = "<group>"; };
 		04C254CF18180ED300B4A678 /* car_check_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = car_check_btn.png; sourceTree = "<group>"; };
-		04C515B61847850E00EC80F1 /* Icon-57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-57.png"; sourceTree = "<group>"; };
-		04C515B71847850E00EC80F1 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
-		04C515B81847850E00EC80F1 /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = "<group>"; };
 		04CA4115182950EB008DAE94 /* safe_green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = safe_green.png; sourceTree = "<group>"; };
 		04CA4116182950EB008DAE94 /* safe_red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = safe_red.png; sourceTree = "<group>"; };
 		04CA4117182950EB008DAE94 /* safe_yellow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = safe_yellow.png; sourceTree = "<group>"; };
@@ -849,6 +843,12 @@
 		BD05726617E9A2C100208699 /* dashboard0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dashboard0.png; sourceTree = "<group>"; };
 		BD05728217E9B99600208699 /* CarRouterDateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarRouterDateViewController.h; sourceTree = "<group>"; };
 		BD05728317E9B99600208699 /* CarRouterDateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CarRouterDateViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		BD17248E18852043007F4C90 /* icon_120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_120.png; sourceTree = "<group>"; };
+		BD17248F18852043007F4C90 /* ios_57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ios_57.png; sourceTree = "<group>"; };
+		BD17249018852043007F4C90 /* ios_144.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ios_144.png; sourceTree = "<group>"; };
+		BD172494188521D8007F4C90 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		BD172495188521D8007F4C90 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		BD172496188521D8007F4C90 /* Default~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default~iphone.png"; sourceTree = "<group>"; };
 		BD355D6D181A11CC0010D16E /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		BD355D6F181A11DD0010D16E /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		BD45A2201834AB68000668FA /* save.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = save.png; sourceTree = "<group>"; };
@@ -1169,17 +1169,17 @@
 		046B663817E74984006F34A1 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				04C515B61847850E00EC80F1 /* Icon-57.png */,
-				04C515B71847850E00EC80F1 /* icon.png */,
-				04C515B81847850E00EC80F1 /* icon@2x.png */,
+				BD172494188521D8007F4C90 /* Default.png */,
+				BD172495188521D8007F4C90 /* Default-568h@2x.png */,
+				BD172496188521D8007F4C90 /* Default~iphone.png */,
+				BD17248E18852043007F4C90 /* icon_120.png */,
+				BD17248F18852043007F4C90 /* ios_57.png */,
+				BD17249018852043007F4C90 /* ios_144.png */,
 				04C254B91816D49200B4A678 /* DIGIFACEWIDE.ttf */,
 				046B663917E74984006F34A1 /* BodCarManger-Info.plist */,
 				046B663A17E74984006F34A1 /* InfoPlist.strings */,
 				046B663D17E74984006F34A1 /* main.m */,
 				046B663F17E74984006F34A1 /* BodCarManger-Prefix.pch */,
-				046B664317E74984006F34A1 /* Default.png */,
-				046B664517E74984006F34A1 /* Default@2x.png */,
-				046B664717E74984006F34A1 /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -2066,9 +2066,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				046B663C17E74984006F34A1 /* InfoPlist.strings in Resources */,
-				046B664417E74984006F34A1 /* Default.png in Resources */,
-				046B664617E74984006F34A1 /* Default@2x.png in Resources */,
-				046B664817E74984006F34A1 /* Default-568h@2x.png in Resources */,
 				046B664E17E74984006F34A1 /* ViewController.xib in Resources */,
 				046B66AD17E74C37006F34A1 /* car_bg.png in Resources */,
 				046B66AE17E74C37006F34A1 /* date_bg.png in Resources */,
@@ -2082,6 +2079,7 @@
 				046B66B517E74C37006F34A1 /* page.png in Resources */,
 				046B66B617E74C37006F34A1 /* ragular_day-mid.png in Resources */,
 				046B66B717E74C37006F34A1 /* ragular_day-right.png in Resources */,
+				BD172497188521D8007F4C90 /* Default.png in Resources */,
 				046B66B817E74C37006F34A1 /* regular-small.png in Resources */,
 				046B66B917E74C37006F34A1 /* ragular.png in Resources */,
 				046B66BA17E74C37006F34A1 /* today-small.png in Resources */,
@@ -2092,7 +2090,6 @@
 				046B66C117E74C37006F34A1 /* car_plant_bg_bak.png in Resources */,
 				046B66C217E74C37006F34A1 /* tabbarbg.png in Resources */,
 				046B66C317E74C37006F34A1 /* car_plant_cellline.png in Resources */,
-				04C515BA1847850E00EC80F1 /* icon.png in Resources */,
 				046B66C417E74C37006F34A1 /* btn-back.png in Resources */,
 				046B66C517E74C37006F34A1 /* button-message.png in Resources */,
 				046B66C617E74C37006F34A1 /* icon-arrow.png in Resources */,
@@ -2118,7 +2115,6 @@
 				046B66E717E74C37006F34A1 /* spot2.png in Resources */,
 				046B66E817E74C37006F34A1 /* spot3.png in Resources */,
 				046B66E917E74C37006F34A1 /* spot4.png in Resources */,
-				04C515B91847850E00EC80F1 /* Icon-57.png in Resources */,
 				046B66EB17E74C37006F34A1 /* map-P.png in Resources */,
 				046B66EC17E74C37006F34A1 /* pin green.png in Resources */,
 				046B66ED17E74C37006F34A1 /* pin red.png in Resources */,
@@ -2143,7 +2139,6 @@
 				049DF96018156DEA00DFC9F1 /* car_check_gridtable_header.png in Resources */,
 				049DF96118156DEA00DFC9F1 /* car_check_header.png in Resources */,
 				049DF97F18157AB900DFC9F1 /* CarDetailPenalView.xib in Resources */,
-				04C515BB1847850E00EC80F1 /* icon@2x.png in Resources */,
 				BDADFC8E1865661C00A6EF21 /* reply_default.png in Resources */,
 				049DF98218157AB900DFC9F1 /* CarDriveStatusView.xib in Resources */,
 				049DF98618157AB900DFC9F1 /* PlantTableViewCell.xib in Resources */,
@@ -2227,9 +2222,11 @@
 				042778B518202737008C6432 /* setting_cell_one.png in Resources */,
 				BDC981AA1820AB08005DD720 /* graph_btn.png in Resources */,
 				BDC981AB1820AB08005DD720 /* list_btn.png in Resources */,
+				BD172499188521D8007F4C90 /* Default~iphone.png in Resources */,
 				04E45AAB18255F150028BDAD /* clip.png in Resources */,
 				04E45AAC18255F150028BDAD /* ren.png in Resources */,
 				040CBDB2186DD21400D9F7FA /* car_check_btn-568h@2x.png in Resources */,
+				BD17249218852043007F4C90 /* ios_57.png in Resources */,
 				04E45AAD18255F150028BDAD /* sinaweiboicon.png in Resources */,
 				04E45AAE18255F150028BDAD /* tencentweiboicon.png in Resources */,
 				04E45AB418255F150028BDAD /* bottom-bar.png in Resources */,
@@ -2250,6 +2247,7 @@
 				04E45AC118255F150028BDAD /* photo-frame@2x.png in Resources */,
 				04E45AC218255F150028BDAD /* renren-logo-top-bar.png in Resources */,
 				04E45AC318255F150028BDAD /* renren-logo-top-bar@2x.png in Resources */,
+				BD17249318852043007F4C90 /* ios_144.png in Resources */,
 				04E45AC418255F150028BDAD /* RepairButton.png in Resources */,
 				04E45AC518255F150028BDAD /* RepairButton@2x.png in Resources */,
 				04E45AC618255F150028BDAD /* small-button-normal.png in Resources */,
@@ -2278,6 +2276,7 @@
 				044D8908182A934000AD2368 /* router_oil.png in Resources */,
 				044D890C182A9DCD00AD2368 /* SVProgressHUD.bundle in Resources */,
 				040CBDB4186DDFF400D9F7FA /* CarDriveStatusViewLong.xib in Resources */,
+				BD172498188521D8007F4C90 /* Default-568h@2x.png in Resources */,
 				041EF934182D4C4D00F487A6 /* MessageBoxCell.xib in Resources */,
 				041EF93A182D4DDC00F487A6 /* mes_unread.png in Resources */,
 				041EF93B182D4DDC00F487A6 /* read.png in Resources */,
@@ -2286,6 +2285,7 @@
 				041EF944182D522D00F487A6 /* msg_table_middle.png in Resources */,
 				043385F8182E860400CEE699 /* share_bg.png in Resources */,
 				043385F9182E860400CEE699 /* share_cancel_btn.png in Resources */,
+				BD17249118852043007F4C90 /* icon_120.png in Resources */,
 				043385FA182E860400CEE699 /* sina_weibo.png in Resources */,
 				043385FB182E860400CEE699 /* wechat.png in Resources */,
 				04338600182E92E100CEE699 /* tencent_weibo.png in Resources */,

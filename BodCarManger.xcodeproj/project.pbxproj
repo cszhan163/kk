@@ -336,7 +336,7 @@
 		BD05728417E9B99600208699 /* CarRouterDateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BD05728317E9B99600208699 /* CarRouterDateViewController.m */; };
 		BD17249118852043007F4C90 /* icon_120.png in Resources */ = {isa = PBXBuildFile; fileRef = BD17248E18852043007F4C90 /* icon_120.png */; };
 		BD17249218852043007F4C90 /* ios_57.png in Resources */ = {isa = PBXBuildFile; fileRef = BD17248F18852043007F4C90 /* ios_57.png */; };
-		BD17249318852043007F4C90 /* ios_144.png in Resources */ = {isa = PBXBuildFile; fileRef = BD17249018852043007F4C90 /* ios_144.png */; };
+		BD17249318852043007F4C90 /* ios_114.png in Resources */ = {isa = PBXBuildFile; fileRef = BD17249018852043007F4C90 /* ios_114.png */; };
 		BD172497188521D8007F4C90 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = BD172494188521D8007F4C90 /* Default.png */; };
 		BD172498188521D8007F4C90 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BD172495188521D8007F4C90 /* Default-568h@2x.png */; };
 		BD172499188521D8007F4C90 /* Default~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = BD172496188521D8007F4C90 /* Default~iphone.png */; };
@@ -845,7 +845,7 @@
 		BD05728317E9B99600208699 /* CarRouterDateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CarRouterDateViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		BD17248E18852043007F4C90 /* icon_120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_120.png; sourceTree = "<group>"; };
 		BD17248F18852043007F4C90 /* ios_57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ios_57.png; sourceTree = "<group>"; };
-		BD17249018852043007F4C90 /* ios_144.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ios_144.png; sourceTree = "<group>"; };
+		BD17249018852043007F4C90 /* ios_114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ios_114.png; sourceTree = "<group>"; };
 		BD172494188521D8007F4C90 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		BD172495188521D8007F4C90 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		BD172496188521D8007F4C90 /* Default~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default~iphone.png"; sourceTree = "<group>"; };
@@ -1174,7 +1174,7 @@
 				BD172496188521D8007F4C90 /* Default~iphone.png */,
 				BD17248E18852043007F4C90 /* icon_120.png */,
 				BD17248F18852043007F4C90 /* ios_57.png */,
-				BD17249018852043007F4C90 /* ios_144.png */,
+				BD17249018852043007F4C90 /* ios_114.png */,
 				04C254B91816D49200B4A678 /* DIGIFACEWIDE.ttf */,
 				046B663917E74984006F34A1 /* BodCarManger-Info.plist */,
 				046B663A17E74984006F34A1 /* InfoPlist.strings */,
@@ -2247,7 +2247,7 @@
 				04E45AC118255F150028BDAD /* photo-frame@2x.png in Resources */,
 				04E45AC218255F150028BDAD /* renren-logo-top-bar.png in Resources */,
 				04E45AC318255F150028BDAD /* renren-logo-top-bar@2x.png in Resources */,
-				BD17249318852043007F4C90 /* ios_144.png in Resources */,
+				BD17249318852043007F4C90 /* ios_114.png in Resources */,
 				04E45AC418255F150028BDAD /* RepairButton.png in Resources */,
 				04E45AC518255F150028BDAD /* RepairButton@2x.png in Resources */,
 				04E45AC618255F150028BDAD /* small-button-normal.png in Resources */,
